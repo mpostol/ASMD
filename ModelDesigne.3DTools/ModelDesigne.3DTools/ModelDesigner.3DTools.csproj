@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5F603892-DE40-4246-A969-1C6717AFE35D}</ProjectGuid>
     <RootNamespace>_3DTools</RootNamespace>
-    <AssemblyName>CAS.3DTools</AssemblyName>
+    <AssemblyName>CAS.CommServer.UA.ModelDesigner..3DTools</AssemblyName>
     <WarningLevel>4</WarningLevel>
     <OutputType>library</OutputType>
     <!-- Most people will use Publish dialog in Visual Studio to increment this -->
     <MinFrameworkVersionRequired>3.0</MinFrameworkVersionRequired>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -42,6 +42,7 @@
     <Optimize>false</Optimize>
     <OutputPath>.\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,10 +51,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DebugType>pdbonly</DebugType>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />

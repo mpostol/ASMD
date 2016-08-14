@@ -10,22 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solutio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{3C8DD79D-0146-443F-B071-4983BC7C7B5E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommServer.UA.ModelDesigner", "CommServer.UA.ModelDesigner", "{7E93AB90-9C26-4E3B-A6EE-0294E4829985}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopicsLibrary", "..\EX02-MAML\SHFB\Plugins\TopicsLibrary\TopicsLibrary.csproj", "{8D532F2D-3F40-462A-917F-F7BFEC8B0ED0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3DTools", "..\EX03-3DTools\3DTools\3DTools.csproj", "{5F603892-DE40-4246-A969-1C6717AFE35D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeshDiagram3D", "..\EX05-MeshDiagram3D\MeshDiagram3D\MeshDiagram3D.csproj", "{839C6517-D1BF-4142-8668-444F2047C7CF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicensesContainer", "..\PR39-CommonResources\LicensesContainer\LicensesContainer.csproj", "{234A138E-4E17-4F12-84A3-A920DDAE0D86}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0BA9D404-AEF7-46DC-AD97-1517705A3245}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Definitions", "..\PR39-CommonResources\T4Definitions\T4Definitions.csproj", "{D506423B-BA21-49E6-8C3B-88A771CA444E}"
 EndProject
@@ -43,6 +28,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.DesignStudio"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.OPCViewer", "ModelDesigner.OPCViewer\ModelDesigner.OPCViewer.csproj", "{23B79981-905D-4EEA-9450-0EBE196445DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.MeshDiagram3D", "ModelDesigne.MeshDiagram3D\ModelDesigne.MeshDiagram3D\ModelDesigner.MeshDiagram3D.csproj", "{839C6517-D1BF-4142-8668-444F2047C7CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.3DTools", "ModelDesigne.3DTools\ModelDesigne.3DTools\ModelDesigner.3DTools.csproj", "{5F603892-DE40-4246-A969-1C6717AFE35D}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -53,18 +42,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8D532F2D-3F40-462A-917F-F7BFEC8B0ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8D532F2D-3F40-462A-917F-F7BFEC8B0ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8D532F2D-3F40-462A-917F-F7BFEC8B0ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8D532F2D-3F40-462A-917F-F7BFEC8B0ED0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F603892-DE40-4246-A969-1C6717AFE35D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F603892-DE40-4246-A969-1C6717AFE35D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F603892-DE40-4246-A969-1C6717AFE35D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F603892-DE40-4246-A969-1C6717AFE35D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{839C6517-D1BF-4142-8668-444F2047C7CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{839C6517-D1BF-4142-8668-444F2047C7CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{839C6517-D1BF-4142-8668-444F2047C7CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{839C6517-D1BF-4142-8668-444F2047C7CF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{234A138E-4E17-4F12-84A3-A920DDAE0D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{234A138E-4E17-4F12-84A3-A920DDAE0D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{234A138E-4E17-4F12-84A3-A920DDAE0D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -95,23 +72,23 @@ Global
 		{23B79981-905D-4EEA-9450-0EBE196445DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23B79981-905D-4EEA-9450-0EBE196445DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23B79981-905D-4EEA-9450-0EBE196445DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{839C6517-D1BF-4142-8668-444F2047C7CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{839C6517-D1BF-4142-8668-444F2047C7CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{839C6517-D1BF-4142-8668-444F2047C7CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{839C6517-D1BF-4142-8668-444F2047C7CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F603892-DE40-4246-A969-1C6717AFE35D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F603892-DE40-4246-A969-1C6717AFE35D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F603892-DE40-4246-A969-1C6717AFE35D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F603892-DE40-4246-A969-1C6717AFE35D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8D532F2D-3F40-462A-917F-F7BFEC8B0ED0} = {3C8DD79D-0146-443F-B071-4983BC7C7B5E}
-		{5F603892-DE40-4246-A969-1C6717AFE35D} = {3C8DD79D-0146-443F-B071-4983BC7C7B5E}
-		{839C6517-D1BF-4142-8668-444F2047C7CF} = {3C8DD79D-0146-443F-B071-4983BC7C7B5E}
 		{234A138E-4E17-4F12-84A3-A920DDAE0D86} = {B429E0BA-4F78-44A2-B61A-8093A17789C4}
 		{D506423B-BA21-49E6-8C3B-88A771CA444E} = {B429E0BA-4F78-44A2-B61A-8093A17789C4}
-		{B854411B-DA84-4DE2-832E-E8E61C3A107B} = {7E93AB90-9C26-4E3B-A6EE-0294E4829985}
 		{8F6A704E-F1E3-413B-AA5B-ECB741C4F73F} = {B854411B-DA84-4DE2-832E-E8E61C3A107B}
 		{0DEBB963-CA92-44D8-998F-9EDCF62547CF} = {B854411B-DA84-4DE2-832E-E8E61C3A107B}
-		{7C805BC4-B9C0-48E0-9D3F-D1C322B35ACB} = {7E93AB90-9C26-4E3B-A6EE-0294E4829985}
-		{B4E9C610-790A-417C-BF68-7B3E0AECCAA4} = {7E93AB90-9C26-4E3B-A6EE-0294E4829985}
-		{0B8CEFFB-66AD-447C-B009-1E06D8EEF2C4} = {7E93AB90-9C26-4E3B-A6EE-0294E4829985}
-		{23B79981-905D-4EEA-9450-0EBE196445DD} = {7E93AB90-9C26-4E3B-A6EE-0294E4829985}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
