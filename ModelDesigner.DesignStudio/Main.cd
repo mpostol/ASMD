@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CAS.UA.Model.Designer.Main">
+    <Position X="3.25" Y="2.25" Width="2.5" />
+    <AssociationLine Name="m_BindingsPropertyObserver" Type="CAS.UA.Model.Designer.Controls.NodeObserver.BindingsPropertyObserver">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.079" Y="-0.305" Height="0.182" Width="2.079" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAAAURAAUCTAAAAAAQjQAACCACAAAAAIAAIAICQAAEM=</HashCode>
+      <FileName>Main.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_HelpProvider" />
+      <Field Name="m_BindingsPropertyObserver" />
+      <Field Name="m_ModelObserver" />
+      <Field Name="m_selectedItemObserverComponent" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="System.Windows.Forms.HelpProvider" Collapsed="true">
+    <Position X="7.25" Y="3.75" Width="2.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.BindingsPropertyObserver" Collapsed="true">
+    <Position X="8" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAAAAAAAACAAIACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\NodeObserver\BindingsPropertyObserver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.ModelObserver" Collapsed="true">
+    <Position X="7.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICABABQAKCIAAAQYAADAAIACAQAAAMIBEgAAACQAAEA=</HashCode>
+      <FileName>Controls\NodeObserver\ModelObserver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.MainController">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.MainController.SelectedItemObserver" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controls\NodeObserver\MainController.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Interface Name="CAS.UA.Model.Designer.Controls.NodeObserver.MainController.ISelectedItemObserver" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controls\NodeObserver\MainController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Delegate Name="CAS.UA.Model.Designer.Controls.NodeObserver.MainController.SelectedItemIsChangedEventHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controls\NodeObserver\MainController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.MainController.SelectedItemObserverSimpleComponent" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controls\NodeObserver\MainController.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABCAAAAAAAAAQAAAAAAAAIAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Controls\NodeObserver\MainController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="mSelectedItemObserverList" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="System.Collections.Generic.List&lt;T&gt;" Collapsed="true">
+    <Position X="4" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.SelectedItemObserverComponent" Collapsed="true">
+    <Position X="7.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAAAAACACCAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\NodeObserver\SelectedItemObserverComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

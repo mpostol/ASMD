@@ -1,0 +1,681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0B8CEFFB-66AD-447C-B009-1E06D8EEF2C4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CAS.UA.Model.Designer</RootNamespace>
+    <AssemblyName>CAS.UA.ModelDesigner</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>CAS.UA.Model.Designer.Program</StartupObject>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <SignManifests>true</SignManifests>
+    <ManifestCertificateThumbprint>502D68F34386F28801A8BF04EA024544899F9713</ManifestCertificateThumbprint>
+    <GenerateManifests>true</GenerateManifests>
+    <ApplicationIcon>OPC_UA_ASMD_48.ico</ApplicationIcon>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
+    <ManifestTimestampUrl>
+    </ManifestTimestampUrl>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <PublishUrl>COInstal\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://www.commsvr.com/COInstal/UAModelDesignerPro/</InstallUrl>
+    <SupportUrl>http://www.commsvr.com/</SupportUrl>
+    <ProductName>CAS UA Address Space Model Designer</ProductName>
+    <PublisherName>CAS</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>ASMD.html</WebPage>
+    <AutorunEnabled>true</AutorunEnabled>
+    <TrustUrlParameters>true</TrustUrlParameters>
+    <ApplicationRevision>57</ApplicationRevision>
+    <ApplicationVersion>3.20.01.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>IDE0001,IDE0002,IDE0003</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CAS.CodeProtect, Version=5.0.2.39087, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CodeProtect.5.0.2\lib\net35\CAS.CodeProtect.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.CommServer.DA.Server.Configuration, Version=4.1.2.24782, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.DA.Server.Configuration.4.1.2-Alpha\lib\net35\CAS.CommServer.DA.Server.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.CommServer.DAClientConfiguration, Version=3.12.1.17970, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.DAClientConfiguration.3.12.1\lib\net451\CAS.CommServer.DAClientConfiguration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.CommServer.OPCClassic.SDK.Core, Version=2.1.106.25891, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.OPCClassic.SDK.Core.2.01.106\lib\net451\CAS.CommServer.OPCClassic.SDK.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.CommServer.UA.ConfigurationEditor.ModelsContainer, Version=3.20.1.25216, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.3.20.1-Foxtrot\lib\net461\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.ControlLibrary, Version=5.0.2.39089, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.Windows.Forms.5.0.2\lib\net35\CAS.ControlLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.RTLib, Version=5.0.2.39089, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.RealTime.5.0.2\lib\net35\CAS.RTLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.RTLibComm, Version=5.0.2.39088, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.RealTime.5.0.2\lib\net35\CAS.RTLibComm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.UA.IServerConfiguration, Version=1.0.0.32204, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.UA.IServerConfiguration.1.00.00\lib\net35\CAS.UA.IServerConfiguration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.UA.Server.ServerConfiguration, Version=3.20.1.23336, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.UA.Server.ServerConfiguration.3.20.1-Foxtrot\lib\net35\CAS.UA.Server.ServerConfiguration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.UACommon, Version=3.0.2.38912, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.UA.Common.3.00.02-Alpha\lib\net461\CAS.UACommon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OPC..UA.ModelCompiler.Common, Version=1.2.27.27364, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\OPC.UA.SDK.ModelCompiler.Common.1.02.27\lib\net461\OPC..UA.ModelCompiler.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Opc.Ua.Core, Version=1.1.326.0, Culture=neutral, PublicKeyToken=78aea80f6827b5ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\OPC.UA.SDK.Core.1.01.326\lib\net35\Opc.Ua.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UAOOI.SemanticDataInformationModelFactory, Version=2.0.0.32174, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.SemanticData.UANodeSetValidation.2.0.0-Alpha\lib\net461\UAOOI.SemanticDataInformationModelFactory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UAOOI.SemanticDataUANodeSetValidation, Version=2.0.0.32321, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.SemanticData.UANodeSetValidation.2.0.0-Alpha\lib\net461\UAOOI.SemanticDataUANodeSetValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutOpcUaModelCompilerWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutOpcUaModelCompilerWindow.Designer.cs">
+      <DependentUpon>AboutOpcUaModelCompilerWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddressSpaceService.cs" />
+    <Compile Include="Controls\NodeObserver\BindingsPropertyObserver.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\BindingsPropertyObserver.Designer.cs">
+      <DependentUpon>BindingsPropertyObserver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\BrowseOptionsDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\BrowseOptionsDlg.Designer.cs">
+      <DependentUpon>BrowseOptionsDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\BrowseViewObserver.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\BrowseViewObserver.Designer.cs">
+      <DependentUpon>BrowseViewObserver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\BrowseViewTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\BrowseViewTreeView.Designer.cs">
+      <DependentUpon>BrowseViewTreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\HelpUserControlObserver.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\HelpUserControlObserver.Designer.cs">
+      <DependentUpon>HelpUserControlObserver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\MainController.cs">
+    </Compile>
+    <Compile Include="Controls\NodeObserver\ModelObserver.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\ModelObserver.Designer.cs">
+      <DependentUpon>ModelObserver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\NodeClassLabelObserver.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\NodeClassLabelObserver.Designer.cs">
+      <DependentUpon>NodeClassLabelObserver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\PropertyGridObserver.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\PropertyGridObserver.Designer.cs">
+      <DependentUpon>PropertyGridObserver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\NodePropertyObserver.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\NodePropertyObserver.Designer.cs">
+      <DependentUpon>NodePropertyObserver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\SelectedItemObserverComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\SelectedItemObserverComponent.Designer.cs">
+      <DependentUpon>SelectedItemObserverComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\View3DModelObserver.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\View3DModelObserver.Designer.cs">
+      <DependentUpon>View3DModelObserver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExportingTools\ExportConstrain.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="IAddressSpaceCreator.cs" />
+    <Compile Include="IElement.cs" />
+    <Compile Include="IO\ImportNodeSet.cs" />
+    <Compile Include="IO\SaveConstrain.cs">
+    </Compile>
+    <Compile Include="MenuFactory.cs" />
+    <Compile Include="NodeClassesEnum.cs" />
+    <Compile Include="Controls\AddNode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AddNode.Designer.cs">
+      <DependentUpon>AddNode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FiltersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FiltersControl.Designer.cs">
+      <DependentUpon>FiltersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExportingTools\ExportTool.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StartUpSplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StateMachineEditor\CustomEditors.cs" />
+    <Compile Include="StateMachineEditor\StateMachineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StateMachineEditor\StateMachineControl.Designer.cs">
+      <DependentUpon>StateMachineControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StateMachineEditor\StateMachineCornerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StateMachineEditor\StateMachineCornerControl.Designer.cs">
+      <DependentUpon>StateMachineCornerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StateMachineEditor\StateMachineCrossTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StateMachineEditor\StateMachineCrossTable.designer.cs">
+      <DependentUpon>StateMachineCrossTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StateMachineEditor\StateMachineEditorMain.cs" />
+    <Compile Include="StateMachineEditor\Transition.cs" />
+    <Compile Include="StateMachineEditor\TransitionButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StateMachineEditor\TransitionButton.Designer.cs">
+      <DependentUpon>TransitionButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StateMachineEditor\VerticalLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TraceEvent.cs" />
+    <Compile Include="Types\BuildInXmlQualifiedNames.cs" />
+    <Compile Include="Wrappers4ProperyGrid\DocumentationAttribute.cs" />
+    <Compile Include="Wrappers4ProperyGrid\Editors\VariableValueEditor.cs" />
+    <Compile Include="Wrappers4ProperyGrid\Editors\XmlQualifiedNameEditorWithDefaultValue.cs" />
+    <Compile Include="Wrappers4ProperyGrid\InstanceIdentifier.cs" />
+    <Compile Include="Wrappers4ProperyGrid\LocalizedText.cs" />
+    <Compile Include="Wrappers4ProperyGrid\NameWithEventBase.cs" />
+    <Compile Include="Wrappers4ProperyGrid\NodeDesign.cs" />
+    <Compile Include="Wrappers4ProperyGrid\Nodes.Properties.cs" />
+    <Compile Include="Wrappers4ProperyGrid\ProjectWrapper.cs" />
+    <Compile Include="Wrappers4ProperyGrid\UAModelDesignerSolution.cs" />
+    <Compile Include="Wrappers4ProperyGrid\UniqueIdentifier.cs" />
+    <Compile Include="Wrappers\AddressSpaceDictionary\AddressSpace.cs">
+      <DependentUpon>AddressSpace.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Wrappers\AddressSpaceDictionary\AddressSpace.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddressSpace.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Wrappers\AddressSpaceDictionary\AddressSpaceCompiler.cs" />
+    <Compile Include="Wrappers\AddressSpaceDictionary\InstanceNodeContext.cs" />
+    <Compile Include="Wrappers\AddressSpaceDictionary\InstanceNodesCollection.cs" />
+    <Compile Include="Wrappers\AddressSpaceDictionary\InstanceReferencesCollection.cs" />
+    <Compile Include="Wrappers\AddressSpaceDictionary\IReference.cs" />
+    <Compile Include="Wrappers\BrowseOptions.cs" />
+    <Compile Include="Wrappers\ChildrenFolder.cs" />
+    <Compile Include="Wrappers\DictionaryTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Wrappers\DictionaryTreeView.Designer.cs">
+      <DependentUpon>DictionaryTreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wrappers\Extensions.cs" />
+    <Compile Include="Wrappers\IInstanceNode.cs" />
+    <Compile Include="Wrappers\IInstanceNodeContext.cs" />
+    <Compile Include="Wrappers\IInstanceNodesCollection.cs" />
+    <Compile Include="Wrappers\IInstanceReferencesCollection.cs" />
+    <Compile Include="Wrappers\IModelNode.cs" />
+    <Compile Include="Wrappers\Libraries.cs" />
+    <Compile Include="HelpContent\HelpContentEventArgs.cs" />
+    <Compile Include="HelpContent\HelpContentHelper.cs" />
+    <Compile Include="ImagesForNodes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImagesForNodes.Designer.cs">
+      <DependentUpon>ImagesForNodes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IO\ConfigurationManagement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IO\ConfigurationManagement.designer.cs">
+      <DependentUpon>ConfigurationManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IO\OPCFModelConfigurationManagement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IO\OPCFSolutionConfigurationManagement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IO\TypeGenericConfigurationManagement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wrappers\BaseTreeNode.cs" />
+    <Compile Include="Wrappers\DataTypeDesign.cs" />
+    <Compile Include="Wrappers\DictionaryDesign.cs" />
+    <Compile Include="Wrappers\EncodingDesign.cs" />
+    <Compile Include="Wrappers\EncodingsFolder.cs" />
+    <Compile Include="Wrappers\Folder.cs" />
+    <Compile Include="Wrappers\INodeFactory.cs" />
+    <Compile Include="Wrappers\InstanceDesign.cs" />
+    <Compile Include="Wrappers\IValidate.cs" />
+    <Compile Include="Main.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wrappers\IWrapperTreeNode.cs" />
+    <Compile Include="Wrappers\LibraryTreeNode.cs" />
+    <Compile Include="Wrappers\MethodDesign.cs" />
+    <Compile Include="Wrappers\ModelDesign.cs" />
+    <Compile Include="Wrappers\Namespace.cs" />
+    <Compile Include="Wrappers\NamespacesFolder.cs" />
+    <Compile Include="Wrappers\NodeDesign.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Wrappers\NOdeFactory.cs" />
+    <Compile Include="Wrappers\ObjectDesign.cs" />
+    <Compile Include="Wrappers\ObjectTypeDesign.cs" />
+    <Compile Include="Wrappers\Parameter.cs" />
+    <Compile Include="Wrappers\ParametersFolder.cs" />
+    <Compile Include="Wrappers\ProjectTreeNode.cs" />
+    <Compile Include="Wrappers\PropertyDesign.cs" />
+    <Compile Include="Wrappers\Reference.cs" />
+    <Compile Include="Wrappers\ReferencesFolder.cs" />
+    <Compile Include="Wrappers\ReferenceTypeDesign.cs" />
+    <Compile Include="Wrappers\RootTreeNode.cs" />
+    <Compile Include="Wrappers\Root.cs" />
+    <Compile Include="Wrappers\SelectedItemEventArgs.cs" />
+    <Compile Include="Wrappers\SolutionTreeNode.cs" />
+    <Compile Include="Wrappers\TypeListItem.cs" />
+    <Compile Include="Wrappers\ValidableTreeNode.cs" />
+    <Compile Include="Wrappers\WrapperResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WrapperResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Wrappers\TypeDesign.cs" />
+    <Compile Include="Wrappers\VariableDesign.cs" />
+    <Compile Include="Wrappers\VariableTypeDesign.cs" />
+    <Compile Include="Wrappers\ViewDesign.cs" />
+    <Compile Include="Wrappers\WrapperBase.cs" />
+    <Compile Include="Wrappers\WrapperTreeNode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="exe\CAS.Opc.Ua.ModelCompiler.exe.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Help\ASModelDesigner.chm" />
+    <None Include="ReleaseActionItems.txt" />
+    <None Include="ReleaseNotes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ReleaseNotes.txt</LastGenOutput>
+    </None>
+    <Content Include="exe\CAS.Opc.Ua.ModelCompiler.Core.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="exe\CAS.Opc.Ua.ModelCompiler.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ReleaseNotes.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReleaseNotes.tt</DependentUpon>
+    </Content>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cas.snk" />
+    <None Include="ClassDiagrams\IO.cd" />
+    <None Include="ClassDiagrams\TreeNode.cd" />
+    <None Include="Controls\NodeObserver\NodeObserver.cd" />
+    <Content Include="log\CAS.OPC.UA.ASMD.log">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="IO\ClassDiagram.cd" />
+    <None Include="Model_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\AssemblyInfo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
+    </None>
+    <None Include="ReleaseNotes.old" />
+    <None Include="Resources\UAASMDInstallbanner.jpg" />
+    <None Include="Main.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\FloppyDisk.png" />
+    <None Include="Resources\Open.png" />
+    <None Include="Resources\build.png" />
+    <None Include="Resources\FilterHS.png" />
+    <None Include="Resources\UAModelDesinger_splashscreen.jpg" />
+    <Content Include="OPC_UA_ASMD_48.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\EditionAdd32.png" />
+    <None Include="Resources\paste.png" />
+    <None Include="Resources\cut.png" />
+    <None Include="Resources\copy.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Properties\ReleaseNotes.txt" />
+    <EmbeddedResource Include="Resources\StateMachineIcon.ico" />
+    <EmbeddedResource Include="Resources\transition.png" />
+    <None Include="Resources\ArrowRight32.png" />
+    <None Include="Resources\ArrowLeft32.png" />
+    <None Include="Wrappers4ProperyGrid\NodeDesign.cd" />
+    <None Include="Wrappers\AddressSpaceDictionary\AddressSpace.xsc">
+      <DependentUpon>AddressSpace.xsd</DependentUpon>
+    </None>
+    <None Include="Wrappers\AddressSpaceDictionary\AddressSpace.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AddressSpace.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Wrappers\AddressSpaceDictionary\AddressSpace.xss">
+      <DependentUpon>AddressSpace.xsd</DependentUpon>
+    </None>
+    <None Include="Wrappers\AddressSpaceDictionary\ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AboutOpcUaModelCompilerWindow.resx">
+      <DependentUpon>AboutOpcUaModelCompilerWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\AddNode.resx">
+      <DependentUpon>AddNode.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FiltersControl.resx">
+      <DependentUpon>FiltersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NodeObserver\BrowseOptionsDlg.resx">
+      <DependentUpon>BrowseOptionsDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NodeObserver\BrowseViewObserver.resx">
+      <DependentUpon>BrowseViewObserver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NodeObserver\BrowseViewTreeView.resx">
+      <DependentUpon>BrowseViewTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NodeObserver\HelpUserControlObserver.resx">
+      <DependentUpon>HelpUserControlObserver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NodeObserver\ModelObserver.resx">
+      <DependentUpon>ModelObserver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NodeObserver\NodeClassLabelObserver.resx">
+      <DependentUpon>NodeClassLabelObserver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NodeObserver\PropertyGridObserver.resx">
+      <DependentUpon>PropertyGridObserver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NodeObserver\View3DModelObserver.resx">
+      <DependentUpon>View3DModelObserver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImagesForNodes.resx">
+      <DependentUpon>ImagesForNodes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IO\ConfigurationManagement.resx">
+      <DependentUpon>ConfigurationManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StateMachineEditor\StateMachineControl.resx">
+      <DependentUpon>StateMachineControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StateMachineEditor\StateMachineCornerControl.resx">
+      <DependentUpon>StateMachineCornerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StateMachineEditor\StateMachineCrossTable.resx">
+      <DependentUpon>StateMachineCrossTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wrappers\WrapperResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>WrapperResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EX02-MAML\SHFB\Plugins\TopicsLibrary\TopicsLibrary.csproj">
+      <Project>{8D532F2D-3F40-462A-917F-F7BFEC8B0ED0}</Project>
+      <Name>TopicsLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EX05-MeshDiagram3D\MeshDiagram3D\MeshDiagram3D.csproj">
+      <Project>{839c6517-d1bf-4142-8668-444f2047c7cf}</Project>
+      <Name>MeshDiagram3D</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PR39-CommonResources\LicensesContainer\LicensesContainer.csproj">
+      <Project>{234A138E-4E17-4F12-84A3-A920DDAE0D86}</Project>
+      <Name>LicensesContainer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelDesigner.Configuration\ModelDesigner.Configuration.csproj">
+      <Project>{B4E9C610-790A-417C-BF68-7B3E0AECCAA4}</Project>
+      <Name>ModelDesigner.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelDesigner.ImportExport\ModelDesigner.ImportExport.csproj">
+      <Project>{7c805bc4-b9c0-48e0-9d3f-d1c322b35acb}</Project>
+      <Name>ModelDesigner.ImportExport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelDesigner.OPCViewer\ModelDesigner.OPCViewer.csproj">
+      <Project>{23b79981-905d-4eea-9450-0ebe196445dd}</Project>
+      <Name>ModelDesigner.OPCViewer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="OpcEnum">
+      <Visible>False</Visible>
+      <ProductName>OpcCoreSetup</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="OpenXml.SDL.V2">
+      <Visible>False</Visible>
+      <ProductName>OpenXMLSDK</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <FileAssociation Include=".uamdsl">
+      <Visible>False</Visible>
+      <Description>OPC UA Address Space Model Designer solution file</Description>
+      <Progid>OPCUAAddressSpaceModelDesignerSolution</Progid>
+      <DefaultIcon>OPC_UA_ASMD_48.ico</DefaultIcon>
+    </FileAssociation>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

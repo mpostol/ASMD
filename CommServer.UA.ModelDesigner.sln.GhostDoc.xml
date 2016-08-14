@@ -1,0 +1,52 @@
+<GhostDoc>
+<IgnoreFilePatterns>
+  <IgnoreFilePattern>*.min.js</IgnoreFilePattern>
+  <IgnoreFilePattern>jquery*.js</IgnoreFilePattern>
+</IgnoreFilePatterns>
+  <SpellChecker>
+    <IncludeExtensions>
+    </IncludeExtensions>
+    <IgnoreExtensions>
+    </IgnoreExtensions>
+    <IgnoreFiles>
+    </IgnoreFiles>
+  </SpellChecker>
+<HelpConfigurations selected="HelpFile">
+  <HelpConfiguration name="HelpFile">
+    <OutputPath>..\PR46-UA.Common\CAS.IServerConfiguration\bin\Help</OutputPath>
+    <CleanupOutputPath>true</CleanupOutputPath>
+    <HelpFileName>ASModelDesigner</HelpFileName>
+    <HelpFileNamingMethod>MemberName</HelpFileNamingMethod>
+    <ImageFolderPath />
+    <HtmlFormats>
+      <HtmlHelp>true</HtmlHelp>
+      <MSHelpViewer>false</MSHelpViewer>
+      <MSHelp2>false</MSHelp2>
+      <Website>true</Website>
+    </HtmlFormats>
+    <IncludeScopes>
+      <Public>true</Public>
+      <Internal>false</Internal>
+      <Protected>false</Protected>
+      <Private>false</Private>
+      <Inherited>true</Inherited>
+      <InheritedFromReferences>true</InheritedFromReferences>
+      <EnableTags>false</EnableTags>
+      <TagList />
+    </IncludeScopes>
+    <SyntaxLanguages>
+      <CSharp>true</CSharp>
+      <VisualBasic>true</VisualBasic>
+      <CPlusPlus>true</CPlusPlus>
+    </SyntaxLanguages>
+    <ResolveCrefLinks>true</ResolveCrefLinks>
+    <HeaderText>CAS.UA.Common</HeaderText>
+    <FooterText>CAS CommServerUA Family Copyright (c) 2000-2015 CAS LODZ POLAND</FooterText>
+    <SelectedProjects>
+      <SelectedProject>CAS.IServerConfiguration</SelectedProject>
+    </SelectedProjects>
+  </HelpConfiguration>
+</HelpConfigurations>
+<GeneralProperties>
+</GeneralProperties>
+</GhostDoc>

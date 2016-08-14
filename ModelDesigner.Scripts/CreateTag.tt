@@ -1,0 +1,33 @@
+<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cmd" #>
+
+rem  $LastChangedDate:  $
+rem  $Rev: $
+rem  $LastChangedBy: $
+rem  $URL:  $
+rem  $Id:  $
+
+<#
+  string _rel = CASUAMDVersion.Replace(".", "_");
+  string TagPath = String.Format( @"svn://svnserver.hq.cas.com.pl/VS/{0}/{1}/rel_{2}", "tags", "UAModelDesigner", _rel);
+  string trunkPath = @"svn://svnserver.hq.cas.com.pl/VS/trunk";
+#>
+
+svn mkdir <#=TagPath #>  -m "created new <#=TagPath #>"
+
+svn copy <#=trunkPath#>/PR24-Biblioteka <#=TagPath #>/PR24-Biblioteka -m "created copy in <#=TagPath #> of the project PR24-Biblioteka"
+svn copy <#=trunkPath#>/PR30-OPCViever <#=TagPath #>//PR30-OPCViever -m "created copy in <#=TagPath #> of the project PR30-OPCViever"
+svn copy <#=trunkPath#>/PR32-ModelDesigner <#=TagPath #>/PR32-ModelDesigner -m "created copy in <#=TagPath #> of the project project PR32-ModelDesigner"
+svn copy <#=trunkPath#>/PR35-ASMD_Plugins <#=TagPath #>/PR35-ASMD_Plugins -m "created copy in <#=TagPath #> of the project PR35-ASMD_Plugins"
+svn copy <#=trunkPath#>/ImageLibrary <#=TagPath #>/ImageLibrary -m "created copy in <#=TagPath #> of the project ImageLibrary"
+svn copy <#=trunkPath#>/CommonBinaries <#=TagPath #>/CommonBinaries -m "created copy in <#=TagPath #> of the project CommonBinaries"
+svn copy <#=trunkPath#>/EX01-OPCFoundation_NETApi <#=TagPath #>/EX01-OPCFoundation_NETApi -m "created copy in <#=TagPath #> of the project EX01-OPCFoundation_NETApi"
+svn copy <#=trunkPath#>/EX02-MAML <#=TagPath #>/EX02-MAML -m "created copy in <#=TagPath #> of the project EX02-MAML"
+svn copy <#=trunkPath#>/EX03-3DTools <#=TagPath #>/EX03-3DTools -m "created copy in <#=TagPath #> of the project EX03-3DTools"
+svn copy <#=trunkPath#>/EX05-MeshDiagram3D <#=TagPath #>/EX05-MeshDiagram3D -m "created copy in <#=TagPath #> of the project EX05-MeshDiagram3D)"
+svn copy <#=trunkPath#>/PR39-CommonResources <#=TagPath #>/PR39-CommonResources -m "created copy in <#=TagPath #> of the project PR39-CommonResources)"
+svn copy <#=trunkPath#>/EX04-OPCUA_SDK <#=TagPath #>/EX04-OPCUA_SDK -m "created copy in <#=TagPath #> of the project EX04-OPCUA_SDK)"
+
+pause ....
+
+<#@ include file = "..\..\PR39-CommonResources\T4Definitions\CAS.OPC.t4" #>
