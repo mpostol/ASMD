@@ -589,6 +589,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\EX02-MAML\SHFB\Plugins\TopicsLibrary\TopicsLibrary.csproj">
+      <Project>{8d532f2d-3f40-462a-917f-f7bfec8b0ed0}</Project>
+      <Name>TopicsLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\PR39-CommonResources\LicensesContainer\LicensesContainer.csproj">
       <Project>{234A138E-4E17-4F12-84A3-A920DDAE0D86}</Project>
       <Name>LicensesContainer</Name>
