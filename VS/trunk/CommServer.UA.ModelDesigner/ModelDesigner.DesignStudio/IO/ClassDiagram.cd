@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CAS.UA.Model.Designer.IO.ConfigurationManagement" Collapsed="true">
+    <Position X="4.5" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>QEKEAIABBSACIKAEAACEAIACBIADgEBAAKAAQQAgQAA=</HashCode>
+      <FileName>IO\ConfigurationManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.IO.TypeGenericConfigurationManagement&lt;TypeForConfiguration&gt;" Collapsed="true">
+    <Position X="3.5" Y="3.75" Width="4.25" />
+    <NestedTypes>
+      <Struct Name="CAS.UA.Model.Designer.IO.TypeGenericConfigurationManagement&lt;TypeForConfiguration&gt;.Configuration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>IO\TypeGenericConfigurationManagement.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Class Name="CAS.UA.Model.Designer.IO.TypeGenericConfigurationManagement&lt;TypeForConfiguration&gt;.StringEventArgs" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>IO\TypeGenericConfigurationManagement.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CAS.UA.Model.Designer.IO.TypeGenericConfigurationManagement&lt;TypeForConfiguration&gt;.ConfigurationEventArg" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>IO\TypeGenericConfigurationManagement.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EIAAQIEAAAAAICAAAAAAAAAAAIAAAAAAgAAAAACAACQ=</HashCode>
+      <FileName>IO\TypeGenericConfigurationManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.IO.OPCFModelConfigurationManagement">
+    <Position X="1.25" Y="5.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAgAAAAAEAAAA=</HashCode>
+      <FileName>IO\OPCFModelConfigurationManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement" Collapsed="true">
+    <Position X="6" Y="5.25" Width="4" />
+    <NestedTypes>
+      <Class Name="CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement.PrivateSolution" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>IO\OPCFSolutionConfigurationManagement.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>IO\OPCFSolutionConfigurationManagement.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACAAQKAAAAgAAKDDAACAAAEAAAAAAgABgIABAQHACEA=</HashCode>
+      <FileName>IO\OPCFSolutionConfigurationManagement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="2.617" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

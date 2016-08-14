@@ -1,0 +1,754 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ArrowLeft32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArrowLeft32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ArrowRight32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArrowRight32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Build" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\build.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BuildError_Fie_DoesNotExist" xml:space="preserve">
+    <value>The file:
+{0}
+does not exist, the build operation cannot be continued.</value>
+  </data>
+  <data name="BuildError_Fie_DoesNotExist_doyouwanttocreateone" xml:space="preserve">
+    <value>The file:
+{0}
+does not exist. Do you want to create blank file?</value>
+  </data>
+  <data name="BuildError_nocontinuation" xml:space="preserve">
+    <value>The build operation cannot be continued.</value>
+  </data>
+  <data name="Build_click_ok_when_build_has_finished" xml:space="preserve">
+    <value>Click OK when SDK code generator has finished its work.</value>
+  </data>
+  <data name="ConfigurationFormName" xml:space="preserve">
+    <value>Configuration</value>
+    <comment>MainForm</comment>
+  </data>
+  <data name="ConfigurationForm_MessageAfterChange" xml:space="preserve">
+    <value>Some changes to the configuration may be available after restart of the application. It is suggested to restart the application now.</value>
+    <comment>MainForm</comment>
+  </data>
+  <data name="ConfigurationManagementQuestionAboutContinuationIfChangesArePresent" xml:space="preserve">
+    <value>There are unsaved changes. Do you want to continue? (All changes will be lost.)</value>
+    <comment>ConfigurationManagement</comment>
+  </data>
+  <data name="ConfigurationManagementQuestionAboutContinuationIfChangesArePresentTitle" xml:space="preserve">
+    <value>Do you want to continue?</value>
+  </data>
+  <data name="DefaultCSVFileName" xml:space="preserve">
+    <value>$(ProjectFileName).csv</value>
+  </data>
+  <data name="DefaultOutputBuildDirectory" xml:space="preserve">
+    <value>$(ProjectFileName)</value>
+  </data>
+  <data name="DefaultProjectName" xml:space="preserve">
+    <value>Model_</value>
+    <comment>CAS.UA.Model.Designer.UAModelDesignerProject</comment>
+  </data>
+  <data name="DefaultSolutionName" xml:space="preserve">
+    <value>Solution1</value>
+    <comment>CAS.UA.Model.Designer.UAModelDesignerSolution</comment>
+  </data>
+  <data name="DictionaryTreeNode_CoupledNodes" xml:space="preserve">
+    <value>CoupledNodes</value>
+    <comment>\PR32-ModelDesigner\MODEL\Controls\DictionaryTreeView.cs</comment>
+  </data>
+  <data name="FilterHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FilterHS.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FloppyDisk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FloppyDisk.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InstalationOfExampleSolutionException" xml:space="preserve">
+    <value>The following error occurred during installation of example solution:
+"{0}"
+Example solution is not installed but application will run normally.</value>
+    <comment>Program</comment>
+  </data>
+  <data name="MainBuildError" xml:space="preserve">
+    <value>An error occurred while compiling the solution: {0}</value>
+    <comment>CAS.UA.Model.Designer.Main</comment>
+  </data>
+  <data name="MainBuildErrorLabel" xml:space="preserve">
+    <value>Build solution</value>
+    <comment>CAS.UA.Model.Designer.Main</comment>
+  </data>
+  <data name="MainForm_Title_ChangesArePresent" xml:space="preserve">
+    <value>*</value>
+    <comment>MainForm</comment>
+  </data>
+  <data name="MainWindowName" xml:space="preserve">
+    <value>CAS OPC UA Address Space Model Designer</value>
+    <comment>CAS.UA.Model.Designer.MainForm</comment>
+  </data>
+  <data name="NamespaceFolderCharacterNamespacePrefix_XMLatTheBeginningReplacement" xml:space="preserve">
+    <value>Ns</value>
+    <comment>NamespaceFolder</comment>
+  </data>
+  <data name="NamespaceFolderCharacterToBeRemovedFromNamespacePrefix" xml:space="preserve">
+    <value>  ,.-_'"(){}[]\|/?&gt;&lt;!#@#$%^&amp;*=+</value>
+    <comment>NamespaceFolder</comment>
+  </data>
+  <data name="NodeClasses_Children" xml:space="preserve">
+    <value>Children</value>
+  </data>
+  <data name="NodeClasses_Model" xml:space="preserve">
+    <value>Model(Domain)</value>
+  </data>
+  <data name="NodeClasses_Namespace" xml:space="preserve">
+    <value>Namespace</value>
+  </data>
+  <data name="NodeClasses_NamespaceFolder" xml:space="preserve">
+    <value>NamespacesFolder</value>
+  </data>
+  <data name="NodeClasses_Objects_Dictionary" xml:space="preserve">
+    <value>Dictionary</value>
+  </data>
+  <data name="NodeClasses_Objects_Encoding" xml:space="preserve">
+    <value>Encoding</value>
+  </data>
+  <data name="NodeClasses_Objects_EncodingsFolder" xml:space="preserve">
+    <value>EncodingsFolder</value>
+  </data>
+  <data name="NodeClasses_Objects_Instance" xml:space="preserve">
+    <value>Instance</value>
+  </data>
+  <data name="NodeClasses_Objects_Method" xml:space="preserve">
+    <value>Method</value>
+  </data>
+  <data name="NodeClasses_Objects_Node" xml:space="preserve">
+    <value>Node</value>
+  </data>
+  <data name="NodeClasses_Objects_Object" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="NodeClasses_Objects_Parameter" xml:space="preserve">
+    <value>Parameter</value>
+  </data>
+  <data name="NodeClasses_Objects_ParametersFolder" xml:space="preserve">
+    <value>ParametersFolder</value>
+  </data>
+  <data name="NodeClasses_Objects_Property" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="NodeClasses_Objects_Reference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="NodeClasses_Objects_ReferencesFolder" xml:space="preserve">
+    <value>ReferencesFolder</value>
+  </data>
+  <data name="NodeClasses_Objects_Variable" xml:space="preserve">
+    <value>Variable</value>
+  </data>
+  <data name="NodeClasses_Objects_View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="NodeClasses_Types_DataType" xml:space="preserve">
+    <value>DataType</value>
+  </data>
+  <data name="NodeClasses_Types_EventType" xml:space="preserve">
+    <value>EventType</value>
+  </data>
+  <data name="NodeClasses_Types_ObjectType" xml:space="preserve">
+    <value>ObjectType</value>
+  </data>
+  <data name="NodeClasses_Types_ReferenceType" xml:space="preserve">
+    <value>ReferenceType</value>
+  </data>
+  <data name="NodeClasses_Types_StateMachineType" xml:space="preserve">
+    <value>StateMachineType</value>
+  </data>
+  <data name="NodeClasses_Types_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="NodeClasses_Types_VariableType" xml:space="preserve">
+    <value>VariableType</value>
+  </data>
+  <data name="OPCFSolutionConfigurationManagement_ReadError" xml:space="preserve">
+    <value>The error occurred during opening the  file. Maybe you are trying to open model file as a solution?
+See reason below to find a solution for this issue:
+{0}</value>
+  </data>
+  <data name="Open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Open.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ProjectTreeNode" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ProjectTreeNode_AreYouSureToRemove_caption" xml:space="preserve">
+    <value>Project removal.</value>
+    <comment>CAS.UA.Model.Designer.Wrappers.ProjectTreeNode</comment>
+  </data>
+  <data name="ProjectTreeNode_AreYouSureToRemove_text" xml:space="preserve">
+    <value>Are you sure to remove project: {0} ?</value>
+    <comment>CAS.UA.Model.Designer.Wrappers.ProjectTreeNode</comment>
+  </data>
+  <data name="Project_FileDialogDefaultExt" xml:space="preserve">
+    <value>xml</value>
+    <comment>OPCFModelConfigurationManagement</comment>
+  </data>
+  <data name="Project_FileDialogDefaultFilename" xml:space="preserve">
+    <value>UAModelDesignerProject.xml</value>
+    <comment>OPCFModelConfigurationManagement</comment>
+  </data>
+  <data name="Project_FileDialogFilter" xml:space="preserve">
+    <value>XML Model File (* .xml)|*.xml|All files(*.*)|*.*</value>
+    <comment>OPCFModelConfigurationManagement</comment>
+  </data>
+  <data name="Project_FileDialogTitle" xml:space="preserve">
+    <value>UA Model Designer Project or Model Open/Save dialog window</value>
+    <comment>OPCFModelConfigurationManagement</comment>
+  </data>
+  <data name="Project_FileOpenError" xml:space="preserve">
+    <value>An unexpected error occurred while reading data from the project file: {0}</value>
+    <comment>CAS.UA.Model.Designer.Wrappers.SolutionTreeNode</comment>
+  </data>
+  <data name="Project_OpenFileCaption" xml:space="preserve">
+    <value>Open project file</value>
+    <comment>CAS.UA.Model.Designer.Wrappers.SolutionTreeNode</comment>
+  </data>
+  <data name="Search_cannotbefound" xml:space="preserve">
+    <value>Cannot be found.</value>
+    <comment>CAS.UA.Model.Designer.Main</comment>
+  </data>
+  <data name="Search_endispassed" xml:space="preserve">
+    <value>Search has passed end of the tree, searching is continued  from the beginning.</value>
+    <comment>CAS.UA.Model.Designer.Main</comment>
+  </data>
+  <data name="Search_startispassed" xml:space="preserve">
+    <value>Search has passed beginning  of the tree,  searching is continued  from the end.</value>
+    <comment>CAS.UA.Model.Designer.Main</comment>
+  </data>
+  <data name="SolutionFileOpenError" xml:space="preserve">
+    <value>Solution File Open Error</value>
+  </data>
+  <data name="SolutionFileSaveError" xml:space="preserve">
+    <value>Solution File Save Error</value>
+  </data>
+  <data name="Solution_FileDialogDefaultExt" xml:space="preserve">
+    <value>uamdsl</value>
+    <comment>OPCFSolutionConfigurationManagement</comment>
+  </data>
+  <data name="Solution_FileDialogDefaultFilename" xml:space="preserve">
+    <value>UAModelDesignerSolution.uamdsl</value>
+    <comment>OPCFSolutionConfigurationManagement</comment>
+  </data>
+  <data name="Solution_FileDialogFilter" xml:space="preserve">
+    <value>UA Model Designer Solution File (* .uamdsl)|*.uamdsl|UA Model Designer Solution File (* .xml)|*.xml|All files(*.*)|*.*</value>
+    <comment>OPCFSolutionConfigurationManagement</comment>
+  </data>
+  <data name="Solution_FileDialogTitle" xml:space="preserve">
+    <value>UA Model Designer Solution Open/Save dialog window</value>
+    <comment>OPCFSolutionConfigurationManagement</comment>
+  </data>
+  <data name="SplashScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UAModelDesinger_splashscreen.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StateMachineIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StateMachineIcon.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Token_ProjectFileName" xml:space="preserve">
+    <value>$(ProjectFileName)</value>
+  </data>
+  <data name="transition" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\transition.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TypeGenericConfigurationManagement_ReadError" xml:space="preserve">
+    <value>Cannot open the file.
+Reason:
+{0}</value>
+  </data>
+  <data name="VariableValueEditorTypeList_problem" xml:space="preserve">
+    <value>There is problem during obtaining the type list.</value>
+    <comment>VariableValueEditor.TypeListConverter</comment>
+  </data>
+  <data name="WrapperTreeNodeAddMenuItemGoto" xml:space="preserve">
+    <value>GoTo: </value>
+    <comment>\PR32-ModelDesigner\MODEL\Wrappers\TypeDesign.cs</comment>
+  </data>
+  <data name="WrapperTreeNodeAddMenuItemGoto_BaseType" xml:space="preserve">
+    <value>Base Type</value>
+    <comment>\PR32-ModelDesigner\MODEL\Wrappers\TypeDesign.cs</comment>
+  </data>
+  <data name="WrapperTreeNodeAddMenuItemGoto_BaseType_tooltip" xml:space="preserve">
+    <value>Find Base Type node and go to that node</value>
+  </data>
+  <data name="WrapperTreeNodeAddMenuItemGoto_DataType" xml:space="preserve">
+    <value>DataType</value>
+    <comment>\PR32-ModelDesigner\MODEL\Wrappers\VAriableDesign.cs</comment>
+  </data>
+  <data name="WrapperTreeNodeAddMenuItemGoto_DataType_tooltip" xml:space="preserve">
+    <value>Find Data Type node and go to that node</value>
+    <comment>\PR32-ModelDesigner\MODEL\Wrappers\VariableDesign.cs</comment>
+  </data>
+  <data name="WrapperTreeNodeAddMenuItemGoto_ReferenceType" xml:space="preserve">
+    <value>Reference Type</value>
+  </data>
+  <data name="WrapperTreeNodeAddMenuItemGoto_Target" xml:space="preserve">
+    <value>Target</value>
+  </data>
+  <data name="WrapperTreeNodeAddMenuItemGoto_TypeDefinition" xml:space="preserve">
+    <value>Type Definition</value>
+    <comment>\PR32-ModelDesigner\MODEL\Wrappers\InstanceDesign.cs</comment>
+  </data>
+  <data name="WrapperTreeNodeAddMenuItemGoto_TypeDefinition_tooltip" xml:space="preserve">
+    <value>Find Type Definition node and go to that node</value>
+    <comment>PR32-ModelDesigner\MODEL\Wrappers\InstanceDesign.cs</comment>
+  </data>
+  <data name="WrapperTreeNode_menu_add_object" xml:space="preserve">
+    <value>Add node ...</value>
+  </data>
+  <data name="WrapperTreeNode_menu_copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="WrapperTreeNode_menu_cut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="WrapperTreeNode_menu_cut_cannot_be_cut" xml:space="preserve">
+    <value>This element cannot be "Cut", but its content is stored in the clipboard.</value>
+  </data>
+  <data name="WrapperTreeNode_menu_delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="WrapperTreeNode_menu_paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="WrapperTreeNode_menu_paste_cannot_be_done" xml:space="preserve">
+    <value>"Paste" cannot be performed for this node or for the current content of the clipboard.</value>
+  </data>
+  <data name="FeatureRequest_EmailAddress" xml:space="preserve">
+    <value>commserver@cas.eu</value>
+    <comment>PR32-ModelDesigner\MODEL\MainForm.cs</comment>
+  </data>
+  <data name="FeatureRequest_Email_Body" xml:space="preserve">
+    <value>Hi CommServer Team, 
+I am interested in the following feature: [{0}]. </value>
+    <comment>PR32-ModelDesigner\MODEL\MainForm.cs</comment>
+  </data>
+  <data name="FeatureRequest_Email_Subject" xml:space="preserve">
+    <value>UA Address Space Model Designer feature request</value>
+    <comment>PR32-ModelDesigner\MODEL\MainForm.cs</comment>
+  </data>
+  <data name="FeatureRequest_MessageBox_Body" xml:space="preserve">
+    <value>The selected [{0}] feature is unavailable now, it is under development on our route map.
+
+Feature additional information: {1}
+
+If you are interested in this feature, please inform us by sending email.Your default email client will be used to sent this message. 
+You can change the message and add more comment but please do not remove the feature name.</value>
+    <comment>PR32-ModelDesigner\MODEL\MainForm.cs</comment>
+  </data>
+  <data name="FeatureRequest_MessageBox_Caption" xml:space="preserve">
+    <value>Feature unavailable</value>
+    <comment>PR32-ModelDesigner\MODEL\MainForm.cs</comment>
+  </data>
+  <data name="Build_all" xml:space="preserve">
+    <value>***********************************
+Building the solution ...
+***********************************</value>
+  </data>
+  <data name="Build_ended_at" xml:space="preserve">
+    <value>Build ended at: {0}.</value>
+  </data>
+  <data name="Build_project_name" xml:space="preserve">
+    <value>------ Building project: {0}. ------</value>
+  </data>
+  <data name="Build_started_at" xml:space="preserve">
+    <value>Build started at: {0}.</value>
+  </data>
+  <data name="FeatureRequest_Email_Body_Comments" xml:space="preserve">
+    <value>Hi, 
+I am interested in the following feature or  the following elements should be changed:
+</value>
+    <comment>PR32-ModelDesigner\MODEL\MainForm.cs</comment>
+  </data>
+  <data name="FeatureRequest_Email_Subject_Comments" xml:space="preserve">
+    <value>UA Address Space Model Designer comments</value>
+    <comment>PR32-ModelDesigner\MODEL\MainForm.cs</comment>
+  </data>
+  <data name="MainForm_ReadmePage" xml:space="preserve">
+    <value>http://www.commsvr.com/OPC-Help/Index.aspx?topic=html/ada1af70-e1ba-49df-8d0a-8ddc87a0f287.htm</value>
+    <comment>MainForm</comment>
+  </data>
+  <data name="MainForm_TechnicalSupportPage" xml:space="preserve">
+    <value>http://www.commsvr.com/tabid/85/language/en-US/Default.aspx</value>
+    <comment>MainForm</comment>
+  </data>
+  <data name="BuildError_error_occured" xml:space="preserve">
+    <value>!ERROR!
+The following has occurred:
+{0}
+The build cannot be continued.</value>
+  </data>
+  <data name="MainForm_ReadmePage_mainframe" xml:space="preserve">
+    <value>http://www.commsvr.com/OPC-Help/html/ada1af70-e1ba-49df-8d0a-8ddc87a0f287.htm</value>
+    <comment>MainForm</comment>
+  </data>
+  <data name="Build_Caption" xml:space="preserve">
+    <value>Build project</value>
+    <comment>CAS.UA.Model.Designer.Wrappers.ProjectTreeNode</comment>
+  </data>
+  <data name="Build_project_ok" xml:space="preserve">
+    <value>* Project has been built successfully. *</value>
+  </data>
+  <data name="ConfigurationWrapper_Configuration_Edit_Text" xml:space="preserve">
+    <value>Edit ...</value>
+    <comment>CAS.UA.Model.Designer.Wrappers.InstanceDesign&lt;type,OPCType&gt;</comment>
+  </data>
+  <data name="ConfigurationWrapper_Configuration_Edit_ToolTip" xml:space="preserve">
+    <value>Opens dialog window to edit this instance node configuration and bind 
+it to real-time process data sources. Many redundant sources can be defined.</value>
+    <comment>CAS.UA.Model.Designer.Wrappers.InstanceDesign&lt;type,OPCType&gt;</comment>
+  </data>
+  <data name="ConfigurationWrapper_Configuration_New_Text" xml:space="preserve">
+    <value>New</value>
+    <comment>CAS.UA.Model.Designer.Wrappers.InstanceDesign&lt;type,OPCType&gt;</comment>
+  </data>
+  <data name="ConfigurationWrapper_Configuration_New_ToolTip" xml:space="preserve">
+    <value>Create new empty process data bindings configuration for this instance 
+node to store proprietary information of the UA server.</value>
+    <comment>CAS.UA.Model.Designer.Wrappers.InstanceDesign&lt;type,OPCType&gt;</comment>
+  </data>
+  <data name="ConfigurationWrapper_Configuration_Text" xml:space="preserve">
+    <value>{0}: process bindings</value>
+    <comment>CAS.UA.Model.Designer.Wrappers.InstanceDesign&lt;type,OPCType&gt;</comment>
+  </data>
+  <data name="ConfigurationWrapper_Configuration_ToolTip" xml:space="preserve">
+    <value>Click to get more options to manage the real-time process bindings 
+of the selected instance.</value>
+    <comment>CAS.UA.Model.Designer.Wrappers.InstanceDesign&lt;type,OPCType&gt;</comment>
+  </data>
+  <data name="Menu_UAServer_ToolTipp" xml:space="preserve">
+    <value>Provides more options to manage and edit configuration file used by 
+the selected  plug-in to save configuration proprietary information of the UA server.</value>
+  </data>
+  <data name="ReferenceHasComponentXmlQualifiedName" xml:space="preserve">
+    <value>http://opcfoundation.org/UA/:HasComponent</value>
+  </data>
+  <data name="ObjectsFolderXmlQualifiedNameName" xml:space="preserve">
+    <value>ObjectsFolder</value>
+  </data>
+  <data name="NodeClasses_ChildrenFolder" xml:space="preserve">
+    <value>Children</value>
+    <comment>PR32-ModelDesigner\MODEL\Wrappers\NodeDesign.cs</comment>
+  </data>
+  <data name="BrowseViewObserver_pleasewait_step1" xml:space="preserve">
+    <value>Step 1: Creation of Address Space; Please wait ...</value>
+    <comment>PR32-ModelDesigner/MODEL/Controls/NodeObserver/BrowseViewObserver.cs</comment>
+  </data>
+  <data name="BrowseViewObserver_pleasewait_step2" xml:space="preserve">
+    <value>Step 2: Preparation of the browse tree view; Please wait ...</value>
+    <comment>PR32-ModelDesigner/MODEL/Controls/NodeObserver/BrowseViewObserver.cs</comment>
+  </data>
+  <data name="ExportTool_NoDefualtApplication" xml:space="preserve">
+    <value>No application is associated with the specified file for this operation. 
+Please associate a default application with this type of file.</value>
+  </data>
+  <data name="ModelDesignerProLicenseWarning" xml:space="preserve">
+    <value>This feature is not available. Please upgrade your license to Address Space Model Desinger Professional edition.</value>
+  </data>
+  <data name="ProblemwithDisplayingStateMachine_Info" xml:space="preserve">
+    <value>The table cannot be dispalyed</value>
+  </data>
+  <data name="ProblemWithStateMachine_Header" xml:space="preserve">
+    <value>Problem with opening state machine</value>
+  </data>
+  <data name="ProblemWithStateMachine_Info" xml:space="preserve">
+    <value>The node doesn't represent a state machine or it is empty!</value>
+  </data>
+  <data name="ExportTool_cannot_expot_wrong_node" xml:space="preserve">
+    <value>The node cannot be exported because it does not contain any child nodes or it is not a OPC UA node</value>
+    <comment>PR32-ModelDesigner\MODEL\ExportingTools\ExportTool.cs</comment>
+  </data>
+  <data name="ExportTool_NoNodeIsSelected" xml:space="preserve">
+    <value>No node is selected.</value>
+    <comment>PR32-ModelDesigner\MODEL\ExportingTools\ExportTool.cs</comment>
+  </data>
+  <data name="ExportTool_Window_Name" xml:space="preserve">
+    <value>Model Export</value>
+    <comment>PR32-ModelDesigner\MODEL\ExportingTools\ExportTool.cs</comment>
+  </data>
+  <data name="MianWindow_FunctionalityAvailiableOnlyInModelView" xml:space="preserve">
+    <value>This functionality works only when Model View is selected.
+Please select Model View.</value>
+  </data>
+  <data name="AdddItem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EditionAdd32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AsmdHelp" xml:space="preserve">
+    <value>http://www.commsvr.com/OPC-Help/Index.aspx?topic=html/a2d55988-b59a-4a87-95b9-933f6bbdf5bd.htm</value>
+  </data>
+  <data name="copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\copy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cut.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainForm_DefaultAppMissing" xml:space="preserve">
+    <value>The default application that opens:
+{0} 
+may be mis-configured 
+(details: {1}). 
+Please navigate to: {0} manually.</value>
+  </data>
+  <data name="paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\paste.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ProjectFileNotFound_Header" xml:space="preserve">
+    <value>Project file not found!</value>
+  </data>
+  <data name="ProjectFileNotFound_Info" xml:space="preserve">
+    <value>The project file: {0} has not been found.</value>
+  </data>
+  <data name="OptionDescription_Build_ProjectCompilationString" xml:space="preserve">
+    <value>Model compiler application calling arguments. </value>
+  </data>
+  <data name="OptionDescription_CoupledNodesAreEnabled" xml:space="preserve">
+    <value>Indicates, if the coupled nodes in Model View appears on the model tree.</value>
+  </data>
+  <data name="OptionDescription_DefaultSolutionFileName" xml:space="preserve">
+    <value>Indicates the default name of the solution.</value>
+  </data>
+  <data name="OptionDescription_FontSize" xml:space="preserve">
+    <value>Size of font used in the application. Minimum size is 6 points and maximum size is 18 points.</value>
+  </data>
+  <data name="OptionDescription_HelpDocumentationAllTopicsFileName" xml:space="preserve">
+    <value>Name of the file, that contains information about all topics in UA e-book.</value>
+  </data>
+  <data name="OptionDescription_HelpDocumentationAllTopicsWebAddress" xml:space="preserve">
+    <value>URL of the file, that contains information about all topics in UA e-book.</value>
+  </data>
+  <data name="OptionDescription_HelpDocumentationOpcUaEbookURL" xml:space="preserve">
+    <value>OPC UA e-book web address.</value>
+  </data>
+  <data name="OptionDescription_HelpDocumentationURLsuffix" xml:space="preserve">
+    <value>Suffix for the address of topics in OPC UA e-book.</value>
+  </data>
+  <data name="OptionDescription_HelpSynchronizationIsEnabled" xml:space="preserve">
+    <value>Indicates, if  ModelView tree is synchronized with the UA e-book. If the value is "true", then after clicking on the ModelView node, in Help panel, the proper site from OPC UA e-book appears.</value>
+  </data>
+  <data name="OptionDescription_ProjectCompilationExecutable" xml:space="preserve">
+    <value>Path to the project compiler executable file.</value>
+  </data>
+  <data name="OptionDescription_SampleInstallationDirectory" xml:space="preserve">
+    <value>Directory, where the sample solution is being installed.</value>
+  </data>
+  <data name="OptionDescription_SampleIsInstalled" xml:space="preserve">
+    <value>Indicates, if the sample solution is installed.</value>
+  </data>
+  <data name="OptionDescription_TargetNamespace" xml:space="preserve">
+    <value>Target namespace for the project.</value>
+  </data>
+  <data name="OptionDescription_TargetNamespaceXmlPrefix" xml:space="preserve">
+    <value>Target namespace XML prefix</value>
+  </data>
+  <data name="OptionDescription_TargetXmlNamespace" xml:space="preserve">
+    <value>XML target namespace for the project</value>
+  </data>
+  <data name="OptionDescription_XmlOPCTypesNamespace" xml:space="preserve">
+    <value>Namespace for OPC types.</value>
+  </data>
+  <data name="OptionDescription_XmlOPCTypesPrefix" xml:space="preserve">
+    <value>Prefix for OPCtypes namespace.</value>
+  </data>
+  <data name="OptionDescription_XmlSchemaInstanceNamespace" xml:space="preserve">
+    <value>Namespace for XML schema instance.</value>
+  </data>
+  <data name="OptionDescription_XmlSchemaInstancePrefix" xml:space="preserve">
+    <value>Prefix for XML schema instance.</value>
+  </data>
+  <data name="OptionDescription_XmlSchemaNamespace" xml:space="preserve">
+    <value>XML schema namespace for the model.</value>
+  </data>
+  <data name="OptionDescription_XmlSchemaPrefix" xml:space="preserve">
+    <value>Prefix of the XML schema namespace for the model.</value>
+  </data>
+  <data name="OptionDescription_XmlUATypesNamespace" xml:space="preserve">
+    <value>XML namespace for UA types</value>
+  </data>
+  <data name="OptionDescription_XmlUATypesPrefix" xml:space="preserve">
+    <value>Prefix for XML namespace for UA types</value>
+  </data>
+  <data name="ProblemWithDescriptionForOption" xml:space="preserve">
+    <value>Problem with opening of the description for option. The error message is: </value>
+  </data>
+  <data name="ASMDbanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UAASMDInstallbanner.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SplashScreenLicenseDemoPeriodExpired" xml:space="preserve">
+    <value>Your evaluation period has just expired.  You must purchase the commercial license to use this software. 
+To get more press the “Buy Now” button.  
+To start {0} in read only mode press “Start” button.    </value>
+    <comment>CAS.UA.Model.Designer.MainForm</comment>
+  </data>
+  <data name="MainProgram_LicenseInstalation_Failure" xml:space="preserve">
+    <value>Cannot install license. Reason: {0}</value>
+    <comment>PR32-ModelDesigner\MODEL\Program.cs</comment>
+  </data>
+  <data name="MainProgram_LicenseInstalation_Failure_Caption" xml:space="preserve">
+    <value>License instalation.</value>
+    <comment>PR32-ModelDesigner\MODEL\Program.cs</comment>
+  </data>
+  <data name="LicenseFeatureUnavailable" xml:space="preserve">
+    <value>The feature is unavailable because your license does not include this functionality.</value>
+  </data>
+  <data name="SolutionTreeNode" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AsmdVersionsComparison" xml:space="preserve">
+    <value>http://www.commsvr.com/tabid/535/Default.aspx</value>
+  </data>
+  <data name="ProcessStart_Exception" xml:space="preserve">
+    <value>Unable to start {0} (reason: {1}).</value>
+    <comment>\PR32-ModelDesigner\MODEL\MainForm.cs</comment>
+  </data>
+  <data name="MainForm_StartupExceptionMessage" xml:space="preserve">
+    <value>Cannot open solution file because of error: {0}</value>
+  </data>
+  <data name="NodeSet_FileDialogDefaultExt" xml:space="preserve">
+    <value>xml</value>
+    <comment>CAS.UA.Model.Designer.IO.ImportNodeSet</comment>
+  </data>
+  <data name="NodeSet_FileDialogFilter" xml:space="preserve">
+    <value>NodeSet Model File (* .xml)|*.xml|All files(*.*)|*.*</value>
+    <comment>CAS.UA.Model.Designer.IO.ImportNodeSet</comment>
+  </data>
+  <data name="NodeSet_FileDialogTitle" xml:space="preserve">
+    <value>UA NodeSet Model Import dialog window</value>
+    <comment>CAS.UA.Model.Designer.IO.ImportNodeSet</comment>
+  </data>
+  <data name="NodeSet_ImportErrorMessage" xml:space="preserve">
+    <value>An unexpected error occurred while importing model from NodeSet file: {0}</value>
+    <comment>CAS.UA.Model.Designer.IO.ImportNodeSet</comment>
+  </data>
+  <data name="NodeSet_ImportErrorTitle" xml:space="preserve">
+    <value>NodeSet import error</value>
+    <comment>CAS.UA.Model.Designer.IO.ImportNodeSet</comment>
+  </data>
+</root>

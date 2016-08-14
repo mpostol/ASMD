@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Product ProductCode="OPCCoreComponents" xmlns="http://schemas.microsoft.com/developer/2004/01/bootstrapper">
+  <PackageFiles CopyAllPackageFiles="false">
+    <PackageFile Name="setup.exe" PublicKey="3082010A0282010100D1241EA20310D97A0F743C2D764415F0E11216DD77F0987F273557EEC46356DE56A048845F9D67F2EE7F25FF4BF9C026FDFA62B644F2348B23909502B2C3F9515A2A30CFB17F9A6ACA4A02CB7FF5C733B4DF2EA187425640AA3E1078CE575EB71E38661768C1049D86B72FAF06CF54DD6BC07392F1582BEDD2467A9280CA845F90C7CD00622D588F18DB0869BE888DCBDB707E62CDC8A009F92844350520EC41B0B18D6E22BE78FE44DDA77593A890E6F3800E67D948DA3C20F45D965F3749828C60173EF14C03BAAFC40963766811B69EADB2B79E83E4E7C429A22D53106DCF551BAF7B5CF601178691F6B7B01B236D3DF8F03B5F0C52333BB4A46CFEF545510203010001" />
+    <PackageFile Name="opc core components redistributable (x86).msi" PublicKey="3082010A0282010100D1241EA20310D97A0F743C2D764415F0E11216DD77F0987F273557EEC46356DE56A048845F9D67F2EE7F25FF4BF9C026FDFA62B644F2348B23909502B2C3F9515A2A30CFB17F9A6ACA4A02CB7FF5C733B4DF2EA187425640AA3E1078CE575EB71E38661768C1049D86B72FAF06CF54DD6BC07392F1582BEDD2467A9280CA845F90C7CD00622D588F18DB0869BE888DCBDB707E62CDC8A009F92844350520EC41B0B18D6E22BE78FE44DDA77593A890E6F3800E67D948DA3C20F45D965F3749828C60173EF14C03BAAFC40963766811B69EADB2B79E83E4E7C429A22D53106DCF551BAF7B5CF601178691F6B7B01B236D3DF8F03B5F0C52333BB4A46CFEF545510203010001" />
+  </PackageFiles>
+  <InstallChecks>
+    <FileCheck Property="SetupCheck" SearchPath="C:\Windows\assembly\GAC\OpcRcw.Da\" FileName="OpcRcw.Da.dll" SearchDepth="3" />
+    <FileCheck Property="MsiCheck" SearchPath="c:\Windows\assembly\GAC\OpcRcw.Da\" FileName="OpcRcw.Da.dll" SearchDepth="3" />
+  </InstallChecks>
+  <Commands Reboot="Defer">
+    <Command PackageFile="setup.exe">
+      <InstallConditions>
+        <BypassIf Property="SetupCheck" Compare="ValueExists" Value="N/A for ValueExists and ValueNotExists" />
+      </InstallConditions>
+      <ExitCodes>
+        <DefaultExitCode Result="Fail" String="Anunexpectedexitcodewasr" FormatMessageFromSystem="true" />
+      </ExitCodes>
+    </Command>
+    <Command PackageFile="opc core components redistributable (x86).msi">
+      <InstallConditions>
+        <BypassIf Property="MsiCheck" Compare="ValueExists" Value="N/A for ValueExists and ValueNotExists" />
+      </InstallConditions>
+      <ExitCodes>
+        <DefaultExitCode Result="Success" String="Anunexpectedexitcodewasr" FormatMessageFromSystem="true" />
+      </ExitCodes>
+    </Command>
+  </Commands>
+</Product>

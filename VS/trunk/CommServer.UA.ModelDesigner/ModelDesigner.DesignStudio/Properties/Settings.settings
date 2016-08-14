@@ -1,0 +1,81 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CAS.UA.Model.Designer.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="HelpDocumentationOpcUaEbookURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://www.commsvr.com/UAModelDesigner/Index.aspx</Value>
+    </Setting>
+    <Setting Name="HelpDocumentationURLsuffix" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">?topic=</Value>
+    </Setting>
+    <Setting Name="DefaultSolutionFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">UAModelDesignerSolution</Value>
+    </Setting>
+    <Setting Name="HelpDocumentationAllTopicsWebAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://www.commsvr.com/UAModelDesigner/allTopics.xml</Value>
+    </Setting>
+    <Setting Name="HelpDocumentationAllTopicsFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">allTopics.xml</Value>
+    </Setting>
+    <Setting Name="FontSize" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="CoupledNodesAreEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="HelpSynchronizationIsEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SampleInstallationDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">UAAddressSpaceModelDesigner\Sample</Value>
+    </Setting>
+    <Setting Name="XmlUATypesNamespace" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://opcfoundation.org/UA/2008/02/Types.xsd</Value>
+    </Setting>
+    <Setting Name="XmlUATypesPrefix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ua</Value>
+    </Setting>
+    <Setting Name="Build_ProjectCompilationString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-d2 "{0}"  -cg "{1}" -o "{2}" -console</Value>
+    </Setting>
+    <Setting Name="ProjectCompilationExecutable" Type="System.String" Scope="User">
+      <Value Profile="(Default)">exe\Cas.Opc.Ua.ModelCompiler.exe</Value>
+    </Setting>
+    <Setting Name="TargetNamespaceXmlPrefix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cas</Value>
+    </Setting>
+    <Setting Name="XmlSchemaInstanceNamespace" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://www.w3.org/2001/XMLSchema-instance</Value>
+    </Setting>
+    <Setting Name="XmlSchemaInstancePrefix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">xsi</Value>
+    </Setting>
+    <Setting Name="XmlSchemaNamespace" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://www.w3.org/2001/XMLSchema</Value>
+    </Setting>
+    <Setting Name="XmlSchemaPrefix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">xsd</Value>
+    </Setting>
+    <Setting Name="XmlOPCTypesNamespace" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://opcfoundation.org/UA/2008/02/Types.xsd</Value>
+    </Setting>
+    <Setting Name="XmlOPCTypesPrefix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">uax</Value>
+    </Setting>
+    <Setting Name="TargetNamespace" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://cas.eu/UA/CommServer/</Value>
+    </Setting>
+    <Setting Name="TargetXmlNamespace" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://cas.eu/UA/CommServer/</Value>
+    </Setting>
+    <Setting Name="ShowSplashScreen" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="MaintenancePeriodWarning" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="OPCViewerAssemblyName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CAS.CommServer.ModelDesigner.OPCViewer.exe</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

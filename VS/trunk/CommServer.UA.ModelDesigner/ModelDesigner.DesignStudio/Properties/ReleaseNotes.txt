@@ -1,0 +1,656 @@
+#####################################################################
+# UA Model Designer release notes
+#
+# $LastChangedDate$
+# $Rev$
+# $LastChangedBy$
+# $URL$
+# $Id$ 
+#
+#####################################################################
+
+#####################################################################
+New version 3.10 of CAS OPC UA Address Space Model Designer is available. The main changes and new functionalities are listed below:
+- Import support for XML documents compliant with the UANodeSet XML Schema.
+
+Each OPC UA Server interchanges data with OPC UA Clients engaging the Address Space concept. Address 
+Space instantiated by a server allows publication of the underlying process data in a standard way 
+as a collection of nodes created according to the strictly observed rules. To instantiate the Address 
+Space any reusable OPC UA Server needs a description of it. The OPC UA standard defines a formal 
+definition of the syntax UANodeSet XML Schema. The semantics of a compliant with this schema XML 
+document is explained in this manual :
+
+http://www.cas.internetdsl.pl/commserver/P_DowloadCenter/P_Publications/P-15010101-AddressSpaceInterchangeXML.pdf
+
+#####################################################################
+New version 3.00.10 of CAS OPC UA Address Space Model Designer is available. The main changes and new functionalities are listed below:
+
+ - Build-in model is compliant with Rel 1.02 Specification
+ - Build-in Model Compiler is compliant with the Model Compiler Rel. 1.02.26 included in the OPC Foundation SDK Rel. 1.02.334.6
+ - Embedded compiler validates the model during creation of the Browse view.
+	* errors are logged to the Output window and log file
+	* errors are added as nodes to the browse view to be easily recognizable
+ - Improved application instrumentation and by expanding events tracing to the log file.
+ - Added Analyzer Device Integration (ADI) model
+ - Synchronized example models with the White-paper: “OPC UA Information Model Deployment” available at: http://www.commsvr.com/DownloadCenter/Publications/OPCUAInformationModelDeployment/tabid/563/language/en-US/Default.aspx
+ 
+#####################################################################
+# UA Model Designer rel 3.00.03 Revision: 10575
+# ASMD 3.00.03 2014.07.07
+#####################################################################
+
+Port to VS2013
+
+#####################################################################
+# UA Model Designer rel 3.00.02 Bravo Quebec
+# 2011.05.19
+#####################################################################
+
+New version 3.00.02 of OPC UA Address Space Model Designer is available.
+This is only bug-fix release. The main changes are listed below:
+- Resolved issue with license installation ("wrong hardware key");
+- Resolved issue with displaying information about license failure;
+- Links to documentation are fixed.
+
+Nowa wersja 3.00.02 oprogramowania OPC UA Address Space Model Designer jest dostêpna. 
+Ten release zawiera tylko drobne poprawki. Do najwa¿niejszych zmian i nowoœci zaliczyæ mo¿na:
+- Rozwi¹zano problem z instalacj¹ licencji (i informacj¹ o z³ym kluczu sprzêtowym);
+- Rozwi¹zano problem z wyœwietlaniem informacji o problemie z licencj¹;
+- Naprawiono powi¹zanie z dokumentacj¹. 
+
+
+This release includes:
+    * 4.00.02-CMCORE Bravo Kilo
+    * 2.0.108-NETAPI - Alpha Echo 
+    * 3.70.08-DPP - Bravo Mike
+    * 4.00.02-CLIB Bravo Lima
+    * 1.00.04-CRSC - Bravo Golf
+    * 3.10.02-OPCV - Bravo November
+    * 1.01.326.1-OPCF UA SDK 
+
+#####################################################################
+# UA Model Designer rel_3_00_00
+#####################################################################
+
+New version 3.00.00 of OPC UA Address Space Model Designer is available. The main changes and new functionalities are listed below:
+- New Professional edition that includes most of new functionalities is introduced. The Standard edition (containing basic functionalities) is still available. The free version is no longer supported (it will not be developed, improved and supported by CommServer software family developers). 
+
+- Model Browse View (professional edition feature), which gives a possibility of displaying a model as it "is seen" by a client that browse the server. Browse view gives a user a possibility of easy navigation through the model elements and view real references between them in the way similar to the way, they are shown in OPC UA client. Browse view allows edition of properties and data bindings of the elements.
+- 3D visualization of the OPC UA information model (professional edition feature), the designer can use scaling, rotating and change the view point to tailor the display to individual needs. This functionality gives a possibility of easy understanding of the structure and hierarchy of information model.
+- Export of the OPC UA information model (professional edition feature) to the Microsoft Word 2007 file (.docx). This makes the OPC UA Information Model authoring of the help documentation just one click operation. The export feature creates documentation for any node in the model. 
+- Improved state machine editor (professional edition feature). This editor simplifies the creation and modification of state machines.
+- Some improvements to the user interface and optimization of model-creation algorithm.
+- Synchronization with OPC Foundation SDK 1.01.326.0
+- Improved licensing management.
+- Some minor bug fixes and improvements.
+
+Nowa wersja 3.00.00 oprogramowania OPC UA Address Space Model Designer jest dostêpna. Do najwa¿niejszych zmian zaliczy mo¿na:
+- Wprowadzona zosta³a edycja Professional (zawieraj¹ce nowe funkcjonalnoœci). Standardowa edycja jest nadal dostêpna i zawiera podstawowe funkcjonalnoœci). Edycja darmowa pozostaje, jedna nie bêdzie dale wspierana ani rozwijana.
+- Wprowadzono widok "Browse" modelu (funkcjonalnoœæ edycji Professional) pozwalaj¹cy na obejrzenie modelu w sposób w jaki jest on widziany przez klienta OPC UA przegl¹daj¹cego serwer. Dziêki temu widokowi mo¿na ³atwo poruszaæ siê po elementach modelu i przegl¹daæ rzeczywiste referencje pomiêdzy jego czêœciami, w taki sam sposób jak jest to widziane w kliencie OPC UA pod³¹czonym do serwera OPC UA. Korzystaj¹c z widoku Browse mo¿liwa jest tak¿e edycja w³aœciwoœci elementów modelu oraz DataBindings przypisanych do tych elementów. 
+- Trójwymiarowa wizualizacje modelu OPC UA (funkcjonalnoœæ edycji Professional) umo¿liwiaj¹ca skalowanie, obracanie i zmiany punktu widzenia, co pozwala na dostosowanie widoku do indywidualnych potrzeb u¿ytkownika. Ta funkcjonalnoœæ pozwala na ³atwiejsze zrozumienie struktury i hierarchii elementów modelu.
+- Eksportowanie (funkcjonalnoœæ edycji Professional) modelu informacyjnego OPC UA do pliku w formacie Microsoft Word 2007 (.docx). Dziêki tej funkcjonalnoœci mo¿liwe jest szybkie zapisanie modelu informacyjnego OPC UA i stworzenie wygodnej dokumentacji technicznej. 
+- Ulepszono edytor maszyn stanu (funkcjonalnoœæ edycji Professional), pozwalaj¹cy na proste tworzenie i modyfikowanie istniej¹cych maszyn stanu.
+- Drobne poprawki interfejsu u¿ytkownika i optymalizacja algorytmów tworzenia modelu.
+- Synchronizacja z SDK 1.01.326.0.
+- Ulepszono sposób zarz¹dzania licencjami w oprogramowaniu.
+- Drobne poprawki i ulepszenia
+
+Changes based on ITR:
+UA-2290	Release 3.00.00
+UA-2649	Problem with launching OPC Viewer from Main Menu
+UA-2294	Prepare Read-me document
+UA-2385	ASMD solution does not open by double click on the .uamdsl file
+UA-2185	BrowseView: Add missing HasModellingRule reference
+UA-2187	BrowseView: Add missing HasEventSource
+UA-2156	There are some nodes without name on the BrowseViewTree
+UA-2175	BrowseView: if Property is a child, it should be connected with HasProperty
+UA-2176	BrowseView: Redundant references cannot be added to address space
+UA-2177	Some nodes in browse view are shown twice on the BrowseTreeView
+UA-2002	Synchronize names of the graphics in ASMD help
+UA-2555	ASMD The log file is empty but should contain details about the license installation.
+UA-2461	ASMD: Problem with opening configuration for sample solution
+UA-2327	Null exception thrown by BackgroundWorkerAddressspaceIniialiser in BrowseViewObserver
+UA-2257	Problem with saving configuration when solution is not saved
+UA-2244	Configuration plugin should be selectable without selecting a configuration file
+UA-1993	Problem with opening *.odic file during import from OPC DA
+UA-1995	Problem with file filter during import from OPC DA
+UA-2222	Error after opening exported file if there is no default application associated with file type
+UA-2227	StateMachine, which is read only, should be possible to be opened
+UA-2225	The tree does not change properly after aading a transition in StateMachineEditor
+UA-2242	Help documentation for ASMD
+UA-2172	Browse View: Show proper names of the BrowseViewTree elements
+UA-2166	Browse View - Some nodes generate an error during adding to the model
+UA-2149	Program hangs after starting the browse view of the Boiler model
+UA-2183	For Propery the HasProperty ref must be added.
+UA-1504	Add tooltips to all GUI controls.
+UA-1596	Modification of changes handling mechanism
+UA-2591	Fix ASMD splash screen
+UA-2184	Creating InstanceDeclaration ModellingRules must be analised.
+
+UA-2186	ASMD: IModelNode should be a common interface for all observers - now IElement is stored on BrowseViewTreeView
+UA-2247	Add ToString to the MessageProvider
+UA-2248	Has model parent for objects children is incorrect - point to top level object
+UA-2233	ASMD: Binding Observer: add message that no plugin is selected
+UA-2224	ASMD: Toolstrips (Find,Navigate) and filter button works only with Model View
+UA-2204	ASMD: Exception when bindings identifier is empty and Browse View is in use
+UA-2206	ASMD: Wrapper.DisplayName.Value should be used as node nem if it is defined
+UA-2246	ASMD: BrowseView - wrong symbolic name (not set)
+UA-2254	ASMD: 3D view and selected item observer are broken after changes to parameters passed by event selecteditemischanged
+UA-2250	ASMD: Properties and wrong type definition
+UA-2616	ASMD: Exception in VS designer while opening main control
+UA-2218	Problem with starting of the ASMD from CSUA package
+UA-2632	Enter unlock code window don't work when Alt+K is pressed.
+UA-2464	ASMD/CSUA: Manifest is rewrite after each start of ASMD
+UA-2578	ASMD: Use StartUpSplashScreen
+UA-2232	ASMD-Plugin: Configuration file should not change after saving without any changes
+UA-2181	ASMD: Help for Library should be based on element name instead of elementy type
+UA-2210	Error during starting of ASMD without connection to the Internet
+UA-2347	Changes referenced to Licensing
+UA-2221	Modify TakeRecentPackages script for Windows 7
+UA-2202	ASMD: Implement DerriveFrom functionality inside W4PG
+UA-1599	Check speling and naming OPC DA Client interface
+UA-1882	Update ADI model
+UA-2027	Update ADI model
+UA-2011	Move functionality of the DictionaryTreeView to the SolutionTreeNode
+UA-2182	BrowseView: Add missing HasModelParent references
+UA-2153	Update to 1.320 SDK version
+UA-2178	Errors in the BrowseView should be more visible
+UA-2281	Place ASMD log in log folder
+UA-2551	Add namespace in the AssemblyVersionInfo
+UA-2190	Add restriction for some ASMD featuresin license
+UA-1994	Create tutorial: How to create UA Wrapper
+UA-2010	Create GUI for Browse View
+UA-2146	Add copy of the library dictionary and quick search for reference types
+UA-2147	Remove methods, that gives full access to nodes list and dictionary
+UA-1373	Change icon for selected node.
+UA-1385	Selected folder icons
+UA-1386	Synchronize the tree view with the property grid
+UA-2264	Descriptions for PropertyGrid fields
+UA-2243	Add icons to main ASMD menu toolstrip
+UA-2200	BrowseViewTreeView - cleanup
+UA-2201	Move functionality of adding icons to the ImagesForNodes
+UA-2387	Improve SplashScreen and add information about license warnings.
+UA-2468	Split AboutForm and LicenseForm
+UA-2249	ASMD: BrowseView and ModelView: better implementation of passing selected item is changed
+UA-2194	ASMD: Improve PropertyGridObserver
+UA-2195	ASMD: PropertyGrid - ExpandAll - feature	mzbrzezny	Resolved
+UA-2188	ASMD: Multi - view : tab and menu manager should be created
+UA-2168	Cleanup communication in GUI
+UA-2217	ASMD: Update 3D View to be clickable / multicolour , etc....
+UA-2220	ASMD: bigger window for new objects
+UA-2226	ASMD: OPCFSolutionConfigurationManagement - cleanup
+UA-2231	ASMD: Hide/Remove unnecessary nodes from model tree view
+UA-2353	Modify setup to install content files in common Application Data
+UA-2291	Review the license restrictions - prepare a list.
+UA-2442	Implement software unlocking codes
+UA-2450	Implement listener for License warning
+UA-2571	Remove not used classes responsible for licensing.
+UA-2325	ASMD: Manifest genearation during install
+UA-2171	ASMD: Cleanup OKCancel and OKCancelOption from CAS.UA.Model.Designer.Controls
+UA-1918	Remove Wrapper model from configurations
+UA-1514	Clenup location of the property grid editors
+UA-1892	Move text from ImportMenuFactory to resources
+UA-1614	Open solution with non existing project file - new message
+UA-1616	Make limitation for the font size
+UA-2252	Review the code and cleanup recent modification
+UA-2199	Remove reference to the SelectedItemIsChanged form MAin
+UA-2173	ASMD: Common interface based on IModelNode and IWrapperTreeNode
+UA-2180	ASMD: Cleanup Exporting tools
+UA-1987	Remove configuration for memory buffer
+UA-1997	Convert to MAML and add documents about using ASMD to the ASMD help
+UA-2005	Fix links in the help
+UA-2009	Change algorithm of creating of the BaseTreeNodes
+UA-1998	Remove Boiler from CAS ADI model
+UA-1916	Model to bu used as ilustration for ADI white paper.
+UA-2430	Improve location of the logs for ASMD
+UA-2169	Application structure cleanup
+UA-2433	Update to 1.326 SDK version
+UA-2015	Name of the .csv file
+UA-2229	Edition of DataBindings in BrowseView
+UA-2189	ASMD: DOCX Export
+UA-2143	Problem with adding CoupledNodes to the BrowseView dictionary
+UA-2159	BrowseView - create instance declataions
+UA-1495	Enable 3D Graphic
+UA-2620	ASMD: Add button about ASMD edition comparison
+UA-2516	Custom build tool constrain must be implemented
+UA-2401	Constrain Save must be implemented.
+UA-2402	Constrain Import must be implemented.
+UA-2403	Constrain Export must be implemented.
+UA-2404	Constrain Configuration must be implemented.
+UA-2405	Constrain Browse View must be implemented.
+UA-2406	Constrain 3D View must be implemented.
+UA-2407	Constrain Custom Editors must be implemented.
+UA-2255	ASMD: SplashScreen add information about Pro license and possibility to change to standard license
+UA-1770	Version information about ModelCompiler
+UA-1434	BrowseView functionality
+UA-2198	ASMD: Decide how to install prerequisites for DOCX export
+UA-2179	ASMD: cleanup of StateMachineEditor
+UA-2191	ASMD: Move BrowseView to Observers
+UA-1200	Synchronise with current release of the documentation
+
+Libraries used in this release:
+    * 4.00.00-CMCORE Alpha Victor
+    * 2.0.108 - NETAPI - Alpha Echo 
+    * 3.70.06-DPP - Alpha Yankee
+    * 4.00.00-CLIB Alpha Whiskey
+    * 1.00.01-CRSC   
+
+
+#####################################################################
+# UA Model Designer rel_2_10_10 (X-Ray)
+#####################################################################
+
+New version 2.10.10 of OPC UA Address Space Model Designer is published. The main changes and new functionalities are listed below:
+- Synchronization with OPC Foundation SDK 1.01.308.0
+- Some minor bugfixes and improvements.
+
+Nowa wersja Oprogramowania OPC UA Address Space Model Designer rel. 2.20.00 jest dostêpna. Do najwa¿niejszych zmian zaliczyæ mo¿na:
+- Synchronizacja z SDK 1.01.308.0.
+- Drobne poprawki i ulepszenia.
+
+Changes based on ITR:
+UA-2023 Release: 2.10.10 X-Ray
+
+
+#####################################################################
+# UA Model Designer rel_2_10_00
+#####################################################################
+
+New version 2.10.00 of OPC UA Address Space Model Designer is published. The main changes and new functionalities are listed below:
+- After choosing of the UA Server configuration plugin, the existing configuration file can be opened.  
+- Value of the DefaultValue property is now editable using complex XML editor. OPC UA Address Space Model Designer supports now the Range and EUTypes properties.
+- OPC Core Components are added to application prerequisites. If  they have not been installed on users computer previously, they are installed with OPC UA Address Space Model Designer.
+- Application settings can now be reset to built-in, default values using new Reset button in Options window.
+- Popular namespaces for OPC UA Types, XML Schema and XML Schema-instance are added to each model file.
+- Synchronization with OPC Foundation SDK 1.01.305.0
+- Some minor bugfixes and improvements.
+
+Nowa wersja Oprogramowania OPC UA Address Space Model Designer rel. 2.20.00 jest dostêpna. Do najwa¿niejszych zmian zaliczyæ mo¿na:
+- Po wybraniu plugin'u konfiguracyjnego do serwera UA mo¿liwy jest wybór istniej¹cego pliku z zapisan¹ konfiguracj¹.
+- Wartoœæ DefaultValue jest edytowalna przy u¿yciu nowego z³o¿onego edytora XML. OPC UA Address Space Model Designer wspiera teraz tak¿e typy Range i EUTypes.
+- Posiadanie OPC Core Components zosta³o dodane do warunków wymaganych do instalacji. Jeœli u¿ytkownik nie posiada zainstalowanych OPC Core Components, s¹ one instalowane razem z  OPC UA Address Space Model Designer.
+- Ustawienia aplikacji mog¹ byæ teraz przywracane do wbudowanych wartoœci domyœlnych przy u¿yciu przycisku Reset umieszczonego w oknie Options.
+- Popularne przestrzenie nazw dla OPC UA Types, XML Schema i XML Schema-instance dodawane s¹ do ka¿dego pliku modelu.
+- Synchronizacja z SDK 1.01.305.0.
+- Drobne poprawki i ulepszenia.
+
+Changes based on ITR:
+UA-1971	Wrong version of the configuration editor.
+UA-1730	Final tests
+UA-1923	Release software Rel.2.10.00
+UA-1898	The Description attribute for References is not being saved
+UA-1965	AccesLevel cannot be changed in model in ASMD
+UA-1828	Fix opening ASMD configuration after selecting of the plugin
+UA-1855	DefaultValue editor do not handle complex values
+UA-1885	Wrong menu item name for import
+UA-1693	Solution name: after changing the solution name on property pane it does not change on the tree
+UA-1675	OPC Core Components should be added to prerequisites
+UA-1899	Fix NodeDesign class diagram
+UA-1829	Check creating of filepaths on Vista OS
+UA-1942	OPC_UA_ASMD_48.ico' is missed in the repo.
+UA-1853	Some values in the BuildInTypes cannot be used to create DataType
+UA-1922	Import Range is not encapsulated in the ExpandedObject
+UA-1946	Remove from TestConfiguration all incorrect bindings
+UA-1831	Replace OKCancelDeleteWindow with OKCancelOption
+UA-1897	Change namespace for Nodes
+UA-1759	Demo configuration infrastructure
+UA-1921	Import: Change relationship for variables
+UA-1854	Handle EUType
+UA-1743	Reset program settings to defaults
+UA-1902	Add xml prefixes for common namespaces
+UA-1890	Add licensing and tracing
+UA-1969	ASMD displays information that licence install has failed - it is better to hide this message
+UA-1937	Update to 1.01.305.0 Testing OPCF SDK
+UA-1819	While importing from OPC DA the tree should be nor refreshed.
+
+#####################################################################
+# UA Model Designer rel_1_11_10 (codename: OPCF SDK update and cleanup)
+#####################################################################
+
+New version 1.11.10 of OPC UA Address Space Model Designer is published. The main changes and new functionalities are listed below:
+- Codegenerator (compiller from SDK) settings and path can be configured
+- The editor of the data bindinding have been moved to separate pane
+- Synchronization with OPC Foundation SDK 1.01.301.0
+- Small changes to sample configuration.
+- Some minor bugfixes and improvements.
+
+
+Nowa wersja Oprogramowania OPC UA Address Space Model Designer rel. 1.11.10 jest dostêpna. Do najwa¿niejszych zmian zaliczyæ mo¿na:
+- Mo¿na konfiguroaæ ustawienia i œcie¿kê gnerator kodu (kompilator z SDK)
+- Edytor  powi¹zañ pomiêdzy wêz³ami instancji obiektów w modelu zosta³ przeniesiony do nowego panelu.
+- Synchronizacja z OPC Fundation SDK 1.01.301.0
+- Drobne zmiany w przk³adowej konfiguracji
+- Drobne poprawki i ulepszenia.
+
+Changes based on ITR:
+UA-1723	Release: OPCF SDK update and cleanup
+UA-1699	"Create tag" script should be updated to include new directories
+UA-1745	Cleanup VS warnings
+UA-1731	Move data bindinding to separate pane
+UA-1648	issue with empty children folder
+UA-1746	Change the name of the server editor
+UA-1751	Cleanup BoilerDesign and BoilerExample models
+UA-1585	Change file names according to class names
+UA-1653	Codegenerator (compiller) settings and path should be configurable
+UA-1654	Synchornization with newest SDK
+UA-1657	Verification of the New OPC Foundation License included in new release of OPC UASDK
+UA-1722	Release: Minor modification
+UA-1655	Handling of the new attribute XmlPrefix
+
+
+#####################################################################
+# UA Model Designer rel_1_11_00 (codename: The Beginning Of Process Bindings)
+#####################################################################
+
+New version 1.11.00 of OPC UA Address Space Model Designer is published. The main changes and new functionalities are listed below:
+- Possibility of creating the configuration for the OPC UA server is added. This feature is the first step to the "Interoperability without programming" concept. It is possible to create plug-ins for UA Address Space Model Designer which allows to configure the server and the bindings between instance nodes in the model with the actual real-time process data sources. Configuration of this functionality (i.e. choosing sources)is available in the "UA Server" menu. The sample plug-in is installed in "My documents\UAAddressSpaceModelDesigner\Sample ". Bindings can be configured inside instance nodes configuration (objects, variables, properties) as "Process Bindings" property. What is more for each instance node many data sources can be configured so redundancy is available. Currently an OPC DA client is available as the data source, so any OPC server can be a source of data.
+- Synchronization with OPC Foundation SDK 1.00.238.1 Stable
+- Export of the model to the documentation format file (in MAML language, based on XML ) is added. Now it is possible to export the model to the MAML file and use it in the documentation creation process. To use "Export" function, select the node which represents the project and then choose "To MAML" option from "File -> Export" menu.
+- The visual editor of the state machines is available. Now it is possible to easily add new transitions, delete transitions or change causes of the transitions in the particular state machine using graphical editor.  The editor can be started after selecting a node which represents the state machine and selecting "State Machine Editor" from "Tools -> Custom Editor" menu. 
+- OPC Viewer is integrated with the UA Address Space Model Designer. It can be started in the Tools menu and used as the OPC DA client configuration tool.
+- Example boiler model is improved.
+- Some minor bugfixes and improvements.
+
+
+Nowa wersja Oprogramowania OPC UA Address Space Model Designer rel. 1.11.00 jest dostêpna. Do najwa¿niejszych zmian zaliczyæ mo¿na:
+- Dodana mo¿liwoœæ tworzenia konfiguracji dla serwera OPC UA. Mo¿liwe jest teraz wykorzystania plug-in'ów dla UA Address Space Model Designer, które pozwalaj¹ na skonfigurowanie powi¹zañ pomiêdzy wêz³ami instancji obiektów w modelu, a danymi rzeczywistymi pochodz¹cymi z modelowanego procesu z okreœlonych Ÿróde³ danych. Konfiguracja (np. wybór Ÿród³a) jest zarz¹dzana przy u¿yciu opcji umieszczonych w menu "UA Server". Przyk³adowy plug-in jest zainstalowany w folderze "Moje dokumenty -> UAAddressSpaceModelDesigner -> Sample". Powi¹zania pomiêdzy modelem a Ÿród³em danych s¹ konfigurowane we w³aœciwoœciach wybranego elementu modelu. Dodatkowo dla ka¿dego elementu modelu mo¿na skonfigurowaæ wiele Ÿróde³ danych, wiêc mo¿liwa jest redundancja. Aktualnie jako Ÿród³o danych dostêpny jest klient OPC DA, wiêc dowolny serwer OPC mo¿e byæ Ÿród³em danych.
+- Synchronizacja z OPC Fundation SDK 1.00.238.1 Stable
+- Dodano eksport modelu do pliku dokumentacji (w jêzyku MAML, bazuj¹cym na XML). Mo¿na teraz eksportowaæ model do pliku MAML i u¿ywaæ go w procesie tworzenia dokumentacji. W celu wykonania eksportu nale¿y zaznaczyæ wêze³ reprezentuj¹cy projekt, a nastêpnie wybraæ opcjê "To MAML" z menu "File -> Export".
+- Dodano graficzny edytor tworzenia maszyn stanu. Mo¿na teraz ³atwo dodawaæ nowe przejœcia pomiêdzy stanami, kasowaæ je oraz zmieniaæ pole przyczyny danego przejœcia.  Edytor mo¿na uruchomiæ zaznaczaj¹c na drzewie wêze³ reprezentuj¹cy maszynê stanu, a nastêpnie wybieraj¹c "State Machine Editor" z menu "Tools -> Custom Editor".
+- Dodany zosta³ OPC Viewer do UA Address Space Model Designer. Mo¿e on zostaæ uruchomiony z menu Tools i wykorzystany do konfiguracji klienta OPC DA.
+- Ulepszony zosta³ za³¹czony, przyk³adowy model kot³a.
+- Drobne poprawki i ulepszenia.
+
+
+Changes based on ITR:
+UAD-1527	Release: 1.11.00 (The Beginning Of Process Bindings) 	 	
+UAD-1577	Invoke help content form DataPorter Plug-in	
+UAD-1586	Final tests of the program before release.	
+UAD-1611	Fix the bug in creating state machine from the local tree node	
+UAD-1602	UA Server menu entry labels	
+UAD-1621	Relative path calculator cause exception	
+UAD-1593	Error while opening the OPCFSolutionConfigurationManagement in designer	
+UAD-1536	PrepareNamespacePrefix throws an exception for empty prefix	
+UAD-1535	SampleApplicationConfiguration cast problem	
+UAD-1547	Ignore case does not uses visula styles	
+UAD-1625	Fix bug in adding names to the tables in MAML	
+UAD-1609	Fix exporting model to MAML when the selected node is a local tree node	
+UAD-1570	SubscriptionState null object reference	
+UAD-1541	Define XML prefixes for namespaces	
+UAD-1623	New server configuration must clear all instance configurations	
+UAD-1552	Create new configuration file	
+UAD-1558	Instance binding modification should cause save prompt	
+UAD-1574	Wrappers for OPCClient configuration	
+UAD-1591	Change OPC Client => CAS OPCWrapper	
+UAD-1590	Add default DataPorter configuration to the solution	
+UAD-1622	Cleanup solution	
+UAD-1546	Use visual styles in the application	
+UAD-1549	AddObject does not have get property for modified object	
+UAD-1542	StateMachines editor should be unlocked	
+UAD-1532	Load / save project configuration	
+UAD-1573	Change the IWrapperTreeNode to expose many wrapper for property grid	
+UAD-1564	GUI from functionality separation	
+UAD-1620	Update boiler model	
+UAD-1530	Opc.Ua.ModelCompiler.exe from OPCF SDK changes by CAS	
+UAD-1567	Make the plug-in as the component.	
+UAD-1575	Move the definition of the plug-in to the solution.	
+UAD-1619	Name of the configuration file	
+UAD-1601	Add instace configuration to the main menu	
+UAD-1597	Add instance configuration to the main menu	
+UAD-1598	Display prompt to get name of new configuration file.	
+UAD-1595	Modify the IServerConfiguration	
+UAD-1592	Remove unnecessary reference from plug-in
+UAD-1588	Add plug-in management functionality to the main application menu	
+UAD-1589	Add plug-in management functionality to the main application menu	
+UAD-1557	DataPorter - configuration interface	
+UAD-1449	Create list of tests	
+UAD-1529	Add server selector as the project property	
+UAD-1534	Interconnection between instance and project configuration.
+ UAD-1544	MAML export project	
+UAD-1548	User interface and model interoperability	
+UAD-1582	Cumulative issue - plug-in handling functionality	
+UAD-1583	Add context menu for the instance configuration.	
+UAD-1559	OPC Viewer to be added	
+UAD-1539	File Associations for click once	
+ UAD-1613	Add new tests to test list	
+UAD-1600	Check consitency of terminology
+UAD-1525	Server configuration functionality - prepare an architecture
+UAD-1606	Cumulative commit
+UAD-1538	Synchornization with OPCF SDK 1.00.238.1 Stable
+
+
+#####################################################################
+# UA Model Designer rel_1_10_90 (codename: Menu for all function)
+#####################################################################
+
+New version 1.10.90 of OPC UA Address Space Model Designer is published. The main changes and new functionalities are listed below:
+- Application main menu includes entries to the planned functionality and allows the user to send comments and requests to OPC UA AS Model Designer development team. Intentionally it is a survey that allows us to harmonize the development priorities with your needs.
+- Model build is done silently in background (none command window appears) - the whole output from build process is available in a new Output panel
+- The spelling of the directory that contains sample solution is fixed ("My Douments\UAAddessSpaceModelDesigner\Sample" is changed to "My Douments\UAAddressSpaceModelDesigner\Sample")
+- Version history is available online
+- Synchronization with OPC Fundation SDK 1.00.233.2
+- Some minor bugfixes and improvements.
+
+
+Oprogramowanie OPC UA Address Space Model Designer rel. 1.10.90. Do najwa¿niejszych zmian zaliczyæ mo¿na:
+- G³ówne menu aplikacji zawiera planowan¹ funkcjonalnoœæ i umo¿liwia przysy³anie u¿ytkownikom komentarzy, uwag, lub wyra¿enia zainteresowania dan¹ funkcjonalnoœci¹ poprzez przys³anie wiadomoœci do grupy zajmuj¹cem siê rozwojem oprogramowania OPC UA AS Model Designer. Z intencji jest rodzaj ankiery, która pozwoli dopasowaæ priorytety rozwoju oprogramowania do potrzeb.
+- Kompilacja modelu (Model build) wykonywana jest w tle (nie pojawia siê okno komend systemu Windows), wynik kompilacji widoczny jest w nowym panelu o nazwie Output 
+- Pisownia katalogu zawieraj¹cego przyk³adowe solution jest poprawiona("Moje dokumenty\UAAddessSpaceModelDesigner\Sample"  zmienione zosta³o na "Moje Dokumenty\UAAddressSpaceModelDesigner\Sample")
+- Historia wersji aplikacji jest dostêpna "online"
+- synchronizacja z OPC Fundation SDK 1.00.233.2
+- Drobne poprawki i ulepszenia.
+
+
+Changes based on ITR:
+UAD-1519	Release: 1.10.90 (menu for all functions)
+UAD-1524	StrongName for application
+UAD-1520	Fix spelling in directory where sample solution is installed, fix sample solution to be compilable with new SDK model designer
+UAD-1506	Readme topic in the online documentation
+UAD-1511	Synchronize with OPC UA SDK 1.00 Sample Source Code Setup (x86) 1.00.232.5 Stable or event 1.00.233.1 or 1.00.233.2
+UAD-1502	StateMachineEditor improvement
+
+UAD-1507	Add all menu items for all planed functions
+UAD-1515	Output panel + silent build
+
+
+#####################################################################
+# UA Model Designer rel_1_10_80 (codename: small improvements)
+#####################################################################
+changes:
+New version 1.10.80 of UA Model Designer is published. The main changes and new functionalities are listed below:
+- Explorer-style navigation functionality is added. Now it is possible to use navigation arrows located on the toolbar to view previously visited nodes.
+- GoTo DataType functionality is added to the context menu of the node. It gives the possibility of navigating to DataType coupled with the selected node.
+- Coupled Nodes functionality is added. Now, nodes coupled with the selected node (i.e. base types, targets etc. ) appear on the tree. This functionality can by switched on/off in Tools menu.
+- Sample model solution is installed automatically in "My Documents\UAAddessSpaceModelDesigner\Sample" folder.
+- Toolbars are now more functional. They can be moved to any side of the application window.
+- Configuration is moved under Tools menu.
+- Intelligent book synchronization can be switched on/off in Help menu.
+- Some minor bugfixes and improvements.
+
+See also the movie: "Introduction to OPC UA Address Space modeling using CAS Address Space Model Designer"
+
+Oprogramowanie UA Model Designer rel. 1.10.80. Do najwa¿niejszych zmian zaliczyæ mo¿na:
+- Dodanie nawigacji miêdzy wêz³ami w stylu Eksploratora Windows. Teraz mo¿na - przyt u¿yciu strza³ek nawiguj¹cych znajduj¹cych siê na pasku narzêdzi - przechodziæ do poprzednio odwiedzanych wêz³ów.
+- Dodanie funkcjonalnoœci GoTo DataType w menu kontekstowym wêz³a. Daje ona mo¿liwoœæ odnalezienia typu dla danego wêz³a.
+- Nowa funkcjonalnoœæ Coupled Nodes pozwala na odnalezienie wêz³ów sprzê¿onych z wybranym wêz³em (np. typ bazowy, cel itp.). Coupled Nodes mo¿e zostaæ w³¹czona lub wy³¹czona w menu Tools.
+- Przyk³adowy model jest automatycznie instalowany w folderze "Moje dokumenty/\UAAddressSpaceModelDesigner\Sample".
+- Paski narzêdzi sta³y siê bardziej funkcjonalne, a ich umieszczanie przy dowolnej krawêdzi okna sta³o siê ³atwiejsze.
+- Dostêp do konfiguracji aplikacji umieszczony zosta³ w menu Tools.
+- Dodanie w menu Help mo¿liwoœci w³¹czenia lub wy³¹czenia synchronizacji programu z ksi¹¿k¹.
+
+Zobacz te¿ film wprowadzaj¹cy w œwiat OPC UA i modelowania z u¿yciem OPC UA Address Space Model Designer: http://www.youtube.com/watch?v=pYOQA4atlRI
+
+Changes based on ITR:
+UAD-1316	3D graphic -integrate with branch (disabled feature)
+UAD-1497	Synchronization with help should be swithced on and switched off
+UAD-1389	Add find DataType definition mechanism
+UAD-1392	Add explorer navigation functionality
+UAD-1391	Add special handling of the state machne type
+UAD-1368	CoupledNodes on Tree: Show inherited nodes under the children node.
+UAD-1487	Cleanup: ToolStrip Containter should be added, build icons (the one on the tool strip perform other operation than build)
+UAD-1483	Move configuration menu under tools.
+UAD-1494	Sample solution (and model) easy accessible
+UAD-1448	State Machine Editor: Add control with states cross-references (disabled feature)
+UAD-1491	AllTopics cleanup
+
+#####################################################################
+# UA Model Designer rel_1_10_71 (codename: small fix)
+#####################################################################
+changes:
+fix for  	UAD-1482  	Fix building of the solutions which have whitespaces in its names or directory names
+
+#####################################################################
+# UA Model Designer rel_1_10_70 (codename: Build Functionality)
+#####################################################################
+changes:
+
+New version 1.10.70 of UA Model Designer is published. The main changes and new functionalities are listed below:
+- Node Copy/Cut/Paste functionality is added in node context menu. Now it is possible to copy (cut) node and then paste it into another appropriate node. Copied node is stored as XML text in system clipboard, so it can be pasted to any text editor (this XML is compatible with OPC Foundation UA SDK model definition)
+- Build functionality is added. Now model can be build (C# classes are generated from the model) directly from the CAS UA Address Space Model Designer. Try Build option from the Tools menu. What is more required for build: output directory and CSV filename can be configured in properties of each Project (model).
+- Message which appears when a user tries to load model as solution is changed. Now it is more informative.
+- Some minor bugfixes.
+- Framework 2.0 and Framework 3.0 required 
+
+Oprogramowanie UA Model Designer rel. 1.10.70. Do najwa¿niejszych zmian zaliczyæ mo¿na:
+- Dodanie do menu kontekstowego nowej funkcjonalnoœci: Kopiowania / Wycinania / Wklejania (Copy / Cut / Paste) wêz³ów. Teraz mo¿liwe jest kopiowanie (wycinanie wêz³ów) i wklejanie ich do innego, w³aœciwego wêz³a. Zawartoœæ kopiowanego wêz³a przechowywana jest w formie tekstowej, w notacji XML w schowku systemowym, dziêki czemu mo¿e byæ wklejona w dowolnym edytorze tekstowym. Zapis w XML'u jest kompatybilny z definicj¹ modelu OPC Foundation UA SDK.
+- Dodanie funkcjonalnoœci budowania modelu. Teraz mo¿na budowaæ model bezpoœrednio z CAS UA Address Space Model Designer i generowaæ klasy reprezentuj¹ce model w jêzyku C#. Opcja zbudowania modelu znajduje siê w meny Tool. Co wiêcej, we w³aœciwoœciach projektu (modelu), mo¿liwe jest okreœlenie folderu wynikowego procesu budowania oraz okreœlenie nazwy pliku CSV.
+- Zmienienie informacji pojawiaj¹cej siê w momencie, gdy u¿ytkownik próbuje za³adowaæ model jako solution. Teraz informacja przekazuje jaœniejsz¹ informacjê o b³êdzie.
+- Poprawienie kilku drobnych b³êdów.  
+- do dzia³ania wymagany Framework 2.0 i Framework 3.0
+
+Changes based on ITR:
+UAD-1459	Strange message when a user tries to load model as solution
+UAD-1155	Node Copy/Cut/Paste functionality
+UAD-1458	Build Functionality
+UAD-1479  help: if content is not found in the help (help page should not be changed to startup page)
+
+#####################################################################
+# UA Model Designer rel_1_10_60 (codename: Default Value Editor)
+#####################################################################
+changes:
+UA Model Designer rel. 1.10.60 changes:
+- Editor of default values for variable nodes is added
+- Description for nodes can be edited
+
+- New application configuration window is added
+- Possibility to change the size of the font that is used in application window
+- Synchronization with OPC Fundation SDK 1.00.232.4 Stable 
+
+Oprogramowanie UA Model Designer rel. 1.10.60
+Do najwa¿niejszych zmian zaliczyæ mo¿na:
+- Dodano mo¿liwoœæ edycji wartoœci domyœlnej dla elementów typu zmienna
+- Dodano mo¿liwoœæ edycji opisu dla elementów
+- Dodano okno konfiguracyjne dla aplikacji 
+- Dodano mo¿liwoœæ zmiany rozmiaru czcionki u¿ywanej w g³ównym oknie aplikacji
+- Zsynchronizowano z wersj¹ OSDK 1.00.232.4 Stable (dostarczonego przez OPC Foundation)
+
+Changes based on ITR:
+UAD-1455	Description should be editable
+UAD-1382	Add support of DefaultValue
+UAD-1433	Improved help selection for predefined types
+UAD-1453	Option to change the font type
+UAD-1456	Synchronization with OPCF SDK 1.00.232.4 Stable
+
+#####################################################################
+# UA Model Designer rel_1_10_50 (codename: Filtreing improvements)
+#####################################################################
+changes:
+UA Model Designer rel. 1.10.50 changes:
+- Filtering is improved (filtered nodes are hidden instead of marking with another color; 
+	when defining the filter, node classes (according to OPC UA specification) 
+	can be selected to hide and unhide particular nodes)
+- Naming convention for namespace prefixes in the XML output document is changed
+- Many improvements and bugfixes to the internal application engine. 
+
+Oprogramowanie UA Model Designer rel. 1.10.50
+Do najwa¿niejszych zmian zaliczyæ mo¿na:
+- Usprawnione filtrowanie (odfiltrowane elementy s¹ ukrywane na drzewie modelu, 
+	a nie tylko zaznaczane innym kolorem; przy definicji filtra mo¿na wybieraæ jakie 
+	klasy wêz³ów (wg specyfikacji OPC UA) maj¹ byæ wyœwietlane)
+- Zmieniono sposób nazywania prefiksu dla przestrzeni nazw w wynikowym pliku XML
+- Liczne ulepszenia i poprawki drobnych b³êdów w wewnêtrznych mechanizmach aplikacji 
+
+Changes based on ITR:
+UAD-1446	Release: 1.10.50 Filtreing improvements
+UAD-1421	Make a correction of resources file
+UAD-1407	Filtering - remove filtered out nodes from the tree view
+UAD-1447	After changing symbolic name the name on the tree remains unchanged
+UAD-1425	Implement searching based on TreeView search
+UAD-1426	Remove base types from type filter
+UAD-1427	Encoding does not provide namespaces
+UAD-1431	Solution TreeNode icon is missing
+UAD-1450	Windows Vista with opening the model ends with exception.
+UAD-1440	Change tooltip texts
+UAD-1441	Improve downloading data from allTopics
+UAD-1372	Change icon for selected node.
+UAD-1419	Use prefix to generate XML file
+UAD-1428	Select appropriate namespace prefix
+
+
+
+#####################################################################
+# UA Model Designer rel_1_10_40 (codename: SDK232.2)
+#####################################################################
+changes:
+- Build-in types are based on OPC Foundation UA SDK 1.00.232.2 and are read-only now;
+- Namespaces references based on file paths are added;
+- Main window displays the name of the solution file in the title bar;
+- Warning about unsaved changes is displayed when user wants to clear, open or exit;
+- Issue with namespaces for method parameters is fixed;
+- Issue with allTopics.xml file is fixed;
+- Help content changes only if Help Tab is active;
+- Selected node on the Model tree is always marked;
+
+
+Changes based on ITR
+UAD-1370 Add name of the file to the main window title. 
+UAD-1326 Wrong labels for Domain.Add object context menu 
+UAD-1354 Methods parameters do not expose namespaces 
+UAD-1360 Remove spaces from search combo box 
+UAD-1363 Clear XMLQualifiedName while changing IsEmpty bit. 
+UAD-1348 Use relative paths in the CreateModel.bat 
+UAD-1355 Changes to UA model while testing ADI. 
+UAD-1378 Change the UA model file to the original with spaces. 
+UAD-1288 Exchange children by components 
+UAD-1154 Standard Types (BuildIn,StandardTypesDataTypes) should be readonly 
+UAD-1314 Check for modification on exit. 
+UAD-1362 Change location of the allTopics.xml on users computer. 
+UAD-1398 Help Page on Help tab should be changed only if user makes Help tab visible 
+UAD-1377 Update UA Defined types up to SDK 1.0.232.2 
+UAD-1397 Selected node should be always marked 
+UAD-1321 ModelDesigner - code generator (from UA SDK) to be added, models based on CAS UA Model Designer 1.10.00 should be tested 
+UAD-1371 ADI and UAModelDesinger tests (multifile compilation, namrespace filepaths) 
+
+
+#####################################################################
+# UA Model Designer rel_1_10_30 (codename: SHFB 1.8.0.1)
+#####################################################################
+- this is environment maintenance release (no changes to the application code) , this release does not provide any deliverables
+
+
+#####################################################################
+# UA Model Designer rel_1_10_20 (codename: SDK232)
+#####################################################################
+ - Bug: Synchronize with a new SDK schema SDK Revision: 384 (Rel 1.0.231)
+ - Improvement: Changed menu labels
+
+#####################################################################
+# UA Model Designer rel_1_10_00 (codename: ADI)  CO rel CAS.UA.ModelDesigner_1_10_00_3
+#####################################################################
+-  new search functionality, that allows to search through the model
+- Standard Types, Build-In Types, Data Types, are replaced by one file (one model): UA Defined types (received from Randy)
+- white characters (like spaces) are removed from names automatically
+- some of the unused properties (e.g.: Declaration, Description, etc...) are removed
+- XML namespaces are added to the header of the model file (no more namespace redefinition in the file)
+- some small improvements and bug fixes
+
+#####################################################################
+# UA Model Designer rel_1_00_01 CO rel CAS.UA.ModelDesigner_1.00.00.3
+#####################################################################
+added: solution functionality
+
+#####################################################################
+# UA Model Designer rel_1_00_00 CO rel CAS.UA.ModelDesigner_1_00_00_2
+#####################################################################
+initial internal release - ready for Jim, Tom, Randy preview
+

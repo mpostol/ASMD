@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package Name="DisplayName" Culture="Culture" xmlns="http://schemas.microsoft.com/developer/2004/01/bootstrapper">
+  <Strings>
+    <String Name="Culture">pl</String>
+    <String Name="DisplayName">OpcCoreComponentsSetup</String>
+    <String Name="Anunexpectedexitcodewasr">An unexpected exit code was returned from the installer. The installation failed.</String>
+    <String Name="DisplayName_1">OpcCoreComponentsMsi</String>
+  </Strings>
+</Package>

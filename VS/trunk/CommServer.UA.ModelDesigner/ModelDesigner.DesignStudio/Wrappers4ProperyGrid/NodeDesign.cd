@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Design&lt;T&gt;" Collapsed="true">
+    <Position X="46.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAABAAACAAAAEAAAAQAAQAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.NodeDesign&lt;T&gt;" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAEAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.InstanceDesign&lt;T&gt;" Collapsed="true">
+    <Position X="15.75" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAQAAAAAAAAAQEAQAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.TypeDesign&lt;T&gt;" Collapsed="true">
+    <Position X="19.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAQBAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.ViewDesign" Collapsed="true">
+    <Position X="21.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAEABAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.InstanceDesign&lt;T&gt;" Collapsed="true">
+    <Position X="29.5" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIQAAQAAAAAAAAAAAAAAAAAAAAgAAAAACKAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Nodes.Properties.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.TypeDesign&lt;T&gt;" Collapsed="true">
+    <Position X="39.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABCAAAgAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Nodes.Properties.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.MethodDesign" Collapsed="true">
+    <Position X="23.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAEQQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.VariableDesign&lt;T&gt;" Collapsed="true">
+    <Position X="26" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAQAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.ObjectDesign&lt;T&gt;" Collapsed="true">
+    <Position X="28.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAEAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.VariableDesign&lt;T&gt;" Collapsed="true">
+    <Position X="31.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAEAAAQAAIAgAAAAAAAAAAAAABAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Nodes.Properties.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.ReferenceTypeDesign" Collapsed="true">
+    <Position X="35" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAABAQAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.DataTypeDesign" Collapsed="true">
+    <Position X="37.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAABAQAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.VariableTypeDesign" Collapsed="true">
+    <Position X="39.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAEAAAQAAIAgCAAAAAAABAQAABAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.ObjectTypeDesign&lt;T&gt;" Collapsed="true">
+    <Position X="41.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.ObjectTypeDesign&lt;T&gt;" Collapsed="true">
+    <Position X="44" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Nodes.Properties.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.DictionaryDesign" Collapsed="true">
+    <Position X="30.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.PropertyDesign" Collapsed="true">
+    <Position X="32.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.EncodingDesign" Collapsed="true">
+    <Position X="48.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Design&lt;T&gt;" Collapsed="true">
+    <Position X="25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Nodes.Properties.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.ModelDesign" Collapsed="true">
+    <Position X="5.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAQAAAAQAAAACAAAAEAAAAAQAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Namespace" Collapsed="true">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAQAAAAAAAAAAAAAAQSAAAgAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Reference" Collapsed="true">
+    <Position X="12.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAQAAAAAAAAAAACAAAJAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Parameter" Collapsed="true">
+    <Position X="14.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAIgAAAAAAAAAAQQAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\NodeDesign.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.NodeDesign&lt;T&gt;" Collapsed="true">
+    <Position X="30.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAEIAAAAAgAAgACAIQAAABAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Nodes.Properties.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

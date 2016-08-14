@@ -1,0 +1,111 @@
+﻿//<summary>
+//  Title   : Dedicated observer to manage content edited in the bindings PropertyGrid.
+//  System  : Microsoft Visual C# .NET 2008
+//  $LastChangedDate$
+//  $Rev$
+//  $LastChangedBy$
+//  $URL$
+//  $Id$
+//
+//  Copyright (C)2009, CAS LODZ POLAND.
+//  TEL: +48 (42) 686 25 47
+//  mailto://techsupp@cas.eu
+//  http://www.cas.eu
+//</summary>
+
+using System.ComponentModel;
+using CAS.UA.Model.Designer.Wrappers;
+using CAS.UA.IServerConfiguration;
+
+namespace CAS.UA.Model.Designer.Controls.NodeObserver
+{
+  /// <summary>
+  /// Dedicated observer to manage content edited in the bindings PropertyGrid.
+  /// </summary>
+  internal partial class BindingsPropertyObserver: PropertyGridObserver
+  {
+    #region creator
+    public BindingsPropertyObserver()
+    {
+      InitializeComponent();
+    }
+    #endregion
+    #region private
+    protected override void UpdatePropertyGridSelectedObject( IModelNode imodelNode )
+    {
+      INodeDescriptor dscr = imodelNode.GetINodeDescriptor();
+      if ( dscr == null )
+        this.PropertyGrid.SelectedObject = null;
+      else
+        this.PropertyGrid.SelectedObject = new InstanceConfigurationMasterEditor( Root.GetInstanceConfiguration( dscr ) );
+    }
+    protected override void OnSelectedItemIsChanged( object sender, SelectedItemEventArgs e )
+    {
+      base.OnSelectedItemIsChanged( sender, e );
+      this.PropertyGrid.Enabled = true;
+    }
+    private class InstanceConfigurationMasterEditor
+    {
+      /// <summary>
+      /// Gets or sets the real-time process bindings.
+      /// </summary>
+      /// <value>The bindings.</value>
+      #region Attributes
+      [
+      TypeConverterAttribute( typeof( ExpandableObjectConverter ) ),
+      DisplayName( "Process Bindings" ),
+      DescriptionAttribute(
+        "This property contains configuration of bindings between this instance node in the model " +
+        "and underlying real-time process data source. The configuration data depends on the data provider plug-in " +
+        "that has been used. Expand this property row to edit configuration."
+      ),
+      CategoryAttribute( "Process data binding" )
+      ]
+      #endregion
+      public IInstanceConfiguration Bindings { get; set; }
+      /// <summary>
+      /// Initializes a new instance of the <see cref="InstanceDesign&lt;type, OPCType&gt;.TreeNode&lt;T&gt;.Wrapper"/> class.
+      /// </summary>
+      /// <param name="bindings">The bindings.</param>
+      public InstanceConfigurationMasterEditor( IInstanceConfiguration bindings )
+      {
+        if ( bindings == null )
+          Bindings = new MessageProvider();
+        else
+          Bindings = bindings;
+      }
+      private class MessageProvider: IInstanceConfiguration
+      {
+        #region public properties
+        #region Attributes
+        [
+        DisplayName( "Process Bindings" ),
+        DescriptionAttribute( "To setup configuration editor select Select Editor ... on the UA Server menu. " +
+          "The dialog Open Configuration Editor is then displayed. Using Open Configuration Editor dialog box " +
+          "open the vendor specific plug-in providing the server configuration functionality, i.e. implementing " +
+          "necessary interfaces. See product documentation to get more."
+        ),
+        CategoryAttribute( "Process data binding" )
+        ]
+        #endregion
+        public string ConfiguratinEditor { get { return "To setup select it using the UA Server menu (see description below)."; } } 
+        #endregion
+        public override string ToString()
+        {
+          return "Configuration editor is not set!";
+        }
+        #region IInstanceConfiguration Members
+        public void Edit()
+        {
+          throw new System.NotImplementedException();
+        }
+        public void ClearConfiguration()
+        {
+          throw new System.NotImplementedException();
+        }
+        #endregion
+      }
+    }
+    #endregion
+  }
+}

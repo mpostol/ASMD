@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary.AddressSpaceNode" Collapsed="true">
+    <Position X="15.75" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAJAACIBABEAQgRAAIACAQAACIAAREAFEAAQAEEAAA=</HashCode>
+      <FileName>Wrappers\AddressSpaceDictionary\AddressSpaceNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary.InstanceNodesCollection" Collapsed="true">
+    <Position X="15.75" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAIAAAAAAAgAAACAAAEAAAAAA=</HashCode>
+      <FileName>Wrappers\AddressSpaceDictionary\InstanceNodesCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary.AddressSpaceCompiler" Collapsed="true">
+    <Position X="18.5" Y="4" Width="3" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary.AddressSpaceCompiler.AddressSpaceElement" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Wrappers\AddressSpaceDictionary\AddressSpaceCompiler.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary.AddressSpaceCompiler.NodeHandle" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Wrappers\AddressSpaceDictionary\AddressSpaceCompiler.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AABQAEAQACCAAAAAQAACIAAAAAAACAAgIBBBQAQAIAA=</HashCode>
+      <FileName>Wrappers\AddressSpaceDictionary\AddressSpaceCompiler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="CAS.UA.Model.Designer.Wrappers.IModelNode" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACABAAAAAgRAAAAAAQAAAAAABAABAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers\IModelNode.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CAS.UA.Model.Designer.Wrappers.IInstanceNode" Collapsed="true">
+    <Position X="5.25" Y="4.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAIAAIAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers\IInstanceNode.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CAS.UA.Model.Designer.Wrappers.IModelNodeAdvance" Collapsed="true">
+    <Position X="8.75" Y="4.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAEAAAEAAAAAAAAAAAAAAAAAIAIAQAAAAAAA=</HashCode>
+      <FileName>Wrappers\IModelNode.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CAS.UA.Model.Designer.Wrappers.IWrapperTreeNode" Collapsed="true">
+    <Position X="12.25" Y="4.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers\IWrapperTreeNode.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CAS.UA.Model.Designer.Wrappers.IInstanceNodeContext" Collapsed="true">
+    <Position X="1.5" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAIABAAAAEAAAAAAAAAACIAAAAAAEAAAAAgIAA=</HashCode>
+      <FileName>Wrappers\IAddressSpaceNode.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CAS.UA.Model.Designer.IElement" Collapsed="true">
+    <Position X="16" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAIAAAAQAAAAAQBgAAAAAAAAAABI=</HashCode>
+      <FileName>IElement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

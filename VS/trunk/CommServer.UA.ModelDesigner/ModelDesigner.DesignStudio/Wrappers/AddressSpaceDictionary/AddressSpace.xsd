@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AddressSpace" targetNamespace="http://www.commsvr.com/UA/ModelDesigner/AddressSpace.xsd" xmlns:mstns="http://www.commsvr.com/UA/ModelDesigner/AddressSpace.xsd" xmlns="http://www.commsvr.com/UA/ModelDesigner/AddressSpace.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AddressSpace" msdata:IsDataSet="true" msdata:Locale="" msprop:Generator_UserDSName="AddressSpace" msprop:Generator_DataSetName="AddressSpace" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NodesTable" msprop:Generator_UserTableName="NodesTable" msprop:Generator_RowDeletedName="NodesTableRowDeleted" msprop:Generator_RowChangedName="NodesTableRowChanged" msprop:Generator_RowClassName="NodesTableRow" msprop:Generator_RowChangingName="NodesTableRowChanging" msprop:Generator_RowEvArgName="NodesTableRowChangeEvent" msprop:Generator_RowEvHandlerName="NodesTableRowChangeEventHandler" msprop:Generator_TableClassName="NodesTableDataTable" msprop:Generator_TableVarName="tableNodesTable" msprop:Generator_RowDeletingName="NodesTableRowDeleting" msprop:Generator_TablePropName="NodesTable">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ObjectIndex" msdata:Caption="DataColumn1" msprop:Generator_UserColumnName="ObjectIndex" msprop:Generator_ColumnPropNameInRow="ObjectIndex" msprop:Generator_ColumnVarNameInTable="columnObjectIndex" msprop:Generator_ColumnPropNameInTable="ObjectIndexColumn" type="xs:int" />
+              <xs:element name="RootIndex" msprop:Generator_UserColumnName="RootIndex" msprop:Generator_ColumnPropNameInRow="RootIndex" msprop:Generator_ColumnVarNameInTable="columnRootIndex" msprop:Generator_ColumnPropNameInTable="RootIndexColumn" type="xs:unsignedByte" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ReferencesTable" msprop:Generator_UserTableName="ReferencesTable" msprop:Generator_RowDeletedName="ReferencesTableRowDeleted" msprop:Generator_RowChangedName="ReferencesTableRowChanged" msprop:Generator_RowClassName="ReferencesTableRow" msprop:Generator_RowChangingName="ReferencesTableRowChanging" msprop:Generator_RowEvArgName="ReferencesTableRowChangeEvent" msprop:Generator_RowEvHandlerName="ReferencesTableRowChangeEventHandler" msprop:Generator_TableClassName="ReferencesTableDataTable" msprop:Generator_TableVarName="tableReferencesTable" msprop:Generator_RowDeletingName="ReferencesTableRowDeleting" msprop:Generator_TablePropName="ReferencesTable">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ReferenceIndex" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ReferenceIndex" msprop:Generator_ColumnPropNameInRow="ReferenceIndex" msprop:Generator_ColumnVarNameInTable="columnReferenceIndex" msprop:Generator_ColumnPropNameInTable="ReferenceIndexColumn" type="xs:int" />
+              <xs:element name="SourceNodeIndex" msprop:Generator_UserColumnName="SourceNodeIndex" msprop:Generator_ColumnVarNameInTable="columnSourceNodeIndex" msprop:Generator_ColumnPropNameInRow="SourceNodeIndex" msprop:Generator_ColumnPropNameInTable="SourceNodeIndexColumn" type="xs:int" />
+              <xs:element name="TargetNodeIndex" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="TargetNodeIndex" msprop:Generator_ColumnPropNameInRow="TargetNodeIndex" msprop:Generator_ColumnVarNameInTable="columnTargetNodeIndex" msprop:Generator_ColumnPropNameInTable="TargetNodeIndexColumn" type="xs:int" />
+              <xs:element name="ReferenceTypeIndex" msprop:Generator_UserColumnName="ReferenceTypeIndex" msprop:Generator_ColumnVarNameInTable="columnReferenceTypeIndex" msprop:Generator_ColumnPropNameInRow="ReferenceTypeIndex" msprop:Generator_ColumnPropNameInTable="ReferenceTypeIndexColumn" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" default="" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint3">
+      <xs:selector xpath=".//mstns:NodesTable" />
+      <xs:field xpath="mstns:ObjectIndex" />
+    </xs:unique>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ReferencesTable" />
+      <xs:field xpath="mstns:ReferenceIndex" />
+    </xs:unique>
+    <xs:keyref name="ReferenceType" refer="Constraint3" msprop:rel_Generator_UserRelationName="ReferenceType" msprop:rel_Generator_RelationVarName="relationReferenceType" msprop:rel_Generator_UserChildTable="ReferencesTable" msprop:rel_Generator_UserParentTable="NodesTable" msprop:rel_Generator_ParentPropName="NodesTableRowByReferenceType" msprop:rel_Generator_ChildPropName="GetReferencesTableRowsByReferenceType">
+      <xs:selector xpath=".//mstns:ReferencesTable" />
+      <xs:field xpath="mstns:ReferenceTypeIndex" />
+    </xs:keyref>
+    <xs:keyref name="TargetNodesReferences" refer="Constraint3" msprop:rel_Generator_UserRelationName="TargetNodesReferences" msprop:rel_Generator_RelationVarName="relationTargetNodesReferences" msprop:rel_Generator_UserChildTable="ReferencesTable" msprop:rel_Generator_UserParentTable="NodesTable" msprop:rel_Generator_ParentPropName="NodesTableRowByTargetNodesReferences" msprop:rel_Generator_ChildPropName="GetReferencesTableRowsByTargetNodesReferences">
+      <xs:selector xpath=".//mstns:ReferencesTable" />
+      <xs:field xpath="mstns:TargetNodeIndex" />
+    </xs:keyref>
+    <xs:keyref name="SourceNodesReferences" refer="Constraint3" msprop:rel_Generator_UserRelationName="SourceNodesReferences" msprop:rel_Generator_RelationVarName="relationSourceNodesReferences" msprop:rel_Generator_UserChildTable="ReferencesTable" msprop:rel_Generator_UserParentTable="NodesTable" msprop:rel_Generator_ParentPropName="NodesTableRow" msprop:rel_Generator_ChildPropName="GetReferencesTableRows">
+      <xs:selector xpath=".//mstns:ReferencesTable" />
+      <xs:field xpath="mstns:SourceNodeIndex" />
+    </xs:keyref>
+  </xs:element>
+</xs:schema>

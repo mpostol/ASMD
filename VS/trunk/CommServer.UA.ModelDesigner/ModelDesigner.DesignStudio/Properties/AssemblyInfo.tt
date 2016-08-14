@@ -1,0 +1,38 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+//_______________________________________________________________
+//  Title   :  Assembly info for: <#=CASUAMDProductName#>
+//  System  : Microsoft VisualStudio 2013 / C#
+//  $LastChangedDate:  $
+//  $Rev: $
+//  $LastChangedBy: $
+//  $URL: $
+//  $Id:  $
+//
+//  <#=AssemblyCopyright#>
+//  <#=Phone#>
+//  <#=Email#>
+//  <#=Url#>
+//_______________________________________________________________
+
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+[assembly: AssemblyTitle("<#=CASUAMDProductName#>")]
+[assembly: AssemblyDescription("<#=AssemblyProduct#>: <#=CASUAMDProductName#>")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("<#=AssemblyCompany#>")]
+[assembly: AssemblyProduct("<#=AssemblyProduct#>")]
+[assembly: AssemblyCopyright("<#=AssemblyCopyright#>")]
+[assembly: AssemblyTrademark("<#=AssemblyTrademark#>")]
+[assembly: AssemblyCulture("")]
+[assembly: ComVisible(false)]
+[assembly: Guid( "33281f75-30a8-43e1-a2b3-915eaaf43915" )]
+[assembly: AssemblyVersion("<#= CASUAMDVersion #>.*")]
+[assembly: AssemblyFileVersion("<#= CASUAMDVersion #>")]
+[assembly: CAS.Lib.CodeProtect.AssemblyHelper( Company = "CAS", Email = "techsupp@cas.eu", Phone = "+48 42 686 25 47", Product = "<#=CASUAMDProductName#>", Url = "www.commsvr.com" )]
+
+<#@ include file = "..\..\..\PR39-CommonResources\T4Definitions\CAS.OPC.t4" #>
+
+
