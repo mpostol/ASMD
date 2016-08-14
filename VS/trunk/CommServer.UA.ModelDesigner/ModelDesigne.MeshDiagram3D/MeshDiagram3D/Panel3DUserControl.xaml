@@ -1,0 +1,128 @@
+﻿<UserControl xmlns:my="clr-namespace:MeshDiagram3D"  x:Class="MeshDiagram3D.Panel3DUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mdpresentation="clr-namespace:MeshDiagram3D.Presentation"
+    Height="435" Width="443">
+    <Grid>
+        <DockPanel
+     Width="Auto"
+     VerticalAlignment="Stretch"
+     Height="Auto"
+     HorizontalAlignment="Stretch"
+     Grid.ColumnSpan="1"
+     Grid.Column="0"
+     Grid.Row="0"
+     Margin="0,0,0,0"
+     Grid.RowSpan="1">
+            <StackPanel x:Name="CommandPanel">
+                <StackPanel.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="Blue" Offset="0"/>
+                        <GradientStop Color="LightBlue" Offset=".25"/>
+                        <GradientStop Color="White" Offset=".5"/>
+                        <GradientStop Color="LightBlue" Offset=".75"/>
+                        <GradientStop Color="Blue" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
+                <StackPanel Margin="10">
+                    <Button Name="btn_AutoZoom" Click="btn_AutoZoom_Click">Auto Zoom</Button> 
+                    <Separator></Separator>
+                    <Button Name="btn_Rotator" Click="btn_Rotator_Click" ClickMode="Press">Rotation</Button>
+                    <TextBlock>Zoom:</TextBlock>
+                    <TextBox Name="txt_zoom" TextChanged="txt_zoom_TextChanged">1</TextBox>
+                    <TextBlock>Rot X:</TextBlock>
+                    <TextBox Name="txt_rot_x" TextChanged="txt_rotx_TextChanged">10</TextBox>
+                    <TextBlock>Rot Y:</TextBlock>
+                    <TextBox Name="txt_rot_y" TextChanged="txt_roty_TextChanged">10</TextBox>
+                    <TextBlock>Rot Z:</TextBlock>
+                    <TextBox Name="txt_rot_z" TextChanged="txt_rotz_TextChanged">10</TextBox>
+                    <Separator></Separator>
+
+                    <Button Name="btn_CameraLocation" Click="btn_CameraLocation_Click" ClickMode="Press">Cam. Location</Button>
+                    <TextBlock>Distance:</TextBlock>
+                    <TextBox Name="txt_camloc_zoom" TextChanged="txt_camloc_zoom_TextChanged">1</TextBox>
+                    <TextBlock>Loc X:</TextBlock>
+                    <TextBox Name="txt_camloc_x" TextChanged="txt_camloc_x_TextChanged">10</TextBox>
+                    <TextBlock>Loc Y:</TextBlock>
+                    <TextBox Name="txt_camloc_y" TextChanged="txt_camloc_y_TextChanged">10</TextBox>
+                    <TextBlock>Loc Z:</TextBlock>
+                    <TextBox Name="txt_camloc_z" TextChanged="txt_camloc_z_TextChanged">10</TextBox>
+                    <Separator></Separator>
+                    <TextBlock>Visibility:</TextBlock>
+                    <CheckBox Name="CheckBoxTriangles" Unchecked="CheckBoxTriangles_Checked" Checked="CheckBoxTriangles_Checked" IsChecked="True">Triangles</CheckBox>
+                    <CheckBox Name="CheckBoxLines" Unchecked="CheckBoxLines_Checked" Checked="CheckBoxLines_Checked" IsChecked="True">Lines</CheckBox>
+                    <CheckBox Name="CheckBoxTexts3D" Unchecked="CheckBoxLables3D_Checked" Checked="CheckBoxLables3D_Checked" IsChecked="False">Labels 3D</CheckBox>
+                    <CheckBox Name="CheckBoxTexts2D" Unchecked="CheckBoxLables2D_Checked" Checked="CheckBoxLables2D_Checked" IsChecked="True">Labels 2D</CheckBox>
+                    <Separator></Separator>
+                </StackPanel>
+            </StackPanel>
+            <DockPanel>
+                <TextBlock Name="slider_zoom_textblock" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           RenderTransformOrigin="0.5,0.5" Height="Auto" Width="8" TextWrapping="Wrap" Margin="4">Zoom/Distance
+                </TextBlock>
+                <Slider Name="slider_zoom"
+        Orientation="Vertical"
+        Minimum="0.1"
+        Maximum="20"
+        ValueChanged="slider_zoom_changed" 
+                        Value="1"
+                        DockPanel.Dock="Left"/>
+                <TextBlock Name="slider_x_textblock" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           DockPanel.Dock="Right"
+                           RenderTransformOrigin="0.5,0.5" Height="Auto" 
+                           Width="8" TextWrapping="Wrap" Margin="4">X</TextBlock>
+                <Slider Name="slider_x"
+        DockPanel.Dock="Right"
+        Orientation="Vertical"
+        Minimum="-180"
+        Maximum="180"
+        ValueChanged="slider_x_changed" />
+                <TextBlock Name="slider_z_textblock" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           DockPanel.Dock="Top"
+                           RenderTransformOrigin="0.5,0.5" Height="Auto" 
+                           Width="Auto" TextWrapping="Wrap" Margin="4">Z</TextBlock>
+                <Slider Name="slider_z"
+        DockPanel.Dock="Top"
+        Orientation="Horizontal"
+        Minimum="-180"
+        Maximum="180"
+        ValueChanged="slider_z_changed" />
+                <TextBlock Name="slider_y_textblock" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           DockPanel.Dock="Bottom"
+                           RenderTransformOrigin="0.5,0.5" Height="Auto" 
+                           Width="Auto" TextWrapping="Wrap" Margin="4">Y</TextBlock>
+                <Slider Name="slider_y"
+        DockPanel.Dock="Bottom"
+        Orientation="Horizontal"
+        Minimum="-180"
+        Maximum="180"
+        ValueChanged="slider_y_changed" />
+                <Grid ClipToBounds="True">
+                    <mdpresentation:MeshDiagramViewport3D 
+                        x:Name="MyMeshDiagramViewport3D" 
+                        IModelVisualIsSelected="MyMeshDiagramViewport3D_iModelVisualIsSelected"
+                        CamLocation_x_HasChanged="MyMeshDiagramViewport3D_CamLocation_x_HasChanged"
+                        CamLocation_y_HasChanged="MyMeshDiagramViewport3D_CamLocation_y_HasChanged"
+                        CamLocation_z_HasChanged="MyMeshDiagramViewport3D_CamLocation_z_HasChanged"
+                        Rot_x_HasChanged="MyMeshDiagramViewport3D_Rot_x_HasChanged"
+                        Rot_y_HasChanged="MyMeshDiagramViewport3D_Rot_y_HasChanged"
+                        Rot_z_HasChanged="MyMeshDiagramViewport3D_Rot_z_HasChanged"
+                        Scale_HasChanged="MyMeshDiagramViewport3D_Scale_HasChanged">
+                    </mdpresentation:MeshDiagramViewport3D>
+                    <DockPanel     Width="Auto"      VerticalAlignment="Stretch"      Height="Auto"      HorizontalAlignment="Stretch" >
+                        <TextBlock Name="textblock_info" 
+                           HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                           DockPanel.Dock="Bottom"
+                           RenderTransformOrigin="0.5,0.5" Height="100" 
+                           Width="200"  TextWrapping="Wrap" Margin="4" TextAlignment="Right">This is an information</TextBlock>
+                    </DockPanel>
+                </Grid>
+            </DockPanel>
+
+        </DockPanel>
+    </Grid>
+</UserControl>
