@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CAS.UA.Model.Designer</RootNamespace>
-    <AssemblyName>CAS.UA.ModelDesigner</AssemblyName>
+    <AssemblyName>CAS.CommServer.UA.ModelDesigner.DesignStudio</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>CAS.UA.Model.Designer.Program</StartupObject>
@@ -589,17 +589,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\EX02-MAML\SHFB\Plugins\TopicsLibrary\TopicsLibrary.csproj">
-      <Project>{8D532F2D-3F40-462A-917F-F7BFEC8B0ED0}</Project>
-      <Name>TopicsLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\EX05-MeshDiagram3D\MeshDiagram3D\MeshDiagram3D.csproj">
-      <Project>{839c6517-d1bf-4142-8668-444f2047c7cf}</Project>
-      <Name>MeshDiagram3D</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\PR39-CommonResources\LicensesContainer\LicensesContainer.csproj">
       <Project>{234A138E-4E17-4F12-84A3-A920DDAE0D86}</Project>
       <Name>LicensesContainer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelDesigne.MeshDiagram3D\ModelDesigne.MeshDiagram3D\ModelDesigner.MeshDiagram3D.csproj">
+      <Project>{839c6517-d1bf-4142-8668-444f2047c7cf}</Project>
+      <Name>ModelDesigner.MeshDiagram3D</Name>
     </ProjectReference>
     <ProjectReference Include="..\ModelDesigner.Configuration\ModelDesigner.Configuration.csproj">
       <Project>{B4E9C610-790A-417C-BF68-7B3E0AECCAA4}</Project>
