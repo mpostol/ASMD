@@ -196,7 +196,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <summary>
     /// Gets the server configuration.
     /// </summary>
-    /// <returns>An instance providing implementation of the <see cref="IServerConfiguration"/></returns>
+    /// <returns>An instance providing implementation of the <see cref="IConfiguration"/></returns>
     public IConfiguration GetIServerConfiguration()
     {
       return SelectedAssembly == null ? null : SelectedAssembly.GetServerConfiguration();

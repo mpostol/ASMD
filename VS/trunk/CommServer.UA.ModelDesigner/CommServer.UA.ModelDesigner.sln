@@ -8,8 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solutio
 		AdditionalDocuments\Dictionary.doc = AdditionalDocuments\Dictionary.doc
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{3C8DD79D-0146-443F-B071-4983BC7C7B5E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicensesContainer", "..\PR39-CommonResources\LicensesContainer\LicensesContainer.csproj", "{234A138E-4E17-4F12-84A3-A920DDAE0D86}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Definitions", "..\PR39-CommonResources\T4Definitions\T4Definitions.csproj", "{D506423B-BA21-49E6-8C3B-88A771CA444E}"
@@ -31,8 +29,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.MeshDiagram3D", "ModelDesigne.MeshDiagram3D\ModelDesigne.MeshDiagram3D\ModelDesigner.MeshDiagram3D.csproj", "{839C6517-D1BF-4142-8668-444F2047C7CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.3DTools", "ModelDesigne.3DTools\ModelDesigne.3DTools\ModelDesigner.3DTools.csproj", "{5F603892-DE40-4246-A969-1C6717AFE35D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopicsLibrary", "..\EX02-MAML\SHFB\Plugins\TopicsLibrary\TopicsLibrary.csproj", "{8D532F2D-3F40-462A-917F-F7BFEC8B0ED0}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -82,10 +78,6 @@ Global
 		{5F603892-DE40-4246-A969-1C6717AFE35D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F603892-DE40-4246-A969-1C6717AFE35D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F603892-DE40-4246-A969-1C6717AFE35D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8D532F2D-3F40-462A-917F-F7BFEC8B0ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8D532F2D-3F40-462A-917F-F7BFEC8B0ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8D532F2D-3F40-462A-917F-F7BFEC8B0ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8D532F2D-3F40-462A-917F-F7BFEC8B0ED0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,7 +87,6 @@ Global
 		{D506423B-BA21-49E6-8C3B-88A771CA444E} = {B429E0BA-4F78-44A2-B61A-8093A17789C4}
 		{8F6A704E-F1E3-413B-AA5B-ECB741C4F73F} = {B854411B-DA84-4DE2-832E-E8E61C3A107B}
 		{0DEBB963-CA92-44D8-998F-9EDCF62547CF} = {B854411B-DA84-4DE2-832E-E8E61C3A107B}
-		{8D532F2D-3F40-462A-917F-F7BFEC8B0ED0} = {3C8DD79D-0146-443F-B071-4983BC7C7B5E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
