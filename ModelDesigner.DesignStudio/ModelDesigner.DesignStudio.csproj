@@ -111,6 +111,10 @@
       <HintPath>..\packages\CAS.Windows.Forms.5.0.2\lib\net35\CAS.ControlLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CAS.MAML.HelpTopics.Content, Version=1.0.3.40720, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.MAML.HelpTopics.Content.1.0.3\lib\net35\CAS.MAML.HelpTopics.Content.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CAS.RTLib, Version=5.0.2.39089, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.RealTime.5.0.2\lib\net35\CAS.RTLib.dll</HintPath>
       <Private>True</Private>
@@ -589,10 +593,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\EX02-MAML\SHFB\Plugins\TopicsLibrary\TopicsLibrary.csproj">
-      <Project>{8d532f2d-3f40-462a-917f-f7bfec8b0ed0}</Project>
-      <Name>TopicsLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\PR39-CommonResources\LicensesContainer\LicensesContainer.csproj">
       <Project>{234A138E-4E17-4F12-84A3-A920DDAE0D86}</Project>
       <Name>LicensesContainer</Name>

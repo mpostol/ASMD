@@ -117,7 +117,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <summary>
     /// Gets the server configuration.
     /// </summary>
-    /// <returns>The <see cref="IServerConfiguration"/> providing access to the server configuration file editor.</returns>
+    /// <returns>The <see cref="IConfiguration"/> providing access to the server configuration file editor.</returns>
     internal IConfiguration GetServerConfiguration()
     {
       return m_Server;

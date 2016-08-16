@@ -13,11 +13,11 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.MAML.HelpTopics.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using TopicsLibrary;
 
 namespace CAS.UA.Model.Designer.HelpContent
 {
