@@ -13,6 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.CommServer.UA.Common;
+
 namespace CAS.CommServer.UA.ModelDesigner.Configuration
 {
   /// <summary>

@@ -49,32 +49,32 @@
       <HintPath>..\packages\CAS.CodeProtect.5.0.2\lib\net35\CAS.CodeProtect.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.DA.Client.Operations, Version=2.0.14.16676, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.CommServer.DA.Client.2.00.14-Alpha\lib\net451\CAS.CommServer.DA.Client.Operations.dll</HintPath>
+    <Reference Include="CAS.CommServer.DA.Client.Operations, Version=2.0.14.18767, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.DA.Client.2.00.14-Echo\lib\net451\CAS.CommServer.DA.Client.Operations.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.DA.Client.Services, Version=2.0.14.16675, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.CommServer.DA.Client.2.00.14-Alpha\lib\net451\CAS.CommServer.DA.Client.Services.dll</HintPath>
+    <Reference Include="CAS.CommServer.DA.Client.Services, Version=2.0.14.18765, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.DA.Client.2.00.14-Echo\lib\net451\CAS.CommServer.DA.Client.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.DA.Viewer.FormControls, Version=3.10.6.39799, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.CommServer.DA.Viewer.3.10.06-Bravo\lib\net451\CAS.CommServer.DA.Viewer.FormControls.dll</HintPath>
+    <Reference Include="CAS.CommServer.DA.Viewer.AddressSpace, Version=3.10.6.20380, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.DA.Viewer.3.10.06-Echo\lib\net451\CAS.CommServer.DA.Viewer.AddressSpace.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.DA.Viewer.UserInterface, Version=3.10.6.39799, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.CommServer.DA.Viewer.3.10.06-Bravo\lib\net451\CAS.CommServer.DA.Viewer.UserInterface.exe</HintPath>
+    <Reference Include="CAS.CommServer.DA.Viewer.FormControls, Version=3.10.6.20381, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.DA.Viewer.3.10.06-Echo\lib\net451\CAS.CommServer.DA.Viewer.FormControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.DAClientConfiguration, Version=3.12.1.17970, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.CommServer.DAClientConfiguration.3.12.1\lib\net451\CAS.CommServer.DAClientConfiguration.dll</HintPath>
+    <Reference Include="CAS.CommServer.DA.Viewer.UserInterface, Version=3.10.6.20382, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.DA.Viewer.3.10.06-Echo\lib\net451\CAS.CommServer.DA.Viewer.UserInterface.exe</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.DAViewerAddressSpace, Version=3.10.6.39798, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.CommServer.DA.Viewer.3.10.06-Bravo\lib\net451\CAS.CommServer.DAViewerAddressSpace.dll</HintPath>
+    <Reference Include="CAS.CommServer.DAClientConfiguration, Version=5.1.2.37849, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.DAClientConfiguration.5.01.02-Charlie\lib\net451\CAS.CommServer.DAClientConfiguration.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.DeviceSymulator, Version=5.1.0.37240, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.CommServer.DeviceSimulator.5.01.00\lib\net451\CAS.CommServer.DeviceSymulator.dll</HintPath>
+    <Reference Include="CAS.CommServer.DeviceSimulator, Version=5.1.2.23357, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.DeviceSimulator.5.01.02-Alpha\lib\net451\CAS.CommServer.DeviceSimulator.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CAS.CommServer.OPCClassic.SDK.COMWrapper, Version=2.1.106.23280, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
@@ -85,8 +85,8 @@
       <HintPath>..\packages\CAS.CommServer.OPCClassic.SDK.Core.2.01.106\lib\net451\CAS.CommServer.OPCClassic.SDK.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.ControlLibrary, Version=5.0.2.39089, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.Windows.Forms.5.0.2\lib\net35\CAS.ControlLibrary.dll</HintPath>
+    <Reference Include="CAS.CommServer.UA.Common, Version=3.0.2.30942, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.UA.Common.3.00.02-Bravo\lib\net461\CAS.CommServer.UA.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CAS.RTLib, Version=5.0.2.39089, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
@@ -97,8 +97,8 @@
       <HintPath>..\packages\CAS.RealTime.5.0.2\lib\net35\CAS.RTLibComm.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.UACommon, Version=3.0.2.38912, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.UA.Common.3.00.02-Alpha\lib\net461\CAS.UACommon.dll</HintPath>
+    <Reference Include="CAS.Windows.Forms, Version=5.0.6.33053, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.Windows.Forms.5.0.6-Charlie\lib\net451\CAS.Windows.Forms.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -192,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cas.snk" />
+    <None Include="DemoConfiguration.oses" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CAS.CommServer.UA.Common;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests

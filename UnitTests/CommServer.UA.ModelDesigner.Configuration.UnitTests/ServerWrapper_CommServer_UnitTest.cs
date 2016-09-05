@@ -43,7 +43,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
 
     //<package id="CAS.CommServer.UA.Server.ServerConfiguration" version="3.20.1-Delta" targetFramework="net461" />
     [TestMethod]
-    [DeploymentItem(@"CAS.UA.Server.ServerConfiguration.dll")]
+    [DeploymentItem(@"CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll")]
     public void ServerWrapperConstructorTest()
     {
       Console.WriteLine(Directory.GetCurrentDirectory().ToString());
@@ -55,7 +55,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       Assert.IsTrue(_uasconfig.Exists);
       Assembly _pluginAssembly;
       IConfiguration _serverConfiguration;
-      AssemblyHelpers.CreateInstance(@"CAS.UA.Server.ServerConfiguration.dll", out _pluginAssembly, out _serverConfiguration);
+      AssemblyHelpers.CreateInstance(@"CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll", out _pluginAssembly, out _serverConfiguration);
       Assert.AreEqual<string>("CAS.UAServer.Configuration.uasconfig", _serverConfiguration.DefaultFileName);
       bool _configurationChanged = false;
       _serverConfiguration.OnModified += (x, y) => _configurationChanged = y.ConfigurationFileChanged;
