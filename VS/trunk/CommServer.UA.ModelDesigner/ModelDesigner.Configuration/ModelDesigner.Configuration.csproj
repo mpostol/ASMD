@@ -64,6 +64,14 @@
       <HintPath>..\packages\CAS.CodeProtect.5.0.2\lib\net35\CAS.CodeProtect.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CAS.CommServer.OPCClassic.SDK.Core, Version=2.1.106.25891, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.OPCClassic.SDK.Core.2.01.106\lib\net451\CAS.CommServer.OPCClassic.SDK.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.CommServer.UA.Common, Version=3.0.2.30942, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.UA.Common.3.00.02-Bravo\lib\net461\CAS.CommServer.UA.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CAS.RTLib, Version=5.0.2.39089, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.RealTime.5.0.2\lib\net35\CAS.RTLib.dll</HintPath>
       <Private>True</Private>
@@ -76,8 +84,9 @@
       <HintPath>..\packages\CAS.UA.IServerConfiguration.1.00.00\lib\net35\CAS.UA.IServerConfiguration.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Opc.Ua.Core">
+    <Reference Include="Opc.Ua.Core, Version=1.1.326.0, Culture=neutral, PublicKeyToken=78aea80f6827b5ab, processorArchitecture=MSIL">
       <HintPath>..\packages\OPC.UA.SDK.Core.1.01.326\lib\net35\Opc.Ua.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -94,7 +103,6 @@
     <Compile Include="BaseDirectoryHelper.cs" />
     <Compile Include="ConfigurationWrapper.cs" />
     <Compile Include="DataProviderDescription.cs" />
-    <Compile Include="IBaseDirectoryProvider.cs" />
     <Compile Include="IDataProviderDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
