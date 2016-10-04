@@ -43,28 +43,28 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CAS.CommServer.DA.Server.Configuration, Version=4.1.2.24782, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CAS.CommServer.DA.Server.Configuration.4.1.2-Alpha\lib\net35\CAS.CommServer.DA.Server.Configuration.dll</HintPath>
+    <Reference Include="CAS.CommServer.DAClientConfiguration, Version=5.1.2.14790, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CAS.CommServer.DAClientConfiguration.5.01.02-Delta\lib\net451\CAS.CommServer.DAClientConfiguration.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.DAClientConfiguration, Version=5.1.2.37849, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CAS.CommServer.DAClientConfiguration.5.01.02-Charlie\lib\net451\CAS.CommServer.DAClientConfiguration.dll</HintPath>
+    <Reference Include="CAS.CommServer.DAServerConfiguration, Version=4.1.2.27322, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CAS.CommServer.DAServerConfiguration.4.1.2-Delta\lib\net451\CAS.CommServer.DAServerConfiguration.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.OPCClassic.SDK.Core, Version=2.1.106.25891, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CAS.CommServer.OPCClassic.SDK.Core.2.01.106\lib\net451\CAS.CommServer.OPCClassic.SDK.Core.dll</HintPath>
+    <Reference Include="CAS.CommServer.OPCClassicSDK.Core, Version=2.1.1061.39650, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CAS.CommServer.OPCClassic.SDK.Core.2.01.1061-Bravo\lib\net451\CAS.CommServer.OPCClassicSDK.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.UA.Common, Version=3.0.2.30942, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CAS.UA.Common.3.00.02-Bravo\lib\net461\CAS.CommServer.UA.Common.dll</HintPath>
+    <Reference Include="CAS.CommServer.UA.Common, Version=3.0.2.22275, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CAS.UA.Common.3.00.02-Delta\lib\net461\CAS.CommServer.UA.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CAS.CommServer.UA.ConfigurationEditor.ModelsContainer, Version=3.20.1.25216, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.3.20.1-Foxtrot\lib\net461\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration, Version=3.20.1.38409, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.3.20.1-Hotel\lib\net461\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll</HintPath>
+    <Reference Include="CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration, Version=3.20.1.36991, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.3.20.1-India\lib\net461\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CAS.UA.IServerConfiguration, Version=1.0.0.32204, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
@@ -102,7 +102,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDirectoryHelperUnitTest.cs" />
     <Compile Include="Instrumentation\AssemblyHelpers.cs" />
     <Compile Include="Instrumentation\ConfigurationBaseImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

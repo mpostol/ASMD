@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration.Properties;
 using CAS.Lib.RTLib.Utils;
 using CAS.UA.IServerConfiguration;

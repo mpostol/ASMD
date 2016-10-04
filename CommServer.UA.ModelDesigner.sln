@@ -4,11 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{B429E0BA-4F78-44A2-B61A-8093A17789C4}"
-	ProjectSection(SolutionItems) = preProject
-		AdditionalDocuments\Dictionary.doc = AdditionalDocuments\Dictionary.doc
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicensesContainer", "..\PR39-CommonResources\LicensesContainer\LicensesContainer.csproj", "{234A138E-4E17-4F12-84A3-A920DDAE0D86}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Definitions", "..\PR39-CommonResources\T4Definitions\T4Definitions.csproj", "{D506423B-BA21-49E6-8C3B-88A771CA444E}"
 EndProject
@@ -40,10 +35,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{234A138E-4E17-4F12-84A3-A920DDAE0D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{234A138E-4E17-4F12-84A3-A920DDAE0D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{234A138E-4E17-4F12-84A3-A920DDAE0D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{234A138E-4E17-4F12-84A3-A920DDAE0D86}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D506423B-BA21-49E6-8C3B-88A771CA444E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D506423B-BA21-49E6-8C3B-88A771CA444E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D506423B-BA21-49E6-8C3B-88A771CA444E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -83,7 +74,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{234A138E-4E17-4F12-84A3-A920DDAE0D86} = {B429E0BA-4F78-44A2-B61A-8093A17789C4}
 		{D506423B-BA21-49E6-8C3B-88A771CA444E} = {B429E0BA-4F78-44A2-B61A-8093A17789C4}
 		{8F6A704E-F1E3-413B-AA5B-ECB741C4F73F} = {B854411B-DA84-4DE2-832E-E8E61C3A107B}
 		{0DEBB963-CA92-44D8-998F-9EDCF62547CF} = {B854411B-DA84-4DE2-832E-E8E61C3A107B}
