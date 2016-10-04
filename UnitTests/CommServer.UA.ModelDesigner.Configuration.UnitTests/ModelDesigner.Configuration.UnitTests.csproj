@@ -114,7 +114,6 @@
     <Compile Include="ServerWrapper_UAOOI_UnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="DemoConfiguration.oses" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
