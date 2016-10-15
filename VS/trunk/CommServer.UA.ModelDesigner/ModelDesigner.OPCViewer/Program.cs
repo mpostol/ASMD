@@ -13,10 +13,9 @@
 //  http://www.cas.eu
 //_______________________________________________________________
 
-using CAS.OPCViewer;
+using CAS.Lib.CodeProtect;
+using CAS.Lib.OPCClientControlsLib;
 using System;
-using System.Diagnostics;
-using System.IO;
 using System.Security;
 using System.Security.Permissions;
 using System.Windows.Forms;
@@ -44,7 +43,7 @@ namespace CAS.CommServer.ModelDesigner.OPCViewer
       {
         try
         {
-          CAS.Lib.CodeProtect.LibInstaller.InstalLicense(false);
+          LibInstaller.InstallLicense(false);
         }
         catch (Exception ex)
         {

@@ -14,10 +14,11 @@
 //</summary>
 
 using CAS.UA.Model.Designer.Properties;
+using CAS.Windows.Forms.CodeProtectControls;
 
 namespace CAS.UA.Model.Designer
 {
-  internal class StartUpSplashScreen: CAS.Lib.CodeProtect.Controls.SplashScreen
+  internal class StartUpSplashScreen: SplashScreen
   {
     public StartUpSplashScreen()
       : base()
@@ -27,12 +28,12 @@ namespace CAS.UA.Model.Designer
       this.OnShowSplashScreenChanged += new System.EventHandler<BoolEventArg>( StartUpSplashScreen_OnShowSplashScreenChanged );
       this.OnMaintenancePeriodWarning += new System.EventHandler<BoolEventArg>( StartUpSplashScreen_OnMaintenancePeriodWarning );
     }
-    private void StartUpSplashScreen_OnMaintenancePeriodWarning( object sender, CAS.Lib.CodeProtect.Controls.SplashScreen.BoolEventArg e )
+    private void StartUpSplashScreen_OnMaintenancePeriodWarning( object sender, SplashScreen.BoolEventArg e )
     {
       Settings.Default.MaintenancePeriodWarning = e.Value;
       Settings.Default.Save();
     }
-    private void StartUpSplashScreen_OnShowSplashScreenChanged( object sender, CAS.Lib.CodeProtect.Controls.SplashScreen.BoolEventArg e )
+    private void StartUpSplashScreen_OnShowSplashScreenChanged( object sender, SplashScreen.BoolEventArg e )
     {
       Settings.Default.ShowSplashScreen = e.Value;
       Settings.Default.Save();

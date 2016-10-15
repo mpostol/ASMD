@@ -17,11 +17,13 @@ using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration.Properties;
 using CAS.Lib.RTLib.Utils;
 using CAS.UA.IServerConfiguration;
+using CAS.Windows.Forms.CodeProtectControls;
 using System;
 using System.ComponentModel;
 using System.Drawing.Design;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
@@ -257,8 +259,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       RaiseOnConfigurationChanged(false);
     }
     [LicenseProvider(typeof(CAS.Lib.CodeProtect.CodeProtectLP))]
-    [System.Runtime.InteropServices.GuidAttribute("9F0B0964-93B8-4775-9106-95C0DCBFEAD5")]
-    private sealed class LicenseProtection : CAS.Lib.CodeProtect.Controls.SplashScreen.LogedIsLicensed<LicenseProtection>
+    [GuidAttribute("9F0B0964-93B8-4775-9106-95C0DCBFEAD5")]
+    private sealed class LicenseProtection : SplashScreen.LogedIsLicensed<LicenseProtection>
     {
       #region public
       internal static bool IsLicensed { get; private set; }
