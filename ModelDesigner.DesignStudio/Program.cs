@@ -60,7 +60,7 @@ namespace CAS.UA.Model.Designer
           // license installation 
           try
           {
-            Lib.CodeProtect.LibInstaller.InstalLicense(true);
+            Lib.CodeProtect.LibInstaller.InstallLicense(true);
             TraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 65, "Installed the License");
           }
           catch (Exception ex)
@@ -77,7 +77,7 @@ namespace CAS.UA.Model.Designer
         {
           try
           {
-            CAS.Lib.CodeProtect.LibInstaller.InstalLicense(true);
+            CAS.Lib.CodeProtect.LibInstaller.InstallLicense(true);
             TraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 82, "Installed the License");
             installationWasPerformed = true;
           }

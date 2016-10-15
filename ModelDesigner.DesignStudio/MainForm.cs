@@ -20,7 +20,6 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using CAS.Lib.CodeProtect.Controls;
 using CAS.Lib.ControlLibrary;
 using CAS.Lib.ControlLibrary.ControlExtenders;
 using CAS.UA.Model.Designer.ExportingTools;
@@ -28,11 +27,12 @@ using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.StateMachineEditor;
 using CAS.UA.Model.Designer.Wrappers;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
+using System.Runtime.InteropServices;
+using CAS.Windows.Forms.CodeProtectControls;
 
 namespace CAS.UA.Model.Designer
 {
-  public partial class MainForm: Form
+  public partial class MainForm : Form
   {
     #region constructors
     public MainForm(string SolutionFileName)
@@ -56,13 +56,15 @@ namespace CAS.UA.Model.Designer
     #region private
 
     #region private members and helper functions
+    //types
     [LicenseProvider(typeof(CAS.Lib.CodeProtect.CodeProtectLP))]
-    [System.Runtime.InteropServices.GuidAttribute("0D675C59-39B8-4522-9FA6-074AF8A3EA9D")]
+    [GuidAttribute("0D675C59-39B8-4522-9FA6-074AF8A3EA9D")]
     private sealed class ImportConstrain : StartUpSplashScreen.LogedIsLicensed<ImportConstrain> { }
-    private StartUpSplashScreen m_SplashScreenObj = new StartUpSplashScreen();
     [LicenseProvider(typeof(CAS.Lib.CodeProtect.CodeProtectLP))]
-    [System.Runtime.InteropServices.GuidAttribute("4DF37528-E9CB-4fb7-AE1A-5AD9639EC04E")]
+    [GuidAttribute("4DF37528-E9CB-4fb7-AE1A-5AD9639EC04E")]
     private sealed class BuildSolutionConstrain : StartUpSplashScreen.LogedIsLicensed<BuildSolutionConstrain> { }
+    //vars
+    private StartUpSplashScreen m_SplashScreenObj = new StartUpSplashScreen();
     private void ProcessInitialization()
     {
       if (m_MainContol != null)
@@ -689,7 +691,7 @@ namespace CAS.UA.Model.Designer
     }
     private void oPCViewerToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      string PathToStart = Path.Combine( Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Properties.Settings.Default.OPCViewerAssemblyName);
+      string PathToStart = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Properties.Settings.Default.OPCViewerAssemblyName);
       try
       {
         System.Diagnostics.Process.Start(PathToStart);
@@ -718,14 +720,11 @@ namespace CAS.UA.Model.Designer
 
     private void m_LicenseInformationToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      using (LicenseForm dial = new LicenseForm
-                   (null, null, Assembly.GetEntryAssembly()))
+      using (LicenseForm dial = new LicenseForm(null, null, Assembly.GetEntryAssembly()))
       {
-        Licences cLicDial = new Licences();
+        Licenses cLicDial = new Licenses();
         dial.SetAdditionalControl = cLicDial;
-        dial.LicenceRequestMessageProvider
-          = new LicenseForm.LicenceRequestMessageProviderDelegate(
-            delegate() { return cLicDial.GetLicenseMessageRequest(); });
+        dial.LicenceRequestMessageProvider = new LicenseForm.LicenceRequestMessageProviderDelegate(delegate () { return cLicDial.GetLicenseMessageRequest(); });
         dial.ShowDialog(this);
       }
     }
@@ -743,13 +742,13 @@ namespace CAS.UA.Model.Designer
       }
       catch (Exception)
       {
-        MessageBox.Show("An error during opening a log folder occures and the log folder cannot be open", "Problem with log folder !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show("An error during opening a log folder occurs and the log folder cannot be open", "Problem with log folder !", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
       }
     }
     private void m_EnterTheUnlockCodeToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      using (UlockKeyDialog dialog = new UlockKeyDialog())
+      using (UnlockKeyDialog dialog = new UnlockKeyDialog())
       {
         dialog.ShowDialog();
       }
