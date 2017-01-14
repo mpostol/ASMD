@@ -447,7 +447,7 @@ namespace CAS.UA.Model.Designer
       }
       catch (Exception ex)
       {
-        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 379, Resources.ProblemWithDescriptionForOption + ex.Message);
+        AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 379, Resources.ProblemWithDescriptionForOption + ex.Message);
       }
     }
 
@@ -698,7 +698,7 @@ namespace CAS.UA.Model.Designer
       }
       catch (Exception ex)
       {
-        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 700, Resources.ProcessStart_Exception, PathToStart, ex.Message);
+        AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 700, Resources.ProcessStart_Exception, PathToStart, ex.Message);
       }
     }
     private void visualisationToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
@@ -782,8 +782,8 @@ namespace CAS.UA.Model.Designer
     private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
     {
       OPCFSolutionConfigurationManagement.DefaultInstance.Dispose();
-      TraceEvent.Tracer.Flush();
-      TraceEvent.Tracer.Close();
+      AssemblyTraceEvent.Tracer.Flush();
+      AssemblyTraceEvent.Tracer.Close();
     }
     #endregion
 

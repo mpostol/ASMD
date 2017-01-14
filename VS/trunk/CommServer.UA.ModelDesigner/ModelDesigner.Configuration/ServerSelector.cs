@@ -20,6 +20,7 @@ using CAS.UA.IServerConfiguration;
 using CAS.Windows.Forms.CodeProtectControls;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing.Design;
 using System.IO;
 using System.Reflection;
@@ -152,7 +153,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
           info = new FileInfo(value.codebase);
         if (!info.Exists)
         {
-          TraceEvent.Tracer.TraceWarning(155, "ServerSelector", string.Format(Resources.CASConfiguration_MessageBox_plugin_file_exception, value.codebase));
+          TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 155, "ServerSelector", string.Format(Resources.CASConfiguration_MessageBox_plugin_file_exception, value.codebase));
           return;
         }
         Assembly assembly;
@@ -164,13 +165,13 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         catch (Exception ex)
         {
           MessageBox.Show(ex.Message, Resources.OpenPluginTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-          TraceEvent.Tracer.TraceWarning(167, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, ex.Message));
+          TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 167, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, ex.Message));
           return;
         }
         if (assembly == null || svrInterface == null)
         {
           MessageBox.Show(Resources.AssemblyLoadErropr, Resources.OpenPluginTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-          TraceEvent.Tracer.TraceWarning(173, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, Resources.AssemblyLoadErropr));
+          TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 173, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, Resources.AssemblyLoadErropr));
           return;
         }
         ServerWrapper newSelectedAssembly = new ServerWrapper(svrInterface, assembly, value.configuration);

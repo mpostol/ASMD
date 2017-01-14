@@ -98,7 +98,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
         }
         if (!_errorListContainsNode)
         {
-          TraceEvent.Tracer.TraceEvent(TraceEventType.Information, 95, "AddNode compiler error '{0}' for node SymbolicName: {1}", msg, node.SymbolicName);
+          AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Information, 95, "AddNode compiler error '{0}' for node SymbolicName: {1}", msg, node.SymbolicName);
           m_NodesList[index].Node.ErrorList.Add(new Diagnostics(msg));
         }
       }

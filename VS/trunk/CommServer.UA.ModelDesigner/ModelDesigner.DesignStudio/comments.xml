@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>ModelDesigner.DesignStudio</name>
+  </assembly>
+  <members>
+    <member name="" />
+    <member name="N:CAS.UA.Model.Designer" />
+    <member name="P:CAS.UA.Model.Designer.AssemblyTraceEvent.Tracer" />
+  </members>
+</doc>

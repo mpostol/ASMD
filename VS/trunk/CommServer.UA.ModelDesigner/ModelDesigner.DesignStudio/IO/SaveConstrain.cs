@@ -30,7 +30,7 @@ namespace CAS.UA.Model.Designer.IO
     {
       if ( m_Checked )
         return;
-      TraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 144, "Checking Constrain SaveConstrain.");
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 144, "Checking Constrain SaveConstrain.");
       SaveConstrain sc = new SaveConstrain();
       IsLicensed = sc.Licensed;
       m_Checked = true;
