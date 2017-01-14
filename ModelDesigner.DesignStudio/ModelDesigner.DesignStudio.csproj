@@ -319,7 +319,7 @@
     <Compile Include="StateMachineEditor\VerticalLabel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TraceEvent.cs" />
+    <Compile Include="AssemblyTraceEvent.cs" />
     <Compile Include="Types\BuildInXmlQualifiedNames.cs" />
     <Compile Include="Wrappers4ProperyGrid\DocumentationAttribute.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\VariableValueEditor.cs" />

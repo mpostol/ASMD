@@ -15,24 +15,27 @@
 //  http://www.cas.eu
 //</summary>
 
+using System;
+using System.Diagnostics;
+using System.Reflection;
+
 namespace CAS.CommServer.UA.ModelDesigner.Configuration
 {
   /// <summary>
-  /// class responsible for tracing inside BaseStation - please use TraceSource( "CAS.UA.Model.Designer.Configuration.TraceEvent" )
+  /// class responsible for tracing inside using TraceSource( "CAS.CommServer.UA.ModelDesigner.DesignStudio" )
   /// </summary>
-  public static class TraceEvent
+  internal static class TraceEvent
   {
-    private static CAS.Lib.RTLib.Processes.TraceEvent m_traceevent_internal =
-      new CAS.Lib.RTLib.Processes.TraceEvent( typeof( TraceEvent ).ToString() );
+    private static Lazy<TraceSource> m_traceEvent_internal = new Lazy<TraceSource>(() => new TraceSource(Assembly.GetCallingAssembly().GetName().Name));
     /// <summary>
     /// Gets the tracer.
     /// </summary>
     /// <value>The tracer.</value>
-    public static CAS.Lib.RTLib.Processes.TraceEvent Tracer
+    internal static TraceSource Tracer
     {
       get
       {
-        return m_traceevent_internal;
+        return m_traceEvent_internal.Value;
       }
     }
   }

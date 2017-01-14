@@ -15,30 +15,27 @@
 //  http://www.cas.eu
 //</summary>
 
+using System;
 using System.Diagnostics;
+using System.Reflection;
+
 namespace CAS.UA.Model.Designer
 {
   /// <summary>
-  /// class responsible for tracing inside this module, it uses  <see cref="TraceSource"/> with the name "CAS.UA.Model.Designer.TraceEvent"
+  /// class responsible for tracing inside this module, it uses  <see cref="TraceSource"/> with the name "CAS.CommServer.UA.ModelDesigner.DesignStudio"
   /// </summary>
-  internal class TraceEvent : TraceSource
+  internal static class AssemblyTraceEvent
   {
-    /// <summary>
-    /// Prevents a default instance of the <see cref="TraceEvent"/> class from being created. Private to create singleton;
-    /// </summary>
-    private TraceEvent()
-      : base(typeof(TraceEvent).ToString())
-    { }
-    private static TraceEvent m_traceSource = new TraceEvent();
+    private static Lazy<TraceSource> m_traceSource = new Lazy<TraceSource>( () => new TraceSource(Assembly.GetCallingAssembly().GetName().Name));
     /// <summary>
     /// Gets the tracer.
     /// </summary>
     /// <value>The tracer.</value>
-    public static TraceEvent Tracer
+    public static TraceSource Tracer
     {
       get
       {
-        return m_traceSource;
+        return m_traceSource.Value;
       }
     }
   }

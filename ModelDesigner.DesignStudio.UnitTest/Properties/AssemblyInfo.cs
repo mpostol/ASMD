@@ -1,5 +1,5 @@
 ﻿//_______________________________________________________________
-//  Title   :  Assembly info for: CAS UA ModelDesigner Configuration
+//  Title   :  Assembly info for: CAS OPC UA Address Space Model Designer Unit Test
 //  System  : Microsoft VisualStudio 2013 / C#
 //  $LastChangedDate$
 //  $Rev$
@@ -17,19 +17,18 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("CAS UA ModelDesigner Configuration")]
-[assembly: AssemblyDescription("CAS CommServer Family: CAS UA ModelDesigner Configuration")]
+[assembly: AssemblyTitle("CAS OPC UA Address Space Model Designer Unit Test")]
+[assembly: AssemblyDescription("CAS CommServer Family: CAS OPC UA Address Space Model Designer Unit Test Project")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
 [assembly: AssemblyProduct("CAS CommServer Family")]
 [assembly: AssemblyCopyright("Copyright (c) 2017 CAS LODZ POLAND")]
 [assembly: AssemblyTrademark("CommServer")]
 [assembly: AssemblyCulture("")]
-
 [assembly: ComVisible(false)]
-[assembly: Guid( "c4b8d907-a0cd-42e5-8c08-dc61af69a2ac" )]
+[assembly: Guid("1f0f64d5-0977-4f85-8ad1-fc24af68e244")]
 [assembly: AssemblyVersion("3.20.1.*")]
 [assembly: AssemblyFileVersion("3.20.1")]
-[assembly: CAS.Lib.CodeProtect.AssemblyHelper( Company = "CAS", Email = "techsup.cas.eu", Phone = "+48 42 686 25 47", Product = "ASMD", Url = "www.commsvr.com" )]
+
 
 

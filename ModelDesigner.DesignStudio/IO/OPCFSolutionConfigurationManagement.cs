@@ -135,14 +135,14 @@ namespace CAS.UA.Model.Designer.IO
     private SolutionTreeNode m_Root;
     private void CommonInitialization()
     {
-      TraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 144, "Starting CommonInitialization and checking SaveConstrain");
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 144, "Starting CommonInitialization and checking SaveConstrain");
       SaveConstrain.CheckConstrain();
-      TraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 146, "Creating Libraries");
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 146, "Creating Libraries");
       m_Libraries = new Libraries(this.Components);
       // 
       // OpenFileDialog
       // 
-      TraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 151, "Updating Settings Open File Dialog");
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 151, "Updating Settings Open File Dialog");
       UpdateSettingsOpenFileDialog
         (
           Resources.Solution_FileDialogDefaultExt,
@@ -153,7 +153,7 @@ namespace CAS.UA.Model.Designer.IO
       // 
       // SaveFileDialog
       // 
-      TraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 162, "Updating Settings Save File Dialog");
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 162, "Updating Settings Save File Dialog");
       UpdateSettingsSaveFileDialog
         (
           Resources.Solution_FileDialogDefaultExt,
@@ -163,7 +163,7 @@ namespace CAS.UA.Model.Designer.IO
         );
       BaseDirectoryHelper.Instance.SetBaseDirectoryProvider(this);
       ConfigurationChanged += new EventHandler<OPCFSolutionConfigurationManagement.ConfigurationEventArg>(OnConfigurationChnged);
-      TraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 172, "Creating new private solution using Empty model");
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 172, "Creating new private solution using Empty model");
       SolutionRootNode = new PrivateSolution(this, EmptyModel, "Solution", new EventHandler<EventArgs>(OnNodeChange));
       BeforeRead += new EventHandler<StringEventArgs>(OPCFSolutionConfigurationManagement_BeforeRead);
       if (string.IsNullOrEmpty(Settings.Default.DefaultSolutionFileName))
@@ -171,7 +171,7 @@ namespace CAS.UA.Model.Designer.IO
         Settings.Default.DefaultSolutionFileName = DefaultFileName;
         Settings.Default.Save();
       }
-      TraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 146, "Finished successfully CommonInitialization");
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 146, "Finished successfully CommonInitialization");
     }
     private void OPCFSolutionConfigurationManagement_BeforeRead(object sender, StringEventArgs e)
     {
@@ -194,7 +194,7 @@ namespace CAS.UA.Model.Designer.IO
         {
           try
           {
-            TraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 204, "Creating new instance OPCFSolutionConfigurationManagement");
+            AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 204, "Creating new instance OPCFSolutionConfigurationManagement");
             m_This = new OPCFSolutionConfigurationManagement();
             m_This.CommonInitialization();
             m_This.DefaultDirectory = global::CAS.UA.Model.Designer.Properties.Resources.SolutionTreeNode;
@@ -203,7 +203,7 @@ namespace CAS.UA.Model.Designer.IO
           catch (Exception ex)
           {
             string _tmp = "Cannot initialize {0} at {1} because of exception: {2}.";
-            TraceEvent.Tracer.TraceEvent(TraceEventType.Critical, 212, String.Format(_tmp, typeof(OPCFSolutionConfigurationManagement).FullName, DefaultInstance, ex.Message));
+            AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Critical, 212, String.Format(_tmp, typeof(OPCFSolutionConfigurationManagement).FullName, DefaultInstance, ex.Message));
             throw;
           }
         }

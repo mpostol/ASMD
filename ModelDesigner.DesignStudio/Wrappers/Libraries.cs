@@ -29,15 +29,15 @@ namespace CAS.UA.Model.Designer.Wrappers
       
       try
       {
-        TraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 37, "Loading the OPC UA Defined Types.");
+        AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 37, "Loading the OPC UA Defined Types.");
         var _modelTypes = UAResources.LoadUADefinedTypes();
-        TraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 37, "Creating the LibraryTreeNode containing standard model");
+        AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 37, "Creating the LibraryTreeNode containing standard model");
         Add(new LibraryTreeNode(UAResources.LoadUADefinedTypes(), "UA Defined Types", container));
       }
       catch (Exception _ex)
       {
         string _tmp = "Cannot load Defined OPC UA Types in {0} from {1} because of error {2}";
-        TraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Critical, 37, _tmp, typeof(Libraries).FullName, typeof(UAResources), _ex.Message);
+        AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Critical, 37, _tmp, typeof(Libraries).FullName, typeof(UAResources), _ex.Message);
       } 
     }
     #endregion

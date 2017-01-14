@@ -119,7 +119,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       if (e.Error != null)
       {
         string _msg = String.Format("Compilation process has been interrupted by the exception: {0} message: {1}.", e.Error.GetType().Name, e.Error.Message);
-        TraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Error, 121, _msg);
+        AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Error, 121, _msg);
         MessageBox.Show(_msg, "Compilation error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
       }
@@ -129,7 +129,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     }
     private void BackgroundWorkerAddressspaceIniialiser_ProgressChanged(object sender, ProgressChangedEventArgs e)
     {
-      TraceEvent.Tracer.TraceEvent(TraceEventType.Information, 132, (String)e.UserState);
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Information, 132, (String)e.UserState);
     }
     #endregion handlers
 

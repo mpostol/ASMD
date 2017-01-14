@@ -184,7 +184,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
     internal void ImportNodeSetHandler(object sender, EventArgs e)
     {
-      ProjectTreeNode node = ProjectTreeNode.ImportNodeSet(Configuration.HomeDirectory, x => TraceEvent.Tracer.TraceEvent(x.TraceLevel, 186, x.ToString()));
+      ProjectTreeNode node = ProjectTreeNode.ImportNodeSet(Configuration.HomeDirectory, x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 186, x.ToString()));
       if (node == null)
         return;
       Add(node);

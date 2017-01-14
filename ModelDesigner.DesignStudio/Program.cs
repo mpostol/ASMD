@@ -48,29 +48,29 @@ namespace CAS.UA.Model.Designer
           installationWasPerformed = true;
           try
           {
-            ModelsContainer.ContainerResources.ExampleSolutionInstallation(Settings.Default.SampleInstallationDirectory, (x, y) => TraceEvent.Tracer.TraceEvent(y, 49, x));
-            TraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 50, "Example solution installation completed");
+            ModelsContainer.ContainerResources.ExampleSolutionInstallation(Settings.Default.SampleInstallationDirectory, (x, y) => AssemblyTraceEvent.Tracer.TraceEvent(y, 49, x));
+            AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 50, "Example solution installation completed");
           }
           catch (Exception ex)
           {
             string message = String.Format(Resources.InstalationOfExampleSolutionException, ex.Message);
             MessageBox.Show(message);
-            TraceEvent.Tracer.TraceEvent(TraceEventType.Error, 59, message);
+            AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 59, message);
           }
           // license installation 
           try
           {
             Lib.CodeProtect.LibInstaller.InstallLicense(true);
-            TraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 65, "Installed the License");
+            AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 65, "Installed the License");
           }
           catch (Exception ex)
           {
             string message = "License installation has failed, reason: " + ex.Message;
-            TraceEvent.Tracer.TraceEvent(TraceEventType.Error, 70, message);
+            AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 70, message);
           }
           finally
           {
-            TraceEvent.Tracer.Flush();
+            AssemblyTraceEvent.Tracer.Flush();
           }
         }
         else if (_cmmdLine.ToLower().Contains("installic"))
@@ -78,7 +78,7 @@ namespace CAS.UA.Model.Designer
           try
           {
             CAS.Lib.CodeProtect.LibInstaller.InstallLicense(true);
-            TraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 82, "Installed the License");
+            AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 82, "Installed the License");
             installationWasPerformed = true;
           }
           catch (Exception ex)
@@ -90,7 +90,7 @@ namespace CAS.UA.Model.Designer
           }
           finally
           {
-            TraceEvent.Tracer.Flush();
+            AssemblyTraceEvent.Tracer.Flush();
           }
         }
         string[] args = GetArguments();

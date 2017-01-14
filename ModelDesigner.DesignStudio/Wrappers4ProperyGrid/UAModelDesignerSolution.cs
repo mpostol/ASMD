@@ -93,12 +93,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [Obsolete("This constructor should be only used by XML serializer")]
     internal UAModelDesignerSolution()
     {
-      Server = new ServerSelector();
-      Server.OnConfigurationChanged += new EventHandler<UAServerConfigurationEventArgs>(Server_OnConfigurationChanged);
+      Initialize();
     }
     public UAModelDesignerSolution(string defaultFileName, string defaultSolutionName)
-      : this()
     {
+      Initialize();
       this.m_HomeDirectory = Path.GetDirectoryName(Path.GetFullPath(defaultFileName));
       Name = defaultSolutionName;
     }
@@ -127,6 +126,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     #endregion Internal
 
     #region private
+    private void Initialize()
+    {
+      Server = new ServerSelector();
+      Server.OnConfigurationChanged += new EventHandler<UAServerConfigurationEventArgs>(Server_OnConfigurationChanged);
+    }
     private string m_HomeDirectory;
     private void Server_OnConfigurationChanged(object sender, UAServerConfigurationEventArgs e)
     {
