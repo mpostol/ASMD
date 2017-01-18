@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>IDE0001,IDE0002,IDE0003</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -70,7 +71,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="cas.snk" />
-    <None Include="log\CAS.OPC.UA.ASMD.log" />
   </ItemGroup>
   <ItemGroup />
   <Choose>
