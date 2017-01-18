@@ -20,7 +20,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest
     {
       TraceSource _tracer = AssemblyTraceEvent.Tracer;
       Assert.IsNotNull(_tracer);
-      Assert.AreEqual(2, _tracer.Listeners.Count);
+      Assert.AreEqual(1, _tracer.Listeners.Count);
       Dictionary<string, TraceListener> _listeners = _tracer.Listeners.Cast<TraceListener>().ToDictionary<TraceListener, string>(x => x.Name);
       Assert.IsTrue(_listeners.ContainsKey("LogFile"));
       TraceListener _listener = _listeners["LogFile"];
@@ -32,7 +32,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest
       EventTypeFilter _eventTypeFilter = _advancedListener.Filter as EventTypeFilter;
       Assert.AreEqual(SourceLevels.All, _eventTypeFilter.EventType);
       string _testPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-      Assert.AreEqual<string>(Path.Combine(_testPath, @"log\CAS.OPC.UA.ASMD.log"), _advancedListener.GetFileName());
+      Assert.AreEqual<string>(Path.Combine(_testPath, @"CAS.OPC.UA.ASMD.log"), _advancedListener.GetFileName());
     }
     [TestMethod]
     public void LogFileExistsTest()
@@ -44,12 +44,11 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest
       Assert.IsNotNull(_advancedListener);
       Assert.IsFalse(String.IsNullOrEmpty(_advancedListener.GetFileName()));
       FileInfo _logFileInfo = new FileInfo(_advancedListener.GetFileName());
-      Assert.IsTrue(_logFileInfo.Exists);
-      long _length = _logFileInfo.Length;
+      long _length = _logFileInfo.Exists ? _logFileInfo.Length : 0;
       _tracer.TraceEvent(TraceEventType.Verbose, 0, "LogFileExistsTest is executed");
       Assert.IsFalse(String.IsNullOrEmpty(_advancedListener.GetFileName()));
       _logFileInfo.Refresh();
-      Assert.IsTrue(_logFileInfo.Exists);
+      Assert.IsTrue(_logFileInfo.Exists, $"{_logFileInfo.FullName} doesn't exist");
       Assert.IsTrue(_logFileInfo.Length > _length + 10, $"The final file lenght = {_logFileInfo.Length} must be > {_length} + 10");
     }
   }

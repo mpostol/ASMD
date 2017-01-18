@@ -4,10 +4,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{B429E0BA-4F78-44A2-B61A-8093A17789C4}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\svn.CommServer.DA\CommServer.DA.Client\Client.Operations.UnitTests\app.config = ..\..\..\svn.CommServer.DA\CommServer.DA.Client\Client.Operations.UnitTests\app.config
+		..\..\..\svn.CommServer.DA\CommServer.DA.Viewer\CommServer.DA.Viewer\Viewer.UserInterface\app.config = ..\..\..\svn.CommServer.DA\CommServer.DA.Viewer\CommServer.DA.Viewer\Viewer.UserInterface\app.config
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Definitions", "..\PR39-CommonResources\T4Definitions\T4Definitions.csproj", "{D506423B-BA21-49E6-8C3B-88A771CA444E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{B854411B-DA84-4DE2-832E-E8E61C3A107B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.Configuration.UnitTests", "UnitTests\CommServer.UA.ModelDesigner.Configuration.UnitTests\ModelDesigner.Configuration.UnitTests.csproj", "{8F6A704E-F1E3-413B-AA5B-ECB741C4F73F}"
 EndProject
@@ -81,8 +83,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D506423B-BA21-49E6-8C3B-88A771CA444E} = {B429E0BA-4F78-44A2-B61A-8093A17789C4}
-		{8F6A704E-F1E3-413B-AA5B-ECB741C4F73F} = {B854411B-DA84-4DE2-832E-E8E61C3A107B}
-		{0DEBB963-CA92-44D8-998F-9EDCF62547CF} = {B854411B-DA84-4DE2-832E-E8E61C3A107B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
