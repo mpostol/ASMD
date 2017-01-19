@@ -91,6 +91,10 @@
       <HintPath>..\packages\CAS.CodeProtect.6.1.3\lib\net451\CAS.CodeProtect.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CAS.CommonResources, Version=2.0.6.27320, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.Licenses.Container.2.00.06\lib\net451\CAS.CommonResources.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CAS.CommServer.DAClientConfiguration, Version=5.1.6.25005, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.CommServer.DAClientConfiguration.5.01.06\lib\net451\CAS.CommServer.DAClientConfiguration.dll</HintPath>
       <Private>True</Private>

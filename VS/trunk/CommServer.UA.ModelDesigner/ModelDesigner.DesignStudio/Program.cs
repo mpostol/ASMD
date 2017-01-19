@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.Lib.CodeProtect;
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.Deployment.Application;
@@ -38,12 +39,12 @@ namespace CAS.UA.Model.Designer
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      string _cmmdLine = string.Empty;
+      string _commandLine = string.Empty;
       try
       {
         bool installationWasPerformed = false;
-        _cmmdLine = Environment.CommandLine.ToLower();
-        if (IsFirstRun() || _cmmdLine.Contains("installsample"))
+        _commandLine = Environment.CommandLine.ToLower();
+        if (IsFirstRun() || _commandLine.Contains("installsample"))
         {
           installationWasPerformed = true;
           try
@@ -53,31 +54,28 @@ namespace CAS.UA.Model.Designer
           }
           catch (Exception ex)
           {
-            string message = String.Format(Resources.InstalationOfExampleSolutionException, ex.Message);
-            MessageBox.Show(message);
-            AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 59, message);
+            MessageBoxShow(String.Format(Resources.InstalationOfExampleSolutionException, ex.Message));
           }
           // license installation 
           try
           {
-            Lib.CodeProtect.LibInstaller.InstallLicense(true);
-            AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 65, "Installed the License");
+            DoInstallLicense(true);
           }
           catch (Exception ex)
           {
-            string message = "License installation has failed, reason: " + ex.Message;
-            AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 70, message);
+            string _message = "License installation has failed, reason: " + ex.Message;
+            MessageBoxShow(_message);
           }
           finally
           {
             AssemblyTraceEvent.Tracer.Flush();
           }
         }
-        else if (_cmmdLine.ToLower().Contains("installic"))
+        else if (_commandLine.Contains("installic"))
         {
           try
           {
-            CAS.Lib.CodeProtect.LibInstaller.InstallLicense(true);
+            DoInstallLicense(true);
             AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 82, "Installed the License");
             installationWasPerformed = true;
           }
@@ -94,19 +92,44 @@ namespace CAS.UA.Model.Designer
           }
         }
         string[] args = GetArguments();
-        MainForm mainForm;
         if (installationWasPerformed || args == null || args.Length < 2 || string.IsNullOrEmpty(args[1]))
-          mainForm = new MainForm(installationWasPerformed);
+          m_ApplicationEntryForm = new MainForm(installationWasPerformed);
         else
-          mainForm = new MainForm(args[1]); //args[ 0 ] - is application file name , args[ 1 ] - is first argument 
-        Application.Run(mainForm);
+          m_ApplicationEntryForm = new MainForm(args[1]); //args[ 0 ] - is application file name , args[ 1 ] - is first argument 
+        DoApplicationRun(Application.Run);
         Settings.Default.Save();
+        AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 40, "Application finished");
       }
       catch (Exception ex)
       {
-        MessageBox.Show(String.Format(Resources.MainForm_StartupExceptionMessage, ex.Message), "Command line error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBoxShow(String.Format(Resources.MainForm_StartupExceptionMessage, ex.Message));
       }
     }
+    internal static void DoInstallLicense(bool loadLicenseFromDefaultContainer)
+    {
+      try
+      {
+        LibInstaller.InstallLicense(loadLicenseFromDefaultContainer);
+        AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 113, "Installed the License without errors");
+      }
+      catch (Exception ex)
+      {
+        MessageBoxShow(string.Format(Resources.MainProgram_LicenseInstalation_Failure, ex.Message));
+      }
+    }
+    internal static void DoApplicationRun(Action<Form> applicationRun)
+    {
+      applicationRun(m_ApplicationEntryForm);
+    }
+    internal static Func<string, DialogResult> MessageBoxShow { get { return m_MessageBoxShow; } set { m_MessageBoxShow = value; } }
+
+    private static Func<string, DialogResult> m_MessageBoxShow = (x) =>
+    {
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 108, x);
+      return MessageBox.Show(x, "Excution Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    };
+    private readonly static string m_InstallLicenseString = "installic";
+    private static Form m_ApplicationEntryForm;
 
     #region private
     private static string[] GetArguments()
