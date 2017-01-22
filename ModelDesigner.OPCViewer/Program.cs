@@ -16,6 +16,8 @@
 using CAS.Lib.CodeProtect;
 using CAS.Lib.OPCClientControlsLib;
 using System;
+using System.Diagnostics;
+using System.Reflection;
 using System.Security;
 using System.Security.Permissions;
 using System.Windows.Forms;
@@ -35,11 +37,12 @@ namespace CAS.CommServer.ModelDesigner.OPCViewer
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Information, 43, $"Starting application {  Assembly.GetCallingAssembly().GetName().Name}");
 #if DEBUG
       string m_cmmdLine = Environment.CommandLine;
       if (m_cmmdLine.ToLower().Contains("debugstop"))
         MessageBox.Show("Attach debug point");
-      if (m_cmmdLine.ToLower().Contains(m_InstallicString))
+      if (m_cmmdLine.ToLower().Contains(m_InstallingString))
       {
         try
         {
@@ -64,14 +67,14 @@ namespace CAS.CommServer.ModelDesigner.OPCViewer
         }
         MainFormV2008 mainForm = mainForm = new MainFormV2008();
         Application.Run(mainForm);
+        AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Information, 43, $"Finishing application {  Assembly.GetCallingAssembly().GetName().Name}");
       }
       catch (Exception e)
       {
-        MessageBox.Show("An unexpected exception occurred. Application exiting.\r\n\r\n" + e.Message,
-          "OPCViewer - Data Access Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show("An unexpected exception occurred. Application exiting.\r\n\r\n" + e.Message, "OPCViewer - Data Access Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
     }
-    private readonly static string m_InstallicString = "installic";
+    private readonly static string m_InstallingString = "installic";
 
   }
 }
