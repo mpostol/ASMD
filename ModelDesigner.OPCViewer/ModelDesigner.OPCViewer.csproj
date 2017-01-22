@@ -202,7 +202,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy .\$(TargetName).exe.config ..\..\..\ModelDesigner.DesignStudio\</PostBuildEvent>
+    <PostBuildEvent>xcopy $(TargetName).exe.config ..\..\..\ModelDesigner.DesignStudio\ /q/y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
