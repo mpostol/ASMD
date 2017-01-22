@@ -458,6 +458,9 @@
     <Content Include="exe\CAS.Opc.Ua.ModelCompiler.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="CAS.CommServer.ModelDesigner.OPCViewer.exe.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="DemoConfiguration.oses" />
     <None Include="Help\ASModelDesigner.chm" />
     <None Include="ReleaseActionItems.txt" />
