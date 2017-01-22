@@ -136,6 +136,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyTraceEvent.cs" />
     <Compile Include="Program.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -158,7 +159,7 @@
     </None>
     <None Include="cas.snk" />
     <None Include="DemoConfiguration.oses" />
-    <None Include="Log\CAS.CommServer.ModelDesigner.OPCViewer.log" />
+    <None Include="Log\CAS.CommServer.DA.Viewer.log" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

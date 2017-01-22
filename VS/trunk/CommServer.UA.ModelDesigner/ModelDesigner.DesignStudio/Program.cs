@@ -24,16 +24,17 @@ using ModelsContainer = CAS.CommServer.UA.ConfigurationEditor.ModelsContainer;
 
 namespace CAS.UA.Model.Designer
 {
+  
   /// <summary>
   /// Class Program.
   /// </summary>
   static class Program
   {
 
+    #region API
     /// <summary>
-    /// Mains the specified args.
+    /// Program entry point.
     /// </summary>
-    /// <param name="args">The args.</param>
     [STAThreadAttribute()]
     static void Main()
     {
@@ -122,7 +123,9 @@ namespace CAS.UA.Model.Designer
       applicationRun(m_ApplicationEntryForm);
     }
     internal static Func<string, DialogResult> MessageBoxShow { get { return m_MessageBoxShow; } set { m_MessageBoxShow = value; } }
+    #endregion
 
+    #region private
     private static Func<string, DialogResult> m_MessageBoxShow = (x) =>
     {
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 108, x);
@@ -130,8 +133,6 @@ namespace CAS.UA.Model.Designer
     };
     private readonly static string m_InstallLicenseString = "installic";
     private static Form m_ApplicationEntryForm;
-
-    #region private
     private static string[] GetArguments()
     {
       try
