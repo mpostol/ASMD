@@ -54,8 +54,8 @@
       <HintPath>..\..\packages\CAS.CommServer.UA.Stack.Core.1.01.3265\lib\net451\CAS.CommServer.UA.Stack.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OPC..UA.ModelCompiler.Common, Version=1.2.27.27364, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\OPC.UA.SDK.ModelCompiler.Common.1.02.27\lib\net461\OPC..UA.ModelCompiler.Common.dll</HintPath>
+    <Reference Include="OPC.UA.ModelCompiler.Common, Version=1.2.270.28313, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OPC.UA.SDK.ModelCompiler.Common.1.02.270-Alpha\lib\net461\OPC.UA.ModelCompiler.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

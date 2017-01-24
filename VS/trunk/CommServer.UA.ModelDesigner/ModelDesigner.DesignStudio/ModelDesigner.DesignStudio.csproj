@@ -147,8 +147,8 @@
       <HintPath>..\packages\CAS.CodeProtect.6.1.3\lib\net451\Microsoft.Build.Utilities.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OPC..UA.ModelCompiler.Common, Version=1.2.27.27364, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\OPC.UA.SDK.ModelCompiler.Common.1.02.27\lib\net461\OPC..UA.ModelCompiler.Common.dll</HintPath>
+    <Reference Include="OPC.UA.ModelCompiler.Common, Version=1.2.270.28313, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\OPC.UA.SDK.ModelCompiler.Common.1.02.270-Alpha\lib\net461\OPC.UA.ModelCompiler.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore">
@@ -455,25 +455,19 @@
     <Compile Include="Wrappers\WrapperTreeNode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="exe\CAS.Opc.Ua.ModelCompiler.exe.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="CAS.CommServer.ModelDesigner.OPCViewer.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="DemoConfiguration.oses" />
+    <None Include="exe\CAS.Opc.Ua.ModelCompiler.exe.config" />
     <None Include="Help\ASModelDesigner.chm" />
     <None Include="ReleaseActionItems.txt" />
     <None Include="ReleaseNotes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ReleaseNotes.txt</LastGenOutput>
     </None>
-    <Content Include="exe\CAS.Opc.Ua.ModelCompiler.Core.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="exe\CAS.Opc.Ua.ModelCompiler.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="exe\CAS.Opc.Ua.ModelCompiler.Core.dll" />
+    <Content Include="exe\CAS.Opc.Ua.ModelCompiler.exe" />
     <Content Include="ReleaseNotes.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
