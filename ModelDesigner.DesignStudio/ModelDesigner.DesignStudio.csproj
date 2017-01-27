@@ -459,15 +459,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="DemoConfiguration.oses" />
-    <None Include="exe\CAS.CommServer.UA.ModelCompiler.Command.exe.config" />
+    <Content Include="exe\CAS.CommServer.UA.ModelCompiler.Command.exe.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Help\ASModelDesigner.chm" />
     <None Include="ReleaseActionItems.txt" />
     <None Include="ReleaseNotes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ReleaseNotes.txt</LastGenOutput>
     </None>
-    <Content Include="exe\CAS.CommServer.UA.ModelCompiler.Command.exe" />
-    <Content Include="exe\CAS.CommServer.UA.ModelCompiler.Core.dll" />
+    <Content Include="exe\CAS.CommServer.UA.ModelCompiler.Command.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="exe\CAS.CommServer.UA.ModelCompiler.Core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ReleaseNotes.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

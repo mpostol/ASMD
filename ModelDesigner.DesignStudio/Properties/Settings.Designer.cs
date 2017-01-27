@@ -154,7 +154,7 @@ namespace CAS.UA.Model.Designer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("exe\\Cas.Opc.Ua.ModelCompiler.exe")]
+        [global::System.Configuration.DefaultSettingValueAttribute("exe\\CAS.CommServer.UA.ModelCompiler.Command.exe")]
         public string ProjectCompilationExecutable {
             get {
                 return ((string)(this["ProjectCompilationExecutable"]));
