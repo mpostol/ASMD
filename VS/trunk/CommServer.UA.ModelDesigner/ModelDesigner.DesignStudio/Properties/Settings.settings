@@ -39,7 +39,7 @@
       <Value Profile="(Default)">-d2 "{0}"  -cg "{1}" -o "{2}" -console</Value>
     </Setting>
     <Setting Name="ProjectCompilationExecutable" Type="System.String" Scope="User">
-      <Value Profile="(Default)">exe\Cas.Opc.Ua.ModelCompiler.exe</Value>
+      <Value Profile="(Default)">exe\CAS.CommServer.UA.ModelCompiler.Command.exe</Value>
     </Setting>
     <Setting Name="TargetNamespaceXmlPrefix" Type="System.String" Scope="User">
       <Value Profile="(Default)">cas</Value>
