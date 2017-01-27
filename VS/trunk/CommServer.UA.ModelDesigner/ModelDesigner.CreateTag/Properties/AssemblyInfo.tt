@@ -1,0 +1,37 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+//_______________________________________________________________
+//  Title   :  Assembly info for: <#=m_AssemblyTitle#>
+//  System  : Microsoft VisualStudio 2015 / C#
+//  $LastChangedDate:  $
+//  $Rev:  $
+//  $LastChangedBy: $
+//  $URL:  $
+//  $Id:  $
+//
+//  <#=AssemblyCopyright#>
+//  <#=Phone#>
+//  <#=Email#>
+//  <#=Url#>
+//_______________________________________________________________
+
+using System.Reflection;
+using System.Runtime.InteropServices;
+
+[assembly: AssemblyTitle("<#=m_AssemblyTitle#>")]
+[assembly: AssemblyDescription("Scripts Prototyping Workspace for <#=m_AssemblyTitle#>")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("<#=AssemblyCompany#>")]
+[assembly: AssemblyProduct("<#=AssemblyProduct#>")]
+[assembly: AssemblyCopyright("<#=AssemblyCopyright#>")]
+[assembly: AssemblyTrademark("<#=AssemblyTrademark#>")]
+[assembly: AssemblyCulture("")]
+[assembly: Guid("1FE90664-2CC3-4163-87EC-1FBCDA94DD34")]
+[assembly: ComVisible(false)]
+[assembly: AssemblyVersion("<#= CASCommServerUAModelCompilerVersion #>.*")]
+[assembly: AssemblyFileVersion("<#= CASCommServerUAModelCompilerVersion #>")]
+
+<#@ include file = "..\..\CommonResources\T4Definitions\CAS.OPC.t4" #>
+<#+
+string m_AssemblyTitle = "CAS.CommServer.UA.ModelCompiler.Scripts";
+#>
