@@ -13,7 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.UA.ModelCompiler.Common;
+using CAS.CommServer.UA.ModelCompiler.Common;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
