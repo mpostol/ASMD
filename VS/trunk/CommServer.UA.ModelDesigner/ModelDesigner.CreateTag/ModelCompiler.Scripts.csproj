@@ -6,8 +6,8 @@
     <ProjectGuid>{9980473B-E30A-4DD9-91FC-15126D050E68}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CAS.CommServer.UA.ModelCompiler.Scripts</RootNamespace>
-    <AssemblyName>CAS.CommServer.UA.ModelCompiler.Scripts</AssemblyName>
+    <RootNamespace>CAS.CommServer.UA.ModelDesigner.Scripts</RootNamespace>
+    <AssemblyName>CAS.CommServer.UA.ModelDesigner.Scripts</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

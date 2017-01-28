@@ -8,9 +8,9 @@ rem//  $URL:  $
 rem//  $Id:  $
 
 <#
-      string _rel = CASCommServerUAModelCompilerVersion.Replace(".", "_"); // _version must be replaced by the correct version variable depending on the project.
+      string _rel = CASUAMDVersion.Replace(".", "_"); // _version must be replaced by the correct version variable depending on the project.
       string _repositoryUrl = @"svn://svnserver.hq.cas.com.pl/VS/";
-      string _solutionPath = @"//CommServer.UA.ModelCompiler";
+      string _solutionPath = @"//CommServer.UA.ModelDesigner";
       string _trunkPath = $@"{_repositoryUrl}trunk{_solutionPath}/";
       string _tagPath = $@"{_repositoryUrl}tags{_solutionPath}.rel_{_rel}";
 #>
@@ -20,4 +20,4 @@ svn copy <#=_trunkPath#> <#=_tagPath#> -m "created copy <#=_tagPath#>"
 
 pause ....
 
-<#@ include file = "..\CommonResources\T4Definitions\CAS.OPC.t4" #>
+<#@ include file = "..\..\PR39-CommonResources\T4Definitions\CAS.OPC.t4" #>

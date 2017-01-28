@@ -8,8 +8,8 @@ Description:   OPC UA Information Model Design Studio.
 Company:       CAS
 Product:       CAS CommServer Family
 Trademark:     CommServer
-Version:       3.20.1
-Release Date:  2017-01-14
+Version:       3.20.2
+Release Date:  2017-01-28
 
 NOTE:
 The application supports the OPC UA Object Oriented Internet paradigm. Its detailed description is available on-line: https://github.com/mpostol/OPC-UA-OOI/tree/master/. 
