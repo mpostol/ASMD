@@ -82,16 +82,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NodeSetUnitTest.cs" />
     <Compile Include="ArgumentUnitTest.cs" />
     <Compile Include="EncodeExampleTestMethod.cs" />
     <Compile Include="NodeFactoryBaseUnitTest.cs" />
     <Compile Include="ExtensionsUnitTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
     <Compile Include="UnitTestsExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="cas.snk" />
     <None Include="Models\TestModels.uamdsl" />
     <None Include="packages.config" />
@@ -134,12 +137,20 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Properties\AssemblyInfo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ModelDesigner.ImportExport\ModelDesigner.ImportExport.csproj">
+    <ProjectReference Include="..\ModelDesigner.ImportExport\ModelDesigner.ImportExport.csproj">
       <Project>{7c805bc4-b9c0-48e0-9d3f-d1c322b35acb}</Project>
       <Name>ModelDesigner.ImportExport</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

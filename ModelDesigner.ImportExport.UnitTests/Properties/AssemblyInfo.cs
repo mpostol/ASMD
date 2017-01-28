@@ -1,36 +1,33 @@
-﻿using System.Reflection;
+﻿//_______________________________________________________________
+//  Title   :  Assembly info for: CAS UA Model Designer Imports and Exporters Unit Test
+//  System  : Microsoft VisualStudio 2013 / C#
+//  $LastChangedDate:  $
+//  $Rev: $
+//  $LastChangedBy: $
+//  $URL: $
+//  $Id:  $
+//
+//  Copyright (c) 2017 CAS LODZ POLAND
+//  +48 (42) 686 25 47
+//  techsupp@cas.eu
+//  www.cas.eu
+//_______________________________________________________________
+
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-[assembly: AssemblyTitle("ImportExport Unit Tests")]
-[assembly: AssemblyDescription("ImportExport Unit Tests")]
+[assembly: AssemblyTitle("CAS UA Model Designer Imports and Exporters Unit Test")]
+[assembly: AssemblyDescription("CAS CommServer Family: CAS UA Model Designer Imports and Exporters Unit Test")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAS")]
-[assembly: AssemblyProduct("Address Space Model Designer")]
-[assembly: AssemblyCopyright("Copyright CAS ©  2015")]
-[assembly: AssemblyTrademark("CommSvr.com")]
+[assembly: AssemblyProduct("CAS CommServer Family")]
+[assembly: AssemblyCopyright("Copyright (c) 2017 CAS LODZ POLAND")]
+[assembly: AssemblyTrademark("CommServer")]
 [assembly: AssemblyCulture("")]
-
-// Setting ComVisible to false makes the types in this assembly not visible 
-// to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
+[assembly: Guid( "e9358c79-8f72-438f-8cc3-ebabaa50861b" )]
+[assembly: AssemblyVersion("3.20.2.*")]
+[assembly: AssemblyFileVersion("3.20.2")]
 
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e9358c79-8f72-438f-8cc3-ebabaa50861b")]
 
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.1.*")]
-[assembly: AssemblyFileVersion("1.0.0.0")]

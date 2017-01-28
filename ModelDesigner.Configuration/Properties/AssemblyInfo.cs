@@ -28,8 +28,8 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 [assembly: Guid( "c4b8d907-a0cd-42e5-8c08-dc61af69a2ac" )]
-[assembly: AssemblyVersion("3.20.1.*")]
-[assembly: AssemblyFileVersion("3.20.1")]
+[assembly: AssemblyVersion("3.20.2.*")]
+[assembly: AssemblyFileVersion("3.20.2")]
 [assembly: CAS.Lib.CodeProtect.AssemblyHelper( Company = "CAS", Email = "techsup.cas.eu", Phone = "+48 42 686 25 47", Product = "ASMD", Url = "www.commsvr.com" )]
 
 

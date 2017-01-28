@@ -1,18 +1,14 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{B429E0BA-4F78-44A2-B61A-8093A17789C4}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\CommServer.UA.ModelCompiler\ModelCompiler.Command\Properties\AssemblyInfo.cs = ..\..\..\CommServer.UA.ModelCompiler\ModelCompiler.Command\Properties\AssemblyInfo.cs
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Definitions", "..\PR39-CommonResources\T4Definitions\T4Definitions.csproj", "{D506423B-BA21-49E6-8C3B-88A771CA444E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.Configuration.UnitTests", "UnitTests\CommServer.UA.ModelDesigner.Configuration.UnitTests\ModelDesigner.Configuration.UnitTests.csproj", "{8F6A704E-F1E3-413B-AA5B-ECB741C4F73F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.Configuration.UnitTests", "ModelDesigner.Configuration.UnitTests\ModelDesigner.Configuration.UnitTests.csproj", "{8F6A704E-F1E3-413B-AA5B-ECB741C4F73F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.ImportExport.UnitTests", "UnitTests\CommServer.UA.ModelDesigner.ImportExport.UnitTests\ModelDesigner.ImportExport.UnitTests.csproj", "{0DEBB963-CA92-44D8-998F-9EDCF62547CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.ImportExport.UnitTests", "ModelDesigner.ImportExport.UnitTests\ModelDesigner.ImportExport.UnitTests.csproj", "{0DEBB963-CA92-44D8-998F-9EDCF62547CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.ImportExport", "ModelDesigner.ImportExport\ModelDesigner.ImportExport.csproj", "{7C805BC4-B9C0-48E0-9D3F-D1C322B35ACB}"
 EndProject
@@ -29,6 +25,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.DesignStudio.UnitTest", "ModelDesigner.DesignStudio.UnitTest\ModelDesigner.DesignStudio.UnitTest.csproj", "{1F0F64D5-0977-4F85-8AD1-FC24AF68E244}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.OPCViewer.UnitTest", "ModelDesigner.OPCViewer.UnitTest\ModelDesigner.OPCViewer.UnitTest.csproj", "{ADBBEDAF-B894-49DF-B9C9-71F273CB5632}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelCompiler.Scripts", "ModelDesigner.CreateTag\ModelCompiler.Scripts.csproj", "{9980473B-E30A-4DD9-91FC-15126D050E68}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -82,6 +80,10 @@ Global
 		{ADBBEDAF-B894-49DF-B9C9-71F273CB5632}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADBBEDAF-B894-49DF-B9C9-71F273CB5632}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADBBEDAF-B894-49DF-B9C9-71F273CB5632}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9980473B-E30A-4DD9-91FC-15126D050E68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9980473B-E30A-4DD9-91FC-15126D050E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9980473B-E30A-4DD9-91FC-15126D050E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9980473B-E30A-4DD9-91FC-15126D050E68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

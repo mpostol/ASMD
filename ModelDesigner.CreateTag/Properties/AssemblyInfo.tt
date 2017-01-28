@@ -1,7 +1,7 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
 //_______________________________________________________________
-//  Title   :  Assembly info for: <#=m_AssemblyTitle#>
+//  Title   : Assembly info for: <#=m_AssemblyTitle#>
 //  System  : Microsoft VisualStudio 2015 / C#
 //  $LastChangedDate:  $
 //  $Rev:  $
@@ -26,12 +26,12 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("<#=AssemblyCopyright#>")]
 [assembly: AssemblyTrademark("<#=AssemblyTrademark#>")]
 [assembly: AssemblyCulture("")]
-[assembly: Guid("1FE90664-2CC3-4163-87EC-1FBCDA94DD34")]
+[assembly: Guid("F8B45453-4845-4634-BCA1-CE7230A4ED3A")]
 [assembly: ComVisible(false)]
 [assembly: AssemblyVersion("<#= CASCommServerUAModelCompilerVersion #>.*")]
 [assembly: AssemblyFileVersion("<#= CASCommServerUAModelCompilerVersion #>")]
 
-<#@ include file = "..\..\CommonResources\T4Definitions\CAS.OPC.t4" #>
+<#@ include file = "..\..\..\PR39-CommonResources\T4Definitions\CAS.OPC.t4" #>
 <#+
-string m_AssemblyTitle = "CAS.CommServer.UA.ModelCompiler.Scripts";
+string m_AssemblyTitle = "CAS.CommServer.UA.ModelDesigner.Scripts";
 #>
