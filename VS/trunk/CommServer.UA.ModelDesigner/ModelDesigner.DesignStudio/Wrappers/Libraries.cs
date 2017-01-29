@@ -16,29 +16,38 @@
 using CAS.CommServer.UA.ModelCompiler.Common;
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
+using UADataTypeDesign = Opc.Ua.ModelCompiler.DataTypeDesign;
+using UAModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
+using UANodeDesign = Opc.Ua.ModelCompiler.NodeDesign;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal class Libraries: RootTreeNode
+  internal class Libraries : RootTreeNode
   {
     #region private
-    private void InitializeTypes( IContainer container )
+    private void InitializeTypes(IContainer container)
     {
-      
+
       try
       {
         AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 37, "Loading the OPC UA Defined Types.");
-        var _modelTypes = UAResources.LoadUADefinedTypes();
+        UAModelDesign _modelTypes = UAResources.LoadUADefinedTypes();
+        if (Properties.Settings.Default.OnlyItemsInAddressSpace)
+        {
+          _modelTypes.Items = _modelTypes.Items.Where<UANodeDesign>((x) => { UADataTypeDesign _dt = x as UADataTypeDesign; return _dt == null ? true : !_dt.NotInAddressSpace; }).ToArray<UANodeDesign>();
+          AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 41, "Removed DataTypeDesign items not belonging to the model.");
+        }
         AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 37, "Creating the LibraryTreeNode containing standard model");
-        Add(new LibraryTreeNode(UAResources.LoadUADefinedTypes(), "UA Defined Types", container));
+        Add(new LibraryTreeNode(_modelTypes, "UA Defined Types", container));
       }
       catch (Exception _ex)
       {
         string _tmp = "Cannot load Defined OPC UA Types in {0} from {1} because of error {2}";
         AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Critical, 37, _tmp, typeof(Libraries).FullName, typeof(UAResources), _ex.Message);
-      } 
+      }
     }
     #endregion
 
@@ -47,10 +56,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Initializes a new instance of the <see cref="Libraries"/> class.
     /// </summary>
     /// <param name="container">The container that contains zero or more components..</param>
-    public Libraries( IContainer container )
-      : base( "" )
+    public Libraries(IContainer container)
+      : base("")
     {
-      InitializeTypes( container );
+      InitializeTypes(container);
       Root.LibraryRoot = this;
     }
     #endregion
@@ -66,10 +75,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       throw new NotImplementedException();
     }
-    internal void AddTreeNodes( TreeNodeCollection nodes )
+    internal void AddTreeNodes(TreeNodeCollection nodes)
     {
-      foreach ( LibraryTreeNode lib in this )
-        nodes.Add( lib.GetTreeNode() );
+      foreach (LibraryTreeNode lib in this)
+        nodes.Add(lib.GetTreeNode());
     }
     /// <summary>
     /// Resets the and adds to address space. For each <see cref="LibraryTreeNode"/> item in this collection call <see cref="LibraryTreeNode.AddNode2AddressSpace"/>
@@ -77,15 +86,15 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <param name="space">The space.</param>
     internal void AddNode2AddressSpace(IAddressSpaceCreator space)
     {
-      foreach ( LibraryTreeNode lib in this )
-        lib.AddNode2AddressSpace( space );
+      foreach (LibraryTreeNode lib in this)
+        lib.AddNode2AddressSpace(space);
     }
-    internal ITypeDesign FindType( XmlQualifiedName myType )
+    internal ITypeDesign FindType(XmlQualifiedName myType)
     {
-      foreach ( LibraryTreeNode node in this )
+      foreach (LibraryTreeNode node in this)
       {
-        ITypeDesign ret = node.FindType( myType );
-        if ( ret != null )
+        ITypeDesign ret = node.FindType(myType);
+        if (ret != null)
           return ret;
       }
       return null;
