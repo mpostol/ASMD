@@ -307,5 +307,17 @@ namespace CAS.UA.Model.Designer.Properties {
                 this["OPCViewerAssemblyName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool OnlyItemsInAddressSpace {
+            get {
+                return ((bool)(this["OnlyItemsInAddressSpace"]));
+            }
+            set {
+                this["OnlyItemsInAddressSpace"] = value;
+            }
+        }
     }
 }

@@ -77,5 +77,8 @@
     <Setting Name="OPCViewerAssemblyName" Type="System.String" Scope="User">
       <Value Profile="(Default)">CAS.CommServer.ModelDesigner.OPCViewer.exe</Value>
     </Setting>
+    <Setting Name="OnlyItemsInAddressSpace" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
