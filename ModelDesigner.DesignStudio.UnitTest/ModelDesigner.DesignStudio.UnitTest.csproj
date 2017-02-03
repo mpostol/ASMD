@@ -42,12 +42,45 @@
     <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CAS.CodeProtect, Version=6.1.3.22636, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CodeProtect.6.1.3\lib\net451\CAS.CodeProtect.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CAS.CommonResources, Version=2.0.6.27320, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.Licenses.Container.2.00.06\lib\net451\CAS.CommonResources.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CAS.CommServer.UA.ModelCompiler.Common, Version=1.11.335.10, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.UA.ModelCompiler.Common.1.11.335.10\lib\net461\CAS.CommServer.UA.ModelCompiler.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.RealTime, Version=5.0.6.23644, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.RealTime.5.0.6\lib\net451\CAS.RealTime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.RealTime.Core, Version=5.0.6.23643, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.RealTime.5.0.6\lib\net451\CAS.RealTime.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.Windows.Forms, Version=6.1.2.24319, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.Windows.Forms.6.1.2\lib\net451\CAS.Windows.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Build.Framework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CodeProtect.6.1.3\lib\net451\Microsoft.Build.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Build.Tasks.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CodeProtect.6.1.3\lib\net451\Microsoft.Build.Tasks.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Build.Utilities.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CodeProtect.6.1.3\lib\net451\Microsoft.Build.Utilities.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModelDesigner.DesignStudio\ModelDesigner.DesignStudio.csproj">
@@ -74,6 +107,9 @@
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelCompilerExistWUnitTest.cs" />
+    <Compile Include="Wrappers4PropertyGrid\DocumentationAttributeUnitTest.cs" />
+    <Compile Include="Wrappers4PropertyGrid\ModelDesignUnitTest.cs" />
+    <Compile Include="Wrappers4PropertyGrid\ParameterUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

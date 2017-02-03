@@ -14,7 +14,6 @@
 //</summary>
 
 using CAS.Lib.ControlLibrary;
-using CAS.UA.Common;
 using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.Types;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
@@ -189,11 +188,12 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     /// <param name="child">The child.</param>
     public ModelDesign(Opc.Ua.ModelCompiler.ModelDesign child)
     {
+      this.AnyAttr = child.AnyAttr;
       this.DefaultLocale = child.DefaultLocale;
       this.TargetNamespace = child.TargetNamespace;
-      this.TargetNamespaceVersion = child.TargetNamespaceVersion;
+      this.TargetPublicationDate = child.TargetPublicationDateSpecified ? child.TargetPublicationDate : new Nullable<DateTime>();
+      this.TargetVersion = child.TargetVersion;
       this.TargetXmlNamespace = child.TargetXmlNamespace;
-      this.AnyAttr = child.AnyAttr;
     }
     /// <summary>
     /// Updates the model node.
@@ -201,16 +201,13 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     /// <param name="node">The node.</param>
     protected override void UpdateModelNode(Opc.Ua.ModelCompiler.ModelDesign node)
     {
+      node.AnyAttr = this.AnyAttr;
       node.DefaultLocale = this.DefaultLocale;
       node.TargetNamespace = this.TargetNamespace;
-      node.TargetNamespaceVersion = this.TargetNamespaceVersion;
+      node.TargetPublicationDate = this.TargetPublicationDate.GetValueOrDefault();
+      node.TargetPublicationDateSpecified = this.TargetPublicationDate.HasValue;
+      node.TargetVersion = this.TargetVersion;
       node.TargetXmlNamespace = this.TargetXmlNamespace;
-      node.AnyAttr = this.AnyAttr;
-    }
-    private void Import()
-    {
-      if (String.IsNullOrEmpty(TargetXmlNamespace))
-        TargetXmlNamespace = (string)TargetNamespace.Clone();
     }
   }
   #endregion
@@ -277,6 +274,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     /// <param name="child">The child.</param>
     public Parameter(Opc.Ua.ModelCompiler.Parameter child)
     {
+      this.ArrayDimensions = child.ArrayDimensions;
       this.DataType = new XmlQualifiedNameEditor(child.DataType, this);
       this.ValueRank = child.ValueRank;
       if (child.IdentifierSpecified)
@@ -286,6 +284,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     }
     protected override void UpdateModelNode(Opc.Ua.ModelCompiler.Parameter node)
     {
+      node.ArrayDimensions = this.ArrayDimensions;
       node.DataType = this.DataType.XmlQualifiedName;
       node.ValueRank = this.ValueRank;
       node.IdentifierSpecified = this.Identifier.HasValue;
@@ -335,7 +334,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     {
       InstanceDesign<T> ret = CreateNewInstance();
       ret.CopyPropertyValuesFrom(this);
-      if ( source != null )
+      if (source != null)
         ret.CopyPropertyValuesFrom(source);
       return ret;
     }
@@ -918,7 +917,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     protected override void CopyPropertyValuesFrom(IInstanceDesign source)
     {
       base.CopyPropertyValuesFrom(source);
-      IVariableDesign ISource = (IVariableDesign)source ;
+      IVariableDesign ISource = (IVariableDesign)source;
       if (this.Historizing == null)
         this.Historizing = ISource.Historizing;
       if (this.MinimumSamplingInterval == null)
@@ -999,7 +998,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     protected override void CopyPropertyValuesFrom(IInstanceDesign source)
     {
       base.CopyPropertyValuesFrom(source);
-      IDictionaryDesign ISource = (IDictionaryDesign)source ;
+      IDictionaryDesign ISource = (IDictionaryDesign)source;
       if (this.EncodingName.IsNull || this.EncodingName.NameIsBasedOnDefault)
         this.EncodingName.UpdateNameAndNamespaceBasedOn(ISource.EncodingName);
     }
@@ -1015,7 +1014,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.EncodingName = this.EncodingName.XmlQualifiedName;
     }
     #endregion
-  
+
   }
   #endregion
   #region class PropertyDesign
