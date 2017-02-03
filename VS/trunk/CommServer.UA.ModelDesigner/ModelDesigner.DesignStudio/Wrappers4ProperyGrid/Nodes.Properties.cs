@@ -19,6 +19,7 @@ using CAS.Lib.ControlLibrary;
 using CAS.UA.Common;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
 using CAS.UA.IServerConfiguration;
+using System;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
@@ -57,12 +58,24 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     ]
     public string TargetNamespace { get; set; }
     [
-    DisplayName("Target Namespace Version"),
+    DisplayName("Target Version"),
     BrowsableAttribute(true),
-    DescriptionAttribute("Version of the model. Attribute is optional."),
+    DescriptionAttribute("The target verison of the model."),
     CategoryAttribute("Namespace")
     ]
-    public string TargetNamespaceVersion { get; set; }
+    public string TargetVersion { get; set; }
+    /// <summary>
+    /// Gets or sets the target publication date.
+    /// </summary>
+    /// <value>The target publication date.</value>
+    [
+    DisplayName("Target Publication Date"),
+    BrowsableAttribute(true),
+    DescriptionAttribute("Publication Date of the model. Attribute is optional."),
+    CategoryAttribute("Namespace")
+    DocumentationAttribute("TargetPublicationDate", typeof(DateTimeGetter))
+    ]
+    public DateTime? TargetPublicationDate { get; set; }
     /// <summary>
     /// Gets or sets the target XML namespace.
     /// </summary>
@@ -151,7 +164,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     /// </summary>
     /// <value>The XML namespace.</value>
     [
-      //EditorAttribute( typeof( System.Web.UI.Design.XmlUrlEditor ), typeof( UITypeEditor ) ),
+    //EditorAttribute( typeof( System.Web.UI.Design.XmlUrlEditor ), typeof( UITypeEditor ) ),
     DisplayName("Xml Namespace"),
     BrowsableAttribute(true),
     DescriptionAttribute("The URI for the XML namespace, which the data types belong to, if it is different from the URI for the model namespace."),
@@ -275,7 +288,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [
     DisplayName("Description"),
     BrowsableAttribute(true),
-    DescriptionAttribute("The localised description of the Parameter"),
+    DescriptionAttribute("The localized description of the Parameter"),
     TypeConverterAttribute(typeof(ExpandableObjectConverter)),
     CategoryAttribute("Parameter"),
     DocumentationAttribute("Description", typeof(GetterOfNameAsString))
@@ -336,6 +349,20 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("ValueRank", typeof(GetterOfNameAsString), "-1/[0]")
     ]
     public Opc.Ua.ModelCompiler.ValueRank ValueRank { get; set; }
+    /// <summary>
+    /// Gets or sets the array dimensions.
+    /// </summary>
+    /// <value>The array dimensions.</value>
+    [
+    DisplayName("Array Dimensions"),
+    BrowsableAttribute(true),
+    DescriptionAttribute("If the Value Rank does not identify an array of a specific dimension (i.e. ValueRank <= 0)" +
+      "the Array Dimensions attribute can either be set to null or the attribute is missing. This behaviour is vendor-specific." +
+      "If the Value Rank attribute specifies an array of a specific dimension (i.e. ValueRank > 0) then the Array Dimensions attribute" +
+      "shall be specified in the table defining the Variable."),
+    CategoryAttribute("Parameter")
+    ]
+    public string ArrayDimensions { get; set; }
     #endregion
   }
   #endregion
@@ -542,8 +569,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DescriptionAttribute("The BrowseName is the name used in the information model. " +
       "The validator will create the BrowseName automatically from the SymbolicName. " +
       "The BrowseName is qualified by the namespace used for the SymbolicName."),
-    CategoryAttribute("Node"),
-    DocumentationAttribute("BrowseName")
+    CategoryAttribute("Node")
     ]
     public string BrowseName { get; set; }
     /// <summary>
@@ -1029,7 +1055,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     ]
     public bool SupportsEvents { get; set; }
     /// <summary>
-    /// Gets or sets a value indicating whether [contains no loops].
+    /// Gets or sets a value indicating whether the View contains no loops.
     /// </summary>
     /// <value><c>true</c> if [contains no loops]; otherwise, <c>false</c>.</value>
     [
@@ -1120,7 +1146,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DisplayName("Array Dimensions"),
     BrowsableAttribute(true),
     DescriptionAttribute("If the Value Rank does not identify an array of a specific dimension (i.e. ValueRank <= 0)" +
-      "the Array Dimensions attribute can either be set to null or the attribute is missing. This behaviour is vendor-specific." +
+      "the Array Dimensions attribute can either be set to null or the attribute is missing. This behavior is vendor-specific." +
       "If the Value Rank attribute specifies an array of a specific dimension (i.e. ValueRank > 0) then the Array Dimensions attribute" +
       "shall be specified in the table defining the Variable."),
     CategoryAttribute("Variable")
