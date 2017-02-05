@@ -18,17 +18,7 @@ Version:       <#=CASUAMDVersion#>
 Release Date:  <#=m_Date#>
 
 NOTE:
-The application supports the OPC UA Object Oriented Internet paradigm. Its detailed description is available on-line: https://github.com/mpostol/OPC-UA-OOI/tree/master/. 
-To improve adaptability, the application uses open source components available in the mentioned project workspace.
 
-The main changes and new functionalities are listed below:
-
-•	Import of the XML documents compliant with the UANodeSet XML schema uses the deliverables developed and maintained in the public domain. 
-    See detailed description at: https://github.com/mpostol/OPC-UA-OOI/tree/master/SemanticDataSolution.
-•	Embedded OPC UA application configuration editor supports any external plug-in prepared on the basis of the Nuget package: https://www.nuget.org/packages/UAOOI.DataBindings/. 
-    The package code is available as an open source at: https://github.com/mpostol/OPC-UA-OOI/tree/master/DataBindingsSolution/DataBindings.
-•	Updated code for target .NET Framework 4.6.1. and the recent development environment.
-•	Added unit tests and fixed reported errors.
 ____________________________________________________________________________________________
 For assistance, contact:
 
