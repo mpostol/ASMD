@@ -464,20 +464,20 @@
     </Content>
     <None Include="Help\ASModelDesigner.chm" />
     <None Include="ReleaseActionItems.txt" />
+    <None Include="ReleaseNotes.md">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReleaseNotes.tt</DependentUpon>
+    </None>
     <None Include="ReleaseNotes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ReleaseNotes.txt</LastGenOutput>
+      <LastGenOutput>ReleaseNotes.md</LastGenOutput>
     </None>
     <Content Include="exe\CAS.CommServer.UA.ModelCompiler.Command.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="exe\CAS.CommServer.UA.ModelCompiler.Core.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ReleaseNotes.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ReleaseNotes.tt</DependentUpon>
     </Content>
     <None Include="app.config">
       <SubType>Designer</SubType>
@@ -498,7 +498,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </None>
-    <None Include="ReleaseNotes.old" />
+    <None Include="ReleaseNotes.old.md" />
     <None Include="Resources\UAASMDInstallbanner.jpg" />
     <None Include="Main.cd" />
     <None Include="Properties\Settings.settings">

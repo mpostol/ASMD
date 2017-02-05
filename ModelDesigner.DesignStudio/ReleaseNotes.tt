@@ -3,37 +3,45 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ output extension=".txt" #>
+<#@ output extension=".md" #>
 
-Release Notes: <#=CASUAMDProductName#>
+# Release Notes: <#=CASUAMDProductName#>
 
-Current release details:
+## Current release details:
 
-Title:         <#=CASUAMDProductName#>
-Description:   OPC UA Information Model Design Studio.
-Company:       <#=AssemblyCompany#>
-Product:       <#=AssemblyProduct#>
-Trademark:     <#=AssemblyTrademark#>
-Version:       <#=CASUAMDVersion#>
-Release Date:  <#=m_Date#>
+* Description:   OPC UA Information Model Design Studio.
+* Company:       <#=AssemblyCompany#>
+* Product:       <#=AssemblyProduct#>
+* Trademark:     <#=AssemblyTrademark#>
+* Version:       <#=CASUAMDVersion#>
+* Release Date:  <#=m_Date#>
 
-NOTE:
+The main changes and new functionality are listed below:
+
+- Added new version of the Model Compiler 1.01.335.1 as the application add-on.
+- Updated ModelDesign schema and OPC UA Defined Types up to Model Compiler 1.01.335.1
+- Improved tracing of the application activity
+- Added new version of the CAS OPC Viewer 3.11.17
 
 ____________________________________________________________________________________________
-For assistance, contact:
+> For assistance, contact:
 
-Mariusz Postol
-CAS
-mailto://mpostol@cas.eu
+> Mariusz Postol
+
+> CAS
+
+> mailto://mpostol@cas.eu
 
 Copyright (C) <#=m_Year#>, commsvr.com LODZ POLAND
-TEL: +48 (42) 686 25 47
+
 mailto://commserver@cas.eu
+
 http://www.commsvr.com/
 
-Versions history:
 
-<#@ include file = "ReleaseNotes.old" #>
+# Versions history:
+
+<#@ include file = "ReleaseNotes.old.md" #>
 <#@ include file = "..\..\PR39-CommonResources\T4Definitions\CAS.OPC.t4" #>
 <#+
 string m_AssemblyTitle = "UAOOI.DataBindings";
