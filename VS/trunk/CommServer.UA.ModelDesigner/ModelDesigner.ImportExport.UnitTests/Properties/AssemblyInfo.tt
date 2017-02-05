@@ -1,0 +1,39 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+//_______________________________________________________________
+//  Title   :  Assembly info for: <#=m_AssemblyTitle#>
+//  System  : Microsoft VisualStudio 2013 / C#
+//  $LastChangedDate:  $
+//  $Rev: $
+//  $LastChangedBy: $
+//  $URL: $
+//  $Id:  $
+//
+//  <#=AssemblyCopyright#>
+//  <#=Phone#>
+//  <#=Email#>
+//  <#=Url#>
+//_______________________________________________________________
+
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+[assembly: AssemblyTitle("<#=m_AssemblyTitle#> Unit Test")]
+[assembly: AssemblyDescription("<#=AssemblyProduct#>: <#=m_AssemblyTitle#> Unit Test")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("<#=AssemblyCompany#>")]
+[assembly: AssemblyProduct("<#=AssemblyProduct#>")]
+[assembly: AssemblyCopyright("<#=AssemblyCopyright#>")]
+[assembly: AssemblyTrademark("<#=AssemblyTrademark#>")]
+[assembly: AssemblyCulture("")]
+[assembly: ComVisible(false)]
+[assembly: Guid( "e9358c79-8f72-438f-8cc3-ebabaa50861b" )]
+[assembly: AssemblyVersion("<#= CASUAMDVersion #>.*")]
+[assembly: AssemblyFileVersion("<#= CASUAMDVersion #>")]
+
+<#@ include file = "..\..\..\PR39-CommonResources\T4Definitions\CAS.OPC.t4" #>
+
+<#+
+string m_AssemblyTitle = "CAS UA Model Designer Imports and Exporters";
+#>

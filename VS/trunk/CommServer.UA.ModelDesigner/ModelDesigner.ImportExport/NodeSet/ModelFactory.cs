@@ -68,7 +68,13 @@ namespace CAS.UA.Model.Designer.ImportExport.NodeSet
       {
         Items = _mdNodes.ToArray<ModelDesign.NodeDesign>(),
         Namespaces = m_Namespaces.ToArray<ModelDesign.Namespace>(),
-        TargetNamespace = m_Namespaces[1].Value
+        TargetNamespace = m_Namespaces[1].Value,
+        AnyAttr = null,
+        DefaultLocale = null,
+        TargetPublicationDate = DateTime.Today,
+        TargetPublicationDateSpecified = false,
+        TargetVersion = string.Empty,
+        TargetXmlNamespace = null
       };
     }
 

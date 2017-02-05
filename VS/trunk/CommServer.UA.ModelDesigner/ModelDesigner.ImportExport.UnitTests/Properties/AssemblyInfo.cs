@@ -1,5 +1,5 @@
 ﻿//_______________________________________________________________
-//  Title   :  Assembly info for: CAS UA Model Designer Imports and Exporters Unit Test
+//  Title   :  Assembly info for: CAS UA Model Designer Imports and Exporters
 //  System  : Microsoft VisualStudio 2013 / C#
 //  $LastChangedDate:  $
 //  $Rev: $
