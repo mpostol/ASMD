@@ -1142,7 +1142,7 @@ namespace CAS.UA.Model.Designer
       this.configurationToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
       this.configurationToolStripMenuItem.Text = "Options";
       this.configurationToolStripMenuItem.ToolTipText = "Application configuration";
-      this.configurationToolStripMenuItem.Click += new System.EventHandler(this.configurationToolStripMenuItem_Click);
+      this.configurationToolStripMenuItem.Click += new System.EventHandler(this.HelpConfigurationToolStripMenuItem_Click);
       // 
       // helpToolStripMenuItem
       // 
@@ -1179,7 +1179,7 @@ namespace CAS.UA.Model.Designer
       this.readmeToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
       this.readmeToolStripMenuItem.Text = "Readme ...";
       this.readmeToolStripMenuItem.ToolTipText = "Shows readme and release notes page in the configuration";
-      this.readmeToolStripMenuItem.Click += new System.EventHandler(this.readmeToolStripMenuItem_Click);
+      this.readmeToolStripMenuItem.Click += new System.EventHandler(this.HelpReadmeToolStripMenuItem_Click);
       // 
       // automaticHelpSynchonisationToolStripMenuItem
       // 
@@ -1190,7 +1190,7 @@ namespace CAS.UA.Model.Designer
       this.automaticHelpSynchonisationToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
       this.automaticHelpSynchonisationToolStripMenuItem.Text = "Help Synchronization";
       this.automaticHelpSynchonisationToolStripMenuItem.ToolTipText = "Turns on/off the intelligent book feature";
-      this.automaticHelpSynchonisationToolStripMenuItem.Click += new System.EventHandler(this.automaticHelpSynchonisationToolStripMenuItem_Click);
+      this.automaticHelpSynchonisationToolStripMenuItem.Click += new System.EventHandler(this.automaticHelpSynchronisationToolStripMenuItem_Click);
       // 
       // sendUsCommentToolStripMenuItem
       // 
@@ -1199,7 +1199,7 @@ namespace CAS.UA.Model.Designer
       this.sendUsCommentToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
       this.sendUsCommentToolStripMenuItem.Text = "Send us comment ...";
       this.sendUsCommentToolStripMenuItem.ToolTipText = "Start the email client to send the comments";
-      this.sendUsCommentToolStripMenuItem.Click += new System.EventHandler(this.sendUsCommentToolStripMenuItem_Click);
+      this.sendUsCommentToolStripMenuItem.Click += new System.EventHandler(this.HelpSendUsCommentToolStripMenuItem_Click);
       // 
       // technicalSupportToolStripMenuItem
       // 
@@ -1222,7 +1222,7 @@ namespace CAS.UA.Model.Designer
       this.aboutUaModelDesignerToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
       this.aboutUaModelDesignerToolStripMenuItem.Text = "About UA Model Designer";
       this.aboutUaModelDesignerToolStripMenuItem.ToolTipText = "Shows the about UA Model Designer window";
-      this.aboutUaModelDesignerToolStripMenuItem.Click += new System.EventHandler(this.aboutUaModelDesignerToolStripMenuItem_Click);
+      this.aboutUaModelDesignerToolStripMenuItem.Click += new System.EventHandler(this.HelpAboutUaModelDesignerToolStripMenuItem_Click);
       // 
       // aboutOpcUaModelCompilerToolStripMenuItem
       // 
@@ -1231,7 +1231,7 @@ namespace CAS.UA.Model.Designer
       this.aboutOpcUaModelCompilerToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
       this.aboutOpcUaModelCompilerToolStripMenuItem.Text = "About OPC UA ModelCompiler";
       this.aboutOpcUaModelCompilerToolStripMenuItem.ToolTipText = "Shows aboutOPC UA ModelCompiler window";
-      this.aboutOpcUaModelCompilerToolStripMenuItem.Click += new System.EventHandler(this.aboutOpcUaModelCompilerToolStripMenuItem_Click);
+      this.aboutOpcUaModelCompilerToolStripMenuItem.Click += new System.EventHandler(this.HelpAboutOpcUaModelCompilerToolStripMenuItem_Click);
       // 
       // comaprisonOfSoftwareEditionsToolStripMenuItem
       // 

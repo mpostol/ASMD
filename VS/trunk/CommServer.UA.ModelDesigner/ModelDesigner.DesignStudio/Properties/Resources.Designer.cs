@@ -602,7 +602,7 @@ namespace CAS.UA.Model.Designer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.commsvr.com/OPC-Help/Index.aspx?topic=html/ada1af70-e1ba-49df-8d0a-8ddc87a0f287.htm.
+        ///   Looks up a localized string similar to ReleaseNotes.html.
         /// </summary>
         internal static string MainForm_ReadmePage {
             get {
