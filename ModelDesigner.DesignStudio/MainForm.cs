@@ -13,13 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Reflection;
-using System.Windows.Forms;
 using CAS.Lib.ControlLibrary;
 using CAS.Lib.ControlLibrary.ControlExtenders;
 using CAS.UA.Model.Designer.ExportingTools;
@@ -27,13 +20,21 @@ using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.StateMachineEditor;
 using CAS.UA.Model.Designer.Wrappers;
-using System.Runtime.InteropServices;
 using CAS.Windows.Forms.CodeProtectControls;
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer
 {
   public partial class MainForm : Form
   {
+
     #region constructors
     public MainForm(string SolutionFileName)
       : this(false)
@@ -92,8 +93,8 @@ namespace CAS.UA.Model.Designer
       this.debugDockPanelUserControl1.AttachToDockExtender(dockExtender, splitter_main);
       this.debugDockPanelUserControl1.Floaty.Docking += new EventHandler(Floaty_Docking);
       this.windowsToolStripMenuItem.DropDownItems.AddRange(dockExtender.GetListOfToolStripMenuItem());
-      foreach (ToolStripMenuItem tsmi in this.windowsToolStripMenuItem.DropDownItems)
-        tsmi.ToolTipText = "Show/hide " + tsmi.Text;
+      foreach (ToolStripMenuItem _menuItem in this.windowsToolStripMenuItem.DropDownItems)
+        _menuItem.ToolTipText = "Show/hide " + _menuItem.Text;
       #endregion docking and debug panel
       #region toolstrip (toolbars) show/hide context menus
       // Show and hide toolstrip menus
@@ -159,6 +160,8 @@ namespace CAS.UA.Model.Designer
     private ToolStripContainerHelper toolStripContainerHelper;
     private MessageBoxSentEmail messageBoxSentEmail = new MessageBoxSentEmail(Resources.FeatureRequest_EmailAddress,
       Resources.FeatureRequest_Email_Subject, Resources.FeatureRequest_MessageBox_Caption);
+    private PropertyGrid myGrid;
+    //methods
     private void FeatureRequest(ToolStripMenuItem menuItem)
     {
       string featureName = "not set";
@@ -356,7 +359,7 @@ namespace CAS.UA.Model.Designer
       }
     }
     #endregion
-    private void aboutUaModelDesignerToolStripMenuItem_Click(object sender, EventArgs e)
+    private void HelpAboutUaModelDesignerToolStripMenuItem_Click(object sender, EventArgs e)
     {
       using (AboutForm dial = new AboutForm
                    (null, null, Assembly.GetEntryAssembly()))
@@ -364,7 +367,7 @@ namespace CAS.UA.Model.Designer
         dial.ShowDialog(this);
       }
     }
-    private void aboutOpcUaModelCompilerToolStripMenuItem_Click(object sender, EventArgs e)
+    private void HelpAboutOpcUaModelCompilerToolStripMenuItem_Click(object sender, EventArgs e)
     {
       new AboutOpcUaModelCompilerWindow().ShowDialog(this);
     }
@@ -379,8 +382,7 @@ namespace CAS.UA.Model.Designer
         MessageBox.Show(String.Format(Resources.MainForm_DefaultAppMissing, Resources.AsmdHelp, ex.Message));
       }
     }
-    private PropertyGrid myGrid;
-    private void configurationToolStripMenuItem_Click(object sender, EventArgs e)
+    private void HelpConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
     {
       myGrid = new PropertyGrid();
       myGrid.SelectedObject = Properties.Settings.Default;
@@ -422,17 +424,14 @@ namespace CAS.UA.Model.Designer
         }
       }
     }
-
     void myGrid_SizeChanged(object sender, EventArgs e)
     {
       ChangeDescription(((PropertyGrid)sender).SelectedGridItem.Label);
     }
-
     void myGrid_SelectedGridItemChanged(object sender, SelectedGridItemChangedEventArgs e)
     {
       ChangeDescription(e.NewSelection.Label);
     }
-
     /// <summary>
     /// Changes the description of the item in Property Grid.
     /// </summary>
@@ -450,7 +449,6 @@ namespace CAS.UA.Model.Designer
         AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 379, Resources.ProblemWithDescriptionForOption + ex.Message);
       }
     }
-
     private void OnCancel()
     {
       Properties.Settings.Default.Reload();
@@ -500,7 +498,7 @@ namespace CAS.UA.Model.Designer
       m_MainContol.ModelCoupledNodesAreEnabled = coupledNodesToolStripMenuItem.Checked;
       Settings.Default.CoupledNodesAreEnabled = coupledNodesToolStripMenuItem.Checked;
     }
-    private void automaticHelpSynchonisationToolStripMenuItem_Click(object sender, EventArgs e)
+    private void automaticHelpSynchronisationToolStripMenuItem_Click(object sender, EventArgs e)
     {
       Settings.Default.HelpSynchronizationIsEnabled = automaticHelpSynchonisationToolStripMenuItem.Checked;
     }
@@ -628,12 +626,12 @@ namespace CAS.UA.Model.Designer
     {
       System.Diagnostics.Process.Start(Resources.MainForm_TechnicalSupportPage);
     }
-    private void sendUsCommentToolStripMenuItem_Click(object sender, EventArgs e)
+    private void HelpSendUsCommentToolStripMenuItem_Click(object sender, EventArgs e)
     {
       MessageBoxSentEmail.OpenEmailClient(Resources.FeatureRequest_EmailAddress,
         Resources.FeatureRequest_Email_Subject_Comments, Resources.FeatureRequest_Email_Body_Comments);
     }
-    private void readmeToolStripMenuItem_Click(object sender, EventArgs e)
+    private void HelpReadmeToolStripMenuItem_Click(object sender, EventArgs e)
     {
       System.Diagnostics.Process.Start(Resources.MainForm_ReadmePage);
     }

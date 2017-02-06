@@ -458,6 +458,9 @@
     <Content Include="CAS.CommServer.ModelDesigner.OPCViewer.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ReleaseNotes.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="DemoConfiguration.oses" />
     <Content Include="exe\CAS.CommServer.UA.ModelCompiler.Command.exe.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -498,7 +501,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </None>
-    <None Include="ReleaseNotes.old.md" />
     <None Include="Resources\UAASMDInstallbanner.jpg" />
     <None Include="Main.cd" />
     <None Include="Properties\Settings.settings">

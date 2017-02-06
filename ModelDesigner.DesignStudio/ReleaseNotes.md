@@ -8,7 +8,7 @@
 * Product:       CAS CommServer Family
 * Trademark:     CommServer
 * Version:       3.20.2
-* Release Date:  2017-02-05
+* Release Date:  2017-02-06
 
 The main changes and new functionality are listed below:
 
@@ -87,10 +87,7 @@ This is only bug-fix release. The main changes and new functionality are listed 
 - Resolved issue with displaying information about license failure;
 - Links to documentation are fixed.
 
-#Archival Information
+# Archival Information
 
 For archival information visit the document [Version History](http://www.commsvr.com/OPC-Help/Index.aspx?topic=html/ada1af70-e1ba-49df-8d0a-8ddc87a0f287.htm)
-
-
-
 
