@@ -49,12 +49,12 @@
     <SupportUrl>http://www.commsvr.com/</SupportUrl>
     <ProductName>CAS UA Address Space Model Designer</ProductName>
     <PublisherName>CAS</PublisherName>
+    <SuiteName>UAModelDesigner</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
-    <WebPage>ASMD.html</WebPage>
-    <AutorunEnabled>true</AutorunEnabled>
+    <WebPage>Default.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
     <ApplicationRevision>57</ApplicationRevision>
-    <ApplicationVersion>3.20.01.%2a</ApplicationVersion>
+    <ApplicationVersion>3.20.02.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -627,6 +627,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -651,11 +656,6 @@
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="OpcEnum">
-      <Visible>False</Visible>
-      <ProductName>OpcCoreSetup</ProductName>
-      <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="OpenXml.SDL.V2">
       <Visible>False</Visible>
