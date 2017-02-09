@@ -13,7 +13,6 @@
 //  http://www.cas.eu
 //_______________________________________________________________
 
-using CAS.Lib.CodeProtect;
 using CAS.Lib.OPCClientControlsLib;
 using System;
 using System.Diagnostics;
@@ -22,7 +21,7 @@ using System.Security;
 using System.Security.Permissions;
 using System.Windows.Forms;
 
-namespace CAS.CommServer.ModelDesigner.OPCViewer
+namespace CAS.CommServer.UA.ModelDesigner.OPCViewer
 {
   /// <summary>
   /// Class Program.
@@ -66,6 +65,7 @@ namespace CAS.CommServer.ModelDesigner.OPCViewer
           MessageBox.Show(msg, "CAS OPCViewer Data Access Client");
         }
         MainFormV2008 mainForm = mainForm = new MainFormV2008();
+        mainForm.ShowDialog();
         Application.Run(mainForm);
         AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Information, 43, $"Finishing application {  Assembly.GetCallingAssembly().GetName().Name}");
       }

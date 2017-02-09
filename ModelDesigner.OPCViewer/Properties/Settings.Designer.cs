@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CAS.CommServer.ModelDesigner.OPCViewer.Properties {
+namespace CAS.CommServer.UA.ModelDesigner.OPCViewer.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

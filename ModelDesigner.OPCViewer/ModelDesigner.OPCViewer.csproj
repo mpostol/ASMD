@@ -7,8 +7,8 @@
     <ProjectGuid>{23B79981-905D-4EEA-9450-0EBE196445DD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CAS.CommServer.ModelDesigner.OPCViewer</RootNamespace>
-    <AssemblyName>CAS.CommServer.ModelDesigner.OPCViewer</AssemblyName>
+    <RootNamespace>CAS.CommServer.UA.ModelDesigner.OPCViewer</RootNamespace>
+    <AssemblyName>CAS.CommServer.UA.ModelDesigner.OPCViewer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -202,7 +202,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy $(TargetName).exe.config ..\..\..\ModelDesigner.DesignStudio\ /q/y</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

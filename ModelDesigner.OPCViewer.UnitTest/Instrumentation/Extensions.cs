@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace CAS.CommServer.ModelDesigner.OPCViewer.UnitTest.Instrumentation
+namespace CAS.CommServer.UA.ModelDesigner.OPCViewer.UnitTest.Instrumentation
 {
   internal static class Extensions
   {
