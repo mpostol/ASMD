@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace CAS.CommServer.ModelDesigner.OPCViewer.UnitTestt
+namespace CAS.CommServer.ModelDesigner.OPCViewer.UnitTest
 {
   [TestClass]
   public class AssemblyTraceEventUnitTest
@@ -19,7 +19,7 @@ namespace CAS.CommServer.ModelDesigner.OPCViewer.UnitTestt
     {
       TraceSource _tracer = AssemblyTraceEvent.Tracer;
       Assert.IsNotNull(_tracer);
-      Assert.AreEqual(2, _tracer.Listeners.Count);
+      Assert.AreEqual(2, _tracer.Listeners.Count, $"Available listners: {System.String.Join(", ", _tracer.Listeners.Cast<TraceListener>().Select<TraceListener, string>(x => x.Name).ToArray<String>())}");
       Dictionary<string, TraceListener> _listeners = _tracer.Listeners.Cast<TraceListener>().ToDictionary<TraceListener, string>(x => x.Name);
       Assert.IsTrue(_listeners.ContainsKey("LogFile"));
       TraceListener _listener = _listeners["LogFile"];
