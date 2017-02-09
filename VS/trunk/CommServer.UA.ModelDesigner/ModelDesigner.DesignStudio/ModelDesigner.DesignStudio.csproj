@@ -52,7 +52,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>Default.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>60</ApplicationRevision>
+    <ApplicationRevision>62</ApplicationRevision>
     <ApplicationVersion>3.20.02.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -93,12 +93,40 @@
       <HintPath>..\packages\CAS.Licenses.Container.2.00.06\lib\net451\CAS.CommonResources.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CAS.CommServer.DA.Client.Operations, Version=2.0.18.39654, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.DA.Client.2.00.18\lib\net451\CAS.CommServer.DA.Client.Operations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.CommServer.DA.Client.Services, Version=2.0.18.39653, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.DA.Client.2.00.18\lib\net451\CAS.CommServer.DA.Client.Services.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.CommServer.DA.Viewer.AddressSpace, Version=3.11.17.41002, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.DA.Viewer.3.11.17\lib\net451\CAS.CommServer.DA.Viewer.AddressSpace.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.CommServer.DA.Viewer.FormControls, Version=3.11.17.41003, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.DA.Viewer.3.11.17\lib\net451\CAS.CommServer.DA.Viewer.FormControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CAS.CommServer.DAClientConfiguration, Version=5.1.6.25005, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.CommServer.DAClientConfiguration.5.01.06\lib\net451\CAS.CommServer.DAClientConfiguration.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CAS.CommServer.DeviceSimulator, Version=5.1.6.25004, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.DeviceSimulator.5.01.06\lib\net451\CAS.CommServer.DeviceSimulator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.CommServer.OPCClassicSDK.COMWrapper, Version=2.1.1063.26814, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.OPCClassic.SDK.COMWrapper.2.01.1063\lib\net451\CAS.CommServer.OPCClassicSDK.COMWrapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CAS.CommServer.OPCClassicSDK.Core, Version=2.1.1062.39746, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.CommServer.OPCClassic.SDK.Core.2.01.1062\lib\net451\CAS.CommServer.OPCClassicSDK.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CAS.CommServer.OPCClassicSDK.OpcComRcw, Version=2.1.1063.26813, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.OPCClassic.SDK.COMWrapper.2.01.1063\lib\net451\CAS.CommServer.OPCClassicSDK.OpcComRcw.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CAS.CommServer.UA.Common, Version=3.0.5.33238, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
@@ -453,9 +481,6 @@
     <Compile Include="Wrappers\WrapperTreeNode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CAS.CommServer.ModelDesigner.OPCViewer.exe.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="ReleaseNotes.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -618,10 +643,6 @@
     <ProjectReference Include="..\ModelDesigner.ImportExport\ModelDesigner.ImportExport.csproj">
       <Project>{7c805bc4-b9c0-48e0-9d3f-d1c322b35acb}</Project>
       <Name>ModelDesigner.ImportExport</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ModelDesigner.OPCViewer\ModelDesigner.OPCViewer.csproj">
-      <Project>{23b79981-905d-4eea-9450-0ebe196445dd}</Project>
-      <Name>ModelDesigner.OPCViewer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

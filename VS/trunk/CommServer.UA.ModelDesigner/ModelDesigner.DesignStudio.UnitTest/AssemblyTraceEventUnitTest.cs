@@ -20,7 +20,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest
     {
       TraceSource _tracer = AssemblyTraceEvent.Tracer;
       Assert.IsNotNull(_tracer);
-      Assert.AreEqual(1, _tracer.Listeners.Count);
+      Assert.AreEqual(1, _tracer.Listeners.Count, $"Available listners: {System.String.Join(", ", _tracer.Listeners.Cast<TraceListener>().Select<TraceListener, string>(x => x.Name).ToArray<String>())}");
       Dictionary<string, TraceListener> _listeners = _tracer.Listeners.Cast<TraceListener>().ToDictionary<TraceListener, string>(x => x.Name);
       Assert.IsTrue(_listeners.ContainsKey("LogFile"));
       TraceListener _listener = _listeners["LogFile"];

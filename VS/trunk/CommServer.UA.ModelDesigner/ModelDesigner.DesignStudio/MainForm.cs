@@ -689,14 +689,14 @@ namespace CAS.UA.Model.Designer
     }
     private void oPCViewerToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      string PathToStart = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Properties.Settings.Default.OPCViewerAssemblyName);
       try
       {
-        System.Diagnostics.Process.Start(PathToStart);
+        Lib.OPCClientControlsLib.MainFormV2008 _mainForm = new Lib.OPCClientControlsLib.MainFormV2008();
+        _mainForm.Show();
       }
       catch (Exception ex)
       {
-        AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 700, Resources.ProcessStart_Exception, PathToStart, ex.Message);
+        AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 700, $"OPC Viewer has thrown the exception {ex.Message}");
       }
     }
     private void visualisationToolStripMenuItem_DropDownOpening(object sender, EventArgs e)

@@ -19,7 +19,7 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace CAS.CommServer.ModelDesigner.OPCViewer
+namespace CAS.CommServer.UA.ModelDesigner.OPCViewer
 {
   /// <summary>
   /// class responsible for tracing inside this module, it uses  <see cref="TraceSource"/> with the name "CAS.CommServer.UA.ModelDesigner.DesignStudio"

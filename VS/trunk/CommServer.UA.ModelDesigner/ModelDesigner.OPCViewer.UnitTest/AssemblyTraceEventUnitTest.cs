@@ -1,5 +1,5 @@
 ﻿
-using CAS.CommServer.ModelDesigner.OPCViewer.UnitTest.Instrumentation;
+using CAS.CommServer.UA.ModelDesigner.OPCViewer.UnitTest.Instrumentation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace CAS.CommServer.ModelDesigner.OPCViewer.UnitTest
+namespace CAS.CommServer.UA.ModelDesigner.OPCViewer.UnitTest
 {
   [TestClass]
   public class AssemblyTraceEventUnitTest
