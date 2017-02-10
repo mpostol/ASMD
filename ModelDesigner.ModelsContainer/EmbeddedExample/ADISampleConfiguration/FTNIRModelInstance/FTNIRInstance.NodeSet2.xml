@@ -1,0 +1,1666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UANodeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" LastModified="2016-06-29T19:12:06.711579Z" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd">
+  <NamespaceUris>
+    <Uri>http://cas.eu/UA/FTNIR/</Uri>
+    <Uri>http://opcfoundation.org/UA/DI/</Uri>
+    <Uri>http://opcfoundation.org/UA/ADI/</Uri>
+    <Uri>http://opcfoundation.org/UA/FTNIR/</Uri>
+  </NamespaceUris>
+  <Aliases>
+    <Alias Alias="Boolean">i=1</Alias>
+    <Alias Alias="SByte">i=2</Alias>
+    <Alias Alias="Byte">i=3</Alias>
+    <Alias Alias="Int16">i=4</Alias>
+    <Alias Alias="UInt16">i=5</Alias>
+    <Alias Alias="Int32">i=6</Alias>
+    <Alias Alias="UInt32">i=7</Alias>
+    <Alias Alias="Int64">i=8</Alias>
+    <Alias Alias="UInt64">i=9</Alias>
+    <Alias Alias="Float">i=10</Alias>
+    <Alias Alias="Double">i=11</Alias>
+    <Alias Alias="DateTime">i=13</Alias>
+    <Alias Alias="String">i=12</Alias>
+    <Alias Alias="ByteString">i=15</Alias>
+    <Alias Alias="Guid">i=14</Alias>
+    <Alias Alias="XmlElement">i=16</Alias>
+    <Alias Alias="NodeId">i=17</Alias>
+    <Alias Alias="ExpandedNodeId">i=18</Alias>
+    <Alias Alias="QualifiedName">i=20</Alias>
+    <Alias Alias="LocalizedText">i=21</Alias>
+    <Alias Alias="StatusCode">i=19</Alias>
+    <Alias Alias="Structure">i=22</Alias>
+    <Alias Alias="Number">i=26</Alias>
+    <Alias Alias="Integer">i=27</Alias>
+    <Alias Alias="UInteger">i=28</Alias>
+    <Alias Alias="HasComponent">i=47</Alias>
+    <Alias Alias="HasProperty">i=46</Alias>
+    <Alias Alias="Organizes">i=35</Alias>
+    <Alias Alias="HasEventSource">i=36</Alias>
+    <Alias Alias="HasNotifier">i=48</Alias>
+    <Alias Alias="HasSubtype">i=45</Alias>
+    <Alias Alias="HasTypeDefinition">i=40</Alias>
+    <Alias Alias="HasModellingRule">i=37</Alias>
+    <Alias Alias="HasEncoding">i=38</Alias>
+    <Alias Alias="HasDescription">i=39</Alias>
+  </Aliases>
+  <UAObject NodeId="ns=1;i=13012" BrowseName="1:Spectrometer simulator" SymbolicName="FTNIR_Simulator" EventNotifier="1">
+    <DisplayName>FT-IR spectrometer simulator</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13014</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13015</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13016</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13017</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13018</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13019</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13020</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13021</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13022</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13023</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13080</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13081</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13082</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13083</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13127</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13202</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13791</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=2;i=12260</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=1961</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13014" BrowseName="2:MethodSet" ParentNodeId="ns=1;i=13012">
+    <DisplayName>MethodSet</DisplayName>
+    <Description>Flat list of Methods</Description>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13024</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13026</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13029</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13031</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13034</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13035</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13036</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13037</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13038</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13039</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAObject>
+  <UAMethod NodeId="ns=1;i=13024" BrowseName="3:GetConfiguration" ParentNodeId="ns=1;i=13014" MethodDeclarationId="ns=3;i=2905">
+    <DisplayName>GetConfiguration</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=13025</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13014</Reference>
+    </References>
+  </UAMethod>
+  <UAVariable NodeId="ns=1;i=13025" BrowseName="OutputArguments" ParentNodeId="ns=1;i=13024" DataType="i=296" ValueRank="1">
+    <DisplayName>OutputArguments</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13024</Reference>
+    </References>
+    <Value>
+      <ListOfExtensionObject xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+        <ExtensionObject>
+          <TypeId>
+            <Identifier>i=297</Identifier>
+          </TypeId>
+          <Body>
+            <Argument>
+              <Name>ConfigData</Name>
+              <DataType>
+                <Identifier>i=15</Identifier>
+              </DataType>
+              <ValueRank>-1</ValueRank>
+              <ArrayDimensions />
+              <Description p5:nil="true" xmlns:p5="http://www.w3.org/2001/XMLSchema-instance" />
+            </Argument>
+          </Body>
+        </ExtensionObject>
+      </ListOfExtensionObject>
+    </Value>
+  </UAVariable>
+  <UAMethod NodeId="ns=1;i=13026" BrowseName="3:SetConfiguration" ParentNodeId="ns=1;i=13014" MethodDeclarationId="ns=3;i=2907">
+    <DisplayName>SetConfiguration</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=13027</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13028</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13014</Reference>
+    </References>
+  </UAMethod>
+  <UAVariable NodeId="ns=1;i=13027" BrowseName="InputArguments" ParentNodeId="ns=1;i=13026" DataType="i=296" ValueRank="1">
+    <DisplayName>InputArguments</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13026</Reference>
+    </References>
+    <Value>
+      <ListOfExtensionObject xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+        <ExtensionObject>
+          <TypeId>
+            <Identifier>i=297</Identifier>
+          </TypeId>
+          <Body>
+            <Argument>
+              <Name>ConfigData</Name>
+              <DataType>
+                <Identifier>i=15</Identifier>
+              </DataType>
+              <ValueRank>-1</ValueRank>
+              <ArrayDimensions />
+              <Description p5:nil="true" xmlns:p5="http://www.w3.org/2001/XMLSchema-instance" />
+            </Argument>
+          </Body>
+        </ExtensionObject>
+      </ListOfExtensionObject>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13028" BrowseName="OutputArguments" ParentNodeId="ns=1;i=13026" DataType="i=296" ValueRank="1">
+    <DisplayName>OutputArguments</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13026</Reference>
+    </References>
+    <Value>
+      <ListOfExtensionObject xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+        <ExtensionObject>
+          <TypeId>
+            <Identifier>i=297</Identifier>
+          </TypeId>
+          <Body>
+            <Argument>
+              <Name>ConfigDataDigest</Name>
+              <DataType>
+                <Identifier>i=12</Identifier>
+              </DataType>
+              <ValueRank>-1</ValueRank>
+              <ArrayDimensions />
+              <Description p5:nil="true" xmlns:p5="http://www.w3.org/2001/XMLSchema-instance" />
+            </Argument>
+          </Body>
+        </ExtensionObject>
+      </ListOfExtensionObject>
+    </Value>
+  </UAVariable>
+  <UAMethod NodeId="ns=1;i=13029" BrowseName="3:GetConfigDataDigest" ParentNodeId="ns=1;i=13014" MethodDeclarationId="ns=3;i=2910">
+    <DisplayName>GetConfigDataDigest</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=13030</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13014</Reference>
+    </References>
+  </UAMethod>
+  <UAVariable NodeId="ns=1;i=13030" BrowseName="OutputArguments" ParentNodeId="ns=1;i=13029" DataType="i=296" ValueRank="1">
+    <DisplayName>OutputArguments</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13029</Reference>
+    </References>
+    <Value>
+      <ListOfExtensionObject xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+        <ExtensionObject>
+          <TypeId>
+            <Identifier>i=297</Identifier>
+          </TypeId>
+          <Body>
+            <Argument>
+              <Name>ConfigDataDigest</Name>
+              <DataType>
+                <Identifier>i=12</Identifier>
+              </DataType>
+              <ValueRank>-1</ValueRank>
+              <ArrayDimensions />
+              <Description p5:nil="true" xmlns:p5="http://www.w3.org/2001/XMLSchema-instance" />
+            </Argument>
+          </Body>
+        </ExtensionObject>
+      </ListOfExtensionObject>
+    </Value>
+  </UAVariable>
+  <UAMethod NodeId="ns=1;i=13031" BrowseName="3:CompareConfigDataDigest" ParentNodeId="ns=1;i=13014" MethodDeclarationId="ns=3;i=2912">
+    <DisplayName>CompareConfigDataDigest</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=13032</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13033</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13014</Reference>
+    </References>
+  </UAMethod>
+  <UAVariable NodeId="ns=1;i=13032" BrowseName="InputArguments" ParentNodeId="ns=1;i=13031" DataType="i=296" ValueRank="1">
+    <DisplayName>InputArguments</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13031</Reference>
+    </References>
+    <Value>
+      <ListOfExtensionObject xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+        <ExtensionObject>
+          <TypeId>
+            <Identifier>i=297</Identifier>
+          </TypeId>
+          <Body>
+            <Argument>
+              <Name>ConfigDataDigest</Name>
+              <DataType>
+                <Identifier>i=12</Identifier>
+              </DataType>
+              <ValueRank>-1</ValueRank>
+              <ArrayDimensions />
+              <Description p5:nil="true" xmlns:p5="http://www.w3.org/2001/XMLSchema-instance" />
+            </Argument>
+          </Body>
+        </ExtensionObject>
+      </ListOfExtensionObject>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13033" BrowseName="OutputArguments" ParentNodeId="ns=1;i=13031" DataType="i=296" ValueRank="1">
+    <DisplayName>OutputArguments</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13031</Reference>
+    </References>
+    <Value>
+      <ListOfExtensionObject xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+        <ExtensionObject>
+          <TypeId>
+            <Identifier>i=297</Identifier>
+          </TypeId>
+          <Body>
+            <Argument>
+              <Name>IsEqual</Name>
+              <DataType>
+                <Identifier>i=1</Identifier>
+              </DataType>
+              <ValueRank>-1</ValueRank>
+              <ArrayDimensions />
+              <Description p5:nil="true" xmlns:p5="http://www.w3.org/2001/XMLSchema-instance" />
+            </Argument>
+          </Body>
+        </ExtensionObject>
+      </ListOfExtensionObject>
+    </Value>
+  </UAVariable>
+  <UAMethod NodeId="ns=1;i=13034" BrowseName="3:ResetAllChannels" ParentNodeId="ns=1;i=13014" MethodDeclarationId="ns=3;i=2915">
+    <DisplayName>ResetAllChannels</DisplayName>
+    <Description>Reset all AnalyserChannels belonging to this AnalyserDevice.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13014</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13035" BrowseName="3:StartAllChannels" ParentNodeId="ns=1;i=13014" MethodDeclarationId="ns=3;i=2916">
+    <DisplayName>StartAllChannels</DisplayName>
+    <Description>Start all AnalyserChannels belonging to this AnalyserDevice.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13014</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13036" BrowseName="3:StopAllChannels" ParentNodeId="ns=1;i=13014" MethodDeclarationId="ns=3;i=2917">
+    <DisplayName>StopAllChannels</DisplayName>
+    <Description>Stop all AnalyserChannels belonging to this AnalyserDevice.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13014</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13037" BrowseName="3:AbortAllChannels" ParentNodeId="ns=1;i=13014" MethodDeclarationId="ns=3;i=2918">
+    <DisplayName>AbortAllChannels</DisplayName>
+    <Description>Abort all AnalyserChannels belonging to this AnalyserDevice.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13014</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13038" BrowseName="3:GotoOperating" ParentNodeId="ns=1;i=13014" MethodDeclarationId="ns=3;i=2919">
+    <DisplayName>GotoOperating</DisplayName>
+    <Description>AnalyserDeviceStateMachine to go to Operating state, forcing all AnalyserChannels to leave the SlaveMode state and go to the Operating state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13014</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13039" BrowseName="3:GotoMaintenance" ParentNodeId="ns=1;i=13014" MethodDeclarationId="ns=3;i=2920">
+    <DisplayName>GotoMaintenance</DisplayName>
+    <Description>AnalyserDeviceStateMachine to go to Maintenance state, forcing all AnalyserChannels to SlaveMode state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13014</Reference>
+    </References>
+  </UAMethod>
+  <UAObject NodeId="ns=1;i=13015" BrowseName="2:Identification" ParentNodeId="ns=1;i=13012">
+    <DisplayName>Identification</DisplayName>
+    <Description>Used to organize parameters for identification of this TopologyElement</Description>
+    <References>
+      <Reference ReferenceType="Organizes">ns=2;i=12270</Reference>
+      <Reference ReferenceType="Organizes">ns=2;i=12271</Reference>
+      <Reference ReferenceType="Organizes">ns=2;i=12268</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=13016" BrowseName="2:SerialNumber" ParentNodeId="ns=1;i=13012" DataType="String">
+    <DisplayName>SerialNumber</DisplayName>
+    <Description>Identifier that uniquely identifies, within a manufacturer, a device instance</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13017" BrowseName="2:RevisionCounter" ParentNodeId="ns=1;i=13012" DataType="Int32">
+    <DisplayName>RevisionCounter</DisplayName>
+    <Description>An incremental counter indicating the number of times the static data within the Device has been modified</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13018" BrowseName="2:Manufacturer" ParentNodeId="ns=1;i=13012" DataType="LocalizedText">
+    <DisplayName>Manufacturer</DisplayName>
+    <Description>Model name of the device</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13019" BrowseName="2:Model" ParentNodeId="ns=1;i=13012" DataType="LocalizedText">
+    <DisplayName>Model</DisplayName>
+    <Description>Name of the company that manufactured the device</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13020" BrowseName="2:DeviceManual" ParentNodeId="ns=1;i=13012" DataType="String">
+    <DisplayName>DeviceManual</DisplayName>
+    <Description>Address (pathname in the file system or a URL | Web address) of user manual for the device</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13021" BrowseName="2:DeviceRevision" ParentNodeId="ns=1;i=13012" DataType="String">
+    <DisplayName>DeviceRevision</DisplayName>
+    <Description>Overall revision level of the device</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13022" BrowseName="2:SoftwareRevision" ParentNodeId="ns=1;i=13012" DataType="String">
+    <DisplayName>SoftwareRevision</DisplayName>
+    <Description>Revision level of the software/firmware of the device</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13023" BrowseName="2:HardwareRevision" ParentNodeId="ns=1;i=13012" DataType="String">
+    <DisplayName>HardwareRevision</DisplayName>
+    <Description>Revision level of the hardware of the device</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=13080" BrowseName="3:Configuration" ParentNodeId="ns=1;i=13012">
+    <DisplayName>Configuration</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=14444</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13081" BrowseName="3:Status" ParentNodeId="ns=1;i=13012">
+    <DisplayName>Status</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13040</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13082" BrowseName="3:FactorySettings" ParentNodeId="ns=1;i=13012">
+    <DisplayName>FactorySettings</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13083" BrowseName="3:AnalyserStateMachine" ParentNodeId="ns=1;i=13012">
+    <DisplayName>AnalyserStateMachine</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13084</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=1123</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=13084" BrowseName="CurrentState" ParentNodeId="ns=1;i=13083" DataType="LocalizedText">
+    <DisplayName>CurrentState</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=13085</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=2760</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13083</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13085" BrowseName="Id" ParentNodeId="ns=1;i=13084" DataType="NodeId">
+    <DisplayName>Id</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13084</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=13127" BrowseName="4:IRSourceSlot" ParentNodeId="ns=1;i=13012">
+    <DisplayName>IR Source Slot</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13128</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13129</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13130</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13131</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13178</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=2642</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13128" BrowseName="2:SupportedTypes" ParentNodeId="ns=1;i=13127">
+    <DisplayName>SupportedTypes</DisplayName>
+    <Description>Folder maintaining the set of (sub-types of) BaseObjectTypes that can be instantiated in the ConfigurableComponent</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=61</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13127</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=13129" BrowseName="3:IsHotSwappable" ParentNodeId="ns=1;i=13127" DataType="Boolean">
+    <DisplayName>IsHotSwappable</DisplayName>
+    <Description>True if an accessory can be inserted in the accessory slot while it is powered</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13127</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13130" BrowseName="3:IsEnabled" ParentNodeId="ns=1;i=13127" DataType="Boolean">
+    <DisplayName>IsEnabled</DisplayName>
+    <Description>True if this accessory slot is capable of accepting an accessory in it</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13127</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=13131" BrowseName="3:AccessorySlotStateMachine" ParentNodeId="ns=1;i=13127">
+    <DisplayName>AccessorySlotStateMachine</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13132</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=2692</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13127</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=13132" BrowseName="CurrentState" ParentNodeId="ns=1;i=13131" DataType="LocalizedText">
+    <DisplayName>CurrentState</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=13133</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=2760</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13131</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13133" BrowseName="Id" ParentNodeId="ns=1;i=13132" DataType="NodeId">
+    <DisplayName>Id</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13132</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=13178" BrowseName="1:IRSource" ParentNodeId="ns=1;i=13127">
+    <DisplayName>IR Source</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13182</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13183</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13184</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13185</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13186</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=4;i=254</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13127</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13182" BrowseName="3:Configuration" ParentNodeId="ns=1;i=13178">
+    <DisplayName>Configuration</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=4;i=294</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13178</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13183" BrowseName="3:Status" ParentNodeId="ns=1;i=13178">
+    <DisplayName>Status</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=4;i=297</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13178</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13184" BrowseName="3:FactorySettings" ParentNodeId="ns=1;i=13178">
+    <DisplayName>FactorySettings</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=4;i=285</Reference>
+      <Reference ReferenceType="Organizes">ns=4;i=288</Reference>
+      <Reference ReferenceType="Organizes">ns=4;i=291</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13178</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=13185" BrowseName="3:IsHotSwappable" ParentNodeId="ns=1;i=13178" DataType="Boolean">
+    <DisplayName>IsHotSwappable</DisplayName>
+    <Description>True if this accessory can be inserted in the accessory slot while it is powered</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13178</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13186" BrowseName="3:IsReady" ParentNodeId="ns=1;i=13178" DataType="Boolean">
+    <DisplayName>IsReady</DisplayName>
+    <Description>True if this accessory is ready for use</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13178</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=13202" BrowseName="1:Channel1" ParentNodeId="ns=1;i=13012">
+    <DisplayName>Channel #1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13204</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13231</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13232</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13233</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13552</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13649</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13746</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13770</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=1166</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13204" BrowseName="2:MethodSet" ParentNodeId="ns=1;i=13202">
+    <DisplayName>MethodSet</DisplayName>
+    <Description>Flat list of Methods</Description>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13208</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13209</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13206</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13210</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13211</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13212</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13213</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13214</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13215</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13216</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13217</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13218</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13202</Reference>
+    </References>
+  </UAObject>
+  <UAMethod NodeId="ns=1;i=13208" BrowseName="3:GotoOperating" ParentNodeId="ns=1;i=13204" MethodDeclarationId="ns=3;i=2924">
+    <DisplayName>GotoOperating</DisplayName>
+    <Description>Transitions the AnalyserChannel to Operating mode.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13204</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13209" BrowseName="3:GotoMaintenance" ParentNodeId="ns=1;i=13204" MethodDeclarationId="ns=3;i=2925">
+    <DisplayName>GotoMaintenance</DisplayName>
+    <Description>Transitions the AnalyserChannel to Maintenance mode.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13204</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13206" BrowseName="3:StartSingleAcquisition" ParentNodeId="ns=1;i=13204" MethodDeclarationId="ns=3;i=2922">
+    <DisplayName>StartSingleAcquisition</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=13207</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13204</Reference>
+    </References>
+  </UAMethod>
+  <UAVariable NodeId="ns=1;i=13207" BrowseName="InputArguments" ParentNodeId="ns=1;i=13206" DataType="i=296" ValueRank="1">
+    <DisplayName>InputArguments</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13206</Reference>
+    </References>
+    <Value>
+      <ListOfExtensionObject xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+        <ExtensionObject>
+          <TypeId>
+            <Identifier>i=297</Identifier>
+          </TypeId>
+          <Body>
+            <Argument>
+              <Name>ExecutionCycle</Name>
+              <DataType>
+                <Identifier>ns=3;i=4189</Identifier>
+              </DataType>
+              <ValueRank>-1</ValueRank>
+              <ArrayDimensions />
+              <Description p5:nil="true" xmlns:p5="http://www.w3.org/2001/XMLSchema-instance" />
+            </Argument>
+          </Body>
+        </ExtensionObject>
+        <ExtensionObject>
+          <TypeId>
+            <Identifier>i=297</Identifier>
+          </TypeId>
+          <Body>
+            <Argument>
+              <Name>ExecutionCycleSubcode</Name>
+              <DataType>
+                <Identifier>i=7</Identifier>
+              </DataType>
+              <ValueRank>-1</ValueRank>
+              <ArrayDimensions />
+              <Description p5:nil="true" xmlns:p5="http://www.w3.org/2001/XMLSchema-instance" />
+            </Argument>
+          </Body>
+        </ExtensionObject>
+        <ExtensionObject>
+          <TypeId>
+            <Identifier>i=297</Identifier>
+          </TypeId>
+          <Body>
+            <Argument>
+              <Name>SelectedStream</Name>
+              <DataType>
+                <Identifier>i=12</Identifier>
+              </DataType>
+              <ValueRank>-1</ValueRank>
+              <ArrayDimensions />
+              <Description p5:nil="true" xmlns:p5="http://www.w3.org/2001/XMLSchema-instance" />
+            </Argument>
+          </Body>
+        </ExtensionObject>
+      </ListOfExtensionObject>
+    </Value>
+  </UAVariable>
+  <UAMethod NodeId="ns=1;i=13210" BrowseName="3:Reset" ParentNodeId="ns=1;i=13204" MethodDeclarationId="ns=3;i=2926">
+    <DisplayName>Reset</DisplayName>
+    <Description>Causes transition to the Resetting state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13204</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13211" BrowseName="3:Start" ParentNodeId="ns=1;i=13204" MethodDeclarationId="ns=3;i=2927">
+    <DisplayName>Start</DisplayName>
+    <Description>Causes transition to the Starting state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13204</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13212" BrowseName="3:Stop" ParentNodeId="ns=1;i=13204" MethodDeclarationId="ns=3;i=2928">
+    <DisplayName>Stop</DisplayName>
+    <Description>Causes transition to the Stopping state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13204</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13213" BrowseName="3:Hold" ParentNodeId="ns=1;i=13204" MethodDeclarationId="ns=3;i=2929">
+    <DisplayName>Hold</DisplayName>
+    <Description>Causes transition to the Holding state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13204</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13214" BrowseName="3:Unhold" ParentNodeId="ns=1;i=13204" MethodDeclarationId="ns=3;i=2930">
+    <DisplayName>Unhold</DisplayName>
+    <Description>Causes transition to the Unholding state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13204</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13215" BrowseName="3:Suspend" ParentNodeId="ns=1;i=13204" MethodDeclarationId="ns=3;i=2931">
+    <DisplayName>Suspend</DisplayName>
+    <Description>Causes transition to the Suspending state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13204</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13216" BrowseName="3:Unsuspend" ParentNodeId="ns=1;i=13204" MethodDeclarationId="ns=3;i=2932">
+    <DisplayName>Unsuspend</DisplayName>
+    <Description>Causes transition to the Unsuspending state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13204</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13217" BrowseName="3:Abort" ParentNodeId="ns=1;i=13204" MethodDeclarationId="ns=3;i=2933">
+    <DisplayName>Abort</DisplayName>
+    <Description>Causes transition to the Aborting state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13204</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13218" BrowseName="3:Clear" ParentNodeId="ns=1;i=13204" MethodDeclarationId="ns=3;i=2934">
+    <DisplayName>Clear</DisplayName>
+    <Description>Causes transition to the Clearing state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13204</Reference>
+    </References>
+  </UAMethod>
+  <UAObject NodeId="ns=1;i=13231" BrowseName="3:Configuration" ParentNodeId="ns=1;i=13202">
+    <DisplayName>Configuration</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13222</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13202</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13232" BrowseName="3:Status" ParentNodeId="ns=1;i=13202">
+    <DisplayName>Status</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13225</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13228</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13202</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13233" BrowseName="3:ChannelStateMachine" ParentNodeId="ns=1;i=13202" EventNotifier="1">
+    <DisplayName>ChannelStateMachine</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13234</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14635</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=1233</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13202</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=13234" BrowseName="CurrentState" ParentNodeId="ns=1;i=13233" DataType="LocalizedText">
+    <DisplayName>CurrentState</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=13235</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=2760</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13233</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13235" BrowseName="Id" ParentNodeId="ns=1;i=13234" DataType="NodeId">
+    <DisplayName>Id</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13234</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=14635" BrowseName="3:OperatingSubStateMachine" ParentNodeId="ns=1;i=13233">
+    <DisplayName>OperatingSubStateMachine</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=14636</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14647</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=1275</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13233</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=14636" BrowseName="CurrentState" ParentNodeId="ns=1;i=14635" DataType="LocalizedText">
+    <DisplayName>CurrentState</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=14637</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=2760</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14635</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=14637" BrowseName="Id" ParentNodeId="ns=1;i=14636" DataType="NodeId">
+    <DisplayName>Id</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=14636</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=14647" BrowseName="3:OperatingExecuteSubStateMachine" ParentNodeId="ns=1;i=14635">
+    <DisplayName>OperatingExecuteSubStateMachine</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=14648</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=1651</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14635</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=14648" BrowseName="CurrentState" ParentNodeId="ns=1;i=14647" DataType="LocalizedText">
+    <DisplayName>CurrentState</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=14649</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=2760</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14647</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=14649" BrowseName="Id" ParentNodeId="ns=1;i=14648" DataType="NodeId">
+    <DisplayName>Id</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=14648</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=13552" BrowseName="1:Channel1Stream1" ParentNodeId="ns=1;i=13202">
+    <DisplayName>Stream #1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13642</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13643</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13644</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13645</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13646</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13647</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13648</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=1866</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13202</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13642" BrowseName="3:Configuration" ParentNodeId="ns=1;i=13552">
+    <DisplayName>Configuration</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13556</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13559</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13552</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13643" BrowseName="3:Status" ParentNodeId="ns=1;i=13552">
+    <DisplayName>Status</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13562</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13565</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13568</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13571</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13552</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13644" BrowseName="3:AcquisitionSettings" ParentNodeId="ns=1;i=13552">
+    <DisplayName>AcquisitionSettings</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13574</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13552</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13645" BrowseName="3:AcquisitionStatus" ParentNodeId="ns=1;i=13552">
+    <DisplayName>AcquisitionStatus</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13580</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13583</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13584</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13588</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13552</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13646" BrowseName="3:AcquisitionData" ParentNodeId="ns=1;i=13552">
+    <DisplayName>AcquisitionData</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13591</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13597</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13600</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13603</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14700</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13606</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13552</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13647" BrowseName="3:ChemometricModelSettings" ParentNodeId="ns=1;i=13552">
+    <DisplayName>ChemometricModelSettings</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13552</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13648" BrowseName="3:Context" ParentNodeId="ns=1;i=13552">
+    <DisplayName>Context</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13609</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13612</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13615</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13618</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13621</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13624</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13627</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13630</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13633</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13636</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13639</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13552</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13649" BrowseName="1:Channel1Stream2" ParentNodeId="ns=1;i=13202">
+    <DisplayName>Stream #1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13739</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13740</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13741</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13742</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13743</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13744</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13745</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=1866</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13202</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13739" BrowseName="3:Configuration" ParentNodeId="ns=1;i=13649">
+    <DisplayName>Configuration</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13653</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13656</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13649</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13740" BrowseName="3:Status" ParentNodeId="ns=1;i=13649">
+    <DisplayName>Status</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13659</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13662</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13665</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13668</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13649</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13741" BrowseName="3:AcquisitionSettings" ParentNodeId="ns=1;i=13649">
+    <DisplayName>AcquisitionSettings</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13671</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13649</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13742" BrowseName="3:AcquisitionStatus" ParentNodeId="ns=1;i=13649">
+    <DisplayName>AcquisitionStatus</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13677</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13680</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13681</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13685</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13649</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13743" BrowseName="3:AcquisitionData" ParentNodeId="ns=1;i=13649">
+    <DisplayName>AcquisitionData</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13688</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13694</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13697</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13700</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14727</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13703</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13649</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13744" BrowseName="3:ChemometricModelSettings" ParentNodeId="ns=1;i=13649">
+    <DisplayName>ChemometricModelSettings</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13649</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13745" BrowseName="3:Context" ParentNodeId="ns=1;i=13649">
+    <DisplayName>Context</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13706</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13709</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13712</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13715</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13718</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13721</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13724</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13727</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13730</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13733</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13736</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13649</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13746" BrowseName="3:Channel1DetectorSlot" ParentNodeId="ns=1;i=13202">
+    <DisplayName>Detector Slot</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13750</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13751</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13752</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13753</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13754</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=4;i=300</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13202</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13750" BrowseName="3:Configuration" ParentNodeId="ns=1;i=13746">
+    <DisplayName>Configuration</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=4;i=340</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13746</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13751" BrowseName="3:Status" ParentNodeId="ns=1;i=13746">
+    <DisplayName>Status</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=4;i=343</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13746</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13752" BrowseName="3:FactorySettings" ParentNodeId="ns=1;i=13746">
+    <DisplayName>FactorySettings</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=4;i=331</Reference>
+      <Reference ReferenceType="Organizes">ns=4;i=334</Reference>
+      <Reference ReferenceType="Organizes">ns=4;i=337</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13746</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=13753" BrowseName="3:IsHotSwappable" ParentNodeId="ns=1;i=13746" DataType="Boolean">
+    <DisplayName>IsHotSwappable</DisplayName>
+    <Description>True if this accessory can be inserted in the accessory slot while it is powered</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13746</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13754" BrowseName="3:IsReady" ParentNodeId="ns=1;i=13746" DataType="Boolean">
+    <DisplayName>IsReady</DisplayName>
+    <Description>True if this accessory is ready for use</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13746</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=13770" BrowseName="1:Channel1LiquidCellSlot" ParentNodeId="ns=1;i=13202">
+    <DisplayName>Liquid cell Slot</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13774</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13775</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13776</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13777</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=13778</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=4;i=346</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13202</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13774" BrowseName="3:Configuration" ParentNodeId="ns=1;i=13770">
+    <DisplayName>Configuration</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13770</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13775" BrowseName="3:Status" ParentNodeId="ns=1;i=13770">
+    <DisplayName>Status</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=4;i=386</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13770</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13776" BrowseName="3:FactorySettings" ParentNodeId="ns=1;i=13770">
+    <DisplayName>FactorySettings</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=4;i=377</Reference>
+      <Reference ReferenceType="Organizes">ns=4;i=380</Reference>
+      <Reference ReferenceType="Organizes">ns=4;i=383</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13770</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=13777" BrowseName="3:IsHotSwappable" ParentNodeId="ns=1;i=13770" DataType="Boolean">
+    <DisplayName>IsHotSwappable</DisplayName>
+    <Description>True if this accessory can be inserted in the accessory slot while it is powered</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13770</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13778" BrowseName="3:IsReady" ParentNodeId="ns=1;i=13770" DataType="Boolean">
+    <DisplayName>IsReady</DisplayName>
+    <Description>True if this accessory is ready for use</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13770</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=13791" BrowseName="1:Channel2" ParentNodeId="ns=1;i=13012">
+    <DisplayName>Channel #2</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13793</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13820</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13821</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13822</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14141</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14238</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14335</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14359</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=1166</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13012</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13793" BrowseName="2:MethodSet" ParentNodeId="ns=1;i=13791">
+    <DisplayName>MethodSet</DisplayName>
+    <Description>Flat list of Methods</Description>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13797</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13798</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13795</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13799</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13800</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13801</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13802</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13803</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13804</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13805</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13806</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=13807</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13791</Reference>
+    </References>
+  </UAObject>
+  <UAMethod NodeId="ns=1;i=13797" BrowseName="3:GotoOperating" ParentNodeId="ns=1;i=13793" MethodDeclarationId="ns=3;i=2924">
+    <DisplayName>GotoOperating</DisplayName>
+    <Description>Transitions the AnalyserChannel to Operating mode.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13793</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13798" BrowseName="3:GotoMaintenance" ParentNodeId="ns=1;i=13793" MethodDeclarationId="ns=3;i=2925">
+    <DisplayName>GotoMaintenance</DisplayName>
+    <Description>Transitions the AnalyserChannel to Maintenance mode.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13793</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13795" BrowseName="3:StartSingleAcquisition" ParentNodeId="ns=1;i=13793" MethodDeclarationId="ns=3;i=2922">
+    <DisplayName>StartSingleAcquisition</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=13796</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13793</Reference>
+    </References>
+  </UAMethod>
+  <UAVariable NodeId="ns=1;i=13796" BrowseName="InputArguments" ParentNodeId="ns=1;i=13795" DataType="i=296" ValueRank="1">
+    <DisplayName>InputArguments</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13795</Reference>
+    </References>
+    <Value>
+      <ListOfExtensionObject xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+        <ExtensionObject>
+          <TypeId>
+            <Identifier>i=297</Identifier>
+          </TypeId>
+          <Body>
+            <Argument>
+              <Name>ExecutionCycle</Name>
+              <DataType>
+                <Identifier>ns=3;i=4189</Identifier>
+              </DataType>
+              <ValueRank>-1</ValueRank>
+              <ArrayDimensions />
+              <Description p5:nil="true" xmlns:p5="http://www.w3.org/2001/XMLSchema-instance" />
+            </Argument>
+          </Body>
+        </ExtensionObject>
+        <ExtensionObject>
+          <TypeId>
+            <Identifier>i=297</Identifier>
+          </TypeId>
+          <Body>
+            <Argument>
+              <Name>ExecutionCycleSubcode</Name>
+              <DataType>
+                <Identifier>i=7</Identifier>
+              </DataType>
+              <ValueRank>-1</ValueRank>
+              <ArrayDimensions />
+              <Description p5:nil="true" xmlns:p5="http://www.w3.org/2001/XMLSchema-instance" />
+            </Argument>
+          </Body>
+        </ExtensionObject>
+        <ExtensionObject>
+          <TypeId>
+            <Identifier>i=297</Identifier>
+          </TypeId>
+          <Body>
+            <Argument>
+              <Name>SelectedStream</Name>
+              <DataType>
+                <Identifier>i=12</Identifier>
+              </DataType>
+              <ValueRank>-1</ValueRank>
+              <ArrayDimensions />
+              <Description p5:nil="true" xmlns:p5="http://www.w3.org/2001/XMLSchema-instance" />
+            </Argument>
+          </Body>
+        </ExtensionObject>
+      </ListOfExtensionObject>
+    </Value>
+  </UAVariable>
+  <UAMethod NodeId="ns=1;i=13799" BrowseName="3:Reset" ParentNodeId="ns=1;i=13793" MethodDeclarationId="ns=3;i=2926">
+    <DisplayName>Reset</DisplayName>
+    <Description>Causes transition to the Resetting state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13793</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13800" BrowseName="3:Start" ParentNodeId="ns=1;i=13793" MethodDeclarationId="ns=3;i=2927">
+    <DisplayName>Start</DisplayName>
+    <Description>Causes transition to the Starting state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13793</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13801" BrowseName="3:Stop" ParentNodeId="ns=1;i=13793" MethodDeclarationId="ns=3;i=2928">
+    <DisplayName>Stop</DisplayName>
+    <Description>Causes transition to the Stopping state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13793</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13802" BrowseName="3:Hold" ParentNodeId="ns=1;i=13793" MethodDeclarationId="ns=3;i=2929">
+    <DisplayName>Hold</DisplayName>
+    <Description>Causes transition to the Holding state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13793</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13803" BrowseName="3:Unhold" ParentNodeId="ns=1;i=13793" MethodDeclarationId="ns=3;i=2930">
+    <DisplayName>Unhold</DisplayName>
+    <Description>Causes transition to the Unholding state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13793</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13804" BrowseName="3:Suspend" ParentNodeId="ns=1;i=13793" MethodDeclarationId="ns=3;i=2931">
+    <DisplayName>Suspend</DisplayName>
+    <Description>Causes transition to the Suspending state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13793</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13805" BrowseName="3:Unsuspend" ParentNodeId="ns=1;i=13793" MethodDeclarationId="ns=3;i=2932">
+    <DisplayName>Unsuspend</DisplayName>
+    <Description>Causes transition to the Unsuspending state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13793</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13806" BrowseName="3:Abort" ParentNodeId="ns=1;i=13793" MethodDeclarationId="ns=3;i=2933">
+    <DisplayName>Abort</DisplayName>
+    <Description>Causes transition to the Aborting state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13793</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=13807" BrowseName="3:Clear" ParentNodeId="ns=1;i=13793" MethodDeclarationId="ns=3;i=2934">
+    <DisplayName>Clear</DisplayName>
+    <Description>Causes transition to the Clearing state.</Description>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13793</Reference>
+    </References>
+  </UAMethod>
+  <UAObject NodeId="ns=1;i=13820" BrowseName="3:Configuration" ParentNodeId="ns=1;i=13791">
+    <DisplayName>Configuration</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13811</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13791</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13821" BrowseName="3:Status" ParentNodeId="ns=1;i=13791">
+    <DisplayName>Status</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=13814</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=13817</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13791</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=13822" BrowseName="3:ChannelStateMachine" ParentNodeId="ns=1;i=13791" EventNotifier="1">
+    <DisplayName>ChannelStateMachine</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=13823</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14797</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=1233</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13791</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=13823" BrowseName="CurrentState" ParentNodeId="ns=1;i=13822" DataType="LocalizedText">
+    <DisplayName>CurrentState</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=13824</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=2760</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13822</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=13824" BrowseName="Id" ParentNodeId="ns=1;i=13823" DataType="NodeId">
+    <DisplayName>Id</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=13823</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=14797" BrowseName="3:OperatingSubStateMachine" ParentNodeId="ns=1;i=13822">
+    <DisplayName>OperatingSubStateMachine</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=14798</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14809</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=1275</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13822</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=14798" BrowseName="CurrentState" ParentNodeId="ns=1;i=14797" DataType="LocalizedText">
+    <DisplayName>CurrentState</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=14799</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=2760</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14797</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=14799" BrowseName="Id" ParentNodeId="ns=1;i=14798" DataType="NodeId">
+    <DisplayName>Id</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=14798</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=14809" BrowseName="3:OperatingExecuteSubStateMachine" ParentNodeId="ns=1;i=14797">
+    <DisplayName>OperatingExecuteSubStateMachine</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=14810</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=1651</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14797</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=14810" BrowseName="CurrentState" ParentNodeId="ns=1;i=14809" DataType="LocalizedText">
+    <DisplayName>CurrentState</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=14811</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=2760</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14809</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=14811" BrowseName="Id" ParentNodeId="ns=1;i=14810" DataType="NodeId">
+    <DisplayName>Id</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=14810</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=14141" BrowseName="1:Channel2Stream1" ParentNodeId="ns=1;i=13791">
+    <DisplayName>Stream #1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=14231</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14232</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14233</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14234</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14235</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14236</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14237</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=1866</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13791</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14231" BrowseName="3:Configuration" ParentNodeId="ns=1;i=14141">
+    <DisplayName>Configuration</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=14145</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14148</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14141</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14232" BrowseName="3:Status" ParentNodeId="ns=1;i=14141">
+    <DisplayName>Status</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=14151</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14154</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14157</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14160</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14141</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14233" BrowseName="3:AcquisitionSettings" ParentNodeId="ns=1;i=14141">
+    <DisplayName>AcquisitionSettings</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=14163</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14141</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14234" BrowseName="3:AcquisitionStatus" ParentNodeId="ns=1;i=14141">
+    <DisplayName>AcquisitionStatus</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=14169</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14172</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14173</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14177</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14141</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14235" BrowseName="3:AcquisitionData" ParentNodeId="ns=1;i=14141">
+    <DisplayName>AcquisitionData</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=14180</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14186</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14189</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14192</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14862</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14195</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14141</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14236" BrowseName="3:ChemometricModelSettings" ParentNodeId="ns=1;i=14141">
+    <DisplayName>ChemometricModelSettings</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14141</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14237" BrowseName="3:Context" ParentNodeId="ns=1;i=14141">
+    <DisplayName>Context</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=14198</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14201</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14204</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14207</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14210</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14213</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14216</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14219</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14222</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14225</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14228</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14141</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14238" BrowseName="1:Channel2Stream2" ParentNodeId="ns=1;i=13791">
+    <DisplayName>Stream #1</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=14328</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14329</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14330</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14331</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14332</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14333</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14334</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=3;i=1866</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13791</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14328" BrowseName="3:Configuration" ParentNodeId="ns=1;i=14238">
+    <DisplayName>Configuration</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=14242</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14245</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14238</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14329" BrowseName="3:Status" ParentNodeId="ns=1;i=14238">
+    <DisplayName>Status</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=14248</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14251</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14254</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14257</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14238</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14330" BrowseName="3:AcquisitionSettings" ParentNodeId="ns=1;i=14238">
+    <DisplayName>AcquisitionSettings</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=14260</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14238</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14331" BrowseName="3:AcquisitionStatus" ParentNodeId="ns=1;i=14238">
+    <DisplayName>AcquisitionStatus</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=14266</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14269</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14270</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14274</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14238</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14332" BrowseName="3:AcquisitionData" ParentNodeId="ns=1;i=14238">
+    <DisplayName>AcquisitionData</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=14277</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14283</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14286</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14289</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14889</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14292</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14238</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14333" BrowseName="3:ChemometricModelSettings" ParentNodeId="ns=1;i=14238">
+    <DisplayName>ChemometricModelSettings</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14238</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14334" BrowseName="3:Context" ParentNodeId="ns=1;i=14238">
+    <DisplayName>Context</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=1;i=14295</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14298</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14301</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14304</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14307</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14310</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14313</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14316</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14319</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14322</Reference>
+      <Reference ReferenceType="Organizes">ns=1;i=14325</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14238</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14335" BrowseName="3:Channel2DetectorSlot" ParentNodeId="ns=1;i=13791">
+    <DisplayName>Detector Slot</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=14339</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14340</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14341</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=14342</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=14343</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=4;i=300</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13791</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14339" BrowseName="3:Configuration" ParentNodeId="ns=1;i=14335">
+    <DisplayName>Configuration</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=4;i=340</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14335</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14340" BrowseName="3:Status" ParentNodeId="ns=1;i=14335">
+    <DisplayName>Status</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=4;i=343</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14335</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14341" BrowseName="3:FactorySettings" ParentNodeId="ns=1;i=14335">
+    <DisplayName>FactorySettings</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=4;i=331</Reference>
+      <Reference ReferenceType="Organizes">ns=4;i=334</Reference>
+      <Reference ReferenceType="Organizes">ns=4;i=337</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14335</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=14342" BrowseName="3:IsHotSwappable" ParentNodeId="ns=1;i=14335" DataType="Boolean">
+    <DisplayName>IsHotSwappable</DisplayName>
+    <Description>True if this accessory can be inserted in the accessory slot while it is powered</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=14335</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=14343" BrowseName="3:IsReady" ParentNodeId="ns=1;i=14335" DataType="Boolean">
+    <DisplayName>IsReady</DisplayName>
+    <Description>True if this accessory is ready for use</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=14335</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=14359" BrowseName="1:Channel2LiquidCellSlot" ParentNodeId="ns=1;i=13791">
+    <DisplayName>Liquid cell Slot</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=14363</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14364</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=14365</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=14366</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=14367</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=4;i=346</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=13791</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14363" BrowseName="3:Configuration" ParentNodeId="ns=1;i=14359">
+    <DisplayName>Configuration</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14359</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14364" BrowseName="3:Status" ParentNodeId="ns=1;i=14359">
+    <DisplayName>Status</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=4;i=386</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14359</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=14365" BrowseName="3:FactorySettings" ParentNodeId="ns=1;i=14359">
+    <DisplayName>FactorySettings</DisplayName>
+    <References>
+      <Reference ReferenceType="Organizes">ns=4;i=377</Reference>
+      <Reference ReferenceType="Organizes">ns=4;i=380</Reference>
+      <Reference ReferenceType="Organizes">ns=4;i=383</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=2;i=12257</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=14359</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=14366" BrowseName="3:IsHotSwappable" ParentNodeId="ns=1;i=14359" DataType="Boolean">
+    <DisplayName>IsHotSwappable</DisplayName>
+    <Description>True if this accessory can be inserted in the accessory slot while it is powered</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=14359</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=14367" BrowseName="3:IsReady" ParentNodeId="ns=1;i=14359" DataType="Boolean">
+    <DisplayName>IsReady</DisplayName>
+    <Description>True if this accessory is ready for use</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=14359</Reference>
+    </References>
+  </UAVariable>
+</UANodeSet>

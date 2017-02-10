@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>CAS.CommServer.UA.ConfigurationEditor.ModelsContainer</id>
+    <version>3.20.4</version>
+    <title>CAS.CommServer.UA.ConfigurationEditor.ModelsContainer - CommServer UA ConfigurationEditor ServerConfiguration </title>
+    <authors>CAS</authors>
+    <owners>commsvr.com</owners>
+    <projectUrl>svn://svnserver.hq.cas.com.pl/Products/CommServer.UA.ConfigurationEditor</projectUrl>
+	  <licenseUrl>http://www.cas.internetdsl.pl/commserver/P_DowloadCenter/Lic-09000401EN_License_Agreement.pdf</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>false</developmentDependency>
+    <description>
+	    Installation package of CommServer UA ConfigurationEditor ServerConfiguration plug-in
+    </description>
+    <summary>
+	    ConfigurationEditor ServerConfiguration.
+    </summary>
+    <releaseNotes>
+      - 3.20.4: RemovedRemoved dependency on the ConfigurationEditor.ServerConfiguration add-in.
+      </releaseNotes>
+    <copyright>Copyright (c) 2017 CAS LODZ POLAND</copyright>
+    <tags>OPCUA, CommServer, ASMD, Address Space Model Designer.</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>
+     <file src="bin\Release\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.dll" target="lib\net461\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.dll" />
+     <file src="bin\Release\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.xml" target="lib\net461\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.xml" />
+  </files>
+</package>
+

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelDesign xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CASUAServerDemo="http://cas.eu/UA/Demo/" xmlns:OpcUa="http://opcfoundation.org/UA/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" TargetNamespace="http://cas.eu/UA/Demo/" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+  <Namespaces>
+    <Namespace Name="OpcUa" Prefix="Opc.Ua" InternalPrefix="Opc.Ua.Server" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd" XmlPrefix="OpcUa">http://opcfoundation.org/UA/</Namespace>
+    <Namespace Name="Sample" Prefix="CAS.UA.Server.Demo" XmlPrefix="CASUAServerDemo">http://cas.eu/UA/Demo/</Namespace>
+  </Namespaces>
+  <ReferenceType SymbolicName="CASUAServerDemo:FlowTo" BaseType="OpcUa:NonHierarchicalReferences">
+    <Description>A reference that indicates a flow between two objects.</Description>
+    <InverseName>FlowFrom</InverseName>
+  </ReferenceType>
+  <ReferenceType SymbolicName="CASUAServerDemo:HotFlowTo" BaseType="CASUAServerDemo:FlowTo">
+    <Description>A reference that indicates a high temperature flow between two objects.</Description>
+    <InverseName>HotFlowFrom</InverseName>
+  </ReferenceType>
+  <ReferenceType SymbolicName="CASUAServerDemo:SignalTo" BaseType="OpcUa:NonHierarchicalReferences">
+    <Description>A reference that indicates an electrical signal between two variables.</Description>
+    <InverseName>SignalFrom</InverseName>
+  </ReferenceType>
+  <ObjectType SymbolicName="CASUAServerDemo:GenericControllerType" BaseType="OpcUa:BaseObjectType">
+    <Description>A generic PID controller</Description>
+    <Children>
+      <Property SymbolicName="CASUAServerDemo:Measurement" DataType="OpcUa:Double" ValueRank="Scalar" />
+      <Property SymbolicName="CASUAServerDemo:SetPoint" DataType="OpcUa:Double" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Property SymbolicName="CASUAServerDemo:ControlOut" DataType="OpcUa:Double" ValueRank="Scalar" />
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="CASUAServerDemo:GenericSensorType" BaseType="OpcUa:BaseObjectType">
+    <Description>A generic sensor that read a process value.</Description>
+    <Children>
+      <Variable SymbolicName="CASUAServerDemo:Output" TypeDefinition="OpcUa:AnalogItemType" DataType="OpcUa:Double" ValueRank="Scalar" />
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="CASUAServerDemo:GenericActuatorType" BaseType="OpcUa:BaseObjectType">
+    <Description>Represents a piece of equipment that causes some action to occur.</Description>
+    <Children>
+      <Variable SymbolicName="CASUAServerDemo:Input" TypeDefinition="OpcUa:AnalogItemType" DataType="OpcUa:Double" ValueRank="Scalar" AccessLevel="Write" />
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="CASUAServerDemo:CustomControllerType" BaseType="OpcUa:BaseObjectType">
+    <Description>A custom PID controller with 3 inputs</Description>
+    <Children>
+      <Property SymbolicName="CASUAServerDemo:Input1" DataType="OpcUa:Double" ValueRank="Scalar" AccessLevel="Write" />
+      <Property SymbolicName="CASUAServerDemo:Input2" DataType="OpcUa:Double" ValueRank="Scalar" AccessLevel="Write" />
+      <Property SymbolicName="CASUAServerDemo:Input3" DataType="OpcUa:Double" ValueRank="Scalar" AccessLevel="Write" />
+      <Property SymbolicName="CASUAServerDemo:ControlOut" DataType="OpcUa:Double" />
+      <Property SymbolicName="CASUAServerDemo:DescriptionX" DataType="OpcUa:LocalizedText">
+        <BrowseName>Description</BrowseName>
+      </Property>
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="CASUAServerDemo:ValveType" BaseType="CASUAServerDemo:GenericActuatorType">
+    <Description>An actuator that controls the flow through a pipe.</Description>
+  </ObjectType>
+  <ObjectType SymbolicName="CASUAServerDemo:LevelControllerType" BaseType="CASUAServerDemo:GenericControllerType">
+    <Description>A controller for the level of a fluid in a drum.</Description>
+  </ObjectType>
+  <ObjectType SymbolicName="CASUAServerDemo:FlowControllerType" BaseType="CASUAServerDemo:GenericControllerType">
+    <Description>A controller for the flow of a fluid through a pipe.</Description>
+  </ObjectType>
+  <ObjectType SymbolicName="CASUAServerDemo:LevelIndicatorType" BaseType="CASUAServerDemo:GenericSensorType">
+    <Description>A sensor that reports the level of a liquid in a tank.</Description>
+  </ObjectType>
+  <ObjectType SymbolicName="CASUAServerDemo:FlowTransmitterType" BaseType="CASUAServerDemo:GenericSensorType">
+    <Description>A sensor that reports the flow of a liquid through a pipe.</Description>
+  </ObjectType>
+  <ObjectType SymbolicName="CASUAServerDemo:BoilerStateMachineType" BaseType="OpcUa:ProgramStateMachineType">
+    <Description>A program that produces simulated values for a running boiler.</Description>
+    <Children>
+      <Property SymbolicName="CASUAServerDemo:UpdateRate" DataType="OpcUa:UInt32" ValueRank="Scalar" AccessLevel="ReadWrite">
+        <Description>The rate at which the simulation runs.</Description>
+      </Property>
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="CASUAServerDemo:BoilerInputPipeType" BaseType="OpcUa:FolderType">
+    <Children>
+      <Object SymbolicName="CASUAServerDemo:FlowTransmitter1" TypeDefinition="CASUAServerDemo:FlowTransmitterType" SupportsEvents="true">
+        <BrowseName>FTX001</BrowseName>
+      </Object>
+      <Object SymbolicName="CASUAServerDemo:Valve" TypeDefinition="CASUAServerDemo:ValveType" SupportsEvents="true">
+        <BrowseName>ValveX001</BrowseName>
+      </Object>
+    </Children>
+    <References>
+      <Reference>
+        <ReferenceType>OpcUa:HasNotifier</ReferenceType>
+        <TargetId>CASUAServerDemo:BoilerInputPipeType_FlowTransmitter1</TargetId>
+      </Reference>
+    </References>
+  </ObjectType>
+  <ObjectType SymbolicName="CASUAServerDemo:BoilerDrumType" BaseType="OpcUa:FolderType">
+    <Children>
+      <Object SymbolicName="CASUAServerDemo:LevelIndicator" TypeDefinition="CASUAServerDemo:LevelIndicatorType" SupportsEvents="true">
+        <BrowseName>LIX001</BrowseName>
+      </Object>
+    </Children>
+    <References>
+      <Reference>
+        <ReferenceType>OpcUa:HasNotifier</ReferenceType>
+        <TargetId>CASUAServerDemo:BoilerDrumType_LevelIndicator</TargetId>
+      </Reference>
+    </References>
+  </ObjectType>
+  <ObjectType SymbolicName="CASUAServerDemo:BoilerOutputPipeType" BaseType="OpcUa:FolderType">
+    <Children>
+      <Object SymbolicName="CASUAServerDemo:FlowTransmitter2" TypeDefinition="CASUAServerDemo:FlowTransmitterType" SupportsEvents="true">
+        <BrowseName>FTX002</BrowseName>
+      </Object>
+    </Children>
+    <References>
+      <Reference>
+        <ReferenceType>OpcUa:HasNotifier</ReferenceType>
+        <TargetId>CASUAServerDemo:BoilerOutputPipeType_FlowTransmitter2</TargetId>
+      </Reference>
+    </References>
+  </ObjectType>
+  <ObjectType SymbolicName="CASUAServerDemo:BoilerType" BaseType="OpcUa:BaseObjectType" SupportsEvents="true">
+    <Description>A boiler used to produce steam for a turbine.</Description>
+    <Children>
+      <Object SymbolicName="CASUAServerDemo:InputPipe" TypeDefinition="CASUAServerDemo:BoilerInputPipeType" SupportsEvents="true">
+        <BrowseName>PipeX001</BrowseName>
+        <Children>
+          <Object SymbolicName="CASUAServerDemo:FlowTransmitter1">
+            <BrowseName>FTX001</BrowseName>
+            <Children>
+              <Variable SymbolicName="CASUAServerDemo:Output" />
+            </Children>
+          </Object>
+          <Object SymbolicName="CASUAServerDemo:Valve">
+            <BrowseName>ValveX001</BrowseName>
+            <Children>
+              <Variable SymbolicName="CASUAServerDemo:Input" />
+            </Children>
+          </Object>
+        </Children>
+        <References>
+          <Reference>
+            <ReferenceType>CASUAServerDemo:FlowTo</ReferenceType>
+            <TargetId>CASUAServerDemo:BoilerType_Drum</TargetId>
+          </Reference>
+        </References>
+      </Object>
+      <Object SymbolicName="CASUAServerDemo:Drum" TypeDefinition="CASUAServerDemo:BoilerDrumType" SupportsEvents="true">
+        <BrowseName>DrumX001</BrowseName>
+        <Children>
+          <Object SymbolicName="CASUAServerDemo:LevelIndicator">
+            <BrowseName>LIX001</BrowseName>
+            <Children>
+              <Variable SymbolicName="CASUAServerDemo:Output" Declaration="CASUAServerDemo:GenericSensorType_Output" />
+            </Children>
+          </Object>
+        </Children>
+        <References>
+          <Reference>
+            <ReferenceType>CASUAServerDemo:HotFlowTo</ReferenceType>
+            <TargetId>CASUAServerDemo:BoilerType_OutputPipe</TargetId>
+          </Reference>
+        </References>
+      </Object>
+      <Object SymbolicName="CASUAServerDemo:OutputPipe" TypeDefinition="CASUAServerDemo:BoilerOutputPipeType" SupportsEvents="true">
+        <BrowseName>PipeX002</BrowseName>
+        <Children>
+          <Object SymbolicName="CASUAServerDemo:FlowTransmitter2">
+            <BrowseName>FTX002</BrowseName>
+            <Children>
+              <Variable SymbolicName="CASUAServerDemo:Output" />
+            </Children>
+          </Object>
+        </Children>
+      </Object>
+      <Object SymbolicName="CASUAServerDemo:FlowController" TypeDefinition="CASUAServerDemo:FlowControllerType">
+        <BrowseName>FCX001</BrowseName>
+        <Children>
+          <Property SymbolicName="CASUAServerDemo:Measurement">
+            <References>
+              <Reference IsInverse="true">
+                <ReferenceType>CASUAServerDemo:SignalTo</ReferenceType>
+                <TargetId>CASUAServerDemo:BoilerType_InputPipe_FlowTransmitter1_Output</TargetId>
+              </Reference>
+            </References>
+          </Property>
+          <Property SymbolicName="CASUAServerDemo:SetPoint" />
+          <Property SymbolicName="CASUAServerDemo:ControlOut">
+            <References>
+              <Reference>
+                <ReferenceType>CASUAServerDemo:SignalTo</ReferenceType>
+                <TargetId>CASUAServerDemo:BoilerType_InputPipe_Valve_Input</TargetId>
+              </Reference>
+            </References>
+          </Property>
+        </Children>
+      </Object>
+      <Object SymbolicName="CASUAServerDemo:LevelController" TypeDefinition="CASUAServerDemo:LevelControllerType">
+        <BrowseName>LCX001</BrowseName>
+        <Children>
+          <Property SymbolicName="CASUAServerDemo:Measurement">
+            <References>
+              <Reference IsInverse="true">
+                <ReferenceType>CASUAServerDemo:SignalTo</ReferenceType>
+                <TargetId>CASUAServerDemo:BoilerType_Drum_LevelIndicator_Output</TargetId>
+              </Reference>
+            </References>
+          </Property>
+          <Property SymbolicName="CASUAServerDemo:SetPoint" />
+          <Property SymbolicName="CASUAServerDemo:ControlOut">
+            <References>
+              <Reference>
+                <ReferenceType>CASUAServerDemo:SignalTo</ReferenceType>
+                <TargetId>CASUAServerDemo:BoilerType_CustomController_Input1</TargetId>
+              </Reference>
+            </References>
+          </Property>
+        </Children>
+      </Object>
+      <Object SymbolicName="CASUAServerDemo:CustomController" TypeDefinition="CASUAServerDemo:CustomControllerType">
+        <BrowseName>CCX001</BrowseName>
+        <Children>
+          <Property SymbolicName="CASUAServerDemo:Input1" />
+          <Property SymbolicName="CASUAServerDemo:Input2">
+            <References>
+              <Reference IsInverse="true">
+                <ReferenceType>CASUAServerDemo:SignalTo</ReferenceType>
+                <TargetId>CASUAServerDemo:BoilerType_InputPipe_FlowTransmitter1_Output</TargetId>
+              </Reference>
+            </References>
+          </Property>
+          <Property SymbolicName="CASUAServerDemo:Input3">
+            <References>
+              <Reference IsInverse="true">
+                <ReferenceType>CASUAServerDemo:SignalTo</ReferenceType>
+                <TargetId>CASUAServerDemo:BoilerType_OutputPipe_FlowTransmitter2_Output</TargetId>
+              </Reference>
+            </References>
+          </Property>
+          <Property SymbolicName="CASUAServerDemo:ControlOut">
+            <References>
+              <Reference>
+                <ReferenceType>CASUAServerDemo:SignalTo</ReferenceType>
+                <TargetId>CASUAServerDemo:BoilerType_FlowController_SetPoint</TargetId>
+              </Reference>
+            </References>
+          </Property>
+        </Children>
+      </Object>
+      <Object SymbolicName="CASUAServerDemo:Simulation" TypeDefinition="CASUAServerDemo:BoilerStateMachineType" SupportsEvents="true" />
+    </Children>
+    <References>
+      <Reference>
+        <ReferenceType>OpcUa:HasNotifier</ReferenceType>
+        <TargetId>CASUAServerDemo:BoilerType_InputPipe</TargetId>
+      </Reference>
+      <Reference>
+        <ReferenceType>OpcUa:HasNotifier</ReferenceType>
+        <TargetId>CASUAServerDemo:BoilerType_Drum</TargetId>
+      </Reference>
+      <Reference>
+        <ReferenceType>OpcUa:HasNotifier</ReferenceType>
+        <TargetId>CASUAServerDemo:BoilerType_OutputPipe</TargetId>
+      </Reference>
+      <Reference>
+        <ReferenceType>OpcUa:HasEventSource</ReferenceType>
+        <TargetId>CASUAServerDemo:BoilerType_Simulation</TargetId>
+      </Reference>
+    </References>
+  </ObjectType>
+  <Object SymbolicName="CASUAServerDemo:Boilers" TypeDefinition="OpcUa:FolderType" SupportsEvents="true">
+    <Children>
+      <Object SymbolicName="CASUAServerDemo:Boiler1" TypeDefinition="CASUAServerDemo:BoilerType">
+        <BrowseName>Boiler #1</BrowseName>
+        <Children>
+          <Object SymbolicName="CASUAServerDemo:InputPipe">
+            <DisplayName>Pipe1001</DisplayName>
+          </Object>
+          <Object SymbolicName="CASUAServerDemo:Drum">
+            <DisplayName>Drum1001</DisplayName>
+          </Object>
+          <Object SymbolicName="CASUAServerDemo:OutputPipe">
+            <DisplayName>Pipe1002</DisplayName>
+          </Object>
+          <Object SymbolicName="CASUAServerDemo:FlowController">
+            <DisplayName>FC1001</DisplayName>
+          </Object>
+          <Object SymbolicName="CASUAServerDemo:LevelController">
+            <DisplayName>LC1001</DisplayName>
+          </Object>
+          <Object SymbolicName="CASUAServerDemo:CustomController">
+            <DisplayName>CC1001</DisplayName>
+          </Object>
+        </Children>
+      </Object>
+    </Children>
+    <References>
+      <Reference>
+        <ReferenceType>OpcUa:HasNotifier</ReferenceType>
+        <TargetId>CASUAServerDemo:Boilers_Boiler1</TargetId>
+      </Reference>
+      <Reference IsInverse="true">
+        <ReferenceType>OpcUa:Organizes</ReferenceType>
+        <TargetId>OpcUa:ObjectsFolder</TargetId>
+      </Reference>
+      <Reference IsInverse="true">
+        <ReferenceType>OpcUa:HasNotifier</ReferenceType>
+        <TargetId>OpcUa:Server</TargetId>
+      </Reference>
+    </References>
+  </Object>
+</ModelDesign>

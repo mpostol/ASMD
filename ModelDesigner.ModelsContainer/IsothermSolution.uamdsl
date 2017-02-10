@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UAModelDesignerSolution xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Isotherm</Name>
+  <Projects>
+    <UAModelDesignerProject ProjectIdentifier="17525391-163d-4909-9bc2-6054dd02971e">
+      <Name>BasicModel</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>ConfigurationIsotherm\BasicModel.xml</FileName>
+    </UAModelDesignerProject>
+  </Projects>
+  <ServerDetails codebase="CAS.UA.Server.ServerConfiguration.dll" configuration="ConfigurationIsotherm\CAS.UAServer.Configuration.uasconfig" />
+</UAModelDesignerSolution>

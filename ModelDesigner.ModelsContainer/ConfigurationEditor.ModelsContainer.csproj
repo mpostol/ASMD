@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{643A2A07-394D-418F-937C-2D394EFE5015}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CAS.CommServer.UA.ConfigurationEditor.ModelsContainer</RootNamespace>
+    <AssemblyName>CAS.CommServer.UA.ConfigurationEditor.ModelsContainer</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseIntermediateOutputPath>obj2</BaseIntermediateOutputPath>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\PR32-ModelDesigner\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>IDE0001,IDE0002,IDE0003</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\DefaultConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel.xml" />
+    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance.xml" />
+    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel.xml" />
+    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\OPC_DA_SampleAnalyser_tag_list.txt" />
+    <EmbeddedResource Include="EmbeddedExample\DemoConfiguration\DefaultConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cas.snk" />
+    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\CAS.UAServer.DemoConfiguration.uasconfig">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\DemoConfiguration.oses">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedExample\BoilerExampleSolution.uamdsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedExample\ADIExempleSolution.uamdsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedExample\DemoConfiguration\BoilerExample.oses">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedExample\DemoConfiguration\BoilerExample.uasconfig">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance\FTNIRInstance.PredefinedNodes.uanodes">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance\FTNIRInstance.Types.bsd" />
+    <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance\FTNIRInstance.Types.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel\FTNIR.PredefinedNodes.uanodes">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel\FTNIR.Types.bsd" />
+    <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel\FTNIR.Types.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel\Opc.Ua.Adi.PredefinedNodes.uanodes">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel\Opc.Ua.Adi.Types.bsd" />
+    <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel\Opc.Ua.Adi.Types.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.PredefinedNodes.uanodes">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.Types.bsd" />
+    <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.Types.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="EmbeddedExample\DemoConfiguration\BoilersSet.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="EmbeddedExample\DemoConfiguration\BoilersSet\Commsvr.UA.Examples.BoilersSet.PredefinedNodes.uanodes" />
+    <None Include="EmbeddedExample\DemoConfiguration\BoilersSet\Commsvr.UA.Examples.BoilersSet.Types.bsd" />
+    <None Include="EmbeddedExample\DemoConfiguration\BoilersSet\Commsvr.UA.Examples.BoilersSet.Types.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="EmbeddedExample\DemoConfiguration\BoilerType.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="EmbeddedExample\DemoConfiguration\BoilerType\tempuri.org.UA.Examples.BoilerType.PredefinedNodes.uanodes" />
+    <None Include="EmbeddedExample\DemoConfiguration\BoilerType\tempuri.org.UA.Examples.BoilerType.Types.bsd" />
+    <None Include="EmbeddedExample\DemoConfiguration\BoilerType\tempuri.org.UA.Examples.BoilerType.Types.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\AssemblyInfo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
+    </None>
+    <None Include="ConfigurationEditor.ModelsContainer.nuspec">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConfigurationEditor.ModelsContainer.tt</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ContainerResources.cs" />
+    <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel\FTNIR.Classes.cs" />
+    <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance\FTNIRInstance.Classes.cs" />
+    <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel\Opc.Ua.Adi.Classes.cs" />
+    <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.Classes.cs" />
+    <None Include="EmbeddedExample\DemoConfiguration\BoilersSet\Commsvr.UA.Examples.BoilersSet.Classes.cs" />
+    <None Include="EmbeddedExample\DemoConfiguration\BoilerType\tempuri.org.UA.Examples.BoilerType.Classes.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance\FTNIRInstance.NodeSet.xml" />
+    <Content Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance\FTNIRInstance.NodeSet2.xml" />
+    <Content Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance\FTNIRInstance.PredefinedNodes.xml" />
+    <Content Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel\FTNIR.NodeSet.xml" />
+    <Content Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel\FTNIR.NodeSet2.xml" />
+    <Content Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel\FTNIR.PredefinedNodes.xml" />
+    <Content Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel\Opc.Ua.Adi.NodeSet.xml" />
+    <Content Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel\Opc.Ua.Adi.NodeSet2.xml" />
+    <Content Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel\Opc.Ua.Adi.PredefinedNodes.xml" />
+    <Content Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.NodeSet.xml" />
+    <Content Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.NodeSet2.xml" />
+    <Content Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.PredefinedNodes.xml" />
+    <EmbeddedResource Include="EmbeddedExample\DemoConfiguration\BoilersSet.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="EmbeddedExample\DemoConfiguration\BoilersSet\Commsvr.UA.Examples.BoilersSet.NodeSet.xml" />
+    <Content Include="EmbeddedExample\DemoConfiguration\BoilersSet\Commsvr.UA.Examples.BoilersSet.NodeSet2.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="EmbeddedExample\DemoConfiguration\BoilersSet\Commsvr.UA.Examples.BoilersSet.PredefinedNodes.xml" />
+    <EmbeddedResource Include="EmbeddedExample\DemoConfiguration\BoilerType.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="EmbeddedExample\DemoConfiguration\BoilerType\tempuri.org.UA.Examples.BoilerType.NodeSet.xml" />
+    <Content Include="EmbeddedExample\DemoConfiguration\BoilerType\tempuri.org.UA.Examples.BoilerType.NodeSet2.xml" />
+    <Content Include="EmbeddedExample\DemoConfiguration\BoilerType\tempuri.org.UA.Examples.BoilerType.PredefinedNodes.xml" />
+    <Content Include="ConfigurationEditor.ModelsContainer.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ConfigurationEditor.ModelsContainer.nuspec</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

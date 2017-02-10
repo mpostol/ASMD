@@ -1,0 +1,2885 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CASConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://cas.eu/UA/2009/ServerConfiguration.xsd">
+  <ApplicationName xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd">CAS.CommServer.UA.Server</ApplicationName>
+  <ApplicationUri xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd">urn:localhost:UA:CAS_UA_Server</ApplicationUri>
+  <ProductUri xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd">urn:cas.eu:UA:Server</ProductUri>
+  <ApplicationType xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd">Server_0</ApplicationType>
+  <SecurityConfiguration xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd">
+    <ApplicationCertificate>
+      <StoreType>Windows</StoreType>
+      <StorePath>LocalMachine\My</StorePath>
+      <StoreName>My</StoreName>
+      <StoreLocation>LocalMachine</StoreLocation>
+      <SubjectName>CN=CommServer/O=CAS/C=PL</SubjectName>
+    </ApplicationCertificate>
+    <TrustedIssuerCertificates>
+      <StoreType>Windows</StoreType>
+      <StorePath>LocalMachine\CAS UA Certificate Authorities</StorePath>
+      <StoreName>CAS UA Certificate Authorities</StoreName>
+      <StoreLocation>LocalMachine</StoreLocation>
+      <TrustedCertificates />
+    </TrustedIssuerCertificates>
+    <TrustedPeerCertificates>
+      <StoreType>Windows</StoreType>
+      <StorePath>LocalMachine\UA Applications</StorePath>
+      <StoreName>UA Applications</StoreName>
+      <StoreLocation>LocalMachine</StoreLocation>
+      <TrustedCertificates>
+        <CertificateIdentifier>
+          <StoreType>Windows</StoreType>
+          <StorePath>LocalMachine\My</StorePath>
+          <StoreName>My</StoreName>
+          <StoreLocation>LocalMachine</StoreLocation>
+          <SubjectName>UA Client</SubjectName>
+        </CertificateIdentifier>
+      </TrustedCertificates>
+    </TrustedPeerCertificates>
+    <NonceLength>32</NonceLength>
+    <InvalidCertificateDirectory>%CommonApplicationData%\CAS\CAS.CommServer.UA\RejectedCertificates</InvalidCertificateDirectory>
+    <RejectedCertificateStore>
+      <StoreType>Directory</StoreType>
+      <StorePath>%CommonApplicationData%\CAS\CAS.CommServer.UA\RejectedCertificates</StorePath>
+    </RejectedCertificateStore>
+    <ConfigureFirewall>false</ConfigureFirewall>
+  </SecurityConfiguration>
+  <TransportConfigurations xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd" />
+  <TransportQuotas xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd">
+    <OperationTimeout>600000</OperationTimeout>
+    <MaxStringLength>1048576</MaxStringLength>
+    <MaxByteStringLength>4194304</MaxByteStringLength>
+    <MaxArrayLength>65535</MaxArrayLength>
+    <MaxMessageSize>4194304</MaxMessageSize>
+    <MaxBufferSize>65535</MaxBufferSize>
+    <ChannelLifetime>300000</ChannelLifetime>
+    <SecurityTokenLifetime>3600000</SecurityTokenLifetime>
+  </TransportQuotas>
+  <ServerConfiguration xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd">
+    <BaseAddresses xmlns:d3p1="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      <d3p1:String>opc.tcp://localhost:51234/UA/CAS_UA_Server</d3p1:String>
+      <d3p1:String>http://localhost:51235/UA/CAS_UA_Server</d3p1:String>
+    </BaseAddresses>
+    <AlternateBaseAddresses xmlns:d3p1="http://opcfoundation.org/UA/2008/02/Types.xsd" />
+    <SecurityPolicies>
+      <ServerSecurityPolicy>
+        <SecurityMode>SignAndEncrypt_3</SecurityMode>
+        <SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#Basic128Rsa15</SecurityPolicyUri>
+        <SecurityLevel>3</SecurityLevel>
+      </ServerSecurityPolicy>
+      <ServerSecurityPolicy>
+        <SecurityMode>Sign_2</SecurityMode>
+        <SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#Basic256</SecurityPolicyUri>
+        <SecurityLevel>2</SecurityLevel>
+      </ServerSecurityPolicy>
+      <ServerSecurityPolicy>
+        <SecurityMode>None_1</SecurityMode>
+        <SecurityPolicyUri>http://opcfoundation.org/UA/SecurityPolicy#None</SecurityPolicyUri>
+        <SecurityLevel>0</SecurityLevel>
+      </ServerSecurityPolicy>
+    </SecurityPolicies>
+    <MinRequestThreadCount>5</MinRequestThreadCount>
+    <MaxRequestThreadCount>100</MaxRequestThreadCount>
+    <MaxQueuedRequestCount>2000</MaxQueuedRequestCount>
+    <UserTokenPolicies xmlns:d3p1="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      <d3p1:UserTokenPolicy>
+        <d3p1:PolicyId i:nil="true" />
+        <d3p1:TokenType>Anonymous_0</d3p1:TokenType>
+        <d3p1:IssuedTokenType i:nil="true" />
+        <d3p1:IssuerEndpointUrl i:nil="true" />
+        <d3p1:SecurityPolicyUri i:nil="true" />
+      </d3p1:UserTokenPolicy>
+    </UserTokenPolicies>
+    <DiagnosticsEnabled>false</DiagnosticsEnabled>
+    <MaxSessionCount>100</MaxSessionCount>
+    <MinSessionTimeout>10000</MinSessionTimeout>
+    <MaxSessionTimeout>3600000</MaxSessionTimeout>
+    <MaxBrowseContinuationPoints>10</MaxBrowseContinuationPoints>
+    <MaxQueryContinuationPoints>10</MaxQueryContinuationPoints>
+    <MaxHistoryContinuationPoints>100</MaxHistoryContinuationPoints>
+    <MaxRequestAge>600000</MaxRequestAge>
+    <MinPublishingInterval>100</MinPublishingInterval>
+    <MaxPublishingInterval>3600000</MaxPublishingInterval>
+    <PublishingResolution>50</PublishingResolution>
+    <MaxSubscriptionLifetime>3600000</MaxSubscriptionLifetime>
+    <MaxMessageQueueSize>100</MaxMessageQueueSize>
+    <MaxNotificationQueueSize>100</MaxNotificationQueueSize>
+    <MaxNotificationsPerPublish>1000</MaxNotificationsPerPublish>
+    <MinMetadataSamplingInterval>1000</MinMetadataSamplingInterval>
+    <AvailableSamplingRates />
+    <RegistrationEndpoint xmlns:d3p1="http://opcfoundation.org/UA/2008/02/Types.xsd">
+      <d3p1:EndpointUrl>http://localhost:52601/UADiscovery/registration</d3p1:EndpointUrl>
+      <d3p1:Server>
+        <d3p1:ApplicationUri>urn:localhost:UADiscovery</d3p1:ApplicationUri>
+        <d3p1:ProductUri i:nil="true" />
+        <d3p1:ApplicationName i:nil="true" />
+        <d3p1:ApplicationType>DiscoveryServer_3</d3p1:ApplicationType>
+        <d3p1:GatewayServerUri i:nil="true" />
+        <d3p1:DiscoveryProfileUri i:nil="true" />
+        <d3p1:DiscoveryUrls>
+          <d3p1:String>http://localhost:52601/UADiscovery</d3p1:String>
+        </d3p1:DiscoveryUrls>
+      </d3p1:Server>
+      <d3p1:ServerCertificate i:nil="true" />
+      <d3p1:SecurityMode>SignAndEncrypt_3</d3p1:SecurityMode>
+      <d3p1:SecurityPolicyUri></d3p1:SecurityPolicyUri>
+      <d3p1:UserIdentityTokens />
+      <d3p1:TransportProfileUri i:nil="true" />
+      <d3p1:SecurityLevel>1</d3p1:SecurityLevel>
+    </RegistrationEndpoint>
+    <MaxRegistrationInterval>30000</MaxRegistrationInterval>
+    <NodeManagerSaveFile>CAS.UA.Server.nodes.xml</NodeManagerSaveFile>
+    <MinSubscriptionLifetime>10000</MinSubscriptionLifetime>
+    <MaxPublishRequestCount>20</MaxPublishRequestCount>
+    <MaxSubscriptionCount>20</MaxSubscriptionCount>
+    <MaxEventQueueSize>10000</MaxEventQueueSize>
+  </ServerConfiguration>
+  <Extensions xmlns:d2p1="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd" />
+  <TraceConfiguration xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd">
+    <OutputFilePath>%CommonApplicationData%\CAS\CAS.CommServer.UA\log\CAS.UA.Server.starting.log</OutputFilePath>
+    <DeleteOnLoad>true</DeleteOnLoad>
+    <TraceMasks>5</TraceMasks>
+  </TraceConfiguration>
+  <DisableHiResClock xmlns="http://opcfoundation.org/UA/SDK/Configuration.xsd">true</DisableHiResClock>
+  <CASExtension>
+    <OPCDAClientConfiguration>
+      <FileName>TestOPCViewerSession.oses</FileName>
+    </OPCDAClientConfiguration>
+    <CommServerConfiguration>
+      <FileName>DefaultConfig.xml</FileName>
+    </CommServerConfiguration>
+    <SimulatorConfiguration />
+    <NodesConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Object</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Object</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Object</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Boolean</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_Boolean</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource57</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Boolean</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Byte</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_Byte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource27</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Byte</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:ByteString</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_ByteString</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DataValue</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_DataValue</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DateTime</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_DateTime</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource32</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/DataTime</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DiagnosticInfo</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_DiagnosticInfo</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Double</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_Double</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource58</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Double</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Enumeration</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_Enumeration</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:ExpandedNodeId</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_ExpandedNodeId</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Float</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_Float</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource39</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Float</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Guid</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_Guid</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int16</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_Int16</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource41</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Int16</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int32</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_Int32</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource59</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Int32</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int64</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_Int64</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource42</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Int64</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Integer</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_Integer</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource82</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Integer</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:LocalizedText</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_LocalizedText</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource43</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/LocalizedText</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:NodeId</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_NodeId</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Number</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_Number</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource45</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Number</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:QualifiedName</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_QualifiedName</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource46</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/QualifiedName</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:SByte</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_SByte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource47</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/SByte</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:StatusCode</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_StatusCode</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:String</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_String</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource49</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/String</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt16</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_UInt16</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource50</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/UInt16</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt32</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_UInt32</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource52</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/UInt32</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt64</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_UInt64</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource53</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/UInt64</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInteger</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_UInteger</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource54</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/UInteger</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_VariableWithRange</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Range</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_VariableWithRange_EURange</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:XmlElement</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Generated_XmlElement</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Object</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Boolean</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_Boolean</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource109</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Booleans/Boolean</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Byte</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_Byte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource85</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Bytes/Byte</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:ByteString</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_ByteString</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DataValue</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_DataValue</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DateTime</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_DateTime</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource88</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/DateTimes/DateTime</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DiagnosticInfo</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_DiagnosticInfo</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Double</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_Double</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource110</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Doubles/Double</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Enumeration</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_Enumeration</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:ExpandedNodeId</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_ExpandedNodeId</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Float</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_Float</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource92</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Registers/Float</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Guid</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_Guid</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int16</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_Int16</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource94</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Ints/Int16</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int32</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_Int32</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource111</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Ints/Int32</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int64</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_Int64</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource95</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Ints/Int64</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Integer</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_Integer</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource96</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Ints/Integer</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:LocalizedText</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_LocalizedText</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource97</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Strings/LocalizedText</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:NodeId</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_NodeId</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Number</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_Number</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource99</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Ints/Number</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:QualifiedName</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_QualifiedName</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource100</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Strings/QualifiedName</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:SByte</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_SByte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource101</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/SBytes/SByte</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:StatusCode</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_StatusCode</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:String</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_String</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource103</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Strings/String</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt16</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_UInt16</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource104</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/UInts/UInt16</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt32</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_UInt32</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource105</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/UInts/UInt32</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt64</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_UInt64</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource106</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/UInts/UInt64</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInteger</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_UInteger</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource107</Name>
+            <SelectedSource>CommServer</SelectedSource>
+            <CommServerSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/UInts/UInteger</ItemName>
+            </CommServerSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_VariableWithRange</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Range</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_VariableWithRange_EURange</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:XmlElement</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_CommSvr_Static_XmlElement</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Object</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Boolean</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_Boolean</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource80</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Boolean</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Byte</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_Byte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource55</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Byte</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:ByteString</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_ByteString</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource56</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/ByteString</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DataValue</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_DataValue</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource57</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/DataValue</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DateTime</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_DateTime</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource58</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/DataTime</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DiagnosticInfo</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_DiagnosticInfo</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource59</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/DiagnosticInfo</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Double</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_Double</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource81</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Double</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Enumeration</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_Enumeration</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource60</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Enumeration</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:ExpandedNodeId</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_ExpandedNodeId</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource61</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/ExpandedNodeID</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Float</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_Float</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource62</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Float</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Guid</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_Guid</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource63</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Guid</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int16</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_Int16</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource64</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Int16</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int32</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_Int32</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource82</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Int32</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int64</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_Int64</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource65</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Int64</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Integer</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_Integer</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource66</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Integer</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:LocalizedText</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_LocalizedText</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource67</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/LocalizedText</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:NodeId</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_NodeId</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource68</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/NodeID</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Number</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_Number</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource69</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Number</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:QualifiedName</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_QualifiedName</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource70</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/QualifiedName</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:SByte</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_SByte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource71</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/SByte</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:StatusCode</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_StatusCode</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource72</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/StatusCode</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:String</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_String</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource73</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/String</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt16</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_UInt16</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource74</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/UInt16</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt32</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_UInt32</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource75</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/UInt32</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt64</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_UInt64</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource76</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/UInt64</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInteger</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_UInteger</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource77</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/UInteger</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:XmlElement</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCClient_XmlElement</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource78</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/XMLElement</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>OPCViewerTestSession</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Object</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Byte</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Byte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:ByteString</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_ByteString</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Object</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Boolean</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_Boolean</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource133</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Boolean</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Byte</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_Byte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource109</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Byte</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:ByteString</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_ByteString</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DataValue</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_DataValue</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DateTime</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_DateTime</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource113</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/DataTime</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DiagnosticInfo</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_DiagnosticInfo</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Double</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_Double</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource134</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Double</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Enumeration</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_Enumeration</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:ExpandedNodeId</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_ExpandedNodeId</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Float</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_Float</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource117</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Float</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Guid</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_Guid</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int16</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_Int16</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource119</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Int16</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int32</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_Int32</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource135</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Int32</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int64</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_Int64</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource120</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Int64</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Integer</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_Integer</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource121</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Integer</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:LocalizedText</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_LocalizedText</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource122</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/LocalizedText</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:NodeId</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_NodeId</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Number</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_Number</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource124</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/Number</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:QualifiedName</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_QualifiedName</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource125</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/QualifiedName</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:SByte</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_SByte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource126</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/SByte</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:StatusCode</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_StatusCode</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:String</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_String</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource111</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/String</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt16</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_UInt16</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource128</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/UInt16</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt32</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_UInt32</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource129</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/UInt32</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt64</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_UInt64</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource130</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/UInt64</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInteger</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_UInteger</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource131</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Register/UInt64</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_VariableWithRange</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Range</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_VariableWithRange_EURange</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:XmlElement</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Generated_XmlElement</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Object</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Boolean</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_Boolean</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource25</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Booleans/Boolean</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Byte</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_Byte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource0</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Bytes/Byte</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:ByteString</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_ByteString</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DataValue</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_DataValue</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DateTime</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_DateTime</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource3</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/DateTimes/DateTime</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DiagnosticInfo</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_DiagnosticInfo</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Double</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_Double</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource26</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Doubles/Double</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Enumeration</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_Enumeration</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:ExpandedNodeId</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_ExpandedNodeId</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Float</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_Float</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource7</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Registers/Float</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Guid</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_Guid</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int16</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_Int16</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource10</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Ints/Int16</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int32</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_Int32</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource27</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Ints/Int32</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int64</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_Int64</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource11</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Ints/Int64</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Integer</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_Integer</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource12</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Ints/Integer</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:LocalizedText</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_LocalizedText</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource13</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Strings/LocalizedText</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:NodeId</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_NodeId</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Number</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_Number</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource15</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Ints/Number</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:QualifiedName</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_QualifiedName</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource16</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Strings/QualifiedName</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:SByte</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_SByte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource17</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/SBytes/SByte</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:StatusCode</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_StatusCode</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:String</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_String</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource19</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/Strings/String</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt16</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_UInt16</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource20</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/UInts/UInt16</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt32</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_UInt32</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource21</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/UInts/UInt32</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt64</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_UInt64</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource22</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/UInts/UInt64</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInteger</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_UInteger</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource23</Name>
+            <SelectedSource>OPCClient</SelectedSource>
+            <OPCDAClientSourceConfiguration>
+              <Selected>true</Selected>
+              <ItemName>PLC_Simulator/Static/UInts/UInteger</ItemName>
+              <ServerName>CAS.CommServer.OPC.Da.Server</ServerName>
+              <SubscriptionName>TestConfigurationSubscription</SubscriptionName>
+            </OPCDAClientSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_VariableWithRange</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Range</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_VariableWithRange_EURange</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:XmlElement</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_OPCViewer_Static_XmlElement</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Object</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Boolean</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_Boolean</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource44</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_Boolean</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Byte</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_Byte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource0</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_Byte</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:ByteString</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_ByteString</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DataValue</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_DataValue</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DateTime</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_DateTime</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource3</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_DateTime</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:DiagnosticInfo</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_DiagnosticInfo</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Double</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_Double</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource46</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_Double</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Enumeration</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_Enumeration</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:ExpandedNodeId</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_ExpandedNodeId</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Float</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_Float</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource9</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_Float</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Guid</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_Guid</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource122</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>false</Selected>
+              <Tag>test_Guid</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int16</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_Int16</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource22</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_Int16</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int32</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_Int32</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource48</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_Int32</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int64</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_Int64</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource23</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_Int64</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Integer</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_Integer</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource24</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_Integer</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:LocalizedText</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_LocalizedText</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource25</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_LocalizedText</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:NodeId</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_NodeId</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Number</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_Number</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource27</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_Number</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:QualifiedName</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_QualifiedName</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource28</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_QualifiedName</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:SByte</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_SByte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource132</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>false</Selected>
+              <Tag>test_SByte</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:StatusCode</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_StatusCode</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:String</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_String</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource34</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_String</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt16</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_UInt16</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource35</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_UInt16</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt32</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_UInt32</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource36</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_UInt32</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInt64</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_UInt64</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource37</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_UInt64</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInteger</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_UInteger</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources>
+          <DataSourceConfiguration>
+            <Name>DataSource38</Name>
+            <SelectedSource>Simulator</SelectedSource>
+            <SimulatorSourceConfiguration>
+              <Selected>true</Selected>
+              <Tag>test_UInteger</Tag>
+            </SimulatorSourceConfiguration>
+          </DataSourceConfiguration>
+        </DataSources>
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_VariableWithRange</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Range</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_VariableWithRange_EURange</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:XmlElement</q:DataType>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_Bindings_Simulator_XmlElement</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <NodeClass>Object</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObject_NoBindings</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Byte</q:DataType>
+          <InstanceDeclaration>true</InstanceDeclaration>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObjectType_Byte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:ByteString</q:DataType>
+          <InstanceDeclaration>true</InstanceDeclaration>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObjectType_ByteString</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Int32</q:DataType>
+          <InstanceDeclaration>true</InstanceDeclaration>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObjectType_Int32</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Integer</q:DataType>
+          <InstanceDeclaration>true</InstanceDeclaration>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObjectType_Integer</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Number</q:DataType>
+          <InstanceDeclaration>true</InstanceDeclaration>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObjectType_Number</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:SByte</q:DataType>
+          <InstanceDeclaration>true</InstanceDeclaration>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObjectType_SByte</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:UInteger</q:DataType>
+          <InstanceDeclaration>true</InstanceDeclaration>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObjectType_UInteger</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <InstanceDeclaration>true</InstanceDeclaration>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObjectType_VariableWithRange</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+      <InstanceConfiguration>
+        <NodeDescriptor>
+          <q:DataType xmlns:d6p1="http://opcfoundation.org/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:Range</q:DataType>
+          <InstanceDeclaration>true</InstanceDeclaration>
+          <NodeClass>Variable</NodeClass>
+          <q:NodeIdentifier xmlns:d6p1="http://cas.eu/UA/" xmlns:q="http://cas.eu/UA/2009/ServerConfiguration.xsd">d6p1:TestObjectType_VariableWithRange_EURange</q:NodeIdentifier>
+        </NodeDescriptor>
+        <DataSources i:nil="true" />
+      </InstanceConfiguration>
+    </NodesConfiguration>
+    <ModelLayers>
+      <ModelLayer>
+        <FilePathCsv>TestModel.csv</FilePathCsv>
+        <FilePathUanodes>TestModel\CAS.Ua.PredefinedNodes.uanodes</FilePathUanodes>
+        <NamespaceUri>http://cas.eu/UA/</NamespaceUri>
+      </ModelLayer>
+    </ModelLayers>
+  </CASExtension>
+</CASConfiguration>

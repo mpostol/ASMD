@@ -1,0 +1,24 @@
+<xs:schema 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:ua="http://opcfoundation.org/UA/2008/02/Types.xsd" 
+  xmlns:tns="http://cas.eu/UA/CommServer/" 
+  targetNamespace="http://cas.eu/UA/CommServer/" 
+  elementFormDefault="qualified"
+>
+  <xs:import namespace="http://opcfoundation.org/UA/" />
+  
+  <xs:complexType name="StructureExample">
+  	<xs:sequence>
+      <xs:element name="Field1" type="ua:ListOfInt32" minOccurs="1" />
+  	</xs:sequence>
+  </xs:complexType>
+  <xs:element name="StructureExample" type="tns:StructureExample" />
+
+  <xs:complexType name="ListOfStructureExample">
+    <xs:sequence>
+      <xs:element name="StructureExample" type="tns:StructureExample" minOccurs="0" maxOccurs="unbounded" nillable="true" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListOfStructureExample" type="tns:ListOfStructureExample" nillable="true"></xs:element>
+  
+</xs:schema>

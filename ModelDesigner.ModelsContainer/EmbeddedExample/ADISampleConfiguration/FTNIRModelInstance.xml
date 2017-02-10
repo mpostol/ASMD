@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelDesign xmlns:FTNIRInstance="http://cas.eu/UA/FTNIR/" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:DI="http://opcfoundation.org/UA/DI/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:OpcUa="http://opcfoundation.org/UA/" xmlns:FTNIR="http://opcfoundation.org/UA/FTNIR/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADI="http://opcfoundation.org/UA/ADI/" TargetNamespace="http://cas.eu/UA/FTNIR/" TargetXmlNamespace="http://cas.eu/UA/FTNIR/" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+  <Namespaces>
+    <Namespace Name="CasFtnir" Prefix="FTNIRInstance" XmlNamespace="http://cas.eu/UA/FTNIR/Types.xsd" XmlPrefix="FTNIRInstance">http://cas.eu/UA/FTNIR/</Namespace>
+    <Namespace Name="OpcAdi" Prefix="Opc.Ua.Adi" XmlNamespace="http://opcfoundation.org/UA/ADI/Types.xsd" XmlPrefix="ADI" FilePath=".\ADISampleConfiguration\OpcUaAdiModel">http://opcfoundation.org/UA/ADI/</Namespace>
+    <Namespace Name="OpcDi" Prefix="Opc.Ua.Di" XmlNamespace="http://opcfoundation.org/UA/DI/Types.xsd" XmlPrefix="DI" FilePath="OpcUaDIModel">http://opcfoundation.org/UA/DI/</Namespace>
+    <Namespace Name="OpcUa" Prefix="Opc.Ua" InternalPrefix="Opc.Ua.Server" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd" XmlPrefix="OpcUa">http://opcfoundation.org/UA/</Namespace>
+    <Namespace Name="OpcFtnir" Prefix="FTNIR" XmlNamespace="http://opcfoundation.org/UA/FTNIR/Types.xsd" XmlPrefix="FTNIR" FilePath=".\ADISampleConfiguration\FTNIRModel">http://opcfoundation.org/UA/FTNIR/</Namespace>
+  </Namespaces>
+  <Object SymbolicName="FTNIRInstance:FTNIR_Simulator" TypeDefinition="ADI:SpectrometerDeviceType">
+    <BrowseName>Spectrometer simulator</BrowseName>
+    <DisplayName>FT-IR spectrometer simulator</DisplayName>
+    <Children>
+      <Object SymbolicName="FTNIR:IRSourceSlot" TypeDefinition="ADI:AccessorySlotType">
+        <DisplayName>IR Source Slot</DisplayName>
+        <Children>
+          <Object SymbolicName="FTNIRInstance:IRSource" TypeDefinition="FTNIR:IRSourceType">
+            <DisplayName>IR Source</DisplayName>
+          </Object>
+        </Children>
+      </Object>
+      <Object SymbolicName="FTNIRInstance:Channel1" TypeDefinition="ADI:AnalyserChannelType">
+        <DisplayName>Channel #1</DisplayName>
+        <Children>
+          <Object SymbolicName="FTNIRInstance:Channel1Stream1" TypeDefinition="ADI:StreamType">
+            <DisplayName>Stream #1</DisplayName>
+          </Object>
+          <Object SymbolicName="FTNIRInstance:Channel1Stream2" TypeDefinition="ADI:StreamType">
+            <DisplayName>Stream #1</DisplayName>
+          </Object>
+          <Object SymbolicName="ADI:Channel1DetectorSlot" TypeDefinition="FTNIR:FTNIRDetectorType">
+            <DisplayName>Detector Slot</DisplayName>
+          </Object>
+          <Object SymbolicName="FTNIRInstance:Channel1LiquidCellSlot" TypeDefinition="FTNIR:LiquidCellType">
+            <DisplayName>Liquid cell Slot</DisplayName>
+          </Object>
+        </Children>
+      </Object>
+      <Object SymbolicName="FTNIRInstance:Channel2" TypeDefinition="ADI:AnalyserChannelType">
+        <DisplayName>Channel #2</DisplayName>
+        <Children>
+          <Object SymbolicName="FTNIRInstance:Channel2Stream1" TypeDefinition="ADI:StreamType">
+            <DisplayName>Stream #1</DisplayName>
+          </Object>
+          <Object SymbolicName="FTNIRInstance:Channel2Stream2" TypeDefinition="ADI:StreamType">
+            <DisplayName>Stream #1</DisplayName>
+          </Object>
+          <Object SymbolicName="ADI:Channel2DetectorSlot" TypeDefinition="FTNIR:FTNIRDetectorType">
+            <DisplayName>Detector Slot</DisplayName>
+          </Object>
+          <Object SymbolicName="FTNIRInstance:Channel2LiquidCellSlot" TypeDefinition="FTNIR:LiquidCellType">
+            <DisplayName>Liquid cell Slot</DisplayName>
+          </Object>
+        </Children>
+      </Object>
+    </Children>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>OpcUa:HasComponent</ReferenceType>
+        <TargetId>DI:DeviceSet</TargetId>
+      </Reference>
+    </References>
+  </Object>
+</ModelDesign>

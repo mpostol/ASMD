@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelDesign xmlns:OpcFtnir="http://opcfoundation.org/UA/FTNIR/" xmlns:OpcAdi="http://opcfoundation.org/UA/ADI/" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:OpcDi="http://opcfoundation.org/UA/DI/" xmlns:OpcUa="http://opcfoundation.org/UA/" TargetNamespace="http://cas.eu/UA/FTNIR/" TargetXmlNamespace="http://cas.eu/UA/FTNIR/" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+  <Namespaces>
+    <Namespace Name="OpcFtnir" Prefix="CASFTNIR" XmlNamespace="http://cas.eu/UA/FTNIR/Types.xsd" XmlPrefix="OpcFtnir">http://cas.eu/UA/FTNIR/</Namespace>
+    <Namespace Name="OpcAdi" Prefix="Opc.Ua.Adi" XmlNamespace="http://opcfoundation.org/UA/ADI/Types.xsd" XmlPrefix="OpcAdi" FilePath=".\ADISampleConfiguration\ADIModel">http://opcfoundation.org/UA/ADI/</Namespace>
+    <Namespace Name="OpcDi" Prefix="Opc.Ua.Di" XmlNamespace="http://opcfoundation.org/UA/DI/Types.xsd" XmlPrefix="OpcDi" FilePath="OpcUaDIModel">http://opcfoundation.org/UA/DI/</Namespace>
+    <Namespace Name="OpcUa" Prefix="Opc.Ua" InternalPrefix="Opc.Ua.Server" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd" XmlPrefix="OpcUa">http://opcfoundation.org/UA/</Namespace>
+    <Namespace Name="OpcFtnir" Prefix="FTNIR" XmlNamespace="http://opcfoundation.org/UA/FTNIR/Types.xsd" XmlPrefix="OpcFtnir" FilePath=".\ADISampleConfiguration\FTNIRModel">http://opcfoundation.org/UA/FTNIR/</Namespace>
+  </Namespaces>
+  <Object SymbolicName="OpcFtnir:CAS.FTNIR.Simulator" TypeDefinition="OpcAdi:SpectrometerDeviceType">
+    <DisplayName>CAS FT-IR spectrometer simulator</DisplayName>
+    <Children>
+      <Object SymbolicName="OpcFtnir:IRSourceSlot" TypeDefinition="OpcAdi:AccessorySlotType">
+        <DisplayName>IR Source Slot</DisplayName>
+        <Children>
+          <Object xmlns:q1="http://cas.eu/UA/FTNIR/" SymbolicName="q1:IRSource" TypeDefinition="OpcFtnir:IRSourceType">
+            <DisplayName>IR Source</DisplayName>
+          </Object>
+        </Children>
+      </Object>
+      <Object xmlns:q2="http://cas.eu/UA/FTNIR/" SymbolicName="q2:Channel1" TypeDefinition="OpcAdi:AnalyserChannelType">
+        <DisplayName>Channel #1</DisplayName>
+        <Children>
+          <Object SymbolicName="q2:Channel1Stream1" TypeDefinition="OpcAdi:StreamType">
+            <DisplayName>Stream #1</DisplayName>
+          </Object>
+          <Object SymbolicName="q2:Channel1Stream2" TypeDefinition="OpcAdi:StreamType">
+            <DisplayName>Stream #1</DisplayName>
+          </Object>
+          <Object SymbolicName="OpcAdi:Channel1DetectorSlot" TypeDefinition="OpcFtnir:DetectorType">
+            <DisplayName>Detector Slot</DisplayName>
+          </Object>
+          <Object SymbolicName="q2:Channel1LiquidCellSlot" TypeDefinition="OpcFtnir:LiquidCellType">
+            <DisplayName>Liquid cell Slot</DisplayName>
+          </Object>
+        </Children>
+      </Object>
+      <Object xmlns:q3="http://cas.eu/UA/FTNIR/" SymbolicName="q3:Channel2" TypeDefinition="OpcAdi:AnalyserChannelType">
+        <DisplayName>Channel #2</DisplayName>
+        <Children>
+          <Object SymbolicName="q3:Channel2Stream1" TypeDefinition="OpcAdi:StreamType">
+            <DisplayName>Stream #1</DisplayName>
+          </Object>
+          <Object SymbolicName="q3:Channel2Stream2" TypeDefinition="OpcAdi:StreamType">
+            <DisplayName>Stream #1</DisplayName>
+          </Object>
+          <Object SymbolicName="OpcAdi:Channel2DetectorSlot" TypeDefinition="OpcFtnir:DetectorType">
+            <DisplayName>Detector Slot</DisplayName>
+          </Object>
+          <Object SymbolicName="q3:Channel2LiquidCellSlot" TypeDefinition="OpcFtnir:LiquidCellType">
+            <DisplayName>Liquid cell Slot</DisplayName>
+          </Object>
+        </Children>
+      </Object>
+    </Children>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>OpcUa:Organizes</ReferenceType>
+        <TargetId>OpcFtnir:DeviceSet</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="OpcFtnir:DeviceSet" TypeDefinition="OpcUa:FolderType">
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>OpcUa:Organizes</ReferenceType>
+        <TargetId>OpcUa:ObjectsFolder</TargetId>
+      </Reference>
+    </References>
+  </Object>
+</ModelDesign>

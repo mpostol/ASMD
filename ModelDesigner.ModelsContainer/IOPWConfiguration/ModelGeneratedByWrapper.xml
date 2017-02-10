@@ -1,0 +1,1177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelDesign xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ua="http://opcfoundation.org/UA/" xmlns:cas="http://cas.eu/UA/CommServer/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" TargetNamespace="http://cas.eu/UA/CommServer/" TargetXmlNamespace="http://cas.eu/UA/CommServer/" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+  <Namespaces>
+    <Namespace Name="cas" Prefix="CAS.UA.Server.Wrapper" XmlPrefix="cas">http://cas.eu/UA/CommServer/</Namespace>
+    <Namespace Name="ua" Prefix="Opc.Ua" XmlPrefix="ua">http://opcfoundation.org/UA/</Namespace>
+  </Namespaces>
+  <Object SymbolicName="cas:Server3" TypeDefinition="ua:FolderType">
+    <DisplayName>CAS.CommServer.OPC.Da.Server/{2032fe45-c774-46d7-9aa3-b844e8658919}</DisplayName>
+    <Description>opcda://localhost/CAS.CommServer.OPC.Da.Server/{2032fe45-c774-46d7-9aa3-b844e8658919}</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>ua:ObjectsFolder</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="cas:PLC_Simulator" TypeDefinition="ua:FolderType">
+    <DisplayName>PLC_Simulator</DisplayName>
+    <Description>PLC_Simulator</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Server3</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="cas:Register" TypeDefinition="ua:FolderType">
+    <DisplayName>Register</DisplayName>
+    <Description>PLC_Simulator/Register</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:PLC_Simulator</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:Enumeration" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>Enumeration</DisplayName>
+    <Description>PLC_Simulator/Register/Enumeration</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Float" TypeDefinition="ua:AnalogItemType" DataType="ua:Float" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Float</DisplayName>
+    <Description>PLC_Simulator/Register/Float</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Guid" TypeDefinition="ua:AnalogItemType" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>Guid</DisplayName>
+    <Description>PLC_Simulator/Register/Guid</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:DataValue" TypeDefinition="ua:AnalogItemType" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>DataValue</DisplayName>
+    <Description>PLC_Simulator/Register/DataValue</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:ExpandedNodeID" TypeDefinition="ua:AnalogItemType" DataType="ua:BaseDataType" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>ExpandedNodeID</DisplayName>
+    <Description>PLC_Simulator/Register/ExpandedNodeID</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:NodeID" TypeDefinition="ua:AnalogItemType" DataType="ua:BaseDataType" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>NodeID</DisplayName>
+    <Description>PLC_Simulator/Register/NodeID</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:StatusCode" TypeDefinition="ua:AnalogItemType" DataType="ua:String" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>StatusCode</DisplayName>
+    <Description>PLC_Simulator/Register/StatusCode</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:String" TypeDefinition="ua:AnalogItemType" DataType="ua:String" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>String</DisplayName>
+    <Description>PLC_Simulator/Register/String</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:LocalizedText" TypeDefinition="ua:AnalogItemType" DataType="ua:BaseDataType" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>LocalizedText</DisplayName>
+    <Description>PLC_Simulator/Register/LocalizedText</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:XMLElement" TypeDefinition="ua:AnalogItemType" DataType="ua:String" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>XMLElement</DisplayName>
+    <Description>PLC_Simulator/Register/XMLElement</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:QualifiedName" TypeDefinition="ua:AnalogItemType" DataType="ua:BaseDataType" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>QualifiedName</DisplayName>
+    <Description>PLC_Simulator/Register/QualifiedName</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:DiagnosticInfo" TypeDefinition="ua:AnalogItemType" DataType="ua:String" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>DiagnosticInfo</DisplayName>
+    <Description>PLC_Simulator/Register/DiagnosticInfo</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Byte" TypeDefinition="ua:AnalogItemType" DataType="ua:Byte" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Byte</DisplayName>
+    <Description>PLC_Simulator/Register/Byte</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:ByteString" TypeDefinition="ua:AnalogItemType" DataType="ua:Byte" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>ByteString</DisplayName>
+    <Description>PLC_Simulator/Register/ByteString</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:DataTime" TypeDefinition="ua:AnalogItemType" DataType="ua:DateTime" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>DataTime</DisplayName>
+    <Description>PLC_Simulator/Register/DataTime</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:SByte" TypeDefinition="ua:AnalogItemType" DataType="ua:SByte" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>SByte</DisplayName>
+    <Description>PLC_Simulator/Register/SByte</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:UInt16" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt16" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>UInt16</DisplayName>
+    <Description>PLC_Simulator/Register/UInt16</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:UInt32" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>UInt32</DisplayName>
+    <Description>PLC_Simulator/Register/UInt32</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:UInt64" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt64" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>UInt64</DisplayName>
+    <Description>PLC_Simulator/Register/UInt64</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:UInteger" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt16" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>UInteger</DisplayName>
+    <Description>PLC_Simulator/Register/UInteger</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Int16" TypeDefinition="ua:AnalogItemType" DataType="ua:Int16" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Int16</DisplayName>
+    <Description>PLC_Simulator/Register/Int16</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Int64" TypeDefinition="ua:AnalogItemType" DataType="ua:Int64" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Int64</DisplayName>
+    <Description>PLC_Simulator/Register/Int64</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Integer" TypeDefinition="ua:AnalogItemType" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Integer</DisplayName>
+    <Description>PLC_Simulator/Register/Integer</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Number" TypeDefinition="ua:AnalogItemType" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Number</DisplayName>
+    <Description>PLC_Simulator/Register/Number</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Int32" TypeDefinition="ua:AnalogItemType" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Int32</DisplayName>
+    <Description>PLC_Simulator/Register/Int32</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Double" TypeDefinition="ua:AnalogItemType" DataType="ua:Double" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Double</DisplayName>
+    <Description>PLC_Simulator/Register/Double</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Boolean" TypeDefinition="ua:AnalogItemType" DataType="ua:Boolean" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Boolean</DisplayName>
+    <Description>PLC_Simulator/Register/Boolean</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Register</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:Static" TypeDefinition="ua:FolderType">
+    <DisplayName>Static</DisplayName>
+    <Description>PLC_Simulator/Static</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:PLC_Simulator</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="cas:Registers" TypeDefinition="ua:FolderType">
+    <DisplayName>Registers</DisplayName>
+    <Description>PLC_Simulator/Static/Registers</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Static</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:Enumeration0" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>Enumeration</DisplayName>
+    <Description>PLC_Simulator/Static/Registers/Enumeration</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Registers</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Float1" TypeDefinition="ua:AnalogItemType" DataType="ua:Float" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Float</DisplayName>
+    <Description>PLC_Simulator/Static/Registers/Float</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Registers</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Guid2" TypeDefinition="ua:AnalogItemType" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>Guid</DisplayName>
+    <Description>PLC_Simulator/Static/Registers/Guid</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Registers</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:Strings" TypeDefinition="ua:FolderType">
+    <DisplayName>Strings</DisplayName>
+    <Description>PLC_Simulator/Static/Strings</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Static</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:DataValue3" TypeDefinition="ua:AnalogItemType" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>DataValue</DisplayName>
+    <Description>PLC_Simulator/Static/Strings/DataValue</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Strings</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:ExpandedNodeID4" TypeDefinition="ua:AnalogItemType" DataType="ua:BaseDataType" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>ExpandedNodeID</DisplayName>
+    <Description>PLC_Simulator/Static/Strings/ExpandedNodeID</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Strings</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:NodeID5" TypeDefinition="ua:AnalogItemType" DataType="ua:BaseDataType" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>NodeID</DisplayName>
+    <Description>PLC_Simulator/Static/Strings/NodeID</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Strings</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:StatusCode6" TypeDefinition="ua:AnalogItemType" DataType="ua:String" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>StatusCode</DisplayName>
+    <Description>PLC_Simulator/Static/Strings/StatusCode</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Strings</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:String7" TypeDefinition="ua:AnalogItemType" DataType="ua:String" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>String</DisplayName>
+    <Description>PLC_Simulator/Static/Strings/String</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Strings</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:LocalizedText8" TypeDefinition="ua:AnalogItemType" DataType="ua:BaseDataType" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>LocalizedText</DisplayName>
+    <Description>PLC_Simulator/Static/Strings/LocalizedText</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Strings</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:XMLElement9" TypeDefinition="ua:AnalogItemType" DataType="ua:String" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>XMLElement</DisplayName>
+    <Description>PLC_Simulator/Static/Strings/XMLElement</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Strings</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:QualifiedName10" TypeDefinition="ua:AnalogItemType" DataType="ua:BaseDataType" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>QualifiedName</DisplayName>
+    <Description>PLC_Simulator/Static/Strings/QualifiedName</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Strings</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:DiagnosticInfo11" TypeDefinition="ua:AnalogItemType" DataType="ua:String" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>DiagnosticInfo</DisplayName>
+    <Description>PLC_Simulator/Static/Strings/DiagnosticInfo</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Strings</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:Bytes" TypeDefinition="ua:FolderType">
+    <DisplayName>Bytes</DisplayName>
+    <Description>PLC_Simulator/Static/Bytes</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Static</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:Byte12" TypeDefinition="ua:AnalogItemType" DataType="ua:Byte" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Byte</DisplayName>
+    <Description>PLC_Simulator/Static/Bytes/Byte</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Bytes</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:ByteString13" TypeDefinition="ua:AnalogItemType" DataType="ua:Byte" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>ByteString</DisplayName>
+    <Description>PLC_Simulator/Static/Bytes/ByteString</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Bytes</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:DateTimes" TypeDefinition="ua:FolderType">
+    <DisplayName>DateTimes</DisplayName>
+    <Description>PLC_Simulator/Static/DateTimes</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Static</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:DateTime" TypeDefinition="ua:AnalogItemType" DataType="ua:DateTime" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>DateTime</DisplayName>
+    <Description>PLC_Simulator/Static/DateTimes/DateTime</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:DateTimes</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:SBytes" TypeDefinition="ua:FolderType">
+    <DisplayName>SBytes</DisplayName>
+    <Description>PLC_Simulator/Static/SBytes</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Static</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:SByte14" TypeDefinition="ua:AnalogItemType" DataType="ua:SByte" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>SByte</DisplayName>
+    <Description>PLC_Simulator/Static/SBytes/SByte</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:SBytes</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:UInts" TypeDefinition="ua:FolderType">
+    <DisplayName>UInts</DisplayName>
+    <Description>PLC_Simulator/Static/UInts</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Static</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:UInt1615" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt16" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>UInt16</DisplayName>
+    <Description>PLC_Simulator/Static/UInts/UInt16</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:UInts</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:UInt3216" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>UInt32</DisplayName>
+    <Description>PLC_Simulator/Static/UInts/UInt32</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:UInts</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:UInt6417" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt64" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>UInt64</DisplayName>
+    <Description>PLC_Simulator/Static/UInts/UInt64</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:UInts</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:UInteger18" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt16" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>UInteger</DisplayName>
+    <Description>PLC_Simulator/Static/UInts/UInteger</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:UInts</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:Ints" TypeDefinition="ua:FolderType">
+    <DisplayName>Ints</DisplayName>
+    <Description>PLC_Simulator/Static/Ints</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Static</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:Int1619" TypeDefinition="ua:AnalogItemType" DataType="ua:Int16" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Int16</DisplayName>
+    <Description>PLC_Simulator/Static/Ints/Int16</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Ints</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Int6420" TypeDefinition="ua:AnalogItemType" DataType="ua:Int64" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Int64</DisplayName>
+    <Description>PLC_Simulator/Static/Ints/Int64</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Ints</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Integer21" TypeDefinition="ua:AnalogItemType" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Integer</DisplayName>
+    <Description>PLC_Simulator/Static/Ints/Integer</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Ints</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Number22" TypeDefinition="ua:AnalogItemType" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Number</DisplayName>
+    <Description>PLC_Simulator/Static/Ints/Number</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Ints</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Int3223" TypeDefinition="ua:AnalogItemType" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Int32</DisplayName>
+    <Description>PLC_Simulator/Static/Ints/Int32</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Ints</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:Doubles" TypeDefinition="ua:FolderType">
+    <DisplayName>Doubles</DisplayName>
+    <Description>PLC_Simulator/Static/Doubles</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Static</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:Double24" TypeDefinition="ua:AnalogItemType" DataType="ua:Double" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Double</DisplayName>
+    <Description>PLC_Simulator/Static/Doubles/Double</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Doubles</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:Booleans" TypeDefinition="ua:FolderType">
+    <DisplayName>Booleans</DisplayName>
+    <Description>PLC_Simulator/Static/Booleans</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Static</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:Boolean25" TypeDefinition="ua:AnalogItemType" DataType="ua:Boolean" ValueRank="Scalar" AccessLevel="ReadWrite">
+    <DisplayName>Boolean</DisplayName>
+    <Description>PLC_Simulator/Static/Booleans/Boolean</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Booleans</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:STT" TypeDefinition="ua:FolderType">
+    <DisplayName>STT</DisplayName>
+    <Description>STT</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Server3</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="cas:PLC_Simulator26" TypeDefinition="ua:FolderType">
+    <DisplayName>PLC_Simulator</DisplayName>
+    <Description>STT/PLC_Simulator</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:STT</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:St" TypeDefinition="ua:AnalogItemType" DataType="ua:Boolean" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>St</DisplayName>
+    <Description>STT/PLC_Simulator/St</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:PLC_Simulator26</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:Internal" TypeDefinition="ua:FolderType">
+    <DisplayName>Internal</DisplayName>
+    <Description>Internal</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Server3</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="cas:Channels" TypeDefinition="ua:FolderType">
+    <DisplayName>Channels</DisplayName>
+    <Description>Internal/Channels</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Internal</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="cas:Channel0" TypeDefinition="ua:FolderType">
+    <DisplayName>Channel0</DisplayName>
+    <Description>Internal/Channels/Channel0</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Channels</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="cas:Protocol_Simulator" TypeDefinition="ua:FolderType">
+    <DisplayName>Protocol_Simulator</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Channel0</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:RXX002B_" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>RX+</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/RX+</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Protocol_Simulator</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:RX-" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>RX-</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/RX-</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Protocol_Simulator</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:TXX002B_" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>TX+</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/TX+</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Protocol_Simulator</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:TX-" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>TX-</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/TX-</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Protocol_Simulator</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:Counters" TypeDefinition="ua:FolderType">
+    <DisplayName>Counters</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Counters</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Protocol_Simulator</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:Tx" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>Tx</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Counters/Tx</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Counters</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Rx" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>Rx</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Counters/Rx</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Counters</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:CRCErrors" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>CRCErrors</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Counters/CRCErrors</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Counters</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:FragmentedFrames" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>FragmentedFrames</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Counters/FragmentedFrames</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Counters</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:NoResponses" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>NoResponses</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Counters/NoResponses</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Counters</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:InvalidFrames" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>InvalidFrames</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Counters/InvalidFrames</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Counters</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:SynchronizationErrors" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>SynchronizationErrors</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Counters/SynchronizationErrors</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Counters</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:NAK" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>NAK</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Counters/NAK</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Counters</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:Time" TypeDefinition="ua:FolderType">
+    <DisplayName>Time</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Time</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Protocol_Simulator</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:MaxResponseDelay" TypeDefinition="ua:AnalogItemType" DataType="ua:String" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>MaxResponseDelay</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Time/MaxResponseDelay</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Time</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:CharacterGap" TypeDefinition="ua:AnalogItemType" DataType="ua:String" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>CharacterGap</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Time/CharacterGap</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Time</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:BytesTransferred" TypeDefinition="ua:FolderType">
+    <DisplayName>BytesTransferred</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/BytesTransferred</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Protocol_Simulator</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:RX" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>RX</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/BytesTransferred/RX</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:BytesTransferred</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:TX" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>TX</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/BytesTransferred/TX</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:BytesTransferred</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:Segment0" TypeDefinition="ua:FolderType">
+    <DisplayName>Segment0</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Protocol_Simulator</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:WriteDelayMin" TypeDefinition="ua:AnalogItemType" DataType="ua:Int64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>WriteDelayMin</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/WriteDelayMin</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:WriteDelayAvr" TypeDefinition="ua:AnalogItemType" DataType="ua:Int64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>WriteDelayAvr</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/WriteDelayAvr</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:WriteDelayMax" TypeDefinition="ua:AnalogItemType" DataType="ua:Int64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>WriteDelayMax</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/WriteDelayMax</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:ReadDelayMin" TypeDefinition="ua:AnalogItemType" DataType="ua:Int64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>ReadDelayMin</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/ReadDelayMin</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:ReadDelayAvr" TypeDefinition="ua:AnalogItemType" DataType="ua:Int64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>ReadDelayAvr</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/ReadDelayAvr</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:ReadDelayMax" TypeDefinition="ua:AnalogItemType" DataType="ua:Int64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>ReadDelayMax</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/ReadDelayMax</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:ConnectTimeMin" TypeDefinition="ua:AnalogItemType" DataType="ua:Int64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>ConnectTimeMin</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/ConnectTimeMin</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:ConnectTimeAvr" TypeDefinition="ua:AnalogItemType" DataType="ua:Int64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>ConnectTimeAvr</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/ConnectTimeAvr</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:ConnectTimeMax" TypeDefinition="ua:AnalogItemType" DataType="ua:Int64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>ConnectTimeMax</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/ConnectTimeMax</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:OvertimeCffMin" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>OvertimeCffMin</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/OvertimeCffMin</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:OvertimeCffAvr" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>OvertimeCffAvr</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/OvertimeCffAvr</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:OvertimeCffMax" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>OvertimeCffMax</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/OvertimeCffMax</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:ConnFailCount" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>ConnFailCount</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/ConnFailCount</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:ConnMadeCount" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>ConnMadeCount</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/ConnMadeCount</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:SegmentState" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt16" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>SegmentState</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/SegmentState</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:TotalConnectionTime" TypeDefinition="ua:AnalogItemType" DataType="ua:UInt64" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>TotalConnectionTime</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/TotalConnectionTime</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Object SymbolicName="cas:Protocol_Simulator27" TypeDefinition="ua:FolderType">
+    <DisplayName>Protocol_Simulator</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/Protocol_Simulator</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment0</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="cas:Segment028" TypeDefinition="ua:FolderType">
+    <DisplayName>Segment0</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/Protocol_Simulator/Segment0</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Protocol_Simulator27</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="cas:PortX0020_1_0" TypeDefinition="ua:FolderType">
+    <DisplayName>Port 1_0</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/Protocol_Simulator/Segment0/Port 1_0</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:Segment028</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Variable SymbolicName="cas:ActiveTime" TypeDefinition="ua:AnalogItemType" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>ActiveTime</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/Protocol_Simulator/Segment0/Port 1_0/ActiveTime</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:PortX0020_1_0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:FailTime" TypeDefinition="ua:AnalogItemType" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>FailTime</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/Protocol_Simulator/Segment0/Port 1_0/FailTime</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:PortX0020_1_0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:Standby" TypeDefinition="ua:AnalogItemType" DataType="ua:Int32" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>Standby</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/Protocol_Simulator/Segment0/Port 1_0/Standby</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:PortX0020_1_0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+  <Variable SymbolicName="cas:State" TypeDefinition="ua:AnalogItemType" DataType="ua:Boolean" ValueRank="Scalar" AccessLevel="Read">
+    <DisplayName>State</DisplayName>
+    <Description>Internal/Channels/Channel0/Protocol_Simulator/Segment0/Protocol_Simulator/Segment0/Port 1_0/State</Description>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>cas:PortX0020_1_0</TargetId>
+      </Reference>
+    </References>
+  </Variable>
+</ModelDesign>

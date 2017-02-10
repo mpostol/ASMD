@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelDesign xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:OpcFtnir="http://opcfoundation.org/UA/FTNIR/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:OpcDi="http://opcfoundation.org/UA/DI/" xmlns:OpcUa="http://opcfoundation.org/UA/" xmlns:OpcAdi="http://opcfoundation.org/UA/ADI/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" TargetNamespace="http://opcfoundation.org/UA/FTNIR/" TargetXmlNamespace="http://opcfoundation.org/UA/FTNIR/" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+  <Namespaces>
+    <Namespace Name="OpcFtnir" Prefix="FTNIR" XmlNamespace="http://opcfoundation.org/UA/FTNIR/Types.xsd" XmlPrefix="OpcFtnir">http://opcfoundation.org/UA/FTNIR/</Namespace>
+    <Namespace Name="OpcAdi" Prefix="Opc.Ua.Adi" XmlNamespace="http://opcfoundation.org/UA/ADI/Types.xsd" XmlPrefix="OpcAdi" FilePath=".\ADISampleConfiguration\ADIModel">http://opcfoundation.org/UA/ADI/</Namespace>
+    <Namespace Name="OpcDi" Prefix="Opc.Ua.Di" XmlNamespace="http://opcfoundation.org/UA/DI/Types.xsd" XmlPrefix="OpcDi" FilePath="OpcUaDIModel">http://opcfoundation.org/UA/DI/</Namespace>
+    <Namespace Name="OpcUa" Prefix="Opc.Ua" InternalPrefix="Opc.Ua.Server" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd" XmlPrefix="OpcUa">http://opcfoundation.org/UA/</Namespace>
+  </Namespaces>
+  <ObjectType SymbolicName="OpcFtnir:FTNIRAccessoryType" BaseType="OpcAdi:AccessoryType">
+    <Children>
+      <Object SymbolicName="OpcDi:ParameterSet">
+        <Children>
+          <Variable SymbolicName="OpcFtnir:SerialNumber" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:String" />
+          <Variable SymbolicName="OpcFtnir:Manufacturer" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:LocalizedText" />
+          <Variable SymbolicName="OpcFtnir:Model" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:LocalizedText" />
+        </Children>
+      </Object>
+      <Object SymbolicName="OpcAdi:FactorySettings">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>OpcFtnir:FTNIRAccessoryType_ParameterSet_SerialNumber</TargetId>
+          </Reference>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>OpcFtnir:FTNIRAccessoryType_ParameterSet_Manufacturer</TargetId>
+          </Reference>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>OpcFtnir:FTNIRAccessoryType_ParameterSet_Model</TargetId>
+          </Reference>
+        </References>
+      </Object>
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="OpcFtnir:IRSourceType" BaseType="OpcFtnir:FTNIRAccessoryType">
+    <Children>
+      <Object SymbolicName="OpcDi:ParameterSet">
+        <Children>
+          <Variable SymbolicName="OpcFtnir:IsEnabled" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Boolean" MinimumSamplingInterval="1000" />
+          <Variable SymbolicName="OpcFtnir:ActualTemperature" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Float" MinimumSamplingInterval="1000" />
+        </Children>
+      </Object>
+      <Object SymbolicName="OpcAdi:Configuration">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>OpcFtnir:IRSourceType_ParameterSet_IsEnabled</TargetId>
+          </Reference>
+        </References>
+      </Object>
+      <Object SymbolicName="OpcAdi:Status">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>OpcFtnir:IRSourceType_ParameterSet_ActualTemperature</TargetId>
+          </Reference>
+        </References>
+      </Object>
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="OpcFtnir:DetectorType" BaseType="OpcFtnir:FTNIRAccessoryType">
+    <Children>
+      <Object SymbolicName="OpcDi:ParameterSet">
+        <Children>
+          <Variable SymbolicName="OpcFtnir:Gain" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:UInt32" MinimumSamplingInterval="1000" />
+          <Variable SymbolicName="OpcFtnir:IsSaturated" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Boolean" MinimumSamplingInterval="1000" />
+        </Children>
+      </Object>
+      <Object SymbolicName="OpcAdi:Configuration">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>OpcFtnir:DetectorType_ParameterSet_Gain</TargetId>
+          </Reference>
+        </References>
+      </Object>
+      <Object SymbolicName="OpcAdi:Status">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>OpcFtnir:DetectorType_ParameterSet_IsSaturated</TargetId>
+          </Reference>
+        </References>
+      </Object>
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="OpcFtnir:LiquidCellType" BaseType="OpcFtnir:FTNIRAccessoryType">
+    <Children>
+      <Object SymbolicName="OpcDi:ParameterSet">
+        <Children>
+          <Variable SymbolicName="OpcFtnir:ActualTemperature" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Float" MinimumSamplingInterval="1000" />
+        </Children>
+      </Object>
+      <Object SymbolicName="OpcAdi:Status">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>OpcFtnir:LiquidCellType_ParameterSet_ActualTemperature</TargetId>
+          </Reference>
+        </References>
+      </Object>
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="OpcFtnir:ControllableHeatedLiquidCell" BaseType="OpcFtnir:FTNIRAccessoryType">
+    <Children>
+      <Object SymbolicName="OpcDi:ParameterSet">
+        <Children>
+          <Variable SymbolicName="OpcFtnir:RequestedTemperature" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Float" MinimumSamplingInterval="1000" />
+          <Variable SymbolicName="OpcFtnir:ActualTemperature" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Float" MinimumSamplingInterval="1000" />
+        </Children>
+      </Object>
+      <Object SymbolicName="OpcAdi:Status">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>OpcFtnir:ControllableHeatedLiquidCell_ParameterSet_ActualTemperature</TargetId>
+          </Reference>
+        </References>
+      </Object>
+    </Children>
+  </ObjectType>
+  <Dictionary SymbolicName="OpcFtnir:NameNotSet7" SymbolicId="OpcFtnir:Dictionary_BinarySchema" TypeDefinition="OpcUa:DataTypeDictionaryType" EncodingName="OpcUa:DefaultBinary">
+    <BrowseName>FTNIR</BrowseName>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>OpcUa:HasComponent</ReferenceType>
+        <TargetId>OpcUa:OPCBinarySchema_TypeSystem</TargetId>
+      </Reference>
+    </References>
+  </Dictionary>
+  <Dictionary SymbolicName="OpcFtnir:NameNotSet8" SymbolicId="OpcFtnir:Dictionary_XmlSchema" TypeDefinition="OpcUa:DataTypeDictionaryType" EncodingName="OpcUa:DefaultXml">
+    <BrowseName>FTNIR</BrowseName>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>OpcUa:HasComponent</ReferenceType>
+        <TargetId>OpcUa:XmlSchema_TypeSystem</TargetId>
+      </Reference>
+    </References>
+  </Dictionary>
+</ModelDesign>
