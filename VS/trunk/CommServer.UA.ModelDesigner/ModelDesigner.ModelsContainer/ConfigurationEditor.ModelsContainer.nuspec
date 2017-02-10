@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>CAS.CommServer.UA.ConfigurationEditor.ModelsContainer</id>
-    <version>3.20.4</version>
-    <title>CAS.CommServer.UA.ConfigurationEditor.ModelsContainer - CommServer UA ConfigurationEditor ServerConfiguration </title>
+    <version>4.0.0-Alpha</version>
+    <title>Deprecated: CAS.CommServer.UA.ConfigurationEditor.ModelsContainer - CommServer UA ConfigurationEditor ServerConfiguration </title>
     <authors>CAS</authors>
     <owners>commsvr.com</owners>
     <projectUrl>svn://svnserver.hq.cas.com.pl/Products/CommServer.UA.ConfigurationEditor</projectUrl>
@@ -11,10 +11,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <developmentDependency>false</developmentDependency>
     <description>
-	    Installation package of CommServer UA ConfigurationEditor ServerConfiguration plug-in
+	    Deprecated: Installation package of CommServer UA ConfigurationEditor ServerConfiguration plug-in
     </description>
     <summary>
-	    ConfigurationEditor ServerConfiguration.
+      Deprecated: ConfigurationEditor ServerConfiguration.
     </summary>
     <releaseNotes>
       - 3.20.4: RemovedRemoved dependency on the ConfigurationEditor.ServerConfiguration add-in.

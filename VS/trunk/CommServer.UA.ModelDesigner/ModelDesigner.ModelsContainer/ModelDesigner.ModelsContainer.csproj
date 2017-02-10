@@ -144,12 +144,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </None>
-    <None Include="ConfigurationEditor.ModelsContainer.nuspec">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ConfigurationEditor.ModelsContainer.tt</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -196,10 +190,6 @@
     <Content Include="EmbeddedExample\DemoConfiguration\BoilerType\tempuri.org.UA.Examples.BoilerType.NodeSet.xml" />
     <Content Include="EmbeddedExample\DemoConfiguration\BoilerType\tempuri.org.UA.Examples.BoilerType.NodeSet2.xml" />
     <Content Include="EmbeddedExample\DemoConfiguration\BoilerType\tempuri.org.UA.Examples.BoilerType.PredefinedNodes.xml" />
-    <Content Include="ConfigurationEditor.ModelsContainer.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ConfigurationEditor.ModelsContainer.nuspec</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
