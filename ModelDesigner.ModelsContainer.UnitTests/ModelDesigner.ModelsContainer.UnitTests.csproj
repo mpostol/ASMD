@@ -74,9 +74,9 @@
     <None Include="cas.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConfigurationEditor.ModelsContainer\ConfigurationEditor.ModelsContainer.csproj">
+    <ProjectReference Include="..\ModelDesigner.ModelsContainer\ModelDesigner.ModelsContainer.csproj">
       <Project>{643a2a07-394d-418f-937c-2d394efe5015}</Project>
-      <Name>ConfigurationEditor.ModelsContainer</Name>
+      <Name>ModelDesigner.ModelsContainer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

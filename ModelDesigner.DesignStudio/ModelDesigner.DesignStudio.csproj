@@ -133,8 +133,8 @@
       <HintPath>..\packages\CAS.UA.Common.3.00.05\lib\net461\CAS.CommServer.UA.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.UA.ConfigurationEditor.ModelsContainer, Version=3.20.4.39032, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.3.20.4\lib\net461\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.dll</HintPath>
+    <Reference Include="CAS.CommServer.UA.ConfigurationEditor.ModelsContainer, Version=3.20.4.30353, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.4.0.0-Alpha\lib\net461\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CAS.CommServer.UA.ModelCompiler.Common, Version=1.11.335.10, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
