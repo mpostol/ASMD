@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CAS="http://cas.eu/UA/" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:OpcUa="http://opcfoundation.org/UA/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" TargetNamespace="http://cas.eu/UA/" TargetXmlNamespace="http://cas.eu/UA/" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+  <Namespaces>
+    <Namespace Name="CASUa" Prefix="CAS.Ua" InternalPrefix="CAS.Ua.Server" XmlNamespace="http://cas.eu/UA/2009/Types.xsd" XmlPrefix="CAS">http://cas.eu/UA/</Namespace>
+    <Namespace Name="OpcUa" Prefix="Opc.Ua" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd" XmlPrefix="OpcUa">http://opcfoundation.org/UA/</Namespace>
+  </Namespaces>
+  <ObjectType SymbolicName="CAS:TestObjectType" BaseType="OpcUa:BaseObjectType">
+    <Description>Test object type</Description>
+    <Children>
+      <Variable SymbolicName="CAS:Byte" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:Byte" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Variable SymbolicName="CAS:ByteString" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:ByteString" ValueRank="Scalar" AccessLevel="Read" />
+      <Variable SymbolicName="CAS:DataValue" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:DataValue" ValueRank="Scalar" AccessLevel="Read" />
+      <Variable SymbolicName="CAS:DateTime" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:DateTime" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Variable SymbolicName="CAS:DiagnosticInfo" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:DiagnosticInfo" ValueRank="Scalar" AccessLevel="Read" />
+      <Variable SymbolicName="CAS:Enumeration" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:Enumeration" ValueRank="Scalar" AccessLevel="Read" />
+      <Variable SymbolicName="CAS:ExpandedNodeId" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:ExpandedNodeId" ValueRank="Scalar" AccessLevel="Read" />
+      <Variable SymbolicName="CAS:Float" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:Float" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Variable SymbolicName="CAS:Guid" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:Guid" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Variable SymbolicName="CAS:Int16" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:Int16" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Variable SymbolicName="CAS:Int64" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:Int64" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Variable SymbolicName="CAS:Integer" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:Integer" ValueRank="Scalar" AccessLevel="Read" />
+      <Variable SymbolicName="CAS:LocalizedText" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:LocalizedText" ValueRank="Scalar" AccessLevel="Read" />
+      <Variable SymbolicName="CAS:NodeId" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:NodeId" ValueRank="Scalar" AccessLevel="Read" />
+      <Variable SymbolicName="CAS:Number" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:Number" ValueRank="Scalar" AccessLevel="Read" />
+      <Variable SymbolicName="CAS:QualifiedName" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:QualifiedName" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Variable SymbolicName="CAS:SByte" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:SByte" ValueRank="Scalar" AccessLevel="Read" />
+      <Variable SymbolicName="CAS:StatusCode" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:StatusCode" ValueRank="Scalar" AccessLevel="Read" />
+      <Variable SymbolicName="CAS:String" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:String" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Variable SymbolicName="CAS:UInt16" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:UInt16" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Variable SymbolicName="CAS:UInt32" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:UInt32" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Variable SymbolicName="CAS:UInt64" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:UInt64" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Variable SymbolicName="CAS:UInteger" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:UInteger" ValueRank="Scalar" AccessLevel="Read" />
+      <Variable SymbolicName="CAS:XmlElement" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:XmlElement" ValueRank="Scalar" AccessLevel="Read" />
+      <Variable SymbolicName="CAS:Boolean" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:Boolean" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Variable SymbolicName="CAS:Double" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:Double" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Variable SymbolicName="CAS:Int32" TypeDefinition="OpcUa:BaseVariableType" DataType="OpcUa:Int32" ValueRank="Scalar" AccessLevel="ReadWrite" />
+      <Variable SymbolicName="CAS:VariableWithRange" AccessLevel="Read">
+        <Children>
+          <Property SymbolicName="OpcUa:EURange" ModellingRule="Mandatory" DataType="OpcUa:Range" AccessLevel="Read">
+            <DefaultValue>
+              <ExtensionObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+                <TypeId>
+                  <Identifier>i=885</Identifier>
+                </TypeId>
+                <Body>
+                  <Range xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+                    <Low>1</Low>
+                    <High>256</High>
+                  </Range>
+                </Body>
+              </ExtensionObject>
+            </DefaultValue>
+          </Property>
+        </Children>
+        <DefaultValue>
+          <ExtensionObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+            <TypeId>
+              <Identifier>i=885</Identifier>
+            </TypeId>
+            <Body>
+              <Range xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">
+                <Low>1</Low>
+                <High>256</High>
+              </Range>
+            </Body>
+          </ExtensionObject>
+        </DefaultValue>
+      </Variable>
+    </Children>
+  </ObjectType>
+  <Object SymbolicName="CAS:TestObject_NoBindings" TypeDefinition="CAS:TestObjectType">
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>OpcUa:Organizes</ReferenceType>
+        <TargetId>OpcUa:ObjectsFolder</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="CAS:TestObject_Bindings_Simulator" TypeDefinition="CAS:TestObjectType">
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>OpcUa:Organizes</ReferenceType>
+        <TargetId>OpcUa:ObjectsFolder</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="CAS:TestObject_Bindings_CommSvr_Generated" TypeDefinition="CAS:TestObjectType">
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>OpcUa:Organizes</ReferenceType>
+        <TargetId>OpcUa:ObjectsFolder</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="CAS:TestObject_Bindings_CommSvr_Static" TypeDefinition="CAS:TestObjectType">
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>OpcUa:Organizes</ReferenceType>
+        <TargetId>OpcUa:ObjectsFolder</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="CAS:TestObject_Bindings_OPCViewer_Generated" TypeDefinition="CAS:TestObjectType">
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>OpcUa:Organizes</ReferenceType>
+        <TargetId>OpcUa:ObjectsFolder</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <Object SymbolicName="CAS:TestObject_Bindings_OPCViewer_Static" TypeDefinition="CAS:TestObjectType">
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>OpcUa:Organizes</ReferenceType>
+        <TargetId>OpcUa:ObjectsFolder</TargetId>
+      </Reference>
+    </References>
+  </Object>
+</ModelDesign>

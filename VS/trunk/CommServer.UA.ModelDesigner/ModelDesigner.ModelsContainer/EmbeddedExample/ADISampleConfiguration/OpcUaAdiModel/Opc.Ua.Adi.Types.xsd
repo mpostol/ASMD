@@ -1,0 +1,74 @@
+<xs:schema
+  xmlns:DI="http://opcfoundation.org/UA/DI/Types.xsd"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:ua="http://opcfoundation.org/UA/2008/02/Types.xsd"
+  xmlns:tns="http://opcfoundation.org/UA/ADI/Types.xsd"
+  targetNamespace="http://opcfoundation.org/UA/ADI/Types.xsd"
+  elementFormDefault="qualified"
+>
+  <xs:import namespace="http://opcfoundation.org/UA/DI/Types.xsd" />
+  <xs:import namespace="http://opcfoundation.org/UA/2008/02/Types.xsd" />
+
+  <xs:simpleType  name="ExecutionCycleEnumeration">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="IDLE_0" />
+      <xs:enumeration value="DIAGNOSTIC_1" />
+      <xs:enumeration value="CLEANING_2" />
+      <xs:enumeration value="CALIBRATION_4" />
+      <xs:enumeration value="VALIDATION_8" />
+      <xs:enumeration value="SAMPLING_16" />
+      <xs:enumeration value="DIAGNOSTIC_WITH_GRAB_SAMPLE_32769" />
+      <xs:enumeration value="CLEANING_WITH_GRAB_SAMPLE_32770" />
+      <xs:enumeration value="CALIBRATION_WITH_GRAB_SAMPLE_32772" />
+      <xs:enumeration value="VALIDATION_WITH_GRAB_SAMPLE_32776" />
+      <xs:enumeration value="SAMPLING_WITH_GRAB_SAMPLE_32784" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ExecutionCycleEnumeration" type="tns:ExecutionCycleEnumeration" />
+
+  <xs:complexType name="ListOfExecutionCycleEnumeration">
+    <xs:sequence>
+      <xs:element name="ExecutionCycleEnumeration" type="tns:ExecutionCycleEnumeration" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListOfExecutionCycleEnumeration" type="tns:ListOfExecutionCycleEnumeration" nillable="true"></xs:element>
+
+  <xs:simpleType  name="AcquisitionResultStatusEnumeration">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NOT_USED_0" />
+      <xs:enumeration value="GOOD_1" />
+      <xs:enumeration value="BAD_2" />
+      <xs:enumeration value="UNKNOWN_3" />
+      <xs:enumeration value="PARTIAL_4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AcquisitionResultStatusEnumeration" type="tns:AcquisitionResultStatusEnumeration" />
+
+  <xs:complexType name="ListOfAcquisitionResultStatusEnumeration">
+    <xs:sequence>
+      <xs:element name="AcquisitionResultStatusEnumeration" type="tns:AcquisitionResultStatusEnumeration" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListOfAcquisitionResultStatusEnumeration" type="tns:ListOfAcquisitionResultStatusEnumeration" nillable="true"></xs:element>
+
+  <xs:simpleType  name="AlarmStateEnumeration">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NORMAL_0" />
+      <xs:enumeration value="WARNING_LOW_1" />
+      <xs:enumeration value="WARNING_HIGH_2" />
+      <xs:enumeration value="WARNING_4" />
+      <xs:enumeration value="ALARM_LOW_8" />
+      <xs:enumeration value="ALARM_HIGH_16" />
+      <xs:enumeration value="ALARM_32" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AlarmStateEnumeration" type="tns:AlarmStateEnumeration" />
+
+  <xs:complexType name="ListOfAlarmStateEnumeration">
+    <xs:sequence>
+      <xs:element name="AlarmStateEnumeration" type="tns:AlarmStateEnumeration" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListOfAlarmStateEnumeration" type="tns:ListOfAlarmStateEnumeration" nillable="true"></xs:element>
+
+</xs:schema>

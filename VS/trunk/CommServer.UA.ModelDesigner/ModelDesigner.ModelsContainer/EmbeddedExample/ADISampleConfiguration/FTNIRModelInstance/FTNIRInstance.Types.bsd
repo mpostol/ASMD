@@ -1,0 +1,18 @@
+<opc:TypeDictionary
+  xmlns:ADI="http://opcfoundation.org/UA/ADI/"
+  xmlns:DI="http://opcfoundation.org/UA/DI/"
+  xmlns:FTNIR="http://opcfoundation.org/UA/FTNIR/"
+  xmlns:opc="http://opcfoundation.org/BinarySchema/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ua="http://opcfoundation.org/UA/"
+  xmlns:tns="http://cas.eu/UA/FTNIR/"
+  DefaultByteOrder="LittleEndian"
+  TargetNamespace="http://cas.eu/UA/FTNIR/"
+>
+  <!-- This File was generated on 2016-06-29 and supports the specifications supported by version 1.2.26.16032 of the OPC UA deliverables. -->
+  <opc:Import Namespace="http://opcfoundation.org/UA/ADI/" Location="Opc.Ua.Adi.BinarySchema.bsd"/>
+  <opc:Import Namespace="http://opcfoundation.org/UA/DI/" Location="Opc.Ua.Di.BinarySchema.bsd"/>
+  <opc:Import Namespace="http://opcfoundation.org/UA/" Location="Opc.Ua.BinarySchema.bsd"/>
+  <opc:Import Namespace="http://opcfoundation.org/UA/FTNIR/" Location="FTNIR.BinarySchema.bsd"/>
+
+</opc:TypeDictionary>

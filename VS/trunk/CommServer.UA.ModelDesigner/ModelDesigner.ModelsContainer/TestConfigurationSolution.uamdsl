@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UAModelDesignerSolution xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>TestConfigurationSolution</Name>
+  <Projects>
+    <UAModelDesignerProject ProjectIdentifier="2c6aee2f-2623-419f-b950-fe7d04b02117">
+      <Name>TestProject</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>TestConfiguration\TestModel.xml</FileName>
+    </UAModelDesignerProject>
+  </Projects>
+  <ServerDetails codebase="CAS.UA.Server.ServerConfiguration.dll" configuration="TestConfiguration\CAS.UAServer.DemoConfiguration.uasconfig" />
+</UAModelDesignerSolution>

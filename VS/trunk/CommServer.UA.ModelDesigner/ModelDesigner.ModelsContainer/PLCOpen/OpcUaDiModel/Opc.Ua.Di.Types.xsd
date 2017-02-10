@@ -1,0 +1,76 @@
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:ua="http://opcfoundation.org/UA/2008/02/Types.xsd"
+  xmlns:tns="http://opcfoundation.org/UA/DI/Types.xsd"
+  targetNamespace="http://opcfoundation.org/UA/DI/Types.xsd"
+  elementFormDefault="qualified"
+>
+  <xs:import namespace="http://opcfoundation.org/UA/2008/02/Types.xsd" />
+
+  <xs:simpleType  name="DeviceHealthEnumeration">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NORMAL_0" />
+      <xs:enumeration value="FAILURE_1" />
+      <xs:enumeration value="CHECK_FUNCTION_2" />
+      <xs:enumeration value="OFF_SPEC_3" />
+      <xs:enumeration value="MAINTENANCE_REQUIRED_4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DeviceHealthEnumeration" type="tns:DeviceHealthEnumeration" />
+
+  <xs:complexType name="ListOfDeviceHealthEnumeration">
+    <xs:sequence>
+      <xs:element name="DeviceHealthEnumeration" type="tns:DeviceHealthEnumeration" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListOfDeviceHealthEnumeration" type="tns:ListOfDeviceHealthEnumeration" nillable="true"></xs:element>
+
+  <xs:complexType name="TransferStatusType">
+    <xs:sequence>
+      <xs:element name="status" type="xs:int" minOccurs="0" />
+      <xs:element name="diagnostics" type="ua:DiagnosticInfo" minOccurs="0" nillable="true" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TransferStatusType" type="tns:TransferStatusType" />
+
+  <xs:complexType name="ListOfTransferStatusType">
+    <xs:sequence>
+      <xs:element name="TransferStatusType" type="tns:TransferStatusType" minOccurs="0" maxOccurs="unbounded" nillable="true" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListOfTransferStatusType" type="tns:ListOfTransferStatusType" nillable="true"></xs:element>
+
+  <xs:complexType name="TransferResult">
+    <xs:sequence>
+      <xs:element name="TransferFinished" type="xs:boolean" minOccurs="0" />
+      <xs:element name="transferStatus" type="tns:TransferStatusType" minOccurs="0" nillable="true" />
+      <xs:element name="endOfResults" type="xs:boolean" minOccurs="0" />
+      <xs:element name="parameterDefs" type="tns:ListOfParameterResult" minOccurs="0" nillable="true" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TransferResult" type="tns:TransferResult" />
+
+  <xs:complexType name="ListOfTransferResult">
+    <xs:sequence>
+      <xs:element name="TransferResult" type="tns:TransferResult" minOccurs="0" maxOccurs="unbounded" nillable="true" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListOfTransferResult" type="tns:ListOfTransferResult" nillable="true"></xs:element>
+
+  <xs:complexType name="ParameterResult">
+    <xs:sequence>
+      <xs:element name="node" type="ua:NodeId" minOccurs="0" nillable="true" />
+      <xs:element name="statusCode" type="ua:StatusCode" minOccurs="0" />
+      <xs:element name="diagnostics" type="ua:DiagnosticInfo" minOccurs="0" nillable="true" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ParameterResult" type="tns:ParameterResult" />
+
+  <xs:complexType name="ListOfParameterResult">
+    <xs:sequence>
+      <xs:element name="ParameterResult" type="tns:ParameterResult" minOccurs="0" maxOccurs="unbounded" nillable="true" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListOfParameterResult" type="tns:ListOfParameterResult" nillable="true"></xs:element>
+
+</xs:schema>

@@ -1,0 +1,46 @@
+<opc:TypeDictionary
+  xmlns:DI="http://opcfoundation.org/UA/DI/"
+  xmlns:opc="http://opcfoundation.org/BinarySchema/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ua="http://opcfoundation.org/UA/"
+  xmlns:tns="http://opcfoundation.org/UA/ADI/"
+  DefaultByteOrder="LittleEndian"
+  TargetNamespace="http://opcfoundation.org/UA/ADI/"
+>
+  <!-- This File was generated on 2015-01-31 and supports the specifications supported by version 1.2.26.30281 of the OPC UA deliverables. -->
+  <opc:Import Namespace="http://opcfoundation.org/UA/DI/" Location="Opc.Ua.Di.BinarySchema.bsd"/>
+  <opc:Import Namespace="http://opcfoundation.org/UA/" Location="Opc.Ua.BinarySchema.bsd"/>
+
+  <opc:EnumeratedType Name="ExecutionCycleEnumeration" LengthInBits="32">
+    <opc:EnumeratedValue Name="IDLE" Value="0" />
+    <opc:EnumeratedValue Name="DIAGNOSTIC" Value="1" />
+    <opc:EnumeratedValue Name="CLEANING" Value="2" />
+    <opc:EnumeratedValue Name="CALIBRATION" Value="4" />
+    <opc:EnumeratedValue Name="VALIDATION" Value="8" />
+    <opc:EnumeratedValue Name="SAMPLING" Value="16" />
+    <opc:EnumeratedValue Name="DIAGNOSTIC_WITH_GRAB_SAMPLE" Value="32769" />
+    <opc:EnumeratedValue Name="CLEANING_WITH_GRAB_SAMPLE" Value="32770" />
+    <opc:EnumeratedValue Name="CALIBRATION_WITH_GRAB_SAMPLE" Value="32772" />
+    <opc:EnumeratedValue Name="VALIDATION_WITH_GRAB_SAMPLE" Value="32776" />
+    <opc:EnumeratedValue Name="SAMPLING_WITH_GRAB_SAMPLE" Value="32784" />
+  </opc:EnumeratedType>
+
+  <opc:EnumeratedType Name="AcquisitionResultStatusEnumeration" LengthInBits="32">
+    <opc:EnumeratedValue Name="NOT_USED" Value="0" />
+    <opc:EnumeratedValue Name="GOOD" Value="1" />
+    <opc:EnumeratedValue Name="BAD" Value="2" />
+    <opc:EnumeratedValue Name="UNKNOWN" Value="3" />
+    <opc:EnumeratedValue Name="PARTIAL" Value="4" />
+  </opc:EnumeratedType>
+
+  <opc:EnumeratedType Name="AlarmStateEnumeration" LengthInBits="32">
+    <opc:EnumeratedValue Name="NORMAL_0" Value="0" />
+    <opc:EnumeratedValue Name="WARNING_LOW_1" Value="1" />
+    <opc:EnumeratedValue Name="WARNING_HIGH_2" Value="2" />
+    <opc:EnumeratedValue Name="WARNING_4" Value="4" />
+    <opc:EnumeratedValue Name="ALARM_LOW_8" Value="8" />
+    <opc:EnumeratedValue Name="ALARM_HIGH_16" Value="16" />
+    <opc:EnumeratedValue Name="ALARM_32" Value="32" />
+  </opc:EnumeratedType>
+
+</opc:TypeDictionary>

@@ -1,0 +1,20 @@
+<opc:TypeDictionary
+  xmlns:ADI="http://opcfoundation.org/UA/ADI/"
+  xmlns:DI="http://opcfoundation.org/UA/DI/"
+  xmlns:opc="http://opcfoundation.org/BinarySchema/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ua="http://opcfoundation.org/UA/"
+  xmlns:tns="http://opcfoundation.org/UA/FTNIR/"
+  DefaultByteOrder="LittleEndian"
+  TargetNamespace="http://opcfoundation.org/UA/FTNIR/"
+>
+  <!-- This File was generated on 2015-08-11 and supports the specifications supported by version 1.2.26.16032 of the OPC UA deliverables. -->
+  <opc:Import Namespace="http://opcfoundation.org/UA/ADI/" Location="Opc.Ua.Adi.BinarySchema.bsd"/>
+  <opc:Import Namespace="http://opcfoundation.org/UA/DI/" Location="Opc.Ua.Di.BinarySchema.bsd"/>
+  <opc:Import Namespace="http://opcfoundation.org/UA/" Location="Opc.Ua.BinarySchema.bsd"/>
+
+  <opc:EnumeratedType Name="ExecutionCycleSubcodeEnumeration" LengthInBits="32">
+    <opc:EnumeratedValue Name="Normal" Value="0" />
+  </opc:EnumeratedType>
+
+</opc:TypeDictionary>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns3="http://opcfoundation.org/UA/" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns4="http://opcfoundation.org/UA/DI/" xmlns:ns5="http://PLCopen.org/OpcUa/IEC61131-3/" TargetNamespace="http://PLCopen.org/OpcUa/IEC61131-3/" TargetXmlNamespace="http://PLCopen.org/OpcUa/IEC61131-3/" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+  <Namespaces>
+    <Namespace Name="OpcUa" Prefix="Opc.Ua" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd">http://opcfoundation.org/UA/</Namespace>
+    <Namespace Name="OpcUaDi" Prefix="Opc.Ua.Di" XmlNamespace="http://opcfoundation.org/UA/DI/Types.xsd" FilePath="OpcUaDiModel">http://opcfoundation.org/UA/DI/</Namespace>
+    <Namespace Name="OpcUaPlc" Prefix="Opc.Ua.Plc" XmlNamespace="http://PLCopen.org/OpcUa/IEC61131-3/Types.xsd">http://PLCopen.org/OpcUa/IEC61131-3/</Namespace>
+  </Namespaces>
+  <ReferenceType SymbolicName="ns5:HasInputVars" BaseType="ns3:HasComponent">
+    <InverseName>InputVarsOf</InverseName>
+  </ReferenceType>
+  <ReferenceType SymbolicName="ns5:HasOutputVars" BaseType="ns3:HasComponent">
+    <InverseName>OutputVarsOf</InverseName>
+  </ReferenceType>
+  <ReferenceType SymbolicName="ns5:HasInOutVars" BaseType="ns3:HasComponent">
+    <InverseName>InOutVarsOf</InverseName>
+  </ReferenceType>
+  <ReferenceType SymbolicName="ns5:HasLocalVars" BaseType="ns3:HasComponent">
+    <InverseName>LocalVarsOf</InverseName>
+  </ReferenceType>
+  <ReferenceType SymbolicName="ns5:HasExternalVars" BaseType="ns3:Organizes">
+    <InverseName>ExternalVarsOf</InverseName>
+  </ReferenceType>
+  <ReferenceType SymbolicName="ns5:With" BaseType="ns3:NonHierarchicalReferences">
+    <InverseName>Executes</InverseName>
+  </ReferenceType>
+  <ObjectType SymbolicName="ns5:CtrlConfigurationType" BaseType="ns4:DeviceType">
+    <Children>
+      <Object SymbolicName="ns5:MethodSet" TypeDefinition="ns3:BaseObjectType">
+        <Children>
+          <Method SymbolicName="ns5:Start" ModellingRule="Optional" />
+          <Method SymbolicName="ns5:Stop" ModellingRule="Optional" />
+        </Children>
+      </Object>
+      <Object SymbolicName="ns5:Resources" TypeDefinition="ns4:ConfigurableObjectType" />
+      <Object SymbolicName="ns5:GlobalVars" TypeDefinition="ns4:FunctionalGroupType" />
+      <Object SymbolicName="ns5:AccessVars" TypeDefinition="ns4:FunctionalGroupType" />
+      <Object SymbolicName="ns5:ConfigVars" TypeDefinition="ns4:FunctionalGroupType" />
+      <Object SymbolicName="ns5:Configuration" TypeDefinition="ns4:FunctionalGroupType" />
+      <Object SymbolicName="ns5:Diagnostic" TypeDefinition="ns4:FunctionalGroupType" />
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="ns5:CtrlResourceType" BaseType="ns4:DeviceType">
+    <Children>
+      <Object SymbolicName="ns5:MethodSet" TypeDefinition="ns3:BaseObjectType" ModellingRule="Optional">
+        <Children>
+          <Method SymbolicName="ns5:Start" ModellingRule="Optional" />
+          <Method SymbolicName="ns5:Stop" ModellingRule="Optional" />
+        </Children>
+      </Object>
+      <Object SymbolicName="ns5:Tasks" TypeDefinition="ns4:ConfigurableObjectType" ModellingRule="Mandatory" />
+      <Object SymbolicName="ns5:Programs" TypeDefinition="ns4:ConfigurableObjectType" ModellingRule="Mandatory" />
+      <Object SymbolicName="ns5:GlobalVars" TypeDefinition="ns4:FunctionalGroupType" ModellingRule="Optional" />
+      <Object SymbolicName="ns5:Configuration" TypeDefinition="ns4:FunctionalGroupType" ModellingRule="Optional" />
+      <Object SymbolicName="ns5:Diagnostic" TypeDefinition="ns4:FunctionalGroupType" ModellingRule="Optional" />
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="ns5:CtrlProgramOrganizationUnitType" BaseType="ns4:BlockType" IsAbstract="true">
+    <Children>
+      <Variable SymbolicName="ns5:Body" TypeDefinition="ns3:BaseDataVariableType" ModellingRule="Optional" DataType="ns3:XmlElement" />
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="ns5:CtrlProgramType" BaseType="ns5:CtrlProgramOrganizationUnitType" IsAbstract="true">
+    <Children>
+      <Variable SymbolicName="ns5:Program" TypeDefinition="ns3:BaseDataVariableType" ModellingRule="Optional" DataType="ns3:Structure" />
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="ns5:CtrlFunctionBlockType" BaseType="ns5:CtrlProgramOrganizationUnitType" IsAbstract="true">
+    <Children>
+      <Variable SymbolicName="ns5:FunctionBlock" TypeDefinition="ns3:BaseDataVariableType" ModellingRule="Optional" />
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="ns5:CtrlTaskType" BaseType="ns3:BaseObjectType">
+    <Children>
+      <Property SymbolicName="ns5:Priority" TypeDefinition="ns3:PropertyType" ModellingRule="Mandatory" DataType="ns3:UInt32" />
+      <Property SymbolicName="ns5:Interval" TypeDefinition="ns3:PropertyType" ModellingRule="Optional" DataType="ns3:String" />
+      <Property SymbolicName="ns5:Single" TypeDefinition="ns3:PropertyType" ModellingRule="Optional" DataType="ns3:String" />
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="ns5:SFCType" BaseType="ns3:BaseObjectType" />
+</ModelDesign>

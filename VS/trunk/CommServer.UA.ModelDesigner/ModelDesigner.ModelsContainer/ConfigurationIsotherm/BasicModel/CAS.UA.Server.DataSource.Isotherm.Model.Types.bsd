@@ -1,0 +1,16 @@
+<opc:TypeDictionary
+  xmlns:opc="http://opcfoundation.org/BinarySchema/"
+  xmlns:ua="http://opcfoundation.org/UA/2008/02/Types.bsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:tns="http://cas.eu/UA/CommServer/"
+  DefaultByteOrder="LittleEndian"
+  TargetNamespace="http://cas.eu/UA/CommServer/"  
+>
+  <opc:Import Namespace="http://opcfoundation.org/UA/" Location=".BinarySchema.bsd"/>
+  
+  <opc:StructuredType Name="StructureExample">
+    <opc:Field Name="NoOfField1" TypeName="opc:Int32" />
+    <opc:Field Name="Field1" TypeName="opc:Int32" LengthField="NoOfField1" />
+  </opc:StructuredType>
+  
+</opc:TypeDictionary>

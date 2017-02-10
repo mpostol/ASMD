@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UAModelDesignerSolution xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>ADI Implementation</Name>
+  <Projects>
+    <UAModelDesignerProject ProjectIdentifier="85c40052-1dda-4222-9a32-46a46ad56d90">
+      <Name>OpcUaDiModel</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>ADISampleConfiguration\OpcUaDiModel.xml</FileName>
+    </UAModelDesignerProject>
+    <UAModelDesignerProject ProjectIdentifier="58282d6c-d04e-4596-8aeb-a78598fb648b">
+      <Name>OpcUaAdiModel</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>ADISampleConfiguration\OpcUaAdiModel.xml</FileName>
+    </UAModelDesignerProject>
+    <UAModelDesignerProject ProjectIdentifier="37a2e4f8-dfeb-4e85-80ed-7b95389797f7">
+      <Name>FTNIRModel</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>ADISampleConfiguration\FTNIRModel.xml</FileName>
+    </UAModelDesignerProject>
+    <UAModelDesignerProject ProjectIdentifier="e0dfeca9-a04d-48fa-8e8c-1f672ac15de0">
+      <Name>FTNIRModelInstance</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>ADISampleConfiguration\FTNIRModelInstance.xml</FileName>
+    </UAModelDesignerProject>
+  </Projects>
+  <ServerDetails codebase="CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll" configuration="ADISampleConfiguration\CAS.UAServer.DemoConfiguration.uasconfig" />
+</UAModelDesignerSolution>

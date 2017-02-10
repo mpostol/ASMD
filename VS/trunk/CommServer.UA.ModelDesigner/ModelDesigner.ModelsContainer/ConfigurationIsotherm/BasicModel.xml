@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cas="http://cas.eu/UA/CommServer/" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ua="http://opcfoundation.org/UA/" TargetNamespace="http://cas.eu/UA/CommServer/" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+  <Namespaces>
+    <Namespace Name="cas" Prefix="CAS.UA.Server.DataSource.Isotherm.Model" XmlPrefix="cas">http://cas.eu/UA/CommServer/</Namespace>
+    <Namespace Name="ua" XmlPrefix="ua">http://opcfoundation.org/UA/</Namespace>
+  </Namespaces>
+  <ObjectType SymbolicName="cas:PLCType" BaseType="ua:FolderType">
+    <Children>
+      <Variable SymbolicName="cas:ArrayVariableInstanceDeclaration" DataType="cas:StructureExample" ValueRank="Array" />
+    </Children>
+  </ObjectType>
+  <Object SymbolicName="cas:PLC" TypeDefinition="cas:PLCType">
+    <Children>
+      <Variable SymbolicName="cas:ArrayVariable" DataType="cas:StructureExample" ValueRank="Array" />
+      <Property SymbolicName="cas:NameNotSet785" DataType="ua:Int32" />
+    </Children>
+    <References>
+      <Reference IsInverse="true">
+        <ReferenceType>ua:Organizes</ReferenceType>
+        <TargetId>ua:ObjectsFolder</TargetId>
+      </Reference>
+    </References>
+  </Object>
+  <DataType SymbolicName="cas:StructureExample" BaseType="ua:Structure">
+    <Fields>
+      <Field Name="Field1" DataType="ua:Int32" ValueRank="Array" />
+    </Fields>
+  </DataType>
+</ModelDesign>

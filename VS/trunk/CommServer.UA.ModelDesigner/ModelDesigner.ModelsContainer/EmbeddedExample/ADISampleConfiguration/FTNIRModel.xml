@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelDesign xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:DI="http://opcfoundation.org/UA/DI/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:OpcUa="http://opcfoundation.org/UA/" xmlns:FTNIR="http://opcfoundation.org/UA/FTNIR/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADI="http://opcfoundation.org/UA/ADI/" TargetNamespace="http://opcfoundation.org/UA/FTNIR/" TargetXmlNamespace="http://opcfoundation.org/UA/FTNIR/" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+  <Namespaces>
+    <Namespace Name="OpcFtnir" Prefix="FTNIR" XmlNamespace="http://opcfoundation.org/UA/FTNIR/Types.xsd" XmlPrefix="FTNIR">http://opcfoundation.org/UA/FTNIR/</Namespace>
+    <Namespace Name="OpcAdi" Prefix="Opc.Ua.Adi" XmlNamespace="http://opcfoundation.org/UA/ADI/Types.xsd" XmlPrefix="ADI" FilePath="OpcUaADIModel">http://opcfoundation.org/UA/ADI/</Namespace>
+    <Namespace Name="OpcDi" Prefix="Opc.Ua.Di" XmlNamespace="http://opcfoundation.org/UA/DI/Types.xsd" XmlPrefix="DI" FilePath="OpcUaDIModel">http://opcfoundation.org/UA/DI/</Namespace>
+    <Namespace Name="OpcUa" Prefix="Opc.Ua" InternalPrefix="Opc.Ua.Server" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd" XmlPrefix="OpcUa">http://opcfoundation.org/UA/</Namespace>
+  </Namespaces>
+  <ObjectType SymbolicName="FTNIR:FTNIRSimulatorDeviceType" BaseType="ADI:SpectrometerDeviceType">
+    <Children>
+      <Object SymbolicName="DI:MethodSet">
+        <Children>
+          <Method SymbolicName="FTNIR:PowerOn">
+            <Description>Simulate analyser power on sequence.</Description>
+          </Method>
+          <Method SymbolicName="FTNIR:PowerOff">
+            <Description>Simulate analyser power off sequence.</Description>
+          </Method>
+          <Method SymbolicName="FTNIR:ClearAllChannels">
+            <Description>Call Clear on all channels.</Description>
+          </Method>
+        </Children>
+      </Object>
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="FTNIR:IRSourceType" BaseType="ADI:SourceType">
+    <Children>
+      <Object SymbolicName="DI:ParameterSet">
+        <Children>
+          <Variable SymbolicName="FTNIR:Manufacturer" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:LocalizedText" />
+          <Variable SymbolicName="FTNIR:Model" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:LocalizedText" />
+          <Variable SymbolicName="FTNIR:SerialNumber" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:String" />
+          <Variable SymbolicName="FTNIR:IsEnabled" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Boolean" MinimumSamplingInterval="1000" />
+          <Variable SymbolicName="FTNIR:ActualTemperature" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Float" MinimumSamplingInterval="1000" />
+        </Children>
+      </Object>
+      <Object SymbolicName="ADI:Configuration">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:IRSourceType_ParameterSet_IsEnabled</TargetId>
+          </Reference>
+        </References>
+      </Object>
+      <Object SymbolicName="ADI:Status">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:IRSourceType_ParameterSet_ActualTemperature</TargetId>
+          </Reference>
+        </References>
+      </Object>
+      <Object SymbolicName="ADI:FactorySettings">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:IRSourceType_ParameterSet_Manufacturer</TargetId>
+          </Reference>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:IRSourceType_ParameterSet_Model</TargetId>
+          </Reference>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:IRSourceType_ParameterSet_SerialNumber</TargetId>
+          </Reference>
+        </References>
+      </Object>
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="FTNIR:FTNIRDetectorType" BaseType="ADI:DetectorType">
+    <Children>
+      <Object SymbolicName="DI:ParameterSet">
+        <Children>
+          <Variable SymbolicName="FTNIR:Manufacturer" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:LocalizedText" />
+          <Variable SymbolicName="FTNIR:Model" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:LocalizedText" />
+          <Variable SymbolicName="FTNIR:SerialNumber" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:String" />
+          <Variable SymbolicName="FTNIR:Gain" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:UInt32" MinimumSamplingInterval="1000" />
+          <Variable SymbolicName="FTNIR:IsSaturated" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Boolean" MinimumSamplingInterval="1000" />
+        </Children>
+      </Object>
+      <Object SymbolicName="ADI:Configuration">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:FTNIRDetectorType_ParameterSet_Gain</TargetId>
+          </Reference>
+        </References>
+      </Object>
+      <Object SymbolicName="ADI:Status">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:FTNIRDetectorType_ParameterSet_IsSaturated</TargetId>
+          </Reference>
+        </References>
+      </Object>
+      <Object SymbolicName="ADI:FactorySettings">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:FTNIRDetectorType_ParameterSet_Manufacturer</TargetId>
+          </Reference>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:FTNIRDetectorType_ParameterSet_Model</TargetId>
+          </Reference>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:FTNIRDetectorType_ParameterSet_SerialNumber</TargetId>
+          </Reference>
+        </References>
+      </Object>
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="FTNIR:LiquidCellType" BaseType="ADI:SmartSamplingSystemType">
+    <Children>
+      <Object SymbolicName="DI:ParameterSet">
+        <Children>
+          <Variable SymbolicName="FTNIR:Manufacturer" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:LocalizedText" />
+          <Variable SymbolicName="FTNIR:Model" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:LocalizedText" />
+          <Variable SymbolicName="FTNIR:SerialNumber" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:String" />
+          <Variable SymbolicName="FTNIR:ActualTemperature" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Float" MinimumSamplingInterval="1000" />
+        </Children>
+      </Object>
+      <Object SymbolicName="ADI:Status">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:LiquidCellType_ParameterSet_ActualTemperature</TargetId>
+          </Reference>
+        </References>
+      </Object>
+      <Object SymbolicName="ADI:FactorySettings">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:LiquidCellType_ParameterSet_Manufacturer</TargetId>
+          </Reference>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:LiquidCellType_ParameterSet_Model</TargetId>
+          </Reference>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:LiquidCellType_ParameterSet_SerialNumber</TargetId>
+          </Reference>
+        </References>
+      </Object>
+    </Children>
+  </ObjectType>
+  <ObjectType SymbolicName="FTNIR:ControllableHeatedLiquidCellType" BaseType="ADI:SmartSamplingSystemType">
+    <Children>
+      <Object SymbolicName="DI:ParameterSet">
+        <Children>
+          <Variable SymbolicName="FTNIR:Manufacturer" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:LocalizedText" />
+          <Variable SymbolicName="FTNIR:Model" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:LocalizedText" />
+          <Variable SymbolicName="FTNIR:SerialNumber" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:String" />
+          <Variable SymbolicName="FTNIR:RequestedTemperature" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Float" MinimumSamplingInterval="1000" />
+          <Variable SymbolicName="FTNIR:ActualTemperature" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Float" MinimumSamplingInterval="1000" />
+        </Children>
+      </Object>
+      <Object SymbolicName="ADI:Configuration">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:ControllableHeatedLiquidCellType_ParameterSet_RequestedTemperature</TargetId>
+          </Reference>
+        </References>
+      </Object>
+      <Object SymbolicName="ADI:Status">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:ControllableHeatedLiquidCellType_ParameterSet_ActualTemperature</TargetId>
+          </Reference>
+        </References>
+      </Object>
+      <Object SymbolicName="ADI:FactorySettings">
+        <References>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:ControllableHeatedLiquidCellType_ParameterSet_Manufacturer</TargetId>
+          </Reference>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:ControllableHeatedLiquidCellType_ParameterSet_Model</TargetId>
+          </Reference>
+          <Reference>
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>FTNIR:ControllableHeatedLiquidCellType_ParameterSet_SerialNumber</TargetId>
+          </Reference>
+        </References>
+      </Object>
+    </Children>
+  </ObjectType>
+  <VariableType SymbolicName="FTNIR:Concentration" BaseType="ADI:EngineeringValueType" DataType="OpcUa:Float" MinimumSamplingInterval="1000">
+    <Children>
+      <Variable SymbolicName="FTNIR:QualityIndex" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Float" MinimumSamplingInterval="1000" />
+    </Children>
+  </VariableType>
+  <VariableType SymbolicName="FTNIR:SimplePeakHeightModelType" BaseType="ADI:ChemometricModelType">
+    <Description>Find the highest point between FirstX and LastX.</Description>
+    <Children>
+      <Variable SymbolicName="FTNIR:FirstX" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Double">
+        <Description>Frequency of the starting point in cm-1</Description>
+      </Variable>
+      <Variable SymbolicName="FTNIR:LastX" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Double">
+        <Description>Frequency of the last point in cm-1</Description>
+      </Variable>
+      <Variable SymbolicName="FTNIR:PeakHeight" TypeDefinition="OpcUa:DataItemType" DataType="OpcUa:Float" MinimumSamplingInterval="1000">
+        <Description>Peak height output value</Description>
+      </Variable>
+    </Children>
+    <References>
+      <Reference>
+        <ReferenceType>ADI:HasOutput</ReferenceType>
+        <TargetId>FTNIR:SimplePeakHeightModelType_PeakHeight</TargetId>
+      </Reference>
+    </References>
+  </VariableType>
+  <DataType SymbolicName="FTNIR:ExecutionCycleSubcodeEnumeration" BaseType="OpcUa:Enumeration" NoArraysAllowed="true">
+    <Fields>
+      <Field Name="Normal" Identifier="0" />
+    </Fields>
+  </DataType>
+</ModelDesign>

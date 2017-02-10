@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UAModelDesignerSolution xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>IOPWSolution</Name>
+  <Projects>
+    <UAModelDesignerProject ProjectIdentifier="3a639269-46af-4eb4-86c1-2a02ab64f54c">
+      <Name>TestModel</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>IOPWConfiguration\TestModel.xml</FileName>
+    </UAModelDesignerProject>
+    <UAModelDesignerProject ProjectIdentifier="1fdd48bb-366b-4026-80e6-eb827249254c">
+      <Name>BoilerExample</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>IOPWConfiguration\BoilerExample.xml</FileName>
+    </UAModelDesignerProject>
+    <UAModelDesignerProject ProjectIdentifier="57f3fe8f-5d3b-4561-9a20-a725b8a8237a">
+      <Name>FTNIRModel</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>IOPWConfiguration\FTNIRModel.xml</FileName>
+    </UAModelDesignerProject>
+    <UAModelDesignerProject ProjectIdentifier="a75f2723-b6f2-42b2-b6b9-14ab4671397c">
+      <Name>DIModel</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>IOPWConfiguration\DIModel.xml</FileName>
+    </UAModelDesignerProject>
+    <UAModelDesignerProject ProjectIdentifier="9a34feab-f253-45c1-90b4-240601fa0156">
+      <Name>CASFTNIRModel</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>IOPWConfiguration\CASFTNIRModel.xml</FileName>
+    </UAModelDesignerProject>
+    <UAModelDesignerProject ProjectIdentifier="a0740b60-394e-48da-9cde-8f718c17b5c6">
+      <Name>ADIModel</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>IOPWConfiguration\ADIModel.xml</FileName>
+    </UAModelDesignerProject>
+    <UAModelDesignerProject ProjectIdentifier="839f671e-f626-4741-8750-84b6bf5031fc">
+      <Name>ModelGeneratedByWrapper</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>IOPWConfiguration\ModelGeneratedByWrapper.xml</FileName>
+    </UAModelDesignerProject>
+  </Projects>
+  <ServerDetails codebase="CAS.UA.Server.ServerConfiguration.dll" configuration="IOPWConfiguration\CAS.UAServer.DemoConfiguration.uasconfig" />
+</UAModelDesignerSolution>

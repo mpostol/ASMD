@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UAModelDesignerSolution xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Solution1</Name>
+  <Projects>
+    <UAModelDesignerProject ProjectIdentifier="2ed68ba9-2c2a-4cd1-9f5c-036fa788d9d6">
+      <Name>OpcUaDiModel</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>OpcUaDiModel.xml</FileName>
+    </UAModelDesignerProject>
+    <UAModelDesignerProject ProjectIdentifier="f636051f-a9d3-43c8-bb2e-5c3e82879574">
+      <Name>OpcUaAdiModel</Name>
+      <CSVFileName>$(ProjectFileName).csv</CSVFileName>
+      <BuildOutputDirectoryName>$(ProjectFileName)</BuildOutputDirectoryName>
+      <FileName>OpcUaAdiModel.xml</FileName>
+    </UAModelDesignerProject>
+  </Projects>
+  <ServerDetails xsi:nil="true" />
+</UAModelDesignerSolution>
