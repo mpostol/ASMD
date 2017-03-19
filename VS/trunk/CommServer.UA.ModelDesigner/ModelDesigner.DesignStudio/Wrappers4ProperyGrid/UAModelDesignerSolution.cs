@@ -18,9 +18,12 @@ using CAS.Lib.RTLib.Utils;
 using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.Wrappers;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Windows.Forms;
 using System.Xml.Serialization;
+using System.Linq;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
@@ -81,7 +84,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         if (descriptor == null)
           return null;
         if (!String.IsNullOrEmpty(descriptor.codebase))
-          descriptor.codebase = RelativeFilePathsCalculator.TryComputeRelativePath(this.m_HomeDirectory, descriptor.codebase);
+          descriptor.codebase = RelativeFilePathsCalculator.TryComputeRelativePath(this.m_HomeDirectory, descriptor.codebase); //TODO must refer to the plugin directory.
         if (!String.IsNullOrEmpty(descriptor.configuration))
           descriptor.configuration = RelativeFilePathsCalculator.TryComputeRelativePath(this.m_HomeDirectory, descriptor.configuration);
         return descriptor;
@@ -121,7 +124,9 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     }
     internal void GetPluginMenuItems(System.Windows.Forms.ToolStripItemCollection menu)
     {
-      Server.GetPluginMenuItems(menu);
+      ICollection<ToolStripItem> _items = new List<ToolStripItem>();
+      Server.GetPluginMenuItems(_items);
+      menu.AddRange(_items.ToArray<ToolStripItem>());
     }
     #endregion Internal
 

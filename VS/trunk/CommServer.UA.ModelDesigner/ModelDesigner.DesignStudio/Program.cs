@@ -72,7 +72,7 @@ namespace CAS.UA.Model.Designer
             AssemblyTraceEvent.Tracer.Flush();
           }
         }
-        else if (_commandLine.Contains("installic"))
+        else if (_commandLine.Contains(m_InstallLicenseString))
         {
           try
           {

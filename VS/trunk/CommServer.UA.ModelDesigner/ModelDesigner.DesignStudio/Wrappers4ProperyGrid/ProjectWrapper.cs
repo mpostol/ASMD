@@ -56,7 +56,6 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       string directory = Path.GetDirectoryName( FilePath );
       return Path.Combine( directory, myName );
     }
-    private ServerSelector m_Server = new ServerSelector();
     #endregion private
 
     #region constructors

@@ -16,9 +16,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentatio
     /// <summary>
     /// Initializes a new instance of the <see cref="ConfigurationBaseImplementation"/> class.
     /// </summary>
-    public ConfigurationBaseImplementation()
-    {
-    }
+    public ConfigurationBaseImplementation() { }
     /// <summary>
     /// Gets the default name of the file.
     /// </summary>
@@ -30,7 +28,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentatio
         return "DefaultFileName.xxl";
       }
     }
-
     /// <summary>
     /// Creates the default configuration.
     /// </summary>
@@ -42,7 +39,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentatio
     {
       throw new NotImplementedException();
     }
-
     /// <summary>
     /// Gets the configuration editor - user interface to edit the plug-in configuration file.
     /// </summary>
@@ -52,7 +48,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentatio
     {
       throw new NotImplementedException();
     }
-
     /// <summary>
     /// Gets the instance to be used by a user to configure the selected node.
     /// </summary>
@@ -63,7 +58,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentatio
     {
       throw new NotImplementedException();
     }
-
     /// <summary>
     /// Saves the configuration file to a specified location.
     /// </summary>
@@ -75,5 +69,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentatio
     {
       throw new NotImplementedException();
     }
+
   }
 }

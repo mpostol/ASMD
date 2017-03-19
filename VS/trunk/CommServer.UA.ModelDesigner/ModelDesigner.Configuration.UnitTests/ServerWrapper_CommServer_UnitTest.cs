@@ -15,6 +15,7 @@
 
 using CAS.CommServer.UA.ConfigurationEditor.ModelsContainer;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentation;
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.IServerConfiguration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -25,28 +26,25 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
 {
 
   /// <summary>
-  ///This is a test class for ServerWrapperTest and is intended
-  ///to contain all ServerWrapperTest Unit Tests
+  ///This is a test class for ServerWrapperTest and is intended to contain all ServerWrapperTest Unit Tests
   ///</summary>
   [TestClass()]
   public class ServerWrapper_CommServer_UnitTest
   {
 
     [TestMethod]
-    [Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitialize]
+    [ClassInitialize]
     public static void ConfigTest(TestContext context)
     {
       if (Directory.Exists(_dataPath))
         Directory.Delete(_dataPath);
       ContainerResources.ExampleSolutionInstallation(Path.Combine((Directory.GetCurrentDirectory()), _dataPath), (x, y) => Console.WriteLine(x));
     }
-
-    //<package id="CAS.CommServer.UA.Server.ServerConfiguration" version="3.20.1-Delta" targetFramework="net461" />
     [TestMethod]
     [DeploymentItem(@"CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll")]
     public void ServerWrapperConstructorTest()
     {
-      Console.WriteLine(Directory.GetCurrentDirectory().ToString());
+      Console.WriteLine(Directory.GetCurrentDirectory());
       FileInfo _defaultConfig = new FileInfo(@"Plugin\DemoConfiguration\DefaultConfig.xml");
       Assert.IsTrue(_defaultConfig.Exists);
       FileInfo _oses = new FileInfo(@"Plugin\DemoConfiguration\BoilerExample.oses");
@@ -62,12 +60,56 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       _serverConfiguration.CreateDefaultConfiguration();
       Assert.IsTrue(_configurationChanged);
       _configurationChanged = false;
-      ServerWrapper _sw = new ServerWrapper(_serverConfiguration, _pluginAssembly, @"Plugin\DemoConfiguration\BoilerExample.uasconfig");
+      ServerWrapper _sw = new ServerWrapper(_serverConfiguration, _pluginAssembly, new GraphicalUserInterface(), @"Plugin\DemoConfiguration\BoilerExample.uasconfig");
       Assert.IsNotNull(_sw);
       Assert.IsTrue(_configurationChanged);
     }
-
-
+    //private instrumentation
+    private class GraphicalUserInterface : IGraphicalUserInterface
+    {
+      public Action<string, string> MessageBoxShowError
+      {
+        get
+        {
+          throw new NotImplementedException();
+        }
+      }
+      public Action<string, string> MessageBoxShowExclamation
+      {
+        get
+        {
+          throw new NotImplementedException();
+        }
+      }
+      public Action<string, string> MessageBoxShowWarning
+      {
+        get
+        {
+          throw new NotImplementedException();
+        }
+      }
+      public Func<IFileDialog> OpenFileDialogFunc
+      {
+        get
+        {
+          throw new NotImplementedException();
+        }
+      }
+      public Func<IFolderBrowserDialog> OpenFolderBrowserDialogFunc
+      {
+        get
+        {
+          throw new NotImplementedException();
+        }
+      }
+      public Func<IFileDialog> SaveFileDialogFuc
+      {
+        get
+        {
+          throw new NotImplementedException();
+        }
+      }
+    }
     private const string _dataPath = "Plugin";
   }
 }

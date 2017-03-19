@@ -15,10 +15,13 @@
 
 using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration.Properties;
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
+using CAS.Lib.CodeProtect;
 using CAS.Lib.RTLib.Utils;
 using CAS.UA.IServerConfiguration;
 using CAS.Windows.Forms.CodeProtectControls;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing.Design;
@@ -35,6 +38,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
   /// </summary>
   public class ServerSelector
   {
+
     #region public properties
     /// <summary>
     /// Gets or sets the selected server assembly wrapper.
@@ -130,51 +134,53 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       {
         if (value == null)
           return;
-        FileInfo info = null;
+        FileInfo _info = null;
         //ModelDesigner is trying to open plugin DLL from Solution directory or application binaries directory or current directory
         if (!String.IsNullOrEmpty(value.codebase))
           if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(value.codebase))
           {
             string _baseDirectory = BaseDirectoryHelper.Instance.GetBaseDirectory();
-            info = new FileInfo(Path.Combine(_baseDirectory, value.codebase));
-            if (!info.Exists && !string.IsNullOrEmpty(Assembly.GetExecutingAssembly().Location))
+            _info = new FileInfo(Path.Combine(_baseDirectory, value.codebase));
+            if (!_info.Exists && !string.IsNullOrEmpty(Assembly.GetExecutingAssembly().Location))
             {
               _baseDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-              info = new FileInfo(Path.Combine(_baseDirectory, value.codebase));
+              _info = new FileInfo(Path.Combine(_baseDirectory, value.codebase));
             }
-            if (!info.Exists)
-              info = null;
+            if (!_info.Exists)
+              _info = null;
           }
           else
           {
-            info = new FileInfo(value.codebase);
+            _info = new FileInfo(value.codebase);
           }
-        if (info == null)
-          info = new FileInfo(value.codebase);
-        if (!info.Exists)
+        if (_info == null)
+          _info = new FileInfo(value.codebase);
+        if (!_info.Exists)
         {
-          TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 155, "ServerSelector", string.Format(Resources.CASConfiguration_MessageBox_plugin_file_exception, value.codebase));
+          string _mss = string.Format(Resources.CASConfiguration_MessageBox_plugin_file_exception, value.codebase);
+          GraphicalUserInterface.MessageBoxShowWarning(_mss, Resources.OpenPluginTitle);
+          TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 155, "ServerSelector", _mss);
           return;
         }
-        Assembly assembly;
-        IConfiguration svrInterface;
+        Assembly _assembly;
+        IConfiguration _svrInterface;
         try
         {
-          GetIServerConfiguration(info, out assembly, out svrInterface);
+          GetIServerConfiguration(_info, out _assembly, out _svrInterface);
         }
         catch (Exception ex)
         {
-          MessageBox.Show(ex.Message, Resources.OpenPluginTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+          GraphicalUserInterface.MessageBoxShowWarning(ex.Message, Resources.OpenPluginTitle);
           TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 167, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, ex.Message));
           return;
         }
-        if (assembly == null || svrInterface == null)
+        if (_assembly == null || _svrInterface == null)
         {
-          MessageBox.Show(Resources.AssemblyLoadErropr, Resources.OpenPluginTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+          GraphicalUserInterface.MessageBoxShowWarning(Resources.AssemblyLoadErropr, Resources.OpenPluginTitle);
           TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 173, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, Resources.AssemblyLoadErropr));
           return;
         }
-        ServerWrapper newSelectedAssembly = new ServerWrapper(svrInterface, assembly, value.configuration);
+        ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, _assembly, GraphicalUserInterface, value.configuration );
         //It must be last statement because ir raises an event using all properties. 
         SelectedAssembly = newSelectedAssembly;
       }
@@ -187,7 +193,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// </returns>
     public override string ToString()
     {
-      return SelectedAssembly == null ? " Not selected; Expand this row and select the plug-in" : SelectedAssembly.ToPlaginDescription();
+      return SelectedAssembly == null ? " Not selected; Expand this row and select the plug-in" : SelectedAssembly.ToPluginDescription();
     }
     /// <summary>
     /// Gets the instance configuration.
@@ -209,7 +215,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// Gets the plugin menu items.
     /// </summary>
     /// <param name="menu">The menu.</param>
-    public void GetPluginMenuItems(ToolStripItemCollection menu)
+    public void GetPluginMenuItems(ICollection<ToolStripItem> menu)
     {
       if (menu.Count > 0)
         menu.Add(new ToolStripSeparator());
@@ -254,12 +260,19 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     }
     #endregion
 
+    #region UT instrumentation
+    /// <summary>
+    /// Gets or sets the message box show delegate.
+    /// </summary>
+    /// <remarks>
+    /// Unit Test helper to replace the UI by a test method.
+    /// </remarks>
+    /// <value>The message box show.</value>
+    internal IGraphicalUserInterface GraphicalUserInterface { private get; set; } = new GraphicalUserInterface();
+    #endregion
+
     #region private
-    private void OnChangeHandler(object s, EventArgs arg)
-    {
-      RaiseOnConfigurationChanged(false);
-    }
-    [LicenseProvider(typeof(CAS.Lib.CodeProtect.CodeProtectLP))]
+    [LicenseProvider(typeof(CodeProtectLP))]
     [GuidAttribute("9F0B0964-93B8-4775-9106-95C0DCBFEAD5")]
     private sealed class LicenseProtection : SplashScreen.LogedIsLicensed<LicenseProtection>
     {
@@ -296,49 +309,49 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       }
       public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
       {
-        return OpenPlugInAssembly(value as ServerWrapper);
+        return OpenPlugInAssembly(value as ServerWrapper, m_GraphicalUserInterface);
       }
       #endregion
+      private GraphicalUserInterface m_GraphicalUserInterface = new GraphicalUserInterface();
     }
-    private static ServerWrapper OpenPlugInAssembly(ServerWrapper server)
+    private static ServerWrapper OpenPlugInAssembly(ServerWrapper server, IGraphicalUserInterface gui)
     {
       FileInfo info;
       do
       {
-        using (OpenFileDialog ofg = new OpenFileDialog())
+        using (IFileDialog _ofg = gui.OpenFileDialogFunc())
         {
-          string BaseDirectory = BaseDirectoryHelper.Instance.GetBaseDirectory();
-          if (!string.IsNullOrEmpty(BaseDirectory))
-            ofg.InitialDirectory = BaseDirectory;
+          string _baseDirectory = BaseDirectoryHelper.Instance.GetBaseDirectory();
+          if (!string.IsNullOrEmpty(_baseDirectory))
+            _ofg.InitialDirectory = _baseDirectory;
           if (server != null && server.PluginDescription != null)
-            ofg.FileName = server.PluginDescription.CodeBase;
-          ofg.Title = Properties.Resources.OpenPluginTitle;
-          ofg.Filter = Properties.Resources.OpenPluginFilter;
-          if (ofg.ShowDialog() != DialogResult.OK)
+            _ofg.FileName = server.PluginDescription.CodeBase;
+          _ofg.Title = Properties.Resources.OpenPluginTitle;
+          _ofg.Filter = Properties.Resources.OpenPluginFilter;
+          if (_ofg.ShowDialog())
             return server;
-          info = new FileInfo(ofg.FileName);
+          info = new FileInfo(_ofg.FileName);
         }
         try
         {
           if (!info.Exists)
           {
-            MessageBox.Show
-              (Resources.OpenPluginWarningNotExist, Resources.OpenPluginTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            gui.MessageBoxShowWarning(Resources.OpenPluginWarningNotExist, Resources.OpenPluginTitle);
             continue;
           }
-          Assembly pluginAssembly;
+          Assembly _pluginAssembly;
           IConfiguration _serverConfiguration;
-          GetIServerConfiguration(info, out pluginAssembly, out _serverConfiguration);
+          GetIServerConfiguration(info, out _pluginAssembly, out _serverConfiguration);
           if (_serverConfiguration == null)
           {
-            MessageBox.Show(Resources.InterfaceNotImplemented, Resources.OpenPluginTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            gui.MessageBoxShowWarning(Resources.InterfaceNotImplemented, Resources.OpenPluginTitle);
             continue;
           }
-          server = new ServerWrapper(_serverConfiguration, pluginAssembly);
+          server = new ServerWrapper(_serverConfiguration, _pluginAssembly, gui);
         }
         catch (Exception ex)
         {
-          MessageBox.Show(ex.Message, Resources.OpenPluginTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+          gui.MessageBoxShowWarning(ex.Message, Resources.OpenPluginTitle);
         }
       } while (false);
       return server;
@@ -371,17 +384,24 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     {
       RaiseOnConfigurationChanged(e.ConfigurationFileChanged);
     }
+
     #region event handlers
+    private void OnChangeHandler(object s, EventArgs arg)
+    {
+      RaiseOnConfigurationChanged(false);
+    }
     private void PluginMenuItemsClear_Click(object sender, EventArgs e)
     {
       this.SelectedAssembly = null;
     }
     private void PluginMenuItemsOpen_Click(object sender, EventArgs e)
     {
-      SelectedAssembly = OpenPlugInAssembly(SelectedAssembly);
+      SelectedAssembly = OpenPlugInAssembly(SelectedAssembly, GraphicalUserInterface);
     }
     #endregion
+
     #endregion
 
   }
+
 }
