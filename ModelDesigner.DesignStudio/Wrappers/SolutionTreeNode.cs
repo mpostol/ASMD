@@ -90,8 +90,8 @@ namespace CAS.UA.Model.Designer.Wrappers
         CancelWasPressed = SkipOpeningConfigurationFile;
         return;
       }
-      INodeDescriptor[] dscriptors = node.GetNodeDescriptors();
-      svr.CreateInstanceConfigurations(dscriptors, SkipOpeningConfigurationFile, out CancelWasPressed);
+      INodeDescriptor[] _descriptors = node.GetNodeDescriptors();
+      svr.CreateInstanceConfigurations(_descriptors, SkipOpeningConfigurationFile, out CancelWasPressed);
     }
     private void GetPluginMenuItems(ToolStripItemCollection menu)
     {

@@ -133,10 +133,6 @@
       <HintPath>..\packages\CAS.UA.Common.3.00.05\lib\net461\CAS.CommServer.UA.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.UA.ConfigurationEditor.ModelsContainer, Version=3.20.4.30353, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.4.0.0-Alpha\lib\net461\CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="CAS.CommServer.UA.ModelCompiler.Common, Version=1.11.335.10, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.CommServer.UA.ModelCompiler.Common.1.11.335.10\lib\net461\CAS.CommServer.UA.ModelCompiler.Common.dll</HintPath>
       <Private>True</Private>
@@ -643,6 +639,10 @@
     <ProjectReference Include="..\ModelDesigner.ImportExport\ModelDesigner.ImportExport.csproj">
       <Project>{7c805bc4-b9c0-48e0-9d3f-d1c322b35acb}</Project>
       <Name>ModelDesigner.ImportExport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelDesigner.ModelsContainer\ModelDesigner.ModelsContainer.csproj">
+      <Project>{643a2a07-394d-418f-937c-2d394efe5015}</Project>
+      <Name>ModelDesigner.ModelsContainer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

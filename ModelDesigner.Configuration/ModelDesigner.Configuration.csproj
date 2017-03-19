@@ -119,6 +119,9 @@
     <Compile Include="ConfigurationWrapper.cs" />
     <Compile Include="DataProviderDescription.cs" />
     <Compile Include="IDataProviderDescription.cs" />
+    <Compile Include="UserInterface\ICommonDialog.cs" />
+    <Compile Include="UserInterface\IFolderBrowserDialog.cs" />
+    <Compile Include="UserInterface\IFileDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -137,6 +140,8 @@
     <Compile Include="ServerSelector.cs" />
     <Compile Include="ServerWrapper.cs" />
     <Compile Include="TraceEvent.cs" />
+    <Compile Include="UserInterface\GraphicalUserInterface.cs" />
+    <Compile Include="UserInterface\IGraphicalUserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

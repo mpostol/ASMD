@@ -14,9 +14,11 @@
 //</summary>
 
 using CAS.CommServer.UA.Common;
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.Lib.RTLib.Utils;
 using CAS.UA.IServerConfiguration;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing.Design;
 using System.IO;
@@ -25,12 +27,14 @@ using System.Windows.Forms;
 
 namespace CAS.CommServer.UA.ModelDesigner.Configuration
 {
+
   /// <summary>
   /// Server Wrapper to be used by a <see cref="PropertyGrid"/>
   /// </summary>
   [DefaultProperty("Configuration")]
   public class ServerWrapper
   {
+    
     #region Public browsable properties
     /// <summary>
     /// Gets the simple name of the assembly form the <see cref="AssemblyName"/>. This is usually, but not necessarily, 
@@ -67,37 +71,39 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
 
     #region creators
     /// <summary>
-    /// Initializes a new instance of the <see cref="ServerWrapper"/> class.
+    /// Initializes a new instance of the <see cref="ServerWrapper" /> class.
     /// </summary>
     /// <param name="plugin">The interface to get access to the plugin.</param>
     /// <param name="assembly">An assembly containing the plug-in.</param>
-    public ServerWrapper(IConfiguration plugin, Assembly assembly)
+    /// <param name="userInterface">The user interaction interface that provides basic functionality to implement user interactivity.</param>
+    public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface)
     {
       Initialize(plugin, assembly);
-      Configuration = new ConfigurationWrapper(m_Server);
+      Configuration = new ConfigurationWrapper(null, m_Server, userInterface);
     }
     /// <summary>
-    /// Initializes a new instance of the <see cref="ServerWrapper"/> class.
+    /// Initializes a new instance of the <see cref="ServerWrapper" /> class.
     /// </summary>
     /// <param name="plugin">he interface to get access to the plugin.</param>
     /// <param name="assembly">TAn assembly containing the plug-in.</param>
+    /// <param name="userInterface">The user interaction interface that provides basic functionality to implement user interactivity.</param>
     /// <param name="configuration">The file path containing the configuration.</param>
-    public ServerWrapper(IConfiguration plugin, Assembly assembly, string configuration)
+    public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface, string configuration)
     {
       Initialize(plugin, assembly);
-      FileInfo file = null;
+      FileInfo _file = null;
       if (!String.IsNullOrEmpty(configuration))
         if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(configuration))
         {
           string _dir = BaseDirectoryHelper.Instance.GetBaseDirectory();
-          file = new FileInfo(Path.Combine(_dir, configuration));
+          _file = new FileInfo(Path.Combine(_dir, configuration));
         }
         else
-          file = new FileInfo(configuration);
-      if (file == null)
-        Configuration = new ConfigurationWrapper(m_Server);
+          _file = new FileInfo(configuration);
+      if (_file == null)
+        Configuration = new ConfigurationWrapper(null, m_Server, userInterface);
       else
-        Configuration = new ConfigurationWrapper(file, m_Server);
+        Configuration = new ConfigurationWrapper(_file, m_Server, userInterface);
     }
     #endregion
 
@@ -142,11 +148,11 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// Provides the plagin description.
     /// </summary>
     /// <returns><see cref="string "/> containing the plug-in description.</returns>
-    internal string ToPlaginDescription()
+    internal string ToPluginDescription()
     {
       return PluginDescription.Company + ": " + PluginDescription.Title;
     }
-    internal void GetPluginMenuItems(ToolStripItemCollection menu)
+    internal void GetPluginMenuItems(ICollection<ToolStripItem> menu)
     {
       Configuration.GetPluginMenuItems(menu);
     }
