@@ -14,7 +14,6 @@
 //</summary>
 
 using CAS.CommServer.UA.Common;
-using CAS.CommServer.UA.ModelDesigner.Configuration;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
@@ -32,6 +31,7 @@ namespace CAS.UA.Model.Designer.IO
   /// </summary>
   internal class OPCFSolutionConfigurationManagement : TypeGenericConfigurationManagement<UAModelDesignerSolution>, IBaseDirectoryProvider
   {
+
     #region private
     private static OPCFSolutionConfigurationManagement m_This;
     private string LastOpenedFile = string.Empty;
@@ -54,7 +54,7 @@ namespace CAS.UA.Model.Designer.IO
     {
       SolutionRootNode.ImportNodeSetHandler(sender, e);
     }
-    private void OnConfigurationChnged(object sender, OPCFSolutionConfigurationManagement.ConfigurationEventArg e)
+    private void OnConfigurationChanged(object sender, OPCFSolutionConfigurationManagement.ConfigurationEventArg e)
     {
       if (e.Configuration == null)
         e.Configuration = EmptyModel;
@@ -162,7 +162,7 @@ namespace CAS.UA.Model.Designer.IO
           Resources.Solution_FileDialogTitle
         );
       BaseDirectoryHelper.Instance.SetBaseDirectoryProvider(this);
-      ConfigurationChanged += new EventHandler<OPCFSolutionConfigurationManagement.ConfigurationEventArg>(OnConfigurationChnged);
+      ConfigurationChanged += new EventHandler<OPCFSolutionConfigurationManagement.ConfigurationEventArg>(OnConfigurationChanged);
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 172, "Creating new private solution using Empty model");
       SolutionRootNode = new PrivateSolution(this, EmptyModel, "Solution", new EventHandler<EventArgs>(OnNodeChange));
       BeforeRead += new EventHandler<StringEventArgs>(OPCFSolutionConfigurationManagement_BeforeRead);
@@ -261,20 +261,22 @@ namespace CAS.UA.Model.Designer.IO
     {
       get { return SaveConstrain.IsLicensed; }
     }
+    #endregion
+
     #region IBaseDirectoryProvider Members
     string IBaseDirectoryProvider.GetBaseDirectory()
     {
       if (!string.IsNullOrEmpty(LastOpenedFile))
         return Path.GetDirectoryName(LastOpenedFile);
-      string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-      string assemblydirectory = string.Empty;
-      if (!string.IsNullOrEmpty(assemblyLocation))
-        assemblydirectory = Path.GetDirectoryName(assemblyLocation);
-      if (!string.IsNullOrEmpty(SolutionRootNode.CurrentSoultionDirectory) && SolutionRootNode.CurrentSoultionDirectory != assemblydirectory)
+      string _assemblyLocation = Assembly.GetExecutingAssembly().Location;
+      string _assemblyDirectory = string.Empty;
+      if (!string.IsNullOrEmpty(_assemblyLocation))
+        _assemblyDirectory = Path.GetDirectoryName(_assemblyLocation);
+      if (!string.IsNullOrEmpty(SolutionRootNode.CurrentSoultionDirectory) && SolutionRootNode.CurrentSoultionDirectory != _assemblyDirectory)
         return SolutionRootNode.CurrentSoultionDirectory;
       return string.Empty;
     }
     #endregion
-    #endregion
+
   }
 }

@@ -54,8 +54,7 @@ namespace CAS.UA.Model.Designer.IO
     private void RaiseConfigurationChanged(TypeForConfiguration m_Model)
     {
       ChangesArePresent = true;
-      if (ConfigurationChanged != null)
-        ConfigurationChanged(this, new ConfigurationEventArg(m_Model));
+      ConfigurationChanged?.Invoke(this, new ConfigurationEventArg(m_Model));
     }
     /// <summary>
     /// Gets the configuration.

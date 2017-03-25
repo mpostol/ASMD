@@ -230,6 +230,7 @@ namespace CAS.UA.Model.Designer
     }
 
     #region Menu
+
     #region File
     private void MHExitToolStripMenuItem_Click(object sender, EventArgs e)
     {
