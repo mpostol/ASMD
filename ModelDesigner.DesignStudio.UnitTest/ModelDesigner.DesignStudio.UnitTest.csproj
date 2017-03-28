@@ -84,9 +84,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ModelDesigner.Configuration\ModelDesigner.Configuration.csproj">
+      <Project>{b4e9c610-790a-417c-bf68-7b3e0aeccaa4}</Project>
+      <Name>ModelDesigner.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ModelDesigner.DesignStudio\ModelDesigner.DesignStudio.csproj">
       <Project>{0b8ceffb-66ad-447c-b009-1e06d8eef2c4}</Project>
       <Name>ModelDesigner.DesignStudio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelDesigner.ImportExport\ModelDesigner.ImportExport.csproj">
+      <Project>{7c805bc4-b9c0-48e0-9d3f-d1c322b35acb}</Project>
+      <Name>ModelDesigner.ImportExport</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +109,7 @@
   <ItemGroup>
     <Compile Include="AssemblyTraceEventUnitTest.cs" />
     <Compile Include="Instrumentation\Extensions.cs" />
+    <Compile Include="IO\OPCFSolutionConfigurationManagementUnitTest.cs" />
     <Compile Include="ProgramUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
@@ -111,11 +120,16 @@
     <Compile Include="Wrappers4PropertyGrid\DocumentationAttributeUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\ModelDesignUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\ParameterUnitTest.cs" />
+    <Compile Include="Wrappers4PropertyGrid\UAModelDesignerSolutionWrapperTests.cs" />
+    <Compile Include="Wrappers4PropertyGrid\UAModelDesignerSolutionUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="cas.snk" />
     <None Include="packages.config" />
+    <None Include="TestData\BoilerExampleSolution.uamdsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Choose>

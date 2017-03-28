@@ -44,7 +44,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     public DocumentationAttribute(string name, Type ConverterToDocumentationString, string defaultValue)
     {
       this.Name = name;
-      //TODO Check if ConverterToDocumentaitonString is an interface, if it is not - take StringGetter type
+      //TODO Check if ConverterToDocumentationString is an interface, if it is not - take StringGetter type
       this.ConverterToDocumentationString = (IConverterToDocumentationString)Activator.CreateInstance(ConverterToDocumentationString);
       this.DefaultValue = defaultValue;
     }
@@ -110,4 +110,5 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     }
     #endregion
   }
+
 }

@@ -83,6 +83,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedExample\BoilerExampleSolution.uamdsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedExample\ADIExempleSolution.uamdsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
