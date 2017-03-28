@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.ComponentModel;
@@ -30,27 +31,6 @@ namespace CAS.UA.Model.Designer.IO
     where TypeForConfiguration : class
   {
     #region private
-    /// <summary>
-    /// Reads the configuration.
-    /// </summary>
-    /// <param name="reader">The reader.</param>
-    /// <returns>The configuration</returns>
-    /// <exception cref="System.InvalidOperationException">An error occurred during deserialization. The original exception is available
-    /// using the System.Exception.InnerException property.
-    /// </exception>
-    private TypeForConfiguration ReadConfiguration(StreamReader reader)
-    {
-      if (BeforeRead != null)
-      {
-        FileStream fstr = reader.BaseStream as FileStream;
-        if (fstr != null)
-          BeforeRead(this, new StringEventArgs(fstr.Name));
-      }
-      XmlSerializer serializer = new XmlSerializer(typeof(TypeForConfiguration));
-      TypeForConfiguration m_Model = (TypeForConfiguration)serializer.Deserialize(reader);
-      m_Empty = false;
-      return m_Model;
-    }
     private void RaiseConfigurationChanged(TypeForConfiguration m_Model)
     {
       ChangesArePresent = true;
@@ -81,10 +61,7 @@ namespace CAS.UA.Model.Designer.IO
     /// <exception cref="System.Security.SecurityException">The caller does not have the required permission.</exception>
     private void Save(Configuration cd)
     {
-      if (BeforeWrite != null)
-      {
-        BeforeWrite(this, new StringEventArgs(DefaultFileName));
-      }
+      BeforeWrite?.Invoke(this, new StringEventArgs(DefaultFileName));
       using (StreamWriter writer = new StreamWriter(DefaultFileName))
       {
         XmlSerializer serializer = new XmlSerializer(typeof(TypeForConfiguration));
@@ -222,29 +199,10 @@ namespace CAS.UA.Model.Designer.IO
       if (!info.Exists)
         throw new FileNotFoundException(fileName);
       DefaultFileName = fileName;
-      using (StreamReader reader = new StreamReader(fileName))
-      {
-        return ReadConfiguration(reader);
-      }
-    }
-    /// <summary>
-    /// Reads the configuration.
-    /// </summary>
-    /// <param name="DataStream">The data stream <see cref="Stream"/>.</param>
-    /// <returns>The configuration retrieved from a file.</returns>
-    /// <exception cref="System.ArgumentException">stream does not support reading.</exception>
-    /// <exception cref="System.ArgumentNullException">stream is null.</exception>
-    /// <exception cref="System.InvalidOperationException">An error occurred during deserialization. The original exception is available
-    /// using the System.Exception.InnerException property.
-    /// </exception>
-    public TypeForConfiguration ReadConfiguration(Stream DataStream)
-    {
-      if (DataStream == null)
-        throw new ArgumentNullException("DataStream");
-      using (StreamReader reader = new StreamReader(DataStream))
-      {
-        return ReadConfiguration(reader);
-      }
+      TypeForConfiguration _return = XmlFile.ReadXmlFile<TypeForConfiguration>(fileName);
+      DefaultFileName = fileName;
+      m_Empty = false;
+      return _return;
     }
     /// <summary>
     /// Reads the configuration.
@@ -261,14 +219,14 @@ namespace CAS.UA.Model.Designer.IO
         m_Empty = false;
         return m_Model;
       }
-      catch (InvalidOperationException invex)
+      catch (InvalidOperationException _ioe)
       {
-        MessageBox.Show(String.Format(ReadErrorInvalidOperationStringFormat, invex.GetMessageFromException()), Resources.SolutionFileOpenError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        MessageBox.Show(String.Format(ReadErrorInvalidOperationStringFormat, _ioe.GetMessageFromException()), Resources.SolutionFileOpenError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         return null;
       }
-      catch (Exception ex)
+      catch (Exception _ex)
       {
-        MessageBox.Show(String.Format(ReadErrorGenericStringFormat, ex.GetMessageFromException()), Resources.SolutionFileOpenError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        MessageBox.Show(String.Format(ReadErrorGenericStringFormat, _ex.GetMessageFromException()), Resources.SolutionFileOpenError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         return null;
       }
       finally
@@ -297,8 +255,7 @@ namespace CAS.UA.Model.Designer.IO
       }
       catch (Exception ex)
       {
-        MessageBox.Show
-          (ex.Message, Properties.Resources.SolutionFileSaveError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        MessageBox.Show(ex.Message, Properties.Resources.SolutionFileSaveError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
       }
       finally
       {
@@ -327,8 +284,7 @@ namespace CAS.UA.Model.Designer.IO
       }
       catch (Exception ex)
       {
-        MessageBox.Show
-          (ex.Message, Properties.Resources.SolutionFileSaveError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        MessageBox.Show(ex.Message, Properties.Resources.SolutionFileSaveError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
       }
       finally
       {

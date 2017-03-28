@@ -356,7 +356,10 @@
     <Compile Include="Wrappers4ProperyGrid\NodeDesign.cs" />
     <Compile Include="Wrappers4ProperyGrid\Nodes.Properties.cs" />
     <Compile Include="Wrappers4ProperyGrid\ProjectWrapper.cs" />
-    <Compile Include="Wrappers4ProperyGrid\UAModelDesignerSolution.cs" />
+    <Compile Include="Wrappers4ProperyGrid\UAModelDesignerSolution.xsd.cs">
+      <DependentUpon>UAModelDesignerSolution.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Wrappers4ProperyGrid\UAModelDesignerSolutionWrapper.cs" />
     <Compile Include="Wrappers4ProperyGrid\UniqueIdentifier.cs" />
     <Compile Include="Wrappers\AddressSpaceDictionary\AddressSpace.cs">
       <DependentUpon>AddressSpace.xsd</DependentUpon>
@@ -484,7 +487,8 @@
     <Content Include="exe\CAS.CommServer.UA.ModelCompiler.Command.exe.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Help\ASModelDesigner.chm" />
+    <None Include="Wrappers4ProperyGrid\UAModelDesignerSolution.GoXSD.cmd" />
+    <None Include="Wrappers4ProperyGrid\UAModelDesignerSolution.GoCS.cmd" />
     <None Include="ReleaseActionItems.txt" />
     <None Include="ReleaseNotes.md">
       <AutoGen>True</AutoGen>
@@ -545,6 +549,9 @@
     <None Include="Resources\ArrowRight32.png" />
     <None Include="Resources\ArrowLeft32.png" />
     <None Include="Wrappers4ProperyGrid\NodeDesign.cd" />
+    <None Include="Wrappers4ProperyGrid\UAModelDesignerSolution.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Wrappers\AddressSpaceDictionary\AddressSpace.xsc">
       <DependentUpon>AddressSpace.xsd</DependentUpon>
     </None>
@@ -685,7 +692,9 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Help\" />
+  </ItemGroup>
   <ItemGroup>
     <FileAssociation Include=".uamdsl">
       <Visible>False</Visible>

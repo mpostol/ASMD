@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="CAS.UA.Model.Designer.IO.ConfigurationManagement">
-    <Position X="4.5" Y="0.5" Width="2.25" />
+    <Position X="4.75" Y="0.5" Width="2.25" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
@@ -12,15 +12,32 @@
       <FileName>IO\ConfigurationManagement.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CAS.UA.Model.Designer.IO.TypeGenericConfigurationManagement&lt;TypeForConfiguration&gt;" Collapsed="true">
-    <Position X="3.5" Y="3.75" Width="4.25" />
+  <Class Name="CAS.UA.Model.Designer.IO.TypeGenericConfigurationManagement&lt;TypeForConfiguration&gt;">
+    <Position X="3.75" Y="3.75" Width="4.25" />
+    <NestedTypes>
+      <Struct Name="CAS.UA.Model.Designer.IO.TypeGenericConfigurationManagement&lt;TypeForConfiguration&gt;.Configuration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>IO\TypeGenericConfigurationManagement.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Class Name="CAS.UA.Model.Designer.IO.TypeGenericConfigurationManagement&lt;TypeForConfiguration&gt;.StringEventArgs" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>IO\TypeGenericConfigurationManagement.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CAS.UA.Model.Designer.IO.TypeGenericConfigurationManagement&lt;TypeForConfiguration&gt;.ConfigurationEventArg" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>IO\TypeGenericConfigurationManagement.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>EIAAQIEAAAAAICAAAAAAAAAAAAAAAAAAgAAAAACAACQ=</HashCode>
       <FileName>IO\TypeGenericConfigurationManagement.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.IO.OPCFModelConfigurationManagement">
-    <Position X="1.25" Y="5.25" Width="4" />
+    <Position X="1.25" Y="8.75" Width="4" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
@@ -33,9 +50,10 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement">
-    <Position X="6" Y="5.25" Width="4" />
+    <Position X="6" Y="8.75" Width="4.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
     </Compartments>
     <NestedTypes>
       <Class Name="CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement.PrivateSolution" Collapsed="true">
@@ -59,11 +77,11 @@
     <Lollipop Position="3.409" />
   </Class>
   <Class Name="Opc.Ua.ModelCompiler.ModelDesign" Collapsed="true">
-    <Position X="1.25" Y="8" Width="1.5" />
+    <Position X="2.5" Y="11.25" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.SolutionTreeNode">
-    <Position X="12" Y="5.25" Width="2.75" />
+    <Position X="12" Y="9" Width="2.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
@@ -75,49 +93,44 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAgQCCCEBCEGQAAAEJAAAAgAAAAAgAAAgAAAgACBAGA=</HashCode>
+      <HashCode>AAgQiCCEBCEGQAAAEJAAAAAAAAAAgAAAgAAAgACBAGA=</HashCode>
       <FileName>Wrappers\SolutionTreeNode.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Configuration" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.UAModelDesignerSolution">
-    <Position X="16.25" Y="5.25" Width="3" />
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.UAModelDesignerSolution" Collapsed="true">
+    <Position X="16.75" Y="10.75" Width="2.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAIAAEAAIAQAAEAAAACAAAAAAAAAAAAgAAgAAgQA=</HashCode>
+      <HashCode>AAAAAAAAAAAIAAAAQIAAAAQAAAAAAABAAAAAAAAAAQA=</HashCode>
       <FileName>Wrappers4ProperyGrid\UAModelDesignerSolution.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="NodeCouple" />
-      <Property Name="Server" />
-    </ShowAsAssociation>
-    <ShowAsCollectionAssociation>
-      <Property Name="Projects" />
-    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.ProjectWrapper">
-    <Position X="20.25" Y="5.25" Width="2.25" />
+    <Position X="21.75" Y="9" Width="3.25" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>QBQAAAAgEAAAIAAGAgAAAAAAgQAAAAEABBBAIABAgAA=</HashCode>
+      <HashCode>QBQAAAAgEAAAIAAGAgAAAAAAgAAAAAEAABBAAABBgAA=</HashCode>
       <FileName>Wrappers4ProperyGrid\ProjectWrapper.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ServerSelector">
-    <Position X="16.25" Y="8.25" Width="2.5" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-      <Compartment Name="Events" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier />
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.UAModelDesignerSolutionWrapper">
+    <Position X="16.75" Y="9" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAEAAIAQAAEAAAACAAAAAAAAAAAAgAAgAAgQA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\UAModelDesignerSolution.xsd.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Projects" />
+    </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

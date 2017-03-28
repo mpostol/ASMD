@@ -1,7 +1,8 @@
-﻿using System;
+﻿
 using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 
 namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
@@ -23,7 +24,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       TestGraphicalUserInterface _tg = new TestGraphicalUserInterface();
       ServerSelector _nss = new ServerSelector() { GraphicalUserInterface = _tg };
       _nss.ServerConfiguration = null;
-      Assert.IsFalse(_tg._MessageBoxShowCalled);
+      Assert.IsFalse(_tg.WarningCalled);
     }
     [TestMethod]
     public void ServerConfigurationWrongAssemblyTest()
@@ -31,9 +32,9 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       TestGraphicalUserInterface _tgi = new TestGraphicalUserInterface();
       ServerSelector _nss = new ServerSelector() { GraphicalUserInterface = _tgi };
       _nss.ServerConfiguration = new ServerSelector.ServerDescriptor() { codebase = "wrong.codebase", configuration = "wrong.configuration" };
-      Assert.IsTrue(_tgi._MessageBoxShowCalled);
-      Assert.IsTrue(_tgi._text.Contains("wrong.codebase"));
-      Assert.AreEqual<string>("Open configuration editor", _tgi._caption);
+      Assert.IsTrue(_tgi.WarningCalled);
+      Assert.IsTrue(_tgi.WarningMessage.Contains("wrong.codebase"));
+      Assert.AreEqual<string>("Open configuration editor", _tgi.WarningCaption);
     }
     [TestMethod]
     public void ServerConfigurationWTest()
@@ -152,13 +153,18 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     }
     private class TestGraphicalUserInterface : IGraphicalUserInterface
     {
-      public List<string> ErrorCaption = new List<string>();
-      public List<string> ErrorMessage = new List<string>();
-      public List<string> ExclamationCaption = new List<string>();
-      public List<string> ExclamationMessage = new List<string>();
-      public int ErrorCallCount = 0;
-      public int ExclamationCallCount = 0;
-      public int OpenFileDialog4UnitTestAssertErrors = 0;
+
+      internal List<string> ErrorCaption = new List<string>();
+      internal List<string> ErrorMessage = new List<string>();
+      internal List<string> ExclamationCaption = new List<string>();
+      internal List<string> ExclamationMessage = new List<string>();
+      internal string WarningMessage;
+      internal string WarningCaption;
+      internal int ErrorCallCount = 0;
+      internal int ExclamationCallCount = 0;
+      internal bool WarningCalled;
+      internal int OpenFileDialog4UnitTestAssertErrors = 0;
+
       public TestGraphicalUserInterface()
       {
         MessageBoxShowWarning = MessageBoxShowMethod;
@@ -203,11 +209,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       }
       private void MessageBoxShowMethod(string text, string caption)
       {
-        _MessageBoxShowCalled = true; _text = text; _caption = caption;
+        WarningCalled = true;
+        WarningMessage = text;
+        WarningCaption = caption;
       }
-      internal string _text;
-      internal bool _MessageBoxShowCalled;
-      internal string _caption;
+
     }
+
   }
 }

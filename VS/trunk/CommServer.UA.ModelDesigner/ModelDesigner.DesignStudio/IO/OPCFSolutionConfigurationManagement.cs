@@ -29,7 +29,7 @@ namespace CAS.UA.Model.Designer.IO
   /// <summary>
   /// Singleton class to save and restore solution configuration to/from external file.
   /// </summary>
-  internal class OPCFSolutionConfigurationManagement : TypeGenericConfigurationManagement<UAModelDesignerSolution>, IBaseDirectoryProvider
+  internal class OPCFSolutionConfigurationManagement : TypeGenericConfigurationManagement<UAModelDesignerSolutionWrapper>, IBaseDirectoryProvider
   {
 
     #region private
@@ -71,7 +71,7 @@ namespace CAS.UA.Model.Designer.IO
     private class PrivateSolution : SolutionTreeNode
     {
       #region creator
-      public PrivateSolution(OPCFSolutionConfigurationManagement parent, UAModelDesignerSolution configuration, string nodeName, EventHandler<EventArgs> OnChangeHandler) :
+      public PrivateSolution(OPCFSolutionConfigurationManagement parent, UAModelDesignerSolutionWrapper configuration, string nodeName, EventHandler<EventArgs> OnChangeHandler) :
         base(configuration, nodeName, OnChangeHandler)
       {
         m_Parent = parent;
@@ -108,21 +108,22 @@ namespace CAS.UA.Model.Designer.IO
         }
       }
       #endregion
+
     }
-    private UAModelDesignerSolution EmptyModel
+    private UAModelDesignerSolutionWrapper EmptyModel
     {
-      get { return new UAModelDesignerSolution(DefaultFileName, Resources.DefaultSolutionName); }
+      get { return new UAModelDesignerSolutionWrapper(DefaultFileName, Resources.DefaultSolutionName); }
     }
-    protected override TypeGenericConfigurationManagement<UAModelDesignerSolution>.Configuration GetConfiguration
+    protected override TypeGenericConfigurationManagement<UAModelDesignerSolutionWrapper>.Configuration GetConfiguration
     {
       get
       {
         string homeDirectory = Path.GetDirectoryName(this.DefaultFileName);
-        UAModelDesignerSolution solution = SolutionRootNode.SaveProjectsCreateConfiguration(homeDirectory);
-        TypeGenericConfigurationManagement<UAModelDesignerSolution>.Configuration config;
-        config.Data = solution;
-        config.XmlNamespaces = null;
-        return config;
+        UAModelDesignerSolutionWrapper _solution = SolutionRootNode.SaveProjectsCreateConfiguration(homeDirectory);
+        TypeGenericConfigurationManagement<UAModelDesignerSolutionWrapper>.Configuration _config;
+        _config.Data = _solution;
+        _config.XmlNamespaces = null;
+        return _config;
       }
     }
     private Libraries m_Libraries;
@@ -272,8 +273,8 @@ namespace CAS.UA.Model.Designer.IO
       string _assemblyDirectory = string.Empty;
       if (!string.IsNullOrEmpty(_assemblyLocation))
         _assemblyDirectory = Path.GetDirectoryName(_assemblyLocation);
-      if (!string.IsNullOrEmpty(SolutionRootNode.CurrentSoultionDirectory) && SolutionRootNode.CurrentSoultionDirectory != _assemblyDirectory)
-        return SolutionRootNode.CurrentSoultionDirectory;
+      if (!string.IsNullOrEmpty(SolutionRootNode.CurrentSolutionDirectory) && SolutionRootNode.CurrentSolutionDirectory != _assemblyDirectory)
+        return SolutionRootNode.CurrentSolutionDirectory;
       return string.Empty;
     }
     #endregion

@@ -145,7 +145,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// </summary>
     internal event EventHandler<UAServerConfigurationEventArgs> OnConfigurationChanged;
     /// <summary>
-    /// Provides the plagin description.
+    /// Provides the plugin description.
     /// </summary>
     /// <returns><see cref="string "/> containing the plug-in description.</returns>
     internal string ToPluginDescription()

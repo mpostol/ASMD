@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ServerSelector">
+    <Position X="2" Y="0.75" Width="3.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ServerSelector.ServerDescriptor">
+        <TypeIdentifier>
+          <NewMemberFileName>ServerSelector.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ServerSelector.LicenseProtection" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ServerSelector.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ServerSelector.ServerSelectorEditor" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ServerSelector.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <AssociationLine Name="GraphicalUserInterface" Type="CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface.IGraphicalUserInterface">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.266" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="SelectedAssembly" Type="CAS.CommServer.UA.ModelDesigner.Configuration.ServerWrapper">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.506" Y="0.081" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="m_Server" Type="CAS.CommServer.UA.ModelDesigner.Configuration.ServerWrapper" FixedFromPoint="true">
+      <Path>
+        <Point X="5.75" Y="1.75" />
+        <Point X="7.75" Y="1.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.985" Y="0.05" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAIAIAACIAEAAAEEgAAAAYAAAAAAgAQAQAQCAAAwAA=</HashCode>
+      <FileName>ServerSelector.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_Server" />
+      <Property Name="GraphicalUserInterface" />
+      <Property Name="SelectedAssembly" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ServerWrapper">
+    <Position X="7.75" Y="1.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ServerWrapper.ConfigurationWrapperEditor" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ServerWrapper.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <AssociationLine Name="Configuration" Type="CAS.CommServer.UA.ModelDesigner.Configuration.ConfigurationWrapper" FixedFromPoint="true">
+      <Path>
+        <Point X="10.25" Y="1.812" />
+        <Point X="11.75" Y="1.812" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAIAIAACEAECQAEEAAAAAAAAAAAAAgAgAAAJAAAwAA=</HashCode>
+      <FileName>ServerWrapper.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Configuration" />
+      <Property Name="PluginDescription" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ConfigurationWrapper">
+    <Position X="11.75" Y="0.5" Width="2.25" />
+    <NestedTypes>
+      <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ConfigurationWrapper.ConfigurationFileEditor" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ConfigurationWrapper.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAQAIEAQAAEAAAEEQAEACAgAEAAAEAEAAAAAABAgAQ=</HashCode>
+      <FileName>ConfigurationWrapper.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ConfigurationFile" />
+      <Property Name="m_ServerConfiguration" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="System.IO.FileInfo" Collapsed="true">
+    <Position X="15.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface.IGraphicalUserInterface" Collapsed="true">
+    <Position X="7.75" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAQAAAAAAAAAAAAABAABIIAAAAAAAAA=</HashCode>
+      <FileName>UserInterface\IGraphicalUserInterface.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CAS.CommServer.UA.ModelDesigner.Configuration.IDataProviderDescription" Collapsed="true">
+    <Position X="7.75" Y="5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAABAAAgAMAAAAAAAAAAAAAAEAABAAAARACAAAA=</HashCode>
+      <FileName>IDataProviderDescription.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CAS.UA.IServerConfiguration.IConfiguration" Collapsed="true">
+    <Position X="15.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

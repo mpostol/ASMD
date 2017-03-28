@@ -20,7 +20,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
-using CAS.UA.Common;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using CAS.UA.IServerConfiguration;
@@ -44,11 +43,11 @@ namespace CAS.UA.Model.Designer.Wrappers
       else
         this.Text = "Solution";
     }
-    private UAModelDesignerSolution Configuration
+    private UAModelDesignerSolutionWrapper Configuration
     {
-      get { return (UAModelDesignerSolution)Wrapper; }
+      get { return (UAModelDesignerSolutionWrapper)Wrapper; }
     }
-    private void AddProjectsNodes(UAModelDesignerSolution configuration)
+    private void AddProjectsNodes(UAModelDesignerSolutionWrapper configuration)
     {
       if (configuration.Projects == null || configuration.Projects.Length == 0)
         return;
@@ -100,6 +99,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     protected new abstract class TreeNode<T> : WrapperTreeNode.TreeNode<T>
       where T : SolutionTreeNode
     {
+
       #region constructor
       public TreeNode(T parent)
         : base(parent)
@@ -123,8 +123,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <param name="configuration">The configuration.</param>
     /// <param name="NodeName">Name of the node.</param>
     /// <param name="OnChangeHandler">The on change handler.</param>
-    internal SolutionTreeNode
-      (UAModelDesignerSolution configuration, string NodeName, EventHandler<EventArgs> OnChangeHandler)
+    internal SolutionTreeNode(UAModelDesignerSolutionWrapper configuration, string NodeName, EventHandler<EventArgs> OnChangeHandler)
       : base(configuration)
     {
       if (configuration == null)
@@ -163,14 +162,14 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return false;
     }
-    internal UAModelDesignerSolution SaveProjectsCreateConfiguration(string solutionPath)
+    internal UAModelDesignerSolutionWrapper SaveProjectsCreateConfiguration(string solutionPath)
     {
       Configuration.Save(solutionPath);
       List<ProjectWrapper> nodes = new List<ProjectWrapper>();
-      foreach (ProjectTreeNode proj in this)
+      foreach (ProjectTreeNode _project in this)
       {
-        if (proj.Save(solutionPath))
-          nodes.Add(proj.CloneProject(solutionPath));
+        if (_project.Save(solutionPath))
+          nodes.Add(_project.CloneProject(solutionPath));
       }
       Configuration.Projects = nodes.ToArray();
       return Configuration;
@@ -196,16 +195,14 @@ namespace CAS.UA.Model.Designer.Wrappers
     internal void Build(TextWriter output)
     {
       output.WriteLine(Resources.Build_all);
-      foreach (ProjectTreeNode proj in this)
-        proj.Build(output);
+      foreach (ProjectTreeNode _project in this)
+        _project.Build(output);
     }
     internal event EventHandler<EventArgs> OnDataChanged;
     internal protected override void RaiseOnChangeHandler()
     {
-      if (m_OnChangeHandler != null)
-        m_OnChangeHandler(this, EventArgs.Empty);
-      if (OnDataChanged != null)
-        OnDataChanged(this, EventArgs.Empty);
+      m_OnChangeHandler?.Invoke(this, EventArgs.Empty);
+      OnDataChanged?.Invoke(this, EventArgs.Empty);
     }
     internal void GetServerUAMenu(ToolStripItemCollection toolStripItemCollection)
     {
@@ -234,13 +231,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return Configuration.Server.GetInstanceConfiguration(nodeUniqueIdentifier);
     }
-    internal string CurrentSoultionDirectory
+    internal string CurrentSolutionDirectory
     {
       get
       {
-        if (Configuration != null)
-          return Configuration.HomeDirectory;
-        return string.Empty;
+        return Configuration != null ? Configuration.HomeDirectory : string.Empty;
       }
     }
     #endregion
