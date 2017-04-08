@@ -115,6 +115,18 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       Server.SetHomeDirectory(newHomeDirectory);
     }
     internal SolutionTreeNode NodeCouple { private get; set; }
+    internal UAModelDesignerSolution UAModelDesignerSolutionConfiguration
+    {
+      get
+      {
+        return new UAModelDesignerSolution()
+        {
+          Name = this.Name,
+          Projects = this.Projects == null ? null : this.Projects.Select<ProjectWrapper, UAModelDesignerProject>(x => x.UAModelDesignerProjectConfiguration).ToArray<UAModelDesignerProject>(),
+          ServerDetails = this.ServerDetails == null ? null : new UAModelDesignerSolutionServerDetails() { codebase = ServerDetails.codebase, configuration = ServerDetails.configuration }
+        };
+      }
+    }
     internal void Save(string solutionPath)
     {
       this.m_HomeDirectory = solutionPath;

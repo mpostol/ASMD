@@ -13,8 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
-using System.ComponentModel;
 using CAS.UA.Model.Designer.Properties;
+using System.ComponentModel;
 using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
 
 namespace CAS.UA.Model.Designer.IO
@@ -22,29 +22,26 @@ namespace CAS.UA.Model.Designer.IO
   /// <summary>
   /// Class to save and restore UA Information Model to/from external file.
   /// </summary>
-  internal class OPCFModelConfigurationManagement: TypeGenericConfigurationManagement<OPCFModelDesign>
+  internal class OPCFModelConfigurationManagement: TypeGenericConfigurationManagement<OPCFModelDesign, OPCFModelDesign>
   {
     #region private
-    //private UAModelDesignerProject m_ProjectSettings;
-    protected OPCFModelDesign EmptyModel
-    {
-      get
-      {
-        return new OPCFModelDesign()
-        {
-          TargetNamespace = Settings.Default.TargetNamespace,
-          TargetXmlNamespace = Settings.Default.TargetXmlNamespace
-        };
-      }
-    }
     /// <summary>
     /// Gets the configuration.
     /// </summary>
     /// <value>The configuration .</value>
     /// <remarks>Not implemented in this class</remarks>
-    protected override TypeGenericConfigurationManagement<OPCFModelDesign>.Configuration GetConfiguration
+    protected override TypeGenericConfigurationManagement<OPCFModelDesign, OPCFModelDesign>.DataToSerialize GetConfiguration
     {
       get { throw new System.NotImplementedException(); }
+    }
+    /// <summary>
+    /// Creates a configurable tree node.
+    /// </summary>
+    /// <param name="nodeCopnfiguration">The node copnfiguration.</param>
+    /// <returns>An inctance of <see cref="!:TypeForConfiguration" /> represnting the node of the navigation tree.</returns>
+    protected override OPCFModelDesign CreateTreeNode(OPCFModelDesign nodeCopnfiguration)
+    {
+      return nodeCopnfiguration;
     }
     #endregion
 
@@ -73,17 +70,14 @@ namespace CAS.UA.Model.Designer.IO
     public OPCFModelConfigurationManagement()
       : base()
     {
-      //m_ProjectSettings = MyProjectSettings;
       CommonInitialisation();
     }
     public OPCFModelConfigurationManagement( IContainer container )
       : base( container )
     {
-      //m_ProjectSettings = MyProjectSettings;
       CommonInitialisation();
     }
     #endregion
-
 
   }
 }

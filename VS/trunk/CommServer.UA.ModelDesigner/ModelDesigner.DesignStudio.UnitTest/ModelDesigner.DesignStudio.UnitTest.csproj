@@ -110,6 +110,7 @@
     <Compile Include="AssemblyTraceEventUnitTest.cs" />
     <Compile Include="Instrumentation\Extensions.cs" />
     <Compile Include="IO\OPCFSolutionConfigurationManagementUnitTest.cs" />
+    <Compile Include="IO\OPCFModelConfigurationManagementUnitTest.cs" />
     <Compile Include="ProgramUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
@@ -122,6 +123,7 @@
     <Compile Include="Wrappers4PropertyGrid\ParameterUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\UAModelDesignerSolutionWrapperTests.cs" />
     <Compile Include="Wrappers4PropertyGrid\UAModelDesignerSolutionUnitTest.cs" />
+    <Compile Include="Wrappers4PropertyGrid\ProjectWrapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -131,7 +133,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
       <ItemGroup>

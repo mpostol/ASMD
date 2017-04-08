@@ -39,7 +39,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
   public class ServerSelector
   {
 
-    #region public properties
+    #region browsable properties
     /// <summary>
     /// Gets or sets the selected server assembly wrapper.
     /// </summary>

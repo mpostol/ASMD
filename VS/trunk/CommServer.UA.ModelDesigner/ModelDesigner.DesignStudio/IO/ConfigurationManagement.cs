@@ -13,20 +13,16 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.Properties;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using CAS.UA.Model.Designer.Properties;
-using System.Text;
 
 namespace CAS.UA.Model.Designer.IO
 {
   /// <summary>
   /// Class to save and restore data to/from external  file. 
-  /// c:\VS2008\Projects\OPCViewerTrunk\PR24-Biblioteka\DataPorterConfigLib\ConfigurationManagement.cs
-  /// this  is base class and now it provides only common menu and file dialogs.
-  /// The main functionality of this class is moved (20090105) to generic class:
-  /// TypeGenericConfigurationManagement (generic:TypeForConfiguration)
+  /// This is base class and now it provides only common menu and file dialogs.
   /// </summary>
   internal abstract partial class ConfigurationManagement: Component
   {
@@ -82,6 +78,9 @@ namespace CAS.UA.Model.Designer.IO
       }
       get { return m_OpenFileDialog.FileName; }
     }
+    /// <summary>
+    /// Occurs when default file name has been changed.
+    /// </summary>
     public event EventHandler DefaultFileNameHasChanged;
     /// <summary>
     /// Create a new configuration.
@@ -168,19 +167,13 @@ namespace CAS.UA.Model.Designer.IO
     protected IContainer Components { get { return components; } }
     private void RaiseChangesArePresentHasChanged()
     {
-      if ( ChangesArePresentHasChanged != null )
-      {
-        ChangesArePresentHasChanged( this, EventArgs.Empty );
-      }
+      ChangesArePresentHasChanged?.Invoke(this, EventArgs.Empty);
     }
     private bool m_ChangesArePresent = false;
     protected bool m_Empty = true;
     private void RaiseDefaultFileNameHasChanged()
     {
-      if ( DefaultFileNameHasChanged != null )
-      {
-        DefaultFileNameHasChanged( this, EventArgs.Empty );
-      }
+      DefaultFileNameHasChanged?.Invoke(this, EventArgs.Empty);
     }
     protected void UpdateSettingsOpenFileDialog( string FileDialogDefaultExt,
       string FileDialogDefaultFilename, string FileDialogFilter, string FileDialogTitle )
