@@ -30,6 +30,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
   /// </summary>
   public class ConfigurationWrapper
   {
+
     #region public properties
     /// <summary>
     /// It provides detailed information on the configuration file.
@@ -97,7 +98,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         {
           m_userInterface.MessageBoxShowError(Resources.ConfigurationWrapperProblemWithOpeningOfTheFileInfo + exception.Message, Resources.ConfigurationWrapperProblemWithOpeningOfTheFileHeader);
         }
-        configurationEditor.SaveConfiguration(null, file);
+        configurationEditor.SaveConfiguration(String.Empty, file);
         Read(file);
       }
     }

@@ -29,7 +29,7 @@ namespace CAS.UA.Model.Designer.IO
   /// <summary>
   /// Singleton class to save and restore solution configuration to/from external file.
   /// </summary>
-  internal class OPCFSolutionConfigurationManagement : TypeGenericConfigurationManagement<UAModelDesignerSolutionWrapper>, IBaseDirectoryProvider
+  internal class OPCFSolutionConfigurationManagement : TypeGenericConfigurationManagement<UAModelDesignerSolutionWrapper, UAModelDesignerSolution>, IBaseDirectoryProvider
   {
 
     #region private
@@ -114,15 +114,16 @@ namespace CAS.UA.Model.Designer.IO
     {
       get { return new UAModelDesignerSolutionWrapper(DefaultFileName, Resources.DefaultSolutionName); }
     }
-    protected override TypeGenericConfigurationManagement<UAModelDesignerSolutionWrapper>.Configuration GetConfiguration
+    protected override TypeGenericConfigurationManagement<UAModelDesignerSolutionWrapper, UAModelDesignerSolution>.DataToSerialize GetConfiguration
     {
       get
       {
         string homeDirectory = Path.GetDirectoryName(this.DefaultFileName);
         UAModelDesignerSolutionWrapper _solution = SolutionRootNode.SaveProjectsCreateConfiguration(homeDirectory);
-        TypeGenericConfigurationManagement<UAModelDesignerSolutionWrapper>.Configuration _config;
-        _config.Data = _solution;
+        TypeGenericConfigurationManagement<UAModelDesignerSolutionWrapper, UAModelDesignerSolution>.DataToSerialize _config;
+        _config.Data = _solution.UAModelDesignerSolutionConfiguration;
         _config.XmlNamespaces = null;
+        _config.StylesheetName = "UAModelDesignerSolution.xslt";
         return _config;
       }
     }
@@ -186,6 +187,30 @@ namespace CAS.UA.Model.Designer.IO
     { }
     #endregion
 
+    #region override
+    public override bool Save(bool prompt)
+    {
+      if (!base.Save(prompt))
+        return false;
+      return true;
+    }
+    public override void New()
+    {
+      DefaultFileName = Settings.Default.DefaultSolutionFileName;
+      base.New();
+    }
+    /// <summary>
+    /// Creates a configurable tree node.
+    /// </summary>
+    /// <param name="nodeCopnfiguration">The node copnfiguration.</param>
+    /// <returns>An inctance of <see cref="!:TypeForConfiguration" /> represnting the node of the navigation tree.</returns>
+    /// <exception cref="System.NotImplementedException"></exception>
+    protected override UAModelDesignerSolutionWrapper CreateTreeNode(UAModelDesignerSolution nodeCopnfiguration)
+    {
+      return new UAModelDesignerSolutionWrapper(nodeCopnfiguration);
+    }
+    #endregion override
+
     #region internal singleton
     internal static OPCFSolutionConfigurationManagement DefaultInstance
     {
@@ -211,19 +236,6 @@ namespace CAS.UA.Model.Designer.IO
         return m_This;
       }
     }
-    #region override
-    public override bool Save(bool prompt)
-    {
-      if (!base.Save(prompt))
-        return false;
-      return true;
-    }
-    public override void New()
-    {
-      DefaultFileName = Settings.Default.DefaultSolutionFileName;
-      base.New();
-    }
-    #endregion override
     internal override void AddItemsToMenu(ContextMenuStrip contextMenuStrip)
     {
       base.AddItemsToMenu(contextMenuStrip);

@@ -52,5 +52,41 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Wrappers4Propert
       UAModelDesignerSolutionWrapper _newSolution = new UAModelDesignerSolutionWrapper("UAModelDesignerSolution", "defaultSolutionName");
       Assert.AreEqual<string>(_directory, _newSolution.HomeDirectory);
     }
+    [TestMethod]
+    public void UAModelDesignerSolutionConfigurationTestMethod()
+    {
+      UAModelDesignerSolution _solution = new UAModelDesignerSolution() { Name = "Name" };
+      UAModelDesignerSolutionWrapper _newSolution = new UAModelDesignerSolutionWrapper(_solution);
+      UAModelDesignerSolution _recoveredSolution = _newSolution.UAModelDesignerSolutionConfiguration;
+      Assert.AreEqual<string>("Name", _recoveredSolution.Name);
+      Assert.IsNull(_recoveredSolution.Projects);
+      Assert.IsNull(_recoveredSolution.ServerDetails);
+    }
+    [TestMethod]
+    public void UAModelDesignerSolutionConfiguration2TestMethod()
+    {
+      UAModelDesignerSolution _solution = new UAModelDesignerSolution()
+      {
+        Name = "Name",
+        Projects = new UAModelDesignerProject[]
+        {
+          new UAModelDesignerProject()
+          {
+             BuildOutputDirectoryName = "BuildOutputDirectoryName",
+             CSVFileName = "CSVFileName",
+             FileName = "FileName",
+             Name = "Name",
+             ProjectIdentifier = "ProjectIdentifier"
+          }
+        },
+        ServerDetails = new UAModelDesignerSolutionServerDetails() { codebase = "codebase", configuration = "configuration" }
+      };
+      Assert.Inconclusive("It calls MessageBox - dependency injection must be applied.");
+      UAModelDesignerSolutionWrapper _newSolution = new UAModelDesignerSolutionWrapper(_solution);
+      UAModelDesignerSolution _recoveredSolution = _newSolution.UAModelDesignerSolutionConfiguration;
+      Assert.AreEqual<string>("Name", _recoveredSolution.Name);
+      Assert.IsNotNull(_recoveredSolution.Projects);
+      Assert.IsNotNull(_recoveredSolution.ServerDetails);
+    }
   }
 }

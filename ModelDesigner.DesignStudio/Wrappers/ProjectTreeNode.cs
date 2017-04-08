@@ -124,7 +124,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       get { return NodeTypeEnum.ProjectNode; }
     }
     public ModelDesign Model { get { return m_ModelDesign; } }
-    public override System.Collections.Generic.Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> GetFolders()
+    public override Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> GetFolders()
     {
       Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> tobereturned = base.GetFolders();
       tobereturned.Add(FolderType.Model, Model);
@@ -153,12 +153,13 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <returns></returns>
     internal bool Save(string solutionDirectory)
     {
-      TypeGenericConfigurationManagement<OPCFModelDesign>.Configuration config;
+      TypeGenericConfigurationManagement<OPCFModelDesign, OPCFModelDesign>.DataToSerialize config;
       config.Data = m_ModelDesign.ModelDesignerNode as OPCFModelDesign;
       config.XmlNamespaces = m_ModelDesign.XmlNamespaces;
+      config.StylesheetName = "OPCFModelDesign.xslt";
       m_ProjectWrapper.SetNewSolutionHomeDirectory(solutionDirectory);
       m_ProjectWrapper.ChangeFilenameToAbsolutePath();
-      if (m_ProjectWrapper.FileName == null || m_ProjectWrapper.FileName == "")
+      if (String.IsNullOrEmpty(m_ProjectWrapper.FileName))
         m_ProjectWrapper.FileName = m_ProjectWrapper.Name + ".xml";
       m_ConfigManager.DefaultFileName = m_ProjectWrapper.FilePath;
       if (!m_ConfigManager.Save(false, config))

@@ -26,12 +26,15 @@ namespace CAS.UA.Model.Designer.IO
   /// <summary>
   /// Type independent configuration management
   /// </summary>
-  /// <typeparam name="TypeForConfiguration">The type stored in the configuration.</typeparam>
-  internal abstract class TypeGenericConfigurationManagement<TypeForConfiguration> : ConfigurationManagement
-    where TypeForConfiguration : class
+  /// <typeparam name="TreeNodeType">The type to manage the configuration of the node.</typeparam>
+  /// <typeparam name="Type4Serialization">The type of the associated node configuration to be serialized.</typeparam>
+  /// <seealso cref="ConfigurationManagement" />
+  internal abstract class TypeGenericConfigurationManagement<TreeNodeType, Type4Serialization> : ConfigurationManagement
+    where TreeNodeType : class
+    where Type4Serialization : class, new()
   {
     #region private
-    private void RaiseConfigurationChanged(TypeForConfiguration m_Model)
+    private void RaiseConfigurationChanged(TreeNodeType m_Model)
     {
       ChangesArePresent = true;
       ConfigurationChanged?.Invoke(this, new ConfigurationEventArg(m_Model));
@@ -39,12 +42,18 @@ namespace CAS.UA.Model.Designer.IO
     /// <summary>
     /// Gets the configuration.
     /// </summary>
-    /// <value>If implemented return the opened configuration of as the <see cref="Configuration "/>.</value>
-    protected abstract Configuration GetConfiguration { get; }
+    /// <value>If implemented return the opened configuration as the <see cref="DataToSerialize "/>.</value>
+    protected abstract DataToSerialize GetConfiguration { get; }
     /// <summary>
-    /// Saves the specified <see cref="Configuration"/>.
+    /// Creates a configurable tree node.
     /// </summary>
-    /// <param name="cd">The <see cref="Configuration"/>.</param>
+    /// <param name="nodeCopnfiguration">The node copnfiguration.</param>
+    /// <returns>An inctance of <see cref="TreeNodeType"/> represnting the node of the navigation tree.</returns>
+    protected abstract TreeNodeType CreateTreeNode(Type4Serialization nodeCopnfiguration);
+    /// <summary>
+    /// Saves the specified <see cref="DataToSerialize"/> instance as the xml document.
+    /// </summary>
+    /// <param name="cd">The <see cref="DataToSerialize"/>.</param>
     /// <exception cref="System.InvalidOperationException">An error occurred during serialization. The original exception is 
     /// available using the System.Exception.InnerException property. 
     /// </exception>
@@ -56,17 +65,12 @@ namespace CAS.UA.Model.Designer.IO
     /// <exception cref="System.IO.PathTooLongException">The specified path, file name, or both exceed the system-defined maximum length. 
     /// For example, on Windows-based platforms, paths must be less than 248 characters, and file names must be less than 260 characters.
     /// </exception>
-    /// <exception cref="System.IO.IOException">path includes an incorrect or invalid syntax for file name, directory name, or volume 
-    /// label syntax.</exception>
+    /// <exception cref="System.IO.IOException">path includes an incorrect or invalid syntax for file name, directory name, or volume label syntax.</exception>
     /// <exception cref="System.Security.SecurityException">The caller does not have the required permission.</exception>
-    private void Save(Configuration cd)
+    private void Save(DataToSerialize cd)
     {
       BeforeWrite?.Invoke(this, new StringEventArgs(DefaultFileName));
-      using (StreamWriter writer = new StreamWriter(DefaultFileName))
-      {
-        XmlSerializer serializer = new XmlSerializer(typeof(TypeForConfiguration));
-        serializer.Serialize(writer, cd.Data, cd.XmlNamespaces);
-      }
+      XmlFile.WriteXmlFile<Type4Serialization>(cd.Data, DefaultFileName, FileMode.Create, cd.StylesheetName, cd.XmlNamespaces);
       ChangesArePresent = false;
     }
     protected virtual string ReadErrorGenericStringFormat
@@ -104,10 +108,11 @@ namespace CAS.UA.Model.Designer.IO
     /// <summary>
     /// A structure containing configuration
     /// </summary>
-    public struct Configuration
+    public struct DataToSerialize
     {
       public XmlSerializerNamespaces XmlNamespaces;
-      public TypeForConfiguration Data;
+      public Type4Serialization Data;
+      public string StylesheetName;
     }
     internal class StringEventArgs : EventArgs
     {
@@ -134,12 +139,12 @@ namespace CAS.UA.Model.Designer.IO
       /// Gets or sets the configuration.
       /// </summary>
       /// <value>The configuration.</value>
-      public TypeForConfiguration Configuration { get; set; }
+      public TreeNodeType Configuration { get; set; }
       /// <summary>
       /// Initializes a new instance of the <see cref="ConfigurationEventArg"/> class.
       /// </summary>
       /// <param name="config">The configuration.</param>
-      public ConfigurationEventArg(TypeForConfiguration config)
+      public ConfigurationEventArg(TreeNodeType config)
       {
         Configuration = config;
       }
@@ -168,7 +173,7 @@ namespace CAS.UA.Model.Designer.IO
     /// <returns></returns>
     public bool Open(string FileName)
     {
-      TypeForConfiguration m_Model = null;
+      TreeNodeType m_Model = null;
       if (string.IsNullOrEmpty(FileName))
         m_Model = ReadConfiguration();
       else
@@ -193,31 +198,31 @@ namespace CAS.UA.Model.Designer.IO
     /// <exception cref="System.InvalidOperationException">An error occurred during deserialization. The original exception is available
     /// using the System.Exception.InnerException property.
     /// </exception>
-    public TypeForConfiguration ReadConfiguration(string fileName)
+    public TreeNodeType ReadConfiguration(string fileName)
     {
       FileInfo info = new FileInfo(fileName);
       if (!info.Exists)
         throw new FileNotFoundException(fileName);
       DefaultFileName = fileName;
-      TypeForConfiguration _return = XmlFile.ReadXmlFile<TypeForConfiguration>(fileName);
+      Type4Serialization _return = XmlFile.ReadXmlFile<Type4Serialization>(fileName);
       DefaultFileName = fileName;
       m_Empty = false;
-      return _return;
+      return CreateTreeNode(_return);
     }
     /// <summary>
     /// Reads the configuration.
     /// </summary>
     /// <returns>The configuration retrieved from a file.</returns>
-    public TypeForConfiguration ReadConfiguration()
+    public TreeNodeType ReadConfiguration()
     {
       if (ShowDialogOpenFileDialog() != DialogResult.OK)
         return null;
       try
       {
         Application.UseWaitCursor = true;
-        TypeForConfiguration m_Model = ReadConfiguration(DefaultFileName);
+        TreeNodeType _node = ReadConfiguration(DefaultFileName);
         m_Empty = false;
-        return m_Model;
+        return _node;
       }
       catch (InvalidOperationException _ioe)
       {
@@ -268,7 +273,7 @@ namespace CAS.UA.Model.Designer.IO
     /// </summary>
     /// <param name="prompt">If set to <c>true</c> show prompt to enter a file name.</param>
     /// <returns><c>true</c> if operation accomplished successfully.</returns>
-    public bool Save(bool prompt, Configuration configuration)
+    public bool Save(bool prompt, DataToSerialize configuration)
     {
       prompt = m_Empty || prompt;
       if (prompt)

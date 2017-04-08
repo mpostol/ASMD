@@ -19,7 +19,6 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
-using System.Xml.Serialization;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
@@ -27,25 +26,28 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// Class that represents the UA Model Designer project. 
   /// </summary>
   /// <remarks>Project wrapper for <see cref="System.Windows.Forms.PropertyGrid"/> to provide information about the project to the user.</remarks>
-  [XmlType("UAModelDesignerProject")]
   [DefaultProperty("FilePath")]
   public class ProjectWrapper : NameWithEventBase
   {
     #region private
-    private string GetRelativePath(string filename)
-    {
-      if (!string.IsNullOrEmpty(this.m_SolutionHomeDirectory) && !string.IsNullOrEmpty(filename))
-      {
-        Directory.SetCurrentDirectory(this.m_SolutionHomeDirectory);
-        string _fullPath = Path.GetFullPath(filename);
-        filename = RelativeFilePathsCalculator.TryComputeRelativePath(this.m_SolutionHomeDirectory, _fullPath);
-      }
-      return filename;
-    }
+    //var
+    private UAModelDesignerProject b_UAModelDesignerProject = null;
     private static UniqueNameGenerator m_UniqueNameGenerator = new UniqueNameGenerator(Resources.DefaultProjectName);
     private string m_SolutionHomeDirectory = "";
-    private UAModelDesignerProject m_UAModelDesignerProject;
-
+    //methods
+    private UAModelDesignerProject m_UAModelDesignerProject
+    {
+      get
+      {
+        b_UAModelDesignerProject.Name = this.Name;
+        return b_UAModelDesignerProject;
+      }
+      set
+      {
+        b_UAModelDesignerProject = value;
+        this.Name = b_UAModelDesignerProject.Name;
+      }
+    }
     private string ReplaceTokenAndReturnFullPath(string nameToBeReturned)
     {
       string myName = nameToBeReturned.Replace(Resources.Token_ProjectFileName, Path.GetFileNameWithoutExtension(FileName));
@@ -53,6 +55,16 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         return myName;
       string directory = Path.GetDirectoryName(FilePath);
       return Path.Combine(directory, myName);
+    }
+    private string GetRelativePath(string fileName)
+    {
+      if (!string.IsNullOrEmpty(this.m_SolutionHomeDirectory) && !string.IsNullOrEmpty(fileName))
+      {
+        Directory.SetCurrentDirectory(this.m_SolutionHomeDirectory);
+        string _fullPath = Path.GetFullPath(fileName);
+        fileName = RelativeFilePathsCalculator.TryComputeRelativePath(this.m_SolutionHomeDirectory, _fullPath);
+      }
+      return fileName;
     }
     #endregion private
 
@@ -80,13 +92,15 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       this.Name = Path.GetFileNameWithoutExtension(fileName);
       ProjectIdentifier = Guid.NewGuid();
     }
-    public ProjectWrapper(UAModelDesignerProject configuration)
+    internal ProjectWrapper(UAModelDesignerProject configuration)
     {
+      if (configuration == null)
+        throw new NullReferenceException(nameof(configuration));
       this.m_UAModelDesignerProject = configuration;
     }
     #endregion initialisation
 
-    #region property for property grid
+    #region browsable properties
     /// <summary>
     /// Gets the project file path.
     /// </summary>
@@ -94,26 +108,17 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [DisplayName("Model file path")]
     [Category("Input")]
     [Description("Path of an xml file containing the model.")]
-    [XmlIgnore()]
     public string FilePath
     {
       get
       {
         if (string.IsNullOrEmpty(this.FileName))
-          return "";
+          return String.Empty;
         if (RelativeFilePathsCalculator.TestIfPathIsAbsolute(FileName))
           return FileName;
-        StringBuilder sb = new StringBuilder();
-        if (!string.IsNullOrEmpty(this.m_SolutionHomeDirectory))
-        {
-          sb.Append(this.m_SolutionHomeDirectory);
-          sb.Append(Path.DirectorySeparatorChar);
-        }
-        else
+        if (string.IsNullOrEmpty(this.m_SolutionHomeDirectory))
           return FileName;
-        sb.Append(this.FileName);
-        string path = Path.GetFullPath(sb.ToString());
-        return path;
+        return Path.GetFullPath(Path.Combine(this.m_SolutionHomeDirectory, this.FileName));
       }
     }
     /// <summary>
@@ -187,16 +192,15 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         return ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName);
       }
     }
-
     #endregion
 
-    #region XMLSerialise properties
+    #region public
     /// <summary>
     /// Gets or sets the name of the file.
     /// </summary>
     /// <value>The name of the file.</value>
     [Browsable(false)]
-    public string FileName
+    internal string FileName
     {
       get
       {
@@ -208,15 +212,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       }
     }
     [Browsable(false)]
-    [XmlAttribute()]
-    public Guid ProjectIdentifier
+    internal Guid ProjectIdentifier
     {
       get { return new Guid(m_UAModelDesignerProject.ProjectIdentifier); }
       set { m_UAModelDesignerProject.ProjectIdentifier = value.ToString(); }
     }
-    #endregion
-
-    #region public
     /// <summary>
     /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
     /// </summary>
@@ -236,6 +236,13 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     internal void ChangeFilenameToAbsolutePath()
     {
       FileName = FilePath;
+    }
+    internal UAModelDesignerProject UAModelDesignerProjectConfiguration
+    {
+      get
+      {
+        return m_UAModelDesignerProject;
+      }
     }
     #endregion
 
