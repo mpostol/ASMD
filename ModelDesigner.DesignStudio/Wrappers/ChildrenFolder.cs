@@ -12,12 +12,10 @@
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
 //</summary>
-      
+
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using OpcUaModelCompiler = Opc.Ua.ModelCompiler;
 
 namespace CAS.UA.Model.Designer.Wrappers

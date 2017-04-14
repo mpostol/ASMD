@@ -30,7 +30,7 @@
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( ModelObserver ) );
       this.components = new System.ComponentModel.Container();
-      this.m_TreeView = new CAS.UA.Model.Designer.Wrappers.DictionaryTreeView();
+      this.m_TreeView = new DictionaryTreeView();
       this.m_ImagesForNodes = new CAS.UA.Model.Designer.ImagesForNodes( this.components );
       this.m_toolStripContainer = new System.Windows.Forms.ToolStripContainer();
       this.m_BackForwardTreViewToolStrip = new CAS.Lib.ControlLibrary.BackForwardTreViewToolStrip();
@@ -53,8 +53,8 @@
       this.m_TreeView.ShowNodeToolTips = true;
       this.m_TreeView.Size = new System.Drawing.Size( 326, 271 );
       this.m_TreeView.TabIndex = 0;
-      this.m_TreeView.RefreshNeeded += new System.EventHandler<CAS.UA.Model.Designer.Wrappers.DictionaryTreeView.RefreshScopeEventArgs>( this.m_TreeView_RefreshNeeded );
-      this.m_TreeView.AfterSelect += new CAS.UA.Model.Designer.Wrappers.DictionaryTreeView.DictionaryTreeViewEventHandler( this.m_TreeView_AfterSelect );
+      this.m_TreeView.RefreshNeeded += new System.EventHandler<DictionaryTreeView.RefreshScopeEventArgs>( this.m_TreeView_RefreshNeeded );
+      this.m_TreeView.AfterSelect += new DictionaryTreeView.DictionaryTreeViewEventHandler( this.m_TreeView_AfterSelect );
       // 
       // m_toolStripContainer
       // 
@@ -144,7 +144,7 @@
 
     #endregion
 
-    private CAS.UA.Model.Designer.Wrappers.DictionaryTreeView m_TreeView;
+    private DictionaryTreeView m_TreeView;
     private ImagesForNodes m_ImagesForNodes;
     private System.Windows.Forms.ToolStripContainer m_toolStripContainer;
     private CAS.Lib.ControlLibrary.BackForwardTreViewToolStrip m_BackForwardTreViewToolStrip;

@@ -17,7 +17,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {

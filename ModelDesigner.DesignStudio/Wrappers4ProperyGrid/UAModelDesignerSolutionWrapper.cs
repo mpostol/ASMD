@@ -28,7 +28,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
 
   /// <summary>
-  /// Instance of this class is to be used as a wrapper by the <see cref="System.Windows.Forms.PropertyGrid"/> to expose to the user and  
+  /// Instance of this class is to be used as a wrapper by the <see cref="PropertyGrid"/> to expose to the user and  
   /// by the <see cref="XmlSerializer"/> to save information on the solution.
   /// </summary>
   [DefaultProperty("Server")]
@@ -76,14 +76,14 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       set { Server.ServerConfiguration = value; }
       get
       {
-        ServerSelector.ServerDescriptor descriptor = Server.ServerConfiguration;
-        if (descriptor == null)
+        ServerSelector.ServerDescriptor _descriptor = Server.ServerConfiguration;
+        if (_descriptor == null)
           return null;
-        if (!String.IsNullOrEmpty(descriptor.codebase))
-          descriptor.codebase = RelativeFilePathsCalculator.TryComputeRelativePath(this.m_HomeDirectory, descriptor.codebase); //TODO must refer to the plugin directory.
-        if (!String.IsNullOrEmpty(descriptor.configuration))
-          descriptor.configuration = RelativeFilePathsCalculator.TryComputeRelativePath(this.m_HomeDirectory, descriptor.configuration);
-        return descriptor;
+        if (!String.IsNullOrEmpty(_descriptor.codebase))
+          _descriptor.codebase = RelativeFilePathsCalculator.TryComputeRelativePath(this.m_HomeDirectory, _descriptor.codebase); //TODO must refer to the plugin directory.
+        if (!String.IsNullOrEmpty(_descriptor.configuration))
+          _descriptor.configuration = RelativeFilePathsCalculator.TryComputeRelativePath(this.m_HomeDirectory, _descriptor.configuration);
+        return _descriptor;
       }
     }
     #endregion

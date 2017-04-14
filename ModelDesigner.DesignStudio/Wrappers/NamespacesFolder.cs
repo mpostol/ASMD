@@ -13,8 +13,9 @@
 //  http://www.cas.eu
 //</summary>
 
-using System.Xml.Serialization;
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
+using System.Xml.Serialization;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {

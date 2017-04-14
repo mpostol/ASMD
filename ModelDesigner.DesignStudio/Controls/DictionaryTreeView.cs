@@ -20,7 +20,7 @@ using System.Xml;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 
-namespace CAS.UA.Model.Designer.Wrappers
+namespace CAS.UA.Model.Designer.Controls
 {
   /// <summary>
   /// TreeView supporting dictionary lookup.

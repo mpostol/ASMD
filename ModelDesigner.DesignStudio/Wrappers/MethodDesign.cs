@@ -13,9 +13,9 @@
 //  http://www.cas.eu
 //</summary>
 
-using System.Collections.Generic;
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
+using System.Collections.Generic;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {

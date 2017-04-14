@@ -1,14 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.SelectedItemObserverComponent" Collapsed="true">
-    <Position X="5.5" Y="4.25" Width="2.5" />
+  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.SelectedItemObserverComponent">
+    <Position X="10.25" Y="1" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>AAABAAAAACAAAAACACCAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\NodeObserver\SelectedItemObserverComponent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.MainController">
-    <Position X="11" Y="0.5" Width="3.25" />
+    <Position X="14" Y="0.5" Width="3.25" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
       <Compartment Name="Nested Types" Collapsed="false" />
@@ -42,8 +47,11 @@
       <FileName>Controls\NodeObserver\MainController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.BindingsPropertyObserver" Collapsed="true">
+  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.BindingsPropertyObserver">
     <Position X="3.75" Y="2.75" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <NestedTypes>
       <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.BindingsPropertyObserver.InstanceConfigurationMasterEditor" Collapsed="true">
         <TypeIdentifier>
@@ -52,7 +60,7 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAACAAIACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAABAAAAACAAAAAAAACAAIACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\NodeObserver\BindingsPropertyObserver.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -66,15 +74,39 @@
       <Field Name="m_propertyGrid" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.NodePropertyObserver" Collapsed="true">
+  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.NodePropertyObserver">
     <Position X="7" Y="2.75" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAACAAIACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAABAAAAACAAAAAAAACAAIACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\NodeObserver\NodePropertyObserver.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="System.Windows.Forms.PropertyGrid" Collapsed="true">
     <Position X="2.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.ModelObserver">
+    <Position X="1.25" Y="5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ICABABQALCIAAAQYAADAAIACAQAAAMIBEgAAACQAAEA=</HashCode>
+      <FileName>Controls\NodeObserver\ModelObserver.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SelectedNode" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="System.Windows.Forms.TreeNode" Collapsed="true">
+    <Position X="4.5" Y="6" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>

@@ -259,8 +259,8 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
                 }
             list.Add(_newElement);
           }
-        if (backward)
-          ;//TODO to be implemented;
+        //TODO to be implemented
+        //if (backward)
         return list.ToArray();
       }
       string IElement.Name

@@ -1,4 +1,4 @@
-﻿namespace CAS.UA.Model.Designer.Wrappers
+﻿namespace CAS.UA.Model.Designer.Controls
 {
   partial class DictionaryTreeView
   {

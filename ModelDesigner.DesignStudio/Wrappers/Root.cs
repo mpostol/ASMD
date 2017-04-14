@@ -13,7 +13,6 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.UA.Common;
 using CAS.UA.IServerConfiguration;
 using System.Xml;
 

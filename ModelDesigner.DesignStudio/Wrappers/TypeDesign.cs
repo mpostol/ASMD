@@ -70,7 +70,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       {
         TreeView.GoToNode(Creator.Wrapper.BaseType.XmlQualifiedName);
       }
-      internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
+      internal override Dictionary<string, XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
       {
         var list = base.GetCoupledNodesXmlQualifiedNames();
         if (Creator.Wrapper.BaseType.XmlQualifiedName != null && !Creator.Wrapper.BaseType.XmlQualifiedName.IsEmpty)
