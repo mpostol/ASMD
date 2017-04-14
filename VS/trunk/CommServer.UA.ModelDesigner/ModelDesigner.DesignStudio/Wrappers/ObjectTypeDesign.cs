@@ -14,8 +14,8 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using BaseModelType = Opc.Ua.ModelCompiler.ObjectTypeDesign;
 
 namespace CAS.UA.Model.Designer.Wrappers

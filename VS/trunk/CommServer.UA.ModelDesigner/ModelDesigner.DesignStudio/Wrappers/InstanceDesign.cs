@@ -13,11 +13,9 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.UA.Common;
 using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Types;
-using CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System;
 using System.Collections.Generic;

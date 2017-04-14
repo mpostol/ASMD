@@ -13,13 +13,12 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.Lib.ControlLibrary;
+using CAS.UA.IServerConfiguration;
+using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
+using System;
 using System.ComponentModel;
 using System.Xml;
-using CAS.Lib.ControlLibrary;
-using CAS.UA.Common;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
-using CAS.UA.IServerConfiguration;
-using System;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {

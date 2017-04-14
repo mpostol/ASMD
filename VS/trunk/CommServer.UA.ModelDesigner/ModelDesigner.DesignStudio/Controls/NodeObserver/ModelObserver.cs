@@ -26,6 +26,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {
   internal partial class ModelObserver: MainController.SelectedItemObserver
   {
+
     #region creator
     public ModelObserver()
     {
@@ -47,6 +48,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       m_FiltersControlSettings = new FiltersControl.FilterSettings();
     }
     #endregion creator
+
     #region internal
     internal void PerformNodeClassFiltering()
     {
@@ -104,13 +106,14 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       cn.GetServerUAMenu( toolStripItemCollection );
     }
     #endregion internal
-    #region private members
+
+    #region private
+    //vars
     private OKCancelForm m_filterform;
     private FiltersControl m_FiltersControl;
     private FiltersControl.FilterSettings m_FiltersControlSettings;
     private TreeNode m_SelectedTreeNode = null;
-    #endregion private members
-    #region private functions
+    //methods
     private bool NodeSearchTest( TreeNode FoundNode )
     {
       IWrapperTreeNode IWrapperTreeNodeFoundNode = FoundNode as IWrapperTreeNode;
@@ -172,7 +175,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     {
       PerformNodeClassFiltering();
     }
+    #endregion private
 
-    #endregion private functions
   }
 }

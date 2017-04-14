@@ -22,7 +22,6 @@ using System.IO;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Schema;
-using System.Xml.Serialization;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
 {
@@ -632,5 +631,6 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     #endregion
 
     #endregion
+
   }
 }

@@ -15,8 +15,8 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {

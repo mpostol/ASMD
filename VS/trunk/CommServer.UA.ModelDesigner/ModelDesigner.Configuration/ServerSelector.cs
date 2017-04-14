@@ -29,7 +29,6 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace CAS.CommServer.UA.ModelDesigner.Configuration
 {
@@ -86,12 +85,10 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       /// <summary>
       /// Codebase file path
       /// </summary>
-      [XmlAttribute()]
       public string codebase;
       /// <summary>
       /// Server configuration file path.
       /// </summary>
-      [XmlAttribute()]
       public string configuration;
       /// <summary>
       /// Returns a <see cref="T:System.String"/> that represents the current instance.
@@ -114,7 +111,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <value>
     /// The information on localization of the server and configuration file..
     /// </value>
-    /// <remarks>Is to be used by <see cref="XmlSerializer"/> XmlSerializer</remarks>
     [Browsable(false)]
     public ServerDescriptor ServerConfiguration
     {

@@ -376,10 +376,10 @@
     <Compile Include="Wrappers\AddressSpaceDictionary\IReference.cs" />
     <Compile Include="Wrappers\BrowseOptions.cs" />
     <Compile Include="Wrappers\ChildrenFolder.cs" />
-    <Compile Include="Wrappers\DictionaryTreeView.cs">
+    <Compile Include="Controls\DictionaryTreeView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Wrappers\DictionaryTreeView.Designer.cs">
+    <Compile Include="Controls\DictionaryTreeView.Designer.cs">
       <DependentUpon>DictionaryTreeView.cs</DependentUpon>
     </Compile>
     <Compile Include="Wrappers\Extensions.cs" />
@@ -509,8 +509,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="cas.snk" />
-    <None Include="ClassDiagrams\IO.cd" />
-    <None Include="ClassDiagrams\TreeNode.cd" />
     <None Include="Controls\NodeObserver\NodeObserver.cd" />
     <Content Include="log\CAS.OPC.UA.ASMD.log">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -564,6 +562,7 @@
       <DependentUpon>AddressSpace.xsd</DependentUpon>
     </None>
     <None Include="Wrappers\AddressSpaceDictionary\ClassDiagram.cd" />
+    <None Include="Wrappers\ModelWrappers.cd" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AboutOpcUaModelCompilerWindow.resx">
@@ -693,6 +692,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ClassDiagrams\" />
     <Folder Include="Help\" />
   </ItemGroup>
   <ItemGroup>

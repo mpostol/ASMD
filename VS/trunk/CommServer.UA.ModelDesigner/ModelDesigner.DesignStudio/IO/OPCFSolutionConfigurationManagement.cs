@@ -14,6 +14,7 @@
 //</summary>
 
 using CAS.CommServer.UA.Common;
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;

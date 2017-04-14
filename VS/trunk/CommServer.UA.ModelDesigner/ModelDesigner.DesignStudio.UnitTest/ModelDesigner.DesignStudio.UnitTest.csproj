@@ -124,6 +124,7 @@
     <Compile Include="Wrappers4PropertyGrid\UAModelDesignerSolutionWrapperTests.cs" />
     <Compile Include="Wrappers4PropertyGrid\UAModelDesignerSolutionUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\ProjectWrapperTests.cs" />
+    <Compile Include="Wrappers\ProjectTreeNodeUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

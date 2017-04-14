@@ -13,13 +13,13 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
-using System.Collections.Generic;
-using CAS.UA.Common;
+using CAS.UA.IServerConfiguration;
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
+using System;
+using System.Collections.Generic;
 using BaseModelType = Opc.Ua.ModelCompiler.VariableDesign;
-using CAS.UA.IServerConfiguration;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {

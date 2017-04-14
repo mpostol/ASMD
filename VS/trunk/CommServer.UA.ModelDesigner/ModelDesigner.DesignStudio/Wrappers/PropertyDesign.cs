@@ -17,7 +17,7 @@
 using System;
 using System.Collections.Generic;
 using CAS.UA.Model.Designer.Properties;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
+using CAS.UA.Model.Designer.Controls;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {

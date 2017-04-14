@@ -14,6 +14,7 @@
 //</summary>
 
 using CAS.CommServer.UA.ModelCompiler.Common;
+using CAS.UA.Model.Designer.Controls;
 using System;
 using System.ComponentModel;
 using System.Linq;

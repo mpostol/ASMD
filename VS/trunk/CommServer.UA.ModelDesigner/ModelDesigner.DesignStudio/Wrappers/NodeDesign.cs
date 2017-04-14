@@ -14,9 +14,6 @@
 //</summary>
 
 using CAS.UA.Model.Designer.Properties;
-using CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Xml;

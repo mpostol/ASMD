@@ -15,6 +15,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
@@ -41,7 +42,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
     private ModelDesign m_ModelDesign;
     private OPCFModelConfigurationManagement m_ConfigManager;
-    private void m_TSMI_remove_Click(object sender, System.EventArgs e)
+    private void m_TSMI_remove_Click(object sender, EventArgs e)
     {
       string name = "empty";
       if (m_ProjectWrapper != null && m_ProjectWrapper.Name != null)
@@ -112,7 +113,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       : base(project)
     {
       m_ConfigManager = new OPCFModelConfigurationManagement();
-      OPCFModelDesign model = m_ConfigManager.ReadConfiguration(project.FileName);
+      OPCFModelDesign model = m_ConfigManager.ReadConfiguration(project.FileName); //Throws eception because m_ConfigManager is null.
       InitializeComponent(new ModelDesign(model, false));
       project.OnNameChanged += new EventHandler(project_OnNameChanged);
     }

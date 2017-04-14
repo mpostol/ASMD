@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.Controls;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml;
