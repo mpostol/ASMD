@@ -19,7 +19,6 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace CAS.UA.Model.Designer.IO
 {
@@ -43,7 +42,7 @@ namespace CAS.UA.Model.Designer.IO
     /// Gets the configuration.
     /// </summary>
     /// <value>If implemented return the opened configuration as the <see cref="DataToSerialize "/>.</value>
-    protected abstract DataToSerialize GetConfiguration { get; }
+    protected abstract XmlFile.DataToSerialize<Type4Serialization> GetConfiguration { get; }
     /// <summary>
     /// Creates a configurable tree node.
     /// </summary>
@@ -67,7 +66,7 @@ namespace CAS.UA.Model.Designer.IO
     /// </exception>
     /// <exception cref="System.IO.IOException">path includes an incorrect or invalid syntax for file name, directory name, or volume label syntax.</exception>
     /// <exception cref="System.Security.SecurityException">The caller does not have the required permission.</exception>
-    private void Save(DataToSerialize cd)
+    private void Save(XmlFile.DataToSerialize<Type4Serialization> cd)
     {
       BeforeWrite?.Invoke(this, new StringEventArgs(DefaultFileName));
       XmlFile.WriteXmlFile<Type4Serialization>(cd.Data, DefaultFileName, FileMode.Create, cd.StylesheetName, cd.XmlNamespaces);
@@ -99,21 +98,9 @@ namespace CAS.UA.Model.Designer.IO
     public TypeGenericConfigurationManagement()
       : base()
     { }
-    public TypeGenericConfigurationManagement(IContainer container)
-      : base(container)
-    { }
     #endregion
 
     #region public
-    /// <summary>
-    /// A structure containing configuration
-    /// </summary>
-    public struct DataToSerialize
-    {
-      public XmlSerializerNamespaces XmlNamespaces;
-      public Type4Serialization Data;
-      public string StylesheetName;
-    }
     internal class StringEventArgs : EventArgs
     {
       /// <summary>
@@ -210,7 +197,7 @@ namespace CAS.UA.Model.Designer.IO
       return CreateTreeNode(_return);
     }
     /// <summary>
-    /// Reads the configuration.
+    /// Open dialog box to select the file and deserialize an instance of <typeparamref name="TreeNodeType"/>.
     /// </summary>
     /// <returns>The configuration retrieved from a file.</returns>
     public TreeNodeType ReadConfiguration()
@@ -273,7 +260,7 @@ namespace CAS.UA.Model.Designer.IO
     /// </summary>
     /// <param name="prompt">If set to <c>true</c> show prompt to enter a file name.</param>
     /// <returns><c>true</c> if operation accomplished successfully.</returns>
-    public bool Save(bool prompt, DataToSerialize configuration)
+    public bool Save(bool prompt, XmlFile.DataToSerialize<Type4Serialization> configuration)
     {
       prompt = m_Empty || prompt;
       if (prompt)
