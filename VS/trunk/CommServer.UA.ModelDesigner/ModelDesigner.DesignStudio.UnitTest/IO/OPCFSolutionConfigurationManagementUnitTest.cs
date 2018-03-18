@@ -15,7 +15,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Assert.IsFalse(_instance.ChangesArePresent);
       Assert.IsTrue( string.IsNullOrEmpty( _instance.DefaultDirectory));
       Assert.AreEqual("UAModelDesignerSolution", _instance.DefaultFileName);
-      Assert.IsNotNull(_instance.SolutionRootNode);
     }
   }
 }

@@ -42,6 +42,10 @@
     <ResolveCrefLinks>true</ResolveCrefLinks>
     <HeaderText>CAS.UA.Common</HeaderText>
     <FooterText>CAS CommServerUA Family Copyright (c) 2000-2015 CAS LODZ POLAND</FooterText>
+    <ConceptualContent>
+      <ContentLayout />
+      <MediaContent />
+    </ConceptualContent>
     <SelectedProjects>
       <SelectedProject>CAS.IServerConfiguration</SelectedProject>
     </SelectedProjects>

@@ -27,7 +27,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Gets or sets the library root.
     /// </summary>
     /// <value>The library root.</value>
-    internal static Libraries LibraryRoot { get; set; }
+    internal static Libraries LibraryRoot { get; set; } = new Libraries();
     /// <summary>
     /// Gets or sets the solution root.
     /// </summary>

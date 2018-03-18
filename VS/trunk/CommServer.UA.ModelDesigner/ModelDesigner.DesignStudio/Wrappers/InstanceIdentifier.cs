@@ -13,11 +13,11 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.Lib.ControlLibrary;
 using System;
 using System.Xml;
-using CAS.Lib.ControlLibrary;
 
-namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
+namespace CAS.UA.Model.Designer.Wrappers
 {
   /// <summary>
   /// Instance Identifier base class

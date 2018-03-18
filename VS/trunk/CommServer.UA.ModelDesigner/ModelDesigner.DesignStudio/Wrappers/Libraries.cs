@@ -14,9 +14,7 @@
 //</summary>
 
 using CAS.CommServer.UA.ModelCompiler.Common;
-using CAS.UA.Model.Designer.Controls;
 using System;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
@@ -29,7 +27,7 @@ namespace CAS.UA.Model.Designer.Wrappers
   internal class Libraries : RootTreeNode
   {
     #region private
-    private void InitializeTypes(IContainer container)
+    private void InitializeTypes()
     {
 
       try
@@ -42,7 +40,7 @@ namespace CAS.UA.Model.Designer.Wrappers
           AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 41, "Removed DataTypeDesign items not belonging to the model.");
         }
         AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 37, "Creating the LibraryTreeNode containing standard model");
-        Add(new LibraryTreeNode(_modelTypes, "UA Defined Types", container));
+        Add(new LibraryTreeNode(_modelTypes, "UA Defined Types"));
       }
       catch (Exception _ex)
       {
@@ -57,11 +55,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Initializes a new instance of the <see cref="Libraries"/> class.
     /// </summary>
     /// <param name="container">The container that contains zero or more components..</param>
-    public Libraries(IContainer container)
+    public Libraries()
       : base("")
     {
-      InitializeTypes(container);
-      Root.LibraryRoot = this;
+      InitializeTypes();
     }
     #endregion
 
@@ -72,7 +69,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <returns>
     /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
     /// </returns>
-    internal override DictionaryTreeView.DictionaryTreeNode GetTreeNode()
+    public override BaseDictionaryTreeNode GetTreeNode()
     {
       throw new NotImplementedException();
     }

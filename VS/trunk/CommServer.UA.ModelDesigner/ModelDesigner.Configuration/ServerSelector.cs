@@ -128,27 +128,26 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       }
       set
       {
-        if (value == null)
+        if (value == null || String.IsNullOrEmpty(value.codebase))
           return;
         FileInfo _info = null;
         //ModelDesigner is trying to open plugin DLL from Solution directory or application binaries directory or current directory
-        if (!String.IsNullOrEmpty(value.codebase))
-          if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(value.codebase))
+        if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(value.codebase))
+        {
+          string _baseDirectory = BaseDirectoryHelper.Instance.GetBaseDirectory();
+          _info = new FileInfo(Path.Combine(_baseDirectory, value.codebase));
+          if (!_info.Exists && !string.IsNullOrEmpty(Assembly.GetExecutingAssembly().Location))
           {
-            string _baseDirectory = BaseDirectoryHelper.Instance.GetBaseDirectory();
+            _baseDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             _info = new FileInfo(Path.Combine(_baseDirectory, value.codebase));
-            if (!_info.Exists && !string.IsNullOrEmpty(Assembly.GetExecutingAssembly().Location))
-            {
-              _baseDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-              _info = new FileInfo(Path.Combine(_baseDirectory, value.codebase));
-            }
-            if (!_info.Exists)
-              _info = null;
           }
-          else
-          {
-            _info = new FileInfo(value.codebase);
-          }
+          if (!_info.Exists)
+            _info = null;
+        }
+        else
+        {
+          _info = new FileInfo(value.codebase);
+        }
         if (_info == null)
           _info = new FileInfo(value.codebase);
         if (!_info.Exists)
@@ -176,7 +175,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
           TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 173, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, Resources.AssemblyLoadErropr));
           return;
         }
-        ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, _assembly, GraphicalUserInterface, value.configuration );
+        ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, _assembly, GraphicalUserInterface, value.configuration);
         //It must be last statement because ir raises an event using all properties. 
         SelectedAssembly = newSelectedAssembly;
       }

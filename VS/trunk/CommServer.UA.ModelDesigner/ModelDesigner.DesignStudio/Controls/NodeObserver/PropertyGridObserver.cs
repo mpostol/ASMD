@@ -13,16 +13,15 @@
 //  http://www.cas.eu
 //</summary>
 
-using System.Windows.Forms;
 using CAS.UA.Model.Designer.Wrappers;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
+using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {
   /// <summary>
   /// Common class for all PropertyGrid Observers.
   /// </summary>
-  internal partial class PropertyGridObserver: MainController.SelectedItemObserver
+  internal partial class PropertyGridObserver: SelectedItemObserver
   {
 
     #region creator

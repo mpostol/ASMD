@@ -14,10 +14,8 @@
 //</summary>
 
 using CAS.Lib.ControlLibrary;
-using CAS.UA.Common;
 using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.Properties;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -31,7 +29,7 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// <summary>
   /// Model node that has editable properties associated.
   /// </summary>
-  internal abstract class WrapperTreeNode: BaseTreeNode, IModelNode, IModelNodeAdvance, IEnumerable<IModelNodeAdvance>
+  internal abstract class WrapperTreeNode : BaseTreeNode, IModelNode, IModelNodeAdvance, IEnumerable<IModelNodeAdvance>
   {
     #region public
     internal static object GetModelDesignerNodeFromStringRepresentationFromClipboard()
@@ -43,7 +41,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       catch
       { return null; }
-      return GetModelDesignerNodeFromStringRepresentation( clipboard );
+      return GetModelDesignerNodeFromStringRepresentation(clipboard);
     }
     /// <summary>
     /// Gets or sets the child - the object representing ModelDesign node class.
@@ -54,42 +52,42 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     #region private
     protected List<Type> TypesAvailableToBePasted = new List<Type>();
-    private bool ShouldPasteMenuBeEnabled( object DeserializedNode )
+    private bool ShouldPasteMenuBeEnabled(object DeserializedNode)
     {
-      if ( DeserializedNode == null )
+      if (DeserializedNode == null)
         return false;
-      foreach ( Type type in TypesAvailableToBePasted )
-        if ( DeserializedNode.GetType().Equals( type ) || DeserializedNode.GetType().IsSubclassOf( type ) )
+      foreach (Type type in TypesAvailableToBePasted)
+        if (DeserializedNode.GetType().Equals(type) || DeserializedNode.GetType().IsSubclassOf(type))
           return true;
       return false;
     }
-    private static object GetModelDesignerNodeFromStringRepresentation( string modelDesignerNodeStringRepresentation )
+    private static object GetModelDesignerNodeFromStringRepresentation(string modelDesignerNodeStringRepresentation)
     {
-      if ( string.IsNullOrEmpty( modelDesignerNodeStringRepresentation ) )
+      if (string.IsNullOrEmpty(modelDesignerNodeStringRepresentation))
         return null;
-      if ( modelDesignerNodeStringRepresentation.IndexOf( "<?xml" ) != 0 )
+      if (modelDesignerNodeStringRepresentation.IndexOf("<?xml") != 0)
         return null;
       try
       {
-        StringReader stringReader = new StringReader( modelDesignerNodeStringRepresentation );
-        XmlTextReader xmlTextReader = new XmlTextReader( stringReader );
+        StringReader stringReader = new StringReader(modelDesignerNodeStringRepresentation);
+        XmlTextReader xmlTextReader = new XmlTextReader(stringReader);
         xmlTextReader.WhitespaceHandling = WhitespaceHandling.None;
         XmlDocument xmlDocument = new XmlDocument();
-        xmlDocument.Load( xmlTextReader );
-        if ( xmlDocument.DocumentElement == null )
+        xmlDocument.Load(xmlTextReader);
+        if (xmlDocument.DocumentElement == null)
           return null;
-        string SerializedTypeAsString = typeof( Opc.Ua.ModelCompiler.NodeDesign ).Namespace + "." + xmlDocument.DocumentElement.Name;
-        Type SerializedType = Type.GetType( SerializedTypeAsString );
-        if ( SerializedType == null )
+        string SerializedTypeAsString = typeof(Opc.Ua.ModelCompiler.NodeDesign).Namespace + "." + xmlDocument.DocumentElement.Name;
+        Type SerializedType = Type.GetType(SerializedTypeAsString);
+        if (SerializedType == null)
         {
           SerializedTypeAsString += ", Opc.Ua.ModelCompiler"; // we have to try also load to from different assembly
-          SerializedType = Type.GetType( SerializedTypeAsString );
+          SerializedType = Type.GetType(SerializedTypeAsString);
         }
-        if ( SerializedType == null )
+        if (SerializedType == null)
           return null;
-        XmlSerializer serializer = new XmlSerializer( SerializedType );
-        stringReader = new StringReader( modelDesignerNodeStringRepresentation );
-        return serializer.Deserialize( stringReader );
+        XmlSerializer serializer = new XmlSerializer(SerializedType);
+        stringReader = new StringReader(modelDesignerNodeStringRepresentation);
+        return serializer.Deserialize(stringReader);
       }
       catch
       {
@@ -97,55 +95,55 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
     }
     #region private menu handlers
-    private void AddMenuItemPaste_Click( object sender, EventArgs e )
+    private void AddMenuItemPaste_Click(object sender, EventArgs e)
     {
       MenuItemPaste_Action();
     }
-    private void AddMenuItemCopy_Click( object sender, EventArgs e )
+    private void AddMenuItemCopy_Click(object sender, EventArgs e)
     {
       MenuItemCopy_Action();
     }
-    private void AddMenuItemCut_Click( object sender, EventArgs e )
+    private void AddMenuItemCut_Click(object sender, EventArgs e)
     {
       MenuItemCut_Action();
     }
-    private void AddMenuItemDelete_Click( object sender, EventArgs e )
+    private void AddMenuItemDelete_Click(object sender, EventArgs e)
     {
-      string msg = String.Format( WrapperResources.DeleteObjectWarning, this.Text, this.ToolTipText );
-      if ( MessageBox.Show
+      string msg = String.Format(WrapperResources.DeleteObjectWarning, this.Text, this.ToolTipText);
+      if (MessageBox.Show
         (
           msg,
           WrapperResources.DeleteObjectCaption,
           MessageBoxButtons.OKCancel,
           MessageBoxIcon.Question
-        ) != DialogResult.OK )
+        ) != DialogResult.OK)
         return;
-      this.Parent.Remove( this );
+      this.Parent.Remove(this);
     }
-    private void AddMenuItemAdd_Click( object sender, EventArgs e )
+    private void AddMenuItemAdd_Click(object sender, EventArgs e)
     {
       ToolStripMenuItem mi = (ToolStripMenuItem)sender;
       INodeFactory factory = (INodeFactory)mi.Tag;
       ValidableTreeNode node = factory.Node;
-      this.Add( node );
-      using ( AddObject<object> form = new AddObject<object>( node.Wrapper ) )
+      this.Add(node);
+      using (AddObject<object> form = new AddObject<object>(node.Wrapper))
       {
-        form.Size = new Size( 600, 500 );
-        if ( form.ShowDialog() != DialogResult.OK )
+        form.Size = new Size(600, 500);
+        if (form.ShowDialog() != DialogResult.OK)
         {
-          this.Remove( node );
+          this.Remove(node);
           return;
         }
       }
       node.Validate();
     }
     #endregion
-    protected new abstract class TreeNode<T>: BaseTreeNode.TreeNode<T>, IWrapperTreeNode
-      where T: WrapperTreeNode, IModelNode, IModelNodeAdvance
+    protected new abstract class TreeNode<T> : BaseTreeNode.TreeNode<T>, IWrapperTreeNode
+      where T : WrapperTreeNode, IModelNode, IModelNodeAdvance
     {
       #region creator
-      public TreeNode( T parent )
-        : base( parent )
+      public TreeNode(T parent)
+        : base(parent)
       { }
       #endregion
 
@@ -156,29 +154,29 @@ namespace CAS.UA.Model.Designer.Wrappers
       /// Gets the wrappers to be used in the <see cref="System.Windows.Forms.PropertyGrid"/>.
       /// </summary>
       /// <value>The wrappers,i.e. node configuration wappers.</value>
-      protected virtual void AddMenuItemAdd( INodeFactory[] listOfNodes )
+      protected virtual void AddMenuItemAdd(INodeFactory[] listOfNodes)
       {
-        ToolStripMenuItem menu = new ToolStripMenuItem( Properties.Resources.WrapperTreeNode_menu_add_object, Resources.AdddItem )
+        ToolStripMenuItem menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_add_object, Resources.AdddItem)
         {
           Enabled = !Creator.TestIfReadOnlyAndRetrunTrueIfReadOnly()
         };
-        ContextMenuStrip.Items.Add( menu );
-        foreach ( INodeFactory item in listOfNodes )
+        ContextMenuStrip.Items.Add(menu);
+        foreach (INodeFactory item in listOfNodes)
         {
-          string node_name = item.ToString().Replace( "Design", "" );
-          ToolStripMenuItem sm = new ToolStripMenuItem( node_name )
+          string node_name = item.ToString().Replace("Design", "");
+          ToolStripMenuItem sm = new ToolStripMenuItem(node_name)
           {
             Tag = item,
             Enabled = !Creator.TestIfReadOnlyAndRetrunTrueIfReadOnly()
           };
-          sm.Click += new EventHandler( Creator.AddMenuItemAdd_Click );
-          menu.DropDownItems.Add( sm );
+          sm.Click += new EventHandler(Creator.AddMenuItemAdd_Click);
+          menu.DropDownItems.Add(sm);
         }
       }
       protected void AddMenuItemCopyPasteCut()
       {
-        if ( ContextMenuStrip.Items.Count > 0 )
-          ContextMenuStrip.Items.Add( new ToolStripSeparator() );
+        if (ContextMenuStrip.Items.Count > 0)
+          ContextMenuStrip.Items.Add(new ToolStripSeparator());
         AddMenuItemCopy();
         AddMenuItemPaste();
         AddMenuItemCut();
@@ -186,36 +184,36 @@ namespace CAS.UA.Model.Designer.Wrappers
       protected void AddMenuItemCut()
       {
         ToolStripMenuItem menu;
-        menu = new ToolStripMenuItem( Properties.Resources.WrapperTreeNode_menu_cut, Resources.cut )
+        menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_cut, Resources.cut)
         {
           Enabled = !Creator.TestIfReadOnlyAndRetrunTrueIfReadOnly()
         };
-        menu.Click += new EventHandler( Creator.AddMenuItemCut_Click );
-        ContextMenuStrip.Items.Add( menu );
+        menu.Click += new EventHandler(Creator.AddMenuItemCut_Click);
+        ContextMenuStrip.Items.Add(menu);
       }
       protected void AddMenuItemCopy()
       {
-        ToolStripMenuItem menu = new ToolStripMenuItem( Properties.Resources.WrapperTreeNode_menu_copy, Resources.copy );
-        menu.Click += new EventHandler( Creator.AddMenuItemCopy_Click );
-        ContextMenuStrip.Items.Add( menu );
+        ToolStripMenuItem menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_copy, Resources.copy);
+        menu.Click += new EventHandler(Creator.AddMenuItemCopy_Click);
+        ContextMenuStrip.Items.Add(menu);
       }
       protected void AddMenuItemPaste()
       {
-        ToolStripMenuItem MenuPaste = new ToolStripMenuItem( Properties.Resources.WrapperTreeNode_menu_paste, Resources.paste )
+        ToolStripMenuItem MenuPaste = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_paste, Resources.paste)
         {
           Enabled = !Creator.TestIfReadOnlyAndRetrunTrueIfReadOnly() && Creator.ShouldPasteMenuBeEnabled()
         };
-        MenuPaste.Click += new EventHandler( Creator.AddMenuItemPaste_Click );
-        ContextMenuStrip.Items.Add( MenuPaste );
+        MenuPaste.Click += new EventHandler(Creator.AddMenuItemPaste_Click);
+        ContextMenuStrip.Items.Add(MenuPaste);
       }
       protected virtual void AddMenuItemDelete()
       {
-        ToolStripMenuItem menu = new ToolStripMenuItem( Properties.Resources.WrapperTreeNode_menu_delete, Resources.delete )
+        ToolStripMenuItem menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_delete, Resources.delete)
         {
           Enabled = !Creator.TestIfReadOnlyAndRetrunTrueIfReadOnly()
         };
-        menu.Click += new EventHandler( Creator.AddMenuItemDelete_Click );
-        ContextMenuStrip.Items.Add( menu );
+        menu.Click += new EventHandler(Creator.AddMenuItemDelete_Click);
+        ContextMenuStrip.Items.Add(menu);
       }
       #endregion
 
@@ -262,9 +260,9 @@ namespace CAS.UA.Model.Designer.Wrappers
       INodeDescriptor IModelNode.GetINodeDescriptor()
       {
         UniqueIdentifier ui = new UniqueIdentifier();
-        if ( !GetUniqueIdentifier( ui ) )
+        if (!GetUniqueIdentifier(ui))
           return null;
-        return Creator.GetINodeDescriptor( ui );
+        return Creator.GetINodeDescriptor(ui);
       }
       /// <summary>
       /// Gets the name of the node class.
@@ -314,8 +312,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Initializes a new instance of the <see cref="WrapperTreeNode"/> class.
     /// </summary>
     /// <param name="wrapper">The instance that will be used as a wrapper to provide user interface.</param>
-    public WrapperTreeNode( object wrapper )
-      : base( "" )
+    public WrapperTreeNode(object wrapper)
+      : this(wrapper, String.Empty)
+    { }
+    internal WrapperTreeNode(object wrapper, string nodeName) : base(nodeName)
     {
       Wrapper = wrapper;
       ErrorList = new List<Diagnostics>();
@@ -328,22 +328,22 @@ namespace CAS.UA.Model.Designer.Wrappers
     public virtual void MenuItemCut_Action()
     {
       MenuItemCopy_Action();
-      this.Parent.Remove( this );
+      this.Parent.Remove(this);
     }
     public virtual bool ShouldPasteMenuBeEnabled()
     {
       object DeserializedNode = GetModelDesignerNodeFromStringRepresentationFromClipboard();
-      return ShouldPasteMenuBeEnabled( DeserializedNode );
+      return ShouldPasteMenuBeEnabled(DeserializedNode);
     }
     public virtual void MenuItemPaste_Action()
     {
       object DeserializedNode = GetModelDesignerNodeFromStringRepresentationFromClipboard();
-      if ( ShouldPasteMenuBeEnabled( DeserializedNode ) )
+      if (ShouldPasteMenuBeEnabled(DeserializedNode))
       {
-        this.Add( NodeFactory.Create( DeserializedNode ) );
+        this.Add(NodeFactory.Create(DeserializedNode));
         return;
       }
-      MessageBox.Show( Resources.WrapperTreeNode_menu_paste_cannot_be_done );
+      MessageBox.Show(Resources.WrapperTreeNode_menu_paste_cannot_be_done);
     }
     public virtual Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> GetFolders()
     {
@@ -430,7 +430,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <returns>
     /// An instance of the interface <see cref="INodeDescriptor"/> to be bound with external data source.
     /// </returns>
-    internal virtual INodeDescriptor GetINodeDescriptor( UniqueIdentifier UniqueIdentifierOfRequestedWrapper )
+    internal virtual INodeDescriptor GetINodeDescriptor(UniqueIdentifier UniqueIdentifierOfRequestedWrapper)
     {
       return null;
     }
@@ -445,16 +445,16 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     IEnumerator<IModelNodeAdvance> IEnumerable<IModelNodeAdvance>.GetEnumerator()
     {
-      return new WrapperTreeNodeImodelNodeEnumerator( this );
+      return new WrapperTreeNodeImodelNodeEnumerator(this);
     }
 
     /// <summary>
     /// Private enumerator for WrapperTreeNode
     /// </summary>
-    private class WrapperTreeNodeImodelNodeEnumerator: IEnumerator<IModelNodeAdvance>
+    private class WrapperTreeNodeImodelNodeEnumerator : IEnumerator<IModelNodeAdvance>
     {
       private System.Collections.IEnumerator myIEnumerator;
-      internal WrapperTreeNodeImodelNodeEnumerator( WrapperTreeNode selectedWrapperTreeNode )
+      internal WrapperTreeNodeImodelNodeEnumerator(WrapperTreeNode selectedWrapperTreeNode)
       {
         myIEnumerator = selectedWrapperTreeNode.GetEnumerator();
       }

@@ -15,129 +15,125 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.CommServer.UA.Common;
+using CAS.CommServer.UA.ModelDesigner.Configuration;
+using CAS.Lib.RTLib.Utils;
 using CAS.UA.IServerConfiguration;
+using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
+using CAS.UA.Model.Designer.Solution;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
+using System.Linq;
+using System.Windows.Forms; //TODO Must be removed
 using System.Xml;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
+
+  internal interface ISolutionModel : IBaseModel
+  {
+    void GetPluginMenuItems(ToolStripItemCollection items);
+    void AddProject(bool existing);
+    void ImportNodeSet();
+    void Save(bool prompt);
+    void Open();
+    void OnNew();
+  }
   /// <summary>
   /// The class representing the solution node in the model.
   /// </summary>
-  internal abstract class SolutionTreeNode : WrapperTreeNode
+  internal class SolutionTreeNode : WrapperTreeNode, IBaseDirectoryProvider, IViewModel, ISolutionModel
   {
+
     #region private
+    private EventHandler m_OnChangeHandler = null;
     private void configuration_OnNameChanged(object sender, EventArgs e)
+    { }
+    private void AddProjectsNodes(IEnumerable<UAModelDesignerProject> configuration)
     {
-      SetText();
-    }
-    private void SetText()
-    {
-      if (Configuration != null)
-        this.Text = "Solution: " + Configuration.Name;
-      else
-        this.Text = "Solution";
-    }
-    private UAModelDesignerSolutionWrapper Configuration
-    {
-      get { return (UAModelDesignerSolutionWrapper)Wrapper; }
-    }
-    private void AddProjectsNodes(UAModelDesignerSolutionWrapper configuration)
-    {
-      if (configuration.Projects == null || configuration.Projects.Length == 0)
+      if (configuration == null)
         return;
-      List<ProjectTreeNode> nodes = new List<ProjectTreeNode>(configuration.Projects.Length);
-      foreach (ProjectWrapper proj in configuration.Projects)
+      List<ProjectTreeNode> _nodes = new List<ProjectTreeNode>();
+      foreach (UAModelDesignerProject _project in configuration)
       {
-        proj.SetNewSolutionHomeDirectory(configuration.HomeDirectory);
-        ProjectTreeNode project = null;
+        ProjectTreeNode _newProject = null;
         try
         {
-          project = new ProjectTreeNode(proj, proj.Name);
+          _newProject = new ProjectTreeNode(this, _project);
         }
-        catch (FileNotFoundException fnfe)
+        catch (FileNotFoundException _fnfe)
         {
-          MessageBox.Show(String.Format(Resources.ProjectFileNotFound_Info, fnfe.Message), Resources.ProjectFileNotFound_Header, MessageBoxButtons.OK, MessageBoxIcon.Error);
+          MessageBox.Show(String.Format(Resources.ProjectFileNotFound_Info, _fnfe.Message), Resources.ProjectFileNotFound_Header, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        catch (Exception ex)
+        catch (Exception _ex)
         {
-          System.Windows.Forms.MessageBox.Show
+          MessageBox.Show
             (
-              String.Format(Properties.Resources.Project_FileOpenError, ex.Message),
+              String.Format(Properties.Resources.Project_FileOpenError, _ex.Message),
               Properties.Resources.Project_OpenFileCaption,
-              System.Windows.Forms.MessageBoxButtons.OK,
-              System.Windows.Forms.MessageBoxIcon.Error
+              MessageBoxButtons.OK,
+              MessageBoxIcon.Error
             );
         }
-        if (project != null)
-          nodes.Add(project);
+        if (_project != null)
+          _nodes.Add(_newProject);
       }
-      foreach (var node in nodes)
-        Add(node);
+      this.AddRange(_nodes);
+      //foreach (var node in nodes) //AddRange does the same
+      //  Add(node);
     }
-    private EventHandler m_OnChangeHandler = null;
-    protected override void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+    private UAModelDesignerSolution SaveProjectsCreateConfiguration()
     {
-      IConfiguration svr = Configuration.Server.GetIServerConfiguration();
-      if (svr == null)
+      Server.Save(HomeDirectory);
+      List<ProjectTreeNode> nodes = new List<ProjectTreeNode>();
+      foreach (ProjectTreeNode _project in this)
       {
-        CancelWasPressed = SkipOpeningConfigurationFile;
-        return;
+        if (_project.Save())
+          nodes.Add(_project.CloneProject());
       }
-      INodeDescriptor[] _descriptors = node.GetNodeDescriptors();
-      svr.CreateInstanceConfigurations(_descriptors, SkipOpeningConfigurationFile, out CancelWasPressed);
-    }
-    private void GetPluginMenuItems(ToolStripItemCollection menu)
-    {
-      this.Configuration.GetPluginMenuItems(menu);
-    }
-    protected new abstract class TreeNode<T> : WrapperTreeNode.TreeNode<T>
-      where T : SolutionTreeNode
-    {
-
-      #region constructor
-      public TreeNode(T parent)
-        : base(parent)
-      { }
-      #endregion
-
-      #region private
-      protected override void BeforeMenuStripOpening()
+      this.AddRange(nodes);
+      this.Clear();
+      this.AddRange(nodes);
+      return new UAModelDesignerSolution()
       {
-        this.Creator.GetPluginMenuItems(this.ContextMenuStrip.Items);
-        base.BeforeMenuStripOpening();
-      }
-      #endregion
+        Name = this.Name,
+        Projects = this.Cast<ProjectTreeNode>().Select<ProjectTreeNode, UAModelDesignerProject>(x => x.UAModelDesignerProject).ToArray<UAModelDesignerProject>(),
+        ServerDetails = this.ServerDetails == null ? null : new UAModelDesignerSolutionServerDetails() { codebase = ServerDetails.codebase, configuration = ServerDetails.configuration }
+      };
+    }
+    private void Server_OnConfigurationChanged(object sender, UAServerConfigurationEventArgs e)
+    {
+      if (e.ConfigurationFileChanged)
+        this.RaiseSubtreeChanged();
     }
     #endregion
 
-    #region creator
+    #region constructor
     /// <summary>
     /// Initializes a new instance of the <see cref="SolutionTreeNode"/> class.
     /// </summary>
     /// <param name="configuration">The configuration.</param>
     /// <param name="NodeName">Name of the node.</param>
     /// <param name="OnChangeHandler">The on change handler.</param>
-    internal SolutionTreeNode(UAModelDesignerSolutionWrapper configuration, string NodeName, EventHandler<EventArgs> OnChangeHandler)
-      : base(configuration)
+    internal SolutionTreeNode(UAModelDesignerSolution configuration, string solutionPath, EventHandler<EventArgs> OnChangeHandler)
+      : base(null, configuration.Name)
     {
+      HomeDirectory = solutionPath; //TODO must be managed by IO 
       if (configuration == null)
         throw new ArgumentNullException("configuration");
-      configuration.NodeCouple = this;
-      OnDataChanged += OnChangeHandler;
-      SetText();
-      configuration.OnNameChanged += new EventHandler(configuration_OnNameChanged);
-      AddProjectsNodes(configuration);
+      Server = new ServerSelector() { ServerConfiguration = new ServerSelector.ServerDescriptor() { codebase = configuration.ServerDetails.codebase, configuration = configuration.ServerDetails.configuration } };
+      Server.OnConfigurationChanged += new EventHandler<UAServerConfigurationEventArgs>(Server_OnConfigurationChanged);
+      //TODO OnDataChanged += OnChangeHandler;
+      //TODO OnNameChanged += new EventHandler(configuration_OnNameChanged);
+      AddProjectsNodes(configuration.Projects);
       Root.SolutionRoot = this;
+      BaseDirectoryHelper.Instance.SetBaseDirectoryProvider(this);
     }
     #endregion
 
-    #region public
+    #region WrapperTreeNode 
     public override NodeTypeEnum NodeType
     {
       get { return NodeTypeEnum.SolutionNode; }
@@ -162,56 +158,48 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return false;
     }
-    internal UAModelDesignerSolutionWrapper SaveProjectsCreateConfiguration(string solutionPath)
+    public override object Wrapper
     {
-      Configuration.Save(solutionPath);
-      List<ProjectWrapper> nodes = new List<ProjectWrapper>();
-      foreach (ProjectTreeNode _project in this)
+      get
       {
-        if (_project.Save(solutionPath))
-          nodes.Add(_project.CloneProject(solutionPath));
+        return this.Create();
       }
-      Configuration.Projects = nodes.ToArray();
-      return Configuration;
     }
-    internal void AddProject(bool existing)
+    #endregion
+
+    #region public
+    /// <summary>
+    /// Gets or sets detailed information on localization of the plug-in and configuration file.
+    /// </summary>
+    /// <value>The server descriptor.</value>
+    internal ServerSelector.ServerDescriptor ServerDetails
     {
-      ProjectTreeNode node = ProjectTreeNode.GetProject(existing, Configuration.HomeDirectory);
-      if (node == null)
-        return;
-      Add(node);
+      set { Server.ServerConfiguration = value; }
+      get
+      {
+        ServerSelector.ServerDescriptor _descriptor = Server.ServerConfiguration;
+        if (_descriptor == null)
+          return null;
+        if (!String.IsNullOrEmpty(_descriptor.codebase))
+          _descriptor.codebase = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.codebase); //TODO must refer to the plugin directory.
+        if (!String.IsNullOrEmpty(_descriptor.configuration))
+          _descriptor.configuration = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.configuration);
+        return _descriptor;
+      }
     }
-    internal void ImportNodeSetHandler(object sender, EventArgs e)
-    {
-      ProjectTreeNode node = ProjectTreeNode.ImportNodeSet(Configuration.HomeDirectory, x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 186, x.ToString()));
-      if (node == null)
-        return;
-      Add(node);
-    }
+    internal ServerSelector Server { get; private set; }
     /// <summary>
     /// Builds the solution and write any massages to specified output.
     /// </summary>
     /// <param name="output">The compiler output.</param>
     internal void Build(TextWriter output)
     {
+      Save(false);
       output.WriteLine(Resources.Build_all);
       foreach (ProjectTreeNode _project in this)
         _project.Build(output);
     }
     internal event EventHandler<EventArgs> OnDataChanged;
-    internal protected override void RaiseOnChangeHandler()
-    {
-      m_OnChangeHandler?.Invoke(this, EventArgs.Empty);
-      OnDataChanged?.Invoke(this, EventArgs.Empty);
-    }
-    internal void GetServerUAMenu(ToolStripItemCollection toolStripItemCollection)
-    {
-      GetPluginMenuItems(toolStripItemCollection);
-    }
-    internal void RegenerateSubTree()
-    {
-      this.RaiseSubtreeChanged();
-    }
     internal void AddNode2AddressSpace(IAddressSpaceCreator space)
     {
       foreach (ProjectTreeNode node in this)
@@ -229,16 +217,87 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
     internal IInstanceConfiguration GetInstanceConfiguration(INodeDescriptor nodeUniqueIdentifier)
     {
-      return Configuration.Server.GetInstanceConfiguration(nodeUniqueIdentifier);
+      return Server.GetInstanceConfiguration(nodeUniqueIdentifier);
     }
-    internal string CurrentSolutionDirectory
+    internal string HomeDirectory { get; private set; }  //TODO to be moved to IO
+    #endregion
+
+    #region ISolutionModel
+    public void GetPluginMenuItems(ToolStripItemCollection menu)
     {
-      get
+      ICollection<ToolStripItem> _items = new List<ToolStripItem>();
+      Server.GetPluginMenuItems(_items);
+      menu.AddRange(_items.ToArray<ToolStripItem>());
+    }
+    public void AddProject(bool existing)
+    {
+      ProjectTreeNode _node = null;
+      if (existing)
       {
-        return Configuration != null ? Configuration.HomeDirectory : string.Empty;
+        string _DefaultFileName = Path.Combine(HomeDirectory, Resources.DefaultProjectName);
+        _node = ProjectTreeNode.ImportNodeSet(this, x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 186, x.ToString()), OPCFModelConfigurationManagement.ReadModelDesign);
       }
+      else
+        _node = ProjectTreeNode.CreateNewModel(this);
+      Add(_node);
+    }
+    public void ImportNodeSet()
+    {
+      ProjectTreeNode node = ProjectTreeNode.ImportNodeSet(this, x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 186, x.ToString()), IO.ImportNodeSet.Import);
+      if (node == null)
+        return;
+      Add(node);
+    }
+    //public Tuple<Opc.Ua.ModelCompiler.ModelDesign, string> ReadModelDesign(string filePath, Action<TraceMessage> tracer)
+    //{
+    //  return OPCFSolutionConfigurationManagement.DefaultInstance.ReadModelDesign(filePath, tracer);
+    //}
+    public void Save(bool prompt)
+    {
+      OPCFSolutionConfigurationManagement.DefaultInstance.Save(prompt, SaveProjectsCreateConfiguration());
+    }
+    public void Open()
+    {
+      OPCFSolutionConfigurationManagement.DefaultInstance.Open();
+    }
+    public void OnNew()
+    {
+      OPCFSolutionConfigurationManagement.DefaultInstance.OnNew();
     }
     #endregion
 
+    #region IBaseDirectoryProvider
+    public string GetBaseDirectory()
+    {
+      return HomeDirectory;
+    }
+    [Obsolete]
+    public override BaseDictionaryTreeNode GetTreeNode()
+    {
+      throw new NotImplementedException();
+    }
+    #endregion
+
+    #region WrapperTreeNode
+    internal protected override void RaiseOnChangeHandler()
+    {
+      m_OnChangeHandler?.Invoke(this, EventArgs.Empty);
+      OnDataChanged?.Invoke(this, EventArgs.Empty);
+    }
+    protected override void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+    {
+      IConfiguration svr = Server.GetIServerConfiguration();
+      if (svr == null)
+      {
+        CancelWasPressed = SkipOpeningConfigurationFile;
+        return;
+      }
+      INodeDescriptor[] _descriptors = node.GetNodeDescriptors();
+      svr.CreateInstanceConfigurations(_descriptors, SkipOpeningConfigurationFile, out CancelWasPressed);
+    }
+
+    #endregion
+
   }
+
 }

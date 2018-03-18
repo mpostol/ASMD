@@ -13,11 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.UA.Common;
 using CAS.UA.IServerConfiguration;
-using CAS.UA.Model.Designer.Types;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
-using Opc.Ua.ModelCompiler;
 using System.Collections.Generic;
 using System.Xml;
 

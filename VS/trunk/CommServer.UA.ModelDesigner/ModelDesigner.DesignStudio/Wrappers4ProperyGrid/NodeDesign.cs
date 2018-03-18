@@ -16,6 +16,7 @@
 using CAS.Lib.ControlLibrary;
 using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.Types;
+using CAS.UA.Model.Designer.Wrappers;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
 using System;
 using System.Text;

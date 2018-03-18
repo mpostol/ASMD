@@ -13,18 +13,17 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.Wrappers;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using CAS.UA.Model.Designer.Wrappers;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 
 namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {
   /// <summary>
   /// Observer for label with OPC UA node class name
   /// </summary>
-  internal partial class NodeClassLabelObserver: MainController.SelectedItemObserver
+  internal partial class NodeClassLabelObserver: SelectedItemObserver
   {
     public NodeClassLabelObserver()
     {

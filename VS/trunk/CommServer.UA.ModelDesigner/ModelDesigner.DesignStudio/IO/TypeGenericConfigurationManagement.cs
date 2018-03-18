@@ -1,54 +1,53 @@
-﻿//<summary>
+﻿//_______________________________________________________________
 //  Title   : Class to save and restore  data  to/from external file.
-//  System  : Microsoft Visual C# .NET 2008
+//  System  : Microsoft VisualStudio 2015 / C#
 //  $LastChangedDate$
 //  $Rev$
 //  $LastChangedBy$
 //  $URL$
 //  $Id$
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
+//  Copyright (C) 2017, CAS LODZ POLAND.
+//  TEL: +48 608 61 98 99 
 //  mailto://techsupp@cas.eu
 //  http://www.cas.eu
-//</summary>
+//_______________________________________________________________
 
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using System;
-using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.IO
 {
+
   /// <summary>
   /// Type independent configuration management
   /// </summary>
-  /// <typeparam name="TreeNodeType">The type to manage the configuration of the node.</typeparam>
   /// <typeparam name="Type4Serialization">The type of the associated node configuration to be serialized.</typeparam>
   /// <seealso cref="ConfigurationManagement" />
-  internal abstract class TypeGenericConfigurationManagement<TreeNodeType, Type4Serialization> : ConfigurationManagement
-    where TreeNodeType : class
+  internal abstract class TypeGenericConfigurationManagement<Type4Serialization> : ConfigurationManagement
     where Type4Serialization : class, new()
   {
     #region private
-    private void RaiseConfigurationChanged(TreeNodeType m_Model)
+    private void Save(XmlFile.DataToSerialize<Type4Serialization> cd)
+    {
+      BeforeWrite?.Invoke(this, new StringEventArgs(DefaultFileName));
+      XmlFile.WriteXmlFile<Type4Serialization>(cd.Data, DefaultFileName, FileMode.Create, cd.StylesheetName, cd.XmlNamespaces);
+      ChangesArePresent = false;
+    }
+    //protected
+    protected virtual void RaiseConfigurationChanged(Type4Serialization model)
     {
       ChangesArePresent = true;
-      ConfigurationChanged?.Invoke(this, new ConfigurationEventArg(m_Model));
+      //ConfigurationChanged?.Invoke(this, new ConfigurationEventArg(m_Model));
     }
     /// <summary>
     /// Gets the configuration.
     /// </summary>
     /// <value>If implemented return the opened configuration as the <see cref="DataToSerialize "/>.</value>
-    protected abstract XmlFile.DataToSerialize<Type4Serialization> GetConfiguration { get; }
-    /// <summary>
-    /// Creates a configurable tree node.
-    /// </summary>
-    /// <param name="nodeCopnfiguration">The node copnfiguration.</param>
-    /// <returns>An inctance of <see cref="TreeNodeType"/> represnting the node of the navigation tree.</returns>
-    protected abstract TreeNodeType CreateTreeNode(Type4Serialization nodeCopnfiguration);
+    protected abstract XmlFile.DataToSerialize<Type4Serialization> GetConfiguration(Type4Serialization configuration);
     /// <summary>
     /// Saves the specified <see cref="DataToSerialize"/> instance as the xml document.
     /// </summary>
@@ -66,12 +65,6 @@ namespace CAS.UA.Model.Designer.IO
     /// </exception>
     /// <exception cref="System.IO.IOException">path includes an incorrect or invalid syntax for file name, directory name, or volume label syntax.</exception>
     /// <exception cref="System.Security.SecurityException">The caller does not have the required permission.</exception>
-    private void Save(XmlFile.DataToSerialize<Type4Serialization> cd)
-    {
-      BeforeWrite?.Invoke(this, new StringEventArgs(DefaultFileName));
-      XmlFile.WriteXmlFile<Type4Serialization>(cd.Data, DefaultFileName, FileMode.Create, cd.StylesheetName, cd.XmlNamespaces);
-      ChangesArePresent = false;
-    }
     protected virtual string ReadErrorGenericStringFormat
     {
       get
@@ -91,13 +84,62 @@ namespace CAS.UA.Model.Designer.IO
     /// <summary>
     /// Occurs when configuration has been changed.
     /// </summary>
-    protected event EventHandler<ConfigurationEventArg> ConfigurationChanged;
+    //protected EventHandler<ConfigurationEventArg> ConfigurationChanged;
     #endregion private
 
     #region constructors
     public TypeGenericConfigurationManagement()
       : base()
     { }
+    #endregion
+
+    #region ConfigurationManagement
+    /// <summary>
+    /// Create a new configuration.
+    /// </summary>
+    public override void New()
+    {
+      m_Empty = true;
+      RaiseConfigurationChanged(null);
+      ChangesArePresent = false;
+    }
+    /// <summary>
+    /// Read the configuration from an external dictionary file.
+    /// </summary>
+    /// <returns></returns>
+    public override bool Open()
+    {
+      return this.Open(string.Empty);
+    }
+    /// <summary>
+    /// Save the address space data set in an external dictionary file. 
+    /// </summary>
+    /// <param name="prompt">If set to <c>true</c> show prompt to enter a file name.</param>
+    /// <returns><c>true</c> if operation accomplished successfully.</returns>
+    internal bool Save(bool prompt, Type4Serialization configuration)
+    {
+      prompt = m_Empty || prompt;
+      if (prompt)
+        if (ShowDialogSaveFileDialog() != DialogResult.OK)
+          return false;
+      m_Empty = false;
+      bool res = false;
+      try
+      {
+        Application.UseWaitCursor = true;
+        Save(GetConfiguration(configuration));
+        res = true;
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message, Properties.Resources.SolutionFileSaveError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+      }
+      finally
+      {
+        Application.UseWaitCursor = false;
+      }
+      return res;
+    }
     #endregion
 
     #region public
@@ -126,41 +168,24 @@ namespace CAS.UA.Model.Designer.IO
       /// Gets or sets the configuration.
       /// </summary>
       /// <value>The configuration.</value>
-      public TreeNodeType Configuration { get; set; }
+      public Type4Serialization Configuration { get; set; }
       /// <summary>
       /// Initializes a new instance of the <see cref="ConfigurationEventArg"/> class.
       /// </summary>
       /// <param name="config">The configuration.</param>
-      public ConfigurationEventArg(TreeNodeType config)
+      public ConfigurationEventArg(Type4Serialization config)
       {
         Configuration = config;
       }
-    }
-    /// <summary>
-    /// Create a new configuration.
-    /// </summary>
-    public override void New()
-    {
-      m_Empty = true;
-      RaiseConfigurationChanged(null);
-      ChangesArePresent = false;
-    }
-    /// <summary>
-    /// Read the configuration from an external dictionary file.
-    /// </summary>
-    /// <returns></returns>
-    public override bool Open()
-    {
-      return this.Open(string.Empty);
     }
     /// <summary>
     /// Opens the specified file name.
     /// </summary>
     /// <param name="FileName">Name of the file.</param>
     /// <returns></returns>
-    public bool Open(string FileName)
+    internal bool Open(string FileName)
     {
-      TreeNodeType m_Model = null;
+      Type4Serialization m_Model = null;
       if (string.IsNullOrEmpty(FileName))
         m_Model = ReadConfiguration();
       else
@@ -185,7 +210,7 @@ namespace CAS.UA.Model.Designer.IO
     /// <exception cref="System.InvalidOperationException">An error occurred during deserialization. The original exception is available
     /// using the System.Exception.InnerException property.
     /// </exception>
-    public TreeNodeType ReadConfiguration(string fileName)
+    internal Type4Serialization ReadConfiguration(string fileName)
     {
       FileInfo info = new FileInfo(fileName);
       if (!info.Exists)
@@ -194,20 +219,20 @@ namespace CAS.UA.Model.Designer.IO
       Type4Serialization _return = XmlFile.ReadXmlFile<Type4Serialization>(fileName);
       DefaultFileName = fileName;
       m_Empty = false;
-      return CreateTreeNode(_return);
+      return _return;
     }
     /// <summary>
-    /// Open dialog box to select the file and deserialize an instance of <typeparamref name="TreeNodeType"/>.
+    /// Open dialog box to select the file and deserialize an instance of <typeparamref name="Type4Serialization"/>.
     /// </summary>
     /// <returns>The configuration retrieved from a file.</returns>
-    public TreeNodeType ReadConfiguration()
+    internal Type4Serialization ReadConfiguration()
     {
       if (ShowDialogOpenFileDialog() != DialogResult.OK)
         return null;
       try
       {
         Application.UseWaitCursor = true;
-        TreeNodeType _node = ReadConfiguration(DefaultFileName);
+        Type4Serialization _node = ReadConfiguration(DefaultFileName);
         m_Empty = false;
         return _node;
       }
@@ -227,64 +252,36 @@ namespace CAS.UA.Model.Designer.IO
       }
     }
     /// <summary>
-    /// Save the address space data set in an external dictionary file. 
-    /// </summary>
-    /// <param name="prompt">If set to <c>true</c> show prompt to enter a file name.</param>
-    /// <returns><c>true</c> if operation accomplished successfully.</returns>
-    public override bool Save(bool prompt)
-    {
-      prompt = m_Empty || prompt;
-      if (prompt)
-        if (ShowDialogSaveFileDialog() != DialogResult.OK)
-          return false;
-      m_Empty = false;
-      bool res = false;
-      try
-      {
-        Application.UseWaitCursor = true;
-        Save(GetConfiguration);
-        res = true;
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show(ex.Message, Properties.Resources.SolutionFileSaveError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-      }
-      finally
-      {
-        Application.UseWaitCursor = false;
-      }
-      return res;
-    }
-    /// <summary>
     /// Save configuration in an external dictionary file. 
     /// </summary>
     /// <param name="prompt">If set to <c>true</c> show prompt to enter a file name.</param>
     /// <returns><c>true</c> if operation accomplished successfully.</returns>
-    public bool Save(bool prompt, XmlFile.DataToSerialize<Type4Serialization> configuration)
-    {
-      prompt = m_Empty || prompt;
-      if (prompt)
-        if (ShowDialogSaveFileDialog() != DialogResult.OK)
-          return false;
-      m_Empty = false;
-      bool res = false;
-      try
-      {
-        Application.UseWaitCursor = true;
-        Save(configuration);
-        res = true;
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show(ex.Message, Properties.Resources.SolutionFileSaveError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-      }
-      finally
-      {
-        Application.UseWaitCursor = false;
-      }
-      return res;
-    }
+    //internal bool Save(bool prompt, XmlFile.DataToSerialize<Type4Serialization> configuration)
+    //{
+    //  prompt = m_Empty || prompt;
+    //  if (prompt)
+    //    if (ShowDialogSaveFileDialog() != DialogResult.OK)
+    //      return false;
+    //  m_Empty = false;
+    //  bool res = false;
+    //  try
+    //  {
+    //    Application.UseWaitCursor = true;
+    //    Save(configuration);
+    //    res = true;
+    //  }
+    //  catch (Exception ex)
+    //  {
+    //    MessageBox.Show(ex.Message, Properties.Resources.SolutionFileSaveError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+    //  }
+    //  finally
+    //  {
+    //    Application.UseWaitCursor = false;
+    //  }
+    //  return res;
+    //}
     #endregion public
 
   }
+
 }

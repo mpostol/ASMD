@@ -13,15 +13,16 @@
 //  http://www.cas.eu
 //</summary>
 
-using System;
 using CAS.UA.Model.Designer.HelpContent;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
+using System;
 
 namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {
-  internal partial class HelpUserControlObserver: MainController.SelectedItemObserver
+  internal partial class HelpUserControlObserver: SelectedItemObserver
   {
+    
     #region internal / public
     public HelpUserControlObserver()
     {
@@ -40,6 +41,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
         NavigateHelpContentToName( e.SelectedIModelNode.Name, e.SelectedIModelNode.HelpTopicName );
     }
     #endregion internal / public
+
     #region private
     private void NavigateHelpContentToName( string PrimaryHelpContentName, string SecondaryHelpContentName )
     {
@@ -81,5 +83,6 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       }
     }
     #endregion private
+
   }
 }

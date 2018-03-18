@@ -13,12 +13,11 @@
 //  http://www.cas.eu
 //</summary>
 
-using System.Collections.Generic;
-using System.Windows.Forms;
 using CAS.Lib.ControlLibrary;
-using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer
 {
@@ -84,8 +83,7 @@ namespace CAS.UA.Model.Designer
     }
     internal void GetServerUAMenu( ToolStripItemCollection toolStripItemCollection )
     {
-      OPCFSolutionConfigurationManagement.DefaultInstance.GetServerUAMenu( toolStripItemCollection );
-      this.m_ModelObserver.GetServerUAMenu( toolStripItemCollection );
+      m_ModelObserver.GetServerUAMenu( toolStripItemCollection );
     }
     internal void GetImportMenu( ToolStripItemCollection items )
     {

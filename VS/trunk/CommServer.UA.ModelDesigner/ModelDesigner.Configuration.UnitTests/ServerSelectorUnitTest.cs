@@ -54,6 +54,14 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       CollectionAssert.AreEqual(new string[] { "You did not choose the configuration file. Please select a location of the default configuration file.",
                                                "Folder is not selected, configuration will be created in the default location." }, _ui.ExclamationMessage);
     }
+    [TestMethod]
+    public void EmptyServerDescriptorTest()
+    {
+      TestGraphicalUserInterface _ui = new TestGraphicalUserInterface();
+      ServerSelector _nss = new ServerSelector() { GraphicalUserInterface = _ui };
+      _nss.ServerConfiguration = new ServerSelector.ServerDescriptor() { codebase = String.Empty, configuration = String.Empty };
+      Assert.IsFalse(_ui.WarningCalled);
+    }
     private class OpenFileDialog4UnitTest : IFileDialog
     {
       private string m_DefaultExt;

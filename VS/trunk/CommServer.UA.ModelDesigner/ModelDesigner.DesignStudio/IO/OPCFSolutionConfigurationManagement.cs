@@ -13,29 +13,24 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.CommServer.UA.Common;
-using CAS.UA.Model.Designer.Controls;
+using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
-using CAS.UA.Model.Designer.Wrappers;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
+using CAS.UA.Model.Designer.Solution;
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
-using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.IO
 {
   /// <summary>
   /// Singleton class to save and restore solution configuration to/from external file.
   /// </summary>
-  internal class OPCFSolutionConfigurationManagement : TypeGenericConfigurationManagement<UAModelDesignerSolutionWrapper, UAModelDesignerSolution>, IBaseDirectoryProvider
+  internal class OPCFSolutionConfigurationManagement : TypeGenericConfigurationManagement<UAModelDesignerSolution>//, IBaseDirectoryProvider
   {
 
     #region private
     private static OPCFSolutionConfigurationManagement m_This;
-    private string LastOpenedFile = string.Empty;
+    private string m_LastOpenedFile = string.Empty;
     protected override string ReadErrorInvalidOperationStringFormat
     {
       get
@@ -43,105 +38,81 @@ namespace CAS.UA.Model.Designer.IO
         return Resources.OPCFSolutionConfigurationManagement_ReadError;
       }
     }
-    private void m_TSMI_AddProject_New_Click(object sender, System.EventArgs e)
+    //private void m_TSMI_AddProject_New_Click(object sender, System.EventArgs e)
+    //{
+    //  SolutionRootNode.AddProject();
+    //}
+    //private void m_TSMI_AddProject_Existing_Click(object sender, System.EventArgs e)
+    //{
+    //  SolutionRootNode.AddProject(x => AssemblyTraceEvent.TraceMessage(x, nameof(m_TSMI_AddProject_Existing_Click), 54), ReadModelDesign);
+    //}
+    //private void ImportNodeSetHandler(object sender, EventArgs e)
+    //{
+    //  SolutionRootNode.ImportNodeSetHandler(sender, e);
+    //}
+    protected override void RaiseConfigurationChanged(UAModelDesignerSolution model)
     {
-      SolutionRootNode.AddProject(false);
+      base.RaiseConfigurationChanged(model);
+      if (model == null)
+        model = UAModelDesignerSolution.CreateEmptyModel();
+      AfterSolutionChange?.Invoke(this, new AfterSolutionChangeEventArgs(model));
+      //e.Configuration.SetHomeDirectory(Path.GetDirectoryName(DefaultFileName));
+      //SolutionRootNode = new SolutionTreeNode(e.Configuration, new ViewModelFactory(), Path.GetDirectoryName(DefaultFileName), new EventHandler<EventArgs>(OnNodeChange));
     }
-    private void m_TSMI_AddProject_Existing_Click(object sender, System.EventArgs e)
-    {
-      SolutionRootNode.AddProject(true);
-    }
-    private void ImportNodeSetHandler(object sender, EventArgs e)
-    {
-      SolutionRootNode.ImportNodeSetHandler(sender, e);
-    }
-    private void OnConfigurationChanged(object sender, OPCFSolutionConfigurationManagement.ConfigurationEventArg e)
-    {
-      if (e.Configuration == null)
-        e.Configuration = EmptyModel;
-      e.Configuration.SetHomeDirectory(Path.GetDirectoryName(DefaultFileName));
-      SolutionRootNode = new PrivateSolution(this, e.Configuration, e.Configuration.Name, new EventHandler<EventArgs>(OnNodeChange));
-    }
-    private void OnNodeChange(object sender, EventArgs e)
-    {
-      SetChangesArePresent();
-    }
+    //private void OnNodeChange(object sender, EventArgs e)
+    //{
+    //  SetChangesArePresent();
+    //}
     /// <summary>
     /// Solution representation in the whole environment.
     /// </summary>
-    private class PrivateSolution : SolutionTreeNode
-    {
-      #region creator
-      public PrivateSolution(OPCFSolutionConfigurationManagement parent, UAModelDesignerSolutionWrapper configuration, string nodeName, EventHandler<EventArgs> OnChangeHandler) :
-        base(configuration, nodeName, OnChangeHandler)
-      {
-        m_Parent = parent;
-      }
-      #endregion
+    //private class PrivateSolution : SolutionTreeNode
+    //{
+    //  #region creator
+    //  public PrivateSolution(OPCFSolutionConfigurationManagement parent, UAModelDesignerSolution configuration, IViewModelFactory viewModelFactory, string solutionPath, EventHandler<EventArgs> OnChangeHandler) :
+    //    base(configuration, viewModelFactory, solutionPath, OnChangeHandler)
+    //  {
+    //    m_Parent = parent;
+    //  }
+    //  #endregion
 
-      #region public
-      /// <summary>
-      /// Gets the tree node and all children.
-      /// </summary>
-      /// <returns>
-      /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
-      /// </returns>
-      internal override DictionaryTreeView.DictionaryTreeNode GetTreeNode()
-      {
-        return new TreeNode(this);
-      }
-      #endregion
+    //  #region public
+    //  ///// <summary>
+    //  ///// Gets the tree node and all children.
+    //  ///// </summary>
+    //  ///// <returns>
+    //  ///// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
+    //  ///// </returns>
+    //  //internal override DictionaryTreeView.DictionaryTreeNode GetTreeNode()
+    //  //{
+    //  //  return new TreeNode(this);
+    //  //}
+    //  #endregion
 
-      #region private
-      private OPCFSolutionConfigurationManagement m_Parent;
-      private class TreeNode : SolutionTreeNode.TreeNode<PrivateSolution>
-      {
-        public TreeNode(PrivateSolution parent)
-          : base(parent)
-        { }
-        /// <summary>
-        /// Before the menu strip opening.
-        /// </summary>
-        protected override void BeforeMenuStripOpening()
-        {
-          Creator.m_Parent.AddItemsToMenu(this.ContextMenuStrip);
-          base.BeforeMenuStripOpening();
-        }
-      }
-      #endregion
+    //  #region private
+    //  private OPCFSolutionConfigurationManagement m_Parent;
+    //  //private class TreeNode : SolutionTreeNode.TreeNode<PrivateSolution>
+    //  //{
+    //  //  public TreeNode(PrivateSolution parent)
+    //  //    : base(parent)
+    //  //  { }
+    //  //  /// <summary>
+    //  //  /// Before the menu strip opening.
+    //  //  /// </summary>
+    //  //  protected override void BeforeMenuStripOpening()
+    //  //  {
+    //  //    Creator.m_Parent.AddItemsToMenu(this.ContextMenuStrip);
+    //  //    base.BeforeMenuStripOpening();
+    //  //  }
+    //  //}
+    //  #endregion
 
-    }
-    private UAModelDesignerSolutionWrapper EmptyModel
-    {
-      get { return new UAModelDesignerSolutionWrapper(DefaultFileName, Resources.DefaultSolutionName); }
-    }
-    protected override TypeGenericConfigurationManagement<UAModelDesignerSolutionWrapper, UAModelDesignerSolution>.DataToSerialize GetConfiguration
-    {
-      get
-      {
-        string homeDirectory = Path.GetDirectoryName(this.DefaultFileName);
-        UAModelDesignerSolutionWrapper _solution = SolutionRootNode.SaveProjectsCreateConfiguration(homeDirectory);
-        TypeGenericConfigurationManagement<UAModelDesignerSolutionWrapper, UAModelDesignerSolution>.DataToSerialize _config;
-        _config.Data = _solution.UAModelDesignerSolutionConfiguration;
-        _config.XmlNamespaces = null;
-        _config.StylesheetName = "UAModelDesignerSolution.xslt";
-        return _config;
-      }
-    }
-    private Libraries m_Libraries;
-    private void RaiseAfterSolutionChange(SolutionTreeNode solution)
-    {
-      if (AfterSolutionChange == null)
-        return;
-      AfterSolutionChange(this, new AfterSolutionChangeEventArgs(solution));
-    }
-    private SolutionTreeNode m_Root;
+    //}
     private void CommonInitialization()
     {
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 144, "Starting CommonInitialization and checking SaveConstrain");
-      SaveConstrain.CheckConstrain();
+      //SaveConstrain.CheckConstrain();
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 146, "Creating Libraries");
-      m_Libraries = new Libraries(this.Components);
       // 
       // OpenFileDialog
       // 
@@ -164,10 +135,9 @@ namespace CAS.UA.Model.Designer.IO
           Resources.Solution_FileDialogFilter,
           Resources.Solution_FileDialogTitle
         );
-      BaseDirectoryHelper.Instance.SetBaseDirectoryProvider(this);
-      ConfigurationChanged += new EventHandler<OPCFSolutionConfigurationManagement.ConfigurationEventArg>(OnConfigurationChanged);
+      //ConfigurationChanged = new EventHandler<OPCFSolutionConfigurationManagement.ConfigurationEventArg>(OnConfigurationChanged);
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 172, "Creating new private solution using Empty model");
-      SolutionRootNode = new PrivateSolution(this, EmptyModel, "Solution", new EventHandler<EventArgs>(OnNodeChange));
+      //SolutionRootNode = new PrivateSolution(this, UAModelDesignerSolution.CreateEmptyModel(), new ViewModelFactory(), DefaultDirectory, new EventHandler<EventArgs>(OnNodeChange));
       BeforeRead += new EventHandler<StringEventArgs>(OPCFSolutionConfigurationManagement_BeforeRead);
       if (string.IsNullOrEmpty(Settings.Default.DefaultSolutionFileName))
       {
@@ -178,38 +148,45 @@ namespace CAS.UA.Model.Designer.IO
     }
     private void OPCFSolutionConfigurationManagement_BeforeRead(object sender, StringEventArgs e)
     {
-      LastOpenedFile = e.String;
+      m_LastOpenedFile = e.String;
     }
-    public OPCFSolutionConfigurationManagement()
-      : base()
-    { }
-    public OPCFSolutionConfigurationManagement(IContainer container)
-      : base(container)
+    private OPCFSolutionConfigurationManagement()
+        : base()
     { }
     #endregion
 
     #region override
-    public override bool Save(bool prompt)
+    protected override XmlFile.DataToSerialize<UAModelDesignerSolution> GetConfiguration(UAModelDesignerSolution configuration)
     {
-      if (!base.Save(prompt))
-        return false;
-      return true;
+      string homeDirectory = Path.GetDirectoryName(this.DefaultFileName);
+      XmlFile.DataToSerialize<UAModelDesignerSolution> _config;
+      _config.Data = configuration;
+      _config.XmlNamespaces = null;
+      _config.StylesheetName = "UAModelDesignerSolution.xslt";
+      return _config;
     }
+    //public override bool Save(bool prompt)
+    //{
+    //  if (!base.Save(prompt))
+    //    return false;
+    //  return true;
+    //}
     public override void New()
     {
       DefaultFileName = Settings.Default.DefaultSolutionFileName;
       base.New();
     }
-    /// <summary>
-    /// Creates a configurable tree node.
-    /// </summary>
-    /// <param name="nodeCopnfiguration">The node copnfiguration.</param>
-    /// <returns>An inctance of <see cref="!:TypeForConfiguration" /> represnting the node of the navigation tree.</returns>
-    /// <exception cref="System.NotImplementedException"></exception>
-    protected override UAModelDesignerSolutionWrapper CreateTreeNode(UAModelDesignerSolution nodeCopnfiguration)
-    {
-      return new UAModelDesignerSolutionWrapper(nodeCopnfiguration);
-    }
+    ///// <summary>
+    ///// Creates a configurable tree node.
+    ///// </summary>
+    ///// <param name="nodeCopnfiguration">The node copnfiguration.</param>
+    ///// <returns>An inctance of <see cref="!:TypeForConfiguration" /> represnting the node of the navigation tree.</returns>
+    ///// <exception cref="System.NotImplementedException"></exception>
+    //protected override UAModelDesignerSolutionWrapper CreateTreeNode(UAModelDesignerSolution nodeCopnfiguration)
+    //{
+    //  SolutionRootNode = new PrivateSolution(this, nodeCopnfiguration, new ViewModelFactory(), this.DefaultDirectory, OnNodeChange);
+    //  return (UAModelDesignerSolutionWrapper)this.SolutionRootNode.Wrapper4PropertyGrid;
+    //}
     #endregion override
 
     #region internal singleton
@@ -237,60 +214,56 @@ namespace CAS.UA.Model.Designer.IO
         return m_This;
       }
     }
-    internal override void AddItemsToMenu(ContextMenuStrip contextMenuStrip)
-    {
-      base.AddItemsToMenu(contextMenuStrip);
-      if (contextMenuStrip.Items.Count > 0)
-        contextMenuStrip.Items.Add(new ToolStripSeparator());
-      contextMenuStrip.Items.Add(MenuFactory.AddProject(m_TSMI_AddProject_New_Click, m_TSMI_AddProject_Existing_Click));
-      contextMenuStrip.Items.Add(MenuFactory.ImportSubmenu(new ToolStripMenuItem[] { MenuFactory.ImportNodeSetMenuItem(ImportNodeSetHandler) }));
-    }
-    internal void AddLibrariesTreeNodes(TreeNodeCollection nodes)
-    {
-      m_Libraries.AddTreeNodes(nodes);
-    }
+    //internal override void AddItemsToMenu(ContextMenuStrip contextMenuStrip)
+    //{
+    //  base.AddItemsToMenu(contextMenuStrip);
+    //  if (contextMenuStrip.Items.Count > 0)
+    //    contextMenuStrip.Items.Add(new ToolStripSeparator());
+    //  contextMenuStrip.Items.Add(MenuFactory.AddProject(m_TSMI_AddProject_New_Click, m_TSMI_AddProject_Existing_Click));
+    //  contextMenuStrip.Items.Add(MenuFactory.ImportSubmenu(new ToolStripMenuItem[] { MenuFactory.ImportNodeSetMenuItem(ImportNodeSetHandler) }));
+    //}
     internal class AfterSolutionChangeEventArgs : EventArgs
     {
-      public SolutionTreeNode Solution { get; private set; }
-      public AfterSolutionChangeEventArgs(SolutionTreeNode solution)
+      public UAModelDesignerSolution Solution { get; private set; }
+      public AfterSolutionChangeEventArgs(UAModelDesignerSolution solution)
       {
         Solution = solution;
       }
     }
     internal event EventHandler<AfterSolutionChangeEventArgs> AfterSolutionChange;
-    internal SolutionTreeNode SolutionRootNode
-    {
-      get { { return m_Root; }; }
-      private set
-      {
-        m_Root = value;
-        RaiseAfterSolutionChange(value);
-      }
-    }
-    internal void GetServerUAMenu(ToolStripItemCollection toolStripItemCollection)
-    {
-      SolutionRootNode.GetServerUAMenu(toolStripItemCollection);
-    }
-    internal static bool IsLicensed
-    {
-      get { return SaveConstrain.IsLicensed; }
-    }
+    //internal UAModelDesignerSolution SolutionRootNode
+    ////{
+    //  get { { return m_Root; }; }
+    //  private set
+    //  {
+    //    m_Root = value;
+    //    RaiseAfterSolutionChange(value);
+    //  }
+    //}
+    //internal void GetServerUAMenu(ToolStripItemCollection toolStripItemCollection)
+    //{
+    //  Root.SolutionRoot.GetServerUAMenu(toolStripItemCollection);
+    //}
+    //internal static bool IsLicensed
+    //{
+    //  get { return SaveConstrain.IsLicensed; }
+    //}
     #endregion
 
-    #region IBaseDirectoryProvider Members
-    string IBaseDirectoryProvider.GetBaseDirectory()
-    {
-      if (!string.IsNullOrEmpty(LastOpenedFile))
-        return Path.GetDirectoryName(LastOpenedFile);
-      string _assemblyLocation = Assembly.GetExecutingAssembly().Location;
-      string _assemblyDirectory = string.Empty;
-      if (!string.IsNullOrEmpty(_assemblyLocation))
-        _assemblyDirectory = Path.GetDirectoryName(_assemblyLocation);
-      if (!string.IsNullOrEmpty(SolutionRootNode.CurrentSolutionDirectory) && SolutionRootNode.CurrentSolutionDirectory != _assemblyDirectory)
-        return SolutionRootNode.CurrentSolutionDirectory;
-      return string.Empty;
-    }
-    #endregion
+    //#region IBaseDirectoryProvider Members
+    //string IBaseDirectoryProvider.GetBaseDirectory()
+    //{
+    //  if (!string.IsNullOrEmpty(m_LastOpenedFile))
+    //    return Path.GetDirectoryName(m_LastOpenedFile);
+    //  string _assemblyLocation = Assembly.GetExecutingAssembly().Location;
+    //  string _assemblyDirectory = string.Empty;
+    //  if (!string.IsNullOrEmpty(_assemblyLocation))
+    //    _assemblyDirectory = Path.GetDirectoryName(_assemblyLocation);
+    //  if (!string.IsNullOrEmpty( SolutionRootNode.HomeDirectory) && SolutionRootNode.HomeDirectory != _assemblyDirectory)
+    //    return SolutionRootNode.HomeDirectory;
+    //  return string.Empty;
+    //}
+    //#endregion
 
   }
 }

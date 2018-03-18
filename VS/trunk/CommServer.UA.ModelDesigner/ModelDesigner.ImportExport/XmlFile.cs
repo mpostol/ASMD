@@ -28,6 +28,35 @@ namespace CAS.UA.Model.Designer.ImportExport
 
     #region public
     /// <summary>
+    /// A structure containing dat to be serialized
+    /// </summary>
+    public struct DataToSerialize<Type4Serialization>
+    {
+      /// <summary>
+      /// The <see cref="XmlSerializerNamespaces"/> referenced by the object.
+      /// </summary>
+      public XmlSerializerNamespaces XmlNamespaces;
+      /// <summary>
+      /// The object containing working data to be serialized and saved in the file.
+      /// </summary>
+      public Type4Serialization Data;
+      /// <summary>
+      ///Name of the stylesheet document.
+      /// </summary>
+      public string StylesheetName;
+    }
+    /// <summary>
+    /// Serializes the specified <paramref name="dataObject" /> and writes the XML document to a file.
+    /// </summary>
+    /// <typeparam name="type"> type of the root object to be serialized and saved in the file.</typeparam>
+    /// <param name="dataObject">The structure containing working data to be serialized and saved in the file.</param>
+    /// <param name="path">A relative or absolute path for the file containing the serialized object.</param>
+    /// <param name="mode">Specifies how the operating system should open a file <see cref="FileMode" />.</param>
+    public static void WriteXmlFile<type>(DataToSerialize<type> dataObject, string path, FileMode mode)
+    {
+      WriteXmlFile<type>(dataObject.Data, path, mode, dataObject.StylesheetName, dataObject.XmlNamespaces);
+    }
+    /// <summary>
     /// Serializes the specified <paramref name="dataObject" /> and writes the XML document to a file.
     /// </summary>
     /// <typeparam name="type">The type of the root object to be serialized and saved in the file.</typeparam>

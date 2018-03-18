@@ -13,10 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -256,6 +254,15 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region internal
+    internal bool SaveModel(string filePath)
+    {
+      XmlFile.DataToSerialize<Opc.Ua.ModelCompiler.ModelDesign> _config;
+      _config.Data = ModelDesignerNode as Opc.Ua.ModelCompiler.ModelDesign;
+      _config.XmlNamespaces = XmlNamespaces;
+      _config.StylesheetName = "OPCFModelDesign.xslt";
+      XmlFile.WriteXmlFile<Opc.Ua.ModelCompiler.ModelDesign>( _config, filePath, System.IO.FileMode.Create );
+      return true;
+    }
     /// <summary>
     /// Gets the XML namespaces to be used for serialization process.
     /// </summary>
@@ -267,9 +274,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <returns>
     /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
     /// </returns>
-    internal override DictionaryTreeView.DictionaryTreeNode GetTreeNode()
+    public override BaseDictionaryTreeNode GetTreeNode()
     {
-      DictionaryTreeView.DictionaryTreeNode node = new TreeNode(this);
+      BaseDictionaryTreeNode node = new TreeNode(this);
       node.Expand();
       return node;
     }
