@@ -13,12 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.Lib.RTLib.Utils;
-using CAS.UA.Model.Designer.Properties;
-using System;
+using CAS.UA.Model.Designer.Wrappers;
 using System.ComponentModel;
-using System.IO;
-using System.Text;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
@@ -27,77 +23,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// </summary>
   /// <remarks>Project wrapper for <see cref="System.Windows.Forms.PropertyGrid"/> to provide information about the project to the user.</remarks>
   [DefaultProperty("FilePath")]
-  public class ProjectWrapper : NameWithEventBase
+  internal class ProjectWrapper : NameWithEventBase<ProjectTreeNode>, IViewModel
   {
-    #region private
-    //var
-    private UAModelDesignerProject b_UAModelDesignerProject = null;
-    private static UniqueNameGenerator m_UniqueNameGenerator = new UniqueNameGenerator(Resources.DefaultProjectName);
-    private string m_SolutionHomeDirectory = "";
-    //methods
-    private UAModelDesignerProject m_UAModelDesignerProject
-    {
-      get
-      {
-        b_UAModelDesignerProject.Name = this.Name;
-        return b_UAModelDesignerProject;
-      }
-      set
-      {
-        b_UAModelDesignerProject = value;
-        this.Name = b_UAModelDesignerProject.Name;
-      }
-    }
-    private string ReplaceTokenAndReturnFullPath(string nameToBeReturned)
-    {
-      string myName = nameToBeReturned.Replace(Resources.Token_ProjectFileName, Path.GetFileNameWithoutExtension(FileName));
-      if (RelativeFilePathsCalculator.TestIfPathIsAbsolute(myName))
-        return myName;
-      string directory = Path.GetDirectoryName(FilePath);
-      return Path.Combine(directory, myName);
-    }
-    private string GetRelativePath(string fileName)
-    {
-      if (!string.IsNullOrEmpty(this.m_SolutionHomeDirectory) && !string.IsNullOrEmpty(fileName))
-      {
-        Directory.SetCurrentDirectory(this.m_SolutionHomeDirectory);
-        string _fullPath = Path.GetFullPath(fileName);
-        fileName = RelativeFilePathsCalculator.TryComputeRelativePath(this.m_SolutionHomeDirectory, _fullPath);
-      }
-      return fileName;
-    }
-    #endregion private
 
     #region constructors
-    /// <summary>
-    /// Initializes a new instance of the <see cref="ProjectWrapper"/> class.
-    /// </summary>
-    /// <param name="model">The cloned model.</param>
-    /// <param name="solutionPath">The solution path.</param>
-    /// <remarks>It is used to clone the object. We should remove it or replace by an implementation of the IClonable interface.</remarks>
-    internal ProjectWrapper(ProjectWrapper model, string solutionPath)
-    {
-      m_SolutionHomeDirectory = solutionPath;
-      //now we have to assign all the get/set properties
-      this.FileName = model.FileName;
-      this.Name = model.Name;
-      this.CSVFileName = model.CSVFileName;
-      this.BuildOutputDirectoryName = model.BuildOutputDirectoryName;
-      this.ProjectIdentifier = model.ProjectIdentifier;
-    }
-    internal ProjectWrapper(string solutionPath, string fileName)
-    {
-      m_SolutionHomeDirectory = solutionPath;
-      this.FileName = fileName;
-      this.Name = Path.GetFileNameWithoutExtension(fileName);
-      ProjectIdentifier = Guid.NewGuid();
-    }
-    internal ProjectWrapper(UAModelDesignerProject configuration)
-    {
-      if (configuration == null)
-        throw new NullReferenceException(nameof(configuration));
-      this.m_UAModelDesignerProject = configuration;
-    }
+    internal ProjectWrapper(ProjectTreeNode projecModel) : base(projecModel) { }
     #endregion initialisation
 
     #region browsable properties
@@ -110,16 +40,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [Description("Path of an xml file containing the model.")]
     public string FilePath
     {
-      get
-      {
-        if (string.IsNullOrEmpty(this.FileName))
-          return String.Empty;
-        if (RelativeFilePathsCalculator.TestIfPathIsAbsolute(FileName))
-          return FileName;
-        if (string.IsNullOrEmpty(this.m_SolutionHomeDirectory))
-          return FileName;
-        return Path.GetFullPath(Path.Combine(this.m_SolutionHomeDirectory, this.FileName));
-      }
+      get { return ModelEntity.FilePath; }
     }
     /// <summary>
     /// Gets or sets the name of the CSV file.
@@ -136,13 +57,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     {
       get
       {
-        if (string.IsNullOrEmpty(m_UAModelDesignerProject.CSVFileName))
-          m_UAModelDesignerProject.CSVFileName = Resources.DefaultCSVFileName;
-        return m_UAModelDesignerProject.CSVFileName;
+        return ModelEntity.CSVFileName;
       }
       set
       {
-        m_UAModelDesignerProject.CSVFileName = value;
+        ModelEntity.CSVFileName = value;
       }
     }
     /// <summary>
@@ -156,7 +75,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     {
       get
       {
-        return ReplaceTokenAndReturnFullPath(CSVFileName);
+        return ModelEntity.CSVFilePath;
       }
     }
     [DisplayName("Build output directory")]
@@ -169,13 +88,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     {
       get
       {
-        if (string.IsNullOrEmpty(m_UAModelDesignerProject.BuildOutputDirectoryName))
-          m_UAModelDesignerProject.BuildOutputDirectoryName = Resources.DefaultOutputBuildDirectory;
-        return m_UAModelDesignerProject.BuildOutputDirectoryName;
+        return ModelEntity.BuildOutputDirectoryName;
       }
       set
       {
-        m_UAModelDesignerProject.BuildOutputDirectoryName = value;
+        ModelEntity.BuildOutputDirectoryName = value;
       }
     }
     /// <summary>
@@ -189,34 +106,12 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     {
       get
       {
-        return ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName);
+        return ModelEntity.BuildOutputDirectoryPath;
       }
     }
     #endregion
 
-    #region public
-    /// <summary>
-    /// Gets or sets the name of the file.
-    /// </summary>
-    /// <value>The name of the file.</value>
-    [Browsable(false)]
-    internal string FileName
-    {
-      get
-      {
-        return GetRelativePath(m_UAModelDesignerProject.FileName);
-      }
-      set
-      {
-        m_UAModelDesignerProject.FileName = value;
-      }
-    }
-    [Browsable(false)]
-    internal Guid ProjectIdentifier
-    {
-      get { return new Guid(m_UAModelDesignerProject.ProjectIdentifier); }
-      set { m_UAModelDesignerProject.ProjectIdentifier = value.ToString(); }
-    }
+    #region override Object
     /// <summary>
     /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
     /// </summary>
@@ -225,30 +120,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     /// </returns>
     public override string ToString()
     {
-      return string.Format("Project:{0} ({1})", Name, FileName);
-    }
-    internal void SetNewSolutionHomeDirectory(string newPath)
-    {
-      string currentFilePath = this.FilePath;
-      m_SolutionHomeDirectory = newPath;
-      FileName = currentFilePath;
-    }
-    internal void ChangeFilenameToAbsolutePath()
-    {
-      FileName = FilePath;
-    }
-    internal UAModelDesignerProject UAModelDesignerProjectConfiguration
-    {
-      get
-      {
-        return m_UAModelDesignerProject;
-      }
+      return $"Project:{Name} ({ModelEntity.FileName})";
     }
     #endregion
-
-    #region static
-    internal static string UniqueProjectName { get { return m_UniqueNameGenerator.GenerateNewName(); } }
-    #endregion
-
   }
 }

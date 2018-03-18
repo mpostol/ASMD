@@ -13,10 +13,10 @@
 //  http://www.cas.eu
 //</summary>
 
-using System.Xml;
 using CAS.Lib.ControlLibrary;
+using System.Xml;
 
-namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
+namespace CAS.UA.Model.Designer.Wrappers
 {
   internal class UniqueIdentifier: InstanceIdentifier
   {

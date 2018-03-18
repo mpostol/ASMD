@@ -13,16 +13,18 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {
-  internal partial class BrowseViewObserver : MainController.SelectedItemObserver
+  internal partial class BrowseViewObserver : SelectedItemObserver
   {
     #region creator
     public BrowseViewObserver()
@@ -37,15 +39,14 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
 
     #region private
     [LicenseProvider(typeof(CAS.Lib.CodeProtect.CodeProtectLP))]
-    [System.Runtime.InteropServices.GuidAttribute("D3028D63-52A1-4a66-9946-B8048C459AC7")]
+    [GuidAttribute("D3028D63-52A1-4a66-9946-B8048C459AC7")]
     private sealed class LicenseProtection : StartUpSplashScreen.LogedIsLicensed<LicenseProtection> { }
     private bool mBuildIsRequired = true;
     private void CheckLicense()
     {
       if (new LicenseProtection().Licensed)
       {
-        this.m_BrowseViewTreeView.AfterSelect +=
-          new BrowseViewTreeView.BrowseViewTreeViewEventHandler(this.BrowseViewTreeView_AfterSelect);
+        this.m_BrowseViewTreeView.AfterSelect += new BrowseViewTreeView.BrowseViewTreeViewEventHandler(this.BrowseViewTreeView_AfterSelect);
       }
       else
         this.RemoveMeFromParentTabControl();
@@ -136,7 +137,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     #endregion private
 
     #region protected
-    protected override void AfterSolutionChange(object sender, CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e)
+    protected override void AfterSolutionChange(object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e)
     {
       base.AfterSolutionChange(sender, e);
       mBuildIsRequired = true;

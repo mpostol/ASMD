@@ -14,10 +14,9 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.Properties;
 using System;
 using System.Collections.Generic;
-using CAS.UA.Model.Designer.Properties;
-using CAS.UA.Model.Designer.Controls;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -86,7 +85,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <returns>
     /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
     /// </returns>
-    internal override DictionaryTreeView.DictionaryTreeNode GetTreeNode()
+    public override BaseDictionaryTreeNode GetTreeNode()
     {
       return new TreeNode( this );
     }

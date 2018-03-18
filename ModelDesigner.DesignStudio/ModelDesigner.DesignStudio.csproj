@@ -217,6 +217,8 @@
       <DependentUpon>AboutOpcUaModelCompilerWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="AddressSpaceService.cs" />
+    <Compile Include="Controls\BaseTreeNodeControl.cs" />
+    <Compile Include="Controls\FileMenuProviderControl.cs" />
     <Compile Include="Controls\NodeObserver\BindingsPropertyObserver.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -247,6 +249,7 @@
     <Compile Include="Controls\NodeObserver\HelpUserControlObserver.Designer.cs">
       <DependentUpon>HelpUserControlObserver.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NodeObserver\ISelectedItemObserver.cs" />
     <Compile Include="Controls\NodeObserver\MainController.cs">
     </Compile>
     <Compile Include="Controls\NodeObserver\ModelObserver.cs">
@@ -273,11 +276,17 @@
     <Compile Include="Controls\NodeObserver\NodePropertyObserver.Designer.cs">
       <DependentUpon>NodePropertyObserver.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NodeObserver\SelectedItemObserver.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\NodeObserver\SelectedItemObserverComponent.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\NodeObserver\SelectedItemObserverComponent.Designer.cs">
       <DependentUpon>SelectedItemObserverComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NodeObserver\SelectedItemObserverSimpleComponent.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\NodeObserver\View3DModelObserver.cs">
       <SubType>UserControl</SubType>
@@ -285,12 +294,14 @@
     <Compile Include="Controls\NodeObserver\View3DModelObserver.Designer.cs">
       <DependentUpon>View3DModelObserver.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProjectTreeNodeControl.cs" />
+    <Compile Include="Controls\SolutionTreeNodeControl.cs" />
     <Compile Include="ExportingTools\ExportConstrain.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IAddressSpaceCreator.cs" />
     <Compile Include="IElement.cs" />
     <Compile Include="IO\ImportNodeSet.cs" />
-    <Compile Include="IO\SaveConstrain.cs">
+    <Compile Include="Controls\SaveConstrain.cs">
     </Compile>
     <Compile Include="MenuFactory.cs" />
     <Compile Include="NodeClassesEnum.cs" />
@@ -311,6 +322,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Solution\UAModelDesignerSolution.cs">
+      <DependentUpon>UAModelDesignerSolution.xsd</DependentUpon>
     </Compile>
     <Compile Include="StartUpSplashScreen.cs">
       <SubType>Form</SubType>
@@ -350,17 +364,18 @@
     <Compile Include="Wrappers4ProperyGrid\DocumentationAttribute.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\VariableValueEditor.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\XmlQualifiedNameEditorWithDefaultValue.cs" />
-    <Compile Include="Wrappers4ProperyGrid\InstanceIdentifier.cs" />
+    <Compile Include="Wrappers\InstanceIdentifier.cs" />
     <Compile Include="Wrappers4ProperyGrid\LocalizedText.cs" />
     <Compile Include="Wrappers4ProperyGrid\NameWithEventBase.cs" />
     <Compile Include="Wrappers4ProperyGrid\NodeDesign.cs" />
     <Compile Include="Wrappers4ProperyGrid\Nodes.Properties.cs" />
     <Compile Include="Wrappers4ProperyGrid\ProjectWrapper.cs" />
-    <Compile Include="Wrappers4ProperyGrid\UAModelDesignerSolution.xsd.cs">
+    <Compile Include="Solution\UAModelDesignerSolution.xsd.cs">
       <DependentUpon>UAModelDesignerSolution.xsd</DependentUpon>
     </Compile>
     <Compile Include="Wrappers4ProperyGrid\UAModelDesignerSolutionWrapper.cs" />
-    <Compile Include="Wrappers4ProperyGrid\UniqueIdentifier.cs" />
+    <Compile Include="Wrappers\UniqueIdentifier.cs" />
+    <Compile Include="Wrappers4ProperyGrid\ViewModelFactory.cs" />
     <Compile Include="Wrappers\AddressSpaceDictionary\AddressSpace.cs">
       <DependentUpon>AddressSpace.xsd</DependentUpon>
     </Compile>
@@ -374,6 +389,7 @@
     <Compile Include="Wrappers\AddressSpaceDictionary\InstanceNodesCollection.cs" />
     <Compile Include="Wrappers\AddressSpaceDictionary\InstanceReferencesCollection.cs" />
     <Compile Include="Wrappers\AddressSpaceDictionary\IReference.cs" />
+    <Compile Include="Wrappers\BaseDictionaryTreeNode.cs" />
     <Compile Include="Wrappers\BrowseOptions.cs" />
     <Compile Include="Wrappers\ChildrenFolder.cs" />
     <Compile Include="Controls\DictionaryTreeView.cs">
@@ -388,6 +404,9 @@
     <Compile Include="Wrappers\IInstanceNodesCollection.cs" />
     <Compile Include="Wrappers\IInstanceReferencesCollection.cs" />
     <Compile Include="Wrappers\IModelNode.cs" />
+    <Compile Include="Wrappers\IProjectViewModel.cs" />
+    <Compile Include="Wrappers\ISolutionViewModel.cs" />
+    <Compile Include="Wrappers\ViewModelFactory.cs" />
     <Compile Include="Wrappers\Libraries.cs" />
     <Compile Include="HelpContent\HelpContentEventArgs.cs" />
     <Compile Include="HelpContent\HelpContentHelper.cs" />
@@ -397,21 +416,13 @@
     <Compile Include="ImagesForNodes.Designer.cs">
       <DependentUpon>ImagesForNodes.cs</DependentUpon>
     </Compile>
-    <Compile Include="IO\ConfigurationManagement.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="IO\ConfigurationManagement.cs" />
     <Compile Include="IO\ConfigurationManagement.designer.cs">
       <DependentUpon>ConfigurationManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="IO\OPCFModelConfigurationManagement.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="IO\OPCFSolutionConfigurationManagement.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="IO\TypeGenericConfigurationManagement.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="IO\OPCFModelConfigurationManagement.cs" />
+    <Compile Include="IO\OPCFSolutionConfigurationManagement.cs" />
+    <Compile Include="IO\TypeGenericConfigurationManagement.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -483,12 +494,13 @@
     <Content Include="ReleaseNotes.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Controls\Controls.cd" />
     <None Include="DemoConfiguration.oses" />
     <Content Include="exe\CAS.CommServer.UA.ModelCompiler.Command.exe.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Wrappers4ProperyGrid\UAModelDesignerSolution.GoXSD.cmd" />
-    <None Include="Wrappers4ProperyGrid\UAModelDesignerSolution.GoCS.cmd" />
+    <None Include="Solution\UAModelDesignerSolution.GoXSD.cmd" />
+    <None Include="Solution\UAModelDesignerSolution.GoCS.cmd" />
     <None Include="ReleaseActionItems.txt" />
     <None Include="ReleaseNotes.md">
       <AutoGen>True</AutoGen>
@@ -513,7 +525,7 @@
     <Content Include="log\CAS.OPC.UA.ASMD.log">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="IO\ClassDiagram.cd" />
+    <None Include="IO\IOClassDiagram.cd" />
     <None Include="Model_TemporaryKey.pfx" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -546,8 +558,8 @@
     <EmbeddedResource Include="Resources\transition.png" />
     <None Include="Resources\ArrowRight32.png" />
     <None Include="Resources\ArrowLeft32.png" />
-    <None Include="Wrappers4ProperyGrid\NodeDesign.cd" />
-    <None Include="Wrappers4ProperyGrid\UAModelDesignerSolution.xsd">
+    <None Include="Wrappers4ProperyGrid\ClassDiagram.cd" />
+    <None Include="Solution\UAModelDesignerSolution.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Wrappers\AddressSpaceDictionary\AddressSpace.xsc">
@@ -562,7 +574,7 @@
       <DependentUpon>AddressSpace.xsd</DependentUpon>
     </None>
     <None Include="Wrappers\AddressSpaceDictionary\ClassDiagram.cd" />
-    <None Include="Wrappers\ModelWrappers.cd" />
+    <None Include="Wrappers\ClassDiagrams.cd" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AboutOpcUaModelCompilerWindow.resx">
@@ -601,9 +613,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ImagesForNodes.resx">
       <DependentUpon>ImagesForNodes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="IO\ConfigurationManagement.resx">
-      <DependentUpon>ConfigurationManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

@@ -13,16 +13,15 @@
 //  http://www.cas.eu
 //</summary>
 
-using System.ComponentModel;
 using CAS.UA.Model.Designer.Wrappers;
+using System.ComponentModel;
 
 namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {
   /// <summary>
   /// Simple observer that provides access to current selected IModelNode and IModelNodeAdvanced
   /// </summary>
-  //MPTD we does not use it.
-  internal partial class SelectedItemObserverComponent: MainController.SelectedItemObserverSimpleComponent
+  internal partial class SelectedItemObserverComponent: SelectedItemObserverSimpleComponent
   {
     #region public
     public SelectedItemObserverComponent()
@@ -37,6 +36,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     internal IModelNode IModelNode { get; private set; }
     internal IModelNodeAdvance IModelNodeAdvance { get; private set; }
     #endregion public
+
     #region protected
     protected override void OnSelectedItemIsChanged( object sender, SelectedItemEventArgs e )
     {
@@ -57,5 +57,6 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       this.IModelNode = e.SelectedIModelNode;
     }
     #endregion protected
+
   }
 }

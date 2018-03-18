@@ -16,15 +16,16 @@
 using CAS.Lib.ControlLibrary;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
+using CAS.UA.Model.Designer.Solution;
 using CAS.UA.Model.Designer.Wrappers;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System;
 
 namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {
-  internal partial class ModelObserver: MainController.SelectedItemObserver
+  internal partial class ModelObserver : SelectedItemObserver
   {
 
     #region creator
@@ -34,17 +35,17 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       this.m_TreeView.ImageList = this.m_ImagesForNodes.ImageListNodes;
       m_TreeView.CoupledNodesAreEnabled = Settings.Default.CoupledNodesAreEnabled;
       //solution initialization:
-      OPCFSolutionConfigurationManagement.DefaultInstance.AddLibrariesTreeNodes( m_TreeView.Nodes );
-      this.AddSolution( OPCFSolutionConfigurationManagement.DefaultInstance.SolutionRootNode.GetTreeNode() );
+      Root.LibraryRoot.AddTreeNodes(m_TreeView.Nodes);
+
+      AddSolution(UAModelDesignerSolution.CreateEmptyModel());
       //toolstrip initialization:
       m_BackForwardTreViewToolStrip.TreeView = this.m_TreeView;
       m_SearchTreeViewToolStrip.TreeView = this.m_TreeView;
-      m_SearchTreeViewToolStrip.SetAdditionalNodeTestDelegate = new SearchTreeViewHelper.AdditionalNodeTestDelegate( NodeSearchTest );
-      //filtering initialization:
-      m_filterform = new OKCancelForm( "Set Filters..." );
+      m_SearchTreeViewToolStrip.SetAdditionalNodeTestDelegate = new SearchTreeViewHelper.AdditionalNodeTestDelegate(NodeSearchTest);
+      m_filterForm = new OKCancelForm("Set Filters...");
+      m_filterForm.SetUserControl = m_FiltersControl;
+      m_filterForm.CanBeAccepted(true);
       m_FiltersControl = new FiltersControl();
-      m_filterform.SetUserControl = m_FiltersControl;
-      m_filterform.CanBeAccepted( true );
       m_FiltersControlSettings = new FiltersControl.FilterSettings();
     }
     #endregion creator
@@ -53,10 +54,10 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     internal void PerformNodeClassFiltering()
     {
       m_FiltersControl.MyFilterSettings = m_FiltersControlSettings;
-      if ( m_filterform.ShowDialog() == DialogResult.OK )
+      if (m_filterForm.ShowDialog() == DialogResult.OK)
       {
         m_FiltersControlSettings = m_FiltersControl.MyFilterSettings;
-        m_TreeView.SetTypeFilter( m_FiltersControlSettings.AllTypes, m_FiltersControlSettings.SelectedTypes );
+        m_TreeView.SetTypeFilter(m_FiltersControlSettings.AllTypes, m_FiltersControlSettings.SelectedTypes);
       }
     }
     internal void NavigateModelTreeViewForward()
@@ -78,10 +79,10 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     {
       get
       {
-        if ( m_TreeView.SelectedNode != null )
+        if (m_TreeView.SelectedNode != null)
         {
           DictionaryTreeView.DictionaryTreeNode dTn = m_TreeView.SelectedNode as DictionaryTreeView.DictionaryTreeNode;
-          if ( dTn != null )
+          if (dTn != null)
           {
             return dTn.GoToMenuItemList;
           }
@@ -94,88 +95,99 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       get { return m_TreeView.CoupledNodesAreEnabled; }
       set { m_TreeView.CoupledNodesAreEnabled = value; }
     }
-    internal void GetImportMenu( ToolStripItemCollection items )
+    internal void GetImportMenu(ToolStripItemCollection items)
     {
-      this.m_TreeView.SelectedNode.GetImportMenu( items );
+      this.m_TreeView.SelectedNode.GetImportMenu(items);
     }
-    internal void GetServerUAMenu( ToolStripItemCollection toolStripItemCollection )
+    internal void GetServerUAMenu(ToolStripItemCollection toolStripItemCollection)
     {
-      IInstanceDesignTreeNode cn = SelectedNode as IInstanceDesignTreeNode;
-      if ( cn == null )
+      IInstanceDesignTreeNode _sn = SelectedNode as IInstanceDesignTreeNode;
+      if (_sn == null)
         return;
-      cn.GetServerUAMenu( toolStripItemCollection );
+      _sn.GetServerUAMenu(toolStripItemCollection);
     }
     #endregion internal
 
     #region private
     //vars
-    private OKCancelForm m_filterform;
+    private OKCancelForm m_filterForm;
     private FiltersControl m_FiltersControl;
     private FiltersControl.FilterSettings m_FiltersControlSettings;
     private TreeNode m_SelectedTreeNode = null;
     //methods
-    private bool NodeSearchTest( TreeNode FoundNode )
+    private bool NodeSearchTest(TreeNode FoundNode)
     {
       IWrapperTreeNode IWrapperTreeNodeFoundNode = FoundNode as IWrapperTreeNode;
-      if ( IWrapperTreeNodeFoundNode == null )
+      if (IWrapperTreeNodeFoundNode == null)
         return false;
       return IWrapperTreeNodeFoundNode.Wrapper4PropertyGrid != null;
     }
-    private void AddSolution( DictionaryTreeView.DictionaryTreeNode SolutionRootTreeNode )
+    private void AddSolution(UAModelDesignerSolution uAModelDesignerSolution)
     {
-      m_TreeView.AddSolution( SolutionRootTreeNode );
+      SolutionTreeNode newSolution = 
+        new SolutionTreeNode(uAModelDesignerSolution, OPCFSolutionConfigurationManagement.DefaultInstance.DefaultDirectory, (x, y) => OPCFSolutionConfigurationManagement.DefaultInstance.SetChangesArePresent());
+      SolutionTreeNodeControl SolutionRootTreeNode = new SolutionTreeNodeControl(newSolution);
+      newSolution.OnDataChanged += new EventHandler<EventArgs>(Solution_OnDataChanged);
+
+      m_TreeView.AddSolution(SolutionRootTreeNode);
       m_TreeView.RebuildDictionary();
     }
-    private void m_TreeView_AfterSelect( object sender, DictionaryTreeView.DictionaryTreeViewEventArgs e )
+    private void Solution_OnDataChanged(object sender, EventArgs e)
+    {
+      this.Refresh();
+      AfterSolution_OnDataChanged(sender, e);
+    }
+    private void m_TreeView_AfterSelect(object sender, DictionaryTreeView.DictionaryTreeViewEventArgs e)
     {
       IValidate node = m_TreeView.SelectedNode as IValidate;
-      if ( node != null )
+      if (node != null)
         node.Validate();
       SelectedNode = e.Node;
       IWrapperTreeNode child = e.Node as IWrapperTreeNode;
-      if ( child == null )
+      if (child == null)
         return;
       SelectedItemEventArgs args =
-        new SelectedItemEventArgs( child, false );
-      RaiseSelectedItemIsChanged( args );
+        new SelectedItemEventArgs(child, false);
+      RaiseSelectedItemIsChanged(args);
     }
-    protected override void AfterSolutionChange( object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e )
+    protected override void AfterSolutionChange(object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e)
     {
-      this.AddSolution( e.Solution.GetTreeNode() );
+      this.AddSolution(e.Solution);
     }
-    protected override void OnSelectedItemIsChanged( object sender, SelectedItemEventArgs e )
+    protected override void OnSelectedItemIsChanged(object sender, SelectedItemEventArgs e)
     {
-      if ( e.SelectedIModelNode == null || e.SelectedIModelNode.SymbolicName == null )
+      if (e.SelectedIModelNode == null || e.SelectedIModelNode.SymbolicName == null)
         return;
-      m_TreeView.GoToNode( e.SelectedIModelNode.SymbolicName );
+      m_TreeView.GoToNode(e.SelectedIModelNode.SymbolicName);
     }
-    private void m_TreeView_RefreshNeeded( object sender, DictionaryTreeView.RefreshScopeEventArgs e )
+    private void m_TreeView_RefreshNeeded(object sender, DictionaryTreeView.RefreshScopeEventArgs e)
     {
       //TODO: this event occurs when Selected node is changed - maybe we can remove it??
       UniqueIdentifier ui = new UniqueIdentifier();
-      if ( !m_TreeView.SelectedNode.GetUniqueIdentifier( ui ) )
+      if (!m_TreeView.SelectedNode.GetUniqueIdentifier(ui))
         ui = null;
       SelectedItemEventArgs args =
-        new SelectedItemEventArgs( (IWrapperTreeNode)m_TreeView.SelectedNode, false );
-      RaiseSelectedItemIsChanged( args );
+        new SelectedItemEventArgs((IWrapperTreeNode)m_TreeView.SelectedNode, false);
+      RaiseSelectedItemIsChanged(args);
     }
     private TreeNode SelectedNode
     {
       get { return m_SelectedTreeNode; }
       set
       {
-        if ( m_SelectedTreeNode != null )
+        if (m_SelectedTreeNode != null)
           m_SelectedTreeNode.BackColor = Color.Empty;
         m_SelectedTreeNode = value;
-        if ( m_SelectedTreeNode != null )
+        if (m_SelectedTreeNode != null)
           m_SelectedTreeNode.BackColor = Color.LightGray;
       }
     }
-    private void toolStripButton_filter_Click( object sender, System.EventArgs e )
+    private void toolStripButton_filter_Click(object sender, System.EventArgs e)
     {
       PerformNodeClassFiltering();
     }
     #endregion private
 
   }
+
 }

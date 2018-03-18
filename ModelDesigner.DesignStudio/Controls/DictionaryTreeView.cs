@@ -19,6 +19,7 @@ using System.Windows.Forms;
 using System.Xml;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
+using CAS.UA.Model.Designer.Wrappers;
 
 namespace CAS.UA.Model.Designer.Controls
 {
@@ -56,7 +57,7 @@ namespace CAS.UA.Model.Designer.Controls
       /// </returns>
       public new DictionaryTreeNode Node { get; private set; }
     }
-    internal abstract class DictionaryTreeNode: TreeNode
+    internal abstract class DictionaryTreeNode: BaseDictionaryTreeNode
     {
       #region creator
       public DictionaryTreeNode()
@@ -147,7 +148,7 @@ namespace CAS.UA.Model.Designer.Controls
       {
         return new Dictionary<string, XmlQualifiedName>();
       }
-      internal abstract DictionaryTreeNode CreateCopy();
+      internal abstract BaseDictionaryTreeNode CreateCopy();
       internal DictionaryTreeNode GetEmptyCoupledNode()
       {
         Dictionary<string, XmlQualifiedName> coupledXmlQualifiedName = GetCoupledNodesXmlQualifiedNames();
@@ -175,7 +176,7 @@ namespace CAS.UA.Model.Designer.Controls
           node.SetTypeFilter( allTypes, types );
       }
       /// <summary>
-      /// Called when the node is selected on the tree. It nust create a menu for the node.
+      /// Called when the node is selected on the tree. It must create a menu for the node.
       /// </summary>
       internal void OnNodeSelected()
       {
@@ -198,7 +199,7 @@ namespace CAS.UA.Model.Designer.Controls
 
     private class CoupledNodesDictionaryTreeNode: DictionaryTreeNode
     {
-      internal override DictionaryTreeNode CreateCopy()
+      internal override BaseDictionaryTreeNode CreateCopy()
       {
         return null;
       }
@@ -372,7 +373,7 @@ namespace CAS.UA.Model.Designer.Controls
             DictionaryTreeNode couplednode = GetNode( item.Value );
             if ( couplednode == null )
               continue;
-            DictionaryTreeNode newNode = couplednode.CreateCopy();
+            BaseDictionaryTreeNode newNode = couplednode.CreateCopy();
             newNode.Text = String.Format( "{0}: {1}", item.Key, newNode.Text );
             node.Nodes.Add( newNode );
           }

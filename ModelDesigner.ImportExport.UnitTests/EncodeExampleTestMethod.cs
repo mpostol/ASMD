@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Opc.Ua;
+using System;
 
 namespace CAS.UA.Model.Designer.ImportExport.UT
 {

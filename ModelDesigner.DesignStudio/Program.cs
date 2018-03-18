@@ -93,6 +93,7 @@ namespace CAS.UA.Model.Designer
           }
         }
         string[] args = GetArguments();
+        ComposeApplication();
         if (installationWasPerformed || args == null || args.Length < 2 || string.IsNullOrEmpty(args[1]))
           m_ApplicationEntryForm = new MainForm(installationWasPerformed);
         else
@@ -105,6 +106,10 @@ namespace CAS.UA.Model.Designer
       {
         MessageBoxShow(String.Format(Resources.MainForm_StartupExceptionMessage, ex.Message));
       }
+    }
+    private static void ComposeApplication()
+    {
+      Wrappers.ViewModelFactory.Factory = new Wrappers4ProperyGrid.ViewModelFactory();
     }
     internal static void DoInstallLicense(bool loadLicenseFromDefaultContainer)
     {

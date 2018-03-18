@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.ComponentModel;
 
@@ -21,16 +22,23 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// <summary>
   /// Helper that contains name of the instance.
   /// </summary>
-  public class NameWithEventBase
+  internal class NameWithEventBase<TModel>
+    where TModel: IBaseModel
   {
     private void RaiseOnNameChangedEvent()
     {
-      if ( OnNameChanged != null )
-      {
-        OnNameChanged( this, EventArgs.Empty );
-      }
+      OnNameChanged?.Invoke(this, EventArgs.Empty);
     }
     private string m_name = "";
+    private TModel m_Model;
+    public NameWithEventBase(TModel model)
+    {
+      m_Model = model;
+    }
+    protected TModel ModelEntity
+    {
+      get { return m_Model; }
+    }
     /// <summary>
     /// Gets or sets the name of the instance.
     /// </summary>
@@ -43,11 +51,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     {
       get
       {
-        return m_name;
+        return m_Model.Text;
       }
       set
       {
-        m_name = value;
+        m_Model.Text = value;
         RaiseOnNameChangedEvent();
       }
     }

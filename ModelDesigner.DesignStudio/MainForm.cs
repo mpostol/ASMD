@@ -15,6 +15,7 @@
 
 using CAS.Lib.ControlLibrary;
 using CAS.Lib.ControlLibrary.ControlExtenders;
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.ExportingTools;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
@@ -148,7 +149,7 @@ namespace CAS.UA.Model.Designer
         buildProjectToolStripMenuItem.Enabled = false;
         buildProjectToolStripMenuItem.ToolTipText = Resources.LicenseFeatureUnavailable;
       }
-      if (OPCFSolutionConfigurationManagement.IsLicensed)
+      if (SaveConstrain.IsLicensed)
         return;
       saveAsToolStripMenuItem.Enabled = false;
       saveAsToolStripMenuItem.ToolTipText = Resources.LicenseFeatureUnavailable;
@@ -248,11 +249,11 @@ namespace CAS.UA.Model.Designer
     }
     private void MHSaveToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      OPCFSolutionConfigurationManagement.DefaultInstance.Save(false);
+      Root.SolutionRoot.Save(false);
     }
     private void MHSaveAsToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      OPCFSolutionConfigurationManagement.DefaultInstance.Save(true);
+      Root.SolutionRoot.Save(true);
     }
 
     #region import
@@ -263,7 +264,7 @@ namespace CAS.UA.Model.Designer
       m_MainContol.GetImportMenu(_mm.DropDownItems);
       if (_mm.DropDownItems.Count > 0)
         _mm.DropDownItems.Add(new ToolStripSeparator());
-      _mm.DropDownItems.Add(MenuFactory.ImportNodeSetMenuItem(OPCFSolutionConfigurationManagement.DefaultInstance.SolutionRootNode.ImportNodeSetHandler));
+      _mm.DropDownItems.Add(MenuFactory.ImportNodeSetMenuItem( (x, y) =>  Root.SolutionRoot.ImportNodeSet() ));
       _mm.DropDownItems.Add(m_FromUMLDiagramToolStripMenuItem);
       _mm.DropDownItems.Add(m_FromXMLSchemaToolStripMenuItem);
       _mm.DropDownItems.Add(m_FromVisioToolStripMenuItem);
@@ -481,8 +482,7 @@ namespace CAS.UA.Model.Designer
     }
     private void buildToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      OPCFSolutionConfigurationManagement.DefaultInstance.Save(false);
-      OPCFSolutionConfigurationManagement.DefaultInstance.SolutionRootNode.Build(debugDockPanelUserControl1.TextWriterStream);
+      Root.SolutionRoot.Build(debugDockPanelUserControl1.TextWriterStream);
     }
     private void stateMachineEditorToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -780,7 +780,7 @@ namespace CAS.UA.Model.Designer
     }
     private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
     {
-      OPCFSolutionConfigurationManagement.DefaultInstance.Dispose();
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 763, "Application is closing");
       AssemblyTraceEvent.Tracer.Flush();
       AssemblyTraceEvent.Tracer.Close();
     }

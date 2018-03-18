@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="09eb8e07-e0a7-463a-88eb-e0af9e221a7a"
+  name="ModelDesigner.ViewModel" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <suppliersInternal>
+    <dependency
+      Id="79ab4468-8f84-4af7-bf58-ef5db7aac735">
+      <packageMoniker
+        Id="e92c575b-d9b3-49a5-a80f-05f4c9ccfa0c"
+        LastKnownName="ModelDesigner.Model"
+        LastKnownLocation="Package_1815.uml" />
+    </dependency>
+  </suppliersInternal>
+</package>

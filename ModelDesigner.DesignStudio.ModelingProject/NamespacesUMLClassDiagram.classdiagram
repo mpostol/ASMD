@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="2ee208f9-c099-4d27-9a85-54b289ae5db9" name="NamespacesUMLClassDiagram" linkedPackageId="122e7d16-ca9e-47bb-85a8-4d7afb53c2bb" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="242118c1-da8b-4ea4-b8c1-69a65e901ecf" name="ModelDesigner.IO">
+        <elementDefinition Id="9ae93da7-fbf9-443d-821a-00854b2162f4" />
+        <suppliersInternal>
+          <dependency Id="4169f617-9eb3-4470-8949-ce641aa6000d">
+            <packageMoniker Id="0f4e6c69-ced2-406a-8be7-6b91c0717527" LastKnownName="odelDesigner.Solution" />
+            <elementDefinition Id="f0c935af-c396-463b-9c71-eeba798bcfc8" />
+          </dependency>
+        </suppliersInternal>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="f680fdfb-e3b3-484a-9cfc-810c4095ae19" name="ModelDesigner.Model">
+        <ownedCommentsInternal>
+          <comment Id="57ed57ac-6bae-4d0c-9d22-d5456c799ba8">
+            <elementDefinition Id="80df0f5a-e5fa-4fbc-b1aa-c3e1c7608188" />
+            <body>Now Wrappers</body>
+          </comment>
+        </ownedCommentsInternal>
+        <elementDefinition Id="e92c575b-d9b3-49a5-a80f-05f4c9ccfa0c" />
+        <suppliersInternal>
+          <dependency Id="b4c2fc0c-aac4-4866-b6f2-aad0a1b3d22b">
+            <packageMoniker Id="242118c1-da8b-4ea4-b8c1-69a65e901ecf" LastKnownName="ModelDesigner.IO" />
+            <elementDefinition Id="ae5012dc-22bb-44ba-b417-b53ef9a344f0" />
+          </dependency>
+          <dependency Id="f5a250d6-4722-43ee-a512-39e9e9a5e172">
+            <packageMoniker Id="0f4e6c69-ced2-406a-8be7-6b91c0717527" LastKnownName="odelDesigner.Solution" />
+            <elementDefinition Id="5bd9c72f-9b70-4bdd-a4e5-c6f53953ee37" />
+          </dependency>
+        </suppliersInternal>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="0f4e6c69-ced2-406a-8be7-6b91c0717527" name="odelDesigner.Solution">
+        <elementDefinition Id="b0ae2286-4aa6-48d7-8104-ea3f08097b68" />
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="28d0f5cb-311a-42bd-b824-28ecfbe31014" name="ModelDesigner.ViewModel">
+        <ownedCommentsInternal>
+          <comment Id="cb7ee7d7-0d8b-46c0-8ff1-37e6f2891d4a">
+            <elementDefinition Id="cadf643f-f93f-4b67-a885-f1c629c34632" />
+            <body>Wrappers4ProperyGrid</body>
+          </comment>
+        </ownedCommentsInternal>
+        <elementDefinition Id="09eb8e07-e0a7-463a-88eb-e0af9e221a7a" />
+        <suppliersInternal>
+          <dependency Id="d17adcae-42c6-4120-8f92-e525d1bd184d">
+            <packageMoniker Id="f680fdfb-e3b3-484a-9cfc-810c4095ae19" LastKnownName="ModelDesigner.Model" />
+            <elementDefinition Id="79ab4468-8f84-4af7-bf58-ef5db7aac735" />
+          </dependency>
+        </suppliersInternal>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="ae57ed65-69a8-4543-85dc-4fb6301afa7d" name="ModelDesigner.Controls">
+        <elementDefinition Id="04408249-8d37-41cd-8548-8ece134f9942" />
+        <suppliersInternal>
+          <dependency Id="948bf68a-a74a-4c82-97db-d0f4a369b663">
+            <packageMoniker Id="28d0f5cb-311a-42bd-b824-28ecfbe31014" LastKnownName="ModelDesigner.ViewModel" />
+            <elementDefinition Id="8900e916-377b-4db9-81ba-a2340eda6902" />
+          </dependency>
+          <dependency Id="89a13353-3708-4398-ae87-3c0b08f28b32">
+            <classMoniker Id="43b71f1c-f179-435d-83f7-ab0819e33592" LastKnownName="Main" />
+            <elementDefinition Id="642857e3-ac7e-43d2-9b6f-5f92250edbf1" />
+          </dependency>
+          <dependency Id="8f3fe670-c899-4f80-8ae6-637ba5be52aa">
+            <packageMoniker Id="f680fdfb-e3b3-484a-9cfc-810c4095ae19" LastKnownName="ModelDesigner.Model" />
+            <elementDefinition Id="ceb168a5-2bf3-43c7-bb1a-b8240737032b" />
+          </dependency>
+        </suppliersInternal>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <packageHasNamedElement>
+      <class Id="43b71f1c-f179-435d-83f7-ab0819e33592" name="Main" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="2f106a90-8e88-4695-a8f9-31dd9a9a1345" />
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="122e7d16-ca9e-47bb-85a8-4d7afb53c2bb" name="ModelDesigner.DesignStudio.ModelingProject">
+    <elementDefinition Id="f85fdb4a-e3a8-4238-9444-ee5b419fc1d6" />
+    <profileInstances>
+      <packageHasProfileInstances Id="89b67871-d483-4f75-8548-dc4c03fb61d1">
+        <profileInstance Id="a8b06050-9174-400e-8b6c-7bbef0e27a3d" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="afa0fdbd-4daf-4cfd-9664-84b5587b02a9">
+        <profileInstance Id="c5283e88-62cb-4e5a-9fa2-8545cef52a7e" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

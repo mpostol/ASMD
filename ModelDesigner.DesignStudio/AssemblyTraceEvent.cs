@@ -18,6 +18,7 @@
 using System;
 using System.Diagnostics;
 using System.Reflection;
+using UAOOI.SemanticData.UANodeSetValidation;
 
 namespace CAS.UA.Model.Designer
 {
@@ -37,6 +38,10 @@ namespace CAS.UA.Model.Designer
       {
         return m_traceSource.Value;
       }
+    }
+    internal static void TraceMessage(TraceMessage message, string at, int id)
+    {
+      Tracer.TraceEvent(message.TraceLevel, id, "At {0}: {}", at, message.Message);
     }
   }
 }

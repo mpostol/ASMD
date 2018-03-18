@@ -15,66 +15,48 @@
 
 using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.Controls;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System;
 using System.Collections.Generic;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
+
+  internal interface IBaseModel : IEnumerable<IBaseModel>
+  {
+    event EventHandler<BaseTreeNode.TextEventArgs> TextChanged;
+    event EventHandler<BaseTreeNode.ProjectEventArgs> SubtreeChanged;
+    string ToolTipText { get; set; }
+    string Text { get; set; }
+    BaseDictionaryTreeNode GetTreeNode();
+  }
+
   /// <summary>
-  /// A collection <see cref="List{BaseTreeNode}"/> - a base class to create in-memory representation of the UA Information Model.
+  /// A collection <see cref="List{BaseTreeNode}"/> of <see cref="IBaseModel"/> - a base class to create in-memory representation of the UA Information Model.
   /// </summary>
-  internal abstract class BaseTreeNode: List<BaseTreeNode>
+  internal abstract class BaseTreeNode : List<IBaseModel>, IBaseModel
   {
     #region private
     private string m_Text;
     private string m_ToolTipText;
     //TextChanged
-    private class TextEventArgs: EventArgs
+    internal class TextEventArgs : EventArgs
     {
       public readonly BaseTreeNode Node;
-      public TextEventArgs( BaseTreeNode node ) { Node = node; }
+      public TextEventArgs(BaseTreeNode node) { Node = node; }
     }
-    private event EventHandler<TextEventArgs> TextChanged;
     private void RaiseTextChanged()
     {
-      if ( TextChanged != null )
-        TextChanged( this, new TextEventArgs( this ) );
+      TextChanged?.Invoke(this, new TextEventArgs(this));
     }
     //ProjectChanged
-    protected class ProjectEventArgs: EventArgs { }
-    protected event EventHandler<ProjectEventArgs> SubtreeChanged;
+    internal class ProjectEventArgs : EventArgs { }
     protected void RaiseSubtreeChanged()
     {
       RaiseOnChangeHandler();
-      if ( SubtreeChanged == null )
-        return;
-      SubtreeChanged( this, new ProjectEventArgs() );
+      SubtreeChanged?.Invoke(this, new ProjectEventArgs());
     }
-    protected string ToolTipText
-    {
-      get { return m_ToolTipText; }
-      set
-      {
-        if ( !string.IsNullOrEmpty( m_ToolTipText ) && m_ToolTipText.CompareTo( value ) == 0 )
-          return;
-        m_ToolTipText = value;
-        RaiseTextChanged();
-      }
-    }
-    protected string Text
-    {
-      get { return m_Text; }
-      set
-      {
-        if ( !string.IsNullOrEmpty( m_Text ) && m_Text.CompareTo( value ) == 0 )
-          return;
-        m_Text = value;
-        RaiseTextChanged();
-      }
-    }
-    protected abstract class TreeNode<T>: DictionaryTreeView.DictionaryTreeNode
-      where T: BaseTreeNode
+    protected abstract class TreeNode<T> : DictionaryTreeView.DictionaryTreeNode
+      where T : BaseTreeNode
     {
       #region private
       /// <summary>
@@ -84,21 +66,21 @@ namespace CAS.UA.Model.Designer.Wrappers
       /// </summary>
       /// <value>The creator.</value>
       protected T Creator { get; private set; }
-      private void OnTextChanged( object sender, TextEventArgs e )
+      private void OnTextChanged(object sender, TextEventArgs e)
       {
         Text = e.Node.Text;
         ToolTipText = e.Node.ToolTipText;
         //TODO Tree view could be null while adding Variable - fixed but impact must be analized.
         //Completed: At revision: 9178  
-        if ( TreeView != null )
+        if (TreeView != null)
           TreeView.RebuildDictionary();
       }
-      private void OnSubtreeChanged( object sender, ProjectEventArgs e )
+      private void OnSubtreeChanged(object sender, ProjectEventArgs e)
       {
-        if ( this.TreeView != null )
+        if (this.TreeView != null)
           this.TreeView.SuspendLayout();
         RecreateSubtree();
-        if ( this.TreeView != null )
+        if (this.TreeView != null)
         {
           this.TreeView.SelectedNode = this;
           TreeView.RebuildDictionary();
@@ -108,72 +90,72 @@ namespace CAS.UA.Model.Designer.Wrappers
       protected void RecreateSubtree()
       {
         ClearChildren();
-        AddChildren( Creator );
+        AddChildren(Creator);
       }
       protected override void Unregister()
       {
         ClearChildren();
-        Creator.TextChanged -= new EventHandler<TextEventArgs>( OnTextChanged );
-        Creator.SubtreeChanged -= new EventHandler<ProjectEventArgs>( OnSubtreeChanged );
+        Creator.TextChanged -= new EventHandler<TextEventArgs>(OnTextChanged);
+        Creator.SubtreeChanged -= new EventHandler<ProjectEventArgs>(OnSubtreeChanged);
       }
-      protected void AddChildren( T parent )
+      protected void AddChildren(T parent)
       {
-        foreach ( BaseTreeNode node in parent )
-          Nodes.Add( node.GetTreeNode() );
+        foreach (BaseTreeNode node in parent)
+          Nodes.Add(node.GetTreeNode());
       }
       #endregion
 
       #region creator
-      public TreeNode( T parent )
+      public TreeNode(T parent)
         : base()
       {
-        CommonOperationsForTheNodeCreation( parent );
-        parent.TextChanged += new EventHandler<TextEventArgs>( OnTextChanged );
-        parent.SubtreeChanged += new EventHandler<ProjectEventArgs>( OnSubtreeChanged );
-        AddChildren( parent );
+        CommonOperationsForTheNodeCreation(parent);
+        parent.TextChanged += new EventHandler<TextEventArgs>(OnTextChanged);
+        parent.SubtreeChanged += new EventHandler<ProjectEventArgs>(OnSubtreeChanged);
+        AddChildren(parent);
       }
 
-      private void CommonOperationsForTheNodeCreation( T parent )
+      private void CommonOperationsForTheNodeCreation(T parent)
       {
         Creator = parent;
         Text = parent.m_Text;
         ToolTipText = parent.ToolTipText;
-        this.ImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode( Creator.GetType().Name, false );
-        this.SelectedImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode( Creator.GetType().Name, true );
+        this.ImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(Creator.GetType().Name, false);
+        this.SelectedImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(Creator.GetType().Name, true);
       }
       #endregion
 
       #region public
-      internal override DictionaryTreeView.DictionaryTreeNode CreateCopy()
+      internal override BaseDictionaryTreeNode CreateCopy()
       {
         return Creator.GetTreeNode();
       }
       #endregion
     }
-    protected virtual void CreateInstanceConfigurations( BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed )
+    protected virtual void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
     {
-      Parent.CreateInstanceConfigurations( node, SkipOpeningConfigurationFile, out CancelWasPressed );
+      Parent.CreateInstanceConfigurations(node, SkipOpeningConfigurationFile, out CancelWasPressed);
     }
     /// <summary>
     /// If implemented in the derived class adds the node descriptors.
     /// </summary>
     /// <param name="dsptrs">The node descriptor.</param>
     /// <param name="ui">The unique identifier.</param>
-    protected virtual void AddNodeDescriptors( List<INodeDescriptor> dsptrs, UniqueIdentifier ui )
+    protected virtual void AddNodeDescriptors(List<INodeDescriptor> dsptrs, UniqueIdentifier ui)
     {
-      foreach ( BaseTreeNode item in this )
-        item.AddNodeDescriptors( dsptrs, ui.MemberwiseClone() );
+      foreach (BaseTreeNode item in this)
+        item.AddNodeDescriptors(dsptrs, ui.MemberwiseClone());
     }
     #endregion
 
     #region creator
-    public BaseTreeNode( string text )
+    public BaseTreeNode(string text)
     {
       m_Text = text;
     }
     #endregion
 
-    #region public
+    #region public API
     /// <summary>
     /// Gets the node descriptors.
     /// </summary>
@@ -196,15 +178,45 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <value>The parent node.</value>
     internal virtual BaseTreeNode Parent { get; set; }
     /// <summary>
+    /// Raises the on change handler.
+    /// </summary>
+    internal protected virtual void RaiseOnChangeHandler()
+    {
+      if (Parent != null)
+        Parent.RaiseOnChangeHandler();
+    }
+    #endregion
+
+    #region IBaseModel
+    /// <summary>
     /// Gets the tree node and all children.
     /// </summary>
     /// <returns>The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.</returns>
-    internal abstract DictionaryTreeView.DictionaryTreeNode GetTreeNode();
-
-    internal protected virtual void RaiseOnChangeHandler()
+    [Obsolete]
+    public abstract BaseDictionaryTreeNode GetTreeNode();
+    public event EventHandler<TextEventArgs> TextChanged;
+    public event EventHandler<ProjectEventArgs> SubtreeChanged;
+    public string ToolTipText
     {
-      if ( Parent != null )
-        Parent.RaiseOnChangeHandler();
+      get { return m_ToolTipText; }
+      set
+      {
+        if (!string.IsNullOrEmpty(m_ToolTipText) && m_ToolTipText.CompareTo(value) == 0)
+          return;
+        m_ToolTipText = value;
+        RaiseTextChanged();
+      }
+    }
+    public string Text
+    {
+      get { return m_Text; }
+      set
+      {
+        if (!string.IsNullOrEmpty(m_Text) && m_Text.CompareTo(value) == 0)
+          return;
+        m_Text = value;
+        RaiseTextChanged();
+      }
     }
     #endregion
 
@@ -216,10 +228,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <exception cref="T:System.NotSupportedException">
     /// The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
     /// </exception>
-    public new void Add( BaseTreeNode item )
+    public void Add(BaseTreeNode item)
     {
       item.Parent = this;
-      base.Add( item );
+      base.Add(item);
       RaiseSubtreeChanged();
     }
     /// <summary>
@@ -229,11 +241,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <exception cref="T:System.ArgumentNullException">
     /// 	<paramref name="collection"/> is null.
     /// </exception>
-    public new void AddRange( IEnumerable<BaseTreeNode> collection )
+    public void AddRange(IEnumerable<BaseTreeNode> collection)
     {
-      foreach ( BaseTreeNode item in collection )
+      foreach (BaseTreeNode item in collection)
         item.Parent = this;
-      base.AddRange( collection );
+      base.AddRange(collection);
       RaiseSubtreeChanged();
     }
     /// <summary>
@@ -259,9 +271,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <exception cref="T:System.NotSupportedException">
     /// The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
     /// </exception>
-    public new bool Remove( BaseTreeNode item )
+    public bool Remove(BaseTreeNode item)
     {
-      bool ret = base.Remove( item );
+      bool ret = base.Remove(item);
       item.Parent = null;
       RaiseSubtreeChanged();
       return ret;

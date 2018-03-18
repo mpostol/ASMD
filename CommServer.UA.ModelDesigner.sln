@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.ModelsContain
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelDesigner.ModelsContainer.UnitTests", "ModelDesigner.ModelsContainer.UnitTests\ModelDesigner.ModelsContainer.UnitTests.csproj", "{5F77262E-F522-462F-B30F-3FAD94723592}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelDesigner.DesignStudio.ModelingProject", "ModelDesigner.DesignStudio.ModelingProject\ModelDesigner.DesignStudio.ModelingProject.modelproj", "{6ABE65B9-711D-4C91-B28E-671252DE4E1C}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -83,6 +85,10 @@ Global
 		{5F77262E-F522-462F-B30F-3FAD94723592}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F77262E-F522-462F-B30F-3FAD94723592}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F77262E-F522-462F-B30F-3FAD94723592}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ABE65B9-711D-4C91-B28E-671252DE4E1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ABE65B9-711D-4C91-B28E-671252DE4E1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ABE65B9-711D-4C91-B28E-671252DE4E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ABE65B9-711D-4C91-B28E-671252DE4E1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

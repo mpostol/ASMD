@@ -13,9 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.UA.Model.Designer.Controls;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Xml;
 using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
 
@@ -36,7 +34,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region creator
-    internal LibraryTreeNode(OPCFModelDesign config, string nodeName, IContainer Container)
+    internal LibraryTreeNode(OPCFModelDesign config, string nodeName)
       : base(nodeName)
     {
       List<Opc.Ua.ModelCompiler.NodeDesign> _nodes = new List<Opc.Ua.ModelCompiler.NodeDesign>();
@@ -65,7 +63,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <returns>
     /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
     /// </returns>
-    internal override DictionaryTreeView.DictionaryTreeNode GetTreeNode()
+    public override BaseDictionaryTreeNode GetTreeNode()
     {
       return new LocalTreeNode(this);
     }

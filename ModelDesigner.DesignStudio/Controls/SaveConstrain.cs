@@ -15,7 +15,7 @@
 
 using System.Diagnostics;
 
-namespace CAS.UA.Model.Designer.IO
+namespace CAS.UA.Model.Designer.Controls
 {
   /// <summary>
   /// Check save constrain class. The license is checked only once while using any of the public members.
@@ -24,6 +24,7 @@ namespace CAS.UA.Model.Designer.IO
   [System.Runtime.InteropServices.GuidAttribute( "2601698A-593A-40f0-AFCC-4C205A67A3C3" )]
   internal sealed class SaveConstrain: StartUpSplashScreen.LogedIsLicensed<SaveConstrain>
   {
+
     #region public
     internal static bool IsLicensed { get; private set; }
     internal static void CheckConstrain()

@@ -13,8 +13,11 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
-using System.ComponentModel;
+using System;
+using System.IO;
+using UAOOI.SemanticData.UANodeSetValidation;
 using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
 
 namespace CAS.UA.Model.Designer.IO
@@ -22,7 +25,7 @@ namespace CAS.UA.Model.Designer.IO
   /// <summary>
   /// Class to save and restore UA Information Model to/from external file.
   /// </summary>
-  internal class OPCFModelConfigurationManagement: TypeGenericConfigurationManagement<OPCFModelDesign, OPCFModelDesign>
+  internal class OPCFModelConfigurationManagement: TypeGenericConfigurationManagement<OPCFModelDesign>
   {
     #region private
     /// <summary>
@@ -30,18 +33,9 @@ namespace CAS.UA.Model.Designer.IO
     /// </summary>
     /// <value>The configuration .</value>
     /// <remarks>Not implemented in this class</remarks>
-    protected override TypeGenericConfigurationManagement<OPCFModelDesign, OPCFModelDesign>.DataToSerialize GetConfiguration
+    protected override XmlFile.DataToSerialize<OPCFModelDesign> GetConfiguration(OPCFModelDesign configuration)
     {
-      get { throw new System.NotImplementedException(); }
-    }
-    /// <summary>
-    /// Creates a configurable tree node.
-    /// </summary>
-    /// <param name="nodeCopnfiguration">The node copnfiguration.</param>
-    /// <returns>An inctance of <see cref="!:TypeForConfiguration" /> represnting the node of the navigation tree.</returns>
-    protected override OPCFModelDesign CreateTreeNode(OPCFModelDesign nodeCopnfiguration)
-    {
-      return nodeCopnfiguration;
+      throw new NotImplementedException();
     }
     #endregion
 
@@ -72,12 +66,19 @@ namespace CAS.UA.Model.Designer.IO
     {
       CommonInitialisation();
     }
-    public OPCFModelConfigurationManagement( IContainer container )
-      : base( container )
-    {
-      CommonInitialisation();
-    }
     #endregion
+    internal static Tuple<Opc.Ua.ModelCompiler.ModelDesign, string> ReadModelDesign(string filePath, Action<TraceMessage> tracer)
+    {
+      using (OPCFModelConfigurationManagement _manager = new OPCFModelConfigurationManagement()
+      {
+        DefaultDirectory = Path.GetDirectoryName(filePath),
+        DefaultFileName = Path.GetFileName(filePath)
+      })
+      {
+        Opc.Ua.ModelCompiler.ModelDesign _model = _manager.ReadConfiguration();
+        return new Tuple<Opc.Ua.ModelCompiler.ModelDesign, string>(_model, _manager.DefaultFileName);
+      }
+    }
 
   }
 }

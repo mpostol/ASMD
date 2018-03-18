@@ -1,6 +1,6 @@
 ﻿
 using CAS.UA.Model.Designer.ImportExport;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
+using CAS.UA.Model.Designer.Solution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 

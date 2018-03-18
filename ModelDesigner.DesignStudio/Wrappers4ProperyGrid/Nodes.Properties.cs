@@ -15,6 +15,7 @@
 
 using CAS.Lib.ControlLibrary;
 using CAS.UA.IServerConfiguration;
+using CAS.UA.Model.Designer.Wrappers;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
 using System;
 using System.ComponentModel;
@@ -420,7 +421,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// A base type for all Instance Nodes (Object, Variable, and Method).
   /// </summary>
   /// <typeparam name="T">Class from Opc UA Model Designer</typeparam>
-  internal partial class InstanceDesign<T> : NodeDesign<T>, IInstanceDesign
+  internal abstract partial class InstanceDesign<T> : NodeDesign<T>, IInstanceDesign
     where T : Opc.Ua.ModelCompiler.InstanceDesign, new()
   {
 

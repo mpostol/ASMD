@@ -13,16 +13,10 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration;
-using CAS.Lib.RTLib.Utils;
-using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.Wrappers;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
-using System.Windows.Forms;
-using System.Linq;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
@@ -32,8 +26,9 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// by the <see cref="XmlSerializer"/> to save information on the solution.
   /// </summary>
   [DefaultProperty("Server")]
-  public class UAModelDesignerSolutionWrapper : NameWithEventBase
+  internal class UAModelDesignerSolutionWrapper : NameWithEventBase<SolutionTreeNode>, IBaseDirectoryProvider, IViewModel
   {
+
     #region browsable properties
     /// <summary>
     /// Gets the home directory of the solution.
@@ -44,7 +39,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [Category("Input")]
     [Description("Solution home directory.")]
     #endregion
-    public string HomeDirectory { get { return m_HomeDirectory; } }
+    public string HomeDirectory { get { return ModelEntity.HomeDirectory; } }
     /// <summary>
     /// Gets or sets information of the plug-in for a server.
     /// </summary>
@@ -56,105 +51,22 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [TypeConverterAttribute(typeof(ExpandableObjectConverter))]
     [NotifyParentProperty(true)]
     #endregion
-    public ServerSelector Server { get; set; }
-    #endregion
-
-    #region not browsable properties
-    /// <summary>
-    /// Gets or sets the projects wrappers.
-    /// </summary>
-    /// <value>The projects.</value>
-    [Browsable(false)]
-    public ProjectWrapper[] Projects { get; set; }
-    /// <summary>
-    /// Gets or sets detailed information on localization of the plug-in and configuration file.
-    /// </summary>
-    /// <value>The server descriptor.</value>
-    [Browsable(false)]
-    public ServerSelector.ServerDescriptor ServerDetails
+    public ServerSelector Server
     {
-      set { Server.ServerConfiguration = value; }
-      get
-      {
-        ServerSelector.ServerDescriptor _descriptor = Server.ServerConfiguration;
-        if (_descriptor == null)
-          return null;
-        if (!String.IsNullOrEmpty(_descriptor.codebase))
-          _descriptor.codebase = RelativeFilePathsCalculator.TryComputeRelativePath(this.m_HomeDirectory, _descriptor.codebase); //TODO must refer to the plugin directory.
-        if (!String.IsNullOrEmpty(_descriptor.configuration))
-          _descriptor.configuration = RelativeFilePathsCalculator.TryComputeRelativePath(this.m_HomeDirectory, _descriptor.configuration);
-        return _descriptor;
-      }
+      get { return ModelEntity.Server; }
     }
     #endregion
 
     #region constructor
-    internal UAModelDesignerSolutionWrapper(UAModelDesignerSolution configuration)
-    {
-      Initialize();
-      Name = configuration.Name;
-      ServerDetails = configuration.ServerDetails != null ? new ServerSelector.ServerDescriptor() { codebase = configuration.ServerDetails.codebase, configuration = configuration.ServerDetails.configuration } : null;
-      Projects = configuration.Projects != null ? configuration.Projects.Select(x => new ProjectWrapper(x)).ToArray<ProjectWrapper>() : null;
-    }
-    public UAModelDesignerSolutionWrapper(string defaultFileName, string defaultSolutionName)
-    {
-      Initialize();
-      this.m_HomeDirectory = Path.GetDirectoryName(Path.GetFullPath(defaultFileName));
-      Name = defaultSolutionName;
-    }
+    internal UAModelDesignerSolutionWrapper(SolutionTreeNode node) : base(node) { }
     #endregion
 
-    #region Internal
-    /// <summary>
-    /// Sets the home directory to create relative paths of other files.
-    /// </summary>
-    /// <param name="newHomeDirectory">The new home directory.</param>
-    internal void SetHomeDirectory(string newHomeDirectory)
+    #region IBaseDirectoryProvider
+    public string GetBaseDirectory()
     {
-      this.m_HomeDirectory = newHomeDirectory;
-      Server.SetHomeDirectory(newHomeDirectory);
+      return this.HomeDirectory;
     }
-    internal SolutionTreeNode NodeCouple { private get; set; }
-    internal UAModelDesignerSolution UAModelDesignerSolutionConfiguration
-    {
-      get
-      {
-        return new UAModelDesignerSolution()
-        {
-          Name = this.Name,
-          Projects = this.Projects == null ? null : this.Projects.Select<ProjectWrapper, UAModelDesignerProject>(x => x.UAModelDesignerProjectConfiguration).ToArray<UAModelDesignerProject>(),
-          ServerDetails = this.ServerDetails == null ? null : new UAModelDesignerSolutionServerDetails() { codebase = ServerDetails.codebase, configuration = ServerDetails.configuration }
-        };
-      }
-    }
-    internal void Save(string solutionPath)
-    {
-      this.m_HomeDirectory = solutionPath;
-      Server.Save(solutionPath);
-    }
-    internal void GetPluginMenuItems(ToolStripItemCollection menu)
-    {
-      ICollection<ToolStripItem> _items = new List<ToolStripItem>();
-      Server.GetPluginMenuItems(_items);
-      menu.AddRange(_items.ToArray<ToolStripItem>());
-    }
-    #endregion Internal
-
-    #region private
-    private string m_HomeDirectory;
-    private void Initialize()
-    {
-      Server = new ServerSelector();
-      Server.OnConfigurationChanged += new EventHandler<UAServerConfigurationEventArgs>(Server_OnConfigurationChanged);
-    }
-    private void Server_OnConfigurationChanged(object sender, UAServerConfigurationEventArgs e)
-    {
-      if (NodeCouple == null)
-        return;
-      if (e.ConfigurationFileChanged)
-        NodeCouple.RegenerateSubTree();
-    }
-    #endregion private
+    #endregion    
 
   }
 
