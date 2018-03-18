@@ -6,7 +6,7 @@
         <elementDefinition Id="9ae93da7-fbf9-443d-821a-00854b2162f4" />
         <suppliersInternal>
           <dependency Id="4169f617-9eb3-4470-8949-ce641aa6000d">
-            <packageMoniker Id="0f4e6c69-ced2-406a-8be7-6b91c0717527" LastKnownName="odelDesigner.Solution" />
+            <packageMoniker Id="0f4e6c69-ced2-406a-8be7-6b91c0717527" LastKnownName="ModelDesigner.Solution" />
             <elementDefinition Id="f0c935af-c396-463b-9c71-eeba798bcfc8" />
           </dependency>
         </suppliersInternal>
@@ -27,14 +27,14 @@
             <elementDefinition Id="ae5012dc-22bb-44ba-b417-b53ef9a344f0" />
           </dependency>
           <dependency Id="f5a250d6-4722-43ee-a512-39e9e9a5e172">
-            <packageMoniker Id="0f4e6c69-ced2-406a-8be7-6b91c0717527" LastKnownName="odelDesigner.Solution" />
+            <packageMoniker Id="0f4e6c69-ced2-406a-8be7-6b91c0717527" LastKnownName="ModelDesigner.Solution" />
             <elementDefinition Id="5bd9c72f-9b70-4bdd-a4e5-c6f53953ee37" />
           </dependency>
         </suppliersInternal>
       </package>
     </logicalClassDesignerModelHasPackages>
     <logicalClassDesignerModelHasPackages>
-      <package Id="0f4e6c69-ced2-406a-8be7-6b91c0717527" name="odelDesigner.Solution">
+      <package Id="0f4e6c69-ced2-406a-8be7-6b91c0717527" name="ModelDesigner.Solution">
         <elementDefinition Id="b0ae2286-4aa6-48d7-8104-ea3f08097b68" />
       </package>
     </logicalClassDesignerModelHasPackages>
