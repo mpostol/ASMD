@@ -72,7 +72,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DisplayName("Target Publication Date"),
     BrowsableAttribute(true),
     DescriptionAttribute("Publication Date of the model. Attribute is optional."),
-    CategoryAttribute("Namespace")
+    CategoryAttribute("Namespace"),
     DocumentationAttribute("TargetPublicationDate", typeof(DateTimeGetter))
     ]
     public DateTime? TargetPublicationDate { get; set; }
