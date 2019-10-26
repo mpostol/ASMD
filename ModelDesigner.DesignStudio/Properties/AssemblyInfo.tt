@@ -38,6 +38,6 @@ using System.Runtime.InteropServices;
                                                                        "8149d016bbc6a364beda14fc1119698d8c8d9923805b40122bf594f08cc29f41cb0a31e5e141e3" +
                                                                        "f2421b9d", AllInternalsVisible = true)]
 
-<#@ include file = "..\..\..\PR39-CommonResources\T4Definitions\CAS.OPC.t4" #>
+<#@ include file = "..\..\..\CommonResources\T4Definitions\CAS.OPC.t4" #>
 
 

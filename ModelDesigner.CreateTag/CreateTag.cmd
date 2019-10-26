@@ -1,9 +1,9 @@
 
-rem//  $LastChangedDate$
-rem//  $Rev$
-rem//  $LastChangedBy$
-rem//  $URL$
-rem//  $Id$
+rem//  $LastChangedDate:  $
+rem//  $Rev:  $
+rem//  $LastChangedBy:  $
+rem//  $URL:  $
+rem//  $Id:  $
 
 
 svn mkdir svn://svnserver.hq.cas.com.pl/VS/tags//CommServer.UA.ModelDesigner.rel_3_20_2  -m "created new svn://svnserver.hq.cas.com.pl/VS/tags//CommServer.UA.ModelDesigner.rel_3_20_2"

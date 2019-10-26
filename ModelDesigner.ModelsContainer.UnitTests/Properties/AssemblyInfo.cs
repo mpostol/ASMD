@@ -1,11 +1,11 @@
 ﻿//<summary>
 //  Title   : Assembly info for: CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.UnitTests
 //  System  : Microsoft Visual C# .NET
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+//  $LastChangedDate:  $
+//  $Rev:  $
+//  $LastChangedBy: $
+//  $URL:  $
+//  $Id:  $
 //
 //  Copyright (c) 2017 CAS LODZ POLAND
 //  +48 (42) 686 25 47

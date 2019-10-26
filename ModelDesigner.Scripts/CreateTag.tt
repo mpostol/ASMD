@@ -30,4 +30,4 @@ svn copy <#=trunkPath#>/EX04-OPCUA_SDK <#=TagPath #>/EX04-OPCUA_SDK -m "created 
 
 pause ....
 
-<#@ include file = "..\..\PR39-CommonResources\T4Definitions\CAS.OPC.t4" #>
+<#@ include file = "..\..\CommonResources\T4Definitions\CAS.OPC.t4" #>

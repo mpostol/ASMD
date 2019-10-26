@@ -8,7 +8,7 @@
 * Product:       CAS CommServer Family
 * Trademark:     CommServer
 * Version:       3.20.2
-* Release Date:  2017-02-09
+* Release Date:  26.10.2019
 
 The main changes and new functionality are listed below:
 
@@ -26,7 +26,7 @@ ________________________________________________________________________________
 
 > mailto://mpostol@cas.eu
 
-Copyright (C) 2017, commsvr.com LODZ POLAND
+Copyright (C) 2019, commsvr.com LODZ POLAND
 
 mailto://commserver@cas.eu
 

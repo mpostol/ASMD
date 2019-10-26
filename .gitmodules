@@ -1,0 +1,3 @@
+[submodule "CommonResources"]
+	path = CommonResources
+	url = https://github.com/mpostol/CommonResources

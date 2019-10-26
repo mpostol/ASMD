@@ -1,11 +1,11 @@
 ﻿//_______________________________________________________________
 //  Title   :  Assembly info for: CAS UA ModelDesigner Configuration Unit Tests
 //  System  : Microsoft VisualStudio 2013 / C#
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+//  $LastChangedDate:  $
+//  $Rev: $
+//  $LastChangedBy: $
+//  $URL: $
+//  $Id:  $
 //
 //  Copyright (c) 2017 CAS LODZ POLAND
 //  +48 (42) 686 25 47
