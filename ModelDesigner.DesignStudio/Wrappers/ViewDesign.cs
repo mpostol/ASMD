@@ -30,7 +30,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region private
-    private class TreeNode: NodeDesign<Wrappers4ProperyGrid.ViewDesign, Opc.Ua.ModelCompiler.ViewDesign>.TreeNode<ViewDesign>
+    private class TreeNode: CAS.UA.Model.Designer.Controls.NodeDesignTreeNodeControl<ViewDesign, Wrappers4ProperyGrid.ViewDesign, Opc.Ua.ModelCompiler.ViewDesign>
     {
       public TreeNode( ViewDesign parent )
         : base( parent )

@@ -1,17 +1,9 @@
-﻿//<summary>
-//  Title   : Namespace Wrapper
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
 
@@ -82,12 +74,12 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return ToString();
     }
-    private class TreeNode: WrapperBase<Wrappers4ProperyGrid.Namespace, Opc.Ua.ModelCompiler.Namespace>.TreeNode<Namespace>
-    {
-      public TreeNode( Namespace parent )
-        : base( parent )
-      { }
-    }
+    //private class NamespaceTreeNodeControl : WrapperBaseTreeNodeControl<Namespace, Wrappers4ProperyGrid.Namespace, Opc.Ua.ModelCompiler.Namespace>
+    //{
+    //  public NamespaceTreeNodeControl( Namespace parent )
+    //    : base( parent )
+    //  { }
+    //}
     #endregion
   }
 }

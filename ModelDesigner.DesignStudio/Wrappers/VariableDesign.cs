@@ -7,7 +7,6 @@
 
 using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.Properties;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System;
 using System.Collections.Generic;
 using BaseModelType = Opc.Ua.ModelCompiler.VariableDesign;

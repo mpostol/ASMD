@@ -1,23 +1,15 @@
-﻿//<summary>
-//  Title   : Root of the model tree
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Windows.Forms; //TODO Refactoring application architecture - remove recursion #6 - remove
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -70,7 +62,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region private
-    private INodeFactory[] ListOfNodes
+    internal INodeFactory[] ListOfNodes
     {
       get
       {
@@ -88,7 +80,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         return m_list.ToArray();
       }
     }
-    private void GetImportMenu(ToolStripItemCollection items)
+    internal void GetImportMenu(ToolStripItemCollection items)
     {
       if (this.TestIfReadOnlyAndRetrunTrueIfReadOnly())
         return;
@@ -108,54 +100,56 @@ namespace CAS.UA.Model.Designer.Wrappers
       return String.Format(WrapperResources.ModelDesignNodeToolTipText, ns);
     }
     private NamespacesFolder m_Namespaces;
-    private class TreeNode : WrapperBase<Wrappers4ProperyGrid.ModelDesign, Opc.Ua.ModelCompiler.ModelDesign>.TreeNode<ModelDesign>
-    {
 
-      #region creator
-      public TreeNode(ModelDesign parent)
-        : base(parent)
-      { }
-      #endregion
+    //TODO Refactoring application architecture - remove recursion #6 - remove
+    //private class ModelDesignTreeNodeControl : WrapperBaseTreeNodeControl<ModelDesign, Wrappers4ProperyGrid.ModelDesign, Opc.Ua.ModelCompiler.ModelDesign>
+    //{
 
-      #region public
-      public override void SetTypeFilter(bool allTypes, IEnumerable<NodeClassesEnum> types)
-      {
-        RecreateSubtree();
-        ApplyTypeFiltersToChildreen(allTypes, types);
-      }
-      /// <summary>
-      /// Gets the unique identifier.
-      /// </summary>
-      /// <param name="ui">The instance of <see cref="UniqueIdentifier"/> that represents an unique identifier.</param>
-      /// <returns>
-      /// 	<c>true</c> if it is not top level element; <c>false</c> otherwise if it is top level element
-      /// </returns>
-      internal override bool GetUniqueIdentifier(UniqueIdentifier ui)
-      {
-        return false;
-      }
-      #endregion
+    //  #region creator
+    //  public ModelDesignTreeNodeControl(ModelDesign parent)
+    //    : base(parent)
+    //  { }
+    //  #endregion
 
-      #region private
-      protected override void BeforeMenuStripOpening()
-      {
-        AddMenuItemAdd(ModelEntity.ListOfNodes);
-        ToolStripMenuItem import = ImportMenuFactory.CreateImportMenuItem.CreateToolStripMenuItem();
-        this.ContextMenuStrip.Items.Add(import);
-        ModelEntity.GetImportMenu(import.DropDownItems);
-        base.BeforeMenuStripOpening();
-      }
-      protected override void AddMenuItemDelete()
-      {
-        //this node should not have menu delete
-      }
-      protected internal override void GetImportMenu(ToolStripItemCollection items)
-      {
-        ModelEntity.GetImportMenu(items);
-      }
-      #endregion
+    //  #region public
+    //  public override void SetTypeFilter(bool allTypes, IEnumerable<NodeClassesEnum> types)
+    //  {
+    //    RecreateSubtree();
+    //    ApplyTypeFiltersToChildreen(allTypes, types);
+    //  }
+    //  /// <summary>
+    //  /// Gets the unique identifier.
+    //  /// </summary>
+    //  /// <param name="ui">The instance of <see cref="UniqueIdentifier"/> that represents an unique identifier.</param>
+    //  /// <returns>
+    //  /// 	<c>true</c> if it is not top level element; <c>false</c> otherwise if it is top level element
+    //  /// </returns>
+    //  internal override bool GetUniqueIdentifier(UniqueIdentifier ui)
+    //  {
+    //    return false;
+    //  }
+    //  #endregion
 
-    }
+    //  #region private
+    //  protected override void BeforeMenuStripOpening()
+    //  {
+    //    AddMenuItemAdd(ModelEntity.ListOfNodes);
+    //    ToolStripMenuItem import = ImportMenuFactory.CreateImportMenuItem.CreateToolStripMenuItem();
+    //    this.ContextMenuStrip.Items.Add(import);
+    //    ModelEntity.GetImportMenu(import.DropDownItems);
+    //    base.BeforeMenuStripOpening();
+    //  }
+    //  protected override void AddMenuItemDelete()
+    //  {
+    //    //this node should not have menu delete
+    //  }
+    //  protected internal override void GetImportMenu(ToolStripItemCollection items)
+    //  {
+    //    ModelEntity.GetImportMenu(items);
+    //  }
+    //  #endregion
+
+    //}
     private void CreateImportMenuClick(object sender, EventArgs e)
     {
       Opc.Ua.ModelCompiler.NodeDesign[] nodes = OPCDA.OnImportMenuItemClick(GetTargetNamespace());
@@ -276,7 +270,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      BaseDictionaryTreeNode node = new TreeNode(this);
+      BaseDictionaryTreeNode node = new ModelDesignTreeNodeControl(this);
       node.Expand();
       return node;
     }

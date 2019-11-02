@@ -1,17 +1,9 @@
-﻿//<summary>
-//  Title   : Wrapper of the NodeDesin class - is to be used as object for PropertyGrid
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 
 using CAS.UA.Model.Designer.Properties;
 using System.Collections.Generic;
@@ -190,22 +182,22 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       MessageBox.Show(Resources.WrapperTreeNode_menu_paste_cannot_be_done);
     }
-    protected new abstract class TreeNode<T> : WrapperBase<type, OPCType>.TreeNode<T>
-      where T : NodeDesign<type, OPCType>
-    {
-      public TreeNode(T parent)
-        : base(parent)
-      { }
-      internal override void AddNodeToDictionary()
-      {
-        this.AddToDictionary(ModelEntity.Wrapper.SymbolicName.XmlQualifiedName, this);
-        base.AddNodeToDictionary();
-      }
-      public override XmlQualifiedName SymbolicName
-      {
-        get { return ModelEntity.SymbolicName; }
-      }
-    }
+    //protected abstract class NodeDesignTreeNodeControl<T> : WrapperBaseTreeNodeControl<T, type, OPCType>
+    //  where T : NodeDesign<type, OPCType>
+    //{
+    //  public NodeDesignTreeNodeControl(T parent)
+    //    : base(parent)
+    //  { }
+    //  internal override void AddNodeToDictionary()
+    //  {
+    //    this.AddToDictionary(ModelEntity.Wrapper.SymbolicName.XmlQualifiedName, this);
+    //    base.AddNodeToDictionary();
+    //  }
+    //  public override XmlQualifiedName SymbolicName
+    //  {
+    //    get { return ModelEntity.SymbolicName; }
+    //  }
+    //}
     /// <summary>
     /// Adds the node to the address space <see cref="IAddressSpaceCreator"/>.
     /// </summary>

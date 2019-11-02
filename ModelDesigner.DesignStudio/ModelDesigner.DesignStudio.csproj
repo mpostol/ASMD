@@ -226,11 +226,15 @@
     <Compile Include="Controls\ChildrenFolderTreeNodeControl.cs" />
     <Compile Include="Controls\CoupledNodesDictionaryTreeNode.cs" />
     <Compile Include="Controls\DictionaryTreeNode.cs" />
+    <Compile Include="Controls\EncodingDesignTreeNodeControl.cs" />
     <Compile Include="Controls\EncodingsFolderTreeNodeControl.cs" />
     <Compile Include="Controls\FileMenuProviderControl.cs" />
     <Compile Include="Controls\FolderTreeNodeControl.cs" />
     <Compile Include="Controls\LibraryTreeNodeControl.cs" />
+    <Compile Include="Controls\ModelDesignTreeNodeControl.cs" />
     <Compile Include="Controls\NamespacesFolderTreeNodeControl.cs" />
+    <Compile Include="Controls\NamespaceTreeNodeControl.cs" />
+    <Compile Include="Controls\NodeDesignTreeNodeControl.cs" />
     <Compile Include="Controls\NodeObserver\BindingsPropertyObserver.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -307,11 +311,14 @@
       <DependentUpon>View3DModelObserver.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ParametersFolderTreeNodeControl.cs" />
+    <Compile Include="Controls\ParameterTreeNodeControl.cs" />
     <Compile Include="Controls\ProjectTreeNodeControl.cs" />
     <Compile Include="Controls\ReferencesFolderTreeNodeControl.cs" />
+    <Compile Include="Controls\ReferenceTreeNodeControl.cs" />
     <Compile Include="Controls\RootTreeNodeControl.cs" />
     <Compile Include="Controls\SolutionTreeNodeControl.cs" />
     <Compile Include="Controls\ValidableTreeNodeControl.cs" />
+    <Compile Include="Controls\WrapperBaseTreeNodeControl.cs" />
     <Compile Include="Controls\WrapperTreeNodeControl.cs" />
     <Compile Include="ExportingTools\ExportConstrain.cs" />
     <Compile Include="Extensions.cs" />

@@ -1,19 +1,8 @@
-﻿//<summary>
-//  Title   : Parameter Wrapper
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  20081107: mzbrzezny: created
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
 
@@ -21,6 +10,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 {
   internal partial class EncodingDesign: WrapperBase<Wrappers4ProperyGrid.EncodingDesign, Opc.Ua.ModelCompiler.EncodingDesign>
   {
+
     #region creators
     public EncodingDesign() :
       base( new Wrappers4ProperyGrid.EncodingDesign( new Opc.Ua.ModelCompiler.EncodingDesign() ) )
@@ -39,12 +29,12 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return Wrapper.Description.ToString();
     }
-    private class TreeNode: WrapperBase<Wrappers4ProperyGrid.EncodingDesign, Opc.Ua.ModelCompiler.EncodingDesign>.TreeNode<EncodingDesign>
-    {
-      public TreeNode( EncodingDesign parent )
-        : base( parent )
-      { }
-    }
+    //private class EncodingDesignTreeNodeControl : WrapperBaseTreeNodeControl<EncodingDesign, Wrappers4ProperyGrid.EncodingDesign, Opc.Ua.ModelCompiler.EncodingDesign>
+    //{
+    //  public EncodingDesignTreeNodeControl( EncodingDesign parent )
+    //    : base( parent )
+    //  { }
+    //}
     #endregion
 
     #region public

@@ -1,20 +1,10 @@
-﻿//<summary>
-//  Title   : Reference
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
-using System.Collections.Generic;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -43,23 +33,23 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return Wrapper.ReferenceType.ToString();
     }
-    private class TreeNode: WrapperBase<Wrappers4ProperyGrid.Reference, Opc.Ua.ModelCompiler.Reference>.TreeNode<Reference>
-    {
-      public TreeNode( Reference parent )
-        : base( parent )
-      { }
-      internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
-      {
-        var list = base.GetCoupledNodesXmlQualifiedNames();
-        if ( ModelEntity.Wrapper.ReferenceType.XmlQualifiedName != null && !ModelEntity.Wrapper.ReferenceType.XmlQualifiedName.IsEmpty )
-          list.Add( Resources.WrapperTreeNodeAddMenuItemGoto_ReferenceType,
-            ModelEntity.Wrapper.ReferenceType.XmlQualifiedName );
-        if ( ModelEntity.Wrapper.TargetId.XmlQualifiedName != null && !ModelEntity.Wrapper.TargetId.XmlQualifiedName.IsEmpty )
-          list.Add( Resources.WrapperTreeNodeAddMenuItemGoto_Target,
-            ModelEntity.Wrapper.TargetId.XmlQualifiedName );
-        return list;
-      }
-    }
+    //private class ReferenceTreeNodeControl : WrapperBaseTreeNodeControl<Reference, Wrappers4ProperyGrid.Reference, Opc.Ua.ModelCompiler.Reference>
+    //{
+    //  public ReferenceTreeNodeControl( Reference parent )
+    //    : base( parent )
+    //  { }
+    //  internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
+    //  {
+    //    var list = base.GetCoupledNodesXmlQualifiedNames();
+    //    if ( ModelEntity.Wrapper.ReferenceType.XmlQualifiedName != null && !ModelEntity.Wrapper.ReferenceType.XmlQualifiedName.IsEmpty )
+    //      list.Add( Resources.WrapperTreeNodeAddMenuItemGoto_ReferenceType,
+    //        ModelEntity.Wrapper.ReferenceType.XmlQualifiedName );
+    //    if ( ModelEntity.Wrapper.TargetId.XmlQualifiedName != null && !ModelEntity.Wrapper.TargetId.XmlQualifiedName.IsEmpty )
+    //      list.Add( Resources.WrapperTreeNodeAddMenuItemGoto_Target,
+    //        ModelEntity.Wrapper.TargetId.XmlQualifiedName );
+    //    return list;
+    //  }
+    //}
     #endregion
 
     #region public

@@ -14,6 +14,7 @@
 //</summary>
 
 using CAS.UA.IServerConfiguration;
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Types;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
@@ -38,7 +39,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region private
-    protected new abstract class TreeNode<T> : NodeDesign<type, OPCType>.TreeNode<T>, IInstanceDesignTreeNode
+    protected abstract class TreeNode<T> : NodeDesignTreeNodeControl<T, type, OPCType>, IInstanceDesignTreeNode
       where T : InstanceDesign<type, OPCType>
     {
       #region creator

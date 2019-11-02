@@ -14,6 +14,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Types;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
@@ -52,7 +53,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region private
-    protected new abstract class TreeNode<T> : NodeDesign<type, MT>.TreeNode<T>
+    protected abstract class TreeNode<T> : NodeDesignTreeNodeControl<T, type, MT>
       where T : TypeDesign<type, MT>
     {
       public TreeNode(T parent)

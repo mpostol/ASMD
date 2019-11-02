@@ -52,7 +52,7 @@ namespace CAS.UA.Model.Designer.Controls
         this.TreeView.ResumeLayout();
       }
     }
-    private void RecreateSubtree()
+    internal void RecreateSubtree()
     {
       ClearChildren();
       AddChildren(ModelEntity);

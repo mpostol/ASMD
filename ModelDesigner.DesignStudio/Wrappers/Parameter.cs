@@ -1,19 +1,8 @@
-﻿//<summary>
-//  Title   : Parameter Wrapper
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  20081107: mzbrzezny: created
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
 
@@ -40,12 +29,12 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return Wrapper.Description.ToString();
     }
-    private class TreeNode: WrapperBase<Wrappers4ProperyGrid.Parameter, Opc.Ua.ModelCompiler.Parameter>.TreeNode<Parameter>
-    {
-      public TreeNode( Parameter parent )
-        : base( parent )
-      { }
-    }//TreeNode
+    //private class ParameterTreeNodeControl : WrapperBaseTreeNodeControl<Parameter, Wrappers4ProperyGrid.Parameter, Opc.Ua.ModelCompiler.Parameter>
+    //{
+    //  public ParameterTreeNodeControl( Parameter parent )
+    //    : base( parent )
+    //  { }
+    //}//TreeNode
     #endregion //protected
 
     #region public
