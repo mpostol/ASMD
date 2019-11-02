@@ -11,8 +11,8 @@
       </MemberNameLabel>
     </AssociationLine>
     <AssociationLine Name="SolutionRoot" Type="CAS.UA.Model.Designer.Wrappers.SolutionTreeNode">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.058" Y="0.633" />
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.058" Y="0.331" Height="0.182" Width="1.066" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -49,13 +49,6 @@
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
-    <NestedTypes>
-      <Class Name="CAS.UA.Model.Designer.Wrappers.RootTreeNode.TreeNode&lt;T&gt;" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Wrappers\RootTreeNode.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\RootTreeNode.cs</FileName>
@@ -63,20 +56,6 @@
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.WrapperTreeNode" Collapsed="true">
     <Position X="16" Y="3.25" Width="1.75" />
-    <NestedTypes>
-      <Class Name="CAS.UA.Model.Designer.Wrappers.WrapperTreeNode.TreeNode&lt;T&gt;" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Wrappers\WrapperTreeNode.cs</NewMemberFileName>
-        </TypeIdentifier>
-        <Lollipop Position="0.2" />
-      </Class>
-      <Class Name="CAS.UA.Model.Designer.Wrappers.WrapperTreeNode.WrapperTreeNodeImodelNodeEnumerator" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Wrappers\WrapperTreeNode.cs</NewMemberFileName>
-        </TypeIdentifier>
-        <Lollipop Position="0.2" />
-      </Class>
-    </NestedTypes>
     <TypeIdentifier>
       <HashCode>ACAAACCABEAAAEiTAAAAAAQgEQAACBAIBYAYCABAAAA=</HashCode>
       <FileName>Wrappers\WrapperTreeNode.cs</FileName>
@@ -183,6 +162,13 @@
       <Compartment Name="Properties" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
+    <NestedTypes>
+      <Class Name="CAS.UA.Model.Designer.Wrappers.ChildrenFolder.TreeNode" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Wrappers\ChildrenFolder.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>ABAAACAABAIAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Wrappers\ChildrenFolder.cs</FileName>
@@ -238,7 +224,17 @@
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ReferencesFolder" Collapsed="true">
     <Position X="16.25" Y="6.25" Width="1.5" />
-    <AssociationLine Name="ListOfNodes" Type="CAS.UA.Model.Designer.Wrappers.INodeFactory">
+    <AssociationLine Name="ListOfNodes" Type="CAS.UA.Model.Designer.Wrappers.INodeFactory" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="17" Y="6.941" />
+        <Point X="17" Y="7.493" />
+        <Point X="11.708" Y="7.493" Type="JumpStart" />
+        <Point X="11.542" Y="7.493" Type="JumpEnd" />
+        <Point X="10.896" Y="7.493" Type="JumpStart" />
+        <Point X="10.729" Y="7.493" Type="JumpEnd" />
+        <Point X="10.625" Y="7.493" />
+        <Point X="10.625" Y="8.25" />
+      </Path>
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
         <Position X="-6.189" Y="1.048" Height="0.182" Width="1.083" />
       </MemberNameLabel>

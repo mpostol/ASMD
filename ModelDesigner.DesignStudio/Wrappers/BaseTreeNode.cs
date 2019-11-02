@@ -14,7 +14,7 @@
 //</summary>
 
 using CAS.UA.IServerConfiguration;
-using CAS.UA.Model.Designer.Controls;
+using CAS.UA.Model.Designer.Controls; //Bootstrapper exception - casting problem #37 - must be removed
 using System;
 using System.Collections.Generic;
 
@@ -55,7 +55,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       RaiseOnChangeHandler();
       SubtreeChanged?.Invoke(this, new ProjectEventArgs());
     }
-    protected abstract class TreeNode<T> : DictionaryTreeView.DictionaryTreeNode
+    protected abstract class TreeNode<T> : DictionaryTreeNode
       where T : BaseTreeNode
     {
       #region private

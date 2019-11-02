@@ -15,6 +15,7 @@
 
 using System.Windows.Forms;
 
+//TODO Bootstrapper exception - casting problem #37 - move it to Controls
 namespace CAS.UA.Model.Designer.Wrappers
 {
   /// <summary>

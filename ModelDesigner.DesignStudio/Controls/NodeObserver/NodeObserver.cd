@@ -81,12 +81,10 @@
     <TypeIdentifier />
     <Lollipop Position="1.272" />
   </Class>
-  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.ModelObserver">
+  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.ModelObserver" Collapsed="true">
     <Position X="3" Y="3.5" Width="2.25" />
     <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
-      <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <AssociationLine Name="SelectedNode" Type="System.Windows.Forms.TreeNode">
       <MemberNameLabel ManuallyPlaced="true">
@@ -98,6 +96,7 @@
       <FileName>Controls\NodeObserver\ModelObserver.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Field Name="m_TreeView" />
       <Property Name="SelectedNode" />
     </ShowAsAssociation>
   </Class>
@@ -109,7 +108,7 @@
   <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.SelectedItemObserver" Collapsed="true">
     <Position X="9.75" Y="2" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>ADADACgBAAAAAQAAAAAKAAAIAAAAAAAAACEAAACAAAI=</HashCode>
+      <HashCode>ADADACgBAIAAAQAAAAAAAAiAAQAAAAAAACEAAACAAAI=</HashCode>
       <FileName>Controls\NodeObserver\SelectedItemObserver.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="1.37" />
@@ -165,6 +164,13 @@
     <Position X="21.5" Y="0.75" Width="1.75" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.DictionaryTreeView" Collapsed="true">
+    <Position X="3" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAACAAAwEYAACAAAACEEAABAoBAABBgAgAFAE=</HashCode>
+      <FileName>Controls\DictionaryTreeView.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Interface Name="CAS.UA.Model.Designer.Controls.NodeObserver.ISelectedItemObserver">
     <Position X="14.5" Y="4.75" Width="3" />

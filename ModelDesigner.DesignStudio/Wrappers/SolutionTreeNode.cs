@@ -48,9 +48,8 @@ namespace CAS.UA.Model.Designer.Wrappers
   {
 
     #region private
-    private EventHandler m_OnChangeHandler = null;
-    private void configuration_OnNameChanged(object sender, EventArgs e)
-    { }
+    private readonly EventHandler m_OnChangeHandler = null;
+    private void configuration_OnNameChanged(object sender, EventArgs e) { }
     private void AddProjectsNodes(IEnumerable<UAModelDesignerProject> configuration)
     {
       if (configuration == null)
@@ -65,13 +64,13 @@ namespace CAS.UA.Model.Designer.Wrappers
         }
         catch (FileNotFoundException _fnfe)
         {
-          MessageBox.Show(String.Format(Resources.ProjectFileNotFound_Info, _fnfe.Message), Resources.ProjectFileNotFound_Header, MessageBoxButtons.OK, MessageBoxIcon.Error);
+          MessageBox.Show(string.Format(Resources.ProjectFileNotFound_Info, _fnfe.Message), Resources.ProjectFileNotFound_Header, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         catch (Exception _ex)
         {
           MessageBox.Show
             (
-              String.Format(Properties.Resources.Project_FileOpenError, _ex.Message),
+              string.Format(Properties.Resources.Project_FileOpenError, _ex.Message),
               Properties.Resources.Project_OpenFileCaption,
               MessageBoxButtons.OK,
               MessageBoxIcon.Error
@@ -134,37 +133,22 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region WrapperTreeNode 
-    public override NodeTypeEnum NodeType
-    {
-      get { return NodeTypeEnum.SolutionNode; }
-    }
+    public override NodeTypeEnum NodeType => NodeTypeEnum.SolutionNode;
     /// <summary>
     /// Gets the name of the help topic.
     /// </summary>
     /// <value>The name of the help topic.</value>
-    public override string HelpTopicName
-    {
-      get { return Resources.SolutionTreeNode; }
-    }
+    public override string HelpTopicName => Resources.SolutionTreeNode;
     /// <summary>
     /// Gets the node class.
     /// </summary>
     /// <value>The node class.</value>
-    public override NodeClassesEnum NodeClass
-    {
-      get { return NodeClassesEnum.None; }
-    }
+    public override NodeClassesEnum NodeClass => NodeClassesEnum.None;
     internal override bool TestIfReadOnlyAndRetrunTrueIfReadOnly()
     {
       return false;
     }
-    public override object Wrapper
-    {
-      get
-      {
-        return this.Create();
-      }
-    }
+    public override object Wrapper => this.Create();
     #endregion
 
     #region public
@@ -174,15 +158,15 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <value>The server descriptor.</value>
     internal ServerSelector.ServerDescriptor ServerDetails
     {
-      set { Server.ServerConfiguration = value; }
+      set => Server.ServerConfiguration = value;
       get
       {
         ServerSelector.ServerDescriptor _descriptor = Server.ServerConfiguration;
         if (_descriptor == null)
           return null;
-        if (!String.IsNullOrEmpty(_descriptor.codebase))
+        if (!string.IsNullOrEmpty(_descriptor.codebase))
           _descriptor.codebase = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.codebase); //TODO must refer to the plugin directory.
-        if (!String.IsNullOrEmpty(_descriptor.configuration))
+        if (!string.IsNullOrEmpty(_descriptor.configuration))
           _descriptor.configuration = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.configuration);
         return _descriptor;
       }
@@ -279,7 +263,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region WrapperTreeNode
-    internal protected override void RaiseOnChangeHandler()
+    protected internal override void RaiseOnChangeHandler()
     {
       m_OnChangeHandler?.Invoke(this, EventArgs.Empty);
       OnDataChanged?.Invoke(this, EventArgs.Empty);

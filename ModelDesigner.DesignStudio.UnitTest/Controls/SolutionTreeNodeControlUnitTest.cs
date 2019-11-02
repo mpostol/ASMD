@@ -198,7 +198,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       #endregion
 
     }
-    private class DictionaryTreeNodeTest : DictionaryTreeView.DictionaryTreeNode
+    private class DictionaryTreeNodeTest : DictionaryTreeNode
     {
       protected override void Unregister()
       {

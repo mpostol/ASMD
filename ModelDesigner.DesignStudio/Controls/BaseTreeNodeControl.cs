@@ -18,7 +18,7 @@ using System;
 
 namespace CAS.UA.Model.Designer.Controls
 {
-  internal abstract class BaseTreeNodeControl<TModel, TChildModel> : DictionaryTreeView.DictionaryTreeNode
+  internal abstract class BaseTreeNodeControl<TModel, TChildModel> : DictionaryTreeNode
     where TModel : IBaseModel
     where TChildModel : IBaseModel
   {
@@ -98,6 +98,7 @@ namespace CAS.UA.Model.Designer.Controls
     {
       return ModelEntity.GetTreeNode();
     }
+    internal override IBaseModel BaseModelNode => ModelEntity;
     #endregion
 
   }
