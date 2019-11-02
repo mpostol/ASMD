@@ -162,6 +162,13 @@
       <Compartment Name="Properties" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
+    <NestedTypes>
+      <Class Name="CAS.UA.Model.Designer.Wrappers.ChildrenFolder.TreeNode" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Wrappers\ChildrenFolder.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>ABAAACAABAIAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Wrappers\ChildrenFolder.cs</FileName>

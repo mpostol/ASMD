@@ -13,7 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
+using CAS.UA.Model.Designer.Controls;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -23,7 +23,7 @@ namespace CAS.UA.Model.Designer.Wrappers
   internal abstract class Folder: WrapperTreeNode
   {
     #region private
-    protected new abstract class TreeNode<T>: WrapperTreeNode.TreeNode<T>
+    protected abstract class TreeNode<T>: WrapperTreeNodeControl<T>
       where T: Folder
     {
       public TreeNode( T parent )

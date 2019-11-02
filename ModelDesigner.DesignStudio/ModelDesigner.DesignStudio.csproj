@@ -305,6 +305,7 @@
     <Compile Include="Controls\ProjectTreeNodeControl.cs" />
     <Compile Include="Controls\RootTreeNodeControl.cs" />
     <Compile Include="Controls\SolutionTreeNodeControl.cs" />
+    <Compile Include="Controls\WrapperTreeNodeControl.cs" />
     <Compile Include="ExportingTools\ExportConstrain.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IAddressSpaceCreator.cs" />

@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.Controls;
 using System;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -49,7 +50,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #region private
     protected abstract string NodeName();
     protected abstract string NodeTip();
-    protected new abstract class TreeNode<T>: WrapperTreeNode.TreeNode<T>, IValidate
+    protected abstract class TreeNode<T>: WrapperTreeNodeControl<T>, IValidate
         where T: ValidableTreeNode
     {
       #region creator
