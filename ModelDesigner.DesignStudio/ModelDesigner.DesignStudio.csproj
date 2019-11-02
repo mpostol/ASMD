@@ -302,6 +302,7 @@
       <DependentUpon>View3DModelObserver.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ProjectTreeNodeControl.cs" />
+    <Compile Include="Controls\RootTreeNodeControl.cs" />
     <Compile Include="Controls\SolutionTreeNodeControl.cs" />
     <Compile Include="ExportingTools\ExportConstrain.cs" />
     <Compile Include="Extensions.cs" />

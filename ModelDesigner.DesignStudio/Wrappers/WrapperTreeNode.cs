@@ -15,6 +15,7 @@
 
 using CAS.Lib.ControlLibrary;
 using CAS.UA.IServerConfiguration;
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.Collections.Generic;
@@ -138,7 +139,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       node.Validate();
     }
     #endregion
-    protected new abstract class TreeNode<T> : BaseTreeNode.TreeNode<T>, IWrapperTreeNode
+    protected new abstract class TreeNode<T> : BaseTreeNodeControl<T, T>, IWrapperTreeNode
       where T : WrapperTreeNode, IModelNode, IModelNodeAdvance
     {
       #region creator
@@ -149,7 +150,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 
       #region private
       private List<Diagnostics> m_ErrorList = new List<Diagnostics>();
-      protected IModelNode MyIModelNode { get { return this.Creator as IModelNode; } }
+      protected IModelNode MyIModelNode { get { return ModelEntity as IModelNode; } }
       /// <summary>
       /// Gets the wrappers to be used in the <see cref="System.Windows.Forms.PropertyGrid"/>.
       /// </summary>
@@ -158,7 +159,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       {
         ToolStripMenuItem menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_add_object, Resources.AdddItem)
         {
-          Enabled = !Creator.TestIfReadOnlyAndRetrunTrueIfReadOnly()
+          Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly()
         };
         ContextMenuStrip.Items.Add(menu);
         foreach (INodeFactory item in listOfNodes)
@@ -167,9 +168,9 @@ namespace CAS.UA.Model.Designer.Wrappers
           ToolStripMenuItem sm = new ToolStripMenuItem(node_name)
           {
             Tag = item,
-            Enabled = !Creator.TestIfReadOnlyAndRetrunTrueIfReadOnly()
+            Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly()
           };
-          sm.Click += new EventHandler(Creator.AddMenuItemAdd_Click);
+          sm.Click += new EventHandler(ModelEntity.AddMenuItemAdd_Click);
           menu.DropDownItems.Add(sm);
         }
       }
@@ -186,33 +187,33 @@ namespace CAS.UA.Model.Designer.Wrappers
         ToolStripMenuItem menu;
         menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_cut, Resources.cut)
         {
-          Enabled = !Creator.TestIfReadOnlyAndRetrunTrueIfReadOnly()
+          Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly()
         };
-        menu.Click += new EventHandler(Creator.AddMenuItemCut_Click);
+        menu.Click += new EventHandler(ModelEntity.AddMenuItemCut_Click);
         ContextMenuStrip.Items.Add(menu);
       }
       protected void AddMenuItemCopy()
       {
         ToolStripMenuItem menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_copy, Resources.copy);
-        menu.Click += new EventHandler(Creator.AddMenuItemCopy_Click);
+        menu.Click += new EventHandler(ModelEntity.AddMenuItemCopy_Click);
         ContextMenuStrip.Items.Add(menu);
       }
       protected void AddMenuItemPaste()
       {
         ToolStripMenuItem MenuPaste = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_paste, Resources.paste)
         {
-          Enabled = !Creator.TestIfReadOnlyAndRetrunTrueIfReadOnly() && Creator.ShouldPasteMenuBeEnabled()
+          Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly() && ModelEntity.ShouldPasteMenuBeEnabled()
         };
-        MenuPaste.Click += new EventHandler(Creator.AddMenuItemPaste_Click);
+        MenuPaste.Click += new EventHandler(ModelEntity.AddMenuItemPaste_Click);
         ContextMenuStrip.Items.Add(MenuPaste);
       }
       protected virtual void AddMenuItemDelete()
       {
         ToolStripMenuItem menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_delete, Resources.delete)
         {
-          Enabled = !Creator.TestIfReadOnlyAndRetrunTrueIfReadOnly()
+          Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly()
         };
-        menu.Click += new EventHandler(Creator.AddMenuItemDelete_Click);
+        menu.Click += new EventHandler(ModelEntity.AddMenuItemDelete_Click);
         ContextMenuStrip.Items.Add(menu);
       }
       #endregion
@@ -224,7 +225,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       /// <value>
       /// An instance of class inherited from <see cref="IModelNodeAdvance"/>.
       /// </value>
-      IModelNodeAdvance IWrapperTreeNode.IModelNodeAdvance { get { return this.Creator as IModelNodeAdvance; } }
+      IModelNodeAdvance IWrapperTreeNode.IModelNodeAdvance { get { return this.ModelEntity as IModelNodeAdvance; } }
       /// <summary>
       /// Gets or sets the name of the tree node.
       /// </summary>
@@ -234,7 +235,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       /// </returns>
       string IModelNode.Name
       {
-        get { return Creator.Name; }
+        get { return ModelEntity.Name; }
       }
       /// <summary>
       /// Gets the error list.
@@ -250,7 +251,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       /// <value>The wrapper.</value>
       object IModelNode.Wrapper4PropertyGrid
       {
-        get { return Creator.Wrapper4PropertyGrid; }
+        get { return ModelEntity.Wrapper4PropertyGrid; }
       }
       /// <summary>
       /// Gets the wrapper for property grid of data bindings.
@@ -262,7 +263,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         UniqueIdentifier ui = new UniqueIdentifier();
         if (!GetUniqueIdentifier(ui))
           return null;
-        return Creator.GetINodeDescriptor(ui);
+        return ModelEntity.GetINodeDescriptor(ui);
       }
       /// <summary>
       /// Gets the name of the node class.
@@ -270,7 +271,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       /// <value>The name of the node class.</value>
       NodeClassesEnum IModelNode.NodeClass
       {
-        get { return Creator.NodeClass; }
+        get { return ModelEntity.NodeClass; }
       }
       /// <summary>
       /// Gets the name of the help topic.
@@ -280,7 +281,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       /// </value>
       string IModelNode.HelpTopicName
       {
-        get { return Creator.HelpTopicName; }
+        get { return ModelEntity.HelpTopicName; }
       }
       /// <summary>
       /// Gets a value indicating whether this instance is read only.
@@ -290,7 +291,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       /// </value>
       bool IModelNode.IsReadOnly
       {
-        get { return Creator.IsReadOnly; }
+        get { return ModelEntity.IsReadOnly; }
       }
       /// <summary>
       /// Gets the symbolic name.

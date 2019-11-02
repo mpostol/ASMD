@@ -139,10 +139,10 @@ namespace CAS.UA.Model.Designer.Wrappers
       #region private
       protected override void BeforeMenuStripOpening()
       {
-        AddMenuItemAdd(Creator.ListOfNodes);
+        AddMenuItemAdd(ModelEntity.ListOfNodes);
         ToolStripMenuItem import = ImportMenuFactory.CreateImportMenuItem.CreateToolStripMenuItem();
         this.ContextMenuStrip.Items.Add(import);
-        Creator.GetImportMenu(import.DropDownItems);
+        ModelEntity.GetImportMenu(import.DropDownItems);
         base.BeforeMenuStripOpening();
       }
       protected override void AddMenuItemDelete()
@@ -151,7 +151,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       protected internal override void GetImportMenu(ToolStripItemCollection items)
       {
-        Creator.GetImportMenu(items);
+        ModelEntity.GetImportMenu(items);
       }
       #endregion
 

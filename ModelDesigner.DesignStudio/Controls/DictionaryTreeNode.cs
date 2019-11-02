@@ -141,7 +141,7 @@ namespace CAS.UA.Model.Designer.Controls
         return;
       Parent.GetImportMenu(items);
     }
-    internal abstract IBaseModel BaseModelNode { get; }
+    //internal abstract IBaseModel BaseModelNode { get; }
     #endregion
 
 

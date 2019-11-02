@@ -1,17 +1,8 @@
-﻿//<summary>
-//  Title   : Wrapper base class - it is to be used as a base for all ModelDesign wrapped classes
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using System.Collections.Generic;
 using System.IO;
@@ -96,11 +87,11 @@ namespace CAS.UA.Model.Designer.Wrappers
       {
         if ( AllTypes )
           return true;
-        if ( this.Creator.NodeClass == NodeClassesEnum.None )
+        if ( this.ModelEntity.NodeClass == NodeClassesEnum.None )
           return true;
         else
           foreach ( NodeClassesEnum type in types )
-            if ( this.Creator.NodeClass == type )
+            if ( this.ModelEntity.NodeClass == type )
               return true;
         return false;
       }

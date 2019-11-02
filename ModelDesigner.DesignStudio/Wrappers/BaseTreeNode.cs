@@ -55,83 +55,83 @@ namespace CAS.UA.Model.Designer.Wrappers
       RaiseOnChangeHandler();
       SubtreeChanged?.Invoke(this, new ProjectEventArgs());
     }
-    protected abstract class TreeNode<T> : DictionaryTreeNode
-      where T : BaseTreeNode
-    {
-      #region private
-      /// <summary>
-      /// Gets or sets the creator. 
-      /// This is the Wrapper object (from CAS.UA.Model.Designer.Wrappers), 
-      /// so this is a link to a mesh that store the model
-      /// </summary>
-      /// <value>The creator.</value>
-      protected T Creator { get; private set; }
-      private void OnTextChanged(object sender, TextEventArgs e)
-      {
-        Text = e.Node.Text;
-        ToolTipText = e.Node.ToolTipText;
-        //TODO Tree view could be null while adding Variable - fixed but impact must be analized.
-        //Completed: At revision: 9178  
-        if (TreeView != null)
-          TreeView.RebuildDictionary();
-      }
-      private void OnSubtreeChanged(object sender, ProjectEventArgs e)
-      {
-        if (this.TreeView != null)
-          this.TreeView.SuspendLayout();
-        RecreateSubtree();
-        if (this.TreeView != null)
-        {
-          this.TreeView.SelectedNode = this;
-          TreeView.RebuildDictionary();
-          this.TreeView.ResumeLayout();
-        }
-      }
-      protected void RecreateSubtree()
-      {
-        ClearChildren();
-        AddChildren(Creator);
-      }
-      protected override void Unregister()
-      {
-        ClearChildren();
-        Creator.TextChanged -= new EventHandler<TextEventArgs>(OnTextChanged);
-        Creator.SubtreeChanged -= new EventHandler<ProjectEventArgs>(OnSubtreeChanged);
-      }
-      protected void AddChildren(T parent)
-      {
-        foreach (BaseTreeNode node in parent)
-          Nodes.Add(node.GetTreeNode());
-      }
-      #endregion
+    //protected abstract class TreeNode<T> : BaseTreeNodeControl<T, T>
+    //  where T : BaseTreeNode
+    //{
+      //  #region private
+      //  /// <summary>
+      //  /// Gets or sets the creator. 
+      //  /// This is the Wrapper object (from CAS.UA.Model.Designer.Wrappers), 
+      //  /// so this is a link to a mesh that store the model
+      //  /// </summary>
+      //  /// <value>The creator.</value>
+      //  protected T Creator { get; private set; }
+      //  private void OnTextChanged(object sender, TextEventArgs e)
+      //  {
+      //    Text = e.Node.Text;
+      //    ToolTipText = e.Node.ToolTipText;
+      //    //TODO Tree view could be null while adding Variable - fixed but impact must be analized.
+      //    //Completed: At revision: 9178  
+      //    if (TreeView != null)
+      //      TreeView.RebuildDictionary();
+      //  }
+      //  private void OnSubtreeChanged(object sender, ProjectEventArgs e)
+      //  {
+      //    if (this.TreeView != null)
+      //      this.TreeView.SuspendLayout();
+      //    RecreateSubtree();
+      //    if (this.TreeView != null)
+      //    {
+      //      this.TreeView.SelectedNode = this;
+      //      TreeView.RebuildDictionary();
+      //      this.TreeView.ResumeLayout();
+      //    }
+      //  }
+      //  protected void RecreateSubtree()
+      //  {
+      //    ClearChildren();
+      //    AddChildren(Creator);
+      //  }
+      //  protected override void Unregister()
+      //  {
+      //    ClearChildren();
+      //    Creator.TextChanged -= new EventHandler<TextEventArgs>(OnTextChanged);
+      //    Creator.SubtreeChanged -= new EventHandler<ProjectEventArgs>(OnSubtreeChanged);
+      //  }
+      //  protected void AddChildren(T parent)
+      //  {
+      //    foreach (BaseTreeNode node in parent)
+      //      Nodes.Add(node.GetTreeNode());
+      //  }
+      //  #endregion
 
-      #region creator
-      public TreeNode(T parent)
-        : base()
-      {
-        CommonOperationsForTheNodeCreation(parent);
-        parent.TextChanged += new EventHandler<TextEventArgs>(OnTextChanged);
-        parent.SubtreeChanged += new EventHandler<ProjectEventArgs>(OnSubtreeChanged);
-        AddChildren(parent);
-      }
+      //  #region creator
+      //public TreeNode(T parent)
+      //  : base(parent)
+      //{
+        //CommonOperationsForTheNodeCreation(parent);
+        //parent.TextChanged += new EventHandler<TextEventArgs>(OnTextChanged);
+        //parent.SubtreeChanged += new EventHandler<ProjectEventArgs>(OnSubtreeChanged);
+        //AddChildren(parent);
+      //}
 
-      private void CommonOperationsForTheNodeCreation(T parent)
-      {
-        Creator = parent;
-        Text = parent.m_Text;
-        ToolTipText = parent.ToolTipText;
-        this.ImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(Creator.GetType().Name, false);
-        this.SelectedImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(Creator.GetType().Name, true);
-      }
-      #endregion
+      //  private void CommonOperationsForTheNodeCreation(T parent)
+      //  {
+      //    Creator = parent;
+      //    Text = parent.m_Text;
+      //    ToolTipText = parent.ToolTipText;
+      //    this.ImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(Creator.GetType().Name, false);
+      //    this.SelectedImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(Creator.GetType().Name, true);
+      //  }
+      //  #endregion
 
-      #region public
-      internal override BaseDictionaryTreeNode CreateCopy()
-      {
-        return Creator.GetTreeNode();
-      }
-      #endregion
-    }
+      //  #region public
+      //  internal override BaseDictionaryTreeNode CreateCopy()
+      //  {
+      //    return Creator.GetTreeNode();
+      //  }
+      //  #endregion
+    //}
     protected virtual void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
     {
       Parent.CreateInstanceConfigurations(node, SkipOpeningConfigurationFile, out CancelWasPressed);

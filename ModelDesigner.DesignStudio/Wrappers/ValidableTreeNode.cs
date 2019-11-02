@@ -61,7 +61,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       #region IValidate Members
       public void Validate()
       {
-        Creator.Validate();
+        ModelEntity.Validate();
         if ( this.TreeView != null )
           this.TreeView.RebuildDictionary();
       }

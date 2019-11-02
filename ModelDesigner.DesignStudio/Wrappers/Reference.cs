@@ -51,12 +51,12 @@ namespace CAS.UA.Model.Designer.Wrappers
       internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
       {
         var list = base.GetCoupledNodesXmlQualifiedNames();
-        if ( Creator.Wrapper.ReferenceType.XmlQualifiedName != null && !Creator.Wrapper.ReferenceType.XmlQualifiedName.IsEmpty )
+        if ( ModelEntity.Wrapper.ReferenceType.XmlQualifiedName != null && !ModelEntity.Wrapper.ReferenceType.XmlQualifiedName.IsEmpty )
           list.Add( Resources.WrapperTreeNodeAddMenuItemGoto_ReferenceType,
-            Creator.Wrapper.ReferenceType.XmlQualifiedName );
-        if ( Creator.Wrapper.TargetId.XmlQualifiedName != null && !Creator.Wrapper.TargetId.XmlQualifiedName.IsEmpty )
+            ModelEntity.Wrapper.ReferenceType.XmlQualifiedName );
+        if ( ModelEntity.Wrapper.TargetId.XmlQualifiedName != null && !ModelEntity.Wrapper.TargetId.XmlQualifiedName.IsEmpty )
           list.Add( Resources.WrapperTreeNodeAddMenuItemGoto_Target,
-            Creator.Wrapper.TargetId.XmlQualifiedName );
+            ModelEntity.Wrapper.TargetId.XmlQualifiedName );
         return list;
       }
     }

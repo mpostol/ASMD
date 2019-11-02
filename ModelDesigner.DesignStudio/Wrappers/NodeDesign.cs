@@ -198,12 +198,12 @@ namespace CAS.UA.Model.Designer.Wrappers
       { }
       internal override void AddNodeToDictionary()
       {
-        this.AddToDictionary(Creator.Wrapper.SymbolicName.XmlQualifiedName, this);
+        this.AddToDictionary(ModelEntity.Wrapper.SymbolicName.XmlQualifiedName, this);
         base.AddNodeToDictionary();
       }
       public override XmlQualifiedName SymbolicName
       {
-        get { return Creator.SymbolicName; }
+        get { return ModelEntity.SymbolicName; }
       }
     }
     /// <summary>

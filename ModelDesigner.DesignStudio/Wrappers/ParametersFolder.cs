@@ -87,7 +87,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       protected override void BeforeMenuStripOpening()
       {
         AddMenuItemPaste();
-        AddMenuItemAdd( Creator.ListOfNodes );
+        AddMenuItemAdd(ModelEntity.ListOfNodes );
         base.BeforeMenuStripOpening();
       }
     }

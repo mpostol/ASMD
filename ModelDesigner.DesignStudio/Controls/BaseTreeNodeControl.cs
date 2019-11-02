@@ -65,10 +65,11 @@ namespace CAS.UA.Model.Designer.Controls
     }
     protected void AddChildren(TModel parent)
     {
-      foreach (TChildModel node in parent)
-        Nodes.Add(GetChildTreeNodeControl(node));
+      throw new NotImplementedException("Nodes factory myust be implemented.");
+      //foreach (TChildModel node in parent)
+      //  Nodes.Add(GetChildTreeNodeControl(node));
     }
-    protected abstract BaseDictionaryTreeNode GetChildTreeNodeControl(TChildModel modelEntity);
+    //protected abstract BaseDictionaryTreeNode GetChildTreeNodeControl(TChildModel modelEntity);
     #endregion
 
     #region creator
@@ -98,7 +99,7 @@ namespace CAS.UA.Model.Designer.Controls
     {
       return ModelEntity.GetTreeNode();
     }
-    internal override IBaseModel BaseModelNode => ModelEntity;
+    //internal override IBaseModel BaseModelNode => ModelEntity;
     #endregion
 
   }

@@ -42,10 +42,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       {
         return new BaseTreeNodeControTest(new BaseTreeNodeTest());
       }
-      protected override BaseDictionaryTreeNode GetChildTreeNodeControl(IBaseModel node)
-      {
-        throw new NotImplementedException();
-      }
       public BaseTreeNodeControTest(BaseTreeNodeTest model) : base(model) { }
     }
     private class BaseTreeNodeTest : List<IBaseModel>, IBaseModel

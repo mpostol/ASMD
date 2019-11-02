@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.Controls;
 using System.Collections.Generic;
 using System.Xml;
 using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
@@ -25,7 +26,7 @@ namespace CAS.UA.Model.Designer.Wrappers
   internal class LibraryTreeNode : RootTreeNode
   {
     #region private
-    private class LocalTreeNode : RootTreeNode.TreeNode<LibraryTreeNode>
+    private class LocalTreeNode : RootTreeNodeControl<LibraryTreeNode>
     {
       public LocalTreeNode(LibraryTreeNode parent)
         : base(parent)

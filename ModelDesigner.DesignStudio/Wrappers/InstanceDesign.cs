@@ -51,9 +51,9 @@ namespace CAS.UA.Model.Designer.Wrappers
       internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
       {
         var list = base.GetCoupledNodesXmlQualifiedNames();
-        if (Creator.Wrapper.TypeDefinition.XmlQualifiedName != null && !Creator.Wrapper.TypeDefinition.XmlQualifiedName.IsEmpty)
+        if (ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName != null && !ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName.IsEmpty)
           list.Add(Resources.WrapperTreeNodeAddMenuItemGoto_TypeDefinition,
-             Creator.Wrapper.TypeDefinition.XmlQualifiedName);
+             ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName);
         return list;
       }
       /// <summary>
@@ -66,7 +66,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       internal override bool GetUniqueIdentifier(UniqueIdentifier ui)
       {
         bool intermediate = base.GetUniqueIdentifier(ui);
-        ui.Update(intermediate, Creator.Wrapper.SymbolicName.XmlQualifiedName, false);
+        ui.Update(intermediate, ModelEntity.Wrapper.SymbolicName.XmlQualifiedName, false);
         return true;
       }
       #endregion
@@ -83,7 +83,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       {
         UniqueIdentifier ui = new UniqueIdentifier();
         GetUniqueIdentifier(ui);
-        m_InstanceConfiguration = Root.GetInstanceConfiguration(Creator.Wrapper.GetINodeDescriptor(ui, Creator.NodeClass));
+        m_InstanceConfiguration = Root.GetInstanceConfiguration(ModelEntity.Wrapper.GetINodeDescriptor(ui, ModelEntity.NodeClass));
         AddMenuItemGoTo(Resources.WrapperTreeNodeAddMenuItemGoto
           + Resources.WrapperTreeNodeAddMenuItemGoto_TypeDefinition,
           Resources.WrapperTreeNodeAddMenuItemGoto_TypeDefinition_tooltip,
@@ -121,7 +121,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       private void AddMenuItemGoTo_Click(object sender, System.EventArgs e)
       {
-        TreeView.GoToNode(Creator.Wrapper.TypeDefinition.XmlQualifiedName);
+        TreeView.GoToNode(ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName);
       }
       private IInstanceConfiguration m_InstanceConfiguration;
       #region Menu handlers

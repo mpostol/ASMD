@@ -13,6 +13,8 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.Controls;
+
 namespace CAS.UA.Model.Designer.Wrappers
 {
   /// <summary>
@@ -27,17 +29,17 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
     
     #region private
-    protected new abstract class TreeNode<T>: BaseTreeNode.TreeNode<T>
-      where T: RootTreeNode
-    {
+    //internal abstract class RootTreeNodeControl<T>: BaseTreeNodeControl<T, T>
+    //  where T: RootTreeNode
+    //{
 
-      #region creator
-      public TreeNode( T parent )
-        : base( parent )
-      { }
-      #endregion
+    //  #region creator
+    //  public RootTreeNodeControl( T parent )
+    //    : base( parent )
+    //  { }
+    //  #endregion
 
-    }
+    //}
     #endregion
   }
 }

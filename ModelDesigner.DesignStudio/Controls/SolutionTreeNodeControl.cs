@@ -83,10 +83,10 @@ namespace CAS.UA.Model.Designer.Controls
     {
       ModelEntity.Save(false);
     }
-    protected override BaseDictionaryTreeNode GetChildTreeNodeControl(IProjectModel node)
-    {
-      return new ProjectTreeNodeControl(node);
-    }
+    //protected override BaseDictionaryTreeNode GetChildTreeNodeControl(IProjectModel node)
+    //{
+    //  return new ProjectTreeNodeControl(node);
+    //}
     #endregion
 
   }

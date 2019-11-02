@@ -67,10 +67,10 @@ namespace CAS.UA.Model.Designer.Controls
       if (MessageBox.Show(string.Format(Resources.ProjectTreeNode_AreYouSureToRemove_text, name), Resources.ProjectTreeNode_AreYouSureToRemove_caption, MessageBoxButtons.YesNo) == DialogResult.Yes)
         ModelEntity.Remove();
     }
-    protected override BaseDictionaryTreeNode GetChildTreeNodeControl(IBaseModel node)
-    {
-      return node.GetTreeNode();
-    }
+    //protected override BaseDictionaryTreeNode GetChildTreeNodeControl(IBaseModel node)
+    //{
+    //  return node.GetTreeNode();
+    //}
     #endregion
 
   }

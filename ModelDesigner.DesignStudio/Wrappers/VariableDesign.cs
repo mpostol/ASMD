@@ -1,17 +1,9 @@
-﻿//<summary>
-//  Title   : <see cref="TreeNode"/> representing <see cref="Opc.Ua.ModelCompiler.VariableDesign"/> in the model structure
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 
 using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.Properties;
@@ -52,14 +44,14 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       private void AddMenuItemGoTo_Click( object sender, System.EventArgs e )
       {
-        TreeView.GoToNode( Creator.Wrapper.DataType.XmlQualifiedName );
+        TreeView.GoToNode(ModelEntity.Wrapper.DataType.XmlQualifiedName );
       }
       internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
       {
         var list = base.GetCoupledNodesXmlQualifiedNames();
-        if ( Creator.Wrapper.DataType.XmlQualifiedName != null && !Creator.Wrapper.DataType.XmlQualifiedName.IsEmpty )
+        if (ModelEntity.Wrapper.DataType.XmlQualifiedName != null && !ModelEntity.Wrapper.DataType.XmlQualifiedName.IsEmpty )
           list.Add( Resources.WrapperTreeNodeAddMenuItemGoto_DataType,
-            Creator.Wrapper.DataType.XmlQualifiedName );
+            ModelEntity.Wrapper.DataType.XmlQualifiedName );
         return list;
       }
     }

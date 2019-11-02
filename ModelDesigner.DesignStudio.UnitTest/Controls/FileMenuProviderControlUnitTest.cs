@@ -75,11 +75,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       {
         throw new NotImplementedException();
       }
-
-      protected override BaseDictionaryTreeNode GetChildTreeNodeControl(IBaseModel node)
-      {
-        throw new NotImplementedException();
-      }
     }
     private class BaseTreeNodeTest : BaseTreeNode
     {

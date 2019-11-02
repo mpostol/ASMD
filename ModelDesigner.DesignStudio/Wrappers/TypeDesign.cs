@@ -68,14 +68,13 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       private void AddMenuItemGoTo_Click(object sender, System.EventArgs e)
       {
-        TreeView.GoToNode(Creator.Wrapper.BaseType.XmlQualifiedName);
+        TreeView.GoToNode(ModelEntity.Wrapper.BaseType.XmlQualifiedName);
       }
       internal override Dictionary<string, XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
       {
         var list = base.GetCoupledNodesXmlQualifiedNames();
-        if (Creator.Wrapper.BaseType.XmlQualifiedName != null && !Creator.Wrapper.BaseType.XmlQualifiedName.IsEmpty)
-          list.Add(Resources.WrapperTreeNodeAddMenuItemGoto_BaseType,
-            Creator.Wrapper.BaseType.XmlQualifiedName);
+        if (ModelEntity.Wrapper.BaseType.XmlQualifiedName != null && !ModelEntity.Wrapper.BaseType.XmlQualifiedName.IsEmpty)
+          list.Add(Resources.WrapperTreeNodeAddMenuItemGoto_BaseType, ModelEntity.Wrapper.BaseType.XmlQualifiedName);
         return list;
       }
       /// <summary>
@@ -88,7 +87,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       internal override bool GetUniqueIdentifier(UniqueIdentifier ui)
       {
         if (!base.GetUniqueIdentifier(ui))
-          ui.Update(false, Creator.Wrapper.SymbolicName.XmlQualifiedName, true);
+          ui.Update(false, ModelEntity.Wrapper.SymbolicName.XmlQualifiedName, true);
         return true;
       }
     }
