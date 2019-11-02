@@ -26,12 +26,12 @@ namespace CAS.UA.Model.Designer.Wrappers
   internal class LibraryTreeNode : RootTreeNode
   {
     #region private
-    private class LocalTreeNode : RootTreeNodeControl<LibraryTreeNode>
-    {
-      public LocalTreeNode(LibraryTreeNode parent)
-        : base(parent)
-      { }
-    }
+    //private class LibraryTreeNodeControl : RootTreeNodeControl<LibraryTreeNode>
+    //{
+    //  public LibraryTreeNodeControl(LibraryTreeNode parent)
+    //    : base(parent)
+    //  { }
+    //}
     #endregion
 
     #region creator
@@ -66,7 +66,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      return new LocalTreeNode(this);
+      return new LibraryTreeNodeControl(this);
     }
     /// <summary>
     /// Adds to dictionary - each item of <see cref="ModelDesign{WrapperType, ModelType}"/> from this collection is added to <paramref name="space"/>.

@@ -172,13 +172,6 @@
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.EncodingsFolder" Collapsed="true">
     <Position X="12.75" Y="6.25" Width="1.5" />
-    <NestedTypes>
-      <Class Name="CAS.UA.Model.Designer.Wrappers.EncodingsFolder.TreeNode" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Wrappers\EncodingsFolder.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-    </NestedTypes>
     <AssociationLine Name="ListOfNodes" Type="CAS.UA.Model.Designer.Wrappers.INodeFactory">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-2.817" Y="1.05" />
@@ -194,13 +187,6 @@
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.NamespacesFolder" Collapsed="true">
     <Position X="11" Y="6.25" Width="1.5" />
-    <NestedTypes>
-      <Class Name="CAS.UA.Model.Designer.Wrappers.NamespacesFolder.TreeNode" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Wrappers\NamespacesFolder.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-    </NestedTypes>
     <AssociationLine Name="ListOfNodes" Type="CAS.UA.Model.Designer.Wrappers.INodeFactory">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-1.263" Y="1.068" />
@@ -216,13 +202,6 @@
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ParametersFolder" Collapsed="true">
     <Position X="14.5" Y="6.25" Width="1.5" />
-    <NestedTypes>
-      <Class Name="CAS.UA.Model.Designer.Wrappers.ParametersFolder.TreeNode" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Wrappers\ParametersFolder.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-    </NestedTypes>
     <AssociationLine Name="ListOfNodes" Type="CAS.UA.Model.Designer.Wrappers.INodeFactory">
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
         <Position X="-4.513" Y="1.037" Height="0.182" Width="1.055" />
@@ -238,13 +217,6 @@
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ReferencesFolder" Collapsed="true">
     <Position X="16.25" Y="6.25" Width="1.5" />
-    <NestedTypes>
-      <Class Name="CAS.UA.Model.Designer.Wrappers.ReferencesFolder.TreeNode" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Wrappers\ReferencesFolder.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-    </NestedTypes>
     <AssociationLine Name="ListOfNodes" Type="CAS.UA.Model.Designer.Wrappers.INodeFactory" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="17" Y="6.941" />

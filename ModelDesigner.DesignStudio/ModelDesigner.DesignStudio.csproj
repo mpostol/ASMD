@@ -226,6 +226,7 @@
     <Compile Include="Controls\CoupledNodesDictionaryTreeNode.cs" />
     <Compile Include="Controls\DictionaryTreeNode.cs" />
     <Compile Include="Controls\FileMenuProviderControl.cs" />
+    <Compile Include="Controls\LibraryTreeNodeControl.cs" />
     <Compile Include="Controls\NodeObserver\BindingsPropertyObserver.cs">
       <SubType>UserControl</SubType>
     </Compile>
