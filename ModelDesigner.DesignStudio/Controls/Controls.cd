@@ -128,14 +128,6 @@
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
-    <NestedTypes>
-      <Class Name="CAS.UA.Model.Designer.Wrappers.ValidableTreeNode.ValidableTreeNodeControl&lt;T&gt;" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Wrappers\ValidableTreeNode.cs</NewMemberFileName>
-        </TypeIdentifier>
-        <Lollipop Position="0.2" />
-      </Class>
-    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACAAAAAAAIAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
       <FileName>Wrappers\ValidableTreeNode.cs</FileName>

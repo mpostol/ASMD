@@ -50,24 +50,24 @@ namespace CAS.UA.Model.Designer.Wrappers
     #region private
     protected abstract string NodeName();
     protected abstract string NodeTip();
-    protected abstract class ValidableTreeNodeControl<T>: WrapperTreeNodeControl<T>, IValidate
-        where T: ValidableTreeNode
-    {
-      #region creator
-      public ValidableTreeNodeControl( T parent )
-        : base( parent )
-      { }
-      #endregion
+    //protected abstract class ValidableTreeNodeControl<T>: WrapperTreeNodeControl<T>, IValidate
+    //    where T: ValidableTreeNode
+    //{
+    //  #region creator
+    //  public ValidableTreeNodeControl( T parent )
+    //    : base( parent )
+    //  { }
+    //  #endregion
 
-      #region IValidate Members
-      public void Validate()
-      {
-        ModelEntity.Validate();
-        if ( this.TreeView != null )
-          this.TreeView.RebuildDictionary();
-      }
-      #endregion
-    }
+    //  #region IValidate Members
+    //  public void Validate()
+    //  {
+    //    ModelEntity.Validate();
+    //    if ( this.TreeView != null )
+    //      this.TreeView.RebuildDictionary();
+    //  }
+    //  #endregion
+    //}
     #endregion
 
     #region creators

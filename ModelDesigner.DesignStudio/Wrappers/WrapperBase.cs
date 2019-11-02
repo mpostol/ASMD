@@ -4,6 +4,7 @@
 //
 //___________________________________________________________________________________
 
+using CAS.UA.Model.Designer.Controls;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
@@ -65,7 +66,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         return sw.ToString();
       }
     }
-    protected new abstract class TreeNode<T>: ValidableTreeNode.ValidableTreeNodeControl<T>
+    protected new abstract class TreeNode<T>: ValidableTreeNodeControl<T>
       where T: WrapperBase<type, OPCType>
     {
       public TreeNode( T parent )
