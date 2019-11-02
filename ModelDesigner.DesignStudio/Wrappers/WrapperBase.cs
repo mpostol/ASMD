@@ -65,7 +65,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         return sw.ToString();
       }
     }
-    protected new abstract class TreeNode<T>: ValidableTreeNode.TreeNode<T>
+    protected new abstract class TreeNode<T>: ValidableTreeNode.ValidableTreeNodeControl<T>
       where T: WrapperBase<type, OPCType>
     {
       public TreeNode( T parent )

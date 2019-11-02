@@ -50,11 +50,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     #region private
     protected abstract string NodeName();
     protected abstract string NodeTip();
-    protected abstract class TreeNode<T>: WrapperTreeNodeControl<T>, IValidate
+    protected abstract class ValidableTreeNodeControl<T>: WrapperTreeNodeControl<T>, IValidate
         where T: ValidableTreeNode
     {
       #region creator
-      public TreeNode( T parent )
+      public ValidableTreeNodeControl( T parent )
         : base( parent )
       { }
       #endregion

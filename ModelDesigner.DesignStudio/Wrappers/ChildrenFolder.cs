@@ -1,18 +1,11 @@
-﻿//<summary>
-//  Title   : ChildrenFolder 
-//  System  : Microsoft VisualStudio 2013 / C#
-//  $LastChangedDate:$
-//  $Rev:$
-//  $LastChangedBy:$
-//  $URL:$
-//  $Id:$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2014, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
+
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using System.Collections.Generic;
 using OpcUaModelCompiler = Opc.Ua.ModelCompiler;
@@ -104,7 +97,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         return m_list.ToArray();
       }
     }
-    private class TreeNode : Folder.TreeNode<ChildrenFolder>
+    private class TreeNode : FolderTreeNodeControl<ChildrenFolder>
     {
       public TreeNode(ChildrenFolder parent)
         : base(parent)

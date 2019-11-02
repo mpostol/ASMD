@@ -23,13 +23,13 @@ namespace CAS.UA.Model.Designer.Wrappers
   internal abstract class Folder: WrapperTreeNode
   {
     #region private
-    protected abstract class TreeNode<T>: WrapperTreeNodeControl<T>
-      where T: Folder
-    {
-      public TreeNode( T parent )
-        : base( parent )
-      { }
-    }
+    //protected abstract class FolderTreeNodeControl<T>: WrapperTreeNodeControl<T>
+    //  where T: Folder
+    //{
+    //  public FolderTreeNodeControl( T parent )
+    //    : base( parent )
+    //  { }
+    //}
     #endregion
 
     #region public

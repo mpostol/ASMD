@@ -83,7 +83,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         return m_list;
       }
     }
-    private class TreeNode: Folder.TreeNode<ReferencesFolder>
+    private class TreeNode: Folder.FolderTreeNodeControl<ReferencesFolder>
     {
       public TreeNode( ReferencesFolder parent )
         : base( parent )
