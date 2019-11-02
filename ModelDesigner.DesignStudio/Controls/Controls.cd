@@ -118,13 +118,6 @@
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
-    <NestedTypes>
-      <Class Name="CAS.UA.Model.Designer.Wrappers.Folder.TreeNode&lt;T&gt;" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Wrappers\Folder.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\Folder.cs</FileName>
@@ -136,7 +129,7 @@
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
-      <Class Name="CAS.UA.Model.Designer.Wrappers.ValidableTreeNode.TreeNode&lt;T&gt;" Collapsed="true">
+      <Class Name="CAS.UA.Model.Designer.Wrappers.ValidableTreeNode.ValidableTreeNodeControl&lt;T&gt;" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>Wrappers\ValidableTreeNode.cs</NewMemberFileName>
         </TypeIdentifier>
@@ -148,6 +141,57 @@
       <FileName>Wrappers\ValidableTreeNode.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.FolderTreeNodeControl&lt;T&gt;" Collapsed="true">
+    <Position X="12.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\FolderTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.ParametersFolderTreeNodeControl" Collapsed="true">
+    <Position X="11.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ParametersFolderTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.ReferencesFolderTreeNodeControl" Collapsed="true">
+    <Position X="13.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ReferencesFolderTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers.ChildrenFolder">
+    <Position X="1.5" Y="1.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABAAACAABAIAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Wrappers\ChildrenFolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers.EncodingsFolder">
+    <Position X="1.75" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABAAACAABAAAAAAAAAAAAACAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers\EncodingsFolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers.NamespacesFolder">
+    <Position X="2" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABAAACEABAAAAAAABAAAgCCAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Wrappers\NamespacesFolder.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

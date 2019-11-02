@@ -5,7 +5,6 @@
 //___________________________________________________________________________________
 
 
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using System.Xml.Serialization;
 
@@ -74,7 +73,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      return new TreeNode( this );
+      //TODO Refactoring application architecture - remove recursion #6
+      throw new System.NotImplementedException("TrrNode factory must be implemented");
+      //return new TreeNode( this );
     }
     internal string[] GetAvailiableNamespaces()
     {
@@ -101,22 +102,22 @@ namespace CAS.UA.Model.Designer.Wrappers
         ret = Resources.NamespaceFolderCharacterNamespacePrefix_XMLatTheBeginningReplacement + ret;
       return ret;
     }
-    private INodeFactory[] ListOfNodes
+    internal INodeFactory[] ListOfNodes
     {
       get { return new TypeListItem<Namespace>[] { new TypeListItem<Namespace>() }; }
     }
-    private class TreeNode: FolderTreeNodeControl<NamespacesFolder>
-    {
-      public TreeNode( NamespacesFolder parent )
-        : base( parent )
-      { }
-      protected override void BeforeMenuStripOpening()
-      {
-        AddMenuItemPaste();
-        AddMenuItemAdd(ModelEntity.ListOfNodes );
-        base.BeforeMenuStripOpening();
-      }
-    }
+    //private class NamespacesFolderTreeNodeControl : FolderTreeNodeControl<NamespacesFolder>
+    //{
+    //  public NamespacesFolderTreeNodeControl( NamespacesFolder parent )
+    //    : base( parent )
+    //  { }
+    //  protected override void BeforeMenuStripOpening()
+    //  {
+    //    AddMenuItemPaste();
+    //    AddMenuItemAdd(ModelEntity.ListOfNodes );
+    //    base.BeforeMenuStripOpening();
+    //  }
+    //}
     #endregion
 
   }

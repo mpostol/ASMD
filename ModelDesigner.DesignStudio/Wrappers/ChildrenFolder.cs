@@ -67,7 +67,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      return new TreeNode(this);
+      return new ChildrenFolderTreeNodeControl(this);
     }
     /// <summary>
     /// Calculates a relative name of the reference.
@@ -85,7 +85,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region private
-    protected virtual INodeFactory[] ListOfNodes
+    internal virtual INodeFactory[] ListOfNodes
     {
       get
       {
@@ -97,18 +97,19 @@ namespace CAS.UA.Model.Designer.Wrappers
         return m_list.ToArray();
       }
     }
-    private class TreeNode : FolderTreeNodeControl<ChildrenFolder>
-    {
-      public TreeNode(ChildrenFolder parent)
-        : base(parent)
-      { }
-      protected override void BeforeMenuStripOpening()
-      {
-        AddMenuItemPaste();
-        AddMenuItemAdd(ModelEntity.ListOfNodes);
-        base.BeforeMenuStripOpening();
-      }
-    }
+    //TODO Refactoring application architecture - remove recursion #6 - remove comment
+    //private class ChildrenFolderTreeNodeControl : FolderTreeNodeControl<ChildrenFolder>
+    //{
+    //  public ChildrenFolderTreeNodeControl(ChildrenFolder parent)
+    //    : base(parent)
+    //  { }
+    //  protected override void BeforeMenuStripOpening()
+    //  {
+    //    AddMenuItemPaste();
+    //    AddMenuItemAdd(ModelEntity.ListOfNodes);
+    //    base.BeforeMenuStripOpening();
+    //  }
+    //}
     #endregion
   }
 }

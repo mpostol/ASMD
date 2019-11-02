@@ -223,11 +223,14 @@
     </Compile>
     <Compile Include="AddressSpaceService.cs" />
     <Compile Include="Controls\BaseTreeNodeControl.cs" />
+    <Compile Include="Controls\ChildrenFolderTreeNodeControl.cs" />
     <Compile Include="Controls\CoupledNodesDictionaryTreeNode.cs" />
     <Compile Include="Controls\DictionaryTreeNode.cs" />
+    <Compile Include="Controls\EncodingsFolderTreeNodeControl.cs" />
     <Compile Include="Controls\FileMenuProviderControl.cs" />
     <Compile Include="Controls\FolderTreeNodeControl.cs" />
     <Compile Include="Controls\LibraryTreeNodeControl.cs" />
+    <Compile Include="Controls\NamespacesFolderTreeNodeControl.cs" />
     <Compile Include="Controls\NodeObserver\BindingsPropertyObserver.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -303,7 +306,9 @@
     <Compile Include="Controls\NodeObserver\View3DModelObserver.Designer.cs">
       <DependentUpon>View3DModelObserver.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ParametersFolderTreeNodeControl.cs" />
     <Compile Include="Controls\ProjectTreeNodeControl.cs" />
+    <Compile Include="Controls\ReferencesFolderTreeNodeControl.cs" />
     <Compile Include="Controls\RootTreeNodeControl.cs" />
     <Compile Include="Controls\SolutionTreeNodeControl.cs" />
     <Compile Include="Controls\WrapperTreeNodeControl.cs" />

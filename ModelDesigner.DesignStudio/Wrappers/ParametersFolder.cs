@@ -1,19 +1,9 @@
-﻿//<summary>
-//  Title   : Parameters Folder
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -71,7 +61,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      return new TreeNode( this );
+      //TODO Refactoring application architecture - remove recursion #6
+      throw new System.NotImplementedException("TrrNode factory must be implemented");
+      //return new TreeNode( this );
     }
     public override NodeTypeEnum NodeType
     {
@@ -80,24 +72,25 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region private
-    private class TreeNode: FolderTreeNodeControl<ParametersFolder>
-    {
-      public TreeNode( ParametersFolder parent )
-        : base( parent )
-      { }
-      protected override void BeforeMenuStripOpening()
-      {
-        AddMenuItemPaste();
-        AddMenuItemAdd(ModelEntity.ListOfNodes );
-        base.BeforeMenuStripOpening();
-      }
-    }
-    private INodeFactory[] ListOfNodes
+    // TODO Refactoring application architecture - remove recursion #6 - remove
+    //private class ParametersFolderTreeNodeControl : FolderTreeNodeControl<ParametersFolder>
+    //{
+    //  public ParametersFolderTreeNodeControl( ParametersFolder parent )
+    //    : base( parent )
+    //  { }
+    //  protected override void BeforeMenuStripOpening()
+    //  {
+    //    AddMenuItemPaste();
+    //    AddMenuItemAdd(ModelEntity.ListOfNodes );
+    //    base.BeforeMenuStripOpening();
+    //  }
+    //}
+    internal INodeFactory[] ListOfNodes
     {
       get
       {
-        TypeListItem<Parameter>[] m_list = new TypeListItem<Parameter>[ 1 ];
-        m_list[ 0 ] = new TypeListItem<Parameter>();
+        TypeListItem<Parameter>[] m_list = new TypeListItem<Parameter>[1];
+        m_list[0] = new TypeListItem<Parameter>();
         return m_list;
       }
     }

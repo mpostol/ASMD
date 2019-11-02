@@ -1,17 +1,9 @@
-﻿//<summary>
-//  Title   : Reference Folder
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 
 using CAS.UA.Model.Designer.Properties;
 
@@ -65,7 +57,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      return new TreeNode( this );
+      //TODO Refactoring application architecture - remove recursion #6
+      throw new System.NotImplementedException("TrrNode factory must be implemented");
+      //return new TreeNode( this );
     }
     public override NodeTypeEnum NodeType
     {
@@ -74,7 +68,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region private
-    private INodeFactory[] ListOfNodes
+    internal INodeFactory[] ListOfNodes
     {
       get
       {
@@ -83,18 +77,19 @@ namespace CAS.UA.Model.Designer.Wrappers
         return m_list;
       }
     }
-    private class TreeNode: Folder.FolderTreeNodeControl<ReferencesFolder>
-    {
-      public TreeNode( ReferencesFolder parent )
-        : base( parent )
-      {}
-      protected override void BeforeMenuStripOpening()
-      {
-        AddMenuItemPaste();
-        AddMenuItemAdd( ModelEntity.ListOfNodes );
-        base.BeforeMenuStripOpening();
-      }
-    }
+    //TODO Refactoring application architecture - remove recursion #6
+    //private class ReferencesFolderTreeNodeControl : FolderTreeNodeControl<ReferencesFolder>
+    //{
+    //  public ReferencesFolderTreeNodeControl( ReferencesFolder parent )
+    //    : base( parent )
+    //  {}
+    //  protected override void BeforeMenuStripOpening()
+    //  {
+    //    AddMenuItemPaste();
+    //    AddMenuItemAdd( ModelEntity.ListOfNodes );
+    //    base.BeforeMenuStripOpening();
+    //  }
+    //}
     #endregion
   }
 }
