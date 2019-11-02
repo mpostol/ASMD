@@ -6,6 +6,7 @@
 
 
 using CAS.UA.IServerConfiguration;
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region private
-    private class TreeNode: VariableDesignGeneric<Wrappers4ProperyGrid.VariableDesign<BaseModelType>, BaseModelType>.TreeNode<VariableDesign>
+    private class TreeNode: InstanceDesignTreeNodeControl<VariableDesign, Wrappers4ProperyGrid.VariableDesign<BaseModelType>, BaseModelType>
     {
       public TreeNode( VariableDesign parent )
         : base( parent )

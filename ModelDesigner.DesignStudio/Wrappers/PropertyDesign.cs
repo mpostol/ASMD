@@ -14,6 +14,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
 
     #region private
-    private class TreeNode: VariableDesignGeneric<Wrappers4ProperyGrid.PropertyDesign, Opc.Ua.ModelCompiler.PropertyDesign>.TreeNode<PropertyDesign>
+    private class TreeNode: InstanceDesignTreeNodeControl<PropertyDesign, Wrappers4ProperyGrid.PropertyDesign, Opc.Ua.ModelCompiler.PropertyDesign>
     {
       public TreeNode( PropertyDesign parent )
         : base( parent )

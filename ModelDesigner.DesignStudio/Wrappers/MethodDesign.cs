@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using System.Collections.Generic;
 
@@ -119,7 +120,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         //TODO add argument to AddressSpace
       }
     }
-    private class TreeNode: InstanceDesign<Wrappers4ProperyGrid.MethodDesign, Opc.Ua.ModelCompiler.MethodDesign>.TreeNode<MethodDesign>
+    private class TreeNode: InstanceDesignTreeNodeControl<MethodDesign, Wrappers4ProperyGrid.MethodDesign, Opc.Ua.ModelCompiler.MethodDesign>
     {
       public TreeNode( MethodDesign parent )
         : base( parent )

@@ -64,7 +64,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       #endregion
       public IInstanceConfiguration Bindings { get; set; }
       /// <summary>
-      /// Initializes a new instance of the <see cref="InstanceDesign&lt;type, OPCType&gt;.TreeNode&lt;T&gt;.Wrapper"/> class.
+      /// Initializes a new instance of the <see cref="InstanceDesign&lt;type, OPCType&gt;.InstanceDesignTreeNodeControl&lt;T&gt;.Wrapper"/> class.
       /// </summary>
       /// <param name="bindings">The bindings.</param>
       public InstanceConfigurationMasterEditor( IInstanceConfiguration bindings )

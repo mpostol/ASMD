@@ -230,6 +230,7 @@
     <Compile Include="Controls\EncodingsFolderTreeNodeControl.cs" />
     <Compile Include="Controls\FileMenuProviderControl.cs" />
     <Compile Include="Controls\FolderTreeNodeControl.cs" />
+    <Compile Include="Controls\InstanceDesignTreeNodeControl.cs" />
     <Compile Include="Controls\LibraryTreeNodeControl.cs" />
     <Compile Include="Controls\ModelDesignTreeNodeControl.cs" />
     <Compile Include="Controls\NamespacesFolderTreeNodeControl.cs" />
