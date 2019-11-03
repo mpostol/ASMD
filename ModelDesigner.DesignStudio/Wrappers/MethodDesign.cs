@@ -1,19 +1,10 @@
-﻿//<summary>
-//  Title   : MethodDesign Wrapper
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Controls;
+
 using CAS.UA.Model.Designer.Properties;
 using System.Collections.Generic;
 
@@ -120,12 +111,12 @@ namespace CAS.UA.Model.Designer.Wrappers
         //TODO add argument to AddressSpace
       }
     }
-    private class TreeNode: InstanceDesignTreeNodeControl<MethodDesign, Wrappers4ProperyGrid.MethodDesign, Opc.Ua.ModelCompiler.MethodDesign>
-    {
-      public TreeNode( MethodDesign parent )
-        : base( parent )
-      { }
-    }
+    //private class MethodDesignTreeNodeControl : InstanceDesignTreeNodeControl<MethodDesign, Wrappers4ProperyGrid.MethodDesign, Opc.Ua.ModelCompiler.MethodDesign>
+    //{
+    //  public MethodDesignTreeNodeControl( MethodDesign parent )
+    //    : base( parent )
+    //  { }
+    //}
     #endregion Private and Protected
 
   }

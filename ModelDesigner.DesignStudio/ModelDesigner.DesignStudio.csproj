@@ -232,6 +232,7 @@
     <Compile Include="Controls\FolderTreeNodeControl.cs" />
     <Compile Include="Controls\InstanceDesignTreeNodeControl.cs" />
     <Compile Include="Controls\LibraryTreeNodeControl.cs" />
+    <Compile Include="Controls\MethodDesignTreeNodeControl.cs" />
     <Compile Include="Controls\ModelDesignTreeNodeControl.cs" />
     <Compile Include="Controls\NamespacesFolderTreeNodeControl.cs" />
     <Compile Include="Controls\NamespaceTreeNodeControl.cs" />
