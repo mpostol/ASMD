@@ -1,20 +1,11 @@
-﻿//<summary>
-//  Title   : DataType design wrapper
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  20081107: mzbrzezny: functionality added
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//___________________________________________________________________________________
 
+
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using System.Collections.Generic;
 
@@ -49,14 +40,14 @@ namespace CAS.UA.Model.Designer.Wrappers
         //TODO add field to AddressSpace
       }
     }
-    private class TreeNode: TypeDesign<Wrappers4ProperyGrid.DataTypeDesign, Opc.Ua.ModelCompiler.DataTypeDesign>.TreeNode<DataTypeDesign>
-    {
-      #region creator
-      public TreeNode( DataTypeDesign parent )
-        : base( parent )
-      { }
-      #endregion
-    }
+    //private class DataTypeDesignTreeNodeControl : TypeDesignTreeNodeControl<DataTypeDesign, Wrappers4ProperyGrid.DataTypeDesign, Opc.Ua.ModelCompiler.DataTypeDesign>
+    //{
+    //  #region creator
+    //  public DataTypeDesignTreeNodeControl( DataTypeDesign parent )
+    //    : base( parent )
+    //  { }
+    //  #endregion
+    //}
     #endregion private
 
     #region creators
@@ -124,7 +115,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      return new TreeNode( this );
+      return new DataTypeDesignTreeNodeControl( this );
     }
     #endregion
 

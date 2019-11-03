@@ -1,188 +1,274 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="CAS.UA.Model.Designer.Controls.BaseTreeNodeControl&lt;TModel, TChildModel&gt;" Collapsed="true">
-    <Position X="6" Y="4.75" Width="3.25" />
+    <Position X="5.75" Y="4.75" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAggAAAAAAAAAACAEAAAAAAAAAAAAAAAAAAAAFAI=</HashCode>
       <FileName>Controls\BaseTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.DictionaryTreeView" Collapsed="true">
-    <Position X="0.5" Y="11" Width="3" />
+    <Position X="1.25" Y="2" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAACAAAwEYAACAAAACEEAABAoBAABBgAgAFAE=</HashCode>
       <FileName>Controls\DictionaryTreeView.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.FileMenuProviderControl&lt;TModel, TChildModel&gt;" Collapsed="true">
-    <Position X="6.5" Y="6.25" Width="3.25" />
+    <Position X="5.75" Y="6.25" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAEAIAAAAAAIKAAAAAEAAACAAAAAAAAABAAAAAAQAA=</HashCode>
       <FileName>Controls\FileMenuProviderControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.SolutionTreeNodeControl" Collapsed="true">
-    <Position X="4.5" Y="7.75" Width="3.25" />
+    <Position X="3.75" Y="7.75" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAEAAAIKEAEAAAAAAAAAEAAAAAABAAAACAAAA=</HashCode>
       <FileName>Controls\SolutionTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.ProjectTreeNodeControl" Collapsed="true">
-    <Position X="8.5" Y="7.75" Width="3.25" />
+    <Position X="7.75" Y="7.75" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAICAAAAAAAAAAAAEAAAAAABIAAAAAAAA=</HashCode>
       <FileName>Controls\ProjectTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="System.Windows.Forms.TreeView" Collapsed="true">
-    <Position X="1.25" Y="9.5" Width="1.5" />
+    <Position X="2" Y="0.5" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.DictionaryTreeNode" Collapsed="true">
-    <Position X="8.25" Y="3.5" Width="1.75" />
+    <Position X="9.5" Y="3.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AIAAAgAAAQACAAAAAAAAUAIAAIkCAAQAQAABACYCEAA=</HashCode>
       <FileName>Controls\DictionaryTreeNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.BaseDictionaryTreeNode" Collapsed="true">
-    <Position X="8.25" Y="2" Width="1.75" />
+    <Position X="9.5" Y="2" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\BaseDictionaryTreeNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="System.Windows.Forms.TreeNode" Collapsed="true">
-    <Position X="8.25" Y="0.5" Width="1.75" />
+    <Position X="9.5" Y="0.5" Width="1.75" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.CoupledNodesDictionaryTreeNode" Collapsed="true">
-    <Position X="14.75" Y="4.75" Width="2.5" />
+    <Position X="11.25" Y="4.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AIAAAgAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAEAA=</HashCode>
       <FileName>Controls\CoupledNodesDictionaryTreeNode.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers.BaseTreeNode" Collapsed="true">
-    <Position X="1.75" Y="0.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>IBIBAAAAAAQCQiAAAAAARACAAAAAAgAAEAQAiABEACA=</HashCode>
-      <FileName>Wrappers\BaseTreeNode.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers.RootTreeNode" Collapsed="true">
-    <Position X="0.5" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Wrappers\RootTreeNode.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers.WrapperTreeNode" Collapsed="true">
-    <Position X="2.75" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ACAAACCABEAAAEiTAAAAAAQgEQAACBAIBYAYCABAAAA=</HashCode>
-      <FileName>Wrappers\WrapperTreeNode.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.RootTreeNodeControl&lt;T&gt;" Collapsed="true">
-    <Position X="1.5" Y="6.25" Width="2" />
+    <Position X="0.75" Y="6.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\RootTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.LibraryTreeNodeControl" Collapsed="true">
-    <Position X="1.25" Y="7.75" Width="2.5" />
+    <Position X="0.5" Y="7.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\LibraryTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.WrapperTreeNodeControl&lt;T&gt;" Collapsed="true">
-    <Position X="12.5" Y="6.25" Width="1.5" />
+    <Position X="13.75" Y="6.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AgBAAAAAAACAgAgAAAAAAAAAAgAASAEEAAAFEgAAIgA=</HashCode>
       <FileName>Controls\WrapperTreeNodeControl.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers.Folder">
-    <Position X="0.5" Y="0.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Wrappers\Folder.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers.ValidableTreeNode">
-    <Position X="0.75" Y="0.75" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAAAAAIAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
-      <FileName>Wrappers\ValidableTreeNode.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.FolderTreeNodeControl&lt;T&gt;" Collapsed="true">
-    <Position X="12.5" Y="7.75" Width="1.5" />
+    <Position X="11.5" Y="7.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\FolderTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.ParametersFolderTreeNodeControl" Collapsed="true">
-    <Position X="11.5" Y="9.25" Width="1.5" />
+    <Position X="9.75" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\ParametersFolderTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.ReferencesFolderTreeNodeControl" Collapsed="true">
-    <Position X="13.75" Y="9.25" Width="1.5" />
+    <Position X="11.5" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\ReferencesFolderTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers.ChildrenFolder">
-    <Position X="1.5" Y="1.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
+  <Class Name="CAS.UA.Model.Designer.Controls.ChildrenFolderTreeNodeControl" Collapsed="true">
+    <Position X="8" Y="9.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAACAABAIAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAA=</HashCode>
-      <FileName>Wrappers\ChildrenFolder.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ChildrenFolderTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers.EncodingsFolder">
-    <Position X="1.75" Y="1.75" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
+  <Class Name="CAS.UA.Model.Designer.Controls.EncodingsFolderTreeNodeControl" Collapsed="true">
+    <Position X="13.25" Y="9.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAACAABAAAAAAAAAAAAACAAAAAAAAgAAAAAAAAAAA=</HashCode>
-      <FileName>Wrappers\EncodingsFolder.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\EncodingsFolderTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers.NamespacesFolder">
-    <Position X="2" Y="2" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
+  <Class Name="CAS.UA.Model.Designer.Controls.NamespacesFolderTreeNodeControl" Collapsed="true">
+    <Position X="15" Y="9.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAACEABAAAAAAABAAAgCCAAAAAAAAAAACAAAAAAAA=</HashCode>
-      <FileName>Wrappers\NamespacesFolder.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\NamespacesFolderTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.ValidableTreeNodeControl&lt;T&gt;" Collapsed="true">
+    <Position X="17.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ValidableTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.WrapperBaseTreeNodeControl&lt;T, type, OPCType&gt;" Collapsed="true">
+    <Position X="17" Y="9.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\WrapperBaseTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.EncodingDesignTreeNodeControl" Collapsed="true">
+    <Position X="11.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\EncodingDesignTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.ModelDesignTreeNodeControl" Collapsed="true">
+    <Position X="13.75" Y="10.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAEAAAAAAAABAAQAIAA=</HashCode>
+      <FileName>Controls\ModelDesignTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.NamespaceTreeNodeControl" Collapsed="true">
+    <Position X="16.25" Y="10.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\NamespaceTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.NodeDesignTreeNodeControl&lt;T, type, OPCType&gt;" Collapsed="true">
+    <Position X="18.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\NodeDesignTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.ParameterTreeNodeControl" Collapsed="true">
+    <Position X="20.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ParameterTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.ReferenceTreeNodeControl" Collapsed="true">
+    <Position X="22.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ReferenceTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.InstanceDesignTreeNodeControl&lt;T, type, OPCType&gt;" Collapsed="true">
+    <Position X="15" Y="12" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAIAAAUQAAAEAAAAAAgQAEA=</HashCode>
+      <FileName>Controls\InstanceDesignTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.ViewDesignTreeNodeControl" Collapsed="true">
+    <Position X="18.75" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ViewDesignTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.MethodDesignTreeNodeControl" Collapsed="true">
+    <Position X="11.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\MethodDesignTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.ObjectDesignTreeNodeControl" Collapsed="true">
+    <Position X="13.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ObjectDesignTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.DictionaryDesignTreeNodeControl" Collapsed="true">
+    <Position X="15" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\DictionaryDesignTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.PropertyDesignTreeNodeControl" Collapsed="true">
+    <Position X="16.75" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAEQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\PropertyDesignTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.VariableDesignTreeNodeControl" Collapsed="true">
+    <Position X="18.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAEQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\VariableDesignTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.TypeDesignTreeNodeControl&lt;T, type, MT&gt;" Collapsed="true">
+    <Position X="20.5" Y="12" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAIAAAEQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\TypeDesignTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.DataTypeDesignTreeNodeControl" Collapsed="true">
+    <Position X="20.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\DataTypeDesignTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.ObjectTypeDesignTreeNodeControl" Collapsed="true">
+    <Position X="22" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ObjectTypeDesignTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.ReferenceTypeDesignTreeNodeControl" Collapsed="true">
+    <Position X="23.75" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ReferenceTypeDesignTreeNodeControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Controls.VariableTypeDesignTreeNodeControl" Collapsed="true">
+    <Position X="25.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\VariableTypeDesignTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

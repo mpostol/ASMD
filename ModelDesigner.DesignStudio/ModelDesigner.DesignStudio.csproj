@@ -225,6 +225,7 @@
     <Compile Include="Controls\BaseTreeNodeControl.cs" />
     <Compile Include="Controls\ChildrenFolderTreeNodeControl.cs" />
     <Compile Include="Controls\CoupledNodesDictionaryTreeNode.cs" />
+    <Compile Include="Controls\DataTypeDesignTreeNodeControl.cs" />
     <Compile Include="Controls\DictionaryDesignTreeNodeControl.cs" />
     <Compile Include="Controls\DictionaryTreeNode.cs" />
     <Compile Include="Controls\EncodingDesignTreeNodeControl.cs" />
@@ -313,16 +314,20 @@
     <Compile Include="Controls\NodeObserver\View3DModelObserver.Designer.cs">
       <DependentUpon>View3DModelObserver.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ObjectTypeDesignTreeNodeControl.cs" />
     <Compile Include="Controls\ParametersFolderTreeNodeControl.cs" />
     <Compile Include="Controls\ParameterTreeNodeControl.cs" />
     <Compile Include="Controls\ProjectTreeNodeControl.cs" />
     <Compile Include="Controls\PropertyDesignTreeNodeControl.cs" />
     <Compile Include="Controls\ReferencesFolderTreeNodeControl.cs" />
     <Compile Include="Controls\ReferenceTreeNodeControl.cs" />
+    <Compile Include="Controls\ReferenceTypeDesignTreeNodeControl.cs" />
     <Compile Include="Controls\RootTreeNodeControl.cs" />
     <Compile Include="Controls\SolutionTreeNodeControl.cs" />
+    <Compile Include="Controls\TypeDesignTreeNodeControl.cs" />
     <Compile Include="Controls\ValidableTreeNodeControl.cs" />
     <Compile Include="Controls\VariableDesignTreeNodeControl.cs" />
+    <Compile Include="Controls\VariableTypeDesignTreeNodeControl.cs" />
     <Compile Include="Controls\ViewDesignTreeNodeControl.cs" />
     <Compile Include="Controls\WrapperBaseTreeNodeControl.cs" />
     <Compile Include="Controls\WrapperTreeNodeControl.cs" />

@@ -217,7 +217,7 @@
         <Point X="10.125" Y="8.25" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="1.068" Y="-1.263" />
+        <Position X="-0.484" Y="1.049" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -293,7 +293,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.TypeDesign&lt;type, MT&gt;" Collapsed="true">
-    <Position X="18.5" Y="9.75" Width="2" />
+    <Position X="18.25" Y="9.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAAAIAAAQAAAAAAAAAAAAAAAAAAAAABAIAAAA=</HashCode>
       <FileName>Wrappers\TypeDesign.cs</FileName>
@@ -328,36 +328,22 @@
       <FileName>Wrappers\DataTypeDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers.ObjectTypeDesignGeneric&lt;T, MT&gt;" Collapsed="true">
-    <Position X="17.25" Y="11.25" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Wrappers\ObjectTypeDesign.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ReferenceTypeDesign" Collapsed="true">
-    <Position X="19.75" Y="11.25" Width="1.5" />
+    <Position X="19.25" Y="11.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>ABAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\ReferenceTypeDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers.VariableTypeDesignGeneric" Collapsed="true">
-    <Position X="21.5" Y="11.25" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Wrappers\VariableTypeDesign.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.VariableTypeDesign" Collapsed="true">
-    <Position X="21.5" Y="12.75" Width="2" />
+    <Position X="21.25" Y="11.25" Width="2" />
     <TypeIdentifier>
       <HashCode>ABAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\VariableTypeDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ObjectTypeDesign" Collapsed="true">
-    <Position X="17.5" Y="12.75" Width="1.75" />
+    <Position X="17.25" Y="11.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>ABAAABCABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\ObjectTypeDesign.cs</FileName>

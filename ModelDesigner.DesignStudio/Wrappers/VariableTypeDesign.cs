@@ -1,24 +1,16 @@
-﻿//<summary>
-//  Title   : Variable Type Design wrapper
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//___________________________________________________________________________________
 
+
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal partial class VariableTypeDesign: VariableTypeDesignGeneric
+  internal partial class VariableTypeDesign: TypeDesign<Wrappers4ProperyGrid.VariableTypeDesign, Opc.Ua.ModelCompiler.VariableTypeDesign>
   {
 
     #region creators
@@ -31,12 +23,12 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region private
-    private class TreeNode: VariableTypeDesignGeneric.TreeNode<VariableTypeDesign>
-    {
-      public TreeNode( VariableTypeDesign parent )
-        : base( parent )
-      { }
-    }
+    //private class VariableTypeDesignTreeNodeControl : TypeDesignTreeNodeControl<VariableTypeDesign, Wrappers4ProperyGrid.VariableTypeDesign, Opc.Ua.ModelCompiler.VariableTypeDesign>
+    //{
+    //  public VariableTypeDesignTreeNodeControl( VariableTypeDesign parent )
+    //    : base( parent )
+    //  { }
+    //}
     #endregion
 
     #region public
@@ -64,20 +56,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      return new TreeNode( this );
+      return new VariableTypeDesignTreeNodeControl( this );
     }
     #endregion
 
   }
-  internal abstract class VariableTypeDesignGeneric: TypeDesign<Wrappers4ProperyGrid.VariableTypeDesign, Opc.Ua.ModelCompiler.VariableTypeDesign>
-  {
-    public VariableTypeDesignGeneric( Wrappers4ProperyGrid.VariableTypeDesign child )
-      : base( child )
-    { }
-    public VariableTypeDesignGeneric( Wrappers4ProperyGrid.VariableTypeDesign child, Opc.Ua.ModelCompiler.VariableTypeDesign node )
-      : base( child, node )
-    { }
 
-  }
 }
 

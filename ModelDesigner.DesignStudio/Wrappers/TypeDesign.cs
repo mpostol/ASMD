@@ -1,25 +1,11 @@
-﻿//<summary>
-//  Title   : Type Design wrapper
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//___________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Controls;
-using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Types;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System;
-using System.Collections.Generic;
 using System.Xml;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -53,45 +39,45 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region private
-    protected abstract class TreeNode<T> : NodeDesignTreeNodeControl<T, type, MT>
-      where T : TypeDesign<type, MT>
-    {
-      public TreeNode(T parent)
-        : base(parent)
-      { }
-      protected override void BeforeMenuStripOpening()
-      {
-        AddMenuItemGoTo(Resources.WrapperTreeNodeAddMenuItemGoto
-          + Resources.WrapperTreeNodeAddMenuItemGoto_BaseType,
-          Resources.WrapperTreeNodeAddMenuItemGoto_BaseType_tooltip,
-          new EventHandler(AddMenuItemGoTo_Click));
-        base.BeforeMenuStripOpening();
-      }
-      private void AddMenuItemGoTo_Click(object sender, System.EventArgs e)
-      {
-        TreeView.GoToNode(ModelEntity.Wrapper.BaseType.XmlQualifiedName);
-      }
-      internal override Dictionary<string, XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
-      {
-        var list = base.GetCoupledNodesXmlQualifiedNames();
-        if (ModelEntity.Wrapper.BaseType.XmlQualifiedName != null && !ModelEntity.Wrapper.BaseType.XmlQualifiedName.IsEmpty)
-          list.Add(Resources.WrapperTreeNodeAddMenuItemGoto_BaseType, ModelEntity.Wrapper.BaseType.XmlQualifiedName);
-        return list;
-      }
-      /// <summary>
-      /// Gets the unique identifier.
-      /// </summary>
-      /// <param name="ui">The instance of <see cref="UniqueIdentifier"/> that represents an unique identifier.</param>
-      /// <returns>
-      /// 	<c>true</c> if it is not top level element; <c>false</c> otherwise if it is top level element
-      /// </returns>
-      internal override bool GetUniqueIdentifier(UniqueIdentifier ui)
-      {
-        if (!base.GetUniqueIdentifier(ui))
-          ui.Update(false, ModelEntity.Wrapper.SymbolicName.XmlQualifiedName, true);
-        return true;
-      }
-    }
+    //protected abstract class TypeDesignTreeNodeControl<T> : NodeDesignTreeNodeControl<T, type, MT>
+    //  where T : TypeDesign<type, MT>
+    //{
+    //  public TypeDesignTreeNodeControl(T parent)
+    //    : base(parent)
+    //  { }
+    //  protected override void BeforeMenuStripOpening()
+    //  {
+    //    AddMenuItemGoTo(Resources.WrapperTreeNodeAddMenuItemGoto
+    //      + Resources.WrapperTreeNodeAddMenuItemGoto_BaseType,
+    //      Resources.WrapperTreeNodeAddMenuItemGoto_BaseType_tooltip,
+    //      new EventHandler(AddMenuItemGoTo_Click));
+    //    base.BeforeMenuStripOpening();
+    //  }
+    //  private void AddMenuItemGoTo_Click(object sender, System.EventArgs e)
+    //  {
+    //    TreeView.GoToNode(ModelEntity.Wrapper.BaseType.XmlQualifiedName);
+    //  }
+    //  internal override Dictionary<string, XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
+    //  {
+    //    var list = base.GetCoupledNodesXmlQualifiedNames();
+    //    if (ModelEntity.Wrapper.BaseType.XmlQualifiedName != null && !ModelEntity.Wrapper.BaseType.XmlQualifiedName.IsEmpty)
+    //      list.Add(Resources.WrapperTreeNodeAddMenuItemGoto_BaseType, ModelEntity.Wrapper.BaseType.XmlQualifiedName);
+    //    return list;
+    //  }
+    //  /// <summary>
+    //  /// Gets the unique identifier.
+    //  /// </summary>
+    //  /// <param name="ui">The instance of <see cref="UniqueIdentifier"/> that represents an unique identifier.</param>
+    //  /// <returns>
+    //  /// 	<c>true</c> if it is not top level element; <c>false</c> otherwise if it is top level element
+    //  /// </returns>
+    //  internal override bool GetUniqueIdentifier(UniqueIdentifier ui)
+    //  {
+    //    if (!base.GetUniqueIdentifier(ui))
+    //      ui.Update(false, ModelEntity.Wrapper.SymbolicName.XmlQualifiedName, true);
+    //    return true;
+    //  }
+    //}
     private static byte m_InheritanceDepth = 0;
     private const byte m_MaxInheritanceDepth = 20;
     /// <summary>

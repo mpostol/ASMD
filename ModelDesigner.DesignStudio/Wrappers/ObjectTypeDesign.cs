@@ -1,33 +1,25 @@
-﻿//<summary>
-//  Title   : Object Type Design wrapper
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//___________________________________________________________________________________
 
+
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using BaseModelType = Opc.Ua.ModelCompiler.ObjectTypeDesign;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal class ObjectTypeDesign: ObjectTypeDesignGeneric<Wrappers4ProperyGrid.ObjectTypeDesign<BaseModelType>, BaseModelType>
+  internal class ObjectTypeDesign: TypeDesign<Wrappers4ProperyGrid.ObjectTypeDesign<BaseModelType>, BaseModelType>
   {
     #region private
-    private class TreeNode: ObjectTypeDesignGeneric<Wrappers4ProperyGrid.ObjectTypeDesign<BaseModelType>, BaseModelType>.TreeNode<ObjectTypeDesign>
-    {
-      public TreeNode( ObjectTypeDesign parent )
-        : base( parent )
-      { }
-    }
+    //private class ObjectTypeDesignTreeNodeControl : TypeDesignTreeNodeControl<ObjectTypeDesign, Wrappers4ProperyGrid.ObjectTypeDesign<BaseModelType>, BaseModelType>
+    //{
+    //  public ObjectTypeDesignTreeNodeControl( ObjectTypeDesign parent )
+    //    : base( parent )
+    //  { }
+    //}
     protected static ObjectTypeDesign FolderType { get; private set; }
     #endregion
 
@@ -62,21 +54,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      return new TreeNode( this );
+      return new ObjectTypeDesignTreeNodeControl( this );
     }
     #endregion
   }
-  internal abstract class ObjectTypeDesignGeneric<T, MT>: TypeDesign<T, MT>
-    where T: Wrappers4ProperyGrid.ObjectTypeDesign<MT>
-    where MT: BaseModelType, new()
-  {
 
-    protected ObjectTypeDesignGeneric( T child )
-      : base( child )
-    { }
-    public ObjectTypeDesignGeneric( T child, MT node )
-      : base( child, node )
-    { }
-
-  }
 }
