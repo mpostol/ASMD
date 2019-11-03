@@ -1,17 +1,9 @@
-﻿//<summary>
-//  Title   : Dictionary Design Wrapper
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 
 using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
@@ -39,7 +31,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      return new TreeNode(this);
+      return new DictionaryDesignTreeNodeControl(this);
     }
     /// <summary>
     /// Gets the node class.
@@ -54,12 +46,12 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region private
-    private class TreeNode : InstanceDesignTreeNodeControl<DictionaryDesign, Wrappers4ProperyGrid.DictionaryDesign, Opc.Ua.ModelCompiler.DictionaryDesign>
-    {
-      public TreeNode(DictionaryDesign parent)
-        : base(parent)
-      { }
-    }
+    //private class DictionaryDesignTreeNodeControl : InstanceDesignTreeNodeControl<DictionaryDesign, Wrappers4ProperyGrid.DictionaryDesign, Opc.Ua.ModelCompiler.DictionaryDesign>
+    //{
+    //  public DictionaryDesignTreeNodeControl(DictionaryDesign parent)
+    //    : base(parent)
+    //  { }
+    //}
     #endregion
 
   }

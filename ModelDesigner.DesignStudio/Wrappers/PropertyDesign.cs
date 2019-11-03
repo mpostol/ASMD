@@ -35,32 +35,32 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
 
     #region private
-    private class TreeNode: InstanceDesignTreeNodeControl<PropertyDesign, Wrappers4ProperyGrid.PropertyDesign, Opc.Ua.ModelCompiler.PropertyDesign>
-    {
-      public TreeNode( PropertyDesign parent )
-        : base( parent )
-      { }
-      protected override void BeforeMenuStripOpening()
-      {
-        AddMenuItemGoTo( Resources.WrapperTreeNodeAddMenuItemGoto
-          + Resources.WrapperTreeNodeAddMenuItemGoto_DataType,
-          Resources.WrapperTreeNodeAddMenuItemGoto_DataType_tooltip,
-          new EventHandler( AddMenuItemGoTo_Click ) );
-        base.BeforeMenuStripOpening();
-      }
-      private void AddMenuItemGoTo_Click( object sender, System.EventArgs e )
-      {
-        TreeView.GoToNode( ModelEntity.Wrapper.DataType.XmlQualifiedName );
-      }
-      internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
-      {
-        var list = base.GetCoupledNodesXmlQualifiedNames();
-        if ( ModelEntity.Wrapper.DataType.XmlQualifiedName != null && !ModelEntity.Wrapper.DataType.XmlQualifiedName.IsEmpty )
-          list.Add( Resources.WrapperTreeNodeAddMenuItemGoto_DataType,
-            ModelEntity.Wrapper.DataType.XmlQualifiedName );
-        return list;
-      }
-    }
+    //private class PropertyDesignTreeNodeControl : InstanceDesignTreeNodeControl<PropertyDesign, Wrappers4ProperyGrid.PropertyDesign, Opc.Ua.ModelCompiler.PropertyDesign>
+    //{
+    //  public PropertyDesignTreeNodeControl( PropertyDesign parent )
+    //    : base( parent )
+    //  { }
+    //  protected override void BeforeMenuStripOpening()
+    //  {
+    //    AddMenuItemGoTo( Resources.WrapperTreeNodeAddMenuItemGoto
+    //      + Resources.WrapperTreeNodeAddMenuItemGoto_DataType,
+    //      Resources.WrapperTreeNodeAddMenuItemGoto_DataType_tooltip,
+    //      new EventHandler( AddMenuItemGoTo_Click ) );
+    //    base.BeforeMenuStripOpening();
+    //  }
+    //  private void AddMenuItemGoTo_Click( object sender, System.EventArgs e )
+    //  {
+    //    TreeView.GoToNode( ModelEntity.Wrapper.DataType.XmlQualifiedName );
+    //  }
+    //  internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
+    //  {
+    //    var list = base.GetCoupledNodesXmlQualifiedNames();
+    //    if ( ModelEntity.Wrapper.DataType.XmlQualifiedName != null && !ModelEntity.Wrapper.DataType.XmlQualifiedName.IsEmpty )
+    //      list.Add( Resources.WrapperTreeNodeAddMenuItemGoto_DataType,
+    //        ModelEntity.Wrapper.DataType.XmlQualifiedName );
+    //    return list;
+    //  }
+    //}
     #endregion
 
     #region public
@@ -88,7 +88,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      return new TreeNode( this );
+      return new PropertyDesignTreeNodeControl( this );
     }
     #endregion
   }
