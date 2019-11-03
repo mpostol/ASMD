@@ -319,6 +319,7 @@
     <Compile Include="Controls\RootTreeNodeControl.cs" />
     <Compile Include="Controls\SolutionTreeNodeControl.cs" />
     <Compile Include="Controls\ValidableTreeNodeControl.cs" />
+    <Compile Include="Controls\ViewDesignTreeNodeControl.cs" />
     <Compile Include="Controls\WrapperBaseTreeNodeControl.cs" />
     <Compile Include="Controls\WrapperTreeNodeControl.cs" />
     <Compile Include="ExportingTools\ExportConstrain.cs" />

@@ -234,6 +234,10 @@
       <Path>
         <Point X="15.25" Y="6.941" />
         <Point X="15.25" Y="7.635" />
+        <Point X="14.083" Y="7.635" Type="JumpStart" />
+        <Point X="13.917" Y="7.635" Type="JumpEnd" />
+        <Point X="12.333" Y="7.635" Type="JumpStart" />
+        <Point X="12.167" Y="7.635" Type="JumpEnd" />
         <Point X="11.958" Y="7.635" Type="JumpStart" />
         <Point X="11.792" Y="7.635" Type="JumpEnd" />
         <Point X="10.625" Y="7.635" />
@@ -257,6 +261,12 @@
       <Path>
         <Point X="17" Y="6.941" />
         <Point X="17" Y="7.766" />
+        <Point X="15.833" Y="7.766" Type="JumpStart" />
+        <Point X="15.667" Y="7.766" Type="JumpEnd" />
+        <Point X="14.083" Y="7.766" Type="JumpStart" />
+        <Point X="13.917" Y="7.766" Type="JumpEnd" />
+        <Point X="12.333" Y="7.766" Type="JumpStart" />
+        <Point X="12.167" Y="7.766" Type="JumpEnd" />
         <Point X="11.958" Y="7.766" Type="JumpStart" />
         <Point X="11.792" Y="7.766" Type="JumpEnd" />
         <Point X="10.875" Y="7.766" />
