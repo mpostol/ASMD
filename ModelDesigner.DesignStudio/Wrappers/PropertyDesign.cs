@@ -21,7 +21,7 @@ using System.Collections.Generic;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal partial class PropertyDesign: VariableDesignGeneric<Wrappers4ProperyGrid.PropertyDesign, Opc.Ua.ModelCompiler.PropertyDesign>
+  internal partial class PropertyDesign: InstanceDesign<Wrappers4ProperyGrid.PropertyDesign, Opc.Ua.ModelCompiler.PropertyDesign>
   {
     public PropertyDesign()
       : base( new Wrappers4ProperyGrid.PropertyDesign( new Opc.Ua.ModelCompiler.PropertyDesign() ) )

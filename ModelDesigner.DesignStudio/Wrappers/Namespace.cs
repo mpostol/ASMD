@@ -5,6 +5,7 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
+using CAS.UA.Model.Designer.Controls; //TODO must be removed
 using CAS.UA.Model.Designer.Properties;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -61,7 +62,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      return new TreeNode( this );
+      return new NamespaceTreeNodeControl( this );
     }
     #endregion
 

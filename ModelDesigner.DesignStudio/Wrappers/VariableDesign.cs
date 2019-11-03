@@ -17,49 +17,49 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// <summary>
   /// <see cref="TreeNode"/> representing <see cref="Opc.Ua.ModelCompiler.VariableDesign"/> in the model structure
   /// </summary>
-  internal partial class VariableDesign: VariableDesignGeneric<Wrappers4ProperyGrid.VariableDesign<BaseModelType>, BaseModelType>
+  internal partial class VariableDesign : InstanceDesign<Wrappers4ProperyGrid.VariableDesign<BaseModelType>, BaseModelType>
   {
     #region creators
     public VariableDesign()
-      : base( new Wrappers4ProperyGrid.VariableDesign<BaseModelType>( new BaseModelType() ) )
+      : base(new Wrappers4ProperyGrid.VariableDesign<BaseModelType>(new BaseModelType()))
     { }
-    public VariableDesign( BaseModelType node )
-      : base( new Wrappers4ProperyGrid.VariableDesign<BaseModelType>( node ), node )
+    public VariableDesign(BaseModelType node)
+      : base(new Wrappers4ProperyGrid.VariableDesign<BaseModelType>(node), node)
     { }
     #endregion
 
     #region private
-    private class TreeNode: InstanceDesignTreeNodeControl<VariableDesign, Wrappers4ProperyGrid.VariableDesign<BaseModelType>, BaseModelType>
+    private class TreeNode : InstanceDesignTreeNodeControl<VariableDesign, Wrappers4ProperyGrid.VariableDesign<BaseModelType>, BaseModelType>
     {
-      public TreeNode( VariableDesign parent )
-        : base( parent )
+      public TreeNode(VariableDesign parent)
+        : base(parent)
       { }
       protected override void BeforeMenuStripOpening()
       {
-        AddMenuItemGoTo( Resources.WrapperTreeNodeAddMenuItemGoto
+        AddMenuItemGoTo(Resources.WrapperTreeNodeAddMenuItemGoto
           + Resources.WrapperTreeNodeAddMenuItemGoto_DataType,
           Resources.WrapperTreeNodeAddMenuItemGoto_DataType_tooltip,
-          new EventHandler( AddMenuItemGoTo_Click ) );
+          new EventHandler(AddMenuItemGoTo_Click));
         base.BeforeMenuStripOpening();
       }
-      private void AddMenuItemGoTo_Click( object sender, System.EventArgs e )
+      private void AddMenuItemGoTo_Click(object sender, System.EventArgs e)
       {
-        TreeView.GoToNode(ModelEntity.Wrapper.DataType.XmlQualifiedName );
+        TreeView.GoToNode(ModelEntity.Wrapper.DataType.XmlQualifiedName);
       }
       internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
       {
-        var list = base.GetCoupledNodesXmlQualifiedNames();
-        if (ModelEntity.Wrapper.DataType.XmlQualifiedName != null && !ModelEntity.Wrapper.DataType.XmlQualifiedName.IsEmpty )
-          list.Add( Resources.WrapperTreeNodeAddMenuItemGoto_DataType,
-            ModelEntity.Wrapper.DataType.XmlQualifiedName );
+        Dictionary<string, System.Xml.XmlQualifiedName> list = base.GetCoupledNodesXmlQualifiedNames();
+        if (ModelEntity.Wrapper.DataType.XmlQualifiedName != null && !ModelEntity.Wrapper.DataType.XmlQualifiedName.IsEmpty)
+          list.Add(Resources.WrapperTreeNodeAddMenuItemGoto_DataType,
+            ModelEntity.Wrapper.DataType.XmlQualifiedName);
         return list;
       }
     }
-    protected override void AddNodeDescriptors( List<INodeDescriptor> dsptrs, UniqueIdentifier ui )
+    protected override void AddNodeDescriptors(List<INodeDescriptor> dsptrs, UniqueIdentifier ui)
     {
-      ui.Update( false, Wrapper.SymbolicName.XmlQualifiedName, false );
-      dsptrs.Add( Wrapper.GetINodeDescriptor( ui, this.NodeClass ) );
-      base.AddNodeDescriptors( dsptrs, ui );
+      ui.Update(false, Wrapper.SymbolicName.XmlQualifiedName, false);
+      dsptrs.Add(Wrapper.GetINodeDescriptor(ui, this.NodeClass));
+      base.AddNodeDescriptors(dsptrs, ui);
     }
     #endregion
 
@@ -68,18 +68,12 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Gets the name of the help topic.
     /// </summary>
     /// <value>The name of the help topic.</value>
-    public override string HelpTopicName
-    {
-      get { return Resources.NodeClasses_Objects_Variable; }
-    }
+    public override string HelpTopicName => Resources.NodeClasses_Objects_Variable;
     /// <summary>
     /// Gets the node class.
     /// </summary>
     /// <value>The node class.</value>
-    public override NodeClassesEnum NodeClass
-    {
-      get { return NodeClassesEnum.Variable; }
-    }
+    public override NodeClassesEnum NodeClass => NodeClassesEnum.Variable;
     /// <summary>
     /// Gets the tree node and all children.
     /// </summary>
@@ -88,25 +82,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      return new TreeNode( this );
+      return new TreeNode(this);
     }
     #endregion
   }
-  internal abstract partial class VariableDesignGeneric<type, OPCType>: InstanceDesign<type, OPCType>
-    where type: Wrappers4ProperyGrid.VariableDesign<OPCType>
-    where OPCType: BaseModelType, new()
-  {
 
-    #region creators
-    public VariableDesignGeneric( type child )
-      : base( child )
-    {
-    }
-    public VariableDesignGeneric( type child, OPCType node )
-      : base( child, node )
-    {
-    }
-    #endregion
-
-  }
 }

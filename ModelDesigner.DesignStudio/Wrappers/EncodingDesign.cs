@@ -4,6 +4,7 @@
 //
 //___________________________________________________________________________________
 
+using CAS.UA.Model.Designer.Controls; //TODO must be removed
 using CAS.UA.Model.Designer.Properties;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -69,7 +70,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      return new TreeNode( this );
+      return new EncodingDesignTreeNodeControl( this );
     }
     #endregion
   }

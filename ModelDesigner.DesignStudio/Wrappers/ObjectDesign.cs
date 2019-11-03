@@ -1,18 +1,8 @@
-﻿//<summary>
-//  Title   : Object Design wrapper
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
@@ -24,22 +14,20 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// </summary>
   internal partial class ObjectDesign : InstanceDesign<Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>, Opc.Ua.ModelCompiler.ObjectDesign>
   {
-    #region creators
+    #region constructors
     public ObjectDesign()
-      : base(new Designer.Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>(new Opc.Ua.ModelCompiler.ObjectDesign()))
-    { }
+      : base(new Designer.Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>(new Opc.Ua.ModelCompiler.ObjectDesign())) { }
     public ObjectDesign(Opc.Ua.ModelCompiler.ObjectDesign node)
-      : base(new Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>(node), node)
-    { }
+      : base(new Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>(node), node) { }
     #endregion
 
     #region private
-    private class TreeNode : InstanceDesignTreeNodeControl<ObjectDesign, Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>, Opc.Ua.ModelCompiler.ObjectDesign>
-    {
-      public TreeNode(ObjectDesign parent)
-        : base(parent)
-      { }
-    }
+    //private class ObjectDesignTreeNodeControl : InstanceDesignTreeNodeControl<ObjectDesign, Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>, Opc.Ua.ModelCompiler.ObjectDesign>
+    //{
+    //  public ObjectDesignTreeNodeControl(ObjectDesign parent)
+    //    : base(parent)
+    //  { }
+    //}
     #endregion
 
     #region public
@@ -61,7 +49,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      return new TreeNode(this);
+      return new ObjectDesignTreeNodeControl(this);
     }
     #endregion
   }

@@ -18,7 +18,7 @@ using CAS.UA.Model.Designer.Properties;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal partial class DictionaryDesign : VariableDesignGeneric<Wrappers4ProperyGrid.DictionaryDesign, Opc.Ua.ModelCompiler.DictionaryDesign>
+  internal partial class DictionaryDesign : InstanceDesign<Wrappers4ProperyGrid.DictionaryDesign, Opc.Ua.ModelCompiler.DictionaryDesign>
   {
 
     #region creators

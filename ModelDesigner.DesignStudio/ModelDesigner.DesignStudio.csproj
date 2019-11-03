@@ -345,6 +345,7 @@
       <DependentUpon>FiltersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ExportingTools\ExportTool.cs" />
+    <Compile Include="Controls\ObjectDesignTreeNodeControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
