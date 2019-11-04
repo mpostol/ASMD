@@ -1,19 +1,11 @@
-﻿//<summary>
-//  Title   : Class representing all libraries added to the resources.
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelCompiler.Common;
+using CAS.UA.Model.Designer.Controls;
 using System;
 using System.Linq;
 using System.Windows.Forms;

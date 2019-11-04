@@ -136,8 +136,9 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       UniqueIdentifier ui = new UniqueIdentifier();
       if (!m_TreeView.SelectedNode.GetUniqueIdentifier(ui))
         ui = null;
-      SelectedItemEventArgs args = new SelectedItemEventArgs(m_TreeView.SelectedNode.BaseModelNode, false);
-      RaiseSelectedItemIsChanged(args);
+      //TODO uncomment
+      //SelectedItemEventArgs args = new SelectedItemEventArgs(m_TreeView.SelectedNode.BaseModelNode, false);
+      //RaiseSelectedItemIsChanged(args);
     }
     private TreeNode SelectedNode
     {

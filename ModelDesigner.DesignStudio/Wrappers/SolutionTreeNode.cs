@@ -1,24 +1,14 @@
-﻿//<summary>
-//  Title   : Solution Root TreeNode
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  20090106: mzbrzezny created
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//___________________________________________________________________________________
 
 using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration;
 using CAS.Lib.RTLib.Utils;
 using CAS.UA.IServerConfiguration;
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Solution;

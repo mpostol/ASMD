@@ -4,6 +4,7 @@
 //
 //___________________________________________________________________________________
 
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -54,9 +55,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      //TODO Refactoring application architecture - remove recursion #6
-      throw new System.NotImplementedException("TrrNode factory must be implemented");
-      //return new TreeNode( this );
+      return new EncodingsFolderTreeNodeControl( this );
     }
     public override NodeTypeEnum NodeType
     {
@@ -74,18 +73,6 @@ namespace CAS.UA.Model.Designer.Wrappers
         return m_list;
       }
     }
-    //TODO Refactoring application architecture - remove recursion #6 - remove comment
-    //private class EncodingsFolderTreeNodeControl : FolderTreeNodeControl<EncodingsFolder>
-    //{
-    //  public EncodingsFolderTreeNodeControl( EncodingsFolder parent )
-    //    : base( parent )
-    //  { }
-    //  protected override void BeforeMenuStripOpening()
-    //  {
-    //    AddMenuItemAdd(ModelEntity.ListOfNodes );
-    //    base.BeforeMenuStripOpening();
-    //  }
-    //}
     #endregion
 
   }

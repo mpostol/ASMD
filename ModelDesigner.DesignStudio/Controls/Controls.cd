@@ -46,11 +46,12 @@
       <FileName>Controls\DictionaryTreeNode.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers.BaseDictionaryTreeNode" Collapsed="true">
+  <Class Name="CAS.UA.Model.Designer.Controls.BaseDictionaryTreeNode" Collapsed="true">
     <Position X="9.5" Y="2" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Wrappers\BaseDictionaryTreeNode.cs</FileName>
+      <FileName>Controls\BaseDictionaryTreeNode.cs</FileName>
+      <NewMemberFileName>Wrappers\BaseDictionaryTreeNode.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
   <Class Name="System.Windows.Forms.TreeNode" Collapsed="true">

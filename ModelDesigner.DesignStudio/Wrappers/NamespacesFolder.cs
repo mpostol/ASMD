@@ -5,6 +5,7 @@
 //___________________________________________________________________________________
 
 
+using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using System.Xml.Serialization;
 
@@ -73,9 +74,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     public override BaseDictionaryTreeNode GetTreeNode()
     {
-      //TODO Refactoring application architecture - remove recursion #6
-      throw new System.NotImplementedException("TrrNode factory must be implemented");
-      //return new TreeNode( this );
+      return new NamespacesFolderTreeNodeControl( this );
     }
     internal string[] GetAvailiableNamespaces()
     {

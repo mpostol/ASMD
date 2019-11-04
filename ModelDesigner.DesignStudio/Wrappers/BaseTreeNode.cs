@@ -1,20 +1,11 @@
-﻿//<summary>
-//  Title   : Base class to create in-memory representation of the UA address space model
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using CAS.UA.IServerConfiguration;
-using CAS.UA.Model.Designer.Controls; //Bootstrapper exception - casting problem #37 - must be removed
+using CAS.UA.Model.Designer.Controls;
 using System;
 using System.Collections.Generic;
 
