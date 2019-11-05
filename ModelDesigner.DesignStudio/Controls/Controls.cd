@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="CAS.UA.Model.Designer.Controls.BaseTreeNodeControl&lt;TModel, TChildModel&gt;" Collapsed="true">
+  <Class Name="CAS.UA.Model.Designer.Controls.BaseTreeNodeControl&lt;TModel&gt;" Collapsed="true">
     <Position X="5.75" Y="4.75" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAggAAAAAAAAAACAEAAAAAAAAAAAAAAAAAAAAFAI=</HashCode>
+      <HashCode>AAAAAAgAAAAAAAAAACAEAAAAAAAAAAAAAAAAAAAAFAI=</HashCode>
       <FileName>Controls\BaseTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.DictionaryTreeView" Collapsed="true">
     <Position X="1.25" Y="2" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAACAAAwEYAACAAAACEEAABAoBAABBgAgAFAE=</HashCode>
+      <HashCode>AAAAAIAAACAAAwAZAACAAAACEEAABAoBAABBgAgAFAE=</HashCode>
       <FileName>Controls\DictionaryTreeView.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CAS.UA.Model.Designer.Controls.FileMenuProviderControl&lt;TModel, TChildModel&gt;" Collapsed="true">
+  <Class Name="CAS.UA.Model.Designer.Controls.FileMenuProviderControl&lt;TModel&gt;" Collapsed="true">
     <Position X="5.75" Y="6.25" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAEAIAAAAAAIKAAAAAEAAACAAAAAAAAABAAAAAAQAA=</HashCode>
@@ -24,7 +24,7 @@
   <Class Name="CAS.UA.Model.Designer.Controls.SolutionTreeNodeControl" Collapsed="true">
     <Position X="3.75" Y="7.75" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAEAAAIKEAEAAAAAAAAAEAAAAAABAAAACAAAA=</HashCode>
+      <HashCode>AAAAAIgAEAAAIKEAEAAAAAAAAAEAAAAAABAAAACAAAA=</HashCode>
       <FileName>Controls\SolutionTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -42,7 +42,7 @@
   <Class Name="CAS.UA.Model.Designer.Controls.DictionaryTreeNode" Collapsed="true">
     <Position X="9.5" Y="3.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AIAAAgAAAQACAAAAAAAAUAIAAIkCAAQAQAABACYCEAA=</HashCode>
+      <HashCode>AJAAAAAAAQACAAAAAAAAUAIAAIkCAAQAQAABACYCEAA=</HashCode>
       <FileName>Controls\DictionaryTreeNode.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -62,7 +62,7 @@
   <Class Name="CAS.UA.Model.Designer.Controls.CoupledNodesDictionaryTreeNode" Collapsed="true">
     <Position X="11.25" Y="4.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AIAAAgAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAEAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
       <FileName>Controls\CoupledNodesDictionaryTreeNode.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -81,9 +81,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.WrapperTreeNodeControl&lt;T&gt;" Collapsed="true">
-    <Position X="13.75" Y="6.25" Width="2" />
+    <Position X="13.75" Y="6.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AgBAAAAAAACAgAgAAAAAAAAAAgAASAEEAAAFEgAAIgA=</HashCode>
+      <HashCode>AgBAAAgAAACAgAgAAAAAAAAAAgAASAEEAAAFEgAAIgA=</HashCode>
       <FileName>Controls\WrapperTreeNodeControl.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -131,9 +131,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.ValidableTreeNodeControl&lt;T&gt;" Collapsed="true">
-    <Position X="17.75" Y="7.75" Width="1.5" />
+    <Position X="17.75" Y="7.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\ValidableTreeNodeControl.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -148,21 +148,21 @@
   <Class Name="CAS.UA.Model.Designer.Controls.EncodingDesignTreeNodeControl" Collapsed="true">
     <Position X="11.75" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\EncodingDesignTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.ModelDesignTreeNodeControl" Collapsed="true">
     <Position X="13.75" Y="10.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAEAAAAAAAABAAQAIAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAIAAAEAAAAAAAABAAQAIAA=</HashCode>
       <FileName>Controls\ModelDesignTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.NamespaceTreeNodeControl" Collapsed="true">
     <Position X="16.25" Y="10.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\NamespaceTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -176,14 +176,14 @@
   <Class Name="CAS.UA.Model.Designer.Controls.ParameterTreeNodeControl" Collapsed="true">
     <Position X="20.5" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\ParameterTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.ReferenceTreeNodeControl" Collapsed="true">
     <Position X="22.25" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\ReferenceTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -198,42 +198,42 @@
   <Class Name="CAS.UA.Model.Designer.Controls.ViewDesignTreeNodeControl" Collapsed="true">
     <Position X="18.75" Y="12" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\ViewDesignTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.MethodDesignTreeNodeControl" Collapsed="true">
     <Position X="11.5" Y="13.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\MethodDesignTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.ObjectDesignTreeNodeControl" Collapsed="true">
     <Position X="13.25" Y="13.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\ObjectDesignTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.DictionaryDesignTreeNodeControl" Collapsed="true">
     <Position X="15" Y="13.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\DictionaryDesignTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.PropertyDesignTreeNodeControl" Collapsed="true">
     <Position X="16.75" Y="13.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAEQAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAEAAAAAEQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\PropertyDesignTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.VariableDesignTreeNodeControl" Collapsed="true">
     <Position X="18.5" Y="13.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAEQAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAEAAAAAEQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\VariableDesignTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -247,28 +247,28 @@
   <Class Name="CAS.UA.Model.Designer.Controls.DataTypeDesignTreeNodeControl" Collapsed="true">
     <Position X="20.25" Y="13.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\DataTypeDesignTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.ObjectTypeDesignTreeNodeControl" Collapsed="true">
     <Position X="22" Y="13.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\ObjectTypeDesignTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.ReferenceTypeDesignTreeNodeControl" Collapsed="true">
     <Position X="23.75" Y="13.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\ReferenceTypeDesignTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.VariableTypeDesignTreeNodeControl" Collapsed="true">
     <Position X="25.5" Y="13.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\VariableTypeDesignTreeNodeControl.cs</FileName>
     </TypeIdentifier>
   </Class>

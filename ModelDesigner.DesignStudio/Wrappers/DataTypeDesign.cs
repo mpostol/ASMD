@@ -4,13 +4,12 @@
 //
 //___________________________________________________________________________________
 
-
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using System.Collections.Generic;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
+
   internal partial class DataTypeDesign: TypeDesign<Wrappers4ProperyGrid.DataTypeDesign, Opc.Ua.ModelCompiler.DataTypeDesign>
   {
 
@@ -40,14 +39,6 @@ namespace CAS.UA.Model.Designer.Wrappers
         //TODO add field to AddressSpace
       }
     }
-    //private class DataTypeDesignTreeNodeControl : TypeDesignTreeNodeControl<DataTypeDesign, Wrappers4ProperyGrid.DataTypeDesign, Opc.Ua.ModelCompiler.DataTypeDesign>
-    //{
-    //  #region creator
-    //  public DataTypeDesignTreeNodeControl( DataTypeDesign parent )
-    //    : base( parent )
-    //  { }
-    //  #endregion
-    //}
     #endregion private
 
     #region creators
@@ -106,16 +97,6 @@ namespace CAS.UA.Model.Designer.Wrappers
         node.Encodings = m_Encodings.CreateParameters();
         return node;
       }
-    }
-    /// <summary>
-    /// Gets the tree node and all children.
-    /// </summary>
-    /// <returns>
-    /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
-    /// </returns>
-    public override BaseDictionaryTreeNode GetTreeNode()
-    {
-      return new DataTypeDesignTreeNodeControl( this );
     }
     #endregion
 

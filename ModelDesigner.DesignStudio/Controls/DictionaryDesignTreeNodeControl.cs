@@ -10,9 +10,11 @@ namespace CAS.UA.Model.Designer.Controls
 {
   internal class DictionaryDesignTreeNodeControl : InstanceDesignTreeNodeControl<DictionaryDesign, Wrappers4ProperyGrid.DictionaryDesign, Opc.Ua.ModelCompiler.DictionaryDesign>
   {
-    public DictionaryDesignTreeNodeControl(DictionaryDesign parent)
-      : base(parent)
-    { }
+    public DictionaryDesignTreeNodeControl(DictionaryDesign parent) : base(parent) { }
+    public override DictionaryTreeNode CreateCopy()
+    {
+      return new DictionaryDesignTreeNodeControl(ModelEntity);
+    }
   }
 
 }

@@ -8,13 +8,21 @@ using CAS.UA.Model.Designer.Wrappers;
 
 namespace CAS.UA.Model.Designer.Controls
 {
-  internal abstract class ValidableTreeNodeControl<T> : WrapperTreeNodeControl<T>, IValidate
+  internal interface IDictionaryTreeNodeCreateCopy
+  {
+    DictionaryTreeNode CreateCopy();
+  }
+
+  internal abstract class ValidableTreeNodeControl<T> : WrapperTreeNodeControl<T>, IValidate, IDictionaryTreeNodeCreateCopy
       where T : ValidableTreeNode
   {
     #region creator
-    public ValidableTreeNodeControl(T parent)
-      : base(parent)
-    { }
+    public ValidableTreeNodeControl(T parent) : base(parent) { }
+
+    #region IDictionaryTreeNodeCreateCopy
+    public abstract DictionaryTreeNode CreateCopy();
+    #endregion
+
     #endregion
 
     #region IValidate Members

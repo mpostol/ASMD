@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -15,20 +14,10 @@ namespace CAS.UA.Model.Designer.Wrappers
   internal partial class ObjectDesign : InstanceDesign<Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>, Opc.Ua.ModelCompiler.ObjectDesign>
   {
     #region constructors
-    public ObjectDesign()
-      : base(new Designer.Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>(new Opc.Ua.ModelCompiler.ObjectDesign())) { }
-    public ObjectDesign(Opc.Ua.ModelCompiler.ObjectDesign node)
-      : base(new Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>(node), node) { }
+    public ObjectDesign() : base(new Designer.Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>(new Opc.Ua.ModelCompiler.ObjectDesign())) { }
+    public ObjectDesign(Opc.Ua.ModelCompiler.ObjectDesign node) : base(new Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>(node), node) { }
     #endregion
 
-    #region private
-    //private class ObjectDesignTreeNodeControl : InstanceDesignTreeNodeControl<ObjectDesign, Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>, Opc.Ua.ModelCompiler.ObjectDesign>
-    //{
-    //  public ObjectDesignTreeNodeControl(ObjectDesign parent)
-    //    : base(parent)
-    //  { }
-    //}
-    #endregion
 
     #region public
     /// <summary>
@@ -41,16 +30,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </summary>
     /// <value>The node class.</value>
     public override NodeClassesEnum NodeClass => NodeClassesEnum.Object;
-    /// <summary>
-    /// Gets the tree node and all children.
-    /// </summary>
-    /// <returns>
-    /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
-    /// </returns>
-    public override BaseDictionaryTreeNode GetTreeNode()
-    {
-      return new ObjectDesignTreeNodeControl(this);
-    }
     #endregion
   }
 }

@@ -14,6 +14,7 @@ namespace CAS.UA.Model.Designer.Controls
 {
   internal abstract class DictionaryTreeNode : BaseDictionaryTreeNode
   {
+  
     #region creator
     public DictionaryTreeNode()
       : base()
@@ -80,10 +81,65 @@ namespace CAS.UA.Model.Designer.Controls
 
     #region public
     /// <summary>
+    /// Gets the tree node and all children.
+    /// </summary>
+    /// <returns>The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.</returns>
+    internal static DictionaryTreeNode GetTreeNode(WrapperTreeNode wrapper)
+    {
+      DictionaryTreeNode _ret = null;
+      if (wrapper is ViewDesign)
+        _ret =  new ViewDesignTreeNodeControl((ViewDesign)wrapper);
+      if (wrapper is VariableTypeDesign)
+        _ret = new VariableTypeDesignTreeNodeControl((VariableTypeDesign)wrapper);
+      if (wrapper is VariableDesign)
+        _ret = new VariableDesignTreeNodeControl((VariableDesign)wrapper);
+      if (wrapper is SolutionTreeNode)
+        _ret = new SolutionTreeNodeControl((SolutionTreeNode)wrapper);
+      if (wrapper is ReferenceTypeDesign)
+        _ret = new ReferenceTypeDesignTreeNodeControl((ReferenceTypeDesign)wrapper);
+      if (wrapper is ReferencesFolder)
+        _ret = new ReferencesFolderTreeNodeControl((ReferencesFolder)wrapper);
+      if (wrapper is Reference)
+        _ret = new ReferenceTreeNodeControl((Reference)wrapper);
+      if (wrapper is PropertyDesign)
+        _ret = new PropertyDesignTreeNodeControl((PropertyDesign)wrapper);
+      if (wrapper is ProjectTreeNode)
+        _ret = new ProjectTreeNodeControl((ProjectTreeNode)wrapper);
+      if (wrapper is ParametersFolder)
+        _ret = new ParametersFolderTreeNodeControl((ParametersFolder)wrapper);
+      if (wrapper is Parameter)
+        _ret = new ParameterTreeNodeControl((Parameter)wrapper);
+      if (wrapper is ObjectTypeDesign)
+        _ret = new ObjectTypeDesignTreeNodeControl((ObjectTypeDesign)wrapper);
+      if (wrapper is ObjectDesign)
+        _ret = new ObjectDesignTreeNodeControl((ObjectDesign)wrapper);
+      if (wrapper is NamespacesFolder)
+        _ret = new NamespacesFolderTreeNodeControl((NamespacesFolder)wrapper);
+      if (wrapper is Namespace)
+        _ret = new NamespaceTreeNodeControl((Namespace)wrapper);
+      if (wrapper is ModelDesign)
+        _ret = new ModelDesignTreeNodeControl((ModelDesign)wrapper);
+      if (wrapper is MethodDesign)
+        _ret = new MethodDesignTreeNodeControl((MethodDesign)wrapper);
+      if (wrapper is EncodingsFolder)
+        _ret = new EncodingsFolderTreeNodeControl((EncodingsFolder)wrapper);
+      if (wrapper is DictionaryDesign)
+        _ret = new DictionaryDesignTreeNodeControl((DictionaryDesign)wrapper);
+      if (wrapper is DataTypeDesign)
+        _ret = new DataTypeDesignTreeNodeControl((DataTypeDesign)wrapper);
+      if (wrapper is EncodingDesign)
+        _ret = new EncodingDesignTreeNodeControl((EncodingDesign)wrapper);
+      if (wrapper is ChildrenFolder)
+        _ret = new ChildrenFolderTreeNodeControl((ChildrenFolder)wrapper);
+
+      return _ret;
+    }
+
+    /// <summary>
     /// Gets the unique identifier.
     /// </summary>
     /// <param name="ui">The instance of <see cref="UniqueIdentifier"/> that represents an unique identifier.</param>
-    /// <returns><c>true</c> if it is not top level element; <c>false</c> othervise if it is top level element</returns>
+    /// <returns><c>true</c> if it is not top level element; <c>false</c> otherwise if it is top level element</returns>
     internal virtual bool GetUniqueIdentifier(UniqueIdentifier ui)
     {
       if (this.Parent == null)
@@ -96,7 +152,6 @@ namespace CAS.UA.Model.Designer.Controls
     {
       return new Dictionary<string, XmlQualifiedName>();
     }
-    internal abstract BaseDictionaryTreeNode CreateCopy();
     internal DictionaryTreeNode GetEmptyCoupledNode()
     {
       Dictionary<string, XmlQualifiedName> coupledXmlQualifiedName = GetCoupledNodesXmlQualifiedNames();

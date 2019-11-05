@@ -14,9 +14,11 @@ namespace CAS.UA.Model.Designer.Controls
 {
   internal class VariableDesignTreeNodeControl : InstanceDesignTreeNodeControl<VariableDesign, Wrappers4ProperyGrid.VariableDesign<BaseModelType>, BaseModelType>
   {
-    public VariableDesignTreeNodeControl(VariableDesign parent)
-      : base(parent)
-    { }
+    public VariableDesignTreeNodeControl(VariableDesign parent) : base(parent) { }
+    public override DictionaryTreeNode CreateCopy()
+    {
+      return new VariableDesignTreeNodeControl(this.ModelEntity);
+    }
     protected override void BeforeMenuStripOpening()
     {
       AddMenuItemGoTo(Resources.WrapperTreeNodeAddMenuItemGoto

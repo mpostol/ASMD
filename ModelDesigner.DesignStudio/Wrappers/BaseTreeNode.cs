@@ -5,8 +5,8 @@
 //___________________________________________________________________________________
 
 using CAS.UA.IServerConfiguration;
-using CAS.UA.Model.Designer.Controls;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -18,15 +18,15 @@ namespace CAS.UA.Model.Designer.Wrappers
     event EventHandler<BaseTreeNode.ProjectEventArgs> SubtreeChanged;
     string ToolTipText { get; set; }
     string Text { get; set; }
-    BaseDictionaryTreeNode GetTreeNode();
   }
 
   /// <summary>
   /// A collection <see cref="List{BaseTreeNode}"/> of <see cref="IBaseModel"/> - a base class to create in-memory representation of the UA Information Model.
   /// </summary>
-  internal abstract class BaseTreeNode : List<IBaseModel>, IBaseModel
+  internal abstract class BaseTreeNode : IBaseModel
   {
     #region private
+    private List<IBaseModel> m_Children = new List<IBaseModel>();
     private string m_Text;
     private string m_ToolTipText;
     //TextChanged
@@ -147,6 +147,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region public API
+    internal int Count { get { return m_Children.Count; } }
     /// <summary>
     /// Gets the node descriptors.
     /// </summary>
@@ -179,12 +180,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region IBaseModel
-    /// <summary>
-    /// Gets the tree node and all children.
-    /// </summary>
-    /// <returns>The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.</returns>
-    [Obsolete]
-    public abstract BaseDictionaryTreeNode GetTreeNode();
     public event EventHandler<TextEventArgs> TextChanged;
     public event EventHandler<ProjectEventArgs> SubtreeChanged;
     public string ToolTipText
@@ -209,6 +204,14 @@ namespace CAS.UA.Model.Designer.Wrappers
         RaiseTextChanged();
       }
     }
+    public IEnumerator<IBaseModel> GetEnumerator()
+    {
+      return m_Children.GetEnumerator();
+    }
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+      return m_Children.GetEnumerator();
+    }
     #endregion
 
     #region ICollection<BaseTreeNode> Members
@@ -222,7 +225,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     public void Add(BaseTreeNode item)
     {
       item.Parent = this;
-      base.Add(item);
+      m_Children.Add(item);
       RaiseSubtreeChanged();
     }
     /// <summary>
@@ -236,7 +239,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       foreach (BaseTreeNode item in collection)
         item.Parent = this;
-      base.AddRange(collection);
+      m_Children.AddRange(collection);
       RaiseSubtreeChanged();
     }
     /// <summary>
@@ -245,9 +248,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <exception cref="T:System.NotSupportedException">
     /// The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
     /// </exception>
-    public new void Clear()
+    public void Clear()
     {
-      base.Clear();
+      m_Children.Clear();
       RaiseSubtreeChanged();
     }
     /// <summary>
@@ -264,7 +267,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </exception>
     public bool Remove(BaseTreeNode item)
     {
-      bool ret = base.Remove(item);
+      bool ret = m_Children.Remove(item);
       item.Parent = null;
       RaiseSubtreeChanged();
       return ret;

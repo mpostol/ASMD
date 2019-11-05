@@ -26,7 +26,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       this.m_TreeView.ImageList = this.m_ImagesForNodes.ImageListNodes;
       m_TreeView.CoupledNodesAreEnabled = Settings.Default.CoupledNodesAreEnabled;
       //solution initialization:
-      Root.LibraryRoot.AddTreeNodes(m_TreeView.Nodes);
+      Root.LibraryRoot.AddNodes(x => m_TreeView.Nodes.Add(new LibraryTreeNodeControl(x)));
 
       AddSolution(UAModelDesignerSolution.CreateEmptyModel());
       //toolstrip initialization:

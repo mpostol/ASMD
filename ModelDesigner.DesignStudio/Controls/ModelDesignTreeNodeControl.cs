@@ -15,9 +15,10 @@ namespace CAS.UA.Model.Designer.Controls
   {
 
     #region creator
-    public ModelDesignTreeNodeControl(ModelDesign parent)
-      : base(parent)
-    { }
+    public ModelDesignTreeNodeControl(ModelDesign parent) : base(parent)
+    {
+      this.Expand();
+    }
     #endregion
 
     #region public
@@ -36,6 +37,10 @@ namespace CAS.UA.Model.Designer.Controls
     internal override bool GetUniqueIdentifier(UniqueIdentifier ui)
     {
       return false;
+    }
+    public override DictionaryTreeNode CreateCopy()
+    {
+      return new ModelDesignTreeNodeControl(ModelEntity);
     }
     #endregion
 

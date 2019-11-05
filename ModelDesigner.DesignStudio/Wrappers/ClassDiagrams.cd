@@ -27,7 +27,7 @@
   <Class Name="CAS.UA.Model.Designer.Wrappers.Libraries" Collapsed="true">
     <Position X="4.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAQAAAAAAEAAAAAAAAAAAgAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAQAAAAAAEAAAAAAAAAAAgAAAAAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\Libraries.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -39,7 +39,7 @@
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>ABgQDKCEBAEOYAAAEBAAAAAgAAgAgAAAAAgAggABACA=</HashCode>
+      <HashCode>AAgQDKCEBAEOYAAAEBAAAAAgAAgAgAAAAAgAggABACA=</HashCode>
       <FileName>Wrappers\SolutionTreeNode.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.1" />
@@ -65,7 +65,7 @@
   <Class Name="CAS.UA.Model.Designer.Wrappers.BaseTreeNode" Collapsed="true">
     <Position X="12" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IBIBAAAAAAQCQiAAAAAARACAAAAAAgAAEAQAiABEACA=</HashCode>
+      <HashCode>IAIBAAAAAAQCQiAAAAAARACAAAAAAgAAEAQAiABEACA=</HashCode>
       <FileName>Wrappers\BaseTreeNode.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -119,21 +119,21 @@
   <Class Name="CAS.UA.Model.Designer.Wrappers.EncodingDesign" Collapsed="true">
     <Position X="13.25" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAACCABAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAAAACCABAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
       <FileName>Wrappers\EncodingDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ModelDesign" Collapsed="true">
     <Position X="11.5" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IBAQACCABAEAAEAgAAIAgACAAAAAIBAYEIAIAAQAAAE=</HashCode>
+      <HashCode>IAAQACCABAEAAEAgAAIAgACAAAAAIBAYEIAIAAQAAAE=</HashCode>
       <FileName>Wrappers\ModelDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.Namespace" Collapsed="true">
     <Position X="15" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAACCABAAQAAAEAAAAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAAAACCABAAQAAAEAAAAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
       <FileName>Wrappers\Namespace.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -153,14 +153,14 @@
   <Class Name="CAS.UA.Model.Designer.Wrappers.Parameter" Collapsed="true">
     <Position X="19.25" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAACCABAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAAAACCABAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
       <FileName>Wrappers\Parameter.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.Reference" Collapsed="true">
     <Position X="21" Y="8.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAACCABAAAAAAEAAAAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAAAACCABAAAAAAEAAAAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
       <FileName>Wrappers\Reference.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -200,7 +200,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ABAAACAABAAAAAAAAAAAAACAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAACAABAAAAAAAAAAAAACAAAAAAAAgAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\EncodingsFolder.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -221,7 +221,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ABAAACEABAAAAAAABAAAgCCAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <HashCode>AAAAACEABAAAAAAABAAAgACAAAAAAAAAABCAAAAAAAA=</HashCode>
       <FileName>Wrappers\NamespacesFolder.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -248,7 +248,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ABAAACAABAAAAAAAAAAAAACAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAACAABAAAAAAAAAAAAACAAAAAAAAgAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\ParametersFolder.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -277,7 +277,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ABAAACAABAAAAAAAAAAAAACAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAACAABAAAAAAAAAAAAACAAAAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\ReferencesFolder.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -303,77 +303,77 @@
   <Class Name="CAS.UA.Model.Designer.Wrappers.ViewDesign" Collapsed="true">
     <Position X="14.5" Y="9.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>ABAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\ViewDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.MethodDesign" Collapsed="true">
     <Position X="6.75" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAQAACAhAAAAAAAAAMAAAAAAABAAAAIAgAAIAAAAAA=</HashCode>
+      <HashCode>AAAQAACAhAAAAAAAAAMAAAAAAABAAAAIAgAAIAAAAAA=</HashCode>
       <FileName>Wrappers\MethodDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ObjectDesign" Collapsed="true">
     <Position X="8.5" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\ObjectDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.DataTypeDesign" Collapsed="true">
     <Position X="15.5" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAQAACAFBAAAACAAAIAAAAAAAAAAAAIAAAAAAAAiAA=</HashCode>
+      <HashCode>AAAQAACAFBAAAACAAAIAAAAAAAAAAAAIAAAAAAAAiAA=</HashCode>
       <FileName>Wrappers\DataTypeDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ReferenceTypeDesign" Collapsed="true">
     <Position X="19.25" Y="11.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>ABAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\ReferenceTypeDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.VariableTypeDesign" Collapsed="true">
     <Position X="21.25" Y="11.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>ABAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\VariableTypeDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ObjectTypeDesign" Collapsed="true">
     <Position X="17.25" Y="11.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>ABAAABCABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAABCABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\ObjectTypeDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.DictionaryDesign" Collapsed="true">
     <Position X="10.25" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\DictionaryDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.PropertyDesign" Collapsed="true">
     <Position X="12" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\PropertyDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.VariableDesign" Collapsed="true">
     <Position X="13.75" Y="11.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAAACABAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAACABAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\VariableDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.LibraryTreeNode" Collapsed="true">
     <Position X="6.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAQAAAAAAECAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAQAAAAAAECAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\LibraryTreeNode.cs</FileName>
     </TypeIdentifier>
   </Class>

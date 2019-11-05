@@ -1,17 +1,8 @@
-﻿//_______________________________________________________________
-//  Title   : SolutionTreeNodeControl
-//  System  : Microsoft VisualStudio 2015 / C#
-//  $LastChangedDate:  $
-//  $Rev: $
-//  $LastChangedBy: $
-//  $URL: $
-//  $Id:  $
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2017, CAS LODZ POLAND.
-//  TEL: +48 608 61 98 99 
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Wrappers;
 using System;
@@ -19,12 +10,11 @@ using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Controls
 {
-  internal class SolutionTreeNodeControl : FileMenuProviderControl<ISolutionModel, IProjectModel>
+  internal class SolutionTreeNodeControl : FileMenuProviderControl<ISolutionModel>
   {
 
     #region constructor
-    public SolutionTreeNodeControl(ISolutionModel model)
-      : base(model)
+    public SolutionTreeNodeControl(ISolutionModel model) : base(model)
     {
       SaveConstrain.CheckConstrain();
     }
@@ -82,6 +72,11 @@ namespace CAS.UA.Model.Designer.Controls
     protected override void Save()
     {
       ModelEntity.Save(false);
+    }
+    //TODO Refactoring application architecture - remove recursion #6
+    protected override void AddChildren(ISolutionModel parent)
+    {
+      throw new NotImplementedException();
     }
     //protected override BaseDictionaryTreeNode GetChildTreeNodeControl(IProjectModel node)
     //{

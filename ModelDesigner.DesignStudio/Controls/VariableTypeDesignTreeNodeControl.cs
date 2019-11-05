@@ -10,8 +10,10 @@ namespace CAS.UA.Model.Designer.Controls
 {
   internal class VariableTypeDesignTreeNodeControl : TypeDesignTreeNodeControl<VariableTypeDesign, Wrappers4ProperyGrid.VariableTypeDesign, Opc.Ua.ModelCompiler.VariableTypeDesign>
   {
-    public VariableTypeDesignTreeNodeControl(VariableTypeDesign parent)
-      : base(parent)
-    { }
+    public VariableTypeDesignTreeNodeControl(VariableTypeDesign parent) : base(parent) { }
+    public override DictionaryTreeNode CreateCopy()
+    {
+      return new VariableTypeDesignTreeNodeControl(this.ModelEntity);
+    }
   }
 }

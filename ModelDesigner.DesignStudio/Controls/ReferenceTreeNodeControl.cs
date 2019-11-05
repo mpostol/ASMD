@@ -13,12 +13,10 @@ namespace CAS.UA.Model.Designer.Controls
 {
   internal class ReferenceTreeNodeControl : WrapperBaseTreeNodeControl<Reference, Wrappers4ProperyGrid.Reference, Opc.Ua.ModelCompiler.Reference>
   {
-    public ReferenceTreeNodeControl(Reference parent)
-      : base(parent)
-    { }
+    public ReferenceTreeNodeControl(Reference parent) : base(parent) { }
     internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
     {
-      var list = base.GetCoupledNodesXmlQualifiedNames();
+      Dictionary<string, System.Xml.XmlQualifiedName> list = base.GetCoupledNodesXmlQualifiedNames();
       if (ModelEntity.Wrapper.ReferenceType.XmlQualifiedName != null && !ModelEntity.Wrapper.ReferenceType.XmlQualifiedName.IsEmpty)
         list.Add(Resources.WrapperTreeNodeAddMenuItemGoto_ReferenceType,
           ModelEntity.Wrapper.ReferenceType.XmlQualifiedName);
@@ -26,6 +24,10 @@ namespace CAS.UA.Model.Designer.Controls
         list.Add(Resources.WrapperTreeNodeAddMenuItemGoto_Target,
           ModelEntity.Wrapper.TargetId.XmlQualifiedName);
       return list;
+    }
+    public override DictionaryTreeNode CreateCopy()
+    {
+      return new ReferenceTreeNodeControl(this.ModelEntity);
     }
   }
 }

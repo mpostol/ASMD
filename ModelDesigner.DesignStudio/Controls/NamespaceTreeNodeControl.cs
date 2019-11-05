@@ -10,8 +10,10 @@ namespace CAS.UA.Model.Designer.Controls
 {
   internal class NamespaceTreeNodeControl : WrapperBaseTreeNodeControl<Namespace, Wrappers4ProperyGrid.Namespace, Opc.Ua.ModelCompiler.Namespace>
   {
-    public NamespaceTreeNodeControl(Namespace parent)
-      : base(parent)
-    { }
+    public NamespaceTreeNodeControl(Namespace parent) : base(parent) { }
+    public override DictionaryTreeNode CreateCopy()
+    {
+      return new NamespaceTreeNodeControl(ModelEntity);
+    }
   }
 }

@@ -5,29 +5,27 @@
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
-using CAS.UA.Model.Designer.Wrappers;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CAS.UA.Model.Designer.Controls
 {
 
   internal class CoupledNodesDictionaryTreeNode : DictionaryTreeNode
   {
-    internal override BaseDictionaryTreeNode CreateCopy()
+
+    public CoupledNodesDictionaryTreeNode(IEnumerable<BaseDictionaryTreeNode> nodes)
     {
-      return null;
+      Nodes.AddRange(nodes.ToArray<BaseDictionaryTreeNode>());
+      this.Expand();
     }
-    /// <summary>
-    /// Is called befores the menu strip opening to add all required menu items.
-    /// </summary>
-    protected override void BeforeMenuStripOpening()
-    {
-      base.BeforeMenuStripOpening();
-    }
-    protected override void Unregister() { }
-    internal override void AddNodeToDictionary() { }
     internal CoupledNodesDictionaryTreeNode()
     {
       this.Text = Resources.DictionaryTreeNode_CoupledNodes;
     }
+
+    #region DictionaryTreeNode
+    protected override void Unregister() { }
+    #endregion
   }
 }

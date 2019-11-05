@@ -1,17 +1,8 @@
-﻿//_______________________________________________________________
-//  Title   : FileMenuProviderControl
-//  System  : Microsoft VisualStudio 2015 / C#
-//  $LastChangedDate:  $
-//  $Rev: $
-//  $LastChangedBy: $
-//  $URL: $
-//  $Id:  $
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2017, CAS LODZ POLAND.
-//  TEL: +48 608 61 98 99 
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
@@ -21,13 +12,10 @@ using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Controls
 {
-  internal abstract class FileMenuProviderControl<TModel, TChildModel> : BaseTreeNodeControl<TModel, TChildModel>
+  internal abstract class FileMenuProviderControl<TModel> : BaseTreeNodeControl<TModel>
     where TModel : IBaseModel
-    where TChildModel : IBaseModel
   {
-    public FileMenuProviderControl(TModel model)
-      : base(model)
-    { }
+    public FileMenuProviderControl(TModel model) : base(model) { }
     /// <summary>
     /// Adds the items to menu.
     /// </summary>

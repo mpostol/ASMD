@@ -6,7 +6,6 @@
 
 using CAS.CommServer.UA.Common;
 using CAS.Lib.RTLib.Utils;
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Solution;
@@ -83,43 +82,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       string directory = Path.GetDirectoryName(FilePath);
       return Path.Combine(directory, myName);
     }
-
-    ////Types
-    //protected class TreeNode : WrapperTreeNode.TreeNode<ProjectTreeNode>
-    //{
-    //  public TreeNode(ProjectTreeNode parent)
-    //    : base(parent)
-    //  { }
-
-    //  #region public
-    //  ///// <summary>
-    //  ///// Validates this instance.
-    //  ///// </summary>
-    //  //public override void Validate()
-    //  //{
-    //  //  Creator.Validate();
-    //  //  base.Validate();
-    //  //}
-
-    //  #endregion
-
-    //  #region private
-    //  protected override void BeforeMenuStripOpening()
-    //  {
-    //    ToolStripMenuItem m_TSMI_remove = new ToolStripMenuItem("Remove project", Resources.delete);
-    //    m_TSMI_remove.Click += new System.EventHandler(m_TSMI_remove_Click);
-    //    //this.ContextMenuStrip = new ContextMenuStrip();
-    //    this.ContextMenuStrip.Items.Add(m_TSMI_remove);
-    //    base.BeforeMenuStripOpening();
-    //  }
-    //  private void m_TSMI_remove_Click(object sender, EventArgs e)
-    //  {
-    //    string name = Creator.Name;
-    //    if (MessageBox.Show(string.Format(Resources.ProjectTreeNode_AreYouSureToRemove_text, name), Resources.ProjectTreeNode_AreYouSureToRemove_caption, MessageBoxButtons.YesNo) == DialogResult.Yes)
-    //      Creator.Remove();
-    //  }
-    //  #endregion
-    //}
     #endregion private
 
     #region constructors
@@ -182,10 +144,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get { return NodeClassesEnum.None; }
     }
-    public override BaseDictionaryTreeNode GetTreeNode()
-    {
-      throw new NotImplementedException();
-    }
+
     #endregion
 
     #region public

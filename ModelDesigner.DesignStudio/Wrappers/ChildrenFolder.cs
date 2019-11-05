@@ -4,8 +4,6 @@
 //
 //___________________________________________________________________________________
 
-
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using System.Collections.Generic;
 using OpcUaModelCompiler = Opc.Ua.ModelCompiler;
@@ -21,8 +19,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <summary>
     /// Initializes a new instance of the <see cref="ChildrenFolder"/> class.
     /// </summary>
-    public ChildrenFolder()
-      : base(WrapperResources.ChildrenFolderText, WrapperResources.ChildrenFolderToolTip)
+    public ChildrenFolder() : base(WrapperResources.ChildrenFolderText, WrapperResources.ChildrenFolderToolTip)
     {
       TypesAvailableToBePasted.Add(typeof(OpcUaModelCompiler.InstanceDesign));
     }
@@ -30,8 +27,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Initializes a new instance of the <see cref="ChildrenFolder"/> class.
     /// </summary>
     /// <param name="child">The collection of children - nodes referenced by HasComponent and HasProperty.</param>
-    public ChildrenFolder(Opc.Ua.ModelCompiler.ListOfChildren child)
-      : this()
+    public ChildrenFolder(Opc.Ua.ModelCompiler.ListOfChildren child) : this()
     {
       if (child == null || child.Items == null || child.Items.Length == 0)
         return;
@@ -41,33 +37,20 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region public
-    public override string HelpTopicName
-    {
-      get { return Resources.NodeClasses_ChildrenFolder; }
-    }
+    public override string HelpTopicName => Resources.NodeClasses_ChildrenFolder;
     internal OpcUaModelCompiler.ListOfChildren CreateNodes
     {
       get
       {
         if (Count == 0)
           return null;
-        var list = new OpcUaModelCompiler.ListOfChildren { };
+        OpcUaModelCompiler.ListOfChildren list = new OpcUaModelCompiler.ListOfChildren { };
         list.Items = new OpcUaModelCompiler.InstanceDesign[Count];
         int ii = 0;
         foreach (IParent node in this)
           list.Items[ii++] = (Opc.Ua.ModelCompiler.InstanceDesign)node.ModelDesignerNode;
         return list;
       }
-    }
-    /// <summary>
-    /// Gets the tree node and all children.
-    /// </summary>
-    /// <returns>
-    /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
-    /// </returns>
-    public override BaseDictionaryTreeNode GetTreeNode()
-    {
-      return new ChildrenFolderTreeNodeControl(this);
     }
     /// <summary>
     /// Calculates a relative name of the reference.
@@ -78,10 +61,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return ((INodeDesign)this.Parent).CalculateReferenceRelativeName(targetIdName);
     }
-    public override NodeTypeEnum NodeType
-    {
-      get { return NodeTypeEnum.ChildrenFolderNode; }
-    }
+    public override NodeTypeEnum NodeType => NodeTypeEnum.ChildrenFolderNode;
     #endregion
 
     #region private
@@ -89,27 +69,16 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get
       {
-        List<INodeFactory> m_list = new List<INodeFactory>();
-        m_list.Add(new TypeListItem<MethodDesign>());
-        m_list.Add(new TypeListItem<ObjectDesign>());
-        m_list.Add(new TypeListItem<PropertyDesign>());
-        m_list.Add(new TypeListItem<VariableDesign>());
+        List<INodeFactory> m_list = new List<INodeFactory>
+        {
+          new TypeListItem<MethodDesign>(),
+          new TypeListItem<ObjectDesign>(),
+          new TypeListItem<PropertyDesign>(),
+          new TypeListItem<VariableDesign>()
+        };
         return m_list.ToArray();
       }
     }
-    //TODO Refactoring application architecture - remove recursion #6 - remove comment
-    //private class ChildrenFolderTreeNodeControl : FolderTreeNodeControl<ChildrenFolder>
-    //{
-    //  public ChildrenFolderTreeNodeControl(ChildrenFolder parent)
-    //    : base(parent)
-    //  { }
-    //  protected override void BeforeMenuStripOpening()
-    //  {
-    //    AddMenuItemPaste();
-    //    AddMenuItemAdd(ModelEntity.ListOfNodes);
-    //    base.BeforeMenuStripOpening();
-    //  }
-    //}
     #endregion
   }
 }

@@ -4,26 +4,24 @@
 //
 //___________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
+using System.Linq;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal class ReferencesFolder: Folder
+  internal class ReferencesFolder : Folder
   {
     #region creators
-    internal ReferencesFolder()
-      : base( "References", WrapperResources.ReferencesFolderNodeToolTipText )
+    internal ReferencesFolder() : base("References", WrapperResources.ReferencesFolderNodeToolTipText)
     {
-      TypesAvailableToBePasted.Add( typeof( Opc.Ua.ModelCompiler.Reference ) );
+      TypesAvailableToBePasted.Add(typeof(Opc.Ua.ModelCompiler.Reference));
     }
-    internal ReferencesFolder( Opc.Ua.ModelCompiler.Reference[] refrences )
-      : this()
+    internal ReferencesFolder(Opc.Ua.ModelCompiler.Reference[] refrences) : this()
     {
-      if ( refrences == null || refrences.Length == 0 )
+      if (refrences == null || refrences.Length == 0)
         return;
-      foreach ( Opc.Ua.ModelCompiler.Reference rf in refrences )
-        Add( new Reference( rf ) );
+      foreach (Opc.Ua.ModelCompiler.Reference rf in refrences)
+        Add(new Reference(rf));
     }
     #endregion
 
@@ -31,38 +29,22 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <summary>
     /// Gets the name of the topic in help.
     /// </summary>
-    /// <value>The name of the topicin help.</value>
-    public override string HelpTopicName
-    {
-      get { return Resources.NodeClasses_Objects_ReferencesFolder; }
-    }
+    /// <value>The name of the topic in help.</value>
+    public override string HelpTopicName => Resources.NodeClasses_Objects_ReferencesFolder;
     internal Opc.Ua.ModelCompiler.Reference[] References
     {
       get
       {
-        if ( Count == 0 )
+        if (this.Count == 0)
           return null;
         int ii = 0;
-        Opc.Ua.ModelCompiler.Reference[] array = new Opc.Ua.ModelCompiler.Reference[ Count ];
-        foreach ( IParent node in this )
-          array[ ii++ ] = (Opc.Ua.ModelCompiler.Reference)node.ModelDesignerNode;
+        Opc.Ua.ModelCompiler.Reference[] array = new Opc.Ua.ModelCompiler.Reference[Count];
+        foreach (IParent node in this)
+          array[ii++] = (Opc.Ua.ModelCompiler.Reference)node.ModelDesignerNode;
         return array;
       }
     }
-    /// <summary>
-    /// Gets the tree node and all children.
-    /// </summary>
-    /// <returns>
-    /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
-    /// </returns>
-    public override BaseDictionaryTreeNode GetTreeNode()
-    {
-      return new ReferencesFolderTreeNodeControl( this );
-    }
-    public override NodeTypeEnum NodeType
-    {
-      get { return NodeTypeEnum.ReferencesFolderNode; }
-    }
+    public override NodeTypeEnum NodeType => NodeTypeEnum.ReferencesFolderNode;
     #endregion
 
     #region private
@@ -70,8 +52,8 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get
       {
-        TypeListItem<Reference>[] m_list = new TypeListItem<Reference>[ 1 ];
-        m_list[ 0 ] = new TypeListItem<Reference>();
+        TypeListItem<Reference>[] m_list = new TypeListItem<Reference>[1];
+        m_list[0] = new TypeListItem<Reference>();
         return m_list;
       }
     }

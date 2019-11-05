@@ -24,7 +24,7 @@ namespace CAS.UA.Model.Designer.Controls
   /// Class ProjectTreeNodeControl.
   /// </summary>
   /// <seealso cref="CAS.UA.Model.Designer.Controls.FileMenuProviderControl{CAS.UA.Model.Designer.Wrappers.IProjectModel, CAS.UA.Model.Designer.Wrappers.IBaseModel}" />
-  internal class ProjectTreeNodeControl : FileMenuProviderControl<IProjectModel, IBaseModel>
+  internal class ProjectTreeNodeControl : FileMenuProviderControl<IProjectModel>
   {
 
     #region constructor
@@ -66,6 +66,11 @@ namespace CAS.UA.Model.Designer.Controls
       string name = ModelEntity.Name;
       if (MessageBox.Show(string.Format(Resources.ProjectTreeNode_AreYouSureToRemove_text, name), Resources.ProjectTreeNode_AreYouSureToRemove_caption, MessageBoxButtons.YesNo) == DialogResult.Yes)
         ModelEntity.Remove();
+    }
+    //TODO Refactoring application architecture - remove recursion #6 - must be implmented
+    protected override void AddChildren(IProjectModel parent)
+    {
+      throw new NotImplementedException();
     }
     //protected override BaseDictionaryTreeNode GetChildTreeNodeControl(IBaseModel node)
     //{

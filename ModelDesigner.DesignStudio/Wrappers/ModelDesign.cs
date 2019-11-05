@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using System;
@@ -100,56 +99,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       return String.Format(WrapperResources.ModelDesignNodeToolTipText, ns);
     }
     private NamespacesFolder m_Namespaces;
-
-    //TODO Refactoring application architecture - remove recursion #6 - remove
-    //private class ModelDesignTreeNodeControl : WrapperBaseTreeNodeControl<ModelDesign, Wrappers4ProperyGrid.ModelDesign, Opc.Ua.ModelCompiler.ModelDesign>
-    //{
-
-    //  #region creator
-    //  public ModelDesignTreeNodeControl(ModelDesign parent)
-    //    : base(parent)
-    //  { }
-    //  #endregion
-
-    //  #region public
-    //  public override void SetTypeFilter(bool allTypes, IEnumerable<NodeClassesEnum> types)
-    //  {
-    //    RecreateSubtree();
-    //    ApplyTypeFiltersToChildreen(allTypes, types);
-    //  }
-    //  /// <summary>
-    //  /// Gets the unique identifier.
-    //  /// </summary>
-    //  /// <param name="ui">The instance of <see cref="UniqueIdentifier"/> that represents an unique identifier.</param>
-    //  /// <returns>
-    //  /// 	<c>true</c> if it is not top level element; <c>false</c> otherwise if it is top level element
-    //  /// </returns>
-    //  internal override bool GetUniqueIdentifier(UniqueIdentifier ui)
-    //  {
-    //    return false;
-    //  }
-    //  #endregion
-
-    //  #region private
-    //  protected override void BeforeMenuStripOpening()
-    //  {
-    //    AddMenuItemAdd(ModelEntity.ListOfNodes);
-    //    ToolStripMenuItem import = ImportMenuFactory.CreateImportMenuItem.CreateToolStripMenuItem();
-    //    this.ContextMenuStrip.Items.Add(import);
-    //    ModelEntity.GetImportMenu(import.DropDownItems);
-    //    base.BeforeMenuStripOpening();
-    //  }
-    //  protected override void AddMenuItemDelete()
-    //  {
-    //    //this node should not have menu delete
-    //  }
-    //  protected internal override void GetImportMenu(ToolStripItemCollection items)
-    //  {
-    //    ModelEntity.GetImportMenu(items);
-    //  }
-    //  #endregion
-
-    //}
     private void CreateImportMenuClick(object sender, EventArgs e)
     {
       Opc.Ua.ModelCompiler.NodeDesign[] nodes = OPCDA.OnImportMenuItemClick(GetTargetNamespace());
@@ -220,7 +169,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get
       {
-        return m_Namespaces.GetAvailiableNamespaces();
+        return m_Namespaces.GetAvailableNamespaces();
       }
     }
     /// <summary>
@@ -262,18 +211,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </summary>
     /// <value>The XML namespaces <see cref="XmlSerializerNamespaces"/>.</value>
     internal XmlSerializerNamespaces XmlNamespaces { get { return m_Namespaces.XmlNamespaces; } }
-    /// <summary>
-    /// Gets the tree node and all children.
-    /// </summary>
-    /// <returns>
-    /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
-    /// </returns>
-    public override BaseDictionaryTreeNode GetTreeNode()
-    {
-      BaseDictionaryTreeNode node = new ModelDesignTreeNodeControl(this);
-      node.Expand();
-      return node;
-    }
     internal static string OPCUATargetNamespace { get; private set; }
     /// <summary>
     /// Gets the target namespace of the current project.

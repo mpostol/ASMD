@@ -4,8 +4,6 @@
 //
 //___________________________________________________________________________________
 
-
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -20,15 +18,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     public VariableTypeDesign( Opc.Ua.ModelCompiler.VariableTypeDesign node )
       : base( new Wrappers4ProperyGrid.VariableTypeDesign( node ), node )
     { }
-    #endregion
-
-    #region private
-    //private class VariableTypeDesignTreeNodeControl : TypeDesignTreeNodeControl<VariableTypeDesign, Wrappers4ProperyGrid.VariableTypeDesign, Opc.Ua.ModelCompiler.VariableTypeDesign>
-    //{
-    //  public VariableTypeDesignTreeNodeControl( VariableTypeDesign parent )
-    //    : base( parent )
-    //  { }
-    //}
     #endregion
 
     #region public
@@ -47,16 +36,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     public override NodeClassesEnum NodeClass
     {
       get { return NodeClassesEnum.VariableType; }
-    }
-    /// <summary>
-    /// Gets the tree node and all children.
-    /// </summary>
-    /// <returns>
-    /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
-    /// </returns>
-    public override BaseDictionaryTreeNode GetTreeNode()
-    {
-      return new VariableTypeDesignTreeNodeControl( this );
     }
     #endregion
 

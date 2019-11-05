@@ -10,8 +10,10 @@ namespace CAS.UA.Model.Designer.Controls
 {
   internal class EncodingDesignTreeNodeControl : WrapperBaseTreeNodeControl<EncodingDesign, Wrappers4ProperyGrid.EncodingDesign, Opc.Ua.ModelCompiler.EncodingDesign>
   {
-    public EncodingDesignTreeNodeControl(EncodingDesign parent)
-      : base(parent)
-    { }
+    public EncodingDesignTreeNodeControl(EncodingDesign parent) : base(parent) { }
+    public override DictionaryTreeNode CreateCopy()
+    {
+      return new EncodingDesignTreeNodeControl(ModelEntity);
+    }
   }
 }

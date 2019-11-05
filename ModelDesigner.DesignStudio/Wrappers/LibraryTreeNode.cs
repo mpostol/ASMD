@@ -1,19 +1,9 @@
-﻿//<summary>
-//  Title   : A node representing a non editable library on the tree.
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Controls;
 using System.Collections.Generic;
 using System.Xml;
 using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
@@ -25,14 +15,6 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// </summary>
   internal class LibraryTreeNode : RootTreeNode
   {
-    #region private
-    //private class LibraryTreeNodeControl : RootTreeNodeControl<LibraryTreeNode>
-    //{
-    //  public LibraryTreeNodeControl(LibraryTreeNode parent)
-    //    : base(parent)
-    //  { }
-    //}
-    #endregion
 
     #region creator
     internal LibraryTreeNode(OPCFModelDesign config, string nodeName)
@@ -57,16 +39,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     internal override bool TestIfReadOnlyAndRetrunTrueIfReadOnly()
     {
       return true;
-    }
-    /// <summary>
-    /// Gets the tree node and all children.
-    /// </summary>
-    /// <returns>
-    /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
-    /// </returns>
-    public override BaseDictionaryTreeNode GetTreeNode()
-    {
-      return new LibraryTreeNodeControl(this);
     }
     /// <summary>
     /// Adds to dictionary - each item of <see cref="ModelDesign{WrapperType, ModelType}"/> from this collection is added to <paramref name="space"/>.

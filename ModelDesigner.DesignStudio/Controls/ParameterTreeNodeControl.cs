@@ -10,8 +10,10 @@ namespace CAS.UA.Model.Designer.Controls
 {
   internal class ParameterTreeNodeControl : WrapperBaseTreeNodeControl<Parameter, Wrappers4ProperyGrid.Parameter, Opc.Ua.ModelCompiler.Parameter>
   {
-    public ParameterTreeNodeControl(Parameter parent)
-      : base(parent)
-    { }
+    public ParameterTreeNodeControl(Parameter parent) : base(parent) { }
+    public override DictionaryTreeNode CreateCopy()
+    {
+      return new ParameterTreeNodeControl(ModelEntity);
+    }
   }//TreeNode
 }

@@ -51,7 +51,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
     #endregion
 
     #region test instrunmentation
-    private class FileMenuProviderTest : FileMenuProviderControl<BaseTreeNodeTest, IBaseModel>
+    private class FileMenuProviderTest : FileMenuProviderControl<BaseTreeNodeTest>
     {
       internal static FileMenuProviderTest CreteInstance()
       {
@@ -75,6 +75,10 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       {
         throw new NotImplementedException();
       }
+      protected override void AddChildren(BaseTreeNodeTest parent)
+      {
+        throw new NotImplementedException();
+      }
     }
     private class BaseTreeNodeTest : BaseTreeNode
     {
@@ -84,10 +88,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       }
       public BaseTreeNodeTest(string text) : base(text)
       {
-      }
-      public override BaseDictionaryTreeNode GetTreeNode()
-      {
-        throw new NotImplementedException();
       }
     }
     #endregion

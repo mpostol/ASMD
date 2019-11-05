@@ -8,14 +8,12 @@ using CAS.UA.Model.Designer.Wrappers;
 
 namespace CAS.UA.Model.Designer.Controls
 {
-  internal abstract class RootTreeNodeControl<T> : BaseTreeNodeControl<T, T>
+  internal abstract class RootTreeNodeControl<T> : BaseTreeNodeControl<T>
     where T : RootTreeNode
   {
 
     #region creator
-    public RootTreeNodeControl(T parent)
-      : base(parent)
-    { }
+    public RootTreeNodeControl(T parent) : base(parent) { }
     #endregion
 
   }

@@ -20,18 +20,15 @@ namespace CAS.UA.Model.Designer.Controls
     where T : InstanceDesign<type, OPCType>
   {
     #region creator
-    public InstanceDesignTreeNodeControl(T parent)
-      : base(parent)
-    { }
+    public InstanceDesignTreeNodeControl(T parent) : base(parent) { }
     #endregion
 
     #region public
     internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
     {
-      var list = base.GetCoupledNodesXmlQualifiedNames();
+      Dictionary<string, System.Xml.XmlQualifiedName> list = base.GetCoupledNodesXmlQualifiedNames();
       if (ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName != null && !ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName.IsEmpty)
-        list.Add(Resources.WrapperTreeNodeAddMenuItemGoto_TypeDefinition,
-           ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName);
+        list.Add(Resources.WrapperTreeNodeAddMenuItemGoto_TypeDefinition, ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName);
       return list;
     }
     /// <summary>
@@ -39,7 +36,7 @@ namespace CAS.UA.Model.Designer.Controls
     /// </summary>
     /// <param name="ui">The instance of <see cref="UniqueIdentifier"/> that represents an unique identifier.</param>
     /// <returns>
-    /// 	<c>true</c> if it is not top level element; <c>false</c> othervise if it is top level element
+    /// 	<c>true</c> if it is not top level element; <c>false</c> otherwise if it is top level element
     /// </returns>
     internal override bool GetUniqueIdentifier(UniqueIdentifier ui)
     {
@@ -76,7 +73,7 @@ namespace CAS.UA.Model.Designer.Controls
         menu.Add(new ToolStripSeparator());
       ToolStripMenuItem item = new ToolStripMenuItem()
       {
-        Text = String.Format(Resources.ConfigurationWrapper_Configuration_Text, this.Text),
+        Text = string.Format(Resources.ConfigurationWrapper_Configuration_Text, this.Text),
         ToolTipText = Resources.ConfigurationWrapper_Configuration_ToolTip
       };
       menu.Add(item);
@@ -107,7 +104,7 @@ namespace CAS.UA.Model.Designer.Controls
     {
       if (m_InstanceConfiguration == null)
         return;
-      //TODO Display worning
+      //TODO Display worming
       m_InstanceConfiguration.ClearConfiguration();
     }
     private void edit_Click(object sender, EventArgs e)

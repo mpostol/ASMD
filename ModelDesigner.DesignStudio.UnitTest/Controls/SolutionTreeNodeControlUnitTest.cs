@@ -204,11 +204,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       {
         throw new NotImplementedException();
       }
-      internal override BaseDictionaryTreeNode CreateCopy()
-      {
-        throw new NotImplementedException();
-      }
-
     }
     #endregion
   }

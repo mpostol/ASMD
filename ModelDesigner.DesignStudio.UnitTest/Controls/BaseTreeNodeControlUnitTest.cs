@@ -15,34 +15,31 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
     [TestMethod]
     public void ConstructorTest()
     {
-      BaseTreeNodeControTest _instance = BaseTreeNodeControTest.CreateInstance();
+      BaseTreeNodeControlTest _instance = BaseTreeNodeControlTest.CreateInstance();
       Assert.AreEqual<int>(0, _instance.ContextMenuStrip.Items.Count);
-    }
-    [TestMethod]
-    [ExpectedException(typeof(NotImplementedException))]
-    public void CreateCopyTest()
-    {
-      BaseTreeNodeControTest _instance = BaseTreeNodeControTest.CreateInstance();
-      _instance.CreateCopy();
     }
     [TestMethod]
     public void EventsTest()
     {
       BaseTreeNodeTest _model = new BaseTreeNodeTest();
-      BaseTreeNodeControTest _instance = new BaseTreeNodeControTest(_model);
+      BaseTreeNodeControlTest _instance = new BaseTreeNodeControlTest(_model);
       Assert.AreEqual<int>(1, _model.SubtreeChangedCount);
       Assert.AreEqual<int>(2, _model.TextChangedCount);
     }
     #endregion
 
     #region testing instrunebtation
-    private class BaseTreeNodeControTest : BaseTreeNodeControl<BaseTreeNodeTest, IBaseModel>
+    private class BaseTreeNodeControlTest : BaseTreeNodeControl<BaseTreeNodeTest>
     {
-      internal static BaseTreeNodeControTest CreateInstance()
+      internal static BaseTreeNodeControlTest CreateInstance()
       {
-        return new BaseTreeNodeControTest(new BaseTreeNodeTest());
+        return new BaseTreeNodeControlTest(new BaseTreeNodeTest());
       }
-      public BaseTreeNodeControTest(BaseTreeNodeTest model) : base(model) { }
+      protected override void AddChildren(BaseTreeNodeTest parent)
+      {
+        throw new NotImplementedException();
+      }
+      public BaseTreeNodeControlTest(BaseTreeNodeTest model) : base(model) { }
     }
     private class BaseTreeNodeTest : List<IBaseModel>, IBaseModel
     {

@@ -10,8 +10,10 @@ namespace CAS.UA.Model.Designer.Controls
 {
   internal class ReferenceTypeDesignTreeNodeControl : TypeDesignTreeNodeControl<ReferenceTypeDesign, Wrappers4ProperyGrid.ReferenceTypeDesign, Opc.Ua.ModelCompiler.ReferenceTypeDesign>
   {
-    public ReferenceTypeDesignTreeNodeControl(ReferenceTypeDesign parent)
-      : base(parent)
-    { }
+    public ReferenceTypeDesignTreeNodeControl(ReferenceTypeDesign parent) : base(parent) { }
+    public override DictionaryTreeNode CreateCopy()
+    {
+      return new ReferenceTypeDesignTreeNodeControl (ModelEntity);
+    }
   }
 }

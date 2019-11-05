@@ -14,22 +14,20 @@ using System.Xml;
 
 namespace CAS.UA.Model.Designer.Controls
 {
-  internal abstract class WrapperTreeNodeControl<T> : BaseTreeNodeControl<T, T>, IWrapperTreeNode
+  internal abstract class WrapperTreeNodeControl<T> : BaseTreeNodeControl<T>, IWrapperTreeNode
     where T : WrapperTreeNode, IModelNode, IModelNodeAdvance
   {
     #region creator
-    public WrapperTreeNodeControl(T parent)
-      : base(parent)
-    { }
+    public WrapperTreeNodeControl(T parent) : base(parent) { }
     #endregion
 
     #region private
-    private List<Diagnostics> m_ErrorList = new List<Diagnostics>();
-    protected IModelNode MyIModelNode { get { return ModelEntity as IModelNode; } }
+    private readonly List<Diagnostics> m_ErrorList = new List<Diagnostics>();
+    protected IModelNode MyIModelNode => ModelEntity as IModelNode;
     /// <summary>
     /// Gets the wrappers to be used in the <see cref="System.Windows.Forms.PropertyGrid"/>.
     /// </summary>
-    /// <value>The wrappers,i.e. node configuration wappers.</value>
+    /// <value>The wrappers,i.e. node configuration wrappers.</value>
     protected virtual void AddMenuItemAdd(INodeFactory[] listOfNodes)
     {
       ToolStripMenuItem menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_add_object, Resources.AdddItem)
@@ -91,6 +89,11 @@ namespace CAS.UA.Model.Designer.Controls
       menu.Click += new EventHandler(ModelEntity.AddMenuItemDelete_Click);
       ContextMenuStrip.Items.Add(menu);
     }
+    protected override void AddChildren(T entity)
+    {
+      foreach (T node in entity)
+        Nodes.Add(DictionaryTreeNode.GetTreeNode(entity));
+    }
     #endregion
 
     #region IWrapperTreeNode Members
@@ -100,7 +103,7 @@ namespace CAS.UA.Model.Designer.Controls
     /// <value>
     /// An instance of class inherited from <see cref="IModelNodeAdvance"/>.
     /// </value>
-    IModelNodeAdvance IWrapperTreeNode.IModelNodeAdvance { get { return this.ModelEntity as IModelNodeAdvance; } }
+    IModelNodeAdvance IWrapperTreeNode.IModelNodeAdvance => this.ModelEntity as IModelNodeAdvance;
     /// <summary>
     /// Gets or sets the name of the tree node.
     /// </summary>
@@ -108,26 +111,17 @@ namespace CAS.UA.Model.Designer.Controls
     /// <returns>
     /// A <see cref="T:System.String"/> that represents the name of the tree node.
     /// </returns>
-    string IModelNode.Name
-    {
-      get { return ModelEntity.Name; }
-    }
+    string IModelNode.Name => ModelEntity.Name;
     /// <summary>
     /// Gets the error list.
     /// </summary>
     /// <value>The error list.</value>
-    IList<Diagnostics> IModelNode.ErrorList
-    {
-      get { return m_ErrorList; }
-    }
+    IList<Diagnostics> IModelNode.ErrorList => m_ErrorList;
     /// <summary>
     /// Gets the wrapper of the node to be used in the property grid user interface.
     /// </summary>
     /// <value>The wrapper.</value>
-    object IModelNode.Wrapper4PropertyGrid
-    {
-      get { return ModelEntity.Wrapper4PropertyGrid; }
-    }
+    object IModelNode.Wrapper4PropertyGrid => ModelEntity.Wrapper4PropertyGrid;
     /// <summary>
     /// Gets the wrapper for property grid of data bindings.
     /// </summary>
@@ -144,41 +138,26 @@ namespace CAS.UA.Model.Designer.Controls
     /// Gets the name of the node class.
     /// </summary>
     /// <value>The name of the node class.</value>
-    NodeClassesEnum IModelNode.NodeClass
-    {
-      get { return ModelEntity.NodeClass; }
-    }
+    NodeClassesEnum IModelNode.NodeClass => ModelEntity.NodeClass;
     /// <summary>
     /// Gets the name of the help topic.
     /// </summary>
     /// <value>
     /// Unique identifier to be used as the key to select the help topic.
     /// </value>
-    string IModelNode.HelpTopicName
-    {
-      get { return ModelEntity.HelpTopicName; }
-    }
+    string IModelNode.HelpTopicName => ModelEntity.HelpTopicName;
     /// <summary>
     /// Gets a value indicating whether this instance is read only.
     /// </summary>
     /// <value>
     /// 	<c>true</c> if this instance is read only; otherwise, <c>false</c>.
     /// </value>
-    bool IModelNode.IsReadOnly
-    {
-      get { return ModelEntity.IsReadOnly; }
-    }
+    bool IModelNode.IsReadOnly => ModelEntity.IsReadOnly;
     /// <summary>
     /// Gets the symbolic name.
     /// </summary>
     /// <value>The symbolic name.</value>
-    public virtual XmlQualifiedName SymbolicName
-    {
-      get
-      {
-        return new XmlQualifiedName();
-      }
-    }
+    public virtual XmlQualifiedName SymbolicName => new XmlQualifiedName();
     #endregion
   }
 

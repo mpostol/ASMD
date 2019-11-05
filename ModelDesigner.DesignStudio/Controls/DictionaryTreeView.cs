@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -166,9 +165,9 @@ namespace CAS.UA.Model.Designer.Controls
     /// <param name="treeNode">The tree node <see cref="DictionaryTreeNode"/>.</param>
     internal void AddSolution(DictionaryTreeNode treeNode)
     {
-      if (m_Soluton != null)
-        m_Soluton.Remove();
-      m_Soluton = treeNode;
+      if (m_Solution != null)
+        m_Solution.Remove();
+      m_Solution = treeNode;
       Nodes.Insert(0, treeNode);
       this.SelectedNode = treeNode;
       treeNode.Expand();
@@ -177,7 +176,7 @@ namespace CAS.UA.Model.Designer.Controls
     #endregion
 
     #region private
-    private TreeNode m_Soluton = null;
+    private TreeNode m_Solution = null;
     private Dictionary<XmlQualifiedName, DictionaryTreeNode> Dictionary { get; set; }
     private bool m_CoupledNodesAreEnabled = true;
     private object m_CoupledNodesLock = new object();
@@ -200,19 +199,19 @@ namespace CAS.UA.Model.Designer.Controls
       {
         lock (m_CoupledNodesLock)
         {
-          CoupledNodesDictionaryTreeNode node = selectedNode.GetEmptyCoupledNode() as CoupledNodesDictionaryTreeNode;
-          if (node == null)
+          CoupledNodesDictionaryTreeNode _node = selectedNode.GetEmptyCoupledNode() as CoupledNodesDictionaryTreeNode;
+          if (_node == null)
             return;
-          if (!m_CoupledNodesDictionaryTreeNodeList.Contains(node))
-            m_CoupledNodesDictionaryTreeNodeList.Add(node);
+          if (!m_CoupledNodesDictionaryTreeNodeList.Contains(_node))
+            m_CoupledNodesDictionaryTreeNodeList.Add(_node);
           foreach (KeyValuePair<string, XmlQualifiedName> item in selectedNode.GetCoupledNodesXmlQualifiedNames())
           {
-            DictionaryTreeNode couplednode = GetNode(item.Value);
-            if (couplednode == null)
+            DictionaryTreeNode _coupledNode = GetNode(item.Value);
+            if (_coupledNode == null)
               continue;
-            BaseDictionaryTreeNode newNode = couplednode.CreateCopy();
+            BaseDictionaryTreeNode newNode = _coupledNode.CreateCopy();
             newNode.Text = string.Format("{0}: {1}", item.Key, newNode.Text);
-            node.Nodes.Add(newNode);
+            _node.Nodes.Add(newNode);
           }
         }
       }

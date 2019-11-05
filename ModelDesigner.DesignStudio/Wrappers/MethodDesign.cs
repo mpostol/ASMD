@@ -4,8 +4,6 @@
 //
 //___________________________________________________________________________________
 
-
-using CAS.UA.Model.Designer.Controls; //TODO must be removed 
 using CAS.UA.Model.Designer.Properties;
 using System.Collections.Generic;
 
@@ -69,16 +67,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get { return NodeClassesEnum.Method; }
     }
-    /// <summary>
-    /// Gets the tree node and all children.
-    /// </summary>
-    /// <returns>
-    /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
-    /// </returns>
-    public override BaseDictionaryTreeNode GetTreeNode()
-    {
-      return new MethodDesignTreeNodeControl( this );
-    }
     #endregion
 
     #region Private and Protected
@@ -112,12 +100,6 @@ namespace CAS.UA.Model.Designer.Wrappers
         //TODO add argument to AddressSpace
       }
     }
-    //private class MethodDesignTreeNodeControl : InstanceDesignTreeNodeControl<MethodDesign, Wrappers4ProperyGrid.MethodDesign, Opc.Ua.ModelCompiler.MethodDesign>
-    //{
-    //  public MethodDesignTreeNodeControl( MethodDesign parent )
-    //    : base( parent )
-    //  { }
-    //}
     #endregion Private and Protected
 
   }

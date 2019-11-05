@@ -5,10 +5,8 @@
 //___________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelCompiler.Common;
-using CAS.UA.Model.Designer.Controls;
 using System;
 using System.Linq;
-using System.Windows.Forms;
 using System.Xml;
 using UADataTypeDesign = Opc.Ua.ModelCompiler.DataTypeDesign;
 using UAModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
@@ -47,28 +45,17 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Initializes a new instance of the <see cref="Libraries"/> class.
     /// </summary>
     /// <param name="container">The container that contains zero or more components..</param>
-    public Libraries()
-      : base("")
+    public Libraries() : base("")
     {
       InitializeTypes();
     }
     #endregion
 
     #region public
-    /// <summary>
-    /// Gets the tree node and all children.
-    /// </summary>
-    /// <returns>
-    /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
-    /// </returns>
-    public override BaseDictionaryTreeNode GetTreeNode()
-    {
-      throw new NotImplementedException();
-    }
-    internal void AddTreeNodes(TreeNodeCollection nodes)
+    internal void AddNodes(Action<LibraryTreeNode> callBack)
     {
       foreach (LibraryTreeNode lib in this)
-        nodes.Add(lib.GetTreeNode());
+        callBack(lib);
     }
     /// <summary>
     /// Resets the and adds to address space. For each <see cref="LibraryTreeNode"/> item in this collection call <see cref="LibraryTreeNode.AddNode2AddressSpace"/>

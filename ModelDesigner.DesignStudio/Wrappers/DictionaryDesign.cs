@@ -4,8 +4,6 @@
 //
 //___________________________________________________________________________________
 
-
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -14,25 +12,11 @@ namespace CAS.UA.Model.Designer.Wrappers
   {
 
     #region creators
-    public DictionaryDesign()
-      : base(new Wrappers4ProperyGrid.DictionaryDesign(new Opc.Ua.ModelCompiler.DictionaryDesign()))
-    { }
-    public DictionaryDesign(Opc.Ua.ModelCompiler.DictionaryDesign node)
-      : base(new Wrappers4ProperyGrid.DictionaryDesign(node), node)
-    { }
+    public DictionaryDesign() : base(new Wrappers4ProperyGrid.DictionaryDesign(new Opc.Ua.ModelCompiler.DictionaryDesign())) { }
+    public DictionaryDesign(Opc.Ua.ModelCompiler.DictionaryDesign node) : base(new Wrappers4ProperyGrid.DictionaryDesign(node), node) { }
     #endregion
 
     #region public
-    /// <summary>
-    /// Gets the tree node and all children.
-    /// </summary>
-    /// <returns>
-    /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
-    /// </returns>
-    public override BaseDictionaryTreeNode GetTreeNode()
-    {
-      return new DictionaryDesignTreeNodeControl(this);
-    }
     /// <summary>
     /// Gets the node class.
     /// </summary>
@@ -43,15 +27,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </summary>
     /// <value>The name of the help topic.</value>
     public override string HelpTopicName => Resources.NodeClasses_Objects_Dictionary;
-    #endregion
-
-    #region private
-    //private class DictionaryDesignTreeNodeControl : InstanceDesignTreeNodeControl<DictionaryDesign, Wrappers4ProperyGrid.DictionaryDesign, Opc.Ua.ModelCompiler.DictionaryDesign>
-    //{
-    //  public DictionaryDesignTreeNodeControl(DictionaryDesign parent)
-    //    : base(parent)
-    //  { }
-    //}
     #endregion
 
   }

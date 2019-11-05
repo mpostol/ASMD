@@ -12,9 +12,11 @@ namespace CAS.UA.Model.Designer.Controls
 
   internal class MethodDesignTreeNodeControl : InstanceDesignTreeNodeControl<MethodDesign, Wrappers4ProperyGrid.MethodDesign, Opc.Ua.ModelCompiler.MethodDesign>
   {
-    public MethodDesignTreeNodeControl(MethodDesign parent)
-      : base(parent)
-    { }
+    public MethodDesignTreeNodeControl(MethodDesign parent) : base(parent) { }
+    public override DictionaryTreeNode CreateCopy()
+    {
+      return new MethodDesignTreeNodeControl(ModelEntity);
+    }
   }
 
 }

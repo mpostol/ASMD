@@ -1,66 +1,25 @@
-﻿//<summary>
-//  Title   : Property Design wrapper
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//___________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
-using System;
-using System.Collections.Generic;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal partial class PropertyDesign: InstanceDesign<Wrappers4ProperyGrid.PropertyDesign, Opc.Ua.ModelCompiler.PropertyDesign>
+  internal partial class PropertyDesign : InstanceDesign<Wrappers4ProperyGrid.PropertyDesign, Opc.Ua.ModelCompiler.PropertyDesign>
   {
-    public PropertyDesign()
-      : base( new Wrappers4ProperyGrid.PropertyDesign( new Opc.Ua.ModelCompiler.PropertyDesign() ) )
-    {
-      RemoveChldrenFolderFromSubTree();
-    }
-    public PropertyDesign( Opc.Ua.ModelCompiler.PropertyDesign node )
-      : base( new Wrappers4ProperyGrid.PropertyDesign( node ), node )
-    {
-      RemoveChldrenFolderFromSubTree();
-    }
 
-    #region private
-    //private class PropertyDesignTreeNodeControl : InstanceDesignTreeNodeControl<PropertyDesign, Wrappers4ProperyGrid.PropertyDesign, Opc.Ua.ModelCompiler.PropertyDesign>
-    //{
-    //  public PropertyDesignTreeNodeControl( PropertyDesign parent )
-    //    : base( parent )
-    //  { }
-    //  protected override void BeforeMenuStripOpening()
-    //  {
-    //    AddMenuItemGoTo( Resources.WrapperTreeNodeAddMenuItemGoto
-    //      + Resources.WrapperTreeNodeAddMenuItemGoto_DataType,
-    //      Resources.WrapperTreeNodeAddMenuItemGoto_DataType_tooltip,
-    //      new EventHandler( AddMenuItemGoTo_Click ) );
-    //    base.BeforeMenuStripOpening();
-    //  }
-    //  private void AddMenuItemGoTo_Click( object sender, System.EventArgs e )
-    //  {
-    //    TreeView.GoToNode( ModelEntity.Wrapper.DataType.XmlQualifiedName );
-    //  }
-    //  internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
-    //  {
-    //    var list = base.GetCoupledNodesXmlQualifiedNames();
-    //    if ( ModelEntity.Wrapper.DataType.XmlQualifiedName != null && !ModelEntity.Wrapper.DataType.XmlQualifiedName.IsEmpty )
-    //      list.Add( Resources.WrapperTreeNodeAddMenuItemGoto_DataType,
-    //        ModelEntity.Wrapper.DataType.XmlQualifiedName );
-    //    return list;
-    //  }
-    //}
+    #region constructors
+    public PropertyDesign() : base(new Wrappers4ProperyGrid.PropertyDesign(new Opc.Ua.ModelCompiler.PropertyDesign()))
+    {
+      RemoveChldrenFolderFromSubTree();
+    }
+    public PropertyDesign(Opc.Ua.ModelCompiler.PropertyDesign node) : base(new Wrappers4ProperyGrid.PropertyDesign(node), node)
+    {
+      RemoveChldrenFolderFromSubTree();
+    }
     #endregion
 
     #region public
@@ -68,28 +27,12 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Gets the name of the help topic.
     /// </summary>
     /// <value>The name of the help topic.</value>
-    public override string HelpTopicName
-    {
-      get { return Resources.NodeClasses_Objects_Property; }
-    }
+    public override string HelpTopicName => Resources.NodeClasses_Objects_Property;
     /// <summary>
     /// Gets the node class.
     /// </summary>
     /// <value>The node class.</value>
-    public override NodeClassesEnum NodeClass
-    {
-      get { return NodeClassesEnum.Property; }
-    }
-    /// <summary>
-    /// Gets the tree node and all children.
-    /// </summary>
-    /// <returns>
-    /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
-    /// </returns>
-    public override BaseDictionaryTreeNode GetTreeNode()
-    {
-      return new PropertyDesignTreeNodeControl( this );
-    }
+    public override NodeClassesEnum NodeClass => NodeClassesEnum.Property;
     #endregion
   }
 }

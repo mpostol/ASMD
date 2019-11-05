@@ -8,7 +8,6 @@ using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration;
 using CAS.Lib.RTLib.Utils;
 using CAS.UA.IServerConfiguration;
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Solution;
@@ -16,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms; //TODO Must be removed
+using System.Windows.Forms; //TODO Refactoring application architecture - remove recursion #6 Must be removed
 using System.Xml;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -245,11 +244,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return HomeDirectory;
     }
-    [Obsolete]
-    public override BaseDictionaryTreeNode GetTreeNode()
-    {
-      throw new NotImplementedException();
-    }
     #endregion
 
     #region WrapperTreeNode
@@ -269,7 +263,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       INodeDescriptor[] _descriptors = node.GetNodeDescriptors();
       svr.CreateInstanceConfigurations(_descriptors, SkipOpeningConfigurationFile, out CancelWasPressed);
     }
-
     #endregion
 
   }

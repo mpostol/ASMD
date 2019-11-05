@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -53,16 +52,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       foreach ( Parameter node in this )
         array[ ii++ ] = (Opc.Ua.ModelCompiler.Parameter)node.ModelDesignerNode;
       return array;
-    }
-    /// <summary>
-    /// Gets the tree node and all children.
-    /// </summary>
-    /// <returns>
-    /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
-    /// </returns>
-    public override BaseDictionaryTreeNode GetTreeNode()
-    {
-      return new ParametersFolderTreeNodeControl( this );
     }
     public override NodeTypeEnum NodeType
     {

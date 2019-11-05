@@ -13,9 +13,7 @@ namespace CAS.UA.Model.Designer.Controls
 {
   internal class PropertyDesignTreeNodeControl : InstanceDesignTreeNodeControl<PropertyDesign, Wrappers4ProperyGrid.PropertyDesign, Opc.Ua.ModelCompiler.PropertyDesign>
   {
-    public PropertyDesignTreeNodeControl(PropertyDesign parent)
-      : base(parent)
-    { }
+    public PropertyDesignTreeNodeControl(PropertyDesign parent) : base(parent) { }
     protected override void BeforeMenuStripOpening()
     {
       AddMenuItemGoTo(Resources.WrapperTreeNodeAddMenuItemGoto
@@ -30,11 +28,15 @@ namespace CAS.UA.Model.Designer.Controls
     }
     internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
     {
-      var list = base.GetCoupledNodesXmlQualifiedNames();
+      Dictionary<string, System.Xml.XmlQualifiedName> list = base.GetCoupledNodesXmlQualifiedNames();
       if (ModelEntity.Wrapper.DataType.XmlQualifiedName != null && !ModelEntity.Wrapper.DataType.XmlQualifiedName.IsEmpty)
         list.Add(Resources.WrapperTreeNodeAddMenuItemGoto_DataType,
           ModelEntity.Wrapper.DataType.XmlQualifiedName);
       return list;
+    }
+    public override DictionaryTreeNode CreateCopy()
+    {
+      return new PropertyDesignTreeNodeControl(ModelEntity);
     }
   }
 }
