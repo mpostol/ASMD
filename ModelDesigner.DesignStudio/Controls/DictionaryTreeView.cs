@@ -207,9 +207,9 @@ namespace CAS.UA.Model.Designer.Controls
           foreach (KeyValuePair<string, XmlQualifiedName> item in selectedNode.GetCoupledNodesXmlQualifiedNames())
           {
             DictionaryTreeNode _coupledNode = GetNode(item.Value);
-            if (_coupledNode == null)
-              continue;
-            BaseDictionaryTreeNode newNode = _coupledNode.CreateCopy();
+            if (!( _coupledNode is IDictionaryTreeNodeCreateCopy ))
+              throw new ArgumentOutOfRangeException($"{nameof(DictionaryTreeView)} Cannot create coupled node for {_coupledNode.GetType().FullName}");
+            DictionaryTreeNode newNode = ((IDictionaryTreeNodeCreateCopy)_coupledNode). CreateCopy();
             newNode.Text = string.Format("{0}: {1}", item.Key, newNode.Text);
             _node.Nodes.Add(newNode);
           }
@@ -231,5 +231,6 @@ namespace CAS.UA.Model.Designer.Controls
     #endregion
 
     #endregion
+
   }
 }
