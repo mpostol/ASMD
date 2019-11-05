@@ -8,7 +8,6 @@ using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms; //TODO Refactoring application architecture - remove recursion #6 - remove
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -79,7 +78,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         return m_list.ToArray();
       }
     }
-    internal void GetImportMenu(ToolStripItemCollection items)
+    internal void GetImportMenu(System.Windows.Forms.ToolStripItemCollection items)
     {
       if (this.TestIfReadOnlyAndRetrunTrueIfReadOnly())
         return;
@@ -147,7 +146,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     public override void MenuItemCut_Action()
     {
       MenuItemCopy_Action();
-      MessageBox.Show(Resources.WrapperTreeNode_menu_cut_cannot_be_cut);
+      this.MessageBoxHandling.Show(Resources.WrapperTreeNode_menu_cut_cannot_be_cut);
     }
     public override void MenuItemPaste_Action()
     {
@@ -163,7 +162,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         this.m_Namespaces.Add(baseTreeNode);
         return;
       }
-      MessageBox.Show(Resources.WrapperTreeNode_menu_paste_cannot_be_done);
+      this.MessageBoxHandling.Show(Resources.WrapperTreeNode_menu_paste_cannot_be_done);
     }
     public override string[] AvailiableNamespaces
     {

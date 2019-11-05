@@ -1,31 +1,20 @@
-﻿//<summary>
-//  Title   : Control which contains transition button 
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2009, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using System;
 using System.Windows.Forms;
-using System.Xml;
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
-using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
 using CAS.Lib.ControlLibrary;
 
 namespace CAS.UA.Model.Designer.StateMachineEditor
 {
   internal partial class StateMachineControl: UserControl
   {
+
     #region constructors
     /// <summary>
     /// Initializes a new instance of the <see cref="StateMachineControl"/> class.
@@ -66,7 +55,7 @@ namespace CAS.UA.Model.Designer.StateMachineEditor
         UserControl uc = new UserControl();
         uc.Controls.Add(propertyGridTransition);
         newTransitionForm.SetUserControl = uc;
-        if ( newTransitionForm.ShowDialog() == DialogResult.OK )
+        if ( newTransitionForm.ShowDialog() == System.Windows.Forms.DialogResult.OK )
           OnAddTransition();
         else
           newTransitionForm.Close();
@@ -75,19 +64,19 @@ namespace CAS.UA.Model.Designer.StateMachineEditor
       {
         OKCancelForm showOrDeleteTransitionDataForm = new OKCancelForm( transitionDataString );
         showOrDeleteTransitionDataForm.CanBeAccepted( true );
-        showOrDeleteTransitionDataForm.AddButton( "Delete", DialogResult.Ignore );
+        showOrDeleteTransitionDataForm.AddButton( "Delete", System.Windows.Forms.DialogResult.Ignore );
         PropertyGrid propertyGridTransition = new PropertyGrid();
         propertyGridTransition.Anchor = ( AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Top );
         propertyGridTransition.SelectedObject = selectedTransitionButton.TransitionData;
         UserControl uc = new UserControl();
         uc.Controls.Add( propertyGridTransition );
         showOrDeleteTransitionDataForm.SetUserControl = uc;
-        DialogResult dr = showOrDeleteTransitionDataForm.ShowDialog();
-        if ( dr == DialogResult.OK )
+        System.Windows.Forms.DialogResult dr = showOrDeleteTransitionDataForm.ShowDialog();
+        if ( dr == System.Windows.Forms.DialogResult.OK )
           OnOk();
-        else if ( dr == DialogResult.Cancel )
+        else if ( dr == System.Windows.Forms.DialogResult.Cancel )
           Properties.Settings.Default.Reload();
-        else if ( dr == DialogResult.Ignore )
+        else if ( dr == System.Windows.Forms.DialogResult.Ignore )
           OnDelete();
       }
     }

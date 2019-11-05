@@ -8,7 +8,6 @@ using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.Types;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System.Collections.Generic;
-using System.Windows.Forms; //TODO Refactoring application architecture - remove recursion #6
 using System.Xml;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -18,119 +17,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     where OPCType : Opc.Ua.ModelCompiler.InstanceDesign, new()
   {
     #region creators
-    protected InstanceDesign(type child)
-      : base(child)
-    { }
-    protected InstanceDesign(type child, OPCType node)
-      : base(child, node)
-    { }
+    protected InstanceDesign(type child) : base(child) { }
+    protected InstanceDesign(type child, OPCType node) : base(child, node) { }
     #endregion
 
     #region private
-    //protected abstract class InstanceDesignTreeNodeControl<T> : NodeDesignTreeNodeControl<T, type, OPCType>, IInstanceDesignTreeNode
-    //  where T : InstanceDesign<type, OPCType>
-    //{
-    //  #region creator
-    //  public InstanceDesignTreeNodeControl(T parent)
-    //    : base(parent)
-    //  { }
-    //  #endregion
-
-    //  #region public
-    //  internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
-    //  {
-    //    var list = base.GetCoupledNodesXmlQualifiedNames();
-    //    if (ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName != null && !ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName.IsEmpty)
-    //      list.Add(Resources.WrapperTreeNodeAddMenuItemGoto_TypeDefinition,
-    //         ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName);
-    //    return list;
-    //  }
-    //  /// <summary>
-    //  /// Gets the unique identifier.
-    //  /// </summary>
-    //  /// <param name="ui">The instance of <see cref="UniqueIdentifier"/> that represents an unique identifier.</param>
-    //  /// <returns>
-    //  /// 	<c>true</c> if it is not top level element; <c>false</c> othervise if it is top level element
-    //  /// </returns>
-    //  internal override bool GetUniqueIdentifier(UniqueIdentifier ui)
-    //  {
-    //    bool intermediate = base.GetUniqueIdentifier(ui);
-    //    ui.Update(intermediate, ModelEntity.Wrapper.SymbolicName.XmlQualifiedName, false);
-    //    return true;
-    //  }
-    //  #endregion
-
-    //  #region IInstanceDesign Members
-    //  public void GetServerUAMenu(ToolStripItemCollection items)
-    //  {
-    //    GetInstanceMenuItems(items);
-    //  }
-    //  #endregion
-
-    //  #region private
-    //  protected override void BeforeMenuStripOpening()
-    //  {
-    //    UniqueIdentifier ui = new UniqueIdentifier();
-    //    GetUniqueIdentifier(ui);
-    //    m_InstanceConfiguration = Root.GetInstanceConfiguration(ModelEntity.Wrapper.GetINodeDescriptor(ui, ModelEntity.NodeClass));
-    //    AddMenuItemGoTo(Resources.WrapperTreeNodeAddMenuItemGoto
-    //      + Resources.WrapperTreeNodeAddMenuItemGoto_TypeDefinition,
-    //      Resources.WrapperTreeNodeAddMenuItemGoto_TypeDefinition_tooltip,
-    //      new EventHandler(AddMenuItemGoTo_Click));
-    //    GetInstanceMenuItems(this.ContextMenuStrip.Items);
-    //    base.BeforeMenuStripOpening();
-    //  }
-    //  private void GetInstanceMenuItems(ToolStripItemCollection menu)
-    //  {
-    //    bool enabled = m_InstanceConfiguration != null;
-    //    if (menu.Count > 0)
-    //      menu.Add(new ToolStripSeparator());
-    //    ToolStripMenuItem item = new ToolStripMenuItem()
-    //    {
-    //      Text = String.Format(Resources.ConfigurationWrapper_Configuration_Text, this.Text),
-    //      ToolTipText = Resources.ConfigurationWrapper_Configuration_ToolTip
-    //    };
-    //    menu.Add(item);
-    //    ToolStripMenuItem subItem = new ToolStripMenuItem()
-    //    {
-    //      Text = Resources.ConfigurationWrapper_Configuration_Edit_Text,
-    //      ToolTipText = Resources.ConfigurationWrapper_Configuration_Edit_ToolTip,
-    //      Enabled = enabled
-    //    };
-    //    item.DropDown.Items.Add(subItem);
-    //    subItem.Click += new EventHandler(edit_Click);
-    //    subItem = new ToolStripMenuItem()
-    //    {
-    //      Text = Resources.ConfigurationWrapper_Configuration_New_Text,
-    //      ToolTipText = Resources.ConfigurationWrapper_Configuration_New_ToolTip,
-    //      Enabled = enabled
-    //    };
-    //    item.DropDown.Items.Add(subItem);
-    //    subItem.Click += new EventHandler(new_Click);
-    //  }
-    //  private void AddMenuItemGoTo_Click(object sender, System.EventArgs e)
-    //  {
-    //    TreeView.GoToNode(ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName);
-    //  }
-    //  private IInstanceConfiguration m_InstanceConfiguration;
-    //  #region Menu handlers
-    //  private void new_Click(object sender, EventArgs e)
-    //  {
-    //    if (m_InstanceConfiguration == null)
-    //      return;
-    //    //TODO Display worning
-    //    m_InstanceConfiguration.ClearConfiguration();
-    //  }
-    //  private void edit_Click(object sender, EventArgs e)
-    //  {
-    //    if (m_InstanceConfiguration == null)
-    //      return;
-    //    m_InstanceConfiguration.Edit();
-    //  }
-    //  #endregion
-    //  #endregion
-
-    //}//TreeNode
     protected override void AddNodeDescriptors(List<INodeDescriptor> dsptrs, UniqueIdentifier ui)
     {
       ui.Update(false, Wrapper.SymbolicName.XmlQualifiedName, false);
@@ -147,7 +38,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       if (this.NodeClass == NodeClassesEnum.Method)
         return;
       ITypeDesign type = Root.FindType(thisInstance.TypeDefinition);
-      if ( type == null)
+      if (type == null)
       {
         thisInstance.Assert(false, "Cannot find TypeDefinition for the instance.");
         return;
@@ -240,7 +131,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <value>
     /// 	<c>true</c> if this instance has associated mandatory modeling rule; otherwise, <c>false</c>.
     /// </value>
-    bool IInstanceNode.IsMandatory { get { return this.Wrapper.IsMandatory; } }
+    bool IInstanceNode.IsMandatory => this.Wrapper.IsMandatory;
     #endregion
   }
   /// <summary>
@@ -252,7 +143,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Gets the server UA menu.
     /// </summary>
     /// <param name="items">The items collection to expand.</param>
-    void GetServerUAMenu(ToolStripItemCollection items);
+    void GetServerUAMenu(System.Windows.Forms.ToolStripItemCollection items);
   }
 }
 

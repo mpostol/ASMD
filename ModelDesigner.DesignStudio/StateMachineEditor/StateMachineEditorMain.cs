@@ -1,17 +1,8 @@
-﻿//<summary>
-//  Title   : Main class of the state machine editor
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2009, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using System;
 using System.Collections.Generic;
@@ -100,13 +91,13 @@ namespace CAS.UA.Model.Designer.StateMachineEditor
           }
           catch ( Exception )
           {
-            MessageBox.Show( Resources.ProblemWithStateMachine_Header, Resources.ProblemwithDisplayingStateMachine_Info, MessageBoxButtons.OK, MessageBoxIcon.Error );
+            MessageBox.Show( Resources.ProblemWithStateMachine_Header, Resources.ProblemwithDisplayingStateMachine_Info, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error );
             return;
           }
         }
         else
         {
-          MessageBox.Show( Resources.ProblemWithStateMachine_Header, Resources.ProblemWithStateMachine_Info, MessageBoxButtons.OK, MessageBoxIcon.Error );
+          MessageBox.Show( Resources.ProblemWithStateMachine_Header, Resources.ProblemWithStateMachine_Info, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error );
           return;
         }
       }

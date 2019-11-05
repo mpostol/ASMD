@@ -4,10 +4,7 @@
 //
 //___________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Controls;
-using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -20,6 +17,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     where type: Wrappers4ProperyGrid.Design<OPCType>
     where OPCType: class, new()
   {
+
     #region creators
     /// <summary>
     /// Initializes a new instance of the <see cref="WrapperBase&lt;OPCType&gt;"/> class.
@@ -48,13 +46,14 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get { return (type)base.Wrapper; }
     }
+    public string ClipboardText { get; private set; }
     #endregion
 
     #region private
     public override void MenuItemCopy_Action()
     {
       base.MenuItemCopy_Action();
-      Clipboard.SetText( this.ModelDesignerNodeStringRepresentation );
+      System.Windows.Forms.Clipboard.SetText( this.ModelDesignerNodeStringRepresentation );
     }
     protected string ModelDesignerNodeStringRepresentation
     {
@@ -66,37 +65,6 @@ namespace CAS.UA.Model.Designer.Wrappers
         return sw.ToString();
       }
     }
-    //protected abstract class WrapperBaseTreeNodeControl<T>: ValidableTreeNodeControl<T>
-    //  where T: WrapperBase<type, OPCType>
-    //{
-    //  public WrapperBaseTreeNodeControl( T parent )
-    //    : base( parent )
-    //  { }
-    //  protected override void BeforeMenuStripOpening()
-    //  {
-    //    AddMenuItemDelete();
-    //    AddMenuItemCopyPasteCut();
-    //    base.BeforeMenuStripOpening();
-    //  }
-    //  /// <summary>
-    //  /// Checks the type filter.
-    //  /// </summary>
-    //  /// <param name="AllTypes">if set to <c>true</c> display all nodes.</param>
-    //  /// <param name="types">The types to display.</param>
-    //  /// <returns></returns>
-    //  protected override bool CheckTypeFilter( bool AllTypes, IEnumerable<NodeClassesEnum> types )
-    //  {
-    //    if ( AllTypes )
-    //      return true;
-    //    if ( this.ModelEntity.NodeClass == NodeClassesEnum.None )
-    //      return true;
-    //    else
-    //      foreach ( NodeClassesEnum type in types )
-    //        if ( this.ModelEntity.NodeClass == type )
-    //          return true;
-    //    return false;
-    //  }
-    //}//TreeNode
     #endregion
   }
 }

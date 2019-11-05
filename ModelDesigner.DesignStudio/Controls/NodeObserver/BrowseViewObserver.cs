@@ -121,7 +121,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       {
         string _msg = String.Format("Compilation process has been interrupted by the exception: {0} message: {1}.", e.Error.GetType().Name, e.Error.Message);
         AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Error, 121, _msg);
-        MessageBox.Show(_msg, "Compilation error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show(_msg, "Compilation error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
         return;
       }
       if (e.Cancelled)

@@ -9,7 +9,6 @@ using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Xml;
 
 namespace CAS.UA.Model.Designer.Controls
@@ -18,7 +17,10 @@ namespace CAS.UA.Model.Designer.Controls
     where T : WrapperTreeNode, IModelNode, IModelNodeAdvance
   {
     #region creator
-    public WrapperTreeNodeControl(T parent) : base(parent) { }
+    public WrapperTreeNodeControl(T entity) : base(entity)
+    {
+      entity.MessageBoxHandling = new MessageBoxHandling();
+    }
     #endregion
 
     #region private
@@ -30,7 +32,7 @@ namespace CAS.UA.Model.Designer.Controls
     /// <value>The wrappers,i.e. node configuration wrappers.</value>
     protected virtual void AddMenuItemAdd(INodeFactory[] listOfNodes)
     {
-      ToolStripMenuItem menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_add_object, Resources.AdddItem)
+      System.Windows.Forms.ToolStripMenuItem menu = new System.Windows.Forms.ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_add_object, Resources.AdddItem)
       {
         Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly()
       };
@@ -38,7 +40,7 @@ namespace CAS.UA.Model.Designer.Controls
       foreach (INodeFactory item in listOfNodes)
       {
         string node_name = item.ToString().Replace("Design", "");
-        ToolStripMenuItem sm = new ToolStripMenuItem(node_name)
+        System.Windows.Forms.ToolStripMenuItem sm = new System.Windows.Forms.ToolStripMenuItem(node_name)
         {
           Tag = item,
           Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly()
@@ -50,15 +52,15 @@ namespace CAS.UA.Model.Designer.Controls
     protected void AddMenuItemCopyPasteCut()
     {
       if (ContextMenuStrip.Items.Count > 0)
-        ContextMenuStrip.Items.Add(new ToolStripSeparator());
+        ContextMenuStrip.Items.Add(new System.Windows.Forms.ToolStripSeparator());
       AddMenuItemCopy();
       AddMenuItemPaste();
       AddMenuItemCut();
     }
     protected void AddMenuItemCut()
     {
-      ToolStripMenuItem menu;
-      menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_cut, Resources.cut)
+      System.Windows.Forms.ToolStripMenuItem menu;
+      menu = new System.Windows.Forms.ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_cut, Resources.cut)
       {
         Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly()
       };
@@ -67,13 +69,13 @@ namespace CAS.UA.Model.Designer.Controls
     }
     protected void AddMenuItemCopy()
     {
-      ToolStripMenuItem menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_copy, Resources.copy);
+      System.Windows.Forms.ToolStripMenuItem menu = new System.Windows.Forms.ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_copy, Resources.copy);
       menu.Click += new EventHandler(ModelEntity.AddMenuItemCopy_Click);
       ContextMenuStrip.Items.Add(menu);
     }
     protected void AddMenuItemPaste()
     {
-      ToolStripMenuItem MenuPaste = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_paste, Resources.paste)
+      System.Windows.Forms.ToolStripMenuItem MenuPaste = new System.Windows.Forms.ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_paste, Resources.paste)
       {
         Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly() && ModelEntity.ShouldPasteMenuBeEnabled()
       };
@@ -82,7 +84,7 @@ namespace CAS.UA.Model.Designer.Controls
     }
     protected virtual void AddMenuItemDelete()
     {
-      ToolStripMenuItem menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_delete, Resources.delete)
+      System.Windows.Forms.ToolStripMenuItem menu = new System.Windows.Forms.ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_delete, Resources.delete)
       {
         Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly()
       };
@@ -158,6 +160,18 @@ namespace CAS.UA.Model.Designer.Controls
     /// </summary>
     /// <value>The symbolic name.</value>
     public virtual XmlQualifiedName SymbolicName => new XmlQualifiedName();
+
+    private class MessageBoxHandling : IMessageBoxHandling
+    {
+      public void Show(string message)
+      {
+        System.Windows.Forms.MessageBox.Show(message);
+      }
+      public DialogResult Show(string text, string caption, Wrappers.MessageBoxButtons buttons, Wrappers.MessageBoxIcon icon)
+      {
+        return (DialogResult)System.Windows.Forms.MessageBox.Show(text, caption, (System.Windows.Forms.MessageBoxButtons)buttons, (System.Windows.Forms.MessageBoxIcon)icon);
+      }
+    }
     #endregion
   }
 

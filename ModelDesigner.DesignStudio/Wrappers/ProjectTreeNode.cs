@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Windows.Forms;
 using System.Xml;
 using UAOOI.SemanticData.UANodeSetValidation;
 using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
@@ -262,12 +261,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </summary>
     public void Validate() { }
     /// <summary>
-    /// Gets the tree node and all children.
-    /// </summary>
-    /// <returns>
-    /// The node of the type <see cref="System.Windows.Forms.TreeNode"/> with all children added to the Nodes collection.
-    /// </returns>
-    /// <summary>
     /// Builds the project and write any massages to specified output.
     /// </summary>
     /// <param name="output">The output containing text sent by the compiler.</param>
@@ -287,13 +280,13 @@ namespace CAS.UA.Model.Designer.Wrappers
           {
             string msg = String.Format(Resources.BuildError_Fie_DoesNotExist, FilePath);
             output.WriteLine(msg);
-            MessageBox.Show(msg, Resources.Build_Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            this.MessageBoxHandling.Show(msg, Resources.Build_Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
           }
           if (!new FileInfo(CSVFilePath).Exists)
           {
             string msg = String.Format(Resources.BuildError_Fie_DoesNotExist_doyouwanttocreateone, CSVFilePath);
-            if (MessageBox.Show(msg, "Build", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (this.MessageBoxHandling.Show(msg, "Build", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
               //we are creating an blank file (one empty line inside)
               StreamWriter myCsvFile = new StreamWriter(CSVFilePath, false);
@@ -326,7 +319,7 @@ namespace CAS.UA.Model.Designer.Wrappers
           Process myBuildProcess = new Process();
           myBuildProcess.StartInfo = myStartInfo;
           if (!myBuildProcess.Start())
-            MessageBox.Show(Resources.Build_click_ok_when_build_has_finished);
+            this.MessageBoxHandling.Show(Resources.Build_click_ok_when_build_has_finished);
           else
           {
             myBuildProcess.WaitForExit();

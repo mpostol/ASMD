@@ -4,10 +4,8 @@
 //
 //___________________________________________________________________________________
 
-
 using CAS.UA.Model.Designer.Properties;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Xml;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -180,24 +178,8 @@ namespace CAS.UA.Model.Designer.Wrappers
         this.m_References.Add(baseTreeNode);
         return;
       }
-      MessageBox.Show(Resources.WrapperTreeNode_menu_paste_cannot_be_done);
+      this.MessageBoxHandling.Show(Resources.WrapperTreeNode_menu_paste_cannot_be_done);
     }
-    //protected abstract class NodeDesignTreeNodeControl<T> : WrapperBaseTreeNodeControl<T, type, OPCType>
-    //  where T : NodeDesign<type, OPCType>
-    //{
-    //  public NodeDesignTreeNodeControl(T parent)
-    //    : base(parent)
-    //  { }
-    //  internal override void AddNodeToDictionary()
-    //  {
-    //    this.AddToDictionary(ModelEntity.Wrapper.SymbolicName.XmlQualifiedName, this);
-    //    base.AddNodeToDictionary();
-    //  }
-    //  public override XmlQualifiedName SymbolicName
-    //  {
-    //    get { return ModelEntity.SymbolicName; }
-    //  }
-    //}
     /// <summary>
     /// Adds the node to the address space <see cref="IAddressSpaceCreator"/>.
     /// </summary>

@@ -1,17 +1,8 @@
-﻿//<summary>
-//  Title   : Class that represents the UA Model Designer project
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Wrappers;
 using System.ComponentModel;
@@ -21,13 +12,13 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// <summary>
   /// Class that represents the UA Model Designer project. 
   /// </summary>
-  /// <remarks>Project wrapper for <see cref="System.Windows.Forms.PropertyGrid"/> to provide information about the project to the user.</remarks>
+  /// <remarks>Project wrapper to provide information about the project to the user.</remarks>
   [DefaultProperty("FilePath")]
   internal class ProjectWrapper : NameWithEventBase<ProjectTreeNode>, IViewModel
   {
 
     #region constructors
-    internal ProjectWrapper(ProjectTreeNode projecModel) : base(projecModel) { }
+    internal ProjectWrapper(ProjectTreeNode projectModel) : base(projectModel) { }
     #endregion initialisation
 
     #region browsable properties
@@ -50,7 +41,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [Category("Output")]
     [Description("CSV file contains details about objects created by the UA server at start-up. \r\n" +
       "The value indicates the file name of the coupled CSV file.\r\n" +
-      "Set the name to particular name or combine the name with one of the folowing macros: \r\n" +
+      "Set the name to particular name or combine the name with one of the following macros: \r\n" +
       "$(ProjectFileName) – project file name (without extension) \r\n")]
     [NotifyParentProperty(true)]
     public string CSVFileName
@@ -80,8 +71,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     }
     [DisplayName("Build output directory")]
     [Category("Output")]
-    [Description("The value indicates the directory where goes output files after model build.\r\n" +
-      "Set the name to particular name or combine the name with one of the folowing macros: \r\n" +
+    [Description("The value indicates the directory where saves output files after model build.\r\n" +
+      "Set the name to particular name or combine the name with one of the following macros: \r\n" +
       "$(ProjectFileName) – project file name (without extension) \r\n")]
     [NotifyParentProperty(true)]
     public string BuildOutputDirectoryName
@@ -123,5 +114,6 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       return $"Project:{Name} ({ModelEntity.FileName})";
     }
     #endregion
+
   }
 }

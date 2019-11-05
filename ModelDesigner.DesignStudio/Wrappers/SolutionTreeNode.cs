@@ -15,7 +15,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms; //TODO Refactoring application architecture - remove recursion #6 Must be removed
 using System.Xml;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -23,7 +22,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 
   internal interface ISolutionModel : IBaseModel
   {
-    void GetPluginMenuItems(ToolStripItemCollection items);
+    void GetPluginMenuItems(System.Windows.Forms.ToolStripItemCollection items);
     void AddProject(bool existing);
     void ImportNodeSet();
     void Save(bool prompt);
@@ -53,11 +52,11 @@ namespace CAS.UA.Model.Designer.Wrappers
         }
         catch (FileNotFoundException _fnfe)
         {
-          MessageBox.Show(string.Format(Resources.ProjectFileNotFound_Info, _fnfe.Message), Resources.ProjectFileNotFound_Header, MessageBoxButtons.OK, MessageBoxIcon.Error);
+          this.MessageBoxHandling.Show(string.Format(Resources.ProjectFileNotFound_Info, _fnfe.Message), Resources.ProjectFileNotFound_Header, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         catch (Exception _ex)
         {
-          MessageBox.Show
+          this.MessageBoxHandling.Show
             (
               string.Format(Properties.Resources.Project_FileOpenError, _ex.Message),
               Properties.Resources.Project_OpenFileCaption,
@@ -196,11 +195,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region ISolutionModel
-    public void GetPluginMenuItems(ToolStripItemCollection menu)
+    public void GetPluginMenuItems(System.Windows.Forms.ToolStripItemCollection menu)
     {
-      ICollection<ToolStripItem> _items = new List<ToolStripItem>();
+      ICollection<System.Windows.Forms.ToolStripItem> _items = new List<System.Windows.Forms.ToolStripItem>();
       Server.GetPluginMenuItems(_items);
-      menu.AddRange(_items.ToArray<ToolStripItem>());
+      menu.AddRange(_items.ToArray<System.Windows.Forms.ToolStripItem>());
     }
     public void AddProject(bool existing)
     {

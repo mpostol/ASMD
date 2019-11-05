@@ -8,7 +8,7 @@
 * Product:       CAS CommServer Family
 * Trademark:     CommServer
 * Version:       3.20.2
-* Release Date:  26.10.2019
+* Release Date:  05.11.2019
 
 The main changes and new functionality are listed below:
 

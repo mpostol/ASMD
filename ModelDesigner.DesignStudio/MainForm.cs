@@ -1,17 +1,8 @@
-﻿//<summary>
-//  Title   : Main Form: UA Model Designer
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008-2011, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using CAS.Lib.ControlLibrary;
 using CAS.Lib.ControlLibrary.ControlExtenders;
@@ -226,7 +217,7 @@ namespace CAS.UA.Model.Designer
       }
       catch (Exception ex)
       {
-        MessageBox.Show(String.Format(Resources.MainForm_StartupExceptionMessage, ex.Message), "Command line error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show(String.Format(Resources.MainForm_StartupExceptionMessage, ex.Message), "Command line error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
       }
     }
 
@@ -396,7 +387,7 @@ namespace CAS.UA.Model.Designer
       OKCancelForm myConfigurationForm = new OKCancelForm(Resources.ConfigurationFormName);
       using (myConfigurationForm)
       {
-        myConfigurationForm.AddButton("Reset", DialogResult.Ignore);
+        myConfigurationForm.AddButton("Reset", System.Windows.Forms.DialogResult.Ignore);
         UserControl myControl = new UserControl();
         myControl.Controls.Add(myGrid);
         myConfigurationForm.SetUserControl = myControl;
@@ -404,8 +395,8 @@ namespace CAS.UA.Model.Designer
         myConfigurationForm.AutoSize = false;
         myConfigurationForm.Height = 580;
         myConfigurationForm.Width = 620;
-        DialogResult dr = myConfigurationForm.ShowDialog(this);
-        while (dr == DialogResult.Ignore)
+        System.Windows.Forms.DialogResult dr = myConfigurationForm.ShowDialog(this);
+        while (dr == System.Windows.Forms.DialogResult.Ignore)
         {
           windowHight = myConfigurationForm.Height;
           windowWidth = myConfigurationForm.Width;
@@ -419,9 +410,9 @@ namespace CAS.UA.Model.Designer
           myConfigurationForm.Width = windowWidth;
           OnReset();
           dr = myConfigurationForm.ShowDialog(this);
-          if (dr == DialogResult.OK)
+          if (dr == System.Windows.Forms.DialogResult.OK)
             OnOk();
-          else if (dr == DialogResult.Cancel)
+          else if (dr == System.Windows.Forms.DialogResult.Cancel)
             OnCancel();
         }
       }
@@ -492,7 +483,7 @@ namespace CAS.UA.Model.Designer
         StateMachineEditorMain.AnalizeStateMachine(imna);
         return;
       }
-      MessageBox.Show(Resources.ProblemWithStateMachine_Header, Resources.ProblemWithStateMachine_Info, MessageBoxButtons.OK, MessageBoxIcon.Error);
+      MessageBox.Show(Resources.ProblemWithStateMachine_Header, Resources.ProblemWithStateMachine_Info, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
     }
     private void coupledNodesToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -736,12 +727,12 @@ namespace CAS.UA.Model.Designer
       }
       catch (Win32Exception)
       {
-        MessageBox.Show("No Log folder exists under this link: " + path + " You can create this folder yourself.", "No Log folder !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show("No Log folder exists under this link: " + path + " You can create this folder yourself.", "No Log folder !", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
         return;
       }
       catch (Exception)
       {
-        MessageBox.Show("An error during opening a log folder occurs and the log folder cannot be open", "Problem with log folder !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show("An error during opening a log folder occurs and the log folder cannot be open", "Problem with log folder !", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
         return;
       }
     }

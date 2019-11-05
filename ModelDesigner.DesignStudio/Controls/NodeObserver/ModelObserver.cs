@@ -27,7 +27,6 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       m_TreeView.CoupledNodesAreEnabled = Settings.Default.CoupledNodesAreEnabled;
       //solution initialization:
       Root.LibraryRoot.AddNodes(x => m_TreeView.Nodes.Add(new LibraryTreeNodeControl(x)));
-
       AddSolution(UAModelDesignerSolution.CreateEmptyModel());
       //toolstrip initialization:
       m_BackForwardTreViewToolStrip.TreeView = this.m_TreeView;
@@ -47,7 +46,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     internal void PerformNodeClassFiltering()
     {
       m_FiltersControl.MyFilterSettings = m_FiltersControlSettings;
-      if (m_filterForm.ShowDialog() == DialogResult.OK)
+      if (m_filterForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
       {
         m_FiltersControlSettings = m_FiltersControl.MyFilterSettings;
         m_TreeView.SetTypeFilter(m_FiltersControlSettings.AllTypes, m_FiltersControlSettings.SelectedTypes);

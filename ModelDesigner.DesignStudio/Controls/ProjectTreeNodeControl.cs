@@ -1,17 +1,8 @@
-﻿//_______________________________________________________________
-//  Title   : ProjectTreeNodeControl
-//  System  : Microsoft VisualStudio 2015 / C#
-//  $LastChangedDate:  $
-//  $Rev: $
-//  $LastChangedBy: $
-//  $URL: $
-//  $Id:  $
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2017, CAS LODZ POLAND.
-//  TEL: +48 608 61 98 99 
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
@@ -20,6 +11,7 @@ using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Controls
 {
+
   /// <summary>
   /// Class ProjectTreeNodeControl.
   /// </summary>
@@ -40,12 +32,10 @@ namespace CAS.UA.Model.Designer.Controls
     {
       throw new NotImplementedException();
     }
-
     protected override void Save()
     {
       throw new NotImplementedException();
     }
-
     protected override void SaveAs()
     {
       throw new NotImplementedException();
@@ -64,10 +54,10 @@ namespace CAS.UA.Model.Designer.Controls
     private void RemoveClickHandler(object sender, EventArgs e)
     {
       string name = ModelEntity.Name;
-      if (MessageBox.Show(string.Format(Resources.ProjectTreeNode_AreYouSureToRemove_text, name), Resources.ProjectTreeNode_AreYouSureToRemove_caption, MessageBoxButtons.YesNo) == DialogResult.Yes)
+      if (MessageBox.Show(string.Format(Resources.ProjectTreeNode_AreYouSureToRemove_text, name), Resources.ProjectTreeNode_AreYouSureToRemove_caption, System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
         ModelEntity.Remove();
     }
-    //TODO Refactoring application architecture - remove recursion #6 - must be implmented
+    //TODO Refactoring application architecture - remove recursion #6 - must be implemented
     protected override void AddChildren(IProjectModel parent)
     {
       throw new NotImplementedException();

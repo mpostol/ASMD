@@ -1,17 +1,8 @@
-﻿//<summary>
-//  Title   : Wrapper Tree Node
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using CAS.Lib.ControlLibrary;
 using CAS.UA.IServerConfiguration;
@@ -20,12 +11,12 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
+
   /// <summary>
   /// Model node that has editable properties associated.
   /// </summary>
@@ -34,10 +25,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     #region public
     internal static object GetModelDesignerNodeFromStringRepresentationFromClipboard()
     {
-      string clipboard = Clipboard.GetText();
+      string clipboard = String.Empty;
       try
       {
-        clipboard = Clipboard.GetText();
+        clipboard = System.Windows.Forms.Clipboard.GetText();
       }
       catch
       { return null; }
@@ -110,7 +101,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     internal void AddMenuItemDelete_Click(object sender, EventArgs e)
     {
       string msg = String.Format(WrapperResources.DeleteObjectWarning, this.Text, this.ToolTipText);
-      if (MessageBox.Show
+      if (MessageBoxHandling.Show
         (
           msg,
           WrapperResources.DeleteObjectCaption,
@@ -122,14 +113,14 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
     internal void AddMenuItemAdd_Click(object sender, EventArgs e)
     {
-      ToolStripMenuItem mi = (ToolStripMenuItem)sender;
+      System.Windows.Forms.ToolStripMenuItem mi = (System.Windows.Forms.ToolStripMenuItem)sender;
       INodeFactory factory = (INodeFactory)mi.Tag;
       ValidableTreeNode node = factory.Node;
       this.Add(node);
       using (AddObject<object> form = new AddObject<object>(node.Wrapper))
       {
         form.Size = new Size(600, 500);
-        if (form.ShowDialog() != DialogResult.OK)
+        if (form.ShowDialog() != System.Windows.Forms.DialogResult.OK)
         {
           this.Remove(node);
           return;
@@ -138,173 +129,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       node.Validate();
     }
     #endregion
-    //protected abstract class WrapperTreeNodeControl<T> : BaseTreeNodeControl<T, T>, IWrapperTreeNode
-    //  where T : WrapperTreeNode, IModelNode, IModelNodeAdvance
-    //{
-    //  #region creator
-    //  public WrapperTreeNodeControl(T parent)
-    //    : base(parent)
-    //  { }
-    //  #endregion
 
-    //  #region private
-    //  private List<Diagnostics> m_ErrorList = new List<Diagnostics>();
-    //  protected IModelNode MyIModelNode { get { return ModelEntity as IModelNode; } }
-    //  /// <summary>
-    //  /// Gets the wrappers to be used in the <see cref="System.Windows.Forms.PropertyGrid"/>.
-    //  /// </summary>
-    //  /// <value>The wrappers,i.e. node configuration wappers.</value>
-    //  protected virtual void AddMenuItemAdd(INodeFactory[] listOfNodes)
-    //  {
-    //    ToolStripMenuItem menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_add_object, Resources.AdddItem)
-    //    {
-    //      Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly()
-    //    };
-    //    ContextMenuStrip.Items.Add(menu);
-    //    foreach (INodeFactory item in listOfNodes)
-    //    {
-    //      string node_name = item.ToString().Replace("Design", "");
-    //      ToolStripMenuItem sm = new ToolStripMenuItem(node_name)
-    //      {
-    //        Tag = item,
-    //        Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly()
-    //      };
-    //      sm.Click += new EventHandler(ModelEntity.AddMenuItemAdd_Click);
-    //      menu.DropDownItems.Add(sm);
-    //    }
-    //  }
-    //  protected void AddMenuItemCopyPasteCut()
-    //  {
-    //    if (ContextMenuStrip.Items.Count > 0)
-    //      ContextMenuStrip.Items.Add(new ToolStripSeparator());
-    //    AddMenuItemCopy();
-    //    AddMenuItemPaste();
-    //    AddMenuItemCut();
-    //  }
-    //  protected void AddMenuItemCut()
-    //  {
-    //    ToolStripMenuItem menu;
-    //    menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_cut, Resources.cut)
-    //    {
-    //      Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly()
-    //    };
-    //    menu.Click += new EventHandler(ModelEntity.AddMenuItemCut_Click);
-    //    ContextMenuStrip.Items.Add(menu);
-    //  }
-    //  protected void AddMenuItemCopy()
-    //  {
-    //    ToolStripMenuItem menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_copy, Resources.copy);
-    //    menu.Click += new EventHandler(ModelEntity.AddMenuItemCopy_Click);
-    //    ContextMenuStrip.Items.Add(menu);
-    //  }
-    //  protected void AddMenuItemPaste()
-    //  {
-    //    ToolStripMenuItem MenuPaste = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_paste, Resources.paste)
-    //    {
-    //      Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly() && ModelEntity.ShouldPasteMenuBeEnabled()
-    //    };
-    //    MenuPaste.Click += new EventHandler(ModelEntity.AddMenuItemPaste_Click);
-    //    ContextMenuStrip.Items.Add(MenuPaste);
-    //  }
-    //  protected virtual void AddMenuItemDelete()
-    //  {
-    //    ToolStripMenuItem menu = new ToolStripMenuItem(Properties.Resources.WrapperTreeNode_menu_delete, Resources.delete)
-    //    {
-    //      Enabled = !ModelEntity.TestIfReadOnlyAndRetrunTrueIfReadOnly()
-    //    };
-    //    menu.Click += new EventHandler(ModelEntity.AddMenuItemDelete_Click);
-    //    ContextMenuStrip.Items.Add(menu);
-    //  }
-    //  #endregion
-
-    //  #region IWrapperTreeNode Members
-    //  /// <summary>
-    //  /// Gets the instance of the model node. Model node represents the location of the node in the model hierarchy.
-    //  /// </summary>
-    //  /// <value>
-    //  /// An instance of class inherited from <see cref="IModelNodeAdvance"/>.
-    //  /// </value>
-    //  IModelNodeAdvance IWrapperTreeNode.IModelNodeAdvance { get { return this.ModelEntity as IModelNodeAdvance; } }
-    //  /// <summary>
-    //  /// Gets or sets the name of the tree node.
-    //  /// </summary>
-    //  /// <value></value>
-    //  /// <returns>
-    //  /// A <see cref="T:System.String"/> that represents the name of the tree node.
-    //  /// </returns>
-    //  string IModelNode.Name
-    //  {
-    //    get { return ModelEntity.Name; }
-    //  }
-    //  /// <summary>
-    //  /// Gets the error list.
-    //  /// </summary>
-    //  /// <value>The error list.</value>
-    //  IList<Diagnostics> IModelNode.ErrorList
-    //  {
-    //    get { return m_ErrorList; }
-    //  }
-    //  /// <summary>
-    //  /// Gets the wrapper of the node to be used in the property grid user interface.
-    //  /// </summary>
-    //  /// <value>The wrapper.</value>
-    //  object IModelNode.Wrapper4PropertyGrid
-    //  {
-    //    get { return ModelEntity.Wrapper4PropertyGrid; }
-    //  }
-    //  /// <summary>
-    //  /// Gets the wrapper for property grid of data bindings.
-    //  /// </summary>
-    //  /// <returns></returns>
-    //  /// <return>The wrapper data bindings property grid.</return>
-    //  INodeDescriptor IModelNode.GetINodeDescriptor()
-    //  {
-    //    UniqueIdentifier ui = new UniqueIdentifier();
-    //    if (!GetUniqueIdentifier(ui))
-    //      return null;
-    //    return ModelEntity.GetINodeDescriptor(ui);
-    //  }
-    //  /// <summary>
-    //  /// Gets the name of the node class.
-    //  /// </summary>
-    //  /// <value>The name of the node class.</value>
-    //  NodeClassesEnum IModelNode.NodeClass
-    //  {
-    //    get { return ModelEntity.NodeClass; }
-    //  }
-    //  /// <summary>
-    //  /// Gets the name of the help topic.
-    //  /// </summary>
-    //  /// <value>
-    //  /// Unique identifier to be used as the key to select the help topic.
-    //  /// </value>
-    //  string IModelNode.HelpTopicName
-    //  {
-    //    get { return ModelEntity.HelpTopicName; }
-    //  }
-    //  /// <summary>
-    //  /// Gets a value indicating whether this instance is read only.
-    //  /// </summary>
-    //  /// <value>
-    //  /// 	<c>true</c> if this instance is read only; otherwise, <c>false</c>.
-    //  /// </value>
-    //  bool IModelNode.IsReadOnly
-    //  {
-    //    get { return ModelEntity.IsReadOnly; }
-    //  }
-    //  /// <summary>
-    //  /// Gets the symbolic name.
-    //  /// </summary>
-    //  /// <value>The symbolic name.</value>
-    //  public virtual XmlQualifiedName SymbolicName
-    //  {
-    //    get
-    //    {
-    //      return new XmlQualifiedName();
-    //    }
-    //  }
-    //  #endregion
-    //}
     #endregion
 
     #region creators
@@ -343,7 +168,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         this.Add(NodeFactory.Create(DeserializedNode));
         return;
       }
-      MessageBox.Show(Resources.WrapperTreeNode_menu_paste_cannot_be_done);
+      MessageBoxHandling.Show(Resources.WrapperTreeNode_menu_paste_cannot_be_done);
     }
     public virtual Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> GetFolders()
     {
@@ -378,7 +203,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <value>The error list.</value>
     public IList<Diagnostics> ErrorList { get; private set; }
     /// <summary>
-    /// Gets an editot that wrapps the node in the property grid user interface.
+    /// Gets an editor that wraps the node in the property grid user interface.
     /// </summary>
     /// <value>The wrapper.</value>
     public object Wrapper4PropertyGrid
@@ -419,11 +244,12 @@ namespace CAS.UA.Model.Designer.Wrappers
         return new XmlQualifiedName();
       }
     }
+    internal protected IMessageBoxHandling MessageBoxHandling { protected get; set; }
     #endregion
 
     #region public
     /// <summary>
-    /// Retrives za instance of the interface <see cref="INodeDescriptor"/> that provides the description of the node to be
+    /// Retries za instance of the interface <see cref="INodeDescriptor"/> that provides the description of the node to be
     /// bind with an external data source.
     /// </summary>
     /// <param name="UniqueIdentifierOfRequestedWrapper">The unique identifier of requested node descriptor.</param>
@@ -473,7 +299,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       {
         ;
       }
-
       #endregion
 
       #region IEnumerator Members
