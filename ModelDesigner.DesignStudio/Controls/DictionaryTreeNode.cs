@@ -50,7 +50,7 @@ namespace CAS.UA.Model.Designer.Controls
         item.Unregister();
       Nodes.Clear();
     }
-    protected void ApplyTypeFiltersToChildreen(bool allTypes, IEnumerable<NodeClassesEnum> types)
+    protected void ApplyTypeFiltersToChildren(bool allTypes, IEnumerable<NodeClassesEnum> types)
     {
       List<DictionaryTreeNode> visible = new List<DictionaryTreeNode>();
       foreach (DictionaryTreeNode node in Nodes)

@@ -25,7 +25,7 @@ namespace CAS.UA.Model.Designer.Controls
     public override void SetTypeFilter(bool allTypes, IEnumerable<NodeClassesEnum> types)
     {
       RecreateSubtree();
-      ApplyTypeFiltersToChildreen(allTypes, types);
+      ApplyTypeFiltersToChildren(allTypes, types);
     }
     /// <summary>
     /// Gets the unique identifier.

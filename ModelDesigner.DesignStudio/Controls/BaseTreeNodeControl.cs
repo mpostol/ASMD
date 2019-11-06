@@ -16,18 +16,14 @@ namespace CAS.UA.Model.Designer.Controls
 
     #region private
     /// <summary>
-    /// Gets or sets the creator. 
-    /// This is the Wrapper object (from CAS.UA.Model.Designer.Wrappers), 
-    /// so this is a link to a mesh that store the model
+    /// It provides reference to a Wrapper object - a view model for this . 
     /// </summary>
-    /// <value>The creator.</value>
     protected TModel ModelEntity { get; private set; }
     private void OnTextChanged(object sender, BaseTreeNode.TextEventArgs e)
     {
       Text = e.Node.Text;
+      Name = e.Node.Text;
       ToolTipText = e.Node.ToolTipText;
-      //TODO Tree view could be null while adding Variable - fixed but impact must be analyzed.
-      //Completed: At revision: 9178  
       if (TreeView != null)
         TreeView.RebuildDictionary();
     }
@@ -71,7 +67,6 @@ namespace CAS.UA.Model.Designer.Controls
       ToolTipText = model.ToolTipText;
       ImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(ModelEntity.GetType().Name, false);
       SelectedImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(ModelEntity.GetType().Name, true);
-      model.TextChanged += (x, y) => this.Name = model.Text;
       model.TextChanged += new EventHandler<BaseTreeNode.TextEventArgs>(OnTextChanged);
       model.SubtreeChanged += new EventHandler<BaseTreeNode.ProjectEventArgs>(OnSubtreeChanged);
       AddChildren(ModelEntity);
