@@ -73,10 +73,10 @@ namespace CAS.UA.Model.Designer.Controls
     {
       ModelEntity.Save(false);
     }
-    //TODO Refactoring application architecture - remove recursion #6
-    protected override void AddChildren(ISolutionModel parent)
+    protected override void AddChildren(ISolutionModel modelView)
     {
-      throw new NotImplementedException();
+      foreach (IBaseModel node in modelView)
+        Nodes.Add(TreeNodesFactory.Factory.GetTreeNode(node));
     }
     //protected override BaseDictionaryTreeNode GetChildTreeNodeControl(IProjectModel node)
     //{

@@ -94,7 +94,7 @@ namespace CAS.UA.Model.Designer.Controls
     protected override void AddChildren(T entity)
     {
       foreach (T node in entity)
-        Nodes.Add(DictionaryTreeNode.GetTreeNode(entity));
+        Nodes.Add(TreeNodesFactory.Factory.GetTreeNode(entity));
     }
     #endregion
 

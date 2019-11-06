@@ -1,4 +1,9 @@
-﻿
+﻿//___________________________________________________________________________________
+//
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Wrappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,6 +17,11 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
   [TestClass]
   public class SolutionTreeNodeControlUnitTest
   {
+    [TestInitialize]
+    public void MyTestInitialize()
+    {
+      TreeNodesFactory.Factory = new FactoryFixture();
+    }
     [TestMethod]
     public void ConstructorTest()
     {
@@ -20,14 +30,18 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       Assert.AreEqual<string>(nameof(SolutionTreeNodeTest), _instance.Name);
       Assert.AreEqual<string>("ToolTipText", _instance.ToolTipText);
       Assert.AreEqual<int>(0, _instance.Nodes.Count);
+      Assert.AreEqual<int>(1, _instance.AddChildrenCalled);
     }
     [TestMethod]
     public void Constructor4TreeTest()
     {
-      SolutionTreeNodeTest _model = new SolutionTreeNodeTest();
-      _model.Add(new BaseModelTest());
+      SolutionTreeNodeTest _model = new SolutionTreeNodeTest
+      {
+        new BaseModelTest()
+      };
       SolutionTreeNodeControlTest _instance = new SolutionTreeNodeControlTest(_model);
       Assert.AreEqual<int>(1, _instance.Nodes.Count);
+      Assert.AreEqual<int>(1, _instance.AddChildrenCalled);
     }
     [TestMethod]
     public void BeforeMenuStripOpeningTest()
@@ -44,7 +58,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       SolutionTreeNodeTest _model = new SolutionTreeNodeTest();
       SolutionTreeNodeControlTest _instance = new SolutionTreeNodeControlTest(_model);
       Assert.AreEqual<int>(1, _model.SubtreeChangedCount);
-      Assert.AreEqual<int>(2, _model.TextChangedCount);
+      Assert.AreEqual<int>(1, _model.TextChangedCount);
     }
     [TestMethod]
     public void AddProjectTest()
@@ -54,13 +68,22 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       Assert.AreEqual<int>(0, _instance.Nodes.Count);
       _model.AddProject(false);
       Assert.AreEqual<int>(1, _instance.Nodes.Count);
-      Assert.IsInstanceOfType(_instance.Nodes[0], typeof(ProjectTreeNodeControl));
+      Assert.IsInstanceOfType(_instance.Nodes[0], typeof(DictionaryTreeNodeTest));
     }
 
     #region testing instrumentation
+    private class FactoryFixture : CAS.UA.Model.Designer.Controls.ITreeNodesFactory
+    {
+      public DictionaryTreeNode GetTreeNode(IBaseModel wrapper)
+      {
+        Assert.IsNotNull(wrapper);
+        Assert.IsInstanceOfType(wrapper, typeof(IProjectModel));
+        return new DictionaryTreeNodeTest();
+      }
+    }
     private class SolutionTreeNodeControlTest : SolutionTreeNodeControl
     {
-      public SolutionTreeNodeControlTest(ISolutionModel model) : base(model) { }
+      public SolutionTreeNodeControlTest(ISolutionModel viewModel) : base(viewModel) { }
       protected override void BeforeMenuStripOpening()
       {
         base.BeforeMenuStripOpening();
@@ -69,6 +92,15 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       {
         BeforeMenuStripOpening();
       }
+      protected override void AddChildren(ISolutionModel viewModel)
+      {
+        Assert.IsNotNull(viewModel);
+        Assert.AreSame(this.ModelEntity, viewModel);
+        AddChildrenCalled++;
+        Assert.AreEqual<int>(0, this.Nodes.Count);
+        base.AddChildren(viewModel);
+      }
+      internal int AddChildrenCalled = 0;
     }
     private class SolutionTreeNodeTest : List<IBaseModel>, ISolutionModel
     {
@@ -118,12 +150,10 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       {
         throw new NotImplementedException();
       }
-
       public void ImportNodeSet()
       {
         throw new NotImplementedException();
       }
-
       public void Save(bool v)
       {
         throw new NotImplementedException();
@@ -139,7 +169,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       public void AddProject(bool existing)
       {
         if (existing)
-          throw new NotImplementedException();
+          Assert.Fail();
         else
         {
           Add(new BaseModelTest());
@@ -151,14 +181,9 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
     }
     private class BaseModelTest : List<IBaseModel>, IBaseModel, IProjectModel
     {
+
       #region IProjectModel
-      public string Name
-      {
-        get
-        {
-          throw new NotImplementedException();
-        }
-      }
+      public string Name => throw new NotImplementedException();
       public void Remove()
       {
         throw new NotImplementedException();
@@ -168,26 +193,14 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       #region IBaseModel
       public string Text
       {
-        get
-        {
-          return "Text";
-        }
+        get => "Text";
 
-        set
-        {
-          throw new NotImplementedException();
-        }
+        set => throw new NotImplementedException();
       }
       public string ToolTipText
       {
-        get
-        {
-          return "ToolTipText";
-        }
-        set
-        {
-          throw new NotImplementedException();
-        }
+        get => "ToolTipText";
+        set => throw new NotImplementedException();
       }
       public event EventHandler<BaseTreeNode.ProjectEventArgs> SubtreeChanged;
       public event EventHandler<BaseTreeNode.TextEventArgs> TextChanged;

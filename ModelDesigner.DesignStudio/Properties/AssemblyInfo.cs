@@ -1,17 +1,8 @@
-﻿//_______________________________________________________________
-//  Title   :  Assembly info for: CAS OPC UA Address Space Model Designer
-//  System  : Microsoft VisualStudio 2013 / C#
-//  $LastChangedDate:  $
-//  $Rev: $
-//  $LastChangedBy: $
-//  $URL: $
-//  $Id:  $
+﻿//___________________________________________________________________________________
 //
-//  Copyright (c) 2017 CAS LODZ POLAND
-//  +48 (42) 686 25 47
-//  techsupp@cas.eu
-//  www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using System.Reflection;
 using System.Runtime.CompilerServices;
