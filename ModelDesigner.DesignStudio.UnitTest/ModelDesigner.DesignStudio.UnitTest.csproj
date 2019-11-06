@@ -160,6 +160,7 @@
     <Compile Include="Wrappers4PropertyGrid\ProjectWrapperTests.cs" />
     <Compile Include="Wrappers\ProjectTreeNodeUnitTest.cs" />
     <Compile Include="Wrappers\DataTypeDesignUnitTest.cs" />
+    <Compile Include="Wrappers\BaseTreeNodeTestUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

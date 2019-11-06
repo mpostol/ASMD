@@ -9,14 +9,19 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CAS.UA.Model.Designer.Wrappers
 {
   [TestClass]
-  public class DataTypeDesignUnitTest
+  public class BaseTreeNodeTestUnitTest
   {
+
     [TestMethod]
     public void ConstructorTest()
     {
-      DataTypeDesign _instance = new DataTypeDesign();
-      Assert.AreEqual<int>(4, _instance.Count);
-      Assert.ThrowsException<System.NullReferenceException>( () => _instance.AvailiableNamespaces);
+      BaseTreeNodeFixture _instance = new BaseTreeNodeFixture(nameof(BaseTreeNodeFixture));
+      Assert.AreEqual<string>(nameof(BaseTreeNodeFixture), _instance.Text);
     }
+    private class BaseTreeNodeFixture : BaseTreeNode
+    {
+      public BaseTreeNodeFixture(string text) : base(text) { }
+    }
+
   }
 }

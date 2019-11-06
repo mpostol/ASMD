@@ -92,7 +92,8 @@ namespace CAS.UA.Model.Designer.Wrappers
         BuildOutputDirectoryName = Resources.DefaultOutputBuildDirectory,
         CSVFileName = Resources.DefaultCSVFileName,
         FileName = GetRelativePath(filePath),
-        ProjectIdentifier = Guid.NewGuid().ToString()
+        ProjectIdentifier = Guid.NewGuid().ToString(),
+        Name = UniqueProjectName
       };
       InitializeComponent(new ModelDesign(model, false));
     }

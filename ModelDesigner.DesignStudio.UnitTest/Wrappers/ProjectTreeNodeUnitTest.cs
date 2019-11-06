@@ -1,16 +1,20 @@
-﻿
+﻿//___________________________________________________________________________________
+//
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 using CAS.CommServer.UA.Common;
-using CAS.UA.Model.Designer.Wrappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Wrappers
+namespace CAS.UA.Model.Designer.Wrappers
 {
   [TestClass]
   public class ProjectTreeNodeUnitTest
   {
     [ClassInitializeAttribute]
-    public static void MyTestMethod(TestContext context)
+    public static void ClassInitialize(TestContext context)
     {
       ViewModelFactory.Factory = new ViewModelFactoryTest();
     }
