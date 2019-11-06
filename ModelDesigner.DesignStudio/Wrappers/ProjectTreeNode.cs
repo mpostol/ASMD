@@ -123,9 +123,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
     public override Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> GetFolders()
     {
-      Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> tobereturned = base.GetFolders();
-      tobereturned.Add(FolderType.Model, Model);
-      return tobereturned;
+      Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> toBeReturned = base.GetFolders();
+      toBeReturned.Add(FolderType.Model, Model);
+      return toBeReturned;
     }
     /// <summary>
     /// Gets the name of the help topic.
@@ -174,12 +174,10 @@ namespace CAS.UA.Model.Designer.Wrappers
         return Path.GetFullPath(Path.Combine(this.m_SolutionHomeDirectory.GetBaseDirectory(), this.FileName));
       }
     }
-
     internal ProjectTreeNode CloneProject()
     {
       throw new NotImplementedException();
     }
-
     internal string CSVFileName
     {
       get

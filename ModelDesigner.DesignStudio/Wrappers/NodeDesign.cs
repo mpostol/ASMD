@@ -50,10 +50,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     #region public
     public override Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> GetFolders()
     {
-      Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> tobereturned = base.GetFolders();
-      tobereturned.Add(FolderType.Children, Children);
-      tobereturned.Add(FolderType.References, References);
-      return tobereturned;
+      Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> toBeReturned = base.GetFolders();
+      toBeReturned.Add(FolderType.Children, Children);
+      toBeReturned.Add(FolderType.References, References);
+      return toBeReturned;
     }
     public override string HelpTopicName
     {
@@ -80,29 +80,13 @@ namespace CAS.UA.Model.Designer.Wrappers
         return node;
       }
     }
-    internal ChildrenFolder Children
-    {
-      get
-      {
-        return m_Children;
-      }
-    }
-    internal ReferencesFolder References
-    {
-      get
-      {
-        return m_References;
-      }
-    }
-    public override NodeTypeEnum NodeType
-    {
-      get { return NodeTypeEnum.OpcUaNode; }
-    }
+    internal ChildrenFolder Children => m_Children;
+    internal ReferencesFolder References => m_References;
+    public override NodeTypeEnum NodeType => NodeTypeEnum.OpcUaNode;
     #endregion public
 
-    #region creators
-    public NodeDesign(type child)
-      : base(child)
+    #region constructor
+    public NodeDesign(type child) : base(child)
     {
       m_Children = new ChildrenFolder();
       m_References = new ReferencesFolder();
@@ -127,7 +111,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
     private ReferencesFolder m_References;
     private ChildrenFolder m_Children;
-    protected void RemoveChldrenFolderFromSubTree()
+    protected void RemoveChildrenFolderFromSubTree()
     {
       Remove(m_Children);
     }
@@ -199,10 +183,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region INodeDesign Members
-    public override XmlQualifiedName SymbolicName
-    {
-      get { return Wrapper.SymbolicName.XmlQualifiedName; }
-    }
+    public override XmlQualifiedName SymbolicName => Wrapper.SymbolicName.XmlQualifiedName;
     public virtual string CalculateReferenceRelativeName(string targetIdName)
     {
       return targetIdName;

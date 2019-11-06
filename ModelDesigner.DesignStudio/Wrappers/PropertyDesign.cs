@@ -14,11 +14,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     #region constructors
     public PropertyDesign() : base(new Wrappers4ProperyGrid.PropertyDesign(new Opc.Ua.ModelCompiler.PropertyDesign()))
     {
-      RemoveChldrenFolderFromSubTree();
+      RemoveChildrenFolderFromSubTree();
     }
     public PropertyDesign(Opc.Ua.ModelCompiler.PropertyDesign node) : base(new Wrappers4ProperyGrid.PropertyDesign(node), node)
     {
-      RemoveChldrenFolderFromSubTree();
+      RemoveChildrenFolderFromSubTree();
     }
     #endregion
 

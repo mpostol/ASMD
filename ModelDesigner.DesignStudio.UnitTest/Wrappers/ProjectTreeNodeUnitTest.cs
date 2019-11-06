@@ -1,4 +1,5 @@
-﻿using CAS.CommServer.UA.Common;
+﻿
+using CAS.CommServer.UA.Common;
 using CAS.UA.Model.Designer.Wrappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
