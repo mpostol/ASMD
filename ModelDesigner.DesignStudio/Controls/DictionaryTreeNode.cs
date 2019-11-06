@@ -131,7 +131,8 @@ namespace CAS.UA.Model.Designer.Controls
         _ret = new EncodingDesignTreeNodeControl((EncodingDesign)wrapper);
       if (wrapper is ChildrenFolder)
         _ret = new ChildrenFolderTreeNodeControl((ChildrenFolder)wrapper);
-
+      else
+        throw new System.ArgumentOutOfRangeException($"{nameof(GetTreeNode)} cannot factory object for {wrapper.GetType().FullName}");
       return _ret;
     }
 

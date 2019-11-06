@@ -18,6 +18,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       FileMenuProviderTest _newInstance = FileMenuProviderTest.CreteInstance();
       Assert.AreEqual<int>(0, _newInstance.ContextMenuStrip.Items.Count);
       Assert.AreEqual<string>(nameof(BaseTreeNodeTest), _newInstance.Name);
+      Assert.AreEqual(1, _newInstance.AddChildrenCalled);
     }
     [TestMethod]
     public void AddItemsToMenuTest()
@@ -77,8 +78,10 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       }
       protected override void AddChildren(BaseTreeNodeTest parent)
       {
-        throw new NotImplementedException();
+        Assert.IsNotNull(parent);
+        AddChildrenCalled++; 
       }
+      internal int AddChildrenCalled = 0; 
     }
     private class BaseTreeNodeTest : BaseTreeNode
     {
