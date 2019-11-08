@@ -1,19 +1,8 @@
-//<summary>
-//  Title   : TraceEvent in CAS.UA.Model.Designer
-//  System  : Microsoft Visual C# .NET 
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
-//  History :
-//    20090715: mzbrzezny: created
+//___________________________________________________________________________________
 //
-//  Copyright (C)2009, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto:techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using System;
 using System.Diagnostics;

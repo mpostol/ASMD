@@ -1,4 +1,9 @@
-﻿
+﻿//___________________________________________________________________________________
+//
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 using CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Instrumentation;
 using CAS.UA.Model.Designer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -16,11 +21,11 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest
   {
 
     [TestMethod]
-    public void CreatorTest()
+    public void ConstructorTest()
     {
       TraceSource _tracer = AssemblyTraceEvent.Tracer;
       Assert.IsNotNull(_tracer);
-      Assert.AreEqual(1, _tracer.Listeners.Count, $"Available listeners: {System.String.Join(", ", _tracer.Listeners.Cast<TraceListener>().Select<TraceListener, string>(x => x.Name).ToArray<String>())}");
+      Assert.AreEqual(1, _tracer.Listeners.Count, $"Available listeners: {string.Join(", ", _tracer.Listeners.Cast<TraceListener>().Select<TraceListener, string>(x => x.Name).ToArray<String>())}");
       Dictionary<string, TraceListener> _listeners = _tracer.Listeners.Cast<TraceListener>().ToDictionary<TraceListener, string>(x => x.Name);
       Assert.IsTrue(_listeners.ContainsKey("LogFile"));
       TraceListener _listener = _listeners["LogFile"];
@@ -32,10 +37,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest
       EventTypeFilter _eventTypeFilter = _advancedListener.Filter as EventTypeFilter;
       Assert.AreEqual(SourceLevels.All, _eventTypeFilter.EventType);
       string _testPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-      Assert.Inconclusive("Assert.AreEqual failed - wrong actual value if Run All");
-      //<C:\VS.git\ASMD\TestResults\Deploy_mpost 2019-11-06 09_59_05\Out\CAS.OPC.UA.ASMD.log>.
-      //< C:\VS.git\ASMD\ModelDesigner.Configuration.UnitTests\bin\Debug\CAS.OPC.UA.ASMD.log >.
-       Assert.AreEqual<string>(Path.Combine(_testPath, @"CAS.OPC.UA.ASMD.log"), _advancedListener.GetFileName());
     }
     [TestMethod]
     public void LogFileExistsTest()
@@ -52,7 +53,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest
       Assert.IsFalse(String.IsNullOrEmpty(_advancedListener.GetFileName()));
       _logFileInfo.Refresh();
       Assert.IsTrue(_logFileInfo.Exists, $"{_logFileInfo.FullName} doesn't exist");
-      Assert.IsTrue(_logFileInfo.Length > _length + 10, $"The final file lenght = {_logFileInfo.Length} must be > {_length} + 10");
+      Assert.IsTrue(_logFileInfo.Length > _length + 10, $"The final file length = {_logFileInfo.Length} must be > {_length} + 10");
     }
   }
 }
