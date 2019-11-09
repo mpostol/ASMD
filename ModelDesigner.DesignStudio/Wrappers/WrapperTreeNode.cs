@@ -111,6 +111,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         return;
       this.Parent.Remove(this);
     }
+    //TODO Removed dependency of the CAS.UA.Model.Designer.Wrappers on using System.Windows.Forms #38
     internal void AddMenuItemAdd_Click(object sender, EventArgs e)
     {
       System.Windows.Forms.ToolStripMenuItem mi = (System.Windows.Forms.ToolStripMenuItem)sender;
