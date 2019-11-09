@@ -1,10 +1,15 @@
-﻿
+﻿//___________________________________________________________________________________
+//
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Solution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 
-namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Wrappers4PropertyGrid
+namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
 {
   [TestClass]
   [DeploymentItem(@"TestData\", @"TestData")]

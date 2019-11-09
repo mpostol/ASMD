@@ -1,5 +1,4 @@
-﻿using CAS.UA.Model.Designer.Wrappers;
-namespace CAS.UA.Model.Designer.Controls
+﻿namespace CAS.UA.Model.Designer.Controls
 {
   partial class AddNode
   {

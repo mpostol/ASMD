@@ -25,6 +25,7 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// </summary>
   internal abstract class BaseTreeNode : IBaseModel
   {
+    
     #region private
     private List<IBaseModel> m_Children = new List<IBaseModel>();
     private string m_Text;

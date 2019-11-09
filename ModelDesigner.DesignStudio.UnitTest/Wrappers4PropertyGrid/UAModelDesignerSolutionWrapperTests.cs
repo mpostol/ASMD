@@ -1,10 +1,16 @@
-﻿using CAS.UA.Model.Designer.Solution;
+﻿//___________________________________________________________________________________
+//
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
+using CAS.UA.Model.Designer.Solution;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Model = CAS.UA.Model.Designer.Wrappers;
+using WrappersModel = global::CAS.UA.Model.Designer.Wrappers;
 
-namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Wrappers4PropertyGrid
+namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
 {
   [TestClass()]
   public class UAModelDesignerSolutionWrapperTests
@@ -12,13 +18,13 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Wrappers4Propert
     [ClassInitializeAttribute]
     public static void ClassInitializeMethod(TestContext context)
     {
-      Model.ViewModelFactory.Factory = new ViewModelFactory();
+      WrappersModel.ViewModelFactory.Factory = new ViewModelFactory();
     }
     [TestMethod()]
     public void ConstructorDefaultTest()
     {
       UAModelDesignerSolution _solution = UAModelDesignerSolution.CreateEmptyModel();
-      Model.SolutionTreeNode _stn = new Model.SolutionTreeNode(_solution, String.Empty, (x, y) => { });
+      WrappersModel.SolutionTreeNode _stn = new WrappersModel.SolutionTreeNode(_solution, String.Empty, (x, y) => { });
       UAModelDesignerSolutionWrapper _newSolution = new UAModelDesignerSolutionWrapper(_stn);
       Assert.IsTrue(String.IsNullOrEmpty(_newSolution.HomeDirectory));
       Assert.AreEqual<string>(_solution.Name, _newSolution.Name);

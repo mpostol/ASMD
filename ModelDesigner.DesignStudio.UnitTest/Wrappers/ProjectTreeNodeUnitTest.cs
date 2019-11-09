@@ -13,6 +13,7 @@ namespace CAS.UA.Model.Designer.Wrappers
   [TestClass]
   public class ProjectTreeNodeUnitTest
   {
+
     [ClassInitializeAttribute]
     public static void ClassInitialize(TestContext context)
     {
@@ -21,7 +22,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     [TestMethod]
     public void ConstructorTest()
     {
-      ProjectTreeNode _newItem = new ProjectTreeNode (new BaseDirectoryProvider(), string.Empty, new Opc.Ua.ModelCompiler.ModelDesign());
+      ProjectTreeNode _newItem = new ProjectTreeNode(new BaseDirectoryProvider(), string.Empty, new Opc.Ua.ModelCompiler.ModelDesign());
     }
     [TestMethod]
     public void WrapperProviderTest()
@@ -31,11 +32,13 @@ namespace CAS.UA.Model.Designer.Wrappers
       Assert.IsNotNull(_viewModel);
       Assert.AreSame(_viewModel, ViewModel.Instance);
     }
+
+    #region instrumentation
     private class BaseDirectoryProvider : IBaseDirectoryProvider
     {
       public string GetBaseDirectory()
       {
-        return String.Empty;
+        return string.Empty;
       }
     }
     private class ViewModelFactoryTest : IViewModelFactory
@@ -44,13 +47,12 @@ namespace CAS.UA.Model.Designer.Wrappers
       {
         throw new NotImplementedException();
       }
-
       public IViewModel Create(ProjectTreeNode modelEntity)
       {
         return ViewModel.Instance;
       }
     }
-    private class ViewModel: IViewModel
+    private class ViewModel : IViewModel
     {
       private static ViewModel m_Instance;
       internal static ViewModel Instance
@@ -64,6 +66,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         }
       }
     }
+    #endregion
 
   }
 }

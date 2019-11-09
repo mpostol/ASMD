@@ -1,10 +1,16 @@
-﻿
+﻿//___________________________________________________________________________________
+//
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Wrappers4PropertyGrid
+namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
 {
+  //TODO Use moc to test CAS.UA.Model.Designer.Wrappers4PropertyGrid #40
   [TestClass]
   public class ModelDesignUnitTest
   {

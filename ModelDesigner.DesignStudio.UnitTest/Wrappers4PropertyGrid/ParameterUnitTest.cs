@@ -1,9 +1,15 @@
-﻿using System;
+﻿//___________________________________________________________________________________
+//
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Wrappers4PropertyGrid
+namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
 {
+  //TODO Use moc to test CAS.UA.Model.Designer.Wrappers4PropertyGrid #40
   [TestClass]
   public class ParameterUnitTest
   {
@@ -21,7 +27,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Wrappers4Propert
         ValueRank = Opc.Ua.ModelCompiler.ValueRank.Scalar
       };
       Parameter _wrapper = new Parameter(_parameter);
-      Assert.IsNotNull(_wrapper);
       Assert.AreEqual<string>(_parameter.ArrayDimensions, _wrapper.ArrayDimensions);
       Assert.IsNotNull(_wrapper.DataType);
       Assert.AreEqual<string>("name", _wrapper.DataType.Name);

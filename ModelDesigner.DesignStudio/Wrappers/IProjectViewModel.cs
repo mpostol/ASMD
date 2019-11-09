@@ -13,9 +13,6 @@
 //  http://www.cas.eu
 //_______________________________________________________________
 
-using CAS.UA.Model.Designer.ImportExport;
-using System;
-
 namespace CAS.UA.Model.Designer.Wrappers
 {
 

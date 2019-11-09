@@ -1,9 +1,17 @@
-﻿using System;
+﻿//___________________________________________________________________________________
+//
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 
-namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Wrappers4PropertyGrid
+namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
 {
+  //TODO Use moc to test CAS.UA.Model.Designer.Wrappers4PropertyGrid #40
   [TestClass]
   public class DocumentationAttributeUnitTest
   {
