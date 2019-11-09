@@ -1,17 +1,9 @@
-﻿//<summary>
-//  Title   : UA Model Designer
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 
 using CAS.Lib.CodeProtect;
 using CAS.UA.Model.Designer.Properties;
@@ -128,15 +120,15 @@ namespace CAS.UA.Model.Designer
     {
       applicationRun(m_ApplicationEntryForm);
     }
-    internal static Func<string, DialogResult> MessageBoxShow { get { return m_MessageBoxShow; } set { m_MessageBoxShow = value; } }
+    internal static Func<string, DialogResult> MessageBoxShow { get; set; } = (x) =>
+                                                                                 {
+                                                                                   AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 108, x);
+                                                                                   return MessageBox.Show(x, "Excution Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                                 };
+
     #endregion
 
     #region private
-    private static Func<string, DialogResult> m_MessageBoxShow = (x) =>
-    {
-      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 108, x);
-      return MessageBox.Show(x, "Excution Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    };
     private readonly static string m_InstallLicenseString = "installic";
     private static Form m_ApplicationEntryForm;
     private static string[] GetArguments()

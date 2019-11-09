@@ -11,7 +11,7 @@ namespace CAS.UA.Model.Designer.Controls
   internal class LibraryTreeNodeControl : RootTreeNodeControl<LibraryTreeNode>
   {
     public LibraryTreeNodeControl(LibraryTreeNode parent) : base(parent) { }
-    //TODO Refactoring application architecture - remove recursion #6
+    //TODO Creation LibraryTreeNode fails #44
     protected override void AddChildren(LibraryTreeNode parent)
     {
       throw new System.NotImplementedException();
