@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="CAS.UA.Model.Designer.Wrappers.Root" Collapsed="true">
-    <Position X="7" Y="6.25" Width="2" />
+    <Position X="1.5" Y="5" Width="2" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
@@ -10,9 +10,15 @@
         <Position X="-1.859" Y="0.862" />
       </MemberNameLabel>
     </AssociationLine>
-    <AssociationLine Name="SolutionRoot" Type="CAS.UA.Model.Designer.Wrappers.SolutionTreeNode">
+    <AssociationLine Name="SolutionRoot" Type="CAS.UA.Model.Designer.Wrappers.SolutionTreeNode" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.594" Y="5" />
+        <Point X="2.594" Y="4.625" />
+        <Point X="4.5" Y="4.625" />
+        <Point X="4.5" Y="4.191" />
+      </Path>
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="0.058" Y="0.331" Height="0.182" Width="1.066" />
+        <Position X="0.143" Y="0.169" Height="0.182" Width="1.066" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -25,14 +31,14 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.Libraries" Collapsed="true">
-    <Position X="4.25" Y="4.75" Width="1.5" />
+    <Position X="0.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQAAAAAAEAAAAAAAAAAAgAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAQAAAAAAEAAAAAAAAAAAgAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>Wrappers\Libraries.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.SolutionTreeNode" Collapsed="true">
-    <Position X="8" Y="4.75" Width="1.5" />
+    <Position X="4.25" Y="3.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
       <Compartment Name="Fields" Collapsed="true" />
@@ -45,7 +51,7 @@
     <Lollipop Position="0.1" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.RootTreeNode" Collapsed="true">
-    <Position X="5.25" Y="3.25" Width="1.5" />
+    <Position X="1.5" Y="2" Width="1.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
@@ -55,41 +61,50 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.WrapperTreeNode" Collapsed="true">
-    <Position X="16" Y="3.25" Width="1.75" />
+    <Position X="12.25" Y="2" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>ACAAACCABEAAAEiTAAAAAAQgEQAACBAIBYAYCABAAAA=</HashCode>
+      <HashCode>ACAABCCABEAAAEiTAAAAAAQgEQAACBAIBYAYCABAAAA=</HashCode>
       <FileName>Wrappers\WrapperTreeNode.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="1.46" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.BaseTreeNode" Collapsed="true">
-    <Position X="12" Y="1.75" Width="1.5" />
+    <Position X="8.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAIBAAAAAAQCQiAAAAAARACAAAAAAgAAEAQAiABEACA=</HashCode>
+      <HashCode>IAIBAAAAAAQCQjAAAAAARASAAAAAAgIEEAQAiABEACA=</HashCode>
       <FileName>Wrappers\BaseTreeNode.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.Folder" Collapsed="true">
-    <Position X="12.75" Y="4.75" Width="1.5" />
+    <Position X="9" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\Folder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ProjectTreeNode" Collapsed="true">
-    <Position X="10" Y="4.75" Width="1.5" />
+    <Position X="6.25" Y="3.5" Width="1.5" />
     <AssociationLine Name="Model" Type="CAS.UA.Model.Designer.Wrappers.ModelDesign" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="10.938" Y="5.441" />
-        <Point X="10.938" Y="7.171" />
-        <Point X="11.542" Y="7.171" Type="JumpStart" />
-        <Point X="11.708" Y="7.171" Type="JumpEnd" />
-        <Point X="11.875" Y="7.171" />
-        <Point X="11.875" Y="8.25" />
+        <Point X="7.188" Y="4.191" />
+        <Point X="7.188" Y="6.906" />
+        <Point X="8.125" Y="6.906" />
+        <Point X="8.125" Y="7" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="2.893" Y="1.318" />
+        <Position X="-0.411" Y="3.019" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="UAModelDesignerProject" Type="CAS.UA.Model.Designer.Solution.UAModelDesignerProject" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.438" Y="4.191" />
+        <Point X="6.438" Y="4.432" />
+        <Point X="5" Y="4.432" />
+        <Point X="5" Y="5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.052" Y="0.077" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -98,11 +113,12 @@
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Model" />
+      <Property Name="UAModelDesignerProject" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ValidableTreeNode" Collapsed="true">
-    <Position X="18.25" Y="4.75" Width="2" />
+    <Position X="14.5" Y="3.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACAAAAAAAIAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
       <FileName>Wrappers\ValidableTreeNode.cs</FileName>
@@ -110,74 +126,84 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.WrapperBase&lt;type, OPCType&gt;" Collapsed="true">
-    <Position X="18" Y="6.25" Width="2.5" />
+    <Position X="14.25" Y="5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEAAAAAAAAIAAAAgAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAEAAAAAAAAIAAAAgAGAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\WrapperBase.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.EncodingDesign" Collapsed="true">
-    <Position X="13.25" Y="8.25" Width="1.5" />
+    <Position X="9.5" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACCABAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
       <FileName>Wrappers\EncodingDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ModelDesign" Collapsed="true">
-    <Position X="11.5" Y="8.25" Width="1.5" />
+    <Position X="7.75" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAQACCABAEAAEAgAAIAgACAAAAAIBAYEIAIAAQAAAE=</HashCode>
       <FileName>Wrappers\ModelDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.Namespace" Collapsed="true">
-    <Position X="15" Y="8.25" Width="1.5" />
+    <Position X="11.25" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACCABAAQAAAEAAAAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
       <FileName>Wrappers\Namespace.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.NodeDesign&lt;type, OPCType&gt;" Collapsed="true">
-    <Position X="16.75" Y="8.25" Width="2.25" />
+    <Position X="13" Y="7" Width="2.25" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AQAQAigABAAAgEgAAAIEAAAAAAAQARIIAQAAAAIQAAE=</HashCode>
+      <HashCode>AQAQAigABAAAAEgAAAIEAAAAAAAQARIIAQAAAAJQAAE=</HashCode>
       <FileName>Wrappers\NodeDesign.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="1.69" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.Parameter" Collapsed="true">
-    <Position X="19.25" Y="8.25" Width="1.5" />
+    <Position X="15.5" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACCABAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
       <FileName>Wrappers\Parameter.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.Reference" Collapsed="true">
-    <Position X="21" Y="8.25" Width="1.5" />
+    <Position X="17.25" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACCABAAAAAAEAAAAAAAAAAAAABAAAAAAAAAAAAE=</HashCode>
       <FileName>Wrappers\Reference.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ChildrenFolder" Collapsed="true">
-    <Position X="9.25" Y="6.25" Width="1.5" />
+    <Position X="5.5" Y="5" Width="1.5" />
     <Compartments>
       <Compartment Name="Properties" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
+    <InheritanceLine Type="CAS.UA.Model.Designer.Wrappers.Folder" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.75" Y="4.191" />
+        <Point X="9.75" Y="4.623" />
+        <Point X="7.271" Y="4.623" Type="JumpStart" />
+        <Point X="7.105" Y="4.623" Type="JumpEnd" />
+        <Point X="6.312" Y="4.623" />
+        <Point X="6.312" Y="5" />
+      </Path>
+    </InheritanceLine>
     <AssociationLine Name="ListOfNodes" Type="CAS.UA.Model.Designer.Wrappers.INodeFactory" FixedFromPoint="true">
       <Path>
-        <Point X="9.438" Y="6.941" />
-        <Point X="9.438" Y="8.25" />
+        <Point X="5.688" Y="5.691" />
+        <Point X="5.688" Y="7" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ABAAACAABAIAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <HashCode>AAAAACAABAIAAAAAAAAAAACAAAAAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Wrappers\ChildrenFolder.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -185,15 +211,15 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.EncodingsFolder" Collapsed="true">
-    <Position X="12.75" Y="6.25" Width="1.5" />
+    <Position X="9" Y="5" Width="1.5" />
     <AssociationLine Name="ListOfNodes" Type="CAS.UA.Model.Designer.Wrappers.INodeFactory" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="13.5" Y="6.941" />
-        <Point X="13.5" Y="7.431" />
-        <Point X="11.958" Y="7.431" Type="JumpStart" />
-        <Point X="11.792" Y="7.431" Type="JumpEnd" />
-        <Point X="10.312" Y="7.431" />
-        <Point X="10.312" Y="8.25" />
+        <Point X="9.75" Y="5.691" />
+        <Point X="9.75" Y="6.18" />
+        <Point X="7.271" Y="6.18" Type="JumpStart" />
+        <Point X="7.105" Y="6.18" Type="JumpEnd" />
+        <Point X="6.312" Y="6.18" />
+        <Point X="6.312" Y="7" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-2.817" Y="1.05" />
@@ -208,13 +234,23 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.NamespacesFolder" Collapsed="true">
-    <Position X="11" Y="6.25" Width="1.5" />
+    <Position X="7.25" Y="5" Width="1.5" />
+    <InheritanceLine Type="CAS.UA.Model.Designer.Wrappers.Folder" ManuallyRouted="true">
+      <Path>
+        <Point X="9.75" Y="4.191" />
+        <Point X="9.75" Y="4.609" />
+        <Point X="8" Y="4.609" />
+        <Point X="8" Y="5" />
+      </Path>
+    </InheritanceLine>
     <AssociationLine Name="ListOfNodes" Type="CAS.UA.Model.Designer.Wrappers.INodeFactory" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="11.625" Y="6.941" />
-        <Point X="11.625" Y="7.268" />
-        <Point X="10.125" Y="7.268" />
-        <Point X="10.125" Y="8.25" />
+        <Point X="7.875" Y="5.691" />
+        <Point X="7.875" Y="6.023" />
+        <Point X="7.271" Y="6.023" Type="JumpStart" />
+        <Point X="7.105" Y="6.023" Type="JumpEnd" />
+        <Point X="6.125" Y="6.023" />
+        <Point X="6.125" Y="7" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-0.484" Y="1.049" />
@@ -229,19 +265,23 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ParametersFolder" Collapsed="true">
-    <Position X="14.5" Y="6.25" Width="1.5" />
+    <Position X="10.75" Y="5" Width="1.5" />
+    <InheritanceLine Type="CAS.UA.Model.Designer.Wrappers.Folder" ManuallyRouted="true">
+      <Path>
+        <Point X="9.75" Y="4.191" />
+        <Point X="9.75" Y="4.61" />
+        <Point X="11.5" Y="4.61" />
+        <Point X="11.5" Y="5" />
+      </Path>
+    </InheritanceLine>
     <AssociationLine Name="ListOfNodes" Type="CAS.UA.Model.Designer.Wrappers.INodeFactory" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="15.25" Y="6.941" />
-        <Point X="15.25" Y="7.635" />
-        <Point X="14.083" Y="7.635" Type="JumpStart" />
-        <Point X="13.917" Y="7.635" Type="JumpEnd" />
-        <Point X="12.333" Y="7.635" Type="JumpStart" />
-        <Point X="12.167" Y="7.635" Type="JumpEnd" />
-        <Point X="11.958" Y="7.635" Type="JumpStart" />
-        <Point X="11.792" Y="7.635" Type="JumpEnd" />
-        <Point X="10.625" Y="7.635" />
-        <Point X="10.625" Y="8.25" />
+        <Point X="11.5" Y="5.691" />
+        <Point X="11.5" Y="6.36" />
+        <Point X="7.271" Y="6.36" Type="JumpStart" />
+        <Point X="7.105" Y="6.36" Type="JumpEnd" />
+        <Point X="6.438" Y="6.36" />
+        <Point X="6.438" Y="7" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
         <Position X="-4.513" Y="1.037" Height="0.182" Width="1.055" />
@@ -256,21 +296,23 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ReferencesFolder" Collapsed="true">
-    <Position X="16.25" Y="6.25" Width="1.5" />
+    <Position X="12.5" Y="5" Width="1.5" />
+    <InheritanceLine Type="CAS.UA.Model.Designer.Wrappers.Folder" ManuallyRouted="true">
+      <Path>
+        <Point X="9.75" Y="4.191" />
+        <Point X="9.75" Y="4.617" />
+        <Point X="13.25" Y="4.617" />
+        <Point X="13.25" Y="5" />
+      </Path>
+    </InheritanceLine>
     <AssociationLine Name="ListOfNodes" Type="CAS.UA.Model.Designer.Wrappers.INodeFactory" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="17" Y="6.941" />
-        <Point X="17" Y="7.766" />
-        <Point X="15.833" Y="7.766" Type="JumpStart" />
-        <Point X="15.667" Y="7.766" Type="JumpEnd" />
-        <Point X="14.083" Y="7.766" Type="JumpStart" />
-        <Point X="13.917" Y="7.766" Type="JumpEnd" />
-        <Point X="12.333" Y="7.766" Type="JumpStart" />
-        <Point X="12.167" Y="7.766" Type="JumpEnd" />
-        <Point X="11.958" Y="7.766" Type="JumpStart" />
-        <Point X="11.792" Y="7.766" Type="JumpEnd" />
-        <Point X="10.875" Y="7.766" />
-        <Point X="10.875" Y="8.25" />
+        <Point X="13.25" Y="5.691" />
+        <Point X="13.25" Y="6.514" />
+        <Point X="7.271" Y="6.514" Type="JumpStart" />
+        <Point X="7.105" Y="6.514" Type="JumpEnd" />
+        <Point X="6.625" Y="6.514" />
+        <Point X="6.625" Y="7" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
         <Position X="-6.189" Y="1.048" Height="0.182" Width="1.083" />
@@ -285,7 +327,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.InstanceDesign&lt;type, OPCType&gt;" Collapsed="true">
-    <Position X="9.75" Y="9.75" Width="2.25" />
+    <Position X="6" Y="8.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAAACgIAAAAIAAAACAAAAAAAAABABAAAJAAAA=</HashCode>
       <FileName>Wrappers\InstanceDesign.cs</FileName>
@@ -293,7 +335,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.TypeDesign&lt;type, MT&gt;" Collapsed="true">
-    <Position X="18.25" Y="9.75" Width="2" />
+    <Position X="14.5" Y="8.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAAAIAAAQAAAAAAAAAAAAAAAAAAAAABAIAAAA=</HashCode>
       <FileName>Wrappers\TypeDesign.cs</FileName>
@@ -301,84 +343,91 @@
     <Lollipop Position="1.554" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ViewDesign" Collapsed="true">
-    <Position X="14.5" Y="9.75" Width="2" />
+    <Position X="10.75" Y="8.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\ViewDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.MethodDesign" Collapsed="true">
-    <Position X="6.75" Y="11.25" Width="1.5" />
+    <Position X="3" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAACAhAAAAAAAAAMAAAAAAABAAAAIAgAAIAAAAAA=</HashCode>
       <FileName>Wrappers\MethodDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ObjectDesign" Collapsed="true">
-    <Position X="8.5" Y="11.25" Width="1.5" />
+    <Position X="4.75" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\ObjectDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.DataTypeDesign" Collapsed="true">
-    <Position X="15.5" Y="11.25" Width="1.5" />
+    <Position X="11.75" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAACAFBAAAACAAAIAAAAAAAAAAAAIAAAAAAAAiAA=</HashCode>
       <FileName>Wrappers\DataTypeDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ReferenceTypeDesign" Collapsed="true">
-    <Position X="19.25" Y="11.25" Width="1.75" />
+    <Position X="15.5" Y="10" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\ReferenceTypeDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.VariableTypeDesign" Collapsed="true">
-    <Position X="21.25" Y="11.25" Width="2" />
+    <Position X="17.5" Y="10" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\VariableTypeDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.ObjectTypeDesign" Collapsed="true">
-    <Position X="17.25" Y="11.25" Width="1.75" />
+    <Position X="13.5" Y="10" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAABCABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\ObjectTypeDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.DictionaryDesign" Collapsed="true">
-    <Position X="10.25" Y="11.25" Width="1.5" />
+    <Position X="6.5" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\DictionaryDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.PropertyDesign" Collapsed="true">
-    <Position X="12" Y="11.25" Width="1.5" />
+    <Position X="8.25" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\PropertyDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.VariableDesign" Collapsed="true">
-    <Position X="13.75" Y="11.25" Width="1.5" />
+    <Position X="10" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACABAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\VariableDesign.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.LibraryTreeNode" Collapsed="true">
-    <Position X="6.25" Y="4.75" Width="1.5" />
+    <Position X="2.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAAAECAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Wrappers\LibraryTreeNode.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="CAS.UA.Model.Designer.Solution.UAModelDesignerProject" Collapsed="true">
+    <Position X="3.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAgAAQAAAAICAIAAAAQAAAAAAAEAQAAAAABAAAA=</HashCode>
+      <FileName>Solution\UAModelDesignerSolution.xsd.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="CAS.UA.Model.Designer.Wrappers.INodeFactory" Collapsed="true">
-    <Position X="8.75" Y="8.25" Width="2.25" />
+    <Position X="5" Y="7" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>Wrappers\INodeFactory.cs</FileName>

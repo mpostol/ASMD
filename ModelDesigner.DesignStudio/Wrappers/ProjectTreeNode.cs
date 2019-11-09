@@ -35,21 +35,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     private IBaseDirectoryProvider m_SolutionHomeDirectory;
     private ModelDesign m_ModelDesign;
     private UAModelDesignerProject b_UAModelDesignerProject;
-
-    //methods
-    internal UAModelDesignerProject UAModelDesignerProject
+    private ProjectTreeNode(IBaseDirectoryProvider solutionPath, string nodeName) : base(null, nodeName)
     {
-      get
-      {
-        b_UAModelDesignerProject.Name = this.Text;
-        return b_UAModelDesignerProject;
-      }
-      set
-      {
-        b_UAModelDesignerProject = value;
-        this.Text = b_UAModelDesignerProject.Name;
-      }
+      m_SolutionHomeDirectory = solutionPath;
     }
+    //methods
     private ModelDesign ReadConfiguration()
     {
       FileInfo info = new FileInfo(FilePath);
@@ -81,6 +71,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       string directory = Path.GetDirectoryName(FilePath);
       return Path.Combine(directory, myName);
     }
+    private static string UniqueProjectName => m_UniqueNameGenerator.GenerateNewName();
     #endregion private
 
     #region constructors
@@ -104,13 +95,9 @@ namespace CAS.UA.Model.Designer.Wrappers
       ModelDesign _model = ReadConfiguration();
       InitializeComponent(_model);
     }
-    private ProjectTreeNode(IBaseDirectoryProvider solutionPath, string nodeName) : base(null, nodeName)
-    {
-      m_SolutionHomeDirectory = solutionPath;
-    }
     #endregion
 
-    #region override WrapperTreeNode
+    #region WrapperTreeNode
     public override object Wrapper => this.Create();
     public override NodeTypeEnum NodeType => NodeTypeEnum.ProjectNode;
     public override Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> GetFolders()
@@ -129,10 +116,22 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </summary>
     /// <value>The node class.</value>
     public override NodeClassesEnum NodeClass => NodeClassesEnum.None;
-
     #endregion
 
     #region public
+    internal UAModelDesignerProject UAModelDesignerProject
+    {
+      get
+      {
+        b_UAModelDesignerProject.Name = this.Text;
+        return b_UAModelDesignerProject;
+      }
+      set
+      {
+        b_UAModelDesignerProject = value;
+        this.Text = b_UAModelDesignerProject.Name;
+      }
+    }
     /// <summary>
     /// Gets or sets the name of the file.
     /// </summary>
@@ -353,7 +352,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       string _DefaultFileName = Path.Combine(solutionPathProvider.GetBaseDirectory(), UniqueProjectName);
       return new ProjectTreeNode(solutionPathProvider, _DefaultFileName, new OPCFModelDesign());
     }
-    internal static string UniqueProjectName => m_UniqueNameGenerator.GenerateNewName();
     #endregion
 
   }

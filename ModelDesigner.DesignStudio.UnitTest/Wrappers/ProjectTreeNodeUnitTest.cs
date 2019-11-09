@@ -20,17 +20,20 @@ namespace CAS.UA.Model.Designer.Wrappers
       ViewModelFactory.Factory = new ViewModelFactoryTest();
     }
     [TestMethod]
-    public void ConstructorTest()
-    {
-      ProjectTreeNode _newItem = new ProjectTreeNode(new BaseDirectoryProvider(), string.Empty, new Opc.Ua.ModelCompiler.ModelDesign());
-    }
-    [TestMethod]
-    public void WrapperProviderTest()
+    public void ConstructorNewProjectTest()
     {
       ProjectTreeNode _newItem = new ProjectTreeNode(new BaseDirectoryProvider(), string.Empty, new Opc.Ua.ModelCompiler.ModelDesign());
       object _viewModel = _newItem.Wrapper;
       Assert.IsNotNull(_viewModel);
       Assert.AreSame(_viewModel, ViewModel.Instance);
+      Assert.IsTrue(_newItem.Name.StartsWith("Model_")); 
+      Assert.AreEqual<string>(@"$(ProjectFileName)", _newItem.BuildOutputDirectoryName);
+      Assert.IsFalse(String.IsNullOrEmpty(_newItem.BuildOutputDirectoryPath));
+      Assert.AreEqual<string>("$(ProjectFileName).csv", _newItem.CSVFileName);
+      Assert.IsFalse(String.IsNullOrEmpty(_newItem.CSVFilePath));
+      Assert.IsTrue(_newItem.FileName.StartsWith("Model_"));
+      Assert.IsFalse(String.IsNullOrEmpty(_newItem.FilePath));
+      Assert.IsNotNull(_newItem.ProjectIdentifier);
     }
 
     #region instrumentation
