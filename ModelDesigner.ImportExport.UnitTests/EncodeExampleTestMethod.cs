@@ -1,4 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿//___________________________________________________________________________________
+//
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Opc.Ua;
 using System;
 
@@ -14,7 +20,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       simpleClass mySimpleClassInstance1 = new simpleClass("String", int.MaxValue, DateTime.Now);
       //define an object that will encapsulate/extend our simple instance above
       ExtensionObject extendedSimpleClassInstance = new ExtensionObject(mySimpleClassInstance1);
-      //
+      //TODO EncodeExampleUnitTest - fix Inconclusive #41
       //encode our class object into the stream
       Assert.Inconclusive("XmlEncoder must be initialized see UANodeSet.CreateDecoder");
       using (XmlEncoder uaEncoderInstance = new XmlEncoder(null))
@@ -81,6 +87,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       IntProperty = SimpleClassInstance.IntProperty;
       DatetimeProperty = SimpleClassInstance.DatetimeProperty;
     }
+
     #region IEncodeable Members
 
     public ExpandedNodeId TypeId
