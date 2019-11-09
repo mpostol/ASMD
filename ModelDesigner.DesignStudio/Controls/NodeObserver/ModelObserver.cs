@@ -32,12 +32,12 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       m_BackForwardTreViewToolStrip.TreeView = this.m_TreeView;
       m_SearchTreeViewToolStrip.TreeView = this.m_TreeView;
       m_SearchTreeViewToolStrip.SetAdditionalNodeTestDelegate = new SearchTreeViewHelper.AdditionalNodeTestDelegate(NodeSearchTest);
+      m_FiltersControl = new FiltersControl();
       m_filterForm = new OKCancelForm("Set Filters...")
       {
         SetUserControl = m_FiltersControl
       };
       m_filterForm.CanBeAccepted(true);
-      m_FiltersControl = new FiltersControl();
       m_FiltersControlSettings = new FiltersControl.FilterSettings();
     }
     #endregion creator

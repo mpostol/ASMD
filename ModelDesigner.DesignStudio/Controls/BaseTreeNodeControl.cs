@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-
 using CAS.UA.Model.Designer.Wrappers;
 using System;
 
@@ -44,7 +43,11 @@ namespace CAS.UA.Model.Designer.Controls
       ClearChildren();
       AddChildren(ModelEntity);
     }
-    protected abstract void AddChildren(TModel parent);
+    protected void AddChildren(TModel entity)
+    {
+      foreach (IBaseModel node in entity)
+        Nodes.Add(TreeNodesFactory.Factory.GetTreeNode(node));
+    }
     protected override void Unregister()
     {
       ClearChildren();
@@ -72,7 +75,6 @@ namespace CAS.UA.Model.Designer.Controls
       AddChildren(ModelEntity);
     }
     #endregion
-
 
   }
 

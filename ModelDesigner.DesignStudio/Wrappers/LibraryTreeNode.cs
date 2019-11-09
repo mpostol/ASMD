@@ -21,15 +21,18 @@ namespace CAS.UA.Model.Designer.Wrappers
       : base(nodeName)
     {
       List<Opc.Ua.ModelCompiler.NodeDesign> _nodes = new List<Opc.Ua.ModelCompiler.NodeDesign>();
-      _nodes.AddRange(config.Items);
-      _nodes.Sort((x, y) =>
-      {
-        int _ret = x.GetType().Name.CompareTo(y.GetType().Name);
-        if (_ret == 0)
-          _ret = x.SymbolicName.Name.CompareTo(y.SymbolicName.Name);
-        return _ret;
-      });
-      config.Items = _nodes.ToArray();
+      if (config.Items != null)
+        {
+        _nodes.AddRange(config.Items);
+        _nodes.Sort((x, y) =>
+        {
+          int _ret = x.GetType().Name.CompareTo(y.GetType().Name);
+          if (_ret == 0)
+            _ret = x.SymbolicName.Name.CompareTo(y.SymbolicName.Name);
+          return _ret;
+        });
+        config.Items = _nodes.ToArray();
+      }
       ModelDesign m_ModelDesignTypes = new ModelDesign(config, true);
       Add(m_ModelDesignTypes);
     }

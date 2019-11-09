@@ -50,12 +50,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       {
         return new BaseTreeNodeControlTest(new BaseTreeNodeTest());
       }
-      protected override void AddChildren(BaseTreeNodeTest parent)
-      {
-        Assert.IsNotNull(parent);
-        Assert.IsInstanceOfType(parent, typeof(BaseTreeNodeTest));
-        Assert.AreEqual<int>(0, parent.Count);
-      }
       public BaseTreeNodeControlTest(BaseTreeNodeTest model) : base(model) { m_Model = model; }
       private readonly BaseTreeNodeTest m_Model = null;
     }

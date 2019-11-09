@@ -30,7 +30,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       Assert.AreEqual<string>(nameof(SolutionTreeNodeTest), _instance.Name);
       Assert.AreEqual<string>("ToolTipText", _instance.ToolTipText);
       Assert.AreEqual<int>(0, _instance.Nodes.Count);
-      Assert.AreEqual<int>(1, _instance.AddChildrenCalled);
     }
     [TestMethod]
     public void Constructor4TreeTest()
@@ -41,7 +40,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       };
       SolutionTreeNodeControlTest _instance = new SolutionTreeNodeControlTest(_model);
       Assert.AreEqual<int>(1, _instance.Nodes.Count);
-      Assert.AreEqual<int>(1, _instance.AddChildrenCalled);
     }
     [TestMethod]
     public void BeforeMenuStripOpeningTest()
@@ -92,15 +90,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       {
         BeforeMenuStripOpening();
       }
-      protected override void AddChildren(ISolutionModel viewModel)
-      {
-        Assert.IsNotNull(viewModel);
-        Assert.AreSame(this.ModelEntity, viewModel);
-        AddChildrenCalled++;
-        Assert.AreEqual<int>(0, this.Nodes.Count);
-        base.AddChildren(viewModel);
-      }
-      internal int AddChildrenCalled = 0;
     }
     private class SolutionTreeNodeTest : List<IBaseModel>, ISolutionModel
     {

@@ -91,11 +91,6 @@ namespace CAS.UA.Model.Designer.Controls
       menu.Click += new EventHandler(ModelEntity.AddMenuItemDelete_Click);
       ContextMenuStrip.Items.Add(menu);
     }
-    protected override void AddChildren(T entity)
-    {
-      foreach (T node in entity)
-        Nodes.Add(TreeNodesFactory.Factory.GetTreeNode(entity));
-    }
     #endregion
 
     #region IWrapperTreeNode Members

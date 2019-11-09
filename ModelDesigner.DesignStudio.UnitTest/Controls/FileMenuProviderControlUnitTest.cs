@@ -1,4 +1,9 @@
-﻿
+﻿//___________________________________________________________________________________
+//
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Wrappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,6 +12,7 @@ using System.Windows.Forms;
 
 namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
 {
+
   [TestClass]
   public class FileMenuProviderControlUnitTest
   {
@@ -18,7 +24,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       FileMenuProviderTest _newInstance = FileMenuProviderTest.CreteInstance();
       Assert.AreEqual<int>(0, _newInstance.ContextMenuStrip.Items.Count);
       Assert.AreEqual<string>(nameof(BaseTreeNodeTest), _newInstance.Name);
-      Assert.AreEqual(1, _newInstance.AddChildrenCalled);
     }
     [TestMethod]
     public void AddItemsToMenuTest()
@@ -58,8 +63,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       {
         return new FileMenuProviderTest(BaseTreeNodeTest.CreateInstance());
       }
-      public FileMenuProviderTest(BaseTreeNodeTest parent) : base(parent)
-      { }
+      public FileMenuProviderTest(BaseTreeNodeTest parent) : base(parent) { }
       protected override void New()
       {
         throw new NotImplementedException();
@@ -76,12 +80,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       {
         throw new NotImplementedException();
       }
-      protected override void AddChildren(BaseTreeNodeTest parent)
-      {
-        Assert.IsNotNull(parent);
-        AddChildrenCalled++; 
-      }
-      internal int AddChildrenCalled = 0; 
     }
     private class BaseTreeNodeTest : BaseTreeNode
     {
@@ -89,9 +87,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       {
         return new BaseTreeNodeTest(nameof(BaseTreeNodeTest));
       }
-      public BaseTreeNodeTest(string text) : base(text)
-      {
-      }
+      public BaseTreeNodeTest(string text) : base(text) { }
     }
     #endregion
 

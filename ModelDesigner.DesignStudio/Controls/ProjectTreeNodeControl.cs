@@ -57,15 +57,6 @@ namespace CAS.UA.Model.Designer.Controls
       if (MessageBox.Show(string.Format(Resources.ProjectTreeNode_AreYouSureToRemove_text, name), Resources.ProjectTreeNode_AreYouSureToRemove_caption, System.Windows.Forms.MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
         ModelEntity.Remove();
     }
-    //TODO Refactoring application architecture - remove recursion #6 - must be implemented
-    protected override void AddChildren(IProjectModel parent)
-    {
-      throw new NotImplementedException();
-    }
-    //protected override BaseDictionaryTreeNode GetChildTreeNodeControl(IBaseModel node)
-    //{
-    //  return node.GetTreeNode();
-    //}
     #endregion
 
   }

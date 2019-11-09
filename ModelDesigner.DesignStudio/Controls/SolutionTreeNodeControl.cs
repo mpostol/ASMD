@@ -73,15 +73,6 @@ namespace CAS.UA.Model.Designer.Controls
     {
       ModelEntity.Save(false);
     }
-    protected override void AddChildren(ISolutionModel modelView)
-    {
-      foreach (IBaseModel node in modelView)
-        Nodes.Add(TreeNodesFactory.Factory.GetTreeNode(node));
-    }
-    //protected override BaseDictionaryTreeNode GetChildTreeNodeControl(IProjectModel node)
-    //{
-    //  return new ProjectTreeNodeControl(node);
-    //}
     #endregion
 
   }

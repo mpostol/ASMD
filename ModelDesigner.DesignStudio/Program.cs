@@ -96,7 +96,6 @@ namespace CAS.UA.Model.Designer
       }
       catch (Exception ex)
       {
-        //TODO Bootstrapper exception - casting problem #37
         MessageBoxShow(String.Format(Resources.MainForm_StartupExceptionMessage, ex.Message));
       }
     }
