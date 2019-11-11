@@ -1,19 +1,10 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
-//<summary>
-//  Title   : Assembly info for: <#=m_AssemblyTitle#>
-//  System  : Microsoft Visual C# .NET
-//  $LastChangedDate:  $
-//  $Rev:  $
-//  $LastChangedBy: $
-//  $URL:  $
-//  $Id:  $
+//___________________________________________________________________________________
 //
-//  <#=AssemblyCopyright#>
-//  <#=Phone#>
-//  <#=Email#>
-//  <#=Url#>
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -31,7 +22,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("<#= CASCommServerUAConfigurationEditorVersion #>.*")]
 [assembly: AssemblyFileVersion("<#= CASCommServerUAConfigurationEditorVersion #>")]
 
-<#@ include file = "..\..\..\CommonResources\T4Definitions\CAS.OPC.t4" #>
+<#@ include file = "..\..\CommonResources\T4Definitions\CAS.OPC.t4" #>
 <#+
 string m_AssemblyTitle = "CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.UnitTests";
 #>

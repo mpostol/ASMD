@@ -4,46 +4,35 @@
 ## Current release details:
 
 * Description:   OPC UA Information Model Design Studio.
-* Company:       CAS
-* Product:       CAS CommServer Family
-* Trademark:     CommServer
-* Version:       3.20.2
-* Release Date:  05.11.2019
+* Product:       [Object Oriented Internet](https://github.com/mpostol/OPC-UA-OOI)
+* Version:       4.0.0-Alpha
+* Release Date:  11.11.2019
 
 The main changes and new functionality are listed below:
 
 - Added new version of the Model Compiler 1.01.335.1 as the application add-on.
-- Updated ModelDesign schema and OPC UA Defined Types up to Model Compiler 1.01.335.1
+- Updated ModelDesign schema and OPC UA Defined Types up to Model Compiler 1.11.335.1
 - Improved tracing of the application activity
 - Added new version of the CAS OPC Viewer 3.11.17
-
 ____________________________________________________________________________________________
-> For assistance, contact:
-
-> Mariusz Postol
-
-> CAS
-
-> mailto://mpostol@cas.eu
-
-Copyright (C) 2019, commsvr.com LODZ POLAND
-
-mailto://commserver@cas.eu
-
-http://www.commsvr.com/
+> **For assistance, contact:**
+>
+> Mariusz Postol `mailto: mpostol (at) cas.eu`
+>
+>  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
 
 
 # Versions history:
 
-## Version: 3.20.0 
-### Release Date:  2016-01-13
+## Version:       3.20.1
+## Release Date:  2016-05-17
 
 The main changes and new functionality are listed below:
 
 * The application supports the OPC UA Object Oriented Internet paradigm. Its detailed description is available on-line: [OPC-UA-OOI](https://github.com/mpostol/OPC-UA-OOI). To improve adaptability, the application uses open source components available in the mentioned project work space.
-* Import of the XML documents compliant with the `UANodeSet` XML schema uses the deliverable developed and maintained in the public domain. See detailed description at: https://github.com/mpostol/OPC-UA-OOI/tree/master/SemanticDataSolution.
+* Import of the XML documents compliant with the `UANodeSet` XML schema uses the deliverable developed and maintained in the public domain. See detailed description: [Address Space Prototyping Tool (asp.exe)](https://commsvr.gitbook.io/ooi/semantic-data-processing/addressspacecompliancetesttool)
 * Embedded OPC UA application configuration editor supports any external plug-in prepared on the basis of the Nuget package: https://www.nuget.org/packages/UAOOI.DataBindings/. 
-    The package code is available as an open source at: [DataBindings](https://www.nuget.org/packages/UAOOI.DataBindings/).
+The package code is available as an open source at: [DataBindings](https://www.nuget.org/packages/UAOOI.DataBindings/).
 * Updated code for target .NET Framework 4.6.1. and the recent development environment.
 * Added unit tests and fixed reported errors.
 

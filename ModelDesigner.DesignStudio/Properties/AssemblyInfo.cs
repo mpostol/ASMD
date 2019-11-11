@@ -9,17 +9,17 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("CAS OPC UA Address Space Model Designer")]
-[assembly: AssemblyDescription("CAS CommServer Family: CAS OPC UA Address Space Model Designer")]
+[assembly: AssemblyDescription("Object Oriented Internet: CAS OPC UA Address Space Model Designer")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CAS")]
-[assembly: AssemblyProduct("CAS CommServer Family")]
-[assembly: AssemblyCopyright("Copyright (c) 2017 CAS LODZ POLAND")]
+[assembly: AssemblyCompany("Mariusz Postol")]
+[assembly: AssemblyProduct("Object Oriented Internet")]
+[assembly: AssemblyCopyright("Copyright (C) 2019, Mariusz Postol LODZ POLAND.")]
 [assembly: AssemblyTrademark("CommServer")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid( "33281f75-30a8-43e1-a2b3-915eaaf43915" )]
-[assembly: AssemblyVersion("3.20.2.*")]
-[assembly: AssemblyFileVersion("3.20.2")]
+[assembly: AssemblyVersion("4.0.0.*")]
+[assembly: AssemblyFileVersion("4.0.0")]
 [assembly: CAS.Lib.CodeProtect.AssemblyHelper( Company = "CAS", Email = "techsupp@cas.eu", Phone = "+48 42 686 25 47", Product = "CAS OPC UA Address Space Model Designer", Url = "www.commsvr.com" )]
 [assembly: InternalsVisibleToAttribute("CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest, PublicKey=0024000004800000940000000602000000240000525341310004000001000100b3cff1bec656a6" +
                                                                        "e3784c75cacce8ee3bc695d0ce135d820c86465eb49b2353f0438d28ad9a458e5350c0c141393d" +

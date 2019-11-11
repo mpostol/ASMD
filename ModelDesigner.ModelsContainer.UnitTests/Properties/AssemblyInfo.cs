@@ -1,17 +1,8 @@
-﻿//<summary>
-//  Title   : Assembly info for: CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.UnitTests
-//  System  : Microsoft Visual C# .NET
-//  $LastChangedDate:  $
-//  $Rev:  $
-//  $LastChangedBy: $
-//  $URL:  $
-//  $Id:  $
+﻿//___________________________________________________________________________________
 //
-//  Copyright (c) 2017 CAS LODZ POLAND
-//  +48 (42) 686 25 47
-//  techsupp@cas.eu
-//  www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -19,9 +10,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.UnitTests")]
 [assembly: AssemblyDescription("UA ConfigurationEditor Models Container Unit Tests")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CAS")]
-[assembly: AssemblyProduct("CAS CommServer Family")]
-[assembly: AssemblyCopyright("Copyright (c) 2017 CAS LODZ POLAND")]
+[assembly: AssemblyCompany("Mariusz Postol")]
+[assembly: AssemblyProduct("Object Oriented Internet")]
+[assembly: AssemblyCopyright("Copyright (C) 2019, Mariusz Postol LODZ POLAND.")]
 [assembly: AssemblyTrademark("CommServer")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

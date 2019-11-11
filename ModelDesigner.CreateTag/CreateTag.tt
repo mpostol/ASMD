@@ -1,12 +1,6 @@
 <#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cmd" #>
 
-rem//  $LastChangedDate:  $
-rem//  $Rev:  $
-rem//  $LastChangedBy:  $
-rem//  $URL:  $
-rem//  $Id:  $
-
 <#
       string _rel = CASUAMDVersion.Replace(".", "_"); // _version must be replaced by the correct version variable depending on the project.
       string _repositoryUrl = @"svn://svnserver.hq.cas.com.pl/VS/";
@@ -20,4 +14,4 @@ svn copy <#=_trunkPath#> <#=_tagPath#> -m "created copy <#=_tagPath#>"
 
 pause ....
 
-<#@ include file = "..\..\CommonResources\T4Definitions\CAS.OPC.t4" #>
+<#@ include file = "..\CommonResources\T4Definitions\CAS.OPC.t4" #>

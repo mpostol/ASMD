@@ -1,19 +1,11 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
-//_______________________________________________________________
-//  Title   :  Assembly info for: <#=m_AssemblyTitle#>
-//  System  : Microsoft VisualStudio 2013 / C#
-//  $LastChangedDate:  $
-//  $Rev: $
-//  $LastChangedBy: $
-//  $URL: $
-//  $Id:  $
+//___________________________________________________________________________________
 //
-//  <#=AssemblyCopyright#>
-//  <#=Phone#>
-//  <#=Email#>
-//  <#=Url#>
-//_______________________________________________________________
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -32,7 +24,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("<#= CASUAMDVersion #>.*")]
 [assembly: AssemblyFileVersion("<#= CASUAMDVersion #>")]
 
-<#@ include file = "..\..\..\CommonResources\T4Definitions\CAS.OPC.t4" #>
+<#@ include file = "..\..\CommonResources\T4Definitions\CAS.OPC.t4" #>
 
 <#+
 string m_AssemblyTitle = "CAS UA Model Designer Imports and Exporters";
