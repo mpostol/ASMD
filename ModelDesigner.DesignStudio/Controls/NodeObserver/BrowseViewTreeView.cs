@@ -161,7 +161,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     {
       base.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.BrowseViewTreeView_AfterSelect);
       this.ImageList = m_ImagesForNodes.ImageListNodes;
-      //TODO Uncomment after implementing BrowseOptions mechanism
+      //TODO Implementing BrowseOptions mechanism #47 - uncomment after implementing BrowseOptions mechanism
       //MenuItem[] miTab = new MenuItem[ 1 ];
       //miTab[ 0 ] = new MenuItem( "Browse options" );
       //this.ContextMenu = new ContextMenu( miTab );
