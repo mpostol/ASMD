@@ -41,12 +41,12 @@ namespace CAS.UA.Model.Designer.Controls
     internal void RecreateSubtree()
     {
       ClearChildren();
-      AddChildren(ModelEntity);
+      AddChildren();
     }
-    protected void AddChildren(TModel entity)
+    protected void AddChildren()
     {
-      foreach (IBaseModel node in entity)
-        Nodes.Add(TreeNodesFactory.Factory.GetTreeNode(node));
+      foreach (IBaseModel node in ModelEntity)
+        this.Nodes.Add(TreeNodesFactory.Factory.GetTreeNode(node));
     }
     protected override void Unregister()
     {
@@ -72,7 +72,7 @@ namespace CAS.UA.Model.Designer.Controls
       SelectedImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(ModelEntity.GetType().Name, true);
       model.TextChanged += new EventHandler<BaseTreeNode.TextEventArgs>(OnTextChanged);
       model.SubtreeChanged += new EventHandler<BaseTreeNode.ProjectEventArgs>(OnSubtreeChanged);
-      AddChildren(ModelEntity);
+      AddChildren();
     }
     #endregion
 

@@ -154,8 +154,8 @@
     <Compile Include="AssemblyTraceEventUnitTest.cs" />
     <Compile Include="Controls\FileMenuProviderControlUnitTest.cs" />
     <Compile Include="Controls\BaseTreeNodeControlUnitTest.cs" />
+    <Compile Include="Controls\LibraryTreeNodeControlUnitTest.cs" />
     <Compile Include="Controls\SolutionTreeNodeControlUnitTest.cs" />
-    <Compile Include="Controls\ConstructorTestMethod.cs" />
     <Compile Include="Instrumentation\Extensions.cs" />
     <Compile Include="IO\OPCFSolutionConfigurationManagementUnitTest.cs" />
     <Compile Include="IO\OPCFModelConfigurationManagementUnitTest.cs" />

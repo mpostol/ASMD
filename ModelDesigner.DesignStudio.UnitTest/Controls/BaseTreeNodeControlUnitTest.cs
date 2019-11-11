@@ -16,6 +16,12 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
   public class BaseTreeNodeControlUnitTest
   {
 
+    [TestInitialize]
+    public void MyTestInitialize()
+    {
+      TreeNodesFactory.Factory = new FactoryFixture();
+    }
+
     #region test methods
     [TestMethod]
     public void ConstructorTest()
@@ -36,6 +42,15 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       BaseTreeNodeControlTest _instance = new BaseTreeNodeControlTest(_model);
       Assert.AreEqual<int>(1, _model.SubtreeChangedCount);
       Assert.AreEqual<int>(1, _model.TextChangedCount);
+    }
+    [TestMethod]
+    public void AddChildrenTest()
+    {
+      BaseTreeNodeTest _model = new BaseTreeNodeTest();
+      _model.Add(new BaseTreeNodeTest());
+      BaseTreeNodeControlTest _instance = new BaseTreeNodeControlTest(_model);
+      Assert.AreEqual<int>(1, _instance.Nodes.Count);
+      Assert.IsInstanceOfType(_instance.Nodes[0], typeof(DictionaryTreeNodeFixture));
     }
     #endregion
 
@@ -83,6 +98,21 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       }
       #endregion
 
+    }
+    private class DictionaryTreeNodeFixture : DictionaryTreeNode
+    {
+      protected override void Unregister()
+      {
+        throw new NotImplementedException();
+      }
+    }
+    private class FactoryFixture : ITreeNodesFactory
+    {
+      public DictionaryTreeNode GetTreeNode(IBaseModel wrapper)
+      {
+        Assert.IsInstanceOfType(wrapper, typeof(BaseTreeNodeTest));
+        return new DictionaryTreeNodeFixture();
+      }
     }
     #endregion
 
