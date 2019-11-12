@@ -16,10 +16,11 @@
 
 The main changes and new functionality are listed below:
 
-- Added new version of the Model Compiler 1.01.335.1 as the application add-on.
+- Refactoring application architecture to use dependency validation and separate libraries from dependency on `Windows.Forms` technology.
+- Added a new version of the Model Compiler 1.01.335.1 as the application add-on.
 - Updated ModelDesign schema and OPC UA Defined Types up to Model Compiler 1.11.335.1
-- Improved tracing of the application activity
-- Added new version of the CAS OPC Viewer 3.11.17
+- Improved tracking of the application activity
+- Added the new version of the CAS OPC Viewer 3.11.17
 ____________________________________________________________________________________________
 > **For assistance, contact:**
 >

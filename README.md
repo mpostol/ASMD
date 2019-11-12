@@ -1,8 +1,8 @@
 # OPC UA Address Space Model Designer (ASMD)
 
-OPC Unified Architecture (UA) is the next generation of OPC. One of the biggest improvements in OPC UA is a powerful Address Space and Information Model. OPC UA allows for the presentation of a real-time process and underlying infrastructure as a consistent information model built up with nodes. The process model is represented by nodes, attributes and their mutual relationships. Therefore, this powerful concept allows us to present in UA not only raw process data, but also complete information about the process state and process environment. The flexibility of UA ensures that there is no existing or future system that is too complicated to be exposed via UA. Of course, such flexibility leads to complications during configuration, that’s why OPC UA Address Space Model Designer (ASMD) has been born.
+OPC Unified Architecture (OPC UA) is the next generation of OPC. One of the most important improvements in OPC UA is a powerful Address Space and Information Model concepts. OPC UA allows for the presentation of a real-time process and underlying infrastructure as a consistent information model built up with nodes. The process model is represented by nodes, attributes, and their mutual relationships. Therefore, this powerful concept allows us to present in OPC UA not only raw process data but also complete information about the process state and process environment. The flexibility of UA ensures that no existing or future system is too complex to be exposed via OPC UA. Of course, such flexibility leads to difficulties during configuration, that’s why the Address Space Model Designer (ASMD) design environment has been born.
 
-Concluding, Address Space Model Designer (ASMD) is a user-friendly tool supporting all aspects of the model designing process.
+> **NOTE**: The design, development and deployment of the OPC UA Information Model detailed description is covered by the document [Information Models Development](https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment).
 
 ## Releases
 
@@ -21,6 +21,8 @@ We use [Semantic Versioning](http://semver.org/) for versioning. For the version
 - [OPC UA Address Space Model Designer, 2019][CAS.ASMD]
 - Wolfgang Mahnke, Stefan Helmut Leitner, Matthias Damm. OPC Unified Architecture. Berlin: Springer, 2009.
 - [OPC Unified Architecture Specification Part 3: Address Space Model, OPC Foundation, Rel. 1.04, 2017-11-22][Opc.UA.Part3]
+- [OPC Unified Architecture Specification Part 5: Information Model, OPC Foundation, Rel. 1.04, 2017-11-22][OPC.UA.Part5]
 
+[OPC.UA.Part5]:https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-5-information-model/
 [Opc.UA.Part3]:https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-3-address-space-model/
 [CAS.ASMD]: http://www.commsvr.com/Products/OPCUA/UAModelDesigner.aspx
