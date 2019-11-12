@@ -12,6 +12,7 @@ We use [Semantic Versioning](http://semver.org/) for versioning. For the version
 
 | Version | Milestone                                                          | DOI |Date|
 |:-------:|--------------------------------------------------------------------|:---:|:--:|
+| 4.0.0-Alpha | Initial pre-release | NA | Nov 12, 2019|
 | 3.20.1| [ASMD last available Windows installation released by CAS](http://www.commsvr.com/COInstal/UAModelDesignerPro/setup.exe)|`NA`|May 17, 2016|
 
 ## See also
