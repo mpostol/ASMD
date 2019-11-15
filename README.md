@@ -36,7 +36,7 @@ To get more visit the Microsoft documentation [How to reinstall and update packa
 
 Projects can be opened in Visual Studio 2017. Support for some project depends on the Visual Studio edition and installed components.
 
-## How to build and run the samples in Visual Studio on Windows
+## How to build and run the unit tests in Visual Studio on Windows
 
 1. Open the `CommServer.UA.ModelDesigner.sln` solution file using Visual Studio 2017.
 1. Hit `F6` to build all projects in the solution.
