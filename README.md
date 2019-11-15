@@ -39,7 +39,10 @@ Projects can be opened in Visual Studio 2017. Support for some project depends o
 ## How to build and run the samples in Visual Studio on Windows
 
 1. Open the `CommServer.UA.ModelDesigner.sln` solution file using Visual Studio 2017.
-1. Hit `F5` to build and execute the sample.
+1. Hit `F6` to build all projects in the solution.
+1. Set the `ModelDesigner.DesignStudio` as the Start-up Project
+2. Press `F5` to run the tool using Debug configuration
+5. Hit `Ctrl+r,Ctrl+a` to run all unit tests
 
 ## See also
 - [WIKI - Help Documentation](https://github.com/mpostol/ASMD/wiki)
