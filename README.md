@@ -1,6 +1,6 @@
 # OPC UA Address Space Model Designer (ASMD)
 
-OPC Unified Architecture (OPC UA) is the next generation of OPC. One of the most important improvements in OPC UA is a powerful Address Space and Information Model concepts. OPC UA allows for the presentation of a real-time process and underlying infrastructure as a consistent information model built up with nodes. The process model is represented by nodes, attributes, and their mutual relationships. Therefore, this powerful concept allows us to present in OPC UA not only raw process data but also complete information about the process state and process environment. The flexibility of UA ensures that no existing or future system is too complex to be exposed via OPC UA. Of course, such flexibility leads to difficulties during configuration, that�s why the Address Space Model Designer (ASMD) design environment has been born.
+OPC Unified Architecture (OPC UA) is the next generation of OPC. One of the most important improvements in OPC UA is a powerful Address Space and Information Model concepts. OPC UA allows for the presentation of a real-time process and underlying infrastructure as a consistent information model built up with nodes. The process model is represented by nodes, attributes, and their mutual relationships. Therefore, this powerful concept allows us to present in OPC UA not only raw process data but also complete information about the process state and process environment. The flexibility of UA ensures that no existing or future system is too complex to be exposed via OPC UA. Of course, such flexibility leads to difficulties during configuration, that’s why the Address Space Model Designer (ASMD) design environment has been born.
 
 > **NOTE**: The design, development and deployment of the OPC UA Information Model detailed description is covered by the document [Information Models Development](https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment).
 
@@ -42,7 +42,7 @@ Projects can be opened in Visual Studio 2017. Support for some project depends o
 1. Hit `F5` to build and execute the sample.
 
 ## See also
-
+- [WIKI - Help Documentation](https://github.com/mpostol/ASMD/wiki)
 - [Mariusz Postol. Address Space and Address Space Model](https://commsvr.gitbook.io/ooi/semantic-data-processing/addressspaceaddressspacemodel)
 - [ASMD Re. 3.30.1 installation released by CAS](http://www.commsvr.com/COInstal/UAModelDesignerPro/setup.exe)
 - [OPC UA Address Space Model Designer, 2019][CAS.ASMD]
