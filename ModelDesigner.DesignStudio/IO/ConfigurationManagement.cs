@@ -7,7 +7,6 @@
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.Properties;
 using System;
-using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.IO
 {
@@ -106,9 +105,9 @@ namespace CAS.UA.Model.Designer.IO
     public bool TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued()
     {
       if (ChangesArePresent)
-        return (MessageBox.Show(Resources.ConfigurationManagementQuestionAboutContinuationIfChangesArePresent,
-          Resources.ConfigurationManagementQuestionAboutContinuationIfChangesArePresentTitle,
-          MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes);
+        return m_GraphicalUserInterface.MessageBoxShowWarningAskYN(
+          Resources.ConfigurationManagementQuestionAboutContinuationIfChangesArePresent, 
+          Resources.ConfigurationManagementQuestionAboutContinuationIfChangesArePresentTitle);
       else
         return true;
     }

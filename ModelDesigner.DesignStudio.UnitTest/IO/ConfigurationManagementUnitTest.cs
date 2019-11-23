@@ -85,6 +85,8 @@ namespace CAS.UA.Model.Designer.IO
       public Func<IFileDialog> OpenFileDialogFunc => () => mock;
       public Func<IFileDialog> SaveFileDialogFuc => () => mock;
       public Func<IFolderBrowserDialog> OpenFolderBrowserDialogFunc => throw new NotImplementedException();
+      public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
+
     }
   }
 }

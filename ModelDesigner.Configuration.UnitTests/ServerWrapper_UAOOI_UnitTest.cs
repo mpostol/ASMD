@@ -1,4 +1,9 @@
-﻿
+﻿//___________________________________________________________________________________
+//
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 using CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentation;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.IServerConfiguration;
@@ -90,6 +95,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
           throw new NotImplementedException();
         }
       }
+
+      public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
     }
     public object AssemblyHelper { get; private set; }
   }

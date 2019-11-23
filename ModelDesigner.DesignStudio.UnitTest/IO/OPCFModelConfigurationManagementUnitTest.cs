@@ -42,6 +42,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       public Func<IFileDialog> OpenFileDialogFunc => () => m_Mock;
       public Func<IFileDialog> SaveFileDialogFuc => () =>  m_Mock;
       public Func<IFolderBrowserDialog> OpenFolderBrowserDialogFunc => throw new NotImplementedException();
+      public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
     }
   }
 }

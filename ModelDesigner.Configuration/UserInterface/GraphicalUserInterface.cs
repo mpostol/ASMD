@@ -1,24 +1,15 @@
-﻿//_______________________________________________________________
-//  Title   : GraphicalUserInterface
-//  System  : Microsoft VisualStudio 2015 / C#
-//  $LastChangedDate:  $
-//  $Rev: $
-//  $LastChangedBy: $
-//  $URL: $
-//  $Id:  $
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2017, CAS LODZ POLAND.
-//  TEL: +48 608 61 98 99 
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using System;
 using System.Windows.Forms;
 
 namespace CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface
 {
-  
+
   /// <summary>
   /// Class GraphicalUserInterface implementing <see cref="IGraphicalUserInterface"/> for local purpose.
   /// </summary>
@@ -91,7 +82,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface
       get; private set;
 
     }
-    #endregion
+    /// <summary>
+    /// Gets the function showing message box with the buttons yes/now and returning <c>true</c> if yes is pressed.
+    /// </summary>
+    /// <value>The message box show warning ask yn.</value>
+    public Func<string, string, bool> MessageBoxShowWarningAskYN => (x, y) => MessageBox.Show(x, y, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
+    #endregion 
 
     #region private
     private class OpenFileDialogWrapper : FileDialogWrapper
@@ -113,58 +109,28 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface
       #region IFileDialog
       public string FileName
       {
-        get
-        {
-          return m_OpenFileDialog.FileName;
-        }
-        set
-        {
-          m_OpenFileDialog.FileName = value;
-        }
+        get => m_OpenFileDialog.FileName;
+        set => m_OpenFileDialog.FileName = value;
       }
       public string Filter
       {
-        get
-        {
-          return m_OpenFileDialog.Filter;
-        }
-        set
-        {
-          m_OpenFileDialog.Filter = value;
-        }
+        get => m_OpenFileDialog.Filter;
+        set => m_OpenFileDialog.Filter = value;
       }
       public string InitialDirectory
       {
-        get
-        {
-          return m_OpenFileDialog.InitialDirectory;
-        }
-        set
-        {
-          m_OpenFileDialog.InitialDirectory = value;
-        }
+        get => m_OpenFileDialog.InitialDirectory;
+        set => m_OpenFileDialog.InitialDirectory = value;
       }
       public string Title
       {
-        get
-        {
-          return m_OpenFileDialog.Title;
-        }
-        set
-        {
-          m_OpenFileDialog.Title = value;
-        }
+        get => m_OpenFileDialog.Title;
+        set => m_OpenFileDialog.Title = value;
       }
       public string DefaultExt
       {
-        get
-        {
-          return m_OpenFileDialog.DefaultExt;
-        }
-        set
-        {
-          m_OpenFileDialog.DefaultExt = value;
-        }
+        get => m_OpenFileDialog.DefaultExt;
+        set => m_OpenFileDialog.DefaultExt = value;
       }
       public void Dispose()
       {
@@ -184,14 +150,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface
       #region IFolderBrowserDialog
       public string SelectedPath
       {
-        get
-        {
-          return m_FolderBrowserDialog.SelectedPath;
-        }
-        set
-        {
-          m_FolderBrowserDialog.SelectedPath = value;
-        }
+        get => m_FolderBrowserDialog.SelectedPath;
+        set => m_FolderBrowserDialog.SelectedPath = value;
       }
       /// <summary>
       /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

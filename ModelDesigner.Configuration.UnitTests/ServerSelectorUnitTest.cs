@@ -1,4 +1,9 @@
-﻿
+﻿///___________________________________________________________________________________
+//
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -215,6 +220,9 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
           return () => new FolderBrowserDialog();
         }
       }
+
+      public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
+
       private void MessageBoxShowMethod(string text, string caption)
       {
         WarningCalled = true;

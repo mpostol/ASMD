@@ -1,17 +1,8 @@
-﻿//_______________________________________________________________
-//  Title   : IGraphicalUserInterface
-//  System  : Microsoft VisualStudio 2015 / C#
-//  $LastChangedDate:  $
-//  $Rev: $
-//  $LastChangedBy: $
-//  $URL: $
-//  $Id:  $
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2017, CAS LODZ POLAND.
-//  TEL: +48 608 61 98 99 
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using System;
 
@@ -54,6 +45,10 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface
     /// </summary>
     /// <value>The delegate encapsulating function creating an object implementing <see cref="IFolderBrowserDialog"/>.</value>
     Func<IFolderBrowserDialog> OpenFolderBrowserDialogFunc { get; }
-
+    /// <summary>
+    /// Gets the function showing message box with the buttons yes/now and returning <c>true</c> if yes is pressed.
+    /// </summary>
+    /// <value>The message box show warning ask yn.</value>
+    Func<string, string, bool> MessageBoxShowWarningAskYN { get; }
   }
 }
