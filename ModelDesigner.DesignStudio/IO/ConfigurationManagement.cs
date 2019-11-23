@@ -1,17 +1,8 @@
-﻿//<summary>
-//  Title   : Class to save and restore  data  to/from external file.
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
 using System;
@@ -23,7 +14,7 @@ namespace CAS.UA.Model.Designer.IO
   /// Class to save and restore data to/from external  file. 
   /// This is base class and now it provides only common menu and file dialogs.
   /// </summary>
-  internal abstract partial class ConfigurationManagement//: Component
+  internal abstract partial class ConfigurationManagement : IDisposable//: Component
   {
 
     #region constructors
@@ -34,15 +25,6 @@ namespace CAS.UA.Model.Designer.IO
     {
       InitializeComponent();
     }
-    /// <summary>
-    /// Initializes a new instance of the <see cref="ConfigurationManagement"/> class.
-    /// </summary>
-    /// <param name="container">The container.</param>
-    //public ConfigurationManagement( IContainer container )
-    //  : this()
-    //{
-    //  container.Add( this );
-    //}
     #endregion
 
     #region public
@@ -53,7 +35,7 @@ namespace CAS.UA.Model.Designer.IO
         m_OpenFileDialog.InitialDirectory = value;
         m_SaveFileDialog.InitialDirectory = value;
       }
-      get { return m_OpenFileDialog.InitialDirectory; }
+      get => m_OpenFileDialog.InitialDirectory;
     }
     /// <summary>
     /// Gets or sets the default name of the file.
@@ -67,7 +49,7 @@ namespace CAS.UA.Model.Designer.IO
         m_SaveFileDialog.FileName = value;
         RaiseDefaultFileNameHasChanged();
       }
-      get { return m_OpenFileDialog.FileName; }
+      get => m_OpenFileDialog.FileName;
     }
     /// <summary>
     /// Occurs when default file name has been changed.
@@ -94,10 +76,10 @@ namespace CAS.UA.Model.Designer.IO
     /// <value><c>true</c> if [changes are present]; otherwise, <c>false</c>.</value>
     public bool ChangesArePresent
     {
-      get { return m_ChangesArePresent; }
+      get => m_ChangesArePresent;
       protected set
       {
-        if ( m_ChangesArePresent != value )
+        if (m_ChangesArePresent != value)
         {
           m_ChangesArePresent = value;
           RaiseChangesArePresentHasChanged();
@@ -121,17 +103,24 @@ namespace CAS.UA.Model.Designer.IO
     /// <returns></returns>
     public bool TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued()
     {
-      if ( ChangesArePresent )
-        return ( MessageBox.Show( Resources.ConfigurationManagementQuestionAboutContinuationIfChangesArePresent,
+      if (ChangesArePresent)
+        return (MessageBox.Show(Resources.ConfigurationManagementQuestionAboutContinuationIfChangesArePresent,
           Resources.ConfigurationManagementQuestionAboutContinuationIfChangesArePresentTitle,
-          MessageBoxButtons.YesNo, MessageBoxIcon.Warning ) == DialogResult.Yes );
+          MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes);
       else
         return true;
     }
     #endregion
 
     #region private
-    //protected IContainer Components { get { return components; } }
+    //var
+    private System.Windows.Forms.OpenFileDialog m_OpenFileDialog;
+    private System.Windows.Forms.SaveFileDialog m_SaveFileDialog;
+    //private System.Windows.Forms.ToolStripMenuItem m_TSMI_Open;
+    //private System.Windows.Forms.ToolStripMenuItem m_TSMI_Save;
+    //private System.Windows.Forms.ToolStripMenuItem m_TSMI_SaveAs;
+    //private System.Windows.Forms.ContextMenuStrip m_ContextMenuStrip;
+    //private System.Windows.Forms.ToolStripMenuItem m_TSMI_New;
     private void RaiseChangesArePresentHasChanged()
     {
       ChangesArePresentHasChanged?.Invoke(this, EventArgs.Empty);
@@ -142,14 +131,14 @@ namespace CAS.UA.Model.Designer.IO
     {
       DefaultFileNameHasChanged?.Invoke(this, EventArgs.Empty);
     }
-    protected void UpdateSettingsOpenFileDialog( string FileDialogDefaultExt, string FileDialogDefaultFilename, string FileDialogFilter, string FileDialogTitle )
+    protected void UpdateSettingsOpenFileDialog(string FileDialogDefaultExt, string FileDialogDefaultFilename, string FileDialogFilter, string FileDialogTitle)
     {
       this.m_OpenFileDialog.DefaultExt = FileDialogDefaultExt;
       this.m_OpenFileDialog.FileName = FileDialogDefaultFilename;
       this.m_OpenFileDialog.Filter = FileDialogFilter;
       this.m_OpenFileDialog.Title = FileDialogTitle;
     }
-    protected void UpdateSettingsSaveFileDialog( string FileDialogDefaultExt, string FileDialogDefaultFilename, string FileDialogFilter, string FileDialogTitle )
+    protected void UpdateSettingsSaveFileDialog(string FileDialogDefaultExt, string FileDialogDefaultFilename, string FileDialogFilter, string FileDialogTitle)
     {
       this.m_SaveFileDialog.DefaultExt = FileDialogDefaultExt;
       this.m_SaveFileDialog.FileName = FileDialogDefaultFilename;
@@ -159,7 +148,7 @@ namespace CAS.UA.Model.Designer.IO
     protected DialogResult ShowDialogOpenFileDialog()
     {
       DialogResult ret = m_OpenFileDialog.ShowDialog();
-      if ( ret == DialogResult.OK )
+      if (ret == DialogResult.OK)
       {
         DefaultFileName = m_OpenFileDialog.FileName;
       }
@@ -168,16 +157,17 @@ namespace CAS.UA.Model.Designer.IO
     protected DialogResult ShowDialogSaveFileDialog()
     {
       DialogResult ret = m_SaveFileDialog.ShowDialog();
-      if ( ret == DialogResult.OK )
+      if (ret == DialogResult.OK)
       {
         DefaultFileName = m_SaveFileDialog.FileName;
       }
       return ret;
     }
-    #region private menu handlers
-    internal void OnNew( )
+
+    #region menu handlers
+    internal void OnNew()
     {
-      if ( TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued() )
+      if (TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
         New();
     }
     ///// <summary>
@@ -203,12 +193,123 @@ namespace CAS.UA.Model.Designer.IO
     /// </summary>
     /// <param name="sender">The sender.</param>
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    private void OnOpen_Click( object sender, EventArgs e )
+    private void OnOpen_Click(object sender, EventArgs e)
     {
-      if ( TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued() )
+      if (TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
         Open();
     }
     #endregion
+
+    #region Component Designer generated code
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent()
+    {
+      //  this.components = new System.ComponentModel.Container();
+      this.m_OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+      this.m_SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+      //  this.m_ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+      //  this.m_TSMI_New = new System.Windows.Forms.ToolStripMenuItem();
+      //  this.m_TSMI_Open = new System.Windows.Forms.ToolStripMenuItem();
+      //  this.m_TSMI_Save = new System.Windows.Forms.ToolStripMenuItem();
+      //  this.m_TSMI_SaveAs = new System.Windows.Forms.ToolStripMenuItem();
+      //  this.m_ContextMenuStrip.SuspendLayout();
+      // 
+      // m_OpenFileDialog
+      // 
+      this.m_OpenFileDialog.DefaultExt = "xml";
+      this.m_OpenFileDialog.FileName = "UAAddressSpaceModel";
+      this.m_OpenFileDialog.Filter = "XML Configuration File (* .xml)|*.xml|All files(*.*)|*.*";
+      this.m_OpenFileDialog.Title = "UA Address Space Model";
+      // 
+      // m_SaveFileDialog
+      // 
+      this.m_SaveFileDialog.DefaultExt = "xml";
+      this.m_SaveFileDialog.FileName = "UAAddressSpaceModel";
+      this.m_SaveFileDialog.Filter = "XML Configuration File (* .xml)|*.xml|All files(*.*)|*.*";
+      this.m_SaveFileDialog.SupportMultiDottedExtensions = true;
+      this.m_SaveFileDialog.Title = "UA Address Space Model";
+      //  // 
+      //  // m_ContextMenuStrip
+      //  // 
+      //  this.m_ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+      //        this.m_TSMI_New,
+      //        this.m_TSMI_Open,
+      //        this.m_TSMI_Save,
+      //        this.m_TSMI_SaveAs});
+      //  this.m_ContextMenuStrip.Name = "ContextMenuStrip";
+      //  this.m_ContextMenuStrip.Size = new System.Drawing.Size(176, 92);
+      //  this.m_ContextMenuStrip.Text = "Session";
+      //  // 
+      //  // m_TSMI_New
+      //  // 
+      //  this.m_TSMI_New.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+      //  this.m_TSMI_New.Name = "m_TSMI_New";
+      //  this.m_TSMI_New.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+      //  this.m_TSMI_New.Size = new System.Drawing.Size(175, 22);
+      //  this.m_TSMI_New.Text = "&New";
+      //  this.m_TSMI_New.ToolTipText = "Clear and create new session configuration";
+      //  // 
+      //  // m_TSMI_Open
+      //  // 
+      //  this.m_TSMI_Open.Image = global::CAS.UA.Model.Designer.Properties.Resources.Open;
+      //  this.m_TSMI_Open.Name = "m_TSMI_Open";
+      //  this.m_TSMI_Open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+      //  this.m_TSMI_Open.Size = new System.Drawing.Size(175, 22);
+      //  this.m_TSMI_Open.Text = "&Open...";
+      //  this.m_TSMI_Open.ToolTipText = "Read session configuration from an XML.";
+      //  // 
+      //  // m_TSMI_Save
+      //  // 
+      //  this.m_TSMI_Save.Image = global::CAS.UA.Model.Designer.Properties.Resources.FloppyDisk;
+      //  this.m_TSMI_Save.Name = "m_TSMI_Save";
+      //  this.m_TSMI_Save.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+      //  this.m_TSMI_Save.Size = new System.Drawing.Size(175, 22);
+      //  this.m_TSMI_Save.Text = "&Save";
+      //  this.m_TSMI_Save.ToolTipText = "Save session configuration to an XML file.";
+      //  // 
+      //  // m_TSMI_SaveAs
+      //  // 
+      //  this.m_TSMI_SaveAs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+      //  this.m_TSMI_SaveAs.Name = "m_TSMI_SaveAs";
+      //  this.m_TSMI_SaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+      //  this.m_TSMI_SaveAs.Size = new System.Drawing.Size(175, 22);
+      //  this.m_TSMI_SaveAs.Text = "Save &As...";
+      //  this.m_TSMI_SaveAs.ToolTipText = "Open a prompt file name dialog and save session configuration to an XML in a spec" +
+      //      "ified location and specified file name.";
+      //  this.m_ContextMenuStrip.ResumeLayout(false);
+
+    }
     #endregion
+
+    #endregion
+
+    #region IDisposable Support
+    private bool disposedValue = false; // To detect redundant calls
+    /// <summary>
+    /// Releases unmanaged and - optionally - managed resources.
+    /// </summary>
+    /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+    protected virtual void Dispose(bool disposing)
+    {
+      if (disposedValue)
+        return;
+      if (disposing)
+      {
+        if (m_OpenFileDialog != null) m_OpenFileDialog.Dispose();
+        if (m_SaveFileDialog != null) m_SaveFileDialog.Dispose();
+      }
+      disposedValue = true;
+    }
+    // This code added to correctly implement the disposable pattern.
+    public void Dispose()
+    {
+      // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+      Dispose(true);
+    }
+    #endregion
+
   }
 }

@@ -235,6 +235,7 @@
     <Compile Include="Controls\FileMenuProviderControl.cs" />
     <Compile Include="Controls\FolderTreeNodeControl.cs" />
     <Compile Include="Controls\TreeNodesFactory.cs" />
+    <Compile Include="IO\ConfigurationManagement.cs" />
     <Compile Include="Wrappers\IMessageBoxHandling.cs" />
     <Compile Include="Controls\InstanceDesignTreeNodeControl.cs" />
     <Compile Include="Controls\LibraryTreeNodeControl.cs" />
@@ -454,10 +455,6 @@
     </Compile>
     <Compile Include="ImagesForNodes.Designer.cs">
       <DependentUpon>ImagesForNodes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="IO\ConfigurationManagement.cs" />
-    <Compile Include="IO\ConfigurationManagement.designer.cs">
-      <DependentUpon>ConfigurationManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="IO\OPCFModelConfigurationManagement.cs" />
     <Compile Include="IO\OPCFSolutionConfigurationManagement.cs" />

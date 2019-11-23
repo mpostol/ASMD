@@ -196,6 +196,7 @@ namespace CAS.UA.Model.Designer.IO
       }
       if (m_Model == null)
         return false;
+      //TODO Wrong default path after opening solution in the debug environment #62
       RaiseConfigurationChanged(m_Model);
       ChangesArePresent = false;
       return true;
