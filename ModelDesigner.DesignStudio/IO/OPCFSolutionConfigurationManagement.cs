@@ -1,18 +1,11 @@
-﻿//<summary>
-//  Title   : Class to save and restore solution configuration to/from external file.
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
+
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Solution;
@@ -31,13 +24,7 @@ namespace CAS.UA.Model.Designer.IO
     #region private
     private static OPCFSolutionConfigurationManagement m_This;
     private string m_LastOpenedFile = string.Empty;
-    protected override string ReadErrorInvalidOperationStringFormat
-    {
-      get
-      {
-        return Resources.OPCFSolutionConfigurationManagement_ReadError;
-      }
-    }
+    protected override string ReadErrorInvalidOperationStringFormat => Resources.OPCFSolutionConfigurationManagement_ReadError;
     //private void m_TSMI_AddProject_New_Click(object sender, System.EventArgs e)
     //{
     //  SolutionRootNode.AddProject();
@@ -150,9 +137,7 @@ namespace CAS.UA.Model.Designer.IO
     {
       m_LastOpenedFile = e.String;
     }
-    private OPCFSolutionConfigurationManagement()
-        : base()
-    { }
+    private OPCFSolutionConfigurationManagement(IGraphicalUserInterface graphicalUserInterface) : base(graphicalUserInterface) { }
     #endregion
 
     #region override
@@ -199,7 +184,7 @@ namespace CAS.UA.Model.Designer.IO
           try
           {
             AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 204, "Creating new instance OPCFSolutionConfigurationManagement");
-            m_This = new OPCFSolutionConfigurationManagement();
+            m_This = new OPCFSolutionConfigurationManagement(new GraphicalUserInterface());
             m_This.CommonInitialization();
             m_This.DefaultDirectory = global::CAS.UA.Model.Designer.Properties.Resources.SolutionTreeNode;
             m_This.DefaultFileName = "UAModelDesignerSolution";
@@ -207,7 +192,7 @@ namespace CAS.UA.Model.Designer.IO
           catch (Exception ex)
           {
             string _tmp = "Cannot initialize {0} at {1} because of exception: {2}.";
-            AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Critical, 212, String.Format(_tmp, typeof(OPCFSolutionConfigurationManagement).FullName, DefaultInstance, ex.Message));
+            AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Critical, 212, string.Format(_tmp, typeof(OPCFSolutionConfigurationManagement).FullName, DefaultInstance, ex.Message));
             throw;
           }
         }

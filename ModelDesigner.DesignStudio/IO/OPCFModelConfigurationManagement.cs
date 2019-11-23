@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using System;
@@ -25,7 +26,7 @@ namespace CAS.UA.Model.Designer.IO
   /// <summary>
   /// Class to save and restore UA Information Model to/from external file.
   /// </summary>
-  internal class OPCFModelConfigurationManagement: TypeGenericConfigurationManagement<OPCFModelDesign>
+  internal class OPCFModelConfigurationManagement : TypeGenericConfigurationManagement<OPCFModelDesign>
   {
     #region private
     /// <summary>
@@ -40,7 +41,7 @@ namespace CAS.UA.Model.Designer.IO
     #endregion
 
     #region initialization
-    private void CommonInitialisation()
+    private void CommonInitialization()
     {
       // 
       // OpenFileDialog
@@ -61,15 +62,14 @@ namespace CAS.UA.Model.Designer.IO
         Resources.Project_FileDialogTitle
         );
     }
-    public OPCFModelConfigurationManagement()
-      : base()
+    public OPCFModelConfigurationManagement(IGraphicalUserInterface graphicalUserInterface) : base(graphicalUserInterface)
     {
-      CommonInitialisation();
+      CommonInitialization();
     }
     #endregion
     internal static Tuple<Opc.Ua.ModelCompiler.ModelDesign, string> ReadModelDesign(string filePath, Action<TraceMessage> tracer)
     {
-      using (OPCFModelConfigurationManagement _manager = new OPCFModelConfigurationManagement()
+      using (OPCFModelConfigurationManagement _manager = new OPCFModelConfigurationManagement(new GraphicalUserInterface())
       {
         DefaultDirectory = Path.GetDirectoryName(filePath),
         DefaultFileName = Path.GetFileName(filePath)

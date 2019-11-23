@@ -23,14 +23,14 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface
   /// Class GraphicalUserInterface implementing <see cref="IGraphicalUserInterface"/> for local purpose.
   /// </summary>
   /// <seealso cref="CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface.IGraphicalUserInterface" />
-  internal class GraphicalUserInterface : IGraphicalUserInterface
+  public class GraphicalUserInterface : IGraphicalUserInterface
   {
 
     #region constructors
     /// <summary>
     /// Initializes a new instance of the <see cref="GraphicalUserInterface"/> class.
     /// </summary>
-    internal GraphicalUserInterface()
+    public GraphicalUserInterface()
     {
       MessageBoxShowWarning = (z, y) => MessageBoxShowDefault(z, y, MessageBoxIcon.Warning);
       MessageBoxShowExclamation = (z, y) => MessageBoxShowDefault(z, y, MessageBoxIcon.Exclamation);

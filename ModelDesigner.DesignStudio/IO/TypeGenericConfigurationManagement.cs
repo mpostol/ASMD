@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //_______________________________________________________________
 
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using System;
@@ -65,20 +66,8 @@ namespace CAS.UA.Model.Designer.IO
     /// </exception>
     /// <exception cref="System.IO.IOException">path includes an incorrect or invalid syntax for file name, directory name, or volume label syntax.</exception>
     /// <exception cref="System.Security.SecurityException">The caller does not have the required permission.</exception>
-    protected virtual string ReadErrorGenericStringFormat
-    {
-      get
-      {
-        return Resources.TypeGenericConfigurationManagement_ReadError;
-      }
-    }
-    protected virtual string ReadErrorInvalidOperationStringFormat
-    {
-      get
-      {
-        return Resources.TypeGenericConfigurationManagement_ReadError;
-      }
-    }
+    protected virtual string ReadErrorGenericStringFormat => Resources.TypeGenericConfigurationManagement_ReadError;
+    protected virtual string ReadErrorInvalidOperationStringFormat => Resources.TypeGenericConfigurationManagement_ReadError;
     protected event EventHandler<StringEventArgs> BeforeRead;
     protected event EventHandler<StringEventArgs> BeforeWrite;
     /// <summary>
@@ -88,8 +77,7 @@ namespace CAS.UA.Model.Designer.IO
     #endregion private
 
     #region constructors
-    public TypeGenericConfigurationManagement()
-      : base()
+    public TypeGenericConfigurationManagement(IGraphicalUserInterface graphicalUserInterface) : base(graphicalUserInterface)
     { }
     #endregion
 
@@ -120,7 +108,7 @@ namespace CAS.UA.Model.Designer.IO
     {
       prompt = m_Empty || prompt;
       if (prompt)
-        if (ShowDialogSaveFileDialog() != DialogResult.OK)
+        if (!ShowDialogSaveFileDialog())
           return false;
       m_Empty = false;
       bool res = false;
@@ -228,7 +216,7 @@ namespace CAS.UA.Model.Designer.IO
     /// <returns>The configuration retrieved from a file.</returns>
     internal Type4Serialization ReadConfiguration()
     {
-      if (ShowDialogOpenFileDialog() != DialogResult.OK)
+      if (!ShowDialogOpenFileDialog())
         return null;
       try
       {
@@ -239,12 +227,12 @@ namespace CAS.UA.Model.Designer.IO
       }
       catch (InvalidOperationException _ioe)
       {
-        MessageBox.Show(String.Format(ReadErrorInvalidOperationStringFormat, _ioe.GetMessageFromException()), Resources.SolutionFileOpenError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        MessageBox.Show(string.Format(ReadErrorInvalidOperationStringFormat, _ioe.GetMessageFromException()), Resources.SolutionFileOpenError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         return null;
       }
       catch (Exception _ex)
       {
-        MessageBox.Show(String.Format(ReadErrorGenericStringFormat, _ex.GetMessageFromException()), Resources.SolutionFileOpenError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        MessageBox.Show(string.Format(ReadErrorGenericStringFormat, _ex.GetMessageFromException()), Resources.SolutionFileOpenError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         return null;
       }
       finally

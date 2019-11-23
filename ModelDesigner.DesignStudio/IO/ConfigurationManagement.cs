@@ -4,6 +4,7 @@
 //
 //___________________________________________________________________________________
 
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.Windows.Forms;
@@ -21,8 +22,9 @@ namespace CAS.UA.Model.Designer.IO
     /// <summary>
     /// Initializes a new instance of the <see cref="ConfigurationManagement"/> class.
     /// </summary>
-    public ConfigurationManagement()
+    public ConfigurationManagement(IGraphicalUserInterface graphicalUserInterface)
     {
+      m_GraphicalUserInterface = graphicalUserInterface;
       InitializeComponent();
     }
     #endregion
@@ -114,8 +116,9 @@ namespace CAS.UA.Model.Designer.IO
 
     #region private
     //var
-    private System.Windows.Forms.OpenFileDialog m_OpenFileDialog;
-    private System.Windows.Forms.SaveFileDialog m_SaveFileDialog;
+    private IGraphicalUserInterface m_GraphicalUserInterface;
+    private IFileDialog m_OpenFileDialog;
+    private IFileDialog m_SaveFileDialog;
     //private System.Windows.Forms.ToolStripMenuItem m_TSMI_Open;
     //private System.Windows.Forms.ToolStripMenuItem m_TSMI_Save;
     //private System.Windows.Forms.ToolStripMenuItem m_TSMI_SaveAs;
@@ -145,19 +148,19 @@ namespace CAS.UA.Model.Designer.IO
       this.m_SaveFileDialog.Filter = FileDialogFilter;
       this.m_SaveFileDialog.Title = FileDialogTitle;
     }
-    protected DialogResult ShowDialogOpenFileDialog()
+    protected bool ShowDialogOpenFileDialog()
     {
-      DialogResult ret = m_OpenFileDialog.ShowDialog();
-      if (ret == DialogResult.OK)
+      bool _ret = m_OpenFileDialog.ShowDialog();
+      if (_ret)
       {
         DefaultFileName = m_OpenFileDialog.FileName;
       }
-      return ret;
+      return _ret;
     }
-    protected DialogResult ShowDialogSaveFileDialog()
+    protected bool ShowDialogSaveFileDialog()
     {
-      DialogResult ret = m_SaveFileDialog.ShowDialog();
-      if (ret == DialogResult.OK)
+      bool ret = m_SaveFileDialog.ShowDialog();
+      if (ret)
       {
         DefaultFileName = m_SaveFileDialog.FileName;
       }
@@ -208,8 +211,8 @@ namespace CAS.UA.Model.Designer.IO
     private void InitializeComponent()
     {
       //  this.components = new System.ComponentModel.Container();
-      this.m_OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-      this.m_SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+      this.m_OpenFileDialog = m_GraphicalUserInterface.OpenFileDialogFunc();
+      this.m_SaveFileDialog = m_GraphicalUserInterface.SaveFileDialogFuc();
       //  this.m_ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
       //  this.m_TSMI_New = new System.Windows.Forms.ToolStripMenuItem();
       //  this.m_TSMI_Open = new System.Windows.Forms.ToolStripMenuItem();
@@ -229,7 +232,7 @@ namespace CAS.UA.Model.Designer.IO
       this.m_SaveFileDialog.DefaultExt = "xml";
       this.m_SaveFileDialog.FileName = "UAAddressSpaceModel";
       this.m_SaveFileDialog.Filter = "XML Configuration File (* .xml)|*.xml|All files(*.*)|*.*";
-      this.m_SaveFileDialog.SupportMultiDottedExtensions = true;
+      //this.m_SaveFileDialog.SupportMultiDottedExtensions = true;
       this.m_SaveFileDialog.Title = "UA Address Space Model";
       //  // 
       //  // m_ContextMenuStrip
