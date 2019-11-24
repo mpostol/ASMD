@@ -12,6 +12,7 @@ using System.Collections.Generic;
 
 namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
 {
+
   [TestClass]
   public class BaseTreeNodeControlUnitTest
   {

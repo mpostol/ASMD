@@ -95,9 +95,11 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
           throw new NotImplementedException();
         }
       }
-
       public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
+      public bool UseWaitCursor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
     }
     public object AssemblyHelper { get; private set; }
   }
+
 }

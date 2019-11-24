@@ -15,6 +15,7 @@ namespace CAS.UA.Model.Designer.IO
   {
     Project, Solution
   }
+
   /// <summary>
   /// Class to save and restore data to/from external file.
   /// This is base class and now it provides only common menu and file dialogs.
@@ -28,14 +29,18 @@ namespace CAS.UA.Model.Designer.IO
     /// </summary>
     public ConfigurationManagement(IGraphicalUserInterface graphicalUserInterface, string fileName)
     {
-      m_GraphicalUserInterface = graphicalUserInterface;
+      GraphicalUserInterface = graphicalUserInterface;
       InitializeComponent();
       DefaultFileName = fileName;
     }
     #endregion
 
     #region public
-    public abstract ConfigurationType ConfigurationType { get; }
+    /// <summary>
+    /// Gets the type of the configuration.
+    /// </summary>
+    /// <value>The type of the configuration defined in <see cref="ConfigurationType"/>.</value>
+    protected abstract ConfigurationType Configuration { get; }
     public string DefaultDirectory => Path.GetDirectoryName(DefaultFileName);
     /// <summary>
     /// Gets or sets the default name of the file.
@@ -105,7 +110,7 @@ namespace CAS.UA.Model.Designer.IO
     public bool TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued()
     {
       if (ChangesArePresent)
-        return m_GraphicalUserInterface.MessageBoxShowWarningAskYN(
+        return GraphicalUserInterface.MessageBoxShowWarningAskYN(
           Resources.ConfigurationManagementQuestionAboutContinuationIfChangesArePresent,
           Resources.ConfigurationManagementQuestionAboutContinuationIfChangesArePresentTitle);
       else
@@ -115,26 +120,20 @@ namespace CAS.UA.Model.Designer.IO
 
     #region private
     //var
-    private IGraphicalUserInterface m_GraphicalUserInterface;
-    //private System.Windows.Forms.ToolStripMenuItem m_TSMI_Open;
-    //private System.Windows.Forms.ToolStripMenuItem m_TSMI_Save;
-    //private System.Windows.Forms.ToolStripMenuItem m_TSMI_SaveAs;
-    //private System.Windows.Forms.ContextMenuStrip m_ContextMenuStrip;
-    //private System.Windows.Forms.ToolStripMenuItem m_TSMI_New;
+    protected IGraphicalUserInterface GraphicalUserInterface { get; private set; }
     private void RaiseChangesArePresentHasChanged()
     {
       ChangesArePresentHasChanged?.Invoke(this, EventArgs.Empty);
     }
     private bool m_ChangesArePresent = false;
     private string m_FileName;
-
     private void RaiseDefaultFileNameHasChanged()
     {
       DefaultFileNameHasChanged?.Invoke(this, EventArgs.Empty);
     }
     protected bool ShowDialogOpenFileDialog()
     {
-      using (IFileDialog _dialog = m_GraphicalUserInterface.OpenFileDialogFunc())
+      using (IFileDialog _dialog = GraphicalUserInterface.OpenFileDialogFunc())
       {
         SetupFileDialog(_dialog);
         bool _ret = _dialog.ShowDialog();
@@ -145,7 +144,7 @@ namespace CAS.UA.Model.Designer.IO
     }
     protected bool ShowDialogSaveFileDialog()
     {
-      using (IFileDialog _dialog = m_GraphicalUserInterface.SaveFileDialogFuc())
+      using (IFileDialog _dialog = GraphicalUserInterface.SaveFileDialogFuc())
       {
         SetupFileDialog(_dialog);
         bool _ret = _dialog.ShowDialog();
@@ -157,7 +156,7 @@ namespace CAS.UA.Model.Designer.IO
     private void SetupFileDialog(IFileDialog _dialog)
     {
       _dialog.FileName = this.DefaultFileName;
-      switch (ConfigurationType)
+      switch (Configuration)
       {
         case ConfigurationType.Project:
           _dialog.DefaultExt = Resources.Project_FileDialogDefaultExt;

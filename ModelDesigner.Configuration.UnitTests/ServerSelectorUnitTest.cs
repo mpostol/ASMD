@@ -1,4 +1,4 @@
-﻿///___________________________________________________________________________________
+﻿//___________________________________________________________________________________
 //
 //  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
 //
@@ -15,6 +15,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
   [TestClass]
   public class ServerSelectorUnitTest
   {
+
     [TestMethod]
     public void ServerSelectorCreatorTest()
     {
@@ -67,6 +68,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       _nss.ServerConfiguration = new ServerSelector.ServerDescriptor() { codebase = String.Empty, configuration = String.Empty };
       Assert.IsFalse(_ui.WarningCalled);
     }
+
+    #region Instrumentation
     private class OpenFileDialog4UnitTest : IFileDialog
     {
       private string m_DefaultExt;
@@ -220,9 +223,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
           return () => new FolderBrowserDialog();
         }
       }
-
       public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
-
+      public bool UseWaitCursor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
       private void MessageBoxShowMethod(string text, string caption)
       {
         WarningCalled = true;
@@ -231,6 +233,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       }
 
     }
+    #endregion
 
   }
 }

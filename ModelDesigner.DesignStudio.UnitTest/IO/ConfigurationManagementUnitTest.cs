@@ -57,13 +57,35 @@ namespace CAS.UA.Model.Designer.IO
       Assert.IsFalse(String.IsNullOrEmpty(_newItem.DefaultDirectory));
       Assert.IsFalse(_newItem.ChangesArePresent);
       _IFileDialogMock.Verify(x => x.FileName, Times.Never);
-      _IFileDialogMock.VerifySet(x => x.FileName = @"c:\\folder\file.name", Times.Never);
+      _IFileDialogMock.VerifySet(x => x.FileName =It.IsAny<string>(), Times.Never);
       _IFileDialogMock.Verify(x => x.InitialDirectory, Times.Never);
     }
+    [TestMethod]
+    public void ShowOpenDialogTestMethod()
+    {
+      const string DefaultExt = "uamdsl";
+      const string FileName = "UAModelDesignerSolution";
+      const string Filter = "UA Model Designer Solution File (* .uamdsl)|*.uamdsl|UA Model Designer Solution File (* .xml)|*.xml|All files(*.*)|*.*";
+      const string Title = "UA Model Designer Solution Open/Save dialog window";
+      string _defPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), FileName);
+      Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
+      _IFileDialogMock.SetupProperty(x => x.FileName);
+      _IFileDialogMock.SetupProperty(x => x.DefaultExt);
+      _IFileDialogMock.SetupProperty(x => x.Filter);
+      _IFileDialogMock.SetupProperty(x => x.Title);
+      _IFileDialogMock.Setup(x => x.ShowDialog()).Returns(true);
+      ConfigurationManagementFixture _newItem = new ConfigurationManagementFixture(_IFileDialogMock.Object, _defPath);
+      _newItem.ShowOpenDialog();
+      _IFileDialogMock.VerifySet(x => x.DefaultExt = DefaultExt);
+      _IFileDialogMock.VerifySet(x => x.Filter = Filter);
+      _IFileDialogMock.VerifySet(x => x.Title = Title);
+      Assert.AreEqual<string>(FileName, Path.GetFileName(_IFileDialogMock.Object.FileName));
+    }
+
+    #region instrumentation
     private class ConfigurationManagementFixture : ConfigurationManagement
     {
-      public override ConfigurationType ConfigurationType => throw new NotImplementedException();
-
+      protected override ConfigurationType Configuration => ConfigurationType.Solution;
       public ConfigurationManagementFixture(IFileDialog mock, string fileName) : base(new GraphicalUserInterfaceFixture(mock), fileName) { }
       internal void SignalChanges()
       {
@@ -76,6 +98,10 @@ namespace CAS.UA.Model.Designer.IO
       public override bool Open()
       {
         throw new NotImplementedException();
+      }
+      internal void ShowOpenDialog()
+      {
+        this.ShowDialogOpenFileDialog();
       }
     }
     private class GraphicalUserInterfaceFixture : IGraphicalUserInterface
@@ -93,13 +119,10 @@ namespace CAS.UA.Model.Designer.IO
       public Func<IFileDialog> SaveFileDialogFuc => () => mock;
       public Func<IFolderBrowserDialog> OpenFolderBrowserDialogFunc => throw new NotImplementedException();
       public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
+      public bool UseWaitCursor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     }
-    // TODO Wrong default path after opening solution in the debug environment #62 - add to test
-    private const string DefaultExt = "xml";
-    private const string FileName = "UAAddressSpaceModel";
-    private const string Filter = "XML Configuration File (* .xml)|*.xml|All files(*.*)|*.*";
-    private const string Title = "UA Address Space Model";
+    #endregion
 
   }
 }

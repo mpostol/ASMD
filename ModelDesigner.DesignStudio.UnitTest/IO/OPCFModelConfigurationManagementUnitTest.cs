@@ -35,6 +35,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
     }
     private class GraphicalUserInterface : IGraphicalUserInterface
     {
+
       private readonly IFileDialog m_Mock;
       public GraphicalUserInterface(IFileDialog @object)
       {
@@ -47,6 +48,8 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       public Func<IFileDialog> SaveFileDialogFuc => () => m_Mock;
       public Func<IFolderBrowserDialog> OpenFolderBrowserDialogFunc => throw new NotImplementedException();
       public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
+      public bool UseWaitCursor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
     }
   }
 }

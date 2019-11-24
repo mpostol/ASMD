@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.ImportExport;
 using System;
@@ -19,9 +18,13 @@ namespace CAS.UA.Model.Designer.IO
   /// </summary>
   internal class OPCFModelConfigurationManagement : TypeGenericConfigurationManagement<OPCFModelDesign>
   {
-    public override ConfigurationType ConfigurationType => ConfigurationType.Project;
 
     #region private
+    /// <summary>
+    /// Gets the type of the configuration.
+    /// </summary>
+    /// <value>The type of the configuration defined in <see cref="ConfigurationType" />.</value>
+    protected override ConfigurationType Configuration => ConfigurationType.Project;
     /// <summary>
     /// Gets the configuration.
     /// </summary>

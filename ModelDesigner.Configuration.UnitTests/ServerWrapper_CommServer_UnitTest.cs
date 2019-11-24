@@ -55,7 +55,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       Assert.IsNotNull(_sw);
       Assert.IsTrue(_configurationChanged);
     }
-    //private instrumentation
+
+    #region instrumentation
     private class GraphicalUserInterface : IGraphicalUserInterface
     {
       public Action<string, string> MessageBoxShowError
@@ -100,9 +101,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
           throw new NotImplementedException();
         }
       }
-
       public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
+      public bool UseWaitCursor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
     }
     private const string _dataPath = "Plugin";
+    #endregion
+
   }
 }

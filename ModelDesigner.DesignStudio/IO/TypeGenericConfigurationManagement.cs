@@ -4,13 +4,11 @@
 //
 //___________________________________________________________________________________
 
-
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.IO;
-using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.IO
 {
@@ -64,8 +62,10 @@ namespace CAS.UA.Model.Designer.IO
     protected event EventHandler<StringEventArgs> BeforeRead;
     protected event EventHandler<StringEventArgs> BeforeWrite;
     /// <summary>
-    /// Occurs when configuration has been changed.
+    /// Initializes a new instance of the <see cref="TypeGenericConfigurationManagement{Type4Serialization}" /> class.
     /// </summary>
+    /// <param name="graphicalUserInterface">The graphical user interface.</param>
+    /// <param name="fileName">Name of the file.</param>
     //protected EventHandler<ConfigurationEventArg> ConfigurationChanged;
     #endregion private
 
@@ -106,17 +106,17 @@ namespace CAS.UA.Model.Designer.IO
       bool res = false;
       try
       {
-        Application.UseWaitCursor = true;
+        GraphicalUserInterface.UseWaitCursor = true;
         Save(GetConfiguration(configuration));
         res = true;
       }
       catch (Exception ex)
       {
-        MessageBox.Show(ex.Message, Properties.Resources.SolutionFileSaveError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        GraphicalUserInterface.MessageBoxShowExclamation(ex.Message, Properties.Resources.SolutionFileSaveError);
       }
       finally
       {
-        Application.UseWaitCursor = false;
+        GraphicalUserInterface.UseWaitCursor = false;
       }
       return res;
     }
@@ -175,7 +175,6 @@ namespace CAS.UA.Model.Designer.IO
       }
       if (m_Model == null)
         return false;
-      //TODO Wrong default path after opening solution in the debug environment #62
       RaiseConfigurationChanged(m_Model);
       ChangesArePresent = false;
       return true;
@@ -197,7 +196,7 @@ namespace CAS.UA.Model.Designer.IO
         throw new FileNotFoundException(fileName);
       try
       {
-        Application.UseWaitCursor = true;
+        GraphicalUserInterface.UseWaitCursor = true;
         Type4Serialization _return = XmlFile.ReadXmlFile<Type4Serialization>(fileName);
         DefaultFileName = fileName;
         m_Empty = false;
@@ -205,17 +204,17 @@ namespace CAS.UA.Model.Designer.IO
       }
       catch (InvalidOperationException _ioe)
       {
-        MessageBox.Show(string.Format(ReadErrorInvalidOperationStringFormat, _ioe.GetMessageFromException()), Resources.SolutionFileOpenError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        GraphicalUserInterface.MessageBoxShowExclamation(string.Format(ReadErrorInvalidOperationStringFormat, _ioe.GetMessageFromException()), Resources.SolutionFileOpenError);
         return null;
       }
       catch (Exception _ex)
       {
-        MessageBox.Show(string.Format(ReadErrorGenericStringFormat, _ex.GetMessageFromException()), Resources.SolutionFileOpenError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        GraphicalUserInterface.MessageBoxShowExclamation(string.Format(ReadErrorGenericStringFormat, _ex.GetMessageFromException()), Resources.SolutionFileOpenError);
         return null;
       }
       finally
       {
-        Application.UseWaitCursor = false;
+        GraphicalUserInterface.UseWaitCursor = false;
       }
     }
     /// <summary>
@@ -228,35 +227,6 @@ namespace CAS.UA.Model.Designer.IO
         return null;
       return ReadConfiguration(DefaultFileName);
     }
-    /// <summary>
-    /// Save configuration in an external dictionary file. 
-    /// </summary>
-    /// <param name="prompt">If set to <c>true</c> show prompt to enter a file name.</param>
-    /// <returns><c>true</c> if operation accomplished successfully.</returns>
-    //internal bool Save(bool prompt, XmlFile.DataToSerialize<Type4Serialization> configuration)
-    //{
-    //  prompt = m_Empty || prompt;
-    //  if (prompt)
-    //    if (ShowDialogSaveFileDialog() != DialogResult.OK)
-    //      return false;
-    //  m_Empty = false;
-    //  bool res = false;
-    //  try
-    //  {
-    //    Application.UseWaitCursor = true;
-    //    Save(configuration);
-    //    res = true;
-    //  }
-    //  catch (Exception ex)
-    //  {
-    //    MessageBox.Show(ex.Message, Properties.Resources.SolutionFileSaveError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-    //  }
-    //  finally
-    //  {
-    //    Application.UseWaitCursor = false;
-    //  }
-    //  return res;
-    //}
     #endregion public
 
   }

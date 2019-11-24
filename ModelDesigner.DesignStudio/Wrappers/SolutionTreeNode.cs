@@ -50,9 +50,9 @@ namespace CAS.UA.Model.Designer.Wrappers
         {
           _newProject = new ProjectTreeNode(this, _project);
         }
-        catch (FileNotFoundException _fnfe)
+        catch (FileNotFoundException _ex)
         {
-          this.MessageBoxHandling.Show(string.Format(Resources.ProjectFileNotFound_Info, _fnfe.Message), Resources.ProjectFileNotFound_Header, MessageBoxButtons.OK, MessageBoxIcon.Error);
+          this.MessageBoxHandling.Show(string.Format(Resources.ProjectFileNotFound_Info, _ex.Message), Resources.ProjectFileNotFound_Header, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         catch (Exception _ex)
         {
@@ -220,10 +220,6 @@ namespace CAS.UA.Model.Designer.Wrappers
         return;
       Add(node);
     }
-    //public Tuple<Opc.Ua.ModelCompiler.ModelDesign, string> ReadModelDesign(string filePath, Action<TraceMessage> tracer)
-    //{
-    //  return OPCFSolutionConfigurationManagement.DefaultInstance.ReadModelDesign(filePath, tracer);
-    //}
     public void Save(bool prompt)
     {
       OPCFSolutionConfigurationManagement.DefaultInstance.Save(prompt, SaveProjectsCreateConfiguration());

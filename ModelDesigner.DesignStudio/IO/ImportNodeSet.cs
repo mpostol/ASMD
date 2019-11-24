@@ -1,23 +1,14 @@
-﻿//_______________________________________________________________
-//  Title   : ImportNodeSet
-//  System  : Microsoft VisualStudio 2013 / C#
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2015, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Windows.Forms;
+using System.Windows.Forms; //TODO Removed dependency of the CAS.UA.Model.Designer.Wrappers on using System.Windows.Forms #38
 using UAOOI.SemanticData.UANodeSetValidation;
 
 namespace CAS.UA.Model.Designer.IO
@@ -42,7 +33,7 @@ namespace CAS.UA.Model.Designer.IO
           Application.UseWaitCursor = true;
           FileInfo _fileInfo = new FileInfo(_ofd.FileName);
           Debug.Assert(_fileInfo.Exists);
-          traceEvent(TraceMessage.DiagnosticTraceMessage($"Importing information model from the NodeSetfile {_fileInfo.Name}"));
+          traceEvent(TraceMessage.DiagnosticTraceMessage($"Importing information model from the NodeSet file {_fileInfo.Name}"));
           return new Tuple<Opc.Ua.ModelCompiler.ModelDesign, string>(ImportExport.NodeSet.AddressSpaceContextService.CreateInstance(_fileInfo, traceEvent), _fileInfo.Name);
         }
       }

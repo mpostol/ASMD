@@ -87,7 +87,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface
     /// </summary>
     /// <value>The message box show warning ask yn.</value>
     public Func<string, string, bool> MessageBoxShowWarningAskYN => (x, y) => MessageBox.Show(x, y, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes;
-    #endregion 
+    /// <summary>
+    /// Gets or sets whether the wait cursor is used for all open forms of the application.
+    /// </summary>
+    /// <value><c>true</c> is the wait cursor is used for all open forms; otherwise, <c>false</c>.</value>
+    public bool UseWaitCursor { get => Application.UseWaitCursor; set => Application.UseWaitCursor = value; }
+    #endregion
 
     #region private
     private class OpenFileDialogWrapper : FileDialogWrapper

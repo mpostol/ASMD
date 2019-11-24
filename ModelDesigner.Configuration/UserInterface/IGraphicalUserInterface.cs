@@ -21,9 +21,9 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface
     /// <value>The message box show action.</value>
     Action<string, string> MessageBoxShowWarning { get; }
     /// <summary>
-    /// Gets or sets the exclamation message box show delegate.
+    /// Gets the exclamation message box show delegate.
     /// </summary>
-    /// <value>The message box show.</value>
+    /// <value>The message box show action.</value>
     Action<string, string> MessageBoxShowExclamation { get; }
     /// <summary>
     /// Gets or sets the error message box show delegate.
@@ -50,5 +50,11 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface
     /// </summary>
     /// <value>The message box show warning ask yn.</value>
     Func<string, string, bool> MessageBoxShowWarningAskYN { get; }
+    /// <summary>
+    /// Gets or sets whether the wait cursor is used for all open forms of the application.
+    /// </summary>
+    /// <value><c>true</c> is the wait cursor is used for all open forms; otherwise, <c>false</c>.</value>
+    bool UseWaitCursor { get; set; }
+
   }
 }
