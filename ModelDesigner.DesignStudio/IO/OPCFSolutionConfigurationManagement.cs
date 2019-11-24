@@ -104,24 +104,6 @@ namespace CAS.UA.Model.Designer.IO
       // OpenFileDialog
       // 
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 151, "Updating Settings Open File Dialog");
-      UpdateSettingsOpenFileDialog
-        (
-          Resources.Solution_FileDialogDefaultExt,
-          Path.Combine(DefaultDirectory, Resources.Solution_FileDialogDefaultFilename),
-          Resources.Solution_FileDialogFilter,
-          Resources.Solution_FileDialogTitle
-        );
-      // 
-      // SaveFileDialog
-      // 
-      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 162, "Updating Settings Save File Dialog");
-      UpdateSettingsSaveFileDialog
-        (
-          Resources.Solution_FileDialogDefaultExt,
-          Path.Combine(DefaultDirectory, Resources.Solution_FileDialogDefaultFilename),
-          Resources.Solution_FileDialogFilter,
-          Resources.Solution_FileDialogTitle
-        );
       //ConfigurationChanged = new EventHandler<OPCFSolutionConfigurationManagement.ConfigurationEventArg>(OnConfigurationChanged);
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 172, "Creating new private solution using Empty model");
       //SolutionRootNode = new PrivateSolution(this, UAModelDesignerSolution.CreateEmptyModel(), new ViewModelFactory(), DefaultDirectory, new EventHandler<EventArgs>(OnNodeChange));
@@ -137,7 +119,7 @@ namespace CAS.UA.Model.Designer.IO
     {
       m_LastOpenedFile = e.String;
     }
-    private OPCFSolutionConfigurationManagement(IGraphicalUserInterface graphicalUserInterface) : base(graphicalUserInterface) { }
+    private OPCFSolutionConfigurationManagement(IGraphicalUserInterface graphicalUserInterface, string fileName) : base(graphicalUserInterface, fileName) { }
     #endregion
 
     #region override
@@ -184,10 +166,9 @@ namespace CAS.UA.Model.Designer.IO
           try
           {
             AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 204, "Creating new instance OPCFSolutionConfigurationManagement");
-            m_This = new OPCFSolutionConfigurationManagement(new GraphicalUserInterface());
+            string _defPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UAModelDesignerSolution");
+            m_This = new OPCFSolutionConfigurationManagement(new GraphicalUserInterface(), _defPath);
             m_This.CommonInitialization();
-            m_This.DefaultDirectory = global::CAS.UA.Model.Designer.Properties.Resources.SolutionTreeNode;
-            m_This.DefaultFileName = "UAModelDesignerSolution";
           }
           catch (Exception ex)
           {
@@ -199,6 +180,9 @@ namespace CAS.UA.Model.Designer.IO
         return m_This;
       }
     }
+
+    public override ConfigurationType ConfigurationType => ConfigurationType.Solution;
+
     //internal override void AddItemsToMenu(ContextMenuStrip contextMenuStrip)
     //{
     //  base.AddItemsToMenu(contextMenuStrip);

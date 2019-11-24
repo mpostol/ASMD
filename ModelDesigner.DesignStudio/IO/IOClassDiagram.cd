@@ -1,22 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="CAS.UA.Model.Designer.IO.ConfigurationManagement">
-    <Position X="4.75" Y="0.5" Width="2.25" />
+    <Position X="5.75" Y="0.5" Width="2.25" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
       <Compartment Name="Events" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>QEKEAIABBSACIKAEAACEAIACBIADgEBAAKAAQQAgQAA=</HashCode>
+      <HashCode>QEIEgAAABCACICAAAAAAAAACBIgBgEBAACAAQwAgAAA=</HashCode>
       <FileName>IO\ConfigurationManagement.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.IO.TypeGenericConfigurationManagement&lt;Type4Serialization&gt;">
-    <Position X="3.75" Y="3.75" Width="4.25" />
+    <Position X="4.75" Y="3" Width="4.25" />
     <Compartments>
       <Compartment Name="Events" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <NestedTypes>
       <Class Name="CAS.UA.Model.Designer.IO.TypeGenericConfigurationManagement&lt;Type4Serialization&gt;.StringEventArgs" Collapsed="true">
@@ -31,23 +34,24 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>EIAAQIEAAAAAICAAAAAAAAAAAAAAAAAAgAAAAACAACQ=</HashCode>
+      <HashCode>EIAAQIAAAAAAICAAAAAAAAAAAAAAAAAAgAAAAACAACQ=</HashCode>
       <FileName>IO\TypeGenericConfigurationManagement.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.IO.OPCFModelConfigurationManagement">
-    <Position X="1.25" Y="8.75" Width="4" />
+    <Position X="1.5" Y="5.5" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAQAAAAAAAAAACAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
       <FileName>IO\OPCFModelConfigurationManagement.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement">
-    <Position X="5.5" Y="8.75" Width="5.75" />
+    <Position X="6.25" Y="5.5" Width="5.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
       <Compartment Name="Events" Collapsed="true" />
       <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <NestedTypes>
       <Class Name="CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs" Collapsed="true">
@@ -57,52 +61,37 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>ACAAQKAQCAgAAKDDAACAAAEAAAAAAhABgIABAAGACEA=</HashCode>
+      <HashCode>ACAAQCAAAAAAACCAAACAAAEAAAAAABAAgAAAAAAAACA=</HashCode>
       <FileName>IO\OPCFSolutionConfigurationManagement.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="3.409" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.SolutionTreeNode">
-    <Position X="12.5" Y="8.75" Width="2.75" />
+    <Position X="1.25" Y="13" Width="2.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
       <Compartment Name="Events" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>ABgQCKCEBCEOQQAAEBAAAAAAAAAAgAAIgAgAggCBAGA=</HashCode>
+      <HashCode>AAgQDKCEBAEOYAAAEBAAAAAgAAgAgAAAAAgAggABACA=</HashCode>
       <FileName>Wrappers\SolutionTreeNode.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.UAModelDesignerSolution">
-    <Position X="16.75" Y="13.5" Width="3.5" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-      <Compartment Name="Fields" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAIAAAAQIAAAAQAAAAAAABAAAAAAAAAAQA=</HashCode>
-      <FileName>Wrappers4ProperyGrid\UAModelDesignerSolution.xsd.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Property Name="Projects" />
-    </ShowAsCollectionAssociation>
-  </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.ProjectWrapper">
-    <Position X="21.5" Y="9" Width="3" />
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.ProjectWrapper" Collapsed="true">
+    <Position X="10.75" Y="2.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>ABAAAAAgEAAAAAAEAAAAAAAAAAAAAAEAAARAAAAAAAA=</HashCode>
+      <HashCode>ABAAAAAgEAAAAAAEAAAAAAAAAAAAAAEAAABAAAAAAAA=</HashCode>
       <FileName>Wrappers4ProperyGrid\ProjectWrapper.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.UAModelDesignerSolutionWrapper">
-    <Position X="16.75" Y="9" Width="3.75" />
+    <Position X="10.25" Y="16.5" Width="3.75" />
     <TypeIdentifier>
-      <HashCode>AACACAAAAAAAAAAAEAAAAAAAAAAAAAAAAAgAAgAAAAA=</HashCode>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAgAAAAA=</HashCode>
       <FileName>Wrappers4ProperyGrid\UAModelDesignerSolutionWrapper.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -111,7 +100,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ServerSelector">
-    <Position X="21.5" Y="7" Width="3" />
+    <Position X="10.75" Y="13.5" Width="3" />
     <Compartments>
       <Compartment Name="Events" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
@@ -127,7 +116,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ServerWrapper">
-    <Position X="26" Y="7" Width="3" />
+    <Position X="6.75" Y="9.75" Width="3" />
     <TypeIdentifier />
     <ShowAsAssociation>
       <Property Name="PluginDescription" />
@@ -145,7 +134,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ConfigurationWrapper">
-    <Position X="30.5" Y="10" Width="2.25" />
+    <Position X="7" Y="12" Width="2.25" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
@@ -155,22 +144,16 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="System.IO.FileInfo" Collapsed="true">
-    <Position X="34.75" Y="7.75" Width="1.5" />
+    <Position X="7" Y="14" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.WrapperTreeNode">
-    <Position X="12.75" Y="4.5" Width="2.25" />
+    <Position X="1.5" Y="8.5" Width="2.25" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <NestedTypes>
-      <Class Name="CAS.UA.Model.Designer.Wrappers.WrapperTreeNode.TreeNode&lt;T&gt;" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Wrappers\WrapperTreeNode.cs</NewMemberFileName>
-        </TypeIdentifier>
-        <Lollipop Position="0.2" />
-      </Class>
       <Class Name="CAS.UA.Model.Designer.Wrappers.WrapperTreeNode.WrapperTreeNodeImodelNodeEnumerator" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>Wrappers\WrapperTreeNode.cs</NewMemberFileName>
@@ -179,13 +162,13 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>ACAAACCABEAAAEiTAAAAAAQgEQAACBAIBYAYCABAAAA=</HashCode>
+      <HashCode>ACAABCCABEAAAEiTAAAAAAQgEQAACBAIBYAYCABAAAA=</HashCode>
       <FileName>Wrappers\WrapperTreeNode.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="CAS.CommServer.UA.ModelDesigner.Configuration.IDataProviderDescription">
-    <Position X="30.5" Y="7" Width="2.25" />
+    <Position X="11" Y="9" Width="2.25" />
     <TypeIdentifier />
   </Interface>
   <Font Name="Segoe UI" Size="9" />

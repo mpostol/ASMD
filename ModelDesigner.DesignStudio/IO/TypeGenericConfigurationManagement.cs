@@ -1,17 +1,9 @@
-﻿//_______________________________________________________________
-//  Title   : Class to save and restore  data  to/from external file.
-//  System  : Microsoft VisualStudio 2015 / C#
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2017, CAS LODZ POLAND.
-//  TEL: +48 608 61 98 99 
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.ImportExport;
@@ -32,6 +24,7 @@ namespace CAS.UA.Model.Designer.IO
     where Type4Serialization : class, new()
   {
     #region private
+    private bool m_Empty = true;
     private void Save(XmlFile.DataToSerialize<Type4Serialization> cd)
     {
       BeforeWrite?.Invoke(this, new StringEventArgs(DefaultFileName));
@@ -77,8 +70,7 @@ namespace CAS.UA.Model.Designer.IO
     #endregion private
 
     #region constructors
-    public TypeGenericConfigurationManagement(IGraphicalUserInterface graphicalUserInterface) : base(graphicalUserInterface)
-    { }
+    public TypeGenericConfigurationManagement(IGraphicalUserInterface graphicalUserInterface, string fileName) : base(graphicalUserInterface, fileName) { }
     #endregion
 
     #region ConfigurationManagement
@@ -178,7 +170,6 @@ namespace CAS.UA.Model.Designer.IO
         m_Model = ReadConfiguration();
       else
       {
-        DefaultDirectory = Path.GetDirectoryName(FileName);
         try { m_Model = ReadConfiguration(FileName); }
         catch { m_Model = null; }
       }
@@ -204,26 +195,13 @@ namespace CAS.UA.Model.Designer.IO
       FileInfo info = new FileInfo(fileName);
       if (!info.Exists)
         throw new FileNotFoundException(fileName);
-      DefaultFileName = fileName;
-      Type4Serialization _return = XmlFile.ReadXmlFile<Type4Serialization>(fileName);
-      DefaultFileName = fileName;
-      m_Empty = false;
-      return _return;
-    }
-    /// <summary>
-    /// Open dialog box to select the file and deserialize an instance of <typeparamref name="Type4Serialization"/>.
-    /// </summary>
-    /// <returns>The configuration retrieved from a file.</returns>
-    internal Type4Serialization ReadConfiguration()
-    {
-      if (!ShowDialogOpenFileDialog())
-        return null;
       try
       {
         Application.UseWaitCursor = true;
-        Type4Serialization _node = ReadConfiguration(DefaultFileName);
+        Type4Serialization _return = XmlFile.ReadXmlFile<Type4Serialization>(fileName);
+        DefaultFileName = fileName;
         m_Empty = false;
-        return _node;
+        return _return;
       }
       catch (InvalidOperationException _ioe)
       {
@@ -239,6 +217,16 @@ namespace CAS.UA.Model.Designer.IO
       {
         Application.UseWaitCursor = false;
       }
+    }
+    /// <summary>
+    /// Open dialog box to select the file and deserialize an instance of <typeparamref name="Type4Serialization"/>.
+    /// </summary>
+    /// <returns>The configuration retrieved from a file.</returns>
+    internal Type4Serialization ReadConfiguration()
+    {
+      if (!ShowDialogOpenFileDialog())
+        return null;
+      return ReadConfiguration(DefaultFileName);
     }
     /// <summary>
     /// Save configuration in an external dictionary file. 

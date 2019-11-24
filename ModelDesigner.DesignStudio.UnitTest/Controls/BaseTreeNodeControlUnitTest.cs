@@ -21,7 +21,11 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
     {
       TreeNodesFactory.Factory = new FactoryFixture();
     }
-
+    [TestCleanup]
+    public void MyTestCleanup()
+    {
+      TreeNodesFactory.ResetSingleton();
+    }
     #region test methods
     [TestMethod]
     public void ConstructorTest()

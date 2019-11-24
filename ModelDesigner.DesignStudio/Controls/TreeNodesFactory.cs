@@ -73,5 +73,13 @@ namespace CAS.UA.Model.Designer.Controls
         return _ret;
       }
     }
+
+    #region Debug Instrumentation
+    [System.Diagnostics.Conditional("DEBUG")]
+    internal static void ResetSingleton()
+    {
+      Factory = new InternalTreeNodesFactory();
+    }
+    #endregion
   }
 }

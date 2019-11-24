@@ -7,37 +7,36 @@
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.Properties;
 using System;
+using System.IO;
 
 namespace CAS.UA.Model.Designer.IO
 {
+  internal enum ConfigurationType
+  {
+    Project, Solution
+  }
   /// <summary>
-  /// Class to save and restore data to/from external  file. 
+  /// Class to save and restore data to/from external file.
   /// This is base class and now it provides only common menu and file dialogs.
   /// </summary>
-  internal abstract partial class ConfigurationManagement : IDisposable//: Component
+  internal abstract class ConfigurationManagement
   {
 
     #region constructors
     /// <summary>
     /// Initializes a new instance of the <see cref="ConfigurationManagement"/> class.
     /// </summary>
-    public ConfigurationManagement(IGraphicalUserInterface graphicalUserInterface)
+    public ConfigurationManagement(IGraphicalUserInterface graphicalUserInterface, string fileName)
     {
       m_GraphicalUserInterface = graphicalUserInterface;
       InitializeComponent();
+      DefaultFileName = fileName;
     }
     #endregion
 
     #region public
-    public string DefaultDirectory
-    {
-      set
-      {
-        m_OpenFileDialog.InitialDirectory = value;
-        m_SaveFileDialog.InitialDirectory = value;
-      }
-      get => m_OpenFileDialog.InitialDirectory;
-    }
+    public abstract ConfigurationType ConfigurationType { get; }
+    public string DefaultDirectory => Path.GetDirectoryName(DefaultFileName);
     /// <summary>
     /// Gets or sets the default name of the file.
     /// </summary>
@@ -46,11 +45,12 @@ namespace CAS.UA.Model.Designer.IO
     {
       set
       {
-        m_OpenFileDialog.FileName = value;
-        m_SaveFileDialog.FileName = value;
+        if (m_FileName == value)
+          return;
+        m_FileName = value;
         RaiseDefaultFileNameHasChanged();
       }
-      get => m_OpenFileDialog.FileName;
+      get => m_FileName;
     }
     /// <summary>
     /// Occurs when default file name has been changed.
@@ -106,7 +106,7 @@ namespace CAS.UA.Model.Designer.IO
     {
       if (ChangesArePresent)
         return m_GraphicalUserInterface.MessageBoxShowWarningAskYN(
-          Resources.ConfigurationManagementQuestionAboutContinuationIfChangesArePresent, 
+          Resources.ConfigurationManagementQuestionAboutContinuationIfChangesArePresent,
           Resources.ConfigurationManagementQuestionAboutContinuationIfChangesArePresentTitle);
       else
         return true;
@@ -116,8 +116,6 @@ namespace CAS.UA.Model.Designer.IO
     #region private
     //var
     private IGraphicalUserInterface m_GraphicalUserInterface;
-    private IFileDialog m_OpenFileDialog;
-    private IFileDialog m_SaveFileDialog;
     //private System.Windows.Forms.ToolStripMenuItem m_TSMI_Open;
     //private System.Windows.Forms.ToolStripMenuItem m_TSMI_Save;
     //private System.Windows.Forms.ToolStripMenuItem m_TSMI_SaveAs;
@@ -128,42 +126,52 @@ namespace CAS.UA.Model.Designer.IO
       ChangesArePresentHasChanged?.Invoke(this, EventArgs.Empty);
     }
     private bool m_ChangesArePresent = false;
-    protected bool m_Empty = true;
+    private string m_FileName;
+
     private void RaiseDefaultFileNameHasChanged()
     {
       DefaultFileNameHasChanged?.Invoke(this, EventArgs.Empty);
     }
-    protected void UpdateSettingsOpenFileDialog(string FileDialogDefaultExt, string FileDialogDefaultFilename, string FileDialogFilter, string FileDialogTitle)
-    {
-      this.m_OpenFileDialog.DefaultExt = FileDialogDefaultExt;
-      this.m_OpenFileDialog.FileName = FileDialogDefaultFilename;
-      this.m_OpenFileDialog.Filter = FileDialogFilter;
-      this.m_OpenFileDialog.Title = FileDialogTitle;
-    }
-    protected void UpdateSettingsSaveFileDialog(string FileDialogDefaultExt, string FileDialogDefaultFilename, string FileDialogFilter, string FileDialogTitle)
-    {
-      this.m_SaveFileDialog.DefaultExt = FileDialogDefaultExt;
-      this.m_SaveFileDialog.FileName = FileDialogDefaultFilename;
-      this.m_SaveFileDialog.Filter = FileDialogFilter;
-      this.m_SaveFileDialog.Title = FileDialogTitle;
-    }
     protected bool ShowDialogOpenFileDialog()
     {
-      bool _ret = m_OpenFileDialog.ShowDialog();
-      if (_ret)
+      using (IFileDialog _dialog = m_GraphicalUserInterface.OpenFileDialogFunc())
       {
-        DefaultFileName = m_OpenFileDialog.FileName;
+        SetupFileDialog(_dialog);
+        bool _ret = _dialog.ShowDialog();
+        if (_ret)
+          DefaultFileName = _dialog.FileName;
+        return _ret;
       }
-      return _ret;
     }
     protected bool ShowDialogSaveFileDialog()
     {
-      bool ret = m_SaveFileDialog.ShowDialog();
-      if (ret)
+      using (IFileDialog _dialog = m_GraphicalUserInterface.SaveFileDialogFuc())
       {
-        DefaultFileName = m_SaveFileDialog.FileName;
+        SetupFileDialog(_dialog);
+        bool _ret = _dialog.ShowDialog();
+        if (_ret)
+          DefaultFileName = _dialog.FileName;
+        return _ret;
       }
-      return ret;
+    }
+    private void SetupFileDialog(IFileDialog _dialog)
+    {
+      _dialog.FileName = this.DefaultFileName;
+      switch (ConfigurationType)
+      {
+        case ConfigurationType.Project:
+          _dialog.DefaultExt = Resources.Project_FileDialogDefaultExt;
+          _dialog.Filter = Resources.Project_FileDialogFilter;
+          _dialog.Title = Resources.Project_FileDialogTitle;
+          break;
+        case ConfigurationType.Solution:
+          _dialog.DefaultExt = Resources.Solution_FileDialogDefaultExt;
+          _dialog.Filter = Resources.Solution_FileDialogFilter;
+          _dialog.Title = Resources.Solution_FileDialogTitle;
+          break;
+        default:
+          break;
+      }
     }
 
     #region menu handlers
@@ -210,29 +218,12 @@ namespace CAS.UA.Model.Designer.IO
     private void InitializeComponent()
     {
       //  this.components = new System.ComponentModel.Container();
-      this.m_OpenFileDialog = m_GraphicalUserInterface.OpenFileDialogFunc();
-      this.m_SaveFileDialog = m_GraphicalUserInterface.SaveFileDialogFuc();
       //  this.m_ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
       //  this.m_TSMI_New = new System.Windows.Forms.ToolStripMenuItem();
       //  this.m_TSMI_Open = new System.Windows.Forms.ToolStripMenuItem();
       //  this.m_TSMI_Save = new System.Windows.Forms.ToolStripMenuItem();
       //  this.m_TSMI_SaveAs = new System.Windows.Forms.ToolStripMenuItem();
       //  this.m_ContextMenuStrip.SuspendLayout();
-      // 
-      // m_OpenFileDialog
-      // 
-      this.m_OpenFileDialog.DefaultExt = "xml";
-      this.m_OpenFileDialog.FileName = "UAAddressSpaceModel";
-      this.m_OpenFileDialog.Filter = "XML Configuration File (* .xml)|*.xml|All files(*.*)|*.*";
-      this.m_OpenFileDialog.Title = "UA Address Space Model";
-      // 
-      // m_SaveFileDialog
-      // 
-      this.m_SaveFileDialog.DefaultExt = "xml";
-      this.m_SaveFileDialog.FileName = "UAAddressSpaceModel";
-      this.m_SaveFileDialog.Filter = "XML Configuration File (* .xml)|*.xml|All files(*.*)|*.*";
-      //this.m_SaveFileDialog.SupportMultiDottedExtensions = true;
-      this.m_SaveFileDialog.Title = "UA Address Space Model";
       //  // 
       //  // m_ContextMenuStrip
       //  // 
@@ -286,31 +277,6 @@ namespace CAS.UA.Model.Designer.IO
     }
     #endregion
 
-    #endregion
-
-    #region IDisposable Support
-    private bool disposedValue = false; // To detect redundant calls
-    /// <summary>
-    /// Releases unmanaged and - optionally - managed resources.
-    /// </summary>
-    /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-    protected virtual void Dispose(bool disposing)
-    {
-      if (disposedValue)
-        return;
-      if (disposing)
-      {
-        if (m_OpenFileDialog != null) m_OpenFileDialog.Dispose();
-        if (m_SaveFileDialog != null) m_SaveFileDialog.Dispose();
-      }
-      disposedValue = true;
-    }
-    // This code added to correctly implement the disposable pattern.
-    public void Dispose()
-    {
-      // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-      Dispose(true);
-    }
     #endregion
 
   }

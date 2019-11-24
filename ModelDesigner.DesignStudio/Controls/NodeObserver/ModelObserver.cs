@@ -96,7 +96,10 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     }
     private void AddSolution(UAModelDesignerSolution uAModelDesignerSolution)
     {
-      SolutionTreeNode newSolution = new SolutionTreeNode(uAModelDesignerSolution, OPCFSolutionConfigurationManagement.DefaultInstance.DefaultDirectory, (x, y) => OPCFSolutionConfigurationManagement.DefaultInstance.SetChangesArePresent());
+      SolutionTreeNode newSolution = new SolutionTreeNode
+        (uAModelDesignerSolution,
+        OPCFSolutionConfigurationManagement.DefaultInstance.DefaultDirectory,
+        (x, y) => OPCFSolutionConfigurationManagement.DefaultInstance.SetChangesArePresent());
       SolutionTreeNodeControl _solutionRootTreeNode = new SolutionTreeNodeControl(newSolution);
       newSolution.OnDataChanged += new EventHandler<EventArgs>(Solution_OnDataChanged);
       m_TreeView.AddSolution(_solutionRootTreeNode);
