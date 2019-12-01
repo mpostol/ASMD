@@ -300,7 +300,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 173, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, Resources.AssemblyLoadErropr));
         return;
       }
-      ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, _assembly, GraphicalUserInterface, configuration);
+      ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, _assembly, GraphicalUserInterface, solutionPath, configuration);
       //It must be last statement because ir raises an event using all properties.
       SelectedAssembly = newSelectedAssembly;
     }
@@ -311,7 +311,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       {
         using (IFileDialog _ofg = GraphicalUserInterface.OpenFileDialogFunc())
         {
-          string _baseDirectory = BaseDirectoryHelper.Instance.GetBaseDirectory();
+          string _baseDirectory = BaseDirectoryHelper.Instance.GetBaseDirectory(); //Problem with opening the server configuration editor plug-in #63
           if (!string.IsNullOrEmpty(_baseDirectory))
             _ofg.InitialDirectory = _baseDirectory;
           if (server != null && server.PluginDescription != null)
