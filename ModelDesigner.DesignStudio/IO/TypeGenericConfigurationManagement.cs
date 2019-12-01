@@ -175,6 +175,7 @@ namespace CAS.UA.Model.Designer.IO
       }
       if (m_Model == null)
         return false;
+      //TODO Problem with opening the server configuration editor plug-in #63 
       RaiseConfigurationChanged(m_Model);
       ChangesArePresent = false;
       return true;

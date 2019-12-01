@@ -144,7 +144,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Gets or sets detailed information on localization of the plug-in and configuration file.
     /// </summary>
     /// <value>The server descriptor.</value>
-    internal ServerSelector.ServerDescriptor ServerDetails
+    private ServerSelector.ServerDescriptor ServerDetails
     {
       set => Server.ServerConfiguration = value;
       get

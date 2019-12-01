@@ -119,6 +119,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       }
       set
       {
+        //TODO Problem with opening the server configuration editor plug-in #63
         if (value == null || String.IsNullOrEmpty(value.codebase))
           return;
         FileInfo _info = null;
@@ -293,6 +294,13 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       {
         return UITypeEditorEditStyle.Modal;
       }
+      /// <summary>
+      /// Edits the specified object's value using the editor style indicated by the <see cref="M:System.Drawing.Design.UITypeEditor.GetEditStyle" /> method.
+      /// </summary>
+      /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext" /> that can be used to gain additional context information.</param>
+      /// <param name="provider">An <see cref="T:System.IServiceProvider" /> that this editor can use to obtain services.</param>
+      /// <param name="value">The object to edit.</param>
+      /// <returns>The new value of the object. If the value of the object has not changed, this should return the same object it was passed.</returns>
       public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
       {
         return OpenPlugInAssembly(value as ServerWrapper, m_GraphicalUserInterface);
