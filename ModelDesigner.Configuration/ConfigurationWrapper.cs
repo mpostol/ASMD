@@ -1,17 +1,9 @@
-﻿//<summary>
-//  Title   : ConfigurationWrapper class is to be used as user interface in the <see cref="System.Windows.Forms.PropertyGrid"/>.
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2009, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 
 using CAS.CommServer.UA.ModelDesigner.Configuration.Properties;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;

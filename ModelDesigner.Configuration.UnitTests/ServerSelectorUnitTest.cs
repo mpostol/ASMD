@@ -19,25 +19,24 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     [TestMethod]
     public void ServerSelectorCreatorTest()
     {
-      ServerSelector _nss = new ServerSelector();
+      TestGraphicalUserInterface _tg = new TestGraphicalUserInterface();
+      ServerSelector _nss = new ServerSelector(_tg, "", "", "");
       Assert.IsNull(_nss.SelectedAssembly);
       Assert.IsNull(_nss.ServerConfiguration);
-      Assert.IsNull(_nss.GetIServerConfiguration());
+      Assert.IsNull(_nss.IServerConfiguration);
     }
     [TestMethod]
     public void ServerConfigurationNullTest()
     {
       TestGraphicalUserInterface _tg = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector() { GraphicalUserInterface = _tg };
-      _nss.ServerConfiguration = null;
+      ServerSelector _nss = new ServerSelector(_tg, "", "", "");
       Assert.IsFalse(_tg.WarningCalled);
     }
     [TestMethod]
     public void ServerConfigurationWrongAssemblyTest()
     {
       TestGraphicalUserInterface _tgi = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector() { GraphicalUserInterface = _tgi };
-      _nss.ServerConfiguration = new ServerSelector.ServerDescriptor() { codebase = "wrong.codebase", configuration = "wrong.configuration" };
+      ServerSelector _nss = new ServerSelector(_tgi, "wrong_path", "wrong.codebase", "wrong.configuration");
       Assert.IsTrue(_tgi.WarningCalled);
       Assert.IsTrue(_tgi.WarningMessage.Contains("wrong.codebase"));
       Assert.AreEqual<string>("Open configuration editor", _tgi.WarningCaption);
@@ -49,8 +48,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       Assert.IsNotNull(_directoryManager);
       Assert.AreEqual<string>("", _directoryManager.GetBaseDirectory());
       TestGraphicalUserInterface _ui = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector() { GraphicalUserInterface = _ui };
-      _nss.ServerConfiguration = new ServerSelector.ServerDescriptor() { codebase = "CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll", configuration = "" };
+      ServerSelector _nss = new ServerSelector(_ui, "wrong_path", "CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll", "");
       Assert.AreEqual<int>(2, _ui.ExclamationCallCount);
       Assert.AreEqual<int>(0, _ui.ErrorCallCount);
       Assert.AreEqual<int>(0, _ui.OpenFileDialog4UnitTestAssertErrors);
@@ -64,8 +62,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     public void EmptyServerDescriptorTest()
     {
       TestGraphicalUserInterface _ui = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector() { GraphicalUserInterface = _ui };
-      _nss.ServerConfiguration = new ServerSelector.ServerDescriptor() { codebase = String.Empty, configuration = String.Empty };
+      ServerSelector _nss = new ServerSelector(_ui, string.Empty, string.Empty, string.Empty);
       Assert.IsFalse(_ui.WarningCalled);
     }
 
@@ -73,7 +70,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     private class OpenFileDialog4UnitTest : IFileDialog
     {
       private string m_DefaultExt;
-      private Action m_ReportAssertError;
+      private readonly Action m_ReportAssertError;
       public OpenFileDialog4UnitTest(Action reportAssertError)
       {
         if (reportAssertError == null)
@@ -86,10 +83,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       /// <value>The default file name extension. The returned string does not include the period. The default value is an empty string ("")</value>
       public string DefaultExt
       {
-        get
-        {
-          return m_DefaultExt;
-        }
+        get => m_DefaultExt;
         set
         {
           m_DefaultExt = value.Replace(".", "");
@@ -99,22 +93,16 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       }
       public string FileName
       {
-        get
-        {
-          throw new NotImplementedException();
-        }
+        get => throw new NotImplementedException();
         set
         {
-          if (String.Compare("CAS.UAServer.Configuration", value) != 0)
+          if (string.Compare("CAS.UAServer.Configuration", value) != 0)
             m_ReportAssertError();
         }
       }
       public string Filter
       {
-        get
-        {
-          throw new NotImplementedException();
-        }
+        get => throw new NotImplementedException();
         set
         {
           if (string.Compare(@"Configuration (* .uasconfig)|*.uasconfig|(* .xml)|*.xml|All files (*.*)|*.*", value) != 0)
@@ -123,22 +111,13 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       }
       public string InitialDirectory
       {
-        get
-        {
-          throw new NotImplementedException();
-        }
+        get => throw new NotImplementedException();
 
-        set
-        {
-          throw new NotImplementedException();
-        }
+        set => throw new NotImplementedException();
       }
       public string Title
       {
-        get
-        {
-          throw new NotImplementedException();
-        }
+        get => throw new NotImplementedException();
         set
         {
           if (string.Compare("UA Server configuration file", value) != 0)
@@ -155,14 +134,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     {
       public string SelectedPath
       {
-        get
-        {
-          return Environment.CurrentDirectory;
-        }
-        set
-        {
-          throw new NotImplementedException();
-        }
+        get => Environment.CurrentDirectory;
+        set => throw new NotImplementedException();
       }
       public void Dispose() { }
       public bool ShowDialog() { return false; }
@@ -195,34 +168,10 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
         get;
         private set;
       }
-      public Action<string, string> MessageBoxShowExclamation
-      {
-        get
-        {
-          return (x, y) => { ExclamationCaption.Add(y); ExclamationMessage.Add(x); ExclamationCallCount++; };
-        }
-      }
-      public Action<string, string> MessageBoxShowError
-      {
-        get
-        {
-          return (x, y) => { ErrorCaption.Add(y); ErrorMessage.Add(x); ErrorCallCount++; };
-        }
-      }
-      public Func<IFileDialog> SaveFileDialogFuc
-      {
-        get
-        {
-          throw new NotImplementedException();
-        }
-      }
-      public Func<IFolderBrowserDialog> OpenFolderBrowserDialogFunc
-      {
-        get
-        {
-          return () => new FolderBrowserDialog();
-        }
-      }
+      public Action<string, string> MessageBoxShowExclamation => (x, y) => { ExclamationCaption.Add(y); ExclamationMessage.Add(x); ExclamationCallCount++; };
+      public Action<string, string> MessageBoxShowError => (x, y) => { ErrorCaption.Add(y); ErrorMessage.Add(x); ErrorCallCount++; };
+      public Func<IFileDialog> SaveFileDialogFuc => throw new NotImplementedException();
+      public Func<IFolderBrowserDialog> OpenFolderBrowserDialogFunc => () => new FolderBrowserDialog();
       public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
       public bool UseWaitCursor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
       private void MessageBoxShowMethod(string text, string caption)

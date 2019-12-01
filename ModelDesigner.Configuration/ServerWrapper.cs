@@ -1,17 +1,9 @@
-﻿//<summary>
-//  Title   : Server Wrapper to be used by a <see cref="PropertyGrid"/>
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 
 using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
@@ -34,13 +26,13 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
   [DefaultProperty("Configuration")]
   public class ServerWrapper
   {
-    
+
     #region Public browsable properties
     /// <summary>
     /// Gets the simple name of the assembly form the <see cref="AssemblyName"/>. This is usually, but not necessarily, 
     /// the file name of the manifest file of the assembly, minus its extension.
     /// </summary>
-    /// <value>A <see cref="String"/> that is the simple name of the assembly.
+    /// <value>A <see cref="string"/> that is the simple name of the assembly.
     /// </value>
     #region Attributes
     [
@@ -51,7 +43,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
      NotifyParentProperty(true)
     ]
     #endregion
-    public IDataProviderDescription PluginDescription { get { return m_PluginDescription; } }
+    public IDataProviderDescription PluginDescription => m_PluginDescription;
     /// <summary>
     /// Gets or sets the configuration.
     /// </summary>
@@ -76,11 +68,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <param name="plugin">The interface to get access to the plugin.</param>
     /// <param name="assembly">An assembly containing the plug-in.</param>
     /// <param name="userInterface">The user interaction interface that provides basic functionality to implement user interactivity.</param>
-    public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface)
-    {
-      Initialize(plugin, assembly);
-      Configuration = new ConfigurationWrapper(null, m_Server, userInterface);
-    }
+    public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface) : this(plugin, assembly, userInterface, string.Empty) { }
     /// <summary>
     /// Initializes a new instance of the <see cref="ServerWrapper" /> class.
     /// </summary>
@@ -88,16 +76,22 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <param name="assembly">TAn assembly containing the plug-in.</param>
     /// <param name="userInterface">The user interaction interface that provides basic functionality to implement user interactivity.</param>
     /// <param name="configuration">The file path containing the configuration.</param>
-    public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface, string configuration)
+    public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface, string configuration) : this(plugin, assembly, userInterface, BaseDirectoryHelper.Instance.GetBaseDirectory(), configuration) { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ServerWrapper" /> class.
+    /// </summary>
+    /// <param name="plugin">he interface to get access to the plugin.</param>
+    /// <param name="assembly">TAn assembly containing the plug-in.</param>
+    /// <param name="userInterface">The user interaction interface that provides basic functionality to implement user interactivity.</param>
+    /// <param name="solutionPath">The solution path.</param>
+    /// <param name="configuration">The file path containing the configuration.</param>
+    public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface, string solutionPath, string configuration)
     {
       Initialize(plugin, assembly);
       FileInfo _file = null;
-      if (!String.IsNullOrEmpty(configuration))
+      if (!string.IsNullOrEmpty(configuration))
         if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(configuration))
-        {
-          string _dir = BaseDirectoryHelper.Instance.GetBaseDirectory();
-          _file = new FileInfo(Path.Combine(_dir, configuration));
-        }
+          _file = new FileInfo(Path.Combine(solutionPath, configuration));
         else
           _file = new FileInfo(configuration);
       if (_file == null)
@@ -205,6 +199,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     }
     private IDataProviderDescription m_PluginDescription;
     private IConfiguration m_Server;
+    private readonly string configuration1;
+
     private void Initialize(IConfiguration plugin, Assembly assembly)
     {
       m_Server = plugin;

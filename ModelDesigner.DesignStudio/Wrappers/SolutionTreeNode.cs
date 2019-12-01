@@ -6,6 +6,7 @@
 
 using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration;
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.Lib.RTLib.Utils;
 using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.IO;
@@ -68,32 +69,45 @@ namespace CAS.UA.Model.Designer.Wrappers
           _nodes.Add(_newProject);
       }
       this.AddRange(_nodes);
-      //foreach (var node in nodes) //AddRange does the same
-      //  Add(node);
     }
     private UAModelDesignerSolution SaveProjectsCreateConfiguration()
     {
       Server.Save(HomeDirectory);
-      List<ProjectTreeNode> nodes = new List<ProjectTreeNode>();
+      List<ProjectTreeNode> _ListOfProjects = new List<ProjectTreeNode>();
       foreach (ProjectTreeNode _project in this)
-      {
         if (_project.Save())
-          nodes.Add(_project.CloneProject());
-      }
-      this.AddRange(nodes);
+          _ListOfProjects.Add(_project.CloneProject());
       this.Clear();
-      this.AddRange(nodes);
+      this.AddRange(_ListOfProjects);
       return new UAModelDesignerSolution()
       {
         Name = this.Name,
         Projects = this.Cast<ProjectTreeNode>().Select<ProjectTreeNode, UAModelDesignerProject>(x => x.UAModelDesignerProject).ToArray<UAModelDesignerProject>(),
-        ServerDetails = this.ServerDetails == null ? null : new UAModelDesignerSolutionServerDetails() { codebase = ServerDetails.codebase, configuration = ServerDetails.configuration }
+        ServerDetails = this.ServerDetails == null ? null : new UAModelDesignerSolutionServerDetails() { codebase = ServerDetails.Codebase, configuration = ServerDetails.Configuration }
       };
     }
     private void Server_OnConfigurationChanged(object sender, UAServerConfigurationEventArgs e)
     {
       if (e.ConfigurationFileChanged)
         this.RaiseSubtreeChanged();
+    }
+    /// <summary>
+    /// Gets or sets detailed information on localization of the plug-in and configuration file.
+    /// </summary>
+    /// <value>The server descriptor.</value>
+    private ServerSelector.ServerDescriptor ServerDetails
+    {
+      get
+      {
+        ServerSelector.ServerDescriptor _descriptor = Server.ServerConfiguration;
+        if (_descriptor == null)
+          return null;
+        if (!string.IsNullOrEmpty(_descriptor.Codebase))
+          _descriptor.Codebase = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.Codebase); //TODO Problem with opening the server configuration editor plug-in #63 - must refer to the plugin directory.
+        if (!string.IsNullOrEmpty(_descriptor.Configuration))
+          _descriptor.Configuration = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.Configuration);
+        return _descriptor;
+      }
     }
     #endregion
 
@@ -107,10 +121,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     internal SolutionTreeNode(UAModelDesignerSolution configuration, string solutionPath, EventHandler<EventArgs> OnChangeHandler)
       : base(null, configuration.Name)
     {
-      HomeDirectory = solutionPath; //TODO must be managed by IO 
       if (configuration == null)
         throw new ArgumentNullException("configuration");
-      Server = new ServerSelector() { ServerConfiguration = new ServerSelector.ServerDescriptor() { codebase = configuration.ServerDetails.codebase, configuration = configuration.ServerDetails.configuration } };
+      HomeDirectory = solutionPath; //TODO Problem with opening the server configuration editor plug-in #63 must be managed by IO 
+      Server = new ServerSelector(new GraphicalUserInterface(), solutionPath, configuration.ServerDetails.codebase, configuration.ServerDetails.configuration);
       Server.OnConfigurationChanged += new EventHandler<UAServerConfigurationEventArgs>(Server_OnConfigurationChanged);
       //TODO OnDataChanged += OnChangeHandler;
       //TODO OnNameChanged += new EventHandler(configuration_OnNameChanged);
@@ -140,25 +154,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region public
-    /// <summary>
-    /// Gets or sets detailed information on localization of the plug-in and configuration file.
-    /// </summary>
-    /// <value>The server descriptor.</value>
-    internal ServerSelector.ServerDescriptor ServerDetails
-    {
-      set => Server.ServerConfiguration = value;
-      get
-      {
-        ServerSelector.ServerDescriptor _descriptor = Server.ServerConfiguration;
-        if (_descriptor == null)
-          return null;
-        if (!string.IsNullOrEmpty(_descriptor.codebase))
-          _descriptor.codebase = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.codebase); //TODO must refer to the plugin directory.
-        if (!string.IsNullOrEmpty(_descriptor.configuration))
-          _descriptor.configuration = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.configuration);
-        return _descriptor;
-      }
-    }
     internal ServerSelector Server { get; private set; }
     /// <summary>
     /// Builds the solution and write any massages to specified output.
@@ -191,7 +186,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return Server.GetInstanceConfiguration(nodeUniqueIdentifier);
     }
-    internal string HomeDirectory { get; private set; }  //TODO to be moved to IO
+    internal string HomeDirectory { get; private set; }  //TODO Problem with opening the server configuration editor plug-in #63 -  to be moved to IO
     #endregion
 
     #region ISolutionModel
@@ -249,7 +244,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
     protected override void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
     {
-      IConfiguration svr = Server.GetIServerConfiguration();
+      IConfiguration svr = Server.IServerConfiguration;
       if (svr == null)
       {
         CancelWasPressed = SkipOpeningConfigurationFile;
