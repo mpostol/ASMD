@@ -64,7 +64,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <summary>
     /// Initializes a new instance of the <see cref="ServerSelector"/> class.
     /// </summary>
-    public ServerSelector() { LicenseProtection.CheckConstrain(); }
+    public ServerSelector(IGraphicalUserInterface _graphicalUserInterface, string solutionPath, string codebase, string configuration)
+    {
+      GraphicalUserInterface = _graphicalUserInterface ?? throw new ArgumentNullException(nameof(_graphicalUserInterface));
+      this.ServerConfiguration = new ServerDescriptor() { Codebase = codebase, Configuration = configuration };
+      LicenseProtection.CheckConstrain();
+    }
     #endregion
 
     #region public
@@ -76,11 +81,11 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       /// <summary>
       /// Codebase file path
       /// </summary>
-      public string codebase;
+      public string Codebase;
       /// <summary>
       /// Server configuration file path.
       /// </summary>
-      public string configuration;
+      public string Configuration;
       /// <summary>
       /// Returns a <see cref="T:System.String"/> that represents the current instance.
       /// </summary>
@@ -89,7 +94,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       /// </returns>
       public override string ToString()
       {
-        return codebase + " : " + configuration;
+        return Codebase + " : " + Configuration;
       }
     }
     /// <summary>
@@ -110,41 +115,41 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         ServerDescriptor ret = null;
         if (this.SelectedAssembly == null)
           return ret;
-        ret = new ServerDescriptor() { configuration = null };
-        ret.codebase = SelectedAssembly.PluginDescription.CodeBase;
+        ret = new ServerDescriptor() { Configuration = null };
+        ret.Codebase = SelectedAssembly.PluginDescription.CodeBase;
         if (SelectedAssembly.Configuration == null || SelectedAssembly.Configuration.ConfigurationFile == null)
           return ret;
-        ret.configuration = SelectedAssembly.Configuration.ConfigurationFile.FullName;
+        ret.Configuration = SelectedAssembly.Configuration.ConfigurationFile.FullName;
         return ret;
       }
       set
       {
         //TODO Problem with opening the server configuration editor plug-in #63
-        if (value == null || String.IsNullOrEmpty(value.codebase))
+        if (value == null || String.IsNullOrEmpty(value.Codebase))
           return;
         FileInfo _info = null;
         //ModelDesigner is trying to open plugin DLL from Solution directory or application binaries directory or current directory
-        if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(value.codebase))
+        if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(value.Codebase))
         {
           string _baseDirectory = BaseDirectoryHelper.Instance.GetBaseDirectory();
-          _info = new FileInfo(Path.Combine(_baseDirectory, value.codebase));
+          _info = new FileInfo(Path.Combine(_baseDirectory, value.Codebase));
           if (!_info.Exists && !string.IsNullOrEmpty(Assembly.GetExecutingAssembly().Location))
           {
             _baseDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            _info = new FileInfo(Path.Combine(_baseDirectory, value.codebase));
+            _info = new FileInfo(Path.Combine(_baseDirectory, value.Codebase));
           }
           if (!_info.Exists)
             _info = null;
         }
         else
         {
-          _info = new FileInfo(value.codebase);
+          _info = new FileInfo(value.Codebase);
         }
         if (_info == null)
-          _info = new FileInfo(value.codebase);
+          _info = new FileInfo(value.Codebase);
         if (!_info.Exists)
         {
-          string _mss = string.Format(Resources.CASConfiguration_MessageBox_plugin_file_exception, value.codebase);
+          string _mss = string.Format(Resources.CASConfiguration_MessageBox_plugin_file_exception, value.Codebase);
           GraphicalUserInterface.MessageBoxShowWarning(_mss, Resources.OpenPluginTitle);
           TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 155, "ServerSelector", _mss);
           return;
@@ -167,7 +172,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
           TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 173, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, Resources.AssemblyLoadErropr));
           return;
         }
-        ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, _assembly, GraphicalUserInterface, value.configuration);
+        ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, _assembly, GraphicalUserInterface, value.Configuration);
         //It must be last statement because ir raises an event using all properties. 
         SelectedAssembly = newSelectedAssembly;
       }
@@ -245,17 +250,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         return;
       SelectedAssembly.SetHomeDirectory(newHomeDirectory);
     }
-    #endregion
-
-    #region UT instrumentation
-    /// <summary>
-    /// Gets or sets the message box show delegate.
-    /// </summary>
-    /// <remarks>
-    /// Unit Test helper to replace the UI by a test method.
-    /// </remarks>
-    /// <value>The message box show.</value>
-    internal IGraphicalUserInterface GraphicalUserInterface { private get; set; } = new GraphicalUserInterface();
     #endregion
 
     #region private
@@ -378,6 +372,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     {
       RaiseOnConfigurationChanged(e.ConfigurationFileChanged);
     }
+    private IGraphicalUserInterface GraphicalUserInterface { get; set; }
 
     #region event handlers
     private void OnChangeHandler(object s, EventArgs arg)
