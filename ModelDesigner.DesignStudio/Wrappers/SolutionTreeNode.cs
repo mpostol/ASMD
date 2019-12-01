@@ -97,7 +97,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <value>The server descriptor.</value>
     private ServerSelector.ServerDescriptor ServerDetails
     {
-      set => Server.ServerConfiguration = value;
       get
       {
         ServerSelector.ServerDescriptor _descriptor = Server.ServerConfiguration;
@@ -245,7 +244,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
     protected override void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
     {
-      IConfiguration svr = Server.GetIServerConfiguration();
+      IConfiguration svr = Server.IServerConfiguration;
       if (svr == null)
       {
         CancelWasPressed = SkipOpeningConfigurationFile;

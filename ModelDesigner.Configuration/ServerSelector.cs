@@ -46,7 +46,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     ]
     public ServerWrapper SelectedAssembly
     {
-      get { return m_Server; }
+      get => m_Server;
       set
       {
         if (m_Server == value)
@@ -67,7 +67,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     public ServerSelector(IGraphicalUserInterface _graphicalUserInterface, string solutionPath, string codebase, string configuration)
     {
       GraphicalUserInterface = _graphicalUserInterface ?? throw new ArgumentNullException(nameof(_graphicalUserInterface));
-      this.ServerConfiguration = new ServerDescriptor() { Codebase = codebase, Configuration = configuration };
+      SetPlugIn(solutionPath, codebase, configuration);
       LicenseProtection.CheckConstrain();
     }
     #endregion
@@ -112,69 +112,15 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     {
       get
       {
-        ServerDescriptor ret = null;
         if (this.SelectedAssembly == null)
-          return ret;
-        ret = new ServerDescriptor() { Configuration = null };
+          return null;
+        ServerDescriptor ret = null;
+        ret = new ServerDescriptor() { Configuration = String.Empty };
         ret.Codebase = SelectedAssembly.PluginDescription.CodeBase;
         if (SelectedAssembly.Configuration == null || SelectedAssembly.Configuration.ConfigurationFile == null)
           return ret;
         ret.Configuration = SelectedAssembly.Configuration.ConfigurationFile.FullName;
         return ret;
-      }
-      set
-      {
-        //TODO Problem with opening the server configuration editor plug-in #63
-        if (value == null || String.IsNullOrEmpty(value.Codebase))
-          return;
-        FileInfo _info = null;
-        //ModelDesigner is trying to open plugin DLL from Solution directory or application binaries directory or current directory
-        if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(value.Codebase))
-        {
-          string _baseDirectory = BaseDirectoryHelper.Instance.GetBaseDirectory();
-          _info = new FileInfo(Path.Combine(_baseDirectory, value.Codebase));
-          if (!_info.Exists && !string.IsNullOrEmpty(Assembly.GetExecutingAssembly().Location))
-          {
-            _baseDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            _info = new FileInfo(Path.Combine(_baseDirectory, value.Codebase));
-          }
-          if (!_info.Exists)
-            _info = null;
-        }
-        else
-        {
-          _info = new FileInfo(value.Codebase);
-        }
-        if (_info == null)
-          _info = new FileInfo(value.Codebase);
-        if (!_info.Exists)
-        {
-          string _mss = string.Format(Resources.CASConfiguration_MessageBox_plugin_file_exception, value.Codebase);
-          GraphicalUserInterface.MessageBoxShowWarning(_mss, Resources.OpenPluginTitle);
-          TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 155, "ServerSelector", _mss);
-          return;
-        }
-        Assembly _assembly;
-        IConfiguration _svrInterface;
-        try
-        {
-          GetIServerConfiguration(_info, out _assembly, out _svrInterface);
-        }
-        catch (Exception ex)
-        {
-          GraphicalUserInterface.MessageBoxShowWarning(ex.Message, Resources.OpenPluginTitle);
-          TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 167, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, ex.Message));
-          return;
-        }
-        if (_assembly == null || _svrInterface == null)
-        {
-          GraphicalUserInterface.MessageBoxShowWarning(Resources.AssemblyLoadErropr, Resources.OpenPluginTitle);
-          TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 173, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, Resources.AssemblyLoadErropr));
-          return;
-        }
-        ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, _assembly, GraphicalUserInterface, value.Configuration);
-        //It must be last statement because ir raises an event using all properties. 
-        SelectedAssembly = newSelectedAssembly;
       }
     }
     /// <summary>
@@ -199,10 +145,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// Gets the server configuration.
     /// </summary>
     /// <returns>An instance providing implementation of the <see cref="IConfiguration"/></returns>
-    public IConfiguration GetIServerConfiguration()
-    {
-      return SelectedAssembly == null ? null : SelectedAssembly.GetServerConfiguration();
-    }
+    public IConfiguration IServerConfiguration => SelectedAssembly?.GetServerConfiguration();
     /// <summary>
     /// Gets the plugin menu items.
     /// </summary>
@@ -297,17 +240,76 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       /// <returns>The new value of the object. If the value of the object has not changed, this should return the same object it was passed.</returns>
       public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
       {
-        return OpenPlugInAssembly(value as ServerWrapper, m_GraphicalUserInterface);
+        return OpenPlugInAssembly(value as ServerWrapper);
       }
       #endregion
-      private GraphicalUserInterface m_GraphicalUserInterface = new GraphicalUserInterface();
     }
-    private static ServerWrapper OpenPlugInAssembly(ServerWrapper server, IGraphicalUserInterface gui)
+    private ServerWrapper m_Server = null;
+    private static IGraphicalUserInterface GraphicalUserInterface;
+    //methods
+    private void RaiseOnConfigurationChanged(bool serverChanged)
+    {
+      OnConfigurationChanged?.Invoke(this, new UAServerConfigurationEventArgs(serverChanged));
+    }
+    private void SetPlugIn(string solutionPath, string codebase, string configuration)
+    {
+      //TODO Problem with opening the server configuration editor plug-in #63
+      if (string.IsNullOrEmpty(codebase))
+        return;
+      FileInfo _fileInfo = null;
+      //ModelDesigner is trying to open plugin DLL from Solution directory or application binaries directory or current directory
+      if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(codebase))
+      {
+        _fileInfo = new FileInfo(Path.Combine(solutionPath, codebase));
+        if (!_fileInfo.Exists && !string.IsNullOrEmpty(Assembly.GetExecutingAssembly().Location))
+        {
+          solutionPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+          _fileInfo = new FileInfo(Path.Combine(solutionPath, codebase));
+        }
+        if (!_fileInfo.Exists)
+          _fileInfo = null;
+      }
+      else
+      {
+        _fileInfo = new FileInfo(codebase);
+      }
+      if (_fileInfo == null)
+        _fileInfo = new FileInfo(codebase);
+      if (!_fileInfo.Exists)
+      {
+        string _mss = string.Format(Resources.CASConfiguration_MessageBox_plugin_file_exception, codebase);
+        GraphicalUserInterface.MessageBoxShowWarning(_mss, Resources.OpenPluginTitle);
+        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 155, "ServerSelector", _mss);
+        return;
+      }
+      Assembly _assembly;
+      IConfiguration _svrInterface;
+      try
+      {
+        GetIServerConfiguration(_fileInfo, out _assembly, out _svrInterface);
+      }
+      catch (Exception ex)
+      {
+        GraphicalUserInterface.MessageBoxShowWarning(ex.Message, Resources.OpenPluginTitle);
+        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 167, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, ex.Message));
+        return;
+      }
+      if (_assembly == null || _svrInterface == null)
+      {
+        GraphicalUserInterface.MessageBoxShowWarning(Resources.AssemblyLoadErropr, Resources.OpenPluginTitle);
+        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 173, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, Resources.AssemblyLoadErropr));
+        return;
+      }
+      ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, _assembly, GraphicalUserInterface, configuration);
+      //It must be last statement because ir raises an event using all properties.
+      SelectedAssembly = newSelectedAssembly;
+    }
+    private static ServerWrapper OpenPlugInAssembly(ServerWrapper server)
     {
       FileInfo info;
       do
       {
-        using (IFileDialog _ofg = gui.OpenFileDialogFunc())
+        using (IFileDialog _ofg = GraphicalUserInterface.OpenFileDialogFunc())
         {
           string _baseDirectory = BaseDirectoryHelper.Instance.GetBaseDirectory();
           if (!string.IsNullOrEmpty(_baseDirectory))
@@ -324,22 +326,20 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         {
           if (!info.Exists)
           {
-            gui.MessageBoxShowWarning(Resources.OpenPluginWarningNotExist, Resources.OpenPluginTitle);
+            GraphicalUserInterface.MessageBoxShowWarning(Resources.OpenPluginWarningNotExist, Resources.OpenPluginTitle);
             continue;
           }
-          Assembly _pluginAssembly;
-          IConfiguration _serverConfiguration;
-          GetIServerConfiguration(info, out _pluginAssembly, out _serverConfiguration);
+          GetIServerConfiguration(info, out Assembly _pluginAssembly, out IConfiguration _serverConfiguration);
           if (_serverConfiguration == null)
           {
-            gui.MessageBoxShowWarning(Resources.InterfaceNotImplemented, Resources.OpenPluginTitle);
+            GraphicalUserInterface.MessageBoxShowWarning(Resources.InterfaceNotImplemented, Resources.OpenPluginTitle);
             continue;
           }
-          server = new ServerWrapper(_serverConfiguration, _pluginAssembly, gui);
+          server = new ServerWrapper(_serverConfiguration, _pluginAssembly, GraphicalUserInterface);
         }
         catch (Exception ex)
         {
-          gui.MessageBoxShowWarning(ex.Message, Resources.OpenPluginTitle);
+          GraphicalUserInterface.MessageBoxShowWarning(ex.Message, Resources.OpenPluginTitle);
         }
       } while (false);
       return server;
@@ -358,23 +358,15 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
           }
           catch (TargetInvocationException _ex)
           {
-            throw new ApplicationException(String.Format("The server configuration plug-in {0}/{1} cannot be loaded. Contact the vendor to get current version of this component", pluginType.FullName, info.Name), _ex);
+            throw new ApplicationException(string.Format("The server configuration plug-in {0}/{1} cannot be loaded. Contact the vendor to get current version of this component", pluginType.FullName, info.Name), _ex);
           }
     }
-    private ServerWrapper m_Server = null;
-    private void RaiseOnConfigurationChanged(bool serverChanged)
-    {
-      if (OnConfigurationChanged == null)
-        return;
-      OnConfigurationChanged(this, new UAServerConfigurationEventArgs(serverChanged));
-    }
+
+    #region event handlers
     private void m_Server_OnConfigurationChanged(object sender, UAServerConfigurationEventArgs e)
     {
       RaiseOnConfigurationChanged(e.ConfigurationFileChanged);
     }
-    private IGraphicalUserInterface GraphicalUserInterface { get; set; }
-
-    #region event handlers
     private void OnChangeHandler(object s, EventArgs arg)
     {
       RaiseOnConfigurationChanged(false);
@@ -385,7 +377,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     }
     private void PluginMenuItemsOpen_Click(object sender, EventArgs e)
     {
-      SelectedAssembly = OpenPlugInAssembly(SelectedAssembly, GraphicalUserInterface);
+      SelectedAssembly = OpenPlugInAssembly(SelectedAssembly);
     }
     #endregion
 

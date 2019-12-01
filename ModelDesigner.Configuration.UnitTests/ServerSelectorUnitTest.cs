@@ -23,16 +23,13 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       ServerSelector _nss = new ServerSelector(_tg, "", "", "");
       Assert.IsNull(_nss.SelectedAssembly);
       Assert.IsNull(_nss.ServerConfiguration);
-      Assert.IsNull(_nss.GetIServerConfiguration());
+      Assert.IsNull(_nss.IServerConfiguration);
     }
     [TestMethod]
     public void ServerConfigurationNullTest()
     {
       TestGraphicalUserInterface _tg = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector(_tg, "", "", "")
-      {
-        ServerConfiguration = null
-      };
+      ServerSelector _nss = new ServerSelector(_tg, "", "", "");
       Assert.IsFalse(_tg.WarningCalled);
     }
     [TestMethod]
