@@ -1,17 +1,9 @@
-﻿//_______________________________________________________________
-//  Title   : MenuFactory
-//  System  : Microsoft VisualStudio 2013 / C#
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2015, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.ImportExport.NodeSet;
@@ -23,7 +15,7 @@ namespace CAS.UA.Model.Designer
 {
   internal static class MenuFactory
   {
-
+    //TODO UA Server menu is empty #67
     internal static ToolStripMenuItem AddProject(EventHandler newProjectHandler, EventHandler existingProjectHandler)
     {
       ToolStripMenuItem _New = new ToolStripMenuItem("New");

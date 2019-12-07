@@ -129,7 +129,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       //TODO OnDataChanged += OnChangeHandler;
       //TODO OnNameChanged += new EventHandler(configuration_OnNameChanged);
       AddProjectsNodes(configuration.Projects);
-      Root.SolutionRoot = this;
+      SolutionRoot = this;
       BaseDirectoryHelper.Instance.SetBaseDirectoryProvider(this);
     }
     #endregion
@@ -154,6 +154,25 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region public
+    /// <summary>
+    /// Gets or sets the solution root.
+    /// </summary>
+    /// <value>The solution root.</value>
+    internal static SolutionTreeNode SolutionRoot { get; set; }
+    /// <summary>
+    /// Gets or sets the library root.
+    /// </summary>
+    /// <value>The library root.</value>
+    internal Libraries LibraryRoot { get; set; } = new Libraries();
+    /// <summary>
+    /// Resets the information model and adds recursively all nodes to the address space from <see cref="Root.LibraryRoot"/> and next from <see cref="Root.SolutionRoot"/>.
+    /// </summary>
+    /// <param name="space">The address space.</param>
+    internal void ResetAndAddToAddressSpace(IAddressSpaceCreator space)
+    {
+      LibraryRoot.AddNode2AddressSpace(space);
+      AddNode2AddressSpace(space);
+    }
     internal ServerSelector Server { get; private set; }
     /// <summary>
     /// Builds the solution and write any massages to specified output.
@@ -172,6 +191,11 @@ namespace CAS.UA.Model.Designer.Wrappers
       foreach (ProjectTreeNode node in this)
         node.AddNode2AddressSpace(space);
     }
+    /// <summary>
+    /// Finds the type starting form <see cref="Root.SolutionRoot"/> and if not succeeded tries <see cref="Root.LibraryRoot"/>.
+    /// </summary>
+    /// <param name="myType">My type.</param>
+    /// <returns></returns>
     internal ITypeDesign FindType(XmlQualifiedName myType)
     {
       foreach (ProjectTreeNode node in this)
@@ -180,8 +204,13 @@ namespace CAS.UA.Model.Designer.Wrappers
         if (ret != null)
           return ret;
       }
-      return null;
+      return LibraryRoot.FindType(myType);
     }
+    /// <summary>
+    /// Gets the instance configuration.
+    /// </summary>
+    /// <param name="nodeUniqueIdentifier">The node unique identifier.</param>
+    /// <returns>IInstanceConfiguration.</returns>
     internal IInstanceConfiguration GetInstanceConfiguration(INodeDescriptor nodeUniqueIdentifier)
     {
       return Server.GetInstanceConfiguration(nodeUniqueIdentifier);
@@ -192,6 +221,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #region ISolutionModel
     public void GetPluginMenuItems(System.Windows.Forms.ToolStripItemCollection menu)
     {
+      //TODO UA Server menu is empty #67
       ICollection<System.Windows.Forms.ToolStripItem> _items = new List<System.Windows.Forms.ToolStripItem>();
       Server.GetPluginMenuItems(_items);
       menu.AddRange(_items.ToArray<System.Windows.Forms.ToolStripItem>());

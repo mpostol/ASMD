@@ -240,11 +240,11 @@ namespace CAS.UA.Model.Designer
     }
     private void MHSaveToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Root.SolutionRoot.Save(false);
+      SolutionTreeNode.SolutionRoot.Save(false);
     }
     private void MHSaveAsToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Root.SolutionRoot.Save(true);
+      SolutionTreeNode.SolutionRoot.Save(true);
     }
 
     #region import
@@ -255,7 +255,7 @@ namespace CAS.UA.Model.Designer
       m_MainContol.GetImportMenu(_mm.DropDownItems);
       if (_mm.DropDownItems.Count > 0)
         _mm.DropDownItems.Add(new ToolStripSeparator());
-      _mm.DropDownItems.Add(MenuFactory.ImportNodeSetMenuItem( (x, y) =>  Root.SolutionRoot.ImportNodeSet() ));
+      _mm.DropDownItems.Add(MenuFactory.ImportNodeSetMenuItem( (x, y) => SolutionTreeNode.SolutionRoot.ImportNodeSet() ));
       _mm.DropDownItems.Add(m_FromUMLDiagramToolStripMenuItem);
       _mm.DropDownItems.Add(m_FromXMLSchemaToolStripMenuItem);
       _mm.DropDownItems.Add(m_FromVisioToolStripMenuItem);
@@ -473,7 +473,7 @@ namespace CAS.UA.Model.Designer
     }
     private void buildToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Root.SolutionRoot.Build(debugDockPanelUserControl1.TextWriterStream);
+      SolutionTreeNode.SolutionRoot.Build(debugDockPanelUserControl1.TextWriterStream);
     }
     private void stateMachineEditorToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -700,9 +700,10 @@ namespace CAS.UA.Model.Designer
     #region Server UA
     private void m_MenuServerUA_DropDownOpening(object sender, EventArgs e)
     {
-      ToolStripMenuItem mm = sender as ToolStripMenuItem;
-      mm.DropDownItems.Clear();
-      m_MainContol.GetServerUAMenu(mm.DropDownItems);
+      ToolStripMenuItem _sender = sender as ToolStripMenuItem;
+      _sender.DropDownItems.Clear();
+      //TODO UA Server menu is empty #67
+      m_MainContol.GetServerUAMenu(_sender.DropDownItems);
     }
     #endregion
 

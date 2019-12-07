@@ -16,7 +16,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     where type : Wrappers4ProperyGrid.InstanceDesign<OPCType>, IInstanceDesign
     where OPCType : Opc.Ua.ModelCompiler.InstanceDesign, new()
   {
-    #region creators
+    #region constructors
     protected InstanceDesign(type child) : base(child) { }
     protected InstanceDesign(type child, OPCType node) : base(child, node) { }
     #endregion
@@ -37,7 +37,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       //Methods do not have equivalent of type definition reference.
       if (this.NodeClass == NodeClassesEnum.Method)
         return;
-      ITypeDesign type = Root.FindType(thisInstance.TypeDefinition);
+      ITypeDesign type = SolutionTreeNode.SolutionRoot.FindType(thisInstance.TypeDefinition);
       if (type == null)
       {
         thisInstance.Assert(false, "Cannot find TypeDefinition for the instance.");
@@ -74,10 +74,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     internal override INodeDescriptor[] GetNodeDescriptors()
     {
-      List<INodeDescriptor> dsptrs = new List<INodeDescriptor>();
+      List<INodeDescriptor> _descriptors = new List<INodeDescriptor>();
       UniqueIdentifier ui = new UniqueIdentifier();
-      AddNodeDescriptors(dsptrs, ui);
-      return dsptrs.ToArray();
+      AddNodeDescriptors(_descriptors, ui);
+      return _descriptors.ToArray();
     }
     /// <summary>
     /// Retrieves aa instance of the interface <see cref="INodeDescriptor"/> that provides the description of the node to be

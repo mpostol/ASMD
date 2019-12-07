@@ -26,6 +26,7 @@ namespace CAS.UA.Model.Designer.Controls
     /// </summary>
     protected override void BeforeMenuStripOpening()
     {
+      //TODO UA Server menu is empty #67
       AddItemsToMenu(this.ContextMenuStrip);
       GetPluginMenuItems(this.ContextMenuStrip.Items);
       base.BeforeMenuStripOpening();

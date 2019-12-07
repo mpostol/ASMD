@@ -1,17 +1,9 @@
-﻿//<summary>
-//  Title   : Model designer User Interface
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 
 using CAS.Lib.ControlLibrary;
 using CAS.UA.Model.Designer.Properties;
@@ -26,7 +18,8 @@ namespace CAS.UA.Model.Designer
   /// </summary>
   public partial class Main: UserControl
   {
-    #region creator
+
+    #region constructor
     public Main()
     {
       InitializeComponent();
@@ -83,6 +76,7 @@ namespace CAS.UA.Model.Designer
     }
     internal void GetServerUAMenu( ToolStripItemCollection toolStripItemCollection )
     {
+      //TODO UA Server menu is empty #67
       m_ModelObserver.GetServerUAMenu( toolStripItemCollection );
     }
     internal void GetImportMenu( ToolStripItemCollection items )

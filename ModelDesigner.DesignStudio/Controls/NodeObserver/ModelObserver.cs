@@ -19,14 +19,14 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
   internal partial class ModelObserver : SelectedItemObserver
   {
 
-    #region creator
+    #region constructor
     public ModelObserver()
     {
       InitializeComponent();
       this.m_TreeView.ImageList = this.m_ImagesForNodes.ImageListNodes;
       m_TreeView.CoupledNodesAreEnabled = Settings.Default.CoupledNodesAreEnabled;
       //solution initialization:
-      Root.LibraryRoot.AddNodes(x => m_TreeView.Nodes.Add(new LibraryTreeNodeControl(x)));
+      SolutionTreeNode.SolutionRoot.LibraryRoot.AddNodes(x => m_TreeView.Nodes.Add(new LibraryTreeNodeControl(x)));
       AddSolution(UAModelDesignerSolution.CreateEmptyModel());
       //toolstrip initialization:
       m_BackForwardTreViewToolStrip.TreeView = this.m_TreeView;
@@ -73,6 +73,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     }
     internal void GetServerUAMenu(ToolStripItemCollection toolStripItemCollection)
     {
+      //TODO UA Server menu is empty #67 
       IInstanceDesignTreeNode _sn = SelectedNode as IInstanceDesignTreeNode;
       if (_sn == null)
         return;

@@ -19,7 +19,8 @@ namespace CAS.UA.Model.Designer.Controls
     where OPCType : Opc.Ua.ModelCompiler.InstanceDesign, new()
     where T : InstanceDesign<type, OPCType>
   {
-    #region creator
+    //TODO UA Server menu is empty #67
+    #region constructor
     public InstanceDesignTreeNodeControl(T parent) : base(parent) { }
     #endregion
 
@@ -58,7 +59,7 @@ namespace CAS.UA.Model.Designer.Controls
     {
       UniqueIdentifier ui = new UniqueIdentifier();
       GetUniqueIdentifier(ui);
-      m_InstanceConfiguration = Root.GetInstanceConfiguration(ModelEntity.Wrapper.GetINodeDescriptor(ui, ModelEntity.NodeClass));
+      m_InstanceConfiguration = SolutionTreeNode.SolutionRoot.GetInstanceConfiguration(ModelEntity.Wrapper.GetINodeDescriptor(ui, ModelEntity.NodeClass));
       AddMenuItemGoTo(Resources.WrapperTreeNodeAddMenuItemGoto
         + Resources.WrapperTreeNodeAddMenuItemGoto_TypeDefinition,
         Resources.WrapperTreeNodeAddMenuItemGoto_TypeDefinition_tooltip,
@@ -99,6 +100,7 @@ namespace CAS.UA.Model.Designer.Controls
       TreeView.GoToNode(ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName);
     }
     private IInstanceConfiguration m_InstanceConfiguration;
+
     #region Menu handlers
     private void new_Click(object sender, EventArgs e)
     {
@@ -114,7 +116,8 @@ namespace CAS.UA.Model.Designer.Controls
       m_InstanceConfiguration.Edit();
     }
     #endregion
+
     #endregion
 
-  }//TreeNode
+  }
 }

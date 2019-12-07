@@ -509,7 +509,6 @@
     <Compile Include="Wrappers\ReferencesFolder.cs" />
     <Compile Include="Wrappers\ReferenceTypeDesign.cs" />
     <Compile Include="Wrappers\RootTreeNode.cs" />
-    <Compile Include="Wrappers\Root.cs" />
     <Compile Include="Wrappers\SelectedItemEventArgs.cs" />
     <Compile Include="Wrappers\SolutionTreeNode.cs" />
     <Compile Include="Wrappers\TypeListItem.cs" />
