@@ -12,6 +12,7 @@ using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Controls.NodeObserver
@@ -26,8 +27,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       this.m_TreeView.ImageList = this.m_ImagesForNodes.ImageListNodes;
       m_TreeView.CoupledNodesAreEnabled = Settings.Default.CoupledNodesAreEnabled;
       //solution initialization:
-      SolutionTreeNode.SolutionRoot.LibraryRoot.AddNodes(x => m_TreeView.Nodes.Add(new LibraryTreeNodeControl(x)));
-      AddSolution(UAModelDesignerSolution.CreateEmptyModel());
+      AddSolution();
       //toolstrip initialization:
       m_BackForwardTreViewToolStrip.TreeView = this.m_TreeView;
       m_SearchTreeViewToolStrip.TreeView = this.m_TreeView;
@@ -67,6 +67,18 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       get => m_TreeView.CoupledNodesAreEnabled;
       set => m_TreeView.CoupledNodesAreEnabled = value;
     }
+    internal void ImportNodeSet()
+    {
+      m_Solution.ImportNodeSet();
+    }
+    internal void Build(TextWriter textWriterStream)
+    {
+      m_Solution.Build(textWriterStream);
+    }
+    internal void Save(bool prompt)
+    {
+      m_Solution.Save(prompt);
+    }
     internal void GetImportMenu(ToolStripItemCollection items)
     {
       this.m_TreeView.SelectedNode.GetImportMenu(items);
@@ -87,6 +99,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     private FiltersControl m_FiltersControl;
     private FiltersControl.FilterSettings m_FiltersControlSettings;
     private TreeNode m_SelectedTreeNode = null;
+    private SolutionTreeNode m_Solution = null;
     //methods
     private bool NodeSearchTest(TreeNode FoundNode)
     {
@@ -95,14 +108,16 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
         return false;
       return IWrapperTreeNodeFoundNode.Wrapper4PropertyGrid != null;
     }
-    private void AddSolution(UAModelDesignerSolution uAModelDesignerSolution)
+    private void AddSolution()
     {
-      SolutionTreeNode newSolution = new SolutionTreeNode
-        (uAModelDesignerSolution,
-        OPCFSolutionConfigurationManagement.DefaultInstance.DefaultDirectory,
-        (x, y) => OPCFSolutionConfigurationManagement.DefaultInstance.SetChangesArePresent());
-      SolutionTreeNodeControl _solutionRootTreeNode = new SolutionTreeNodeControl(newSolution);
-      newSolution.OnDataChanged += new EventHandler<EventArgs>(Solution_OnDataChanged);
+      AddSolution(UAModelDesignerSolution.CreateEmptyModel());
+    }
+    private void AddSolution(UAModelDesignerSolution Solution)
+    {
+      m_Solution = new SolutionTreeNode(UAModelDesignerSolution.CreateEmptyModel(), OPCFSolutionConfigurationManagement.DefaultInstance.DefaultDirectory,  (x, y) => OPCFSolutionConfigurationManagement.DefaultInstance.SetChangesArePresent(),
+          x => m_TreeView.Nodes.Add(new LibraryTreeNodeControl(x)));
+      SolutionTreeNodeControl _solutionRootTreeNode = new SolutionTreeNodeControl(m_Solution);
+      m_Solution.OnDataChanged += new EventHandler<EventArgs>(Solution_OnDataChanged);
       m_TreeView.AddSolution(_solutionRootTreeNode);
       m_TreeView.RebuildDictionary();
     }

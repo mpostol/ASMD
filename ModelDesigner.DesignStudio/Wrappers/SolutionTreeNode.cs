@@ -109,17 +109,25 @@ namespace CAS.UA.Model.Designer.Wrappers
         return _descriptor;
       }
     }
+    /// <summary>
+    /// Gets or sets the library root.
+    /// </summary>
+    /// <value>The library root.</value>
+    private Libraries LibraryRoot { get; set; } = new Libraries();
     #endregion
 
     #region constructor
+    internal SolutionTreeNode(UAModelDesignerSolution configuration, string solutionPath, EventHandler<EventArgs> OnChangeHandler, Action<LibraryTreeNode> callBack) : this(configuration, solutionPath, OnChangeHandler)
+    {
+      LibraryRoot.AddNodes(callBack);
+    }
     /// <summary>
     /// Initializes a new instance of the <see cref="SolutionTreeNode"/> class.
     /// </summary>
     /// <param name="configuration">The configuration.</param>
     /// <param name="NodeName">Name of the node.</param>
     /// <param name="OnChangeHandler">The on change handler.</param>
-    internal SolutionTreeNode(UAModelDesignerSolution configuration, string solutionPath, EventHandler<EventArgs> OnChangeHandler)
-      : base(null, configuration.Name)
+    internal SolutionTreeNode(UAModelDesignerSolution configuration, string solutionPath, EventHandler<EventArgs> OnChangeHandler) : base(null, configuration.Name)
     {
       if (configuration == null)
         throw new ArgumentNullException("configuration");
@@ -129,8 +137,8 @@ namespace CAS.UA.Model.Designer.Wrappers
       //TODO OnDataChanged += OnChangeHandler;
       //TODO OnNameChanged += new EventHandler(configuration_OnNameChanged);
       AddProjectsNodes(configuration.Projects);
-      SolutionRoot = this;
       BaseDirectoryHelper.Instance.SetBaseDirectoryProvider(this);
+      SolutionRoot = this;
     }
     #endregion
 
@@ -159,11 +167,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </summary>
     /// <value>The solution root.</value>
     internal static SolutionTreeNode SolutionRoot { get; set; }
-    /// <summary>
-    /// Gets or sets the library root.
-    /// </summary>
-    /// <value>The library root.</value>
-    internal Libraries LibraryRoot { get; set; } = new Libraries();
     /// <summary>
     /// Resets the information model and adds recursively all nodes to the address space from <see cref="Root.LibraryRoot"/> and next from <see cref="Root.SolutionRoot"/>.
     /// </summary>

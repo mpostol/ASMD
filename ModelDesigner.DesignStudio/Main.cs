@@ -8,7 +8,9 @@
 using CAS.Lib.ControlLibrary;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer
@@ -86,6 +88,19 @@ namespace CAS.UA.Model.Designer
     internal TabControlManager TabControlManager
     {
       get { return this.m_ViewTabControlManager; }
+    }
+    internal void Save(bool v)
+    {
+      m_ModelObserver.Save(v);
+    }
+    internal void ImportNodeSet()
+    {
+      m_ModelObserver.ImportNodeSet();
+    }
+
+    internal void Build(TextWriter textWriterStream)
+    {
+      m_ModelObserver.Build(textWriterStream);
     }
     #endregion
   }
