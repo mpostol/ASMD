@@ -103,7 +103,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         if (_descriptor == null)
           return null;
         if (!string.IsNullOrEmpty(_descriptor.Codebase))
-          _descriptor.Codebase = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.Codebase); //TODO Problem with opening the server configuration editor plug-in #63 - must refer to the plugin directory.
+          _descriptor.Codebase = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.Codebase);
         if (!string.IsNullOrEmpty(_descriptor.Configuration))
           _descriptor.Configuration = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.Configuration);
         return _descriptor;
@@ -123,7 +123,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       if (configuration == null)
         throw new ArgumentNullException("configuration");
-      HomeDirectory = solutionPath; //TODO Problem with opening the server configuration editor plug-in #63 must be managed by IO 
+      HomeDirectory = solutionPath;
       Server = new ServerSelector(new GraphicalUserInterface(), solutionPath, configuration.ServerDetails.codebase, configuration.ServerDetails.configuration);
       Server.OnConfigurationChanged += new EventHandler<UAServerConfigurationEventArgs>(Server_OnConfigurationChanged);
       //TODO OnDataChanged += OnChangeHandler;
@@ -186,7 +186,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return Server.GetInstanceConfiguration(nodeUniqueIdentifier);
     }
-    internal string HomeDirectory { get; private set; }  //TODO Problem with opening the server configuration editor plug-in #63 -  to be moved to IO
+    internal string HomeDirectory { get; private set; }
     #endregion
 
     #region ISolutionModel
