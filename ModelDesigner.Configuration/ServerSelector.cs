@@ -67,7 +67,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     public ServerSelector(IGraphicalUserInterface _graphicalUserInterface, string solutionPath, string codebase, string configuration)
     {
       GraphicalUserInterface = _graphicalUserInterface ?? throw new ArgumentNullException(nameof(_graphicalUserInterface));
-      SetPlugIn(solutionPath, codebase, configuration);
+      OpenPlugIn(solutionPath, codebase, configuration);
       LicenseProtection.CheckConstrain();
     }
     #endregion
@@ -251,13 +251,17 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     {
       OnConfigurationChanged?.Invoke(this, new UAServerConfigurationEventArgs(serverChanged));
     }
-    private void SetPlugIn(string solutionPath, string codebase, string configuration)
+    /// <summary>
+    /// Opens the plug in. It  tries to open the DLL in the <paramref name="solutionPath"/> or from the application binaries or current directories
+    /// </summary>
+    /// <param name="solutionPath">The solution path.</param>
+    /// <param name="codebase">The codebase path.</param>
+    /// <param name="configuration">The configuration.</param>
+    private void OpenPlugIn(string solutionPath, string codebase, string configuration)
     {
-      //TODO Problem with opening the server configuration editor plug-in #63
       if (string.IsNullOrEmpty(codebase))
         return;
       FileInfo _fileInfo = null;
-      //ModelDesigner is trying to open plugin DLL from Solution directory or application binaries directory or current directory
       if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(codebase))
       {
         _fileInfo = new FileInfo(Path.Combine(solutionPath, codebase));

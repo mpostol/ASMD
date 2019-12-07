@@ -44,9 +44,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     [TestMethod]
     public void ServerConfigurationWTest()
     {
-      BaseDirectoryHelper _directoryManager = BaseDirectoryHelper.Instance;
-      Assert.IsNotNull(_directoryManager);
-      Assert.AreEqual<string>("", _directoryManager.GetBaseDirectory());
       TestGraphicalUserInterface _ui = new TestGraphicalUserInterface();
       ServerSelector _nss = new ServerSelector(_ui, "wrong_path", "CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll", "");
       Assert.AreEqual<int>(2, _ui.ExclamationCallCount);
