@@ -16,6 +16,7 @@ namespace CAS.UA.Model.Designer.Controls
   /// </summary>
   internal partial class DictionaryTreeView : TreeView
   {
+  
     #region constructor
     public DictionaryTreeView()
     {
@@ -26,7 +27,8 @@ namespace CAS.UA.Model.Designer.Controls
     }
     #endregion
 
-    #region classes
+    #region public
+    //classes
     internal delegate void DictionaryTreeViewEventHandler(object sender, DictionaryTreeViewEventArgs e);
     internal class DictionaryTreeViewEventArgs : TreeViewEventArgs
     {
@@ -56,17 +58,9 @@ namespace CAS.UA.Model.Designer.Controls
         Scope = scope;
       }
     }
-    #endregion classes
-
-    #region public
+    //VAR
     internal new event DictionaryTreeViewEventHandler AfterSelect;
     public event EventHandler<RefreshScopeEventArgs> RefreshNeeded;
-    internal void AddIfNew(XmlQualifiedName name, DictionaryTreeNode node)
-    {
-      if (Dictionary.TryGetValue(name, out DictionaryTreeNode value))
-        return;
-      Dictionary.Add(name, node);
-    }
     public new DictionaryTreeNode SelectedNode
     {
       get => base.SelectedNode as DictionaryTreeNode;
@@ -94,6 +88,13 @@ namespace CAS.UA.Model.Designer.Controls
             ClearCoupledNodesDictionaryTreeNodeList();
         }
       }
+    }
+    //methods
+    internal void AddIfNew(XmlQualifiedName name, DictionaryTreeNode node)
+    {
+      if (Dictionary.TryGetValue(name, out DictionaryTreeNode value))
+        return;
+      Dictionary.Add(name, node);
     }
     public void SetTypeFilter(bool allTypes, IEnumerable<NodeClassesEnum> types)
     {
@@ -155,24 +156,9 @@ namespace CAS.UA.Model.Designer.Controls
         Application.UseWaitCursor = false;
       }
     }
-    /// <summary>
-    /// Adds the solution tree node.
-    /// </summary>
-    /// <param name="treeNode">The tree node <see cref="DictionaryTreeNode"/>.</param>
-    internal void AddSolution(DictionaryTreeNode treeNode)
-    {
-      if (m_Solution != null)
-        m_Solution.Remove();
-      m_Solution = treeNode;
-      Nodes.Insert(0, treeNode);
-      this.SelectedNode = treeNode;
-      treeNode.Expand();
-      Refresh();
-    }
     #endregion
 
     #region private
-    private DictionaryTreeNode m_Solution = null;
     private Dictionary<XmlQualifiedName, DictionaryTreeNode> Dictionary { get; set; }
     private bool m_CoupledNodesAreEnabled = true;
     private object m_CoupledNodesLock = new object();
@@ -212,6 +198,7 @@ namespace CAS.UA.Model.Designer.Controls
         }
       }
     }
+
     #region Event handlers
     private void DictionaryTreeView_AfterSelect(object sender, TreeViewEventArgs e)
     {

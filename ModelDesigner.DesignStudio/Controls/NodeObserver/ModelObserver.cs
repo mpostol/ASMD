@@ -119,8 +119,11 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
         x => m_TreeView.Nodes.Add(new LibraryTreeNodeControl(x)));
       SolutionTreeNodeControl _solutionRootTreeNode = new SolutionTreeNodeControl(m_Solution);
       m_Solution.OnDataChanged += new EventHandler<EventArgs>(Solution_OnDataChanged);
-      m_TreeView.AddSolution(_solutionRootTreeNode);
+      m_TreeView.Nodes.Insert(0, _solutionRootTreeNode);
+      this.SelectedNode = _solutionRootTreeNode;
+      _solutionRootTreeNode.Expand();
       m_TreeView.RebuildDictionary();
+      Refresh();
     }
     private void Solution_OnDataChanged(object sender, EventArgs e)
     {
