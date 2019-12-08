@@ -85,7 +85,8 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     }
     internal void GetServerUAMenu(ToolStripItemCollection toolStripItemCollection)
     {
-      //TODO UA Server menu is empty #67 
+      m_Solution.GetPluginMenuItems(toolStripItemCollection);
+      //TODO UA Server menu is empty #67
       IInstanceDesignTreeNode _sn = SelectedNode as IInstanceDesignTreeNode;
       if (_sn == null)
         return;
