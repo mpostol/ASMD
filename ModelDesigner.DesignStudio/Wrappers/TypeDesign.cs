@@ -127,7 +127,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         foreach (Reference item in References)
           parent.AddReference(item, this, parent.NodeID);
         XmlQualifiedName myType = this.Wrapper.BaseType.ValueOrDefault;
-        ITypeDesign type = Root.FindType(myType);
+        ITypeDesign type = SolutionTreeNode.SolutionRoot.FindType(myType);
         if (this.Wrapper.IsItRootType)
           return;
         if (type == null)

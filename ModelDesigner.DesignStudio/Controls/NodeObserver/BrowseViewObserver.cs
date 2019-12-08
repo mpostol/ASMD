@@ -1,17 +1,9 @@
-﻿//<summary>
-//  Title   : BrowseView Observer 
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2009, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
@@ -110,7 +102,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     private void BackgroundWorkerAddressspaceIniialiser_DoWork(object sender, DoWorkEventArgs e)
     {
       BackgroundWorker worker = sender as BackgroundWorker;
-      IElement[] _asInstance = AddressSpaceService.CreateInstance(Root.ResetAndAddToAddressSpace, x => worker.ReportProgress(1, x));
+      IElement[] _asInstance = AddressSpaceService.CreateInstance(SolutionTreeNode.SolutionRoot.ResetAndAddToAddressSpace, x => worker.ReportProgress(1, x));
       e.Result = _asInstance;
     }
     private void BackgroundWorkerAddressspaceIniialiser_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

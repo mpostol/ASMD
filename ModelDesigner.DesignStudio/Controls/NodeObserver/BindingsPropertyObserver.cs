@@ -1,17 +1,9 @@
-﻿//<summary>
-//  Title   : Dedicated observer to manage content edited in the bindings PropertyGrid.
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2009, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
+
 
 using System.ComponentModel;
 using CAS.UA.Model.Designer.Wrappers;
@@ -37,7 +29,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       if ( dscr == null )
         this.PropertyGrid.SelectedObject = null;
       else
-        this.PropertyGrid.SelectedObject = new InstanceConfigurationMasterEditor( Root.GetInstanceConfiguration( dscr ) );
+        this.PropertyGrid.SelectedObject = new InstanceConfigurationMasterEditor(SolutionTreeNode.SolutionRoot.GetInstanceConfiguration( dscr ) );
     }
     protected override void OnSelectedItemIsChanged( object sender, SelectedItemEventArgs e )
     {

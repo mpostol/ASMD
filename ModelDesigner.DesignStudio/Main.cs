@@ -1,32 +1,27 @@
-﻿//<summary>
-//  Title   : Model designer User Interface
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//
+//___________________________________________________________________________________
 
 using CAS.Lib.ControlLibrary;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer
 {
+
   /// <summary>
   /// Control responsible for managing and visualization of the model.
   /// </summary>
   public partial class Main: UserControl
   {
-    #region creator
+
+    #region constructor
     public Main()
     {
       InitializeComponent();
@@ -93,6 +88,20 @@ namespace CAS.UA.Model.Designer
     {
       get { return this.m_ViewTabControlManager; }
     }
+    internal void Save(bool v)
+    {
+      m_ModelObserver.Save(v);
+    }
+    internal void ImportNodeSet()
+    {
+      m_ModelObserver.ImportNodeSet();
+    }
+    internal void Build(TextWriter textWriterStream)
+    {
+      m_ModelObserver.Build(textWriterStream);
+    }
     #endregion
+
   }
+
 }

@@ -109,17 +109,25 @@ namespace CAS.UA.Model.Designer.Wrappers
         return _descriptor;
       }
     }
+    /// <summary>
+    /// Gets or sets the library root.
+    /// </summary>
+    /// <value>The library root.</value>
+    private Libraries LibraryRoot { get; set; } = new Libraries();
     #endregion
 
     #region constructor
+    internal SolutionTreeNode(UAModelDesignerSolution configuration, string solutionPath, EventHandler<EventArgs> OnChangeHandler, Action<LibraryTreeNode> callBack) : this(configuration, solutionPath, OnChangeHandler)
+    {
+      LibraryRoot.AddNodes(callBack);
+    }
     /// <summary>
     /// Initializes a new instance of the <see cref="SolutionTreeNode"/> class.
     /// </summary>
     /// <param name="configuration">The configuration.</param>
     /// <param name="NodeName">Name of the node.</param>
     /// <param name="OnChangeHandler">The on change handler.</param>
-    internal SolutionTreeNode(UAModelDesignerSolution configuration, string solutionPath, EventHandler<EventArgs> OnChangeHandler)
-      : base(null, configuration.Name)
+    internal SolutionTreeNode(UAModelDesignerSolution configuration, string solutionPath, EventHandler<EventArgs> OnChangeHandler) : base(null, configuration.Name)
     {
       if (configuration == null)
         throw new ArgumentNullException("configuration");
@@ -129,8 +137,8 @@ namespace CAS.UA.Model.Designer.Wrappers
       //TODO OnDataChanged += OnChangeHandler;
       //TODO OnNameChanged += new EventHandler(configuration_OnNameChanged);
       AddProjectsNodes(configuration.Projects);
-      Root.SolutionRoot = this;
       BaseDirectoryHelper.Instance.SetBaseDirectoryProvider(this);
+      SolutionRoot = this;
     }
     #endregion
 
@@ -154,6 +162,20 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region public
+    /// <summary>
+    /// Gets or sets the solution root.
+    /// </summary>
+    /// <value>The solution root.</value>
+    internal static SolutionTreeNode SolutionRoot { get; set; }
+    /// <summary>
+    /// Resets the information model and adds recursively all nodes to the address space from <see cref="Root.LibraryRoot"/> and next from <see cref="Root.SolutionRoot"/>.
+    /// </summary>
+    /// <param name="space">The address space.</param>
+    internal void ResetAndAddToAddressSpace(IAddressSpaceCreator space)
+    {
+      LibraryRoot.AddNode2AddressSpace(space);
+      AddNode2AddressSpace(space);
+    }
     internal ServerSelector Server { get; private set; }
     /// <summary>
     /// Builds the solution and write any massages to specified output.
@@ -172,6 +194,11 @@ namespace CAS.UA.Model.Designer.Wrappers
       foreach (ProjectTreeNode node in this)
         node.AddNode2AddressSpace(space);
     }
+    /// <summary>
+    /// Finds the type starting form <see cref="Root.SolutionRoot"/> and if not succeeded tries <see cref="Root.LibraryRoot"/>.
+    /// </summary>
+    /// <param name="myType">My type.</param>
+    /// <returns></returns>
     internal ITypeDesign FindType(XmlQualifiedName myType)
     {
       foreach (ProjectTreeNode node in this)
@@ -180,8 +207,13 @@ namespace CAS.UA.Model.Designer.Wrappers
         if (ret != null)
           return ret;
       }
-      return null;
+      return LibraryRoot.FindType(myType);
     }
+    /// <summary>
+    /// Gets the instance configuration.
+    /// </summary>
+    /// <param name="nodeUniqueIdentifier">The node unique identifier.</param>
+    /// <returns>IInstanceConfiguration.</returns>
     internal IInstanceConfiguration GetInstanceConfiguration(INodeDescriptor nodeUniqueIdentifier)
     {
       return Server.GetInstanceConfiguration(nodeUniqueIdentifier);

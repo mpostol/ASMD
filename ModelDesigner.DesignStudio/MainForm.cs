@@ -17,13 +17,13 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer
 {
+
   public partial class MainForm : Form
   {
 
@@ -169,8 +169,8 @@ namespace CAS.UA.Model.Designer
         }
         featureDescription = menuItem.ToolTipText;
       }
-      messageBoxSentEmail.ShowMessageAndSendEmailIfOK(String.Format(Resources.FeatureRequest_MessageBox_Body, featureName, featureDescription),
-        String.Format(Resources.FeatureRequest_Email_Body, featureName));
+      messageBoxSentEmail.ShowMessageAndSendEmailIfOK(string.Format(Resources.FeatureRequest_MessageBox_Body, featureName, featureDescription),
+        string.Format(Resources.FeatureRequest_Email_Body, featureName));
     }
     private void UpdateWindowTitle()
     {
@@ -201,7 +201,7 @@ namespace CAS.UA.Model.Designer
     }
     private void OpenSolution(string solutionFileName)
     {
-      if (String.IsNullOrEmpty(solutionFileName))
+      if (string.IsNullOrEmpty(solutionFileName))
         return;
       try
       {
@@ -217,7 +217,7 @@ namespace CAS.UA.Model.Designer
       }
       catch (Exception ex)
       {
-        MessageBox.Show(String.Format(Resources.MainForm_StartupExceptionMessage, ex.Message), "Command line error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+        MessageBox.Show(string.Format(Resources.MainForm_StartupExceptionMessage, ex.Message), "Command line error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
       }
     }
 
@@ -240,11 +240,11 @@ namespace CAS.UA.Model.Designer
     }
     private void MHSaveToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Root.SolutionRoot.Save(false);
+      m_MainContol.Save(false);
     }
     private void MHSaveAsToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Root.SolutionRoot.Save(true);
+      m_MainContol.Save(true);
     }
 
     #region import
@@ -255,7 +255,7 @@ namespace CAS.UA.Model.Designer
       m_MainContol.GetImportMenu(_mm.DropDownItems);
       if (_mm.DropDownItems.Count > 0)
         _mm.DropDownItems.Add(new ToolStripSeparator());
-      _mm.DropDownItems.Add(MenuFactory.ImportNodeSetMenuItem( (x, y) =>  Root.SolutionRoot.ImportNodeSet() ));
+      _mm.DropDownItems.Add(MenuFactory.ImportNodeSetMenuItem((x, y) => m_MainContol.ImportNodeSet()));
       _mm.DropDownItems.Add(m_FromUMLDiagramToolStripMenuItem);
       _mm.DropDownItems.Add(m_FromXMLSchemaToolStripMenuItem);
       _mm.DropDownItems.Add(m_FromVisioToolStripMenuItem);
@@ -345,7 +345,7 @@ namespace CAS.UA.Model.Designer
     private void goToToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
     {
       goToToolStripMenuItem.DropDownItems.Clear();
-      var menulist = m_MainContol.GoToMenuItemList;
+      System.Collections.Generic.List<ToolStripMenuItem> menulist = m_MainContol.GoToMenuItemList;
       if (m_MainContol.ModelTreeViewIsFocused && menulist != null)
       {
         goToToolStripMenuItem.DropDownItems.AddRange(menulist.ToArray());
@@ -372,13 +372,15 @@ namespace CAS.UA.Model.Designer
       }
       catch (Win32Exception ex)
       {
-        MessageBox.Show(String.Format(Resources.MainForm_DefaultAppMissing, Resources.AsmdHelp, ex.Message));
+        MessageBox.Show(string.Format(Resources.MainForm_DefaultAppMissing, Resources.AsmdHelp, ex.Message));
       }
     }
     private void HelpConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      myGrid = new PropertyGrid();
-      myGrid.SelectedObject = Properties.Settings.Default;
+      myGrid = new PropertyGrid
+      {
+        SelectedObject = Properties.Settings.Default
+      };
       myGrid.SelectedGridItemChanged += new SelectedGridItemChangedEventHandler(myGrid_SelectedGridItemChanged);
       myGrid.SizeChanged += new EventHandler(myGrid_SizeChanged);
       myGrid.Anchor = AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -417,19 +419,22 @@ namespace CAS.UA.Model.Designer
         }
       }
     }
-    void myGrid_SizeChanged(object sender, EventArgs e)
+
+    private void myGrid_SizeChanged(object sender, EventArgs e)
     {
       ChangeDescription(((PropertyGrid)sender).SelectedGridItem.Label);
     }
-    void myGrid_SelectedGridItemChanged(object sender, SelectedGridItemChangedEventArgs e)
+
+    private void myGrid_SelectedGridItemChanged(object sender, SelectedGridItemChangedEventArgs e)
     {
       ChangeDescription(e.NewSelection.Label);
     }
+
     /// <summary>
     /// Changes the description of the item in Property Grid.
     /// </summary>
     /// <param name="propertyGridItemLabel">The property grid item label.</param>
-    void ChangeDescription(string propertyGridItemLabel)
+    private void ChangeDescription(string propertyGridItemLabel)
     {
       try
       {
@@ -473,7 +478,7 @@ namespace CAS.UA.Model.Designer
     }
     private void buildToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Root.SolutionRoot.Build(debugDockPanelUserControl1.TextWriterStream);
+      m_MainContol.Build(debugDockPanelUserControl1.TextWriterStream);
     }
     private void stateMachineEditorToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -700,9 +705,9 @@ namespace CAS.UA.Model.Designer
     #region Server UA
     private void m_MenuServerUA_DropDownOpening(object sender, EventArgs e)
     {
-      ToolStripMenuItem mm = sender as ToolStripMenuItem;
-      mm.DropDownItems.Clear();
-      m_MainContol.GetServerUAMenu(mm.DropDownItems);
+      ToolStripMenuItem _sender = sender as ToolStripMenuItem;
+      _sender.DropDownItems.Clear();
+      m_MainContol.GetServerUAMenu(_sender.DropDownItems);
     }
     #endregion
 
@@ -751,12 +756,12 @@ namespace CAS.UA.Model.Designer
       }
       catch (Win32Exception ex)
       {
-        MessageBox.Show(String.Format(Resources.MainForm_DefaultAppMissing, Resources.AsmdVersionsComparison, ex.Message));
+        MessageBox.Show(string.Format(Resources.MainForm_DefaultAppMissing, Resources.AsmdVersionsComparison, ex.Message));
       }
     }
 
     #region Main
-    private string m_StartupFileName = String.Empty;
+    private string m_StartupFileName = string.Empty;
     private void MainForm_Load(object sender, EventArgs e)
     {
       OpenSolution(m_StartupFileName);
@@ -782,4 +787,5 @@ namespace CAS.UA.Model.Designer
     #endregion private
 
   }
+
 }
