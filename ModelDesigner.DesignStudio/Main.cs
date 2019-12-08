@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-
 using CAS.Lib.ControlLibrary;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
@@ -15,6 +14,7 @@ using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer
 {
+
   /// <summary>
   /// Control responsible for managing and visualization of the model.
   /// </summary>
@@ -78,7 +78,6 @@ namespace CAS.UA.Model.Designer
     }
     internal void GetServerUAMenu( ToolStripItemCollection toolStripItemCollection )
     {
-      //TODO UA Server menu is empty #67
       m_ModelObserver.GetServerUAMenu( toolStripItemCollection );
     }
     internal void GetImportMenu( ToolStripItemCollection items )
@@ -97,11 +96,12 @@ namespace CAS.UA.Model.Designer
     {
       m_ModelObserver.ImportNodeSet();
     }
-
     internal void Build(TextWriter textWriterStream)
     {
       m_ModelObserver.Build(textWriterStream);
     }
     #endregion
+
   }
+
 }

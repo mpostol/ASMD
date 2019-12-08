@@ -19,7 +19,7 @@ namespace CAS.UA.Model.Designer.Controls
     where OPCType : Opc.Ua.ModelCompiler.InstanceDesign, new()
     where T : InstanceDesign<type, OPCType>
   {
-    //TODO UA Server menu is empty #67
+
     #region constructor
     public InstanceDesignTreeNodeControl(T parent) : base(parent) { }
     #endregion

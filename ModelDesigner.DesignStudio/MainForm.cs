@@ -23,6 +23,7 @@ using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer
 {
+
   public partial class MainForm : Form
   {
 
@@ -706,7 +707,6 @@ namespace CAS.UA.Model.Designer
     {
       ToolStripMenuItem _sender = sender as ToolStripMenuItem;
       _sender.DropDownItems.Clear();
-      //TODO UA Server menu is empty #67
       m_MainContol.GetServerUAMenu(_sender.DropDownItems);
     }
     #endregion
@@ -787,4 +787,5 @@ namespace CAS.UA.Model.Designer
     #endregion private
 
   }
+
 }

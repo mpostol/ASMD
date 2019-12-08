@@ -22,7 +22,6 @@ namespace CAS.UA.Model.Designer.Controls
     /// <param name="contextMenuStrip">The context menu strip.</param>
     internal virtual void AddItemsToMenu(ContextMenuStrip contextMenuStrip)
     {
-      //TODO UA Server menu is empty #67
       ToolStripMenuItem _New = new ToolStripMenuItem();
       ToolStripMenuItem _Open = new ToolStripMenuItem();
       ToolStripMenuItem _Save = new ToolStripMenuItem();

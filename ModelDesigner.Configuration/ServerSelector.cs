@@ -152,7 +152,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <param name="menu">The menu.</param>
     public void GetPluginMenuItems(ICollection<ToolStripItem> menu)
     {
-      //TODO UA Server menu is empty #67
       if (menu.Count > 0)
         menu.Add(new ToolStripSeparator());
       ToolStripMenuItem open = new ToolStripMenuItem()

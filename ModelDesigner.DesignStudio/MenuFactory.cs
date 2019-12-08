@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.ImportExport.NodeSet;
 using System;
@@ -13,9 +12,10 @@ using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer
 {
+
   internal static class MenuFactory
   {
-    //TODO UA Server menu is empty #67
+
     internal static ToolStripMenuItem AddProject(EventHandler newProjectHandler, EventHandler existingProjectHandler)
     {
       ToolStripMenuItem _New = new ToolStripMenuItem("New");
@@ -52,4 +52,5 @@ namespace CAS.UA.Model.Designer
     }
 
   }
+
 }

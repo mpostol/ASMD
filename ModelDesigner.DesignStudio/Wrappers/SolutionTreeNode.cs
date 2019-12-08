@@ -224,7 +224,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     #region ISolutionModel
     public void GetPluginMenuItems(System.Windows.Forms.ToolStripItemCollection menu)
     {
-      //TODO UA Server menu is empty #67
       ICollection<System.Windows.Forms.ToolStripItem> _items = new List<System.Windows.Forms.ToolStripItem>();
       Server.GetPluginMenuItems(_items);
       menu.AddRange(_items.ToArray<System.Windows.Forms.ToolStripItem>());
