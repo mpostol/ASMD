@@ -114,8 +114,9 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     }
     private void AddSolution(UAModelDesignerSolution Solution)
     {
-      m_Solution = new SolutionTreeNode(UAModelDesignerSolution.CreateEmptyModel(), OPCFSolutionConfigurationManagement.DefaultInstance.DefaultDirectory,  (x, y) => OPCFSolutionConfigurationManagement.DefaultInstance.SetChangesArePresent(),
-          x => m_TreeView.Nodes.Add(new LibraryTreeNodeControl(x)));
+      m_TreeView.Nodes.Clear();
+      m_Solution = new SolutionTreeNode(Solution, OPCFSolutionConfigurationManagement.DefaultInstance.DefaultDirectory,  (x, y) => OPCFSolutionConfigurationManagement.DefaultInstance.SetChangesArePresent(), 
+        x => m_TreeView.Nodes.Add(new LibraryTreeNodeControl(x)));
       SolutionTreeNodeControl _solutionRootTreeNode = new SolutionTreeNodeControl(m_Solution);
       m_Solution.OnDataChanged += new EventHandler<EventArgs>(Solution_OnDataChanged);
       m_TreeView.AddSolution(_solutionRootTreeNode);

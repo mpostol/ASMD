@@ -16,19 +16,13 @@ namespace CAS.UA.Model.Designer.Controls
   /// </summary>
   internal partial class DictionaryTreeView : TreeView
   {
-    #region creator
+    #region constructor
     public DictionaryTreeView()
     {
       InitializeComponent();
       Dictionary = new Dictionary<XmlQualifiedName, DictionaryTreeNode>();
       base.AfterSelect += new TreeViewEventHandler(DictionaryTreeView_AfterSelect);
       this.NodeMouseClick += new TreeNodeMouseClickEventHandler(DictionaryTreeView_NodeMouseClick);
-    }
-    internal void AddIfNew(XmlQualifiedName name, DictionaryTreeNode node)
-    {
-      if (Dictionary.TryGetValue(name, out DictionaryTreeNode value))
-        return;
-      Dictionary.Add(name, node);
     }
     #endregion
 
@@ -53,23 +47,6 @@ namespace CAS.UA.Model.Designer.Controls
       /// </returns>
       public new DictionaryTreeNode Node => (DictionaryTreeNode)base.Node;
     }
-    
-
-
-    #endregion classes
-
-    #region public
-    internal new event DictionaryTreeViewEventHandler AfterSelect;
-    public new DictionaryTreeNode SelectedNode
-    {
-      get => base.SelectedNode as DictionaryTreeNode;
-      set
-      {
-        base.SelectedNode = value;
-        if (RefreshNeeded != null)
-          RefreshNeeded(this, new RefreshScopeEventArgs(RefreshScopeEventArgs.ModificationType.Data));
-      }
-    }
     public class RefreshScopeEventArgs : EventArgs
     {
       public enum ModificationType { Data, Structure }
@@ -79,7 +56,26 @@ namespace CAS.UA.Model.Designer.Controls
         Scope = scope;
       }
     }
+    #endregion classes
+
+    #region public
+    internal new event DictionaryTreeViewEventHandler AfterSelect;
     public event EventHandler<RefreshScopeEventArgs> RefreshNeeded;
+    internal void AddIfNew(XmlQualifiedName name, DictionaryTreeNode node)
+    {
+      if (Dictionary.TryGetValue(name, out DictionaryTreeNode value))
+        return;
+      Dictionary.Add(name, node);
+    }
+    public new DictionaryTreeNode SelectedNode
+    {
+      get => base.SelectedNode as DictionaryTreeNode;
+      set
+      {
+        base.SelectedNode = value;
+        RefreshNeeded?.Invoke(this, new RefreshScopeEventArgs(RefreshScopeEventArgs.ModificationType.Data));
+      }
+    }
     public bool CoupledNodesAreEnabled
     {
       get
@@ -176,7 +172,7 @@ namespace CAS.UA.Model.Designer.Controls
     #endregion
 
     #region private
-    private TreeNode m_Solution = null;
+    private DictionaryTreeNode m_Solution = null;
     private Dictionary<XmlQualifiedName, DictionaryTreeNode> Dictionary { get; set; }
     private bool m_CoupledNodesAreEnabled = true;
     private object m_CoupledNodesLock = new object();
@@ -207,9 +203,9 @@ namespace CAS.UA.Model.Designer.Controls
           foreach (KeyValuePair<string, XmlQualifiedName> item in selectedNode.GetCoupledNodesXmlQualifiedNames())
           {
             DictionaryTreeNode _coupledNode = GetNode(item.Value);
-            if (!( _coupledNode is IDictionaryTreeNodeCreateCopy ))
+            if (!(_coupledNode is IDictionaryTreeNodeCreateCopy))
               throw new ArgumentOutOfRangeException($"{nameof(DictionaryTreeView)} Cannot create coupled node for {_coupledNode.GetType().FullName}");
-            DictionaryTreeNode newNode = ((IDictionaryTreeNodeCreateCopy)_coupledNode). CreateCopy();
+            DictionaryTreeNode newNode = ((IDictionaryTreeNodeCreateCopy)_coupledNode).CreateCopy();
             newNode.Text = string.Format("{0}: {1}", item.Key, newNode.Text);
             _node.Nodes.Add(newNode);
           }
