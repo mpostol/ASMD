@@ -232,6 +232,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     {
       try
       {
+        //TODO UANetworkingConfiguration[T].ReadConfiguration shows popup if file has errors #73
         m_ServerConfiguration.ReadConfiguration(newFile);
         ConfigurationFile = newFile;
       }
