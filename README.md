@@ -132,7 +132,7 @@ The GitHub [Object Oriented Internet][OOI] repository is aimed at the maintenanc
 
 The GitHub repository [commsvr-com/migration2os][migration2os] is aimed at the `CommServer` software migration from on-premise subversion repository to GitHub and publishing it as the Open-Source Software (OSS). The members of the `CommServer` family are to be converged with the Object-Oriented Internet paradigms and integrated with the solutions maintained in this repository.
 
-The project [CommServer Migration to Open-source][migration2osProj] will be used to coordinate the migration process of transferring multi-parts software from an on-premise subversion repository to a set of GitHub repositories. After migration, this project will aggregate the description of all activities addressing the software maintenance process.
+The project [CommServer Migration to Open-source][migration2osProj] will be used to coordinate the migration process of transferring multi-parts software from an on-premise subversion repository to a set of GitHub repositories.
 
 ### Object Oriented Internet Reactive Networking Configuration Editor
 
