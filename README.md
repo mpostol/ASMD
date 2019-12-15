@@ -134,9 +134,11 @@ File | Content
 - [Open XML SDK 2.5 for Microsoft Office][OPENXML]
 - [How to reinstall and update packages][NUGETInstall].
 - [Dependency graph][DEPGraph]
-- [OPC UA Information Model - How to Create Instances using ASMD; Video][CAS.VideoInstances]
 - [OPCFoundation/UA-ModelCompiler][OPC.UA.ModelCompiler]
+- [OPC UA Information Model - How to Create Instances using ASMD; Video][CAS.VideoInstances]
+- [Introduction to OPC UA Address Space modeling using CAS Address Space Model Designer; Video][CAS.MZASMDIntro]
 
+[CAS.MZASMDIntro]:https://www.youtube.com/watch?v=pYOQA4atlRI&feature=youtu.be
 [OPC.UA.ModelCompiler]:https://github.com/OPCFoundation/UA-ModelCompiler
 [WIKI]:https://github.com/mpostol/ASMD/wiki
 [NUGETInstall]:https://docs.microsoft.com/en-us/nuget/consume-packages/reinstalling-and-updating-packages
