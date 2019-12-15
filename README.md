@@ -33,26 +33,25 @@ We use [Semantic Versioning][SV] for versioning. For the versions available, see
 - contextual OPC UA Standard help documentation - synchronization of the model with OPC UA ebook
 - interoperability without programming
   - supports custom OPC UA Server/Client/PubSub configuration editor
-  - supports definition and edition of the data bindings (Machine to sensor connectivity) coupling the Address Space variables with the process (sensors, actuators, etc.) making an in-memory process replica
+  - supports definition and edition of the data bindings (leveraging machine to sensor connectivity) coupling the Address Space variables with the process (sensors, actuators, etc.) making an in-memory process replica
   - simple configuration of a custom OPC UA Server in context of the model design
   - no programming skills are required
 - import and validation of any custom UANodeSet files to a new project
-- import the address space from an **OPC DA server** (Embedded OPC DA Viewer) and create a new OPC UA Information Model - an easier way to converge your old OPC Classic server and the Unified Architecture world
+- import the address space from an **OPC DA server** (embedded OPC DA Viewer) and create a new OPC UA Information Model - an easier way to converge your old OPC Classic server and the Unified Architecture world
 - documentation generation in MS Word and MAML formats
 - generates OPC UA compliant UANodeSet XML File according to the [OPC UA Part 6 specification][OPC.UA.Part6]
-- provides embedded [OPC UA Model Compiler][] maintained by the OPC Foundation as a default model build tool
+- provides embedded [OPCFoundation/UA-ModelCompiler][OPC.UA.ModelCompiler] maintained by the OPC Foundation as the default model build tool
 - output window provides detailed diagnostic information about the build model process
 - works with any existing code generator
-- OPC UA SDK Independent
 - full adherence to OPC Specifications
 - considerably improves robustness of the OPC UA Information Model deployment in any custom environment
-- any OPC UA SDK integration-ready
+- any OPC UA SDK integration-ready (OPC UA SDK independent)
 
-Check out the [WIKI - Help Documentation][WIKI] to get a more detailed description.
+Check out the [WIKI - Help Documentation][WIKI] to get a more detailed description
 
 ## Getting Started
 
-This section describes prerequisites you need to compile the software and run tests.
+This section describes prerequisites to compile the software and run tests.
 
 ### Open XML SDK
 
@@ -136,7 +135,9 @@ File | Content
 - [How to reinstall and update packages][NUGETInstall].
 - [Dependency graph][DEPGraph]
 - [OPC UA Information Model - How to Create Instances using ASMD; Video][CAS.VideoInstances]
- 
+- [OPCFoundation/UA-ModelCompiler][OPC.UA.ModelCompiler]
+
+[OPC.UA.ModelCompiler]:https://github.com/OPCFoundation/UA-ModelCompiler
 [WIKI]:https://github.com/mpostol/ASMD/wiki
 [NUGETInstall]:https://docs.microsoft.com/en-us/nuget/consume-packages/reinstalling-and-updating-packages
 [SV]:http://semver.org/
