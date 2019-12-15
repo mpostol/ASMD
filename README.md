@@ -1,8 +1,8 @@
-# OPC UA Address Space Model Designer (ASMD)
+# Address Space Model Designer (ASMD)
 
 OPC Unified Architecture (OPC UA) is the next generation of OPC. One of the most important improvements in OPC UA is a powerful Address Space and Information Model concepts. OPC UA allows for the presentation of a real-time process and underlying infrastructure as a consistent information model built up with nodes. The process model is represented by nodes, attributes, and their mutual relationships. Therefore, this powerful concept allows us to present in OPC UA not only raw process data but also complete information about the process state and process environment. The flexibility of UA ensures that no existing or future system is too complex to be exposed via OPC UA. Of course, such flexibility leads to difficulties during configuration, that’s why the Address Space Model Designer (ASMD) design environment has been born.
 
-The ASMD provides graphical design of the process model using OPC UA Information and Address Space concepts. The embedded model compiler may be used to generate all required file formats necessary to deploy custom model using any existing Software Development Kit. It is compliant with the OPC UA Specyfications listed in the `See Also` section.
+The ASMD provides graphical design of the process model using OPC UA Information and Address Space concepts. The embedded model compiler may be used to generate all required file formats necessary to deploy custom model using any existing Software Development Kit. It is compliant with the OPC UA Specifications listed in the `See Also` section.
 
 > **NOTE**: The design, development and deployment of the OPC UA Information Model detailed description is covered by the document [Information Models Development][IMD].
 
@@ -25,7 +25,7 @@ We use [Semantic Versioning][SV] for versioning. For the versions available, see
   - modes filtering
   - search and find utility
   - type declaration, definition and inheritance analysis
-  - state machine custom editor 
+  - state machine custom editor
   - and more...
 - graphical modeling of the OPC UA Address Space according to [OPC UA Part 3 specification][OPC.UA.Part3]
 - 3D modeling of the Information Model
@@ -77,8 +77,8 @@ Projects can be opened in Visual Studio 2017. Support for some projects depends 
 1. Open the `CommServer.UA.ModelDesigner.sln` solution file using Visual Studio 2017.
 1. Hit `F6` to build all projects in the solution.
 1. Set the `ModelDesigner.DesignStudio` as the Start-up Project
-2. Press `F5` to run the tool using Debug configuration
-5. Hit `Ctrl+r,Ctrl+a` to run all unit tests
+1. Press `F5` to run the tool using Debug configuration
+1. Hit `Ctrl+r,Ctrl+a` to run all unit tests
 
 ### How to open an example
 
@@ -114,6 +114,29 @@ File | Content
 `*/CAS.UAServer.DemoConfiguration.uasconfig` | A sample configuration file of CommServer UA. This file is created and edited by `CAS.UA.Server.ServerConfiguration.dll` - configuration editor.
 `*/DefaultConfig.xml` |A sample CommServer configuration file. It can be edited by the Network Configuration application (part of CommServer package).
 `*/DemoConfiguration.oses` |A sample OPC DA client configuration (compatible with `OPC Viewer` and `DataPorter` products)
+
+## Related work
+
+### Object Oriented Internet
+
+In this umbrella project, C\# deliverables supporting a new Machine To Machine \(M2M\) communication approach based on the **Data-Oriented Architecture** (DOA) paradigm is to be researched. The goal is to provide a generic solution for publishing and updating information in a context that can be used to describe and discover it by software applications. It is implemented based on the
+
+- [OPC Unified Architecture](http://goo.gl/y4EHUn) - an industrial integration standard that fulfills the proposed architecture requirements.
+- Object-Oriented Programming - well know and widely accepted programming language model in which data processing is organized around 4 major principles, namely encapsulation, abstraction, polymorphism and inheritance.
+
+The GitHub [Object Oriented Internet][OOI] repository is aimed at the maintenance of this project. The ASMD contributes to this project and is compliant with the OOI concept.
+
+### CommServer
+
+[CommServer][commserver] is a package of software to manage data transfer using OPC standards. Built-in technologies and algorithms support Machine to Machine (M2M) meaningful interoperability. The [CommServer][commserver] was written by CAS Lodz Poland.
+
+The GitHub repository [commsvr-com/migration2os][migration2os] is aimed at the `CommServer` software migration from on-premise subversion repository to GitHub and publishing it as the Open-Source Software (OSS). The members of the `CommServer` family are to be converged with the Object-Oriented Internet paradigms and integrated with the solutions maintained in this repository.
+
+The project [CommServer Migration to Open-source][migration2osProj] will be used to coordinate the migration process of transferring multi-parts software from an on-premise subversion repository to a set of GitHub repositories. After migration, this project will aggregate the description of all activities addressing the software maintenance process.
+
+### Object Oriented Internet Reactive Networking Configuration Editor
+
+OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of the [Reactive Communication][OOIBookToC].  The `OPC-UA-OOI.ConfigEditor` was written by CAS Lodz Poland. The [mpostol/OPC-UA-OOI.ConfigEditor][ConfigEditor] repository is aimed at the software migration from on-premise subversion repository to GitHub and publishing it as the Open-Source Software (OSS).  After migration, this repository will be used to manage all activities addressing the software maintenance process as a plug-in of the ASMD.
 
 ## See Also
 
@@ -156,3 +179,9 @@ File | Content
 [OPENXML]:https://www.microsoft.com/en-us/download/details.aspx?id=30425
 [DEPGraph]:https://github.com/mpostol/ASMD/network/dependencies
 [CAS.VideoInstances]:https://youtu.be/LvGHl-hRwZw
+[commserver]: http://www.commsvr.com/
+[migration2os]: https://github.com/commsvr-com/migration2os
+[migration2osProj]: https://github.com/orgs/commsvr-com/projects
+[OOIBookToC]: https://commsvr.gitbook.io/ooi/TableOfContent.md#reactive-communication
+[ConfigEditor]: https://github.com/mpostol/OPC-UA-OOI.ConfigEditor
+[OOI]: https://github.com/mpostol/OPC-UA-OOI
