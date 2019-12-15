@@ -44,6 +44,10 @@ Projects can be opened in Visual Studio 2017. Support for some project depends o
 2. Press `F5` to run the tool using Debug configuration
 5. Hit `Ctrl+r,Ctrl+a` to run all unit tests
 
+## How to open an example
+
+
+
 ## See also
 - [WIKI - Help Documentation](https://github.com/mpostol/ASMD/wiki)
 - [Mariusz Postol. Address Space and Address Space Model](https://commsvr.gitbook.io/ooi/semantic-data-processing/addressspaceaddressspacemodel)
