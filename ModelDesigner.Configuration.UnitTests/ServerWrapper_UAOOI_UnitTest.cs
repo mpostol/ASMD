@@ -23,7 +23,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     [DeploymentItem(@"TestData\", @"TestData\")]
     public void EnvironmentTest()
     {
-      FileInfo _configurationFile = new FileInfo(_ConfigurationBaseFileName);
+      FileInfo _configurationFile = new FileInfo(m_ConfigurationBaseFileName);
       Assert.IsTrue(_configurationFile.Exists);
       Instrumentation.ConfigurationBaseImplementation _serverConfiguration = new Instrumentation.ConfigurationBaseImplementation();
       Assert.IsNull(_serverConfiguration.CurrentConfiguration);
@@ -46,11 +46,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       _serverConfiguration.CreateDefaultConfiguration();
       Assert.IsTrue(_configurationChanged);
       _configurationChanged = false;
-      ServerWrapper _sw = new ServerWrapper(_serverConfiguration, _pluginAssembly, new GraphicalUserInterface(), _ConfigurationBaseFileName);
+      //TODO UANetworkingConfiguration[T].ReadConfiguration shows popup if file has errors #73
+      ServerWrapper _sw = new ServerWrapper(_serverConfiguration, _pluginAssembly, new GraphicalUserInterface(), m_ConfigurationBaseFileName);
       Assert.IsNotNull(_sw);
       Assert.IsTrue(_configurationChanged);
     }
-    private const string _ConfigurationBaseFileName = @"TestData\ConfigurationDataConsumer.xml";
+    private const string m_ConfigurationBaseFileName = @"TestData\ConfigurationDataConsumer.xml";
     private class GraphicalUserInterface : IGraphicalUserInterface
     {
       public Action<string, string> MessageBoxShowError

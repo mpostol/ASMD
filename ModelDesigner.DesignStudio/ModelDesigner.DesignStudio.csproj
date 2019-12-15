@@ -760,7 +760,7 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>xcopy "$(SolutionDir)packages\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.3.20.4\lib\net461\*.*"  $(TargetDir) /y
+xcopy "$(SolutionDir)packages\CAS.CommServer.DAServerConfiguration.5.01.06\lib\net451\*.*" $(TargetDir) /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
