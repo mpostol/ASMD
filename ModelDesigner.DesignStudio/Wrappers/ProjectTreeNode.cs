@@ -156,6 +156,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         return Path.GetFullPath(Path.Combine(this.m_SolutionHomeDirectory.GetBaseDirectory(), this.FileName));
       }
     }
+    //TODO Build solution exception #78
     internal ProjectTreeNode CloneProject()
     {
       throw new NotImplementedException();
