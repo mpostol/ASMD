@@ -35,13 +35,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       Assert.IsFalse(String.IsNullOrEmpty(_newItem.FilePath));
       Assert.IsNotNull(_newItem.ProjectIdentifier);
     }
-    //TODO Build solution exception #78
-    [TestMethod]
-    public void ProjectTreeNodeTest()
-    {
-      ProjectTreeNode _newItem = new ProjectTreeNode(new BaseDirectoryProvider(), string.Empty, new Opc.Ua.ModelCompiler.ModelDesign());
-      _newItem.CloneProject();
-    }
+
     #region instrumentation
     private class BaseDirectoryProvider : IBaseDirectoryProvider
     {

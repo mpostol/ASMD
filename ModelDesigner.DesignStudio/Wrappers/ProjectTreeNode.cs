@@ -156,11 +156,6 @@ namespace CAS.UA.Model.Designer.Wrappers
         return Path.GetFullPath(Path.Combine(this.m_SolutionHomeDirectory.GetBaseDirectory(), this.FileName));
       }
     }
-    //TODO Build solution exception #78
-    internal ProjectTreeNode CloneProject()
-    {
-      throw new NotImplementedException();
-    }
     internal string CSVFileName
     {
       get
@@ -188,8 +183,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       set => UAModelDesignerProject.BuildOutputDirectoryName = value;
     }
     internal string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName);
-    [Obsolete]
-    internal void SetNewSolutionHomeDirectory(string newPath) { }
     internal bool SaveModel(string solutionDirectory, XmlFile.DataToSerialize<Opc.Ua.ModelCompiler.ModelDesign> config)
     {
       return m_ModelDesign.SaveModel(FilePath);
@@ -209,16 +202,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return m_ModelDesign.SaveModel(FilePath);
     }
-    //TODO it could be omitted - it was used to create relative paths, but now all gets create relative paths.
-    /// <summary>
-    /// Clones the project.
-    /// </summary>
-    /// <param name="solutionPath">The solution path.</param>
-    /// <returns>Copy of the project</returns>
-    //internal ProjectWrapper CloneProject(string solutionPath)
-    //{
-    //  return new ProjectWrapper(m_ProjectViewModel, solutionPath);
-    //}
     /// <summary>
     /// Validates this instance.
     /// </summary>
