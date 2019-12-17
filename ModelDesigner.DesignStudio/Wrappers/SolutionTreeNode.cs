@@ -76,7 +76,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       List<ProjectTreeNode> _ListOfProjects = new List<ProjectTreeNode>();
       foreach (ProjectTreeNode _project in this)
         if (_project.Save())
-          _ListOfProjects.Add(_project.CloneProject());
+          _ListOfProjects.Add(_project);
       this.Clear();
       this.AddRange(_ListOfProjects);
       return new UAModelDesignerSolution()

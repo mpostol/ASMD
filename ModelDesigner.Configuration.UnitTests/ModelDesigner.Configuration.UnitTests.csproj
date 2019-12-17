@@ -96,6 +96,9 @@
       <HintPath>..\packages\CAS.Windows.Forms.6.1.2\lib\net451\CAS.Windows.Forms.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Build.Framework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.CodeProtect.6.1.3\lib\net451\Microsoft.Build.Framework.dll</HintPath>
       <Private>True</Private>
@@ -119,18 +122,21 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="UAOOI.Common.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.Configuration.Networking.2.0.3-Delta\lib\net461\UAOOI.Common.Infrastructure.dll</HintPath>
+    <Reference Include="System.Diagnostics.TraceSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.TraceSource.4.3.0\lib\net46\System.Diagnostics.TraceSource.dll</HintPath>
       <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="UAOOI.Common.Infrastructure, Version=4.0.1.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.Common.Infrastructure.4.0.1\lib\netstandard2.0\UAOOI.Common.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="UAOOI.Configuration.DataBindings, Version=2.0.3.26091, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
       <HintPath>..\packages\UAOOI.Configuration.DataBindings.2.0.3-Delta\lib\net461\UAOOI.Configuration.DataBindings.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="UAOOI.Configuration.Networking, Version=2.0.3.25935, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.Configuration.Networking.2.0.3-Delta\lib\net461\UAOOI.Configuration.Networking.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="UAOOI.Configuration.Networking, Version=4.0.1.1, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.Configuration.Networking.4.0.1\lib\netstandard2.0\UAOOI.Configuration.Networking.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +152,7 @@
     <Compile Include="ServerWrapper_UAOOI_UnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="cas.snk" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
