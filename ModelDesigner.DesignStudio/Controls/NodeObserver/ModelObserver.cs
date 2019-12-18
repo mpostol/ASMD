@@ -81,6 +81,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     }
     internal void GetImportMenu(ToolStripItemCollection items)
     {
+      //TODO NullReferenceException after opening the file\import menu before selecting the root node in the TreeView #88 - root node is not selected after starting the application.
       this.m_TreeView.SelectedNode.GetImportMenu(items);
     }
     internal void GetServerUAMenu(ToolStripItemCollection toolStripItemCollection)
