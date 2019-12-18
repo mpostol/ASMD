@@ -90,6 +90,7 @@ namespace CAS.UA.Model.Designer
           m_ApplicationEntryForm = new MainForm(installationWasPerformed);
         else
           m_ApplicationEntryForm = new MainForm(args[1]); //args[ 0 ] - is application file name , args[ 1 ] - is first argument 
+        //TODO NullReferenceException after opening the file\import menu before selecting the root node in the TreeView #88
         DoApplicationRun(Application.Run);
         Settings.Default.Save();
         AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 40, "Application finished");
