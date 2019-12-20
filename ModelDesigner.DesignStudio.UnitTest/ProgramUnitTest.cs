@@ -29,12 +29,5 @@ namespace CASCAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest
       Program.DoInstallLicense(true);
       Assert.IsNull(_lastMessage, _lastMessage);
     }
-    [TestMethod]
-    public void DoApplicationRunTestMethod()
-    {
-      bool _isCalled = false;
-      Program.DoApplicationRun(x => { _isCalled = true; Assert.IsNull(x); });
-      Assert.IsTrue(_isCalled);
-    }
   }
 }
