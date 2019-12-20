@@ -123,6 +123,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       m_TreeView.Nodes.Insert(0, _solutionRootTreeNode);
       this.SelectedNode = _solutionRootTreeNode;
       _solutionRootTreeNode.Expand();
+      m_TreeView.SelectedNode = _solutionRootTreeNode;
       m_TreeView.RebuildDictionary();
       Refresh();
     }
