@@ -14,7 +14,7 @@ We use [Semantic Versioning][SV] for versioning. For the versions available, see
 
 | Version | Milestone                                                          | Date|
 |:-------:|--------------------------------------------------------------------|:--:|
-| 4.1 | Public release of the ASMD |  Dec 17, 2019 |
+| 4.1 | [Public release of the ASMD][ASMD410] |  Dec 17, 2019 |
 | 3.20.1| [ASMD last available Windows installation released by CAS][CAS.ASMD]| May 17, 2016|
 
 ## Key Features
@@ -160,7 +160,8 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 - [OPCFoundation/UA-ModelCompiler][OPC.UA.ModelCompiler]
 - [OPC UA Information Model - How to Create Instances using ASMD; Video][CAS.VideoInstances]
 - [Introduction to OPC UA Address Space modeling using CAS Address Space Model Designer; Video][CAS.MZASMDIntro]
-
+- [OOI - OPC UA Address Space Model Designer V 4.1][ASMD410]
+ 
 [CAS.MZASMDIntro]:https://www.youtube.com/watch?v=pYOQA4atlRI&feature=youtu.be
 [OPC.UA.ModelCompiler]:https://github.com/OPCFoundation/UA-ModelCompiler
 [WIKI]:https://github.com/mpostol/ASMD/wiki
@@ -185,3 +186,4 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 [OOIBookToC]: https://commsvr.gitbook.io/ooi/TableOfContent.md#reactive-communication
 [ConfigEditor]: https://github.com/mpostol/OPC-UA-OOI.ConfigEditor
 [OOI]: https://github.com/mpostol/OPC-UA-OOI
+[ASMD410]:https://github.com/mpostol/ASMD/releases/tag/4.1.0
