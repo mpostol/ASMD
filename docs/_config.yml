@@ -1,5 +1,4 @@
 theme: jekyll-theme-minimal
 title: [Address Space Model Designer (ASMD)]
 description: [The ASMD provides graphical design of the process model using OPC UA Information and Address Space concepts. The embedded model compiler may be used to generate all required file formats necessary to deploy custom model using any existing Software Development Kit. It is compliant with the OPC UA Specifications listed in the `See Also` section.]
-logo: [_media/ASMDLogo-48.png]
 show_downloads: ["false"]
