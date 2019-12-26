@@ -1,4 +1,4 @@
-![Logo](../_media/ASMDLogo-48.png?raw=true) 
+![Logo](../_media/ASMDLogo-48.png) 
 
 # Address Space Model Designer (ASMD)
 
