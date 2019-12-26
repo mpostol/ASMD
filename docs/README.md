@@ -1,8 +1,8 @@
+![ASMD Logo](https://github.com/mpostol/ASMD/blob/master/_media/LogoGitHub-1280_640.png)
+
 # Address Space Model Designer (ASMD)
 
-![ASMD Logo](_media/ASMDLogo-48.png)
-
-OPC Unified Architecture (OPC UA) is the next generation of OPC. One of the most important improvements in OPC UA is a powerful Address Space and Information Model concepts. OPC UA allows for the presentation of a real-time process and underlying infrastructure as a consistent information model built up with nodes. The process model is represented by nodes, attributes, and their mutual relationships. Therefore, this powerful concept allows us to present in OPC UA not only raw process data but also complete information about the process state and process environment. The flexibility of UA ensures that no existing or future system is too complex to be exposed via OPC UA. Of course, such flexibility leads to difficulties during configuration, that�s why the Address Space Model Designer (ASMD) design environment has been born.
+OPC Unified Architecture (OPC UA) is the next generation of OPC. One of the most important improvements in OPC UA is a powerful Address Space and Information Model concepts. OPC UA allows for the presentation of a real-time process and underlying infrastructure as a consistent information model built up with nodes. The process model is represented by nodes, attributes, and their mutual relationships. Therefore, this powerful concept allows us to present in OPC UA not only raw process data but also complete information about the process state and process environment. The flexibility of UA ensures that no existing or future system is too complex to be exposed via OPC UA. Of course, such flexibility leads to difficulties during configuration, that's why the Address Space Model Designer (ASMD) design environment has been born.
 
 The ASMD provides graphical design of the process model using OPC UA Information and Address Space concepts. The embedded model compiler may be used to generate all required file formats necessary to deploy custom model using any existing Software Development Kit. It is compliant with the OPC UA Specifications listed in the `See Also` section.
 
