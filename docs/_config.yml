@@ -1,4 +1,4 @@
 theme: jekyll-theme-minimal
 title: Address Space Model Designer (ASMD)
 description: The ASMD provides graphical design of the process model using OPC UA Information and Address Space concepts.
-show_downloads: "false"
+show_downloads: false
