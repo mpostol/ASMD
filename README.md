@@ -159,6 +159,7 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 - [Dependency graph][DEPGraph]
 - [OPCFoundation/UA-ModelCompiler][OPC.UA.ModelCompiler]
 - [OPC UA Information Model - How to Create Instances using ASMD; Video][CAS.VideoInstances]
+- [OPC UA Information Model - How to build the model; Video][CAS.VideBuild]
 - [Introduction to OPC UA Address Space modeling using CAS Address Space Model Designer; Video][CAS.MZASMDIntro]
 - [OOI - OPC UA Address Space Model Designer V 4.1][ASMD410]
  
@@ -180,6 +181,7 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 [OPENXML]:https://www.microsoft.com/en-us/download/details.aspx?id=30425
 [DEPGraph]:https://github.com/mpostol/ASMD/network/dependencies
 [CAS.VideoInstances]:https://youtu.be/LvGHl-hRwZw
+[CAS.VideBuild]:https://youtu.be/y3tndTA7YYo
 [commserver]: http://www.commsvr.com/
 [migration2os]: https://github.com/commsvr-com/migration2os
 [migration2osProj]: https://github.com/orgs/commsvr-com/projects
