@@ -4,7 +4,10 @@ OPC Unified Architecture (OPC UA) is the next generation of OPC. One of the most
 
 The ASMD provides graphical design of the process model using OPC UA Information and Address Space concepts. The embedded model compiler may be used to generate all required file formats necessary to deploy custom model using any existing Software Development Kit. It is compliant with the OPC UA Specifications listed in the `See Also` section.
 
-> **NOTE**: The design, development and deployment of the OPC UA Information Model detailed description is covered by the document [Information Models Development][IMD].
+> **NOTE**:
+>
+> - The design, development and deployment of the OPC UA Information Model detailed description is covered by the document [Information Models Development][IMD].
+> - The help documentation is now available at [OPC UA Address Space Model Designer][github.MD]
 
 ## Releases
 
@@ -64,6 +67,7 @@ Open XML is an open ECMA 376 standard and is also approved as the ISO/IEC 29500 
 ### NuGet packages
 
 The list of packages used is listed on the page [Dependency graph][DEPGraph] of this repository. All packages are included in this GitHub repository in the local folder `_nugets` or published on NuGet. The local folder is configured in the `NuGet.Config`. The NuGet Gallery is the public package repository used by all package authors and consumers. All required packages are loaded before the build.
+
 To get more visit the Microsoft documentation [How to reinstall and update packages][NUGETInstall].
 
 ### Visual Studio
@@ -140,6 +144,7 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 
 ## See Also
 
+- [OPC UA Address Space Model Designer Help][github.MD]
 - [WIKI - Help Documentation][WIKI]
 - [Mariusz Postol. Address Space and Address Space Model](https://commsvr.gitbook.io/ooi/semantic-data-processing/addressspaceaddressspacemodel)
 - [ASMD Re. 3.30.1 installation released by CAS][CAS.ASMD]
@@ -162,7 +167,7 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 - [OPC UA Information Model - How to build the model; Video][CAS.VideBuild]
 - [Introduction to OPC UA Address Space modeling using CAS Address Space Model Designer; Video][CAS.MZASMDIntro]
 - [OOI - OPC UA Address Space Model Designer V 4.1][ASMD410]
- 
+
 [CAS.MZASMDIntro]:https://www.youtube.com/watch?v=pYOQA4atlRI&feature=youtu.be
 [OPC.UA.ModelCompiler]:https://github.com/OPCFoundation/UA-ModelCompiler
 [WIKI]:https://github.com/mpostol/ASMD/wiki
@@ -189,3 +194,4 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 [ConfigEditor]: https://github.com/mpostol/OPC-UA-OOI.ConfigEditor
 [OOI]: https://github.com/mpostol/OPC-UA-OOI
 [ASMD410]:https://github.com/mpostol/ASMD/releases/tag/4.1.0
+[github.MD]:https://commsvr-com.github.io/Documentation/ModelDesigner
