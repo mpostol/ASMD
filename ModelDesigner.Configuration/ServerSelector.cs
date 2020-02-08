@@ -8,7 +8,6 @@ using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration.Properties;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.Lib.CodeProtect;
-using CAS.Lib.RTLib.Utils;
 using CAS.UA.IServerConfiguration;
 using CAS.Windows.Forms.CodeProtectControls;
 using System;
@@ -255,7 +254,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// Opens the plug in. It  tries to open the DLL in the <paramref name="solutionPath"/> or from the application binaries or current directories
     /// </summary>
     /// <param name="solutionPath">The solution path.</param>
-    /// <param name="codebase">The codebase path.</param>
+    /// <param name="codebase">The code-base path.</param>
     /// <param name="configuration">The configuration.</param>
     private void OpenPlugIn(string solutionPath, string codebase, string configuration)
     {
