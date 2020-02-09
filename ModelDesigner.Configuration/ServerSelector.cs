@@ -9,7 +9,6 @@ using CAS.CommServer.UA.ModelDesigner.Configuration.Properties;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.Lib.CodeProtect;
 using CAS.UA.IServerConfiguration;
-using CAS.Windows.Forms.CodeProtectControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +18,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using UAOOI.Windows.Forms.CodeProtectControls;
 
 namespace CAS.CommServer.UA.ModelDesigner.Configuration
 {

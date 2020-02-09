@@ -6,7 +6,7 @@
 * Description:   OPC UA Information Model Design Studio.
 * Product:       [Object Oriented Internet](https://github.com/mpostol/OPC-UA-OOI)
 * Version:       4.1.0
-* Release Date:  17.12.2019
+* Release Date:  2/8/2020
 
 The main changes and new functionality are listed below:
 
