@@ -4,15 +4,15 @@
 //
 //___________________________________________________________________________________
 
-using System;
-using System.Windows.Forms;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
-using CAS.Lib.ControlLibrary;
+using System;
+using System.Windows.Forms;
+using UAOOI.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.StateMachineEditor
 {
-  internal partial class StateMachineControl: UserControl
+  internal partial class StateMachineControl : UserControl
   {
 
     #region constructors
@@ -42,41 +42,45 @@ namespace CAS.UA.Model.Designer.StateMachineEditor
     /// </summary>
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-    private void buttonTransition_Click( object sender, EventArgs e )
+    private void buttonTransition_Click(object sender, EventArgs e)
     {
       selectedTransitionButton = sender as TransitionButton;
-      if ( ( (TransitionButton)sender ).Image == null ) //add new transition
+      if (((TransitionButton)sender).Image == null) //add new transition
       {
-        OKCancelForm newTransitionForm = new OKCancelForm( newTransitionString );
-        newTransitionForm.CanBeAccepted( true );
-        PropertyGrid propertyGridTransition = new PropertyGrid();
-        propertyGridTransition.Anchor = ( AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Top );
-        propertyGridTransition.SelectedObject = selectedTransitionButton.TransitionData;
+        OKCancelForm newTransitionForm = new OKCancelForm(newTransitionString);
+        newTransitionForm.CanBeAccepted(true);
+        PropertyGrid propertyGridTransition = new PropertyGrid
+        {
+          Anchor = (AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Top),
+          SelectedObject = selectedTransitionButton.TransitionData
+        };
         UserControl uc = new UserControl();
         uc.Controls.Add(propertyGridTransition);
         newTransitionForm.SetUserControl = uc;
-        if ( newTransitionForm.ShowDialog() == System.Windows.Forms.DialogResult.OK )
+        if (newTransitionForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
           OnAddTransition();
         else
           newTransitionForm.Close();
       }
       else //show or delete transition
       {
-        OKCancelForm showOrDeleteTransitionDataForm = new OKCancelForm( transitionDataString );
-        showOrDeleteTransitionDataForm.CanBeAccepted( true );
-        showOrDeleteTransitionDataForm.AddButton( "Delete", System.Windows.Forms.DialogResult.Ignore );
-        PropertyGrid propertyGridTransition = new PropertyGrid();
-        propertyGridTransition.Anchor = ( AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Top );
-        propertyGridTransition.SelectedObject = selectedTransitionButton.TransitionData;
+        OKCancelForm showOrDeleteTransitionDataForm = new OKCancelForm(transitionDataString);
+        showOrDeleteTransitionDataForm.CanBeAccepted(true);
+        showOrDeleteTransitionDataForm.AddButton("Delete", System.Windows.Forms.DialogResult.Ignore);
+        PropertyGrid propertyGridTransition = new PropertyGrid
+        {
+          Anchor = (AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Top),
+          SelectedObject = selectedTransitionButton.TransitionData
+        };
         UserControl uc = new UserControl();
-        uc.Controls.Add( propertyGridTransition );
+        uc.Controls.Add(propertyGridTransition);
         showOrDeleteTransitionDataForm.SetUserControl = uc;
         System.Windows.Forms.DialogResult dr = showOrDeleteTransitionDataForm.ShowDialog();
-        if ( dr == System.Windows.Forms.DialogResult.OK )
+        if (dr == System.Windows.Forms.DialogResult.OK)
           OnOk();
-        else if ( dr == System.Windows.Forms.DialogResult.Cancel )
+        else if (dr == System.Windows.Forms.DialogResult.Cancel)
           Properties.Settings.Default.Reload();
-        else if ( dr == System.Windows.Forms.DialogResult.Ignore )
+        else if (dr == System.Windows.Forms.DialogResult.Ignore)
           OnDelete();
       }
     }
@@ -86,9 +90,9 @@ namespace CAS.UA.Model.Designer.StateMachineEditor
     /// </summary>
     private void OnDelete()
     {
-      if ( selectedTransitionButton.TransitionData != null )
+      if (selectedTransitionButton.TransitionData != null)
       {
-        ( (BaseTreeNode)selectedTransitionButton.TransitionData.InstanceDesignNode.Parent ).Parent.Remove( (BaseTreeNode)selectedTransitionButton.TransitionData.InstanceDesignNode.Parent );
+        ((BaseTreeNode)selectedTransitionButton.TransitionData.InstanceDesignNode.Parent).Parent.Remove((BaseTreeNode)selectedTransitionButton.TransitionData.InstanceDesignNode.Parent);
         selectedTransitionButton.Image = null;
         selectedTransitionButton.FlatStyle = FlatStyle.Flat;
       }
@@ -99,48 +103,48 @@ namespace CAS.UA.Model.Designer.StateMachineEditor
     /// </summary>
     private void OnOk()
     {
-      if ( selectedTransitionButton.TransitionData != null )
+      if (selectedTransitionButton.TransitionData != null)
       {
         ObjectDesign myObjectDesign = selectedTransitionButton.TransitionData.InstanceDesignNode.Parent as ObjectDesign;
-        if ( myObjectDesign != null )
+        if (myObjectDesign != null)
         {
-          if ( myObjectDesign.References.Count > 2 )
+          if (myObjectDesign.References.Count > 2)
           {
-            foreach ( Reference referenceAsBaseTreeNode in myObjectDesign.References )
+            foreach (Reference referenceAsBaseTreeNode in myObjectDesign.References)
             {
               Reference reference = referenceAsBaseTreeNode as Reference;
-              if ( reference != null && reference.Wrapper.ReferenceType.Name == hasCauseString )
+              if (reference != null && reference.Wrapper.ReferenceType.Name == hasCauseString)
               {
                 string referenceNameOriginal;
-                if ( reference.Wrapper.TargetId.Name.Contains( "_" ) == true )
-                  referenceNameOriginal = ( reference.Wrapper.TargetId.Name ).Substring( ( reference.Wrapper.TargetId.Name ).LastIndexOf( "_" ), ( reference.Wrapper.TargetId.Name ).Length - ( reference.Wrapper.TargetId.Name ).LastIndexOf( "_" ) ).Replace( "_", "" );
+                if (reference.Wrapper.TargetId.Name.Contains("_") == true)
+                  referenceNameOriginal = (reference.Wrapper.TargetId.Name).Substring((reference.Wrapper.TargetId.Name).LastIndexOf("_"), (reference.Wrapper.TargetId.Name).Length - (reference.Wrapper.TargetId.Name).LastIndexOf("_")).Replace("_", "");
                 else
                   referenceNameOriginal = reference.Wrapper.TargetId.Name;
-                if ( ( referenceNameOriginal != selectedTransitionButton.TransitionData.HasCause ) && ( string.IsNullOrEmpty( selectedTransitionButton.TransitionData.HasCause ) != true ) && ( string.IsNullOrEmpty( referenceNameOriginal ) != true ) )
+                if ((referenceNameOriginal != selectedTransitionButton.TransitionData.HasCause) && (string.IsNullOrEmpty(selectedTransitionButton.TransitionData.HasCause) != true) && (string.IsNullOrEmpty(referenceNameOriginal) != true))
                 {
-                  ( referenceAsBaseTreeNode as Reference ).Wrapper.TargetId.Name = selectedTransitionButton.TransitionData.HasCause;
+                  (referenceAsBaseTreeNode as Reference).Wrapper.TargetId.Name = selectedTransitionButton.TransitionData.HasCause;
                   return;
                 }
-                else if ( ( referenceNameOriginal != selectedTransitionButton.TransitionData.HasCause ) && ( string.IsNullOrEmpty( selectedTransitionButton.TransitionData.HasCause ) == true ) )
+                else if ((referenceNameOriginal != selectedTransitionButton.TransitionData.HasCause) && (string.IsNullOrEmpty(selectedTransitionButton.TransitionData.HasCause) == true))
                 {
-                  ( (BaseTreeNode)( referenceAsBaseTreeNode as Reference ).Wrapper.Parent ).Parent.Remove( (BaseTreeNode)( referenceAsBaseTreeNode as Reference ).Wrapper.Parent );
+                  ((BaseTreeNode)(referenceAsBaseTreeNode as Reference).Wrapper.Parent).Parent.Remove((BaseTreeNode)(referenceAsBaseTreeNode as Reference).Wrapper.Parent);
                   reference = null;
                   return;
                 }
               }
             }
           }
-          else if ( ( myObjectDesign.References.Count <= 2 ) && ( string.IsNullOrEmpty( selectedTransitionButton.TransitionData.HasCause ) != true ) )
+          else if ((myObjectDesign.References.Count <= 2) && (string.IsNullOrEmpty(selectedTransitionButton.TransitionData.HasCause) != true))
           {
             Reference reference = new Reference();
             reference.Wrapper.IsOneWay = false;
             reference.Wrapper.IsInverse = false;
             reference.Wrapper.ReferenceType.Name = hasCauseString;
-            reference.Wrapper.ReferenceType.NameSpace = myObjectDesign.References.References[ 0 ].ReferenceType.Namespace;
-            reference.Wrapper.TargetId.Name =  selectedTransitionButton.TransitionData.HasCause;
-            reference.Wrapper.TargetId.NameSpace = myObjectDesign.References.References[ 0 ].TargetId.Namespace;
+            reference.Wrapper.ReferenceType.NameSpace = myObjectDesign.References.References[0].ReferenceType.Namespace;
+            reference.Wrapper.TargetId.Name = selectedTransitionButton.TransitionData.HasCause;
+            reference.Wrapper.TargetId.NameSpace = myObjectDesign.References.References[0].TargetId.Namespace;
             reference.Wrapper.Validate();
-            myObjectDesign.References.Add( reference );
+            myObjectDesign.References.Add(reference);
             myObjectDesign.Wrapper.Validate();
             return;
           }
@@ -180,7 +184,7 @@ namespace CAS.UA.Model.Designer.StateMachineEditor
       toStateReference.Wrapper.TargetId.NameSpace = selectedTransitionButton.SymbolicNameNameSpace;
       toStateReference.Wrapper.Validate();
       Reference hasCauseReference = new Reference();
-      if ( selectedTransitionButton.TransitionData.HasCause != null )
+      if (selectedTransitionButton.TransitionData.HasCause != null)
       {
         hasCauseReference.Wrapper.IsOneWay = false;
         hasCauseReference.Wrapper.IsInverse = false;
@@ -190,13 +194,13 @@ namespace CAS.UA.Model.Designer.StateMachineEditor
         hasCauseReference.Wrapper.TargetId.NameSpace = selectedTransitionButton.SymbolicNameNameSpace;
         hasCauseReference.Wrapper.Validate();
       }
-      newTransitionObjectDesign.References.Add(  fromStateReference  );
-      newTransitionObjectDesign.References.Add( toStateReference  );
+      newTransitionObjectDesign.References.Add(fromStateReference);
+      newTransitionObjectDesign.References.Add(toStateReference);
       newTransitionObjectDesign.Wrapper.Validate();
-      if ( !string.IsNullOrEmpty(hasCauseReference.Wrapper.TargetId.Name))
-        newTransitionObjectDesign.References.Add( hasCauseReference );
-      selectedTransitionButton.MachineObjectDesign.Children.Add( newTransitionObjectDesign );
-      selectedTransitionButton.TransitionData = new Transition( selectedTransitionButton.TransitionData.FromState, selectedTransitionButton.TransitionData.ToState, selectedTransitionButton.TransitionData.HasCause, newTransitionObjectDesign.Wrapper );
+      if (!string.IsNullOrEmpty(hasCauseReference.Wrapper.TargetId.Name))
+        newTransitionObjectDesign.References.Add(hasCauseReference);
+      selectedTransitionButton.MachineObjectDesign.Children.Add(newTransitionObjectDesign);
+      selectedTransitionButton.TransitionData = new Transition(selectedTransitionButton.TransitionData.FromState, selectedTransitionButton.TransitionData.ToState, selectedTransitionButton.TransitionData.HasCause, newTransitionObjectDesign.Wrapper);
       selectedTransitionButton.Image = Resources.transition;
       selectedTransitionButton.FlatStyle = FlatStyle.Standard;
     }

@@ -1,26 +1,19 @@
-﻿//<summary>
-//  Title   : Instance Unique Identifier class
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2009, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
 
-using CAS.Lib.ControlLibrary;
 using System.Xml;
+using UAOOI.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
   internal class UniqueIdentifier: InstanceIdentifier
   {
-    #region creator
+
+    #region constructor
     internal UniqueIdentifier()
     {
       InstanceDeclaration = false;
@@ -59,5 +52,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       return (UniqueIdentifier)base.MemberwiseClone();
     }
     #endregion
+
   }
 }

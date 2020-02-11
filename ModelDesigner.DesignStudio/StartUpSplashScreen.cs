@@ -1,20 +1,12 @@
-﻿//<summary>
-//  Title   : Start Up Splash Screen
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2010, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
-using CAS.Windows.Forms.CodeProtectControls;
+using UAOOI.Windows.Forms.CodeProtectControls;
 
 namespace CAS.UA.Model.Designer
 {

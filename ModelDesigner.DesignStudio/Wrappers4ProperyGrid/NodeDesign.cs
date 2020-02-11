@@ -1,19 +1,10 @@
-﻿//<summary>
-//  Title   : ModelDesign : Nodes - functionality
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
 
-using CAS.Lib.ControlLibrary;
 using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.Types;
 using CAS.UA.Model.Designer.Wrappers;
@@ -21,6 +12,7 @@ using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
 using System;
 using System.Text;
 using System.Xml;
+using UAOOI.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
@@ -148,7 +140,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     private void Import(XmlQualifiedNameEditor parent)
     {
       // check for missing name.
-      if (SymbolicId.IsNull && SymbolicName.IsNull && String.IsNullOrEmpty(BrowseName))
+      if (SymbolicId.IsNull && SymbolicName.IsNull && string.IsNullOrEmpty(BrowseName))
         BrowseName = "BrowseName" + System.Guid.NewGuid().ToString();
       // use the browse name to assign a name.
       if (SymbolicName.IsNull)
@@ -157,12 +149,12 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         StringBuilder name = new StringBuilder();
         for (int ii = 0; ii < BrowseName.Length; ii++)
         {
-          if (Char.IsWhiteSpace(BrowseName[ii]))
+          if (char.IsWhiteSpace(BrowseName[ii]))
           {
             name.Append('_');
             continue;
           }
-          if (Char.IsLetterOrDigit(BrowseName[ii]) || BrowseName[ii] == '_')
+          if (char.IsLetterOrDigit(BrowseName[ii]) || BrowseName[ii] == '_')
             name.Append(BrowseName[ii]);
         }
         // create the symbolic name.
@@ -173,7 +165,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       {
         string id = SymbolicName.Name;
         if (parent != null)
-          id = String.Format("{0}_{1}", parent.Name, id);
+          id = string.Format("{0}_{1}", parent.Name, id);
         SymbolicId = new XmlQualifiedNameEditor(id, SymbolicName.NameSpace, this);
       }
     }
@@ -363,8 +355,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     }
     internal override IParent Parent
     {
-      get { return base.Parent; }
-      set { base.Parent = value; }
+      get => base.Parent;
+      set => base.Parent = value;
     }
     public INodeDescriptor GetINodeDescriptor(InstanceIdentifier uniqueNodeIdentifier, NodeClassesEnum nodeClasses)
     {
@@ -375,10 +367,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         BindingDescription = this.Description.Value
       };
     }
-    internal bool IsMandatory
-    {
-      get { return !ModellingRule.HasValue || (ModellingRule.Value == Opc.Ua.ModelCompiler.ModellingRule.Mandatory); }
-    }
+    internal bool IsMandatory => !ModellingRule.HasValue || (ModellingRule.Value == Opc.Ua.ModelCompiler.ModellingRule.Mandatory);
     #endregion
 
     #region private
@@ -404,7 +393,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     /// Gets the data type of the node if applicable, otherwise null.
     /// </summary>
     /// <returns>Data type of the variable, null for other node classes</returns>
-    protected virtual XmlQualifiedName GetDataType { get { return null; } }
+    protected virtual XmlQualifiedName GetDataType => null;
     /// <summary>
     /// Base implementation of the INodeDescriptor
     /// </summary>
@@ -518,10 +507,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     /// Gets the default type definition.
     /// </summary>
     /// <returns></returns>
-    protected override XmlQualifiedName GetDefaultTypeDefinition
-    {
-      get { return new XmlQualifiedName(); }
-    }
+    protected override XmlQualifiedName GetDefaultTypeDefinition => new XmlQualifiedName();
   }
   #endregion
   #region class TypeDesign
@@ -625,10 +611,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     /// Gets the default type definition.
     /// </summary>
     /// <returns></returns>
-    protected override XmlQualifiedName GetDefaultTypeDefinition
-    {
-      get { return BuildInXmlQualifiedNames.BaseObjectType; }
-    }
+    protected override XmlQualifiedName GetDefaultTypeDefinition => BuildInXmlQualifiedNames.BaseObjectType;
   }
   #endregion
   #region class ReferenceTypeDesign
@@ -954,20 +937,14 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.Historizing = this.Historizing.GetValueOrDefault();
       node.HistorizingSpecified = this.Historizing.HasValue;
     }
-    protected override XmlQualifiedName GetDataType
-    {
-      get { return this.DataType.XmlQualifiedName; }
-    }
+    protected override XmlQualifiedName GetDataType => this.DataType.XmlQualifiedName;
     #endregion
 
     /// <summary>
     /// Gets the default type definition.
     /// </summary>
     /// <returns></returns>
-    protected override XmlQualifiedName GetDefaultTypeDefinition
-    {
-      get { return BuildInXmlQualifiedNames.BaseVariableType; }
-    }
+    protected override XmlQualifiedName GetDefaultTypeDefinition => BuildInXmlQualifiedNames.BaseVariableType;
   }
   #endregion
   #region class DictionaryDesign
@@ -1045,10 +1022,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     /// Gets the default type definition.
     /// </summary>
     /// <returns></returns>
-    protected override XmlQualifiedName GetDefaultTypeDefinition
-    {
-      get { return BuildInXmlQualifiedNames.PropertyType; }
-    }
+    protected override XmlQualifiedName GetDefaultTypeDefinition => BuildInXmlQualifiedNames.PropertyType;
   }
   #endregion
 }

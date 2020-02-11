@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-using CAS.Lib.ControlLibrary;
 using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.Properties;
 using System;
@@ -13,6 +12,7 @@ using System.Drawing;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using UAOOI.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -22,10 +22,11 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// </summary>
   internal abstract class WrapperTreeNode : BaseTreeNode, IModelNode, IModelNodeAdvance, IEnumerable<IModelNodeAdvance>
   {
+
     #region public
     internal static object GetModelDesignerNodeFromStringRepresentationFromClipboard()
     {
-      string clipboard = String.Empty;
+      string clipboard = string.Empty;
       try
       {
         clipboard = System.Windows.Forms.Clipboard.GetText();
@@ -61,8 +62,10 @@ namespace CAS.UA.Model.Designer.Wrappers
       try
       {
         StringReader stringReader = new StringReader(modelDesignerNodeStringRepresentation);
-        XmlTextReader xmlTextReader = new XmlTextReader(stringReader);
-        xmlTextReader.WhitespaceHandling = WhitespaceHandling.None;
+        XmlTextReader xmlTextReader = new XmlTextReader(stringReader)
+        {
+          WhitespaceHandling = WhitespaceHandling.None
+        };
         XmlDocument xmlDocument = new XmlDocument();
         xmlDocument.Load(xmlTextReader);
         if (xmlDocument.DocumentElement == null)
@@ -100,7 +103,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
     internal void AddMenuItemDelete_Click(object sender, EventArgs e)
     {
-      string msg = String.Format(WrapperResources.DeleteObjectWarning, this.Text, this.ToolTipText);
+      string msg = string.Format(WrapperResources.DeleteObjectWarning, this.Text, this.ToolTipText);
       if (MessageBoxHandling.Show
         (
           msg,
@@ -139,7 +142,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </summary>
     /// <param name="wrapper">The instance that will be used as a wrapper to provide user interface.</param>
     public WrapperTreeNode(object wrapper)
-      : this(wrapper, String.Empty)
+      : this(wrapper, string.Empty)
     { }
     internal WrapperTreeNode(object wrapper, string nodeName) : base(nodeName)
     {
@@ -197,7 +200,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <value>
     /// The name represented as an instance of the <see cref="string"/>.
     /// </value>
-    public string Name { get { return Text; } }
+    public string Name => Text;
     /// <summary>
     /// Gets the error list.
     /// </summary>
@@ -207,10 +210,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Gets an editor that wraps the node in the property grid user interface.
     /// </summary>
     /// <value>The wrapper.</value>
-    public object Wrapper4PropertyGrid
-    {
-      get { return Wrapper; }
-    }
+    public object Wrapper4PropertyGrid => Wrapper;
     /// <summary>
     /// An instance of the interface <see cref="INodeDescriptor"/> that provides the description of the node to be
     /// bind with an external data source.
@@ -227,25 +227,13 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <value></value>
     /// <returns>true if the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only; otherwise, false.
     /// </returns>
-    public bool IsReadOnly
-    {
-      get
-      {
-        return TestIfReadOnlyAndRetrunTrueIfReadOnly();
-      }
-    }
+    public bool IsReadOnly => TestIfReadOnlyAndRetrunTrueIfReadOnly();
     /// <summary>
     /// Gets the symbolic name.
     /// </summary>
     /// <value>The symbolic name.</value>
-    public virtual XmlQualifiedName SymbolicName
-    {
-      get
-      {
-        return new XmlQualifiedName();
-      }
-    }
-    internal protected IMessageBoxHandling MessageBoxHandling { protected get; set; }
+    public virtual XmlQualifiedName SymbolicName => new XmlQualifiedName();
+    protected internal IMessageBoxHandling MessageBoxHandling { protected get; set; }
     #endregion
 
     #region public
@@ -287,10 +275,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       #region IEnumerator<IModelNodeAdvance> Members
 
-      IModelNodeAdvance IEnumerator<IModelNodeAdvance>.Current
-      {
-        get { return myIEnumerator.Current as IModelNodeAdvance; }
-      }
+      IModelNodeAdvance IEnumerator<IModelNodeAdvance>.Current => myIEnumerator.Current as IModelNodeAdvance;
 
       #endregion
 
@@ -304,10 +289,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 
       #region IEnumerator Members
 
-      object System.Collections.IEnumerator.Current
-      {
-        get { return myIEnumerator.Current; }
-      }
+      object System.Collections.IEnumerator.Current => myIEnumerator.Current;
 
       bool System.Collections.IEnumerator.MoveNext()
       {
@@ -329,5 +311,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       return GetEnumerator();
     }
     #endregion
+
   }
 }
