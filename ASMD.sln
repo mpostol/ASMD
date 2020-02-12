@@ -5,6 +5,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{B429E0BA-4F78-44A2-B61A-8093A17789C4}"
 	ProjectSection(SolutionItems) = preProject
 		DownloadURLs.TXT = DownloadURLs.TXT
+		NuGet.Config = NuGet.Config
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -33,6 +34,8 @@ EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelDesigner.DesignStudio.ModelingProject", "ModelDesigner.DesignStudio.ModelingProject\ModelDesigner.DesignStudio.ModelingProject.modelproj", "{6ABE65B9-711D-4C91-B28E-671252DE4E1C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Definitions", "CommonResources\T4Definitions\T4Definitions.csproj", "{D506423B-BA21-49E6-8C3B-88A771CA444E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASMD.GUIAbstractions", "ASMD.GUIAbstractions\ASMD.GUIAbstractions.csproj", "{309AA08A-6A69-4475-984A-0CC9284C464F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +92,10 @@ Global
 		{D506423B-BA21-49E6-8C3B-88A771CA444E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D506423B-BA21-49E6-8C3B-88A771CA444E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D506423B-BA21-49E6-8C3B-88A771CA444E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{309AA08A-6A69-4475-984A-0CC9284C464F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{309AA08A-6A69-4475-984A-0CC9284C464F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{309AA08A-6A69-4475-984A-0CC9284C464F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{309AA08A-6A69-4475-984A-0CC9284C464F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
