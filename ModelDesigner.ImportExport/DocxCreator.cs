@@ -1,17 +1,10 @@
-﻿//<summary>
-//  Title   : Word Docx exporting tool
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2009, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
+
 
 using CAS.UA.Model.Designer.ImportExport.ExportingStructures;
 using CAS.UA.Model.Designer.ImportExport.Properties;
@@ -29,6 +22,7 @@ namespace CAS.UA.Model.Designer.ImportExport
   /// </summary>
   public sealed class DocxCreator: IASMDExporter
   {
+
     #region IASMDExporter Members
     Guid IASMDExporter.Id
     {

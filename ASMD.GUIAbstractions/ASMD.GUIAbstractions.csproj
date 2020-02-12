@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>UAOOI.Windows.GUIAbstractions</AssemblyName>
+    <RootNamespace>UAOOI.Windows.GUIAbstractions</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\VS.git\WindowsForms\Windows.GUIAbstractions\UAOOI.Windows.GUIAbstractions.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>
