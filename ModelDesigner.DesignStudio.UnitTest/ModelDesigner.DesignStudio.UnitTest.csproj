@@ -93,6 +93,9 @@
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UAOOI.ASMD.GUIAbstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.ASMD.GUIAbstractions.1.0.0-Alpha\lib\netstandard2.0\UAOOI.ASMD.GUIAbstractions.dll</HintPath>
+    </Reference>
     <Reference Include="UAOOI.SemanticDataInformationModelFactory, Version=2.0.0.32174, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
       <HintPath>..\packages\UAOOI.SemanticData.UANodeSetValidation.2.0.0-Alpha\lib\net461\UAOOI.SemanticDataInformationModelFactory.dll</HintPath>
       <Private>True</Private>
@@ -101,8 +104,8 @@
       <HintPath>..\packages\UAOOI.SemanticData.UANodeSetValidation.2.0.0-Alpha\lib\net461\UAOOI.SemanticDataUANodeSetValidation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="UAOOI.Windows.Forms, Version=7.0.3.24962, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.Windows.Forms.7.0.3-Delta\lib\net451\UAOOI.Windows.Forms.dll</HintPath>
+    <Reference Include="UAOOI.Windows.Forms, Version=7.1.0.32071, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.Windows.Forms.7.1.1-Foxtrot\lib\net451\UAOOI.Windows.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
