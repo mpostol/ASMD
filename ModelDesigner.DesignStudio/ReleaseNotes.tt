@@ -87,7 +87,7 @@ This is only bug-fix release. The main changes and new functionality are listed 
 
 For archival information visit the document [Version History](http://www.commsvr.com/OPC-Help/Index.aspx?topic=html/ada1af70-e1ba-49df-8d0a-8ddc87a0f287.htm)
 
-<#@ include file = "..\CommonResources\T4Definitions\CAS.OPC.t4" #>
+<#@ include file = "..\SolutionMetadataTemplate.t4" #>
 <#+
 string m_AssemblyTitle = "UAOOI.DataBindings";
 string m_Date = System.DateTime.Today.ToShortDateString();

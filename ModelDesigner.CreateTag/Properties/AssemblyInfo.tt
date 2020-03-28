@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("<#= CASCommServerUAModelCompilerVersion #>")]
 [assembly: AssemblyFileVersion("<#= CASCommServerUAModelCompilerVersion #>")]
 
-<#@ include file = "..\..\CommonResources\T4Definitions\CAS.OPC.t4" #>
+<#@ include file = "..\..\SolutionMetadataTemplate.t4" #>
 <#+
 string m_AssemblyTitle = "CAS.CommServer.UA.ModelDesigner.Scripts";
 #>
