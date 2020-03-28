@@ -4,15 +4,12 @@
 //
 //___________________________________________________________________________________
 
-using CAS.Lib.ControlLibrary;
-using CAS.Lib.ControlLibrary.ControlExtenders;
 using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.ExportingTools;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.StateMachineEditor;
 using CAS.UA.Model.Designer.Wrappers;
-using CAS.Windows.Forms.CodeProtectControls;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -20,6 +17,9 @@ using System.Drawing;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using UAOOI.Windows.Forms;
+using UAOOI.Windows.Forms.CodeProtectControls;
+using UAOOI.Windows.Forms.ControlExtenders;
 
 namespace CAS.UA.Model.Designer
 {
@@ -352,6 +352,7 @@ namespace CAS.UA.Model.Designer
       }
     }
     #endregion
+
     private void HelpAboutUaModelDesignerToolStripMenuItem_Click(object sender, EventArgs e)
     {
       using (AboutForm dial = new AboutForm

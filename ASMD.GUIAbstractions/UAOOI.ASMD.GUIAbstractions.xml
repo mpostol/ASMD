@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UAOOI.ASMD.GUIAbstractions</name>
+    </assembly>
+    <members>
+        <member name="T:UAOOI.ASMD.GUIAbstractions.ICanBeAccepted">
+            <summary>
+            This interface is used by internal component to inform parent window that it is possible to enable accept button.
+            </summary>
+        </member>
+        <member name="M:UAOOI.ASMD.GUIAbstractions.ICanBeAccepted.CanBeAccepted(System.Boolean)">
+            <summary>
+            It sets the information if accept button in the parent dialog window can be accepted
+            </summary>
+            <param name="pOKState">true if it could be accepted</param>
+        </member>
+    </members>
+</doc>

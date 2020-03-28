@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>UAOOI.ASMD.GUIAbstractions</id>
+    <version>1.0.0-Alpha</version>
+    <title>Windows Forms Controls Library</title>
+    <authors>Mariusz Postol</authors>
+    <owners>Mariusz Postol</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <icon>Logo64.PNG</icon>
+    <projectUrl>https://github.com/mpostol/asmd</projectUrl>
+    <description>GUI Abstractions</description>
+    <releaseNotes>To decouple ASMD from System.Windows.Forms</releaseNotes>
+    <copyright>Copyright (C) 2020, Mariusz Postol LODZ POLAND.</copyright>
+    <tags>ASMD,  OPCUA, OOI, PUBSUB, M2M, I4.0</tags>
+    <repository type="GitHub" url="https://github.com/mpostol/asmd" />
+    <summary>
+      Library of Forms controls.
+    </summary>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Logo64.PNG" target=""/>
+    <file src="bin\Release\netstandard2.0\UAOOI.ASMD.GUIAbstractions.dll" target="lib\netstandard2.0\UAOOI.ASMD.GUIAbstractions.dll" />
+    <file src="bin\Release\netstandard2.0\UAOOI.ASMD.GUIAbstractions.xml" target="lib\netstandard2.0\UAOOI.ASMD.GUIAbstractions.xml" />
+  </files>
+</package>

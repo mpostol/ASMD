@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-using CAS.Lib.ControlLibrary;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Solution;
@@ -14,6 +13,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using UAOOI.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {

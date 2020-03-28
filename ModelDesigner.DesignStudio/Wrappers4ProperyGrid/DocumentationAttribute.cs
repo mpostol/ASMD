@@ -1,23 +1,15 @@
-﻿//<summary>
-//  Title   : Documentation attribute for exporting tool
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2009, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
 
-using CAS.Lib.ControlLibrary;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
 using Opc.Ua.ModelCompiler;
 using System;
 using System.Xml;
+using UAOOI.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
@@ -49,7 +41,6 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       this.DefaultValue = defaultValue;
     }
   }
-
   public class GetterOfNameAsString : IConverterToDocumentationString
   {
     #region IConverterToDocumentationString Members

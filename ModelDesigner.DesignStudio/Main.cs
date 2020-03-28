@@ -4,13 +4,12 @@
 //
 //___________________________________________________________________________________
 
-using CAS.Lib.ControlLibrary;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using UAOOI.Windows.Forms;
 
 namespace CAS.UA.Model.Designer
 {

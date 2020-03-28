@@ -1,4 +1,6 @@
 ﻿using System.Windows.Forms;
+using UAOOI.Windows.Forms;
+
 namespace CAS.UA.Model.Designer
 {
   partial class MainForm
@@ -40,7 +42,7 @@ namespace CAS.UA.Model.Designer
       this.tabPage_help = new System.Windows.Forms.TabPage();
       this.helpUserControl = new CAS.UA.Model.Designer.Controls.NodeObserver.HelpUserControlObserver();
       this.splitter_main = new System.Windows.Forms.Splitter();
-      this.debugDockPanelUserControl1 = new CAS.Lib.ControlLibrary.DebugDockPanelUserControl();
+      this.debugDockPanelUserControl1 = new DebugDockPanelUserControl();
       this.menuStrip_MainMenu = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1404,7 +1406,7 @@ namespace CAS.UA.Model.Designer
     private System.Windows.Forms.ToolStripMenuItem sendUsCommentToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem technicalSupportToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem customizeToolStripMenuItem;
-    private CAS.Lib.ControlLibrary.DebugDockPanelUserControl debugDockPanelUserControl1;
+    private DebugDockPanelUserControl debugDockPanelUserControl1;
     private System.Windows.Forms.Splitter splitter_main;
     private System.Windows.Forms.ToolStripMenuItem windowsToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem oPCViewerToolStripMenuItem;

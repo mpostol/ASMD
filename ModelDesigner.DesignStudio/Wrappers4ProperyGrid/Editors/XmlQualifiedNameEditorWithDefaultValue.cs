@@ -1,28 +1,21 @@
-﻿//<summary>
-//  Title   : Editor of the XmlQualifiedName that allows to define a default value.
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2009, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
+
 
 using System.ComponentModel;
 using System.Xml;
-using CAS.Lib.ControlLibrary;
+using UAOOI.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
 {
   /// <summary>
   /// Editor of the <see cref="XmlQualifiedName"/> that handles default values.
   /// </summary>
-  public class XmlQualifiedNameEditorWithDefaultValue: XmlQualifiedNameEditor
+  public class XmlQualifiedNameEditorWithDefaultValue : XmlQualifiedNameEditor
   {
 
     #region private
@@ -35,16 +28,13 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     /// </summary>
     /// <value>The default value.</value>
     [
-    DisplayName( "Default value" ),
-    BrowsableAttribute( true ),
-    DescriptionAttribute( "The default value" ),
-    NotifyParentPropertyAttribute( true ),
-    ReadOnlyAttribute( true )
+    DisplayName("Default value"),
+    BrowsableAttribute(true),
+    DescriptionAttribute("The default value"),
+    NotifyParentPropertyAttribute(true),
+    ReadOnlyAttribute(true)
     ]
-    public string DefaultValue
-    {
-      get { return m_defaultValue.ToString(); }
-    }
+    public string DefaultValue => m_defaultValue.ToString();
     #endregion public properties
 
     #region constructors
@@ -54,8 +44,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     /// <param name="value">The value.</param>
     /// <param name="namespaceProvider">The namespace provider.</param>
     /// <param name="defaultValue">The default value.</param>
-    internal XmlQualifiedNameEditorWithDefaultValue( XmlQualifiedName value, IXmlQualifiedNameEditorNamespaceProvider namespaceProvider, XmlQualifiedName defaultValue )
-      : base( value, namespaceProvider )
+    internal XmlQualifiedNameEditorWithDefaultValue(XmlQualifiedName value, IXmlQualifiedNameEditorNamespaceProvider namespaceProvider, XmlQualifiedName defaultValue)
+      : base(value, namespaceProvider)
     {
       m_defaultValue = defaultValue;
     }
@@ -66,12 +56,13 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     {
       get
       {
-        if ( IsEmpty )
+        if (IsEmpty)
           return m_defaultValue;
         else
           return base.XmlQualifiedName;
       }
     }
     #endregion public
+
   }
 }

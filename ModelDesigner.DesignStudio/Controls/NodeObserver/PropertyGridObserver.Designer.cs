@@ -1,4 +1,7 @@
-﻿namespace CAS.UA.Model.Designer.Controls.NodeObserver
+﻿using System.Windows.Forms;
+using UAOOI.Windows.Forms;
+
+namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {
   partial class PropertyGridObserver
   {
@@ -30,7 +33,7 @@
     {
       this.components = new System.ComponentModel.Container();
       this.m_propertyGrid = new System.Windows.Forms.PropertyGrid();
-      this.m_propertyGridExpandAllExpander = new CAS.Lib.ControlLibrary.PropertyGridExpandAllExpander( this.components );
+      this.m_propertyGridExpandAllExpander = new PropertyGridExpandAllExpander( this.components );
       this.SuspendLayout();
       // 
       // m_propertyGrid
@@ -57,7 +60,7 @@
 
     #endregion
 
-    private System.Windows.Forms.PropertyGrid m_propertyGrid;
-    private CAS.Lib.ControlLibrary.PropertyGridExpandAllExpander m_propertyGridExpandAllExpander;
+    private PropertyGrid m_propertyGrid;
+    private PropertyGridExpandAllExpander m_propertyGridExpandAllExpander;
   }
 }

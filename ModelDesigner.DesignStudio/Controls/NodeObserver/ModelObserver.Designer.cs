@@ -1,4 +1,6 @@
-﻿namespace CAS.UA.Model.Designer.Controls.NodeObserver
+﻿using UAOOI.Windows.Forms;
+
+namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {
   partial class ModelObserver
   {
@@ -33,8 +35,8 @@
       this.m_TreeView = new DictionaryTreeView();
       this.m_ImagesForNodes = new CAS.UA.Model.Designer.ImagesForNodes( this.components );
       this.m_toolStripContainer = new System.Windows.Forms.ToolStripContainer();
-      this.m_BackForwardTreViewToolStrip = new CAS.Lib.ControlLibrary.BackForwardTreViewToolStrip();
-      this.m_SearchTreeViewToolStrip = new CAS.Lib.ControlLibrary.SearchTreeViewToolStrip();
+      this.m_BackForwardTreViewToolStrip = new BackForwardTreViewToolStrip();
+      this.m_SearchTreeViewToolStrip = new SearchTreeViewToolStrip();
       this.m_ToolStripOtherTools = new System.Windows.Forms.ToolStrip();
       this.toolStripButton_filter = new System.Windows.Forms.ToolStripButton();
       this.m_toolStripContainer.ContentPanel.SuspendLayout();
@@ -147,8 +149,8 @@
     private DictionaryTreeView m_TreeView;
     private ImagesForNodes m_ImagesForNodes;
     private System.Windows.Forms.ToolStripContainer m_toolStripContainer;
-    private CAS.Lib.ControlLibrary.BackForwardTreViewToolStrip m_BackForwardTreViewToolStrip;
-    private CAS.Lib.ControlLibrary.SearchTreeViewToolStrip m_SearchTreeViewToolStrip;
+    private BackForwardTreViewToolStrip m_BackForwardTreViewToolStrip;
+    private SearchTreeViewToolStrip m_SearchTreeViewToolStrip;
     private System.Windows.Forms.ToolStrip m_ToolStripOtherTools;
     private System.Windows.Forms.ToolStripButton toolStripButton_filter;
   }

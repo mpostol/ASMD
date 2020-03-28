@@ -1,4 +1,6 @@
-﻿namespace CAS.UA.Model.Designer
+﻿using UAOOI.Windows.Forms;
+
+namespace CAS.UA.Model.Designer
 {
   partial class Main
   {
@@ -46,7 +48,7 @@
       this.m_TabPageDataBindings = new System.Windows.Forms.TabPage();
       this.m_BindingsPropertyObserver = new CAS.UA.Model.Designer.Controls.NodeObserver.BindingsPropertyObserver();
       this.m_HelpProvider = new System.Windows.Forms.HelpProvider();
-      this.m_ViewTabControlManager = new CAS.Lib.ControlLibrary.TabControlManager(this.components);
+      this.m_ViewTabControlManager = new TabControlManager(this.components);
       this.m_selectedItemObserverComponent = new CAS.UA.Model.Designer.Controls.NodeObserver.SelectedItemObserverComponent(this.components);
       splitContainer1 = new System.Windows.Forms.SplitContainer();
       m_TreeViewToolStripContainer = new System.Windows.Forms.ToolStripContainer();
@@ -306,7 +308,7 @@
     private System.Windows.Forms.TabPage tabPage_tree_model;
     private System.Windows.Forms.TabPage tabPage_tree_browseView;
     private CAS.UA.Model.Designer.Controls.NodeObserver.BrowseViewObserver m_browseViewObserver;
-    private CAS.Lib.ControlLibrary.TabControlManager m_ViewTabControlManager;
+    private TabControlManager m_ViewTabControlManager;
     private System.Windows.Forms.TabPage tabPage_View3DModel;
     private CAS.UA.Model.Designer.Controls.NodeObserver.View3DModelObserver view3DModelObserver1;
     private CAS.UA.Model.Designer.Controls.NodeObserver.SelectedItemObserverComponent m_selectedItemObserverComponent;

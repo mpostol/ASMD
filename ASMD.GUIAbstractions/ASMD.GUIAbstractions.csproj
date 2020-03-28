@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>UAOOI.ASMD.GUIAbstractions</AssemblyName>
+    <RootNamespace>UAOOI.ASMD.GUIAbstractions</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>cas.snk</AssemblyOriginatorKeyFile>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+    <Product>UAOOI.ASMD</Product>
+    <Company>Mpostol</Company>
+    <Authors>Mpostol</Authors>
+    <Description>GUI Abstractions</Description>
+    <Copyright>Copyright (C) 2020, Mariusz Postol LODZ POLAND.</Copyright>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/mpostol/asmd</PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <RepositoryUrl>https://github.com/mpostol/asmd</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <Version>1.0.0-Alpha</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>UAOOI.ASMD.GUIAbstractions</PackageId>
+    <PackageReleaseNotes>To decouple ASMD from System.Windows.Forms</PackageReleaseNotes>
+    <PackageTags>ASMD,  opcuam\, ooi, pubsub, m2m, I4.0</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\VS.git\ASMD\ASMD.GUIAbstractions\UAOOI.ASMD.GUIAbstractions.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\VS.git\ASMD\ASMD.GUIAbstractions\UAOOI.ASMD.GUIAbstractions.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>
