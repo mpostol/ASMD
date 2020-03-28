@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("<#= CASCommServerUAConfigurationEditorVersion #>.*")]
 [assembly: AssemblyFileVersion("<#= CASCommServerUAConfigurationEditorVersion #>")]
 
-<#@ include file = "..\..\CommonResources\T4Definitions\CAS.OPC.t4" #>
+<#@ include file = "..\..\SolutionMetadataTemplate.t4" #>
 <#+
 string m_AssemblyTitle = "CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.UnitTests";
 #>

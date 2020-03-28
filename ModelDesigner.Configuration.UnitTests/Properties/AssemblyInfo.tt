@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("<#= CASUAMDVersion #>.*")]
 [assembly: AssemblyFileVersion("<#= CASUAMDVersion #>")]
 
-<#@ include file = "..\..\CommonResources\T4Definitions\CAS.OPC.t4" #>
+<#@ include file = "..\..\SolutionMetadataTemplate.t4" #>
 
 <#+
 string m_AssemblyTitle = "CAS UA ModelDesigner Configuration Unit Tests";

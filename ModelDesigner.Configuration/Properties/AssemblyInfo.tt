@@ -30,7 +30,7 @@ using System.Runtime.InteropServices;
                                                                        "f2421b9d", AllInternalsVisible = true)]
 [assembly: CAS.Lib.CodeProtect.AssemblyHelper( Company = "CAS", Email = "techsup.cas.eu", Phone = "+48 42 686 25 47", Product = "ASMD", Url = "www.commsvr.com" )]
 
-<#@ include file = "..\..\CommonResources\T4Definitions\CAS.OPC.t4" #>
+<#@ include file = "..\..\SolutionMetadataTemplate.t4" #>
 
 <#+
 string m_AssemblyTitle = "CAS UA ModelDesigner Configuration";
