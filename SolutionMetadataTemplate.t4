@@ -1,0 +1,214 @@
+<#+
+//Common
+string AssemblyCopyright = "Copyright (C) 2019, Mariusz Postol LODZ POLAND.";
+string AssemblyCompany = "Mariusz Postol";
+string Url = "www.cas.eu";
+string Email = "mpostol@cas.eu";
+string Phone = "+48 (608) 619 899";
+string Owner = "Mariusz Postol";
+
+//Default product description
+string DefaultProductName = "CAS CommServer Family";
+string DefaultProductTrademark = "CommServer";
+string DefaultProductVersion = "1.00.00";
+
+//PR36-CAS_MAIN_CORE_PCKG
+string CoreProductName = "CAS Framework Core";
+string CoreProductTrademark = "CAS Framework";
+string CoreProductVersion = "5.00.02.*";
+string CoreProductFileVersion = "5.00.02";
+
+//CAS.CodeProtect
+string CASCodeProtectProductName = "CAS.CodeProtect";
+string CASCodeProtectProductTrademark = "CAS.CodeProtect - CAS Framework";
+string CASCodeProtectProductVersion = "6.1.3";
+string CASCodeProtectProductPreRelease = "";
+
+//CAS.DNNDataBase.UsersManagement
+string CASDNNDataBaseUsersManagementVersion = "2.01.00";
+string CASDNNDataBaseUsersManagementPreRelease = "";
+
+//CAS.Licenses
+string CASLicensesVersion = "2.00.06";
+string CASLicensesPreRelease = "";
+
+//CAS.MAML.HelpTopics.Content
+string CASMAMLHelpTopicsContentVersion = "1.0.3";
+string CASMAMLHelpTopicsContentPreRelease = "";
+
+//CAS.RealTime
+string CASRealTimeName = "CAS.RealTime";
+string CASRealTimeTitle = "CAS.RealTime" + "-RealTime library";
+string CASRealTimeTrademark = "CAS.RealTime" + "-CAS Framework";
+string CASRealTimeVersion = "5.0.6";
+string CASRealTimePreRelease = "";
+
+//CAS.Windows.Forms
+string CASWindowsFormsName = "CAS.Windows.Forms";
+string CASWindowsFormsTitle = "CAS Windows Forms Controls Library";
+string CASWindowsFormsTrademark = "CAS Framework";
+string CASWindowsFormsVersion = "6.1.2";
+string CASWindowsFormsPreRelease = "";
+
+//CommServer
+string AssemblyProduct = "Object Oriented Internet";
+string AssemblyTrademark = "CommServer";
+
+//PR37-CAS_LIB_PCKG - CommServer Core
+string CLibCoreProductVersion = "5.00.00.*";
+string CLibCoreProductFileVersion = "5.00.0";
+
+
+//CAS.CommServer - common part of all CommServers products.
+string CASCommServerVersion = "5.01.06";
+string CASCommServerPrerelease = "";
+
+//CAS.CommServer.CommonBus
+string CASCommServerCommonBusVersion = "5.01.07";
+string CASCommServerCommonBusPrerelease = "";
+
+//CAS.CommServer.DAClientConfiguration
+string CASCommServerDAClientConfigurationProduct = "CAS.CommServer.DAClientConfiguration";
+string CASCommServerDAClientConfigurationTitle = "OPC Classic Client Configuration Library";
+
+//CAS.CommServer.DAServerConfiguration
+string CASCommServerDAServerConfigurationProduct = "CAS.CommServer.DAServerConfiguration";
+string CASCommServerDAServerConfigurationTitle = "CAS.CommServer.DAServerConfiguration - CAS.CommServer.ProtocolHub configuration";
+string ASCommServerDAServerConfigurationVersion = "5.02.02";
+string ASCommServerDAServerConfigurationPrerelease = "";
+
+
+//CAS.CommServer.DataProvider.Package
+string CASCommServerDataProviderPackageVersion = "3.100.01";
+string CASCommServerDataProviderPackagePrerelase = "";
+
+//CAS.CommServer.ProtocolHub
+string CASCommServerProtocolHubTagVersion = "4.10.04";
+
+string CASCommServerProtocolHubVersion = "4.02.00";
+string CASCommServerProtocolHubPrerelease = "";
+
+//CAS.CommServer.ProtocolHub.Monitor
+string CASCommServerProtocolHubMonitorVersion = "4.02.02";
+string CASCommServerProtocolHubMonitorPrerelease = "";
+
+//CAS.CommServer.ProtocolHub.MonitorInterface
+string CASCommServerProtocolHubMonitorInterfaceVersion = "4.01.00";
+string CASCommServerProtocolHubMonitorInterfacePrerelease = "";
+
+//CAS.CommServer.ProtocolHub.ConfigurationEditor
+string CASCommServerProtocolHubConfigurationEditorVersion = "4.10.04";
+string CASCommServerProtocolHubConfigurationEditorPrerelease = "";
+
+//CAS.CommServer.DA
+
+//CAS.CommServer.DA.Client - Client Operations Library
+string CASCommSvrDAClientVersion = "2.00.20";
+string CASCommSvrDAClientPrerelease = "-Alpha";
+
+//CAS.CommServer.DA.Configuration - common server and client configuration access library
+string CASCommServerDAConfigurationProduct = "CommServer DA";
+string CASCommServerDAConfigurationVersion = "1.00.00";
+string CASCommServerDAConfigurationPrerelease = "-Bravo";
+
+//CAS.CommServer.DA.DataPorter
+string CASCommServerDADataPorterVersion = "2.00.12";
+string CASCommServerDADataPorterPrerelease = "";
+
+//"CAS.CommServer.DA.Server.NETServer
+string CASCommServerDAServerNETServerVersion = "4.3.3";
+
+//CAS.CommServer.DA.Viewer
+string CASCommServerDAViewerVersion = "3.11.17";
+string CASCommServerDAViewerPrerelease = "";
+
+//CAS.CommServer.OPCClassicSDK (previous: OPC.DA.SDK.Core)
+string OPCDASDKCoreName = "CAS.CommServer.OPCClassic.SDK";
+string OPCDASDKCoreTitle = "OPC Classic .NET API based on OPC Foundation SDK 2.01.106";
+string OPCDASDKCoreVersion = "2.01.1063";
+string OPCDASDKCorePreRelease = "";
+string OPCDASDKCOMWrapperVersion = "3.0.0";
+string OPCDACOMWrapperPreRelease = "-Bravo";
+
+//CommServer UA
+
+//CAS.CommServer.UA.Common  UA common library
+string CASUACommonProduct = "CAS.UA.Common";
+string CASUACommonVersion = "3.00.05";
+string CASUACommonPreRelease = ""; 
+
+//CAS.UA.Model.Designer
+string CASUAMDProductName = "CAS OPC UA Address Space Model Designer";
+string CASUAMDVersion = "4.1.0";
+string CASUAMDVersionPreRelease = "";
+
+//CAS.CommServer.UA.ConfigurationEditor
+string CASCommServerUAConfigurationEditorVersion = "3.20.4";
+string CASCommServerUAConfigurationEditorPreRelease = "";
+string CASCommServerUAConfigurationEditorProduct = "CommServer UA ConfigurationEditor ServerConfiguration";
+
+//OPC.UA.SDK.Core
+string OPCUASDKCoreCoreTitle = "OPC.UA.SDK.Core" + "-OPC Foundation .NET API";
+string OPCUASDKCoreCoreTrademark = "OPC.UA.SDK.Core" + "-CommServer.UA";
+
+//CAS.CommServer.UA.ModelCompiler
+string CASCommServerUAModelCompilerVersion = "1.11.335.10"; //Synchronized with 1.01.335.1 on https://github.com/OPCFoundation/UA-ModelCompiler
+
+//CAS.CommServer.UA.ModelCompiler.Command
+string OPCUASDKModelCompilerName = "OPC.UA.SDK.ModelCompiler";
+string OPCUASDKModelCompilerTitle = "OPC.UA.SDK.ModelCompiler" + "-CAS Distribution of ModelCompiler";
+string OPCUASDKModelCompilerTrademark = "OPC.UA.SDK.ModelCompiler" + "-CommServer.UA";
+string OPCUASDKModelCompilerPreRelease = "";
+
+//// CAS.CommServer.UA.ModelCompiler.Core
+string OPCUASDKModelCompilerCoreVersion = "1.11.335.10";
+
+//CAS.CommServer.UA.ModelCompiler.Common
+string OPCUASDKModelCompilerCommonName = "CAS.CommServer.UA.ModelCompiler.Common";
+string OPCUASDKModelCompilerCommonTitle = "CAS.CommServer.UA.ModelCompiler.Common" + "-OPC Foundation .NET API";
+string OPCUASDKModelCompilerCommonTrademark = "CAS.CommServer.UA.ModelCompiler.Common" + "-CommServer.UA";
+string OPCUASDKModelCompilerCommonVersion = "1.11.335.10";
+string OPCUASDKModelCompilerCommonPreRelease = "";
+
+// CAS.CommServer.UA.OOI
+string CASCommServerUAOOIVersion = "1.0.0";
+string CASCommServerUAOOIPreRelease = "-Alpha";
+string CASCommServerUAOOIProduct = "CAS.CommServer.UA.OOI.ConfigurationEditor";
+
+// CAS.UA.CommServer.Server
+string CASUAServerProduct = "CAS CommServerUA Family";
+string CASUAServerVersion = "1.00.33";
+
+// CAS.CommServer.UA.Viewer
+string CASCommServerUAViewerVersion = "1.00.15";
+string CASCommServerUAViewerPreRelease = "";
+
+//CAS.UA.IServerConfiguration
+string OPCUAIServerConfigurationProductName = "CAS Address Space Model Designer";
+string OPCUAIServerConfigurationAssemblyVersion = "1.00.00";
+
+//CAS.UA.SDK.ServerConfigurationBase in CAS.UASDKServerConfiguration
+string CASUASDKServerConfigurationBaseProductName = "CAS Address Space Model Designer SDK";
+string CASUASDKServerConfigurationBaseAssemblyVersion = "1.00.00";
+
+
+//____________________________________
+//New Namespaces organization
+//CAS.CommServer
+//CAS.CommServer.DA
+//CAS.CommServer.DA.Viewer
+//CAS.CommServer.DA.Configuration - common server and client configuration access library
+//CAS.CommServer.OPCClassic.SDK
+//CAS.CommServer.UA
+//CAS.CommServer.UA.ModelDesigner
+//CAS.CommServer.UA.SDKServerConfiguration
+//CAS.CommServer.UA.Server
+//CAS.CommServer.UA.Viewer
+//CAS.CommServer.UA.XML
+
+//Note: 
+//Alpha, Bravo, Charlie, Delta, Echo, Foxtrot, Golf, Hotel, India, Juliet, 
+//Kilo, Lima, Mike, November, Oscar, Papa, Quebec, Romeo, Sierra, Tango,
+//Uniform, Victor, Whiskey, X-Ray, Yankee, Zulu 
+
+#>
