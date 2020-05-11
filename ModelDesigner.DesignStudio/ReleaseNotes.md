@@ -61,7 +61,7 @@ The main changes and new functionality are listed below:
 	* errors are added as nodes to the browse view to be easily recognizable
  - Improved application instrumentation and by expanding events tracing to the log file.
  - Added Analyzer Device Integration (ADI) model
- - Synchronized example models with the White-paper: [OPC UA Information Model Deployment](http://www.commsvr.com/DownloadCenter/Publications/OPCUAInformationModelDeployment/tabid/563/language/en-US/Default.aspx)
+ - Synchronized example models with the White-paper: [OPC UA Information Model Deployment](https://www.researchgate.net/profile/Mariusz_Postol/publications)
  
 ## Version 3.00.03 
 ### Release Date: 2014.07.07
