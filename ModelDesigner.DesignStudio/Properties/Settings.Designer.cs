@@ -23,24 +23,6 @@ namespace CAS.UA.Model.Designer.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.commsvr.com/UAModelDesigner/Index.aspx")]
-        public string HelpDocumentationOpcUaEbookURL {
-            get {
-                return ((string)(this["HelpDocumentationOpcUaEbookURL"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("?topic=")]
-        public string HelpDocumentationURLsuffix {
-            get {
-                return ((string)(this["HelpDocumentationURLsuffix"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("UAModelDesignerSolution")]
@@ -50,15 +32,6 @@ namespace CAS.UA.Model.Designer.Properties {
             }
             set {
                 this["DefaultSolutionFileName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.commsvr.com/UAModelDesigner/allTopics.xml")]
-        public string HelpDocumentationAllTopicsWebAddress {
-            get {
-                return ((string)(this["HelpDocumentationAllTopicsWebAddress"]));
             }
         }
         
@@ -317,6 +290,33 @@ namespace CAS.UA.Model.Designer.Properties {
             }
             set {
                 this["OnlyItemsInAddressSpace"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://commsvr-com.github.io/Documentation/OPCUAebook/")]
+        public string HelpDocumentationOpcUaEbookURL {
+            get {
+                return ((string)(this["HelpDocumentationOpcUaEbookURL"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string HelpDocumentationURLsuffix {
+            get {
+                return ((string)(this["HelpDocumentationURLsuffix"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://commsvr-com.github.io/Documentation/OPCUAebook/allTopics.xml")]
+        public string HelpDocumentationAllTopicsWebAddress {
+            get {
+                return ((string)(this["HelpDocumentationAllTopicsWebAddress"]));
             }
         }
     }

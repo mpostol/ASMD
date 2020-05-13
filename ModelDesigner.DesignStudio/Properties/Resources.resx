@@ -504,7 +504,7 @@ The following has occurred:
 The build cannot be continued.</value>
   </data>
   <data name="MainForm_ReadmePage_mainframe" xml:space="preserve">
-    <value>http://www.commsvr.com/OPC-Help/html/ada1af70-e1ba-49df-8d0a-8ddc87a0f287.htm</value>
+    <value>https://commsvr-com.github.io/Documentation/OPCUAebook</value>
     <comment>MainForm</comment>
   </data>
   <data name="Build_Caption" xml:space="preserve">
@@ -599,7 +599,7 @@ Please select Model View.</value>
     <value>..\Resources\EditionAdd32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AsmdHelp" xml:space="preserve">
-    <value>http://www.commsvr.com/OPC-Help/Index.aspx?topic=html/a2d55988-b59a-4a87-95b9-933f6bbdf5bd.htm</value>
+    <value>https://commsvr-com.github.io/Documentation/ModelDesigner</value>
   </data>
   <data name="copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\copy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
