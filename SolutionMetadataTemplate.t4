@@ -36,20 +36,6 @@ string CASLicensesPreRelease = "";
 string CASMAMLHelpTopicsContentVersion = "1.0.3";
 string CASMAMLHelpTopicsContentPreRelease = "";
 
-//CAS.RealTime
-string CASRealTimeName = "CAS.RealTime";
-string CASRealTimeTitle = "CAS.RealTime" + "-RealTime library";
-string CASRealTimeTrademark = "CAS.RealTime" + "-CAS Framework";
-string CASRealTimeVersion = "5.0.6";
-string CASRealTimePreRelease = "";
-
-//CAS.Windows.Forms
-string CASWindowsFormsName = "CAS.Windows.Forms";
-string CASWindowsFormsTitle = "CAS Windows Forms Controls Library";
-string CASWindowsFormsTrademark = "CAS Framework";
-string CASWindowsFormsVersion = "6.1.2";
-string CASWindowsFormsPreRelease = "";
-
 //CommServer
 string AssemblyProduct = "Object Oriented Internet";
 string AssemblyTrademark = "CommServer";
