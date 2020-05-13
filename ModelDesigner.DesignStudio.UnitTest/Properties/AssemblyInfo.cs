@@ -9,10 +9,10 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("CAS OPC UA Address Space Model Designer Unit Test")]
-[assembly: AssemblyDescription("Object Oriented Internet: CAS OPC UA Address Space Model Designer Unit Test Project")]
+[assembly: AssemblyDescription("CAS CommServer Family: CAS OPC UA Address Space Model Designer Unit Test Project")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mariusz Postol")]
-[assembly: AssemblyProduct("Object Oriented Internet")]
+[assembly: AssemblyProduct("CAS CommServer Family")]
 [assembly: AssemblyCopyright("Copyright (C) 2019, Mariusz Postol LODZ POLAND.")]
 [assembly: AssemblyTrademark("CommServer")]
 [assembly: AssemblyCulture("")]
