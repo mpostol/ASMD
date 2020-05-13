@@ -494,7 +494,7 @@ I am interested in the following feature or  the following elements should be ch
     <comment>MainForm</comment>
   </data>
   <data name="MainForm_TechnicalSupportPage" xml:space="preserve">
-    <value>http://www.commsvr.com/tabid/85/language/en-US/Default.aspx</value>
+    <value>https://github.com/mpostol/ASMD</value>
     <comment>MainForm</comment>
   </data>
   <data name="BuildError_error_occured" xml:space="preserve">
@@ -720,9 +720,6 @@ To start {0} in read only mode press “Start” button.    </value>
   </data>
   <data name="SolutionTreeNode" xml:space="preserve">
     <value />
-  </data>
-  <data name="AsmdVersionsComparison" xml:space="preserve">
-    <value>http://www.commsvr.com/tabid/535/Default.aspx</value>
   </data>
   <data name="ProcessStart_Exception" xml:space="preserve">
     <value>Unable to start {0} (reason: {1}).</value>

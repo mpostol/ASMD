@@ -110,15 +110,6 @@ namespace CAS.UA.Model.Designer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.commsvr.com/tabid/535/Default.aspx.
-        /// </summary>
-        internal static string AsmdVersionsComparison {
-            get {
-                return ResourceManager.GetString("AsmdVersionsComparison", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Step 1: Creation of Address Space; Please wait ....
         /// </summary>
         internal static string BrowseViewObserver_pleasewait_step1 {
@@ -629,7 +620,7 @@ namespace CAS.UA.Model.Designer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.commsvr.com/tabid/85/language/en-US/Default.aspx.
+        ///   Looks up a localized string similar to https://github.com/mpostol/ASMD.
         /// </summary>
         internal static string MainForm_TechnicalSupportPage {
             get {

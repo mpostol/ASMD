@@ -749,17 +749,6 @@ namespace CAS.UA.Model.Designer
         dialog.ShowDialog();
       }
     }
-    private void comaprisonOfSoftwareEditionsToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      try
-      {
-        Process.Start(Resources.AsmdVersionsComparison);
-      }
-      catch (Win32Exception ex)
-      {
-        MessageBox.Show(string.Format(Resources.MainForm_DefaultAppMissing, Resources.AsmdVersionsComparison, ex.Message));
-      }
-    }
 
     #region Main
     private string m_StartupFileName = string.Empty;
