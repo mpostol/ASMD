@@ -2,17 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CAS.UA.Model.Designer.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="HelpDocumentationOpcUaEbookURL" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://www.commsvr.com/UAModelDesigner/Index.aspx</Value>
-    </Setting>
-    <Setting Name="HelpDocumentationURLsuffix" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">?topic=</Value>
-    </Setting>
     <Setting Name="DefaultSolutionFileName" Type="System.String" Scope="User">
       <Value Profile="(Default)">UAModelDesignerSolution</Value>
-    </Setting>
-    <Setting Name="HelpDocumentationAllTopicsWebAddress" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://www.commsvr.com/UAModelDesigner/allTopics.xml</Value>
     </Setting>
     <Setting Name="HelpDocumentationAllTopicsFileName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">allTopics.xml</Value>
@@ -79,6 +70,15 @@
     </Setting>
     <Setting Name="OnlyItemsInAddressSpace" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="HelpDocumentationOpcUaEbookURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://commsvr-com.github.io/Documentation/OPCUAebook/</Value>
+    </Setting>
+    <Setting Name="HelpDocumentationURLsuffix" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HelpDocumentationAllTopicsWebAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://commsvr-com.github.io/Documentation/OPCUAebook/allTopics.xml</Value>
     </Setting>
   </Settings>
 </SettingsFile>

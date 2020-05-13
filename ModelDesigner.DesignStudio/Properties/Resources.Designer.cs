@@ -101,20 +101,11 @@ namespace CAS.UA.Model.Designer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.commsvr.com/OPC-Help/Index.aspx?topic=html/a2d55988-b59a-4a87-95b9-933f6bbdf5bd.htm.
+        ///   Looks up a localized string similar to https://commsvr-com.github.io/Documentation/ModelDesigner.
         /// </summary>
         internal static string AsmdHelp {
             get {
                 return ResourceManager.GetString("AsmdHelp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://www.commsvr.com/tabid/535/Default.aspx.
-        /// </summary>
-        internal static string AsmdVersionsComparison {
-            get {
-                return ResourceManager.GetString("AsmdVersionsComparison", resourceCulture);
             }
         }
         
@@ -611,7 +602,7 @@ namespace CAS.UA.Model.Designer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.commsvr.com/OPC-Help/html/ada1af70-e1ba-49df-8d0a-8ddc87a0f287.htm.
+        ///   Looks up a localized string similar to https://commsvr-com.github.io/Documentation/OPCUAebook.
         /// </summary>
         internal static string MainForm_ReadmePage_mainframe {
             get {
@@ -629,7 +620,7 @@ namespace CAS.UA.Model.Designer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.commsvr.com/tabid/85/language/en-US/Default.aspx.
+        ///   Looks up a localized string similar to https://github.com/mpostol/ASMD.
         /// </summary>
         internal static string MainForm_TechnicalSupportPage {
             get {

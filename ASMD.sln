@@ -4,7 +4,6 @@ VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{B429E0BA-4F78-44A2-B61A-8093A17789C4}"
 	ProjectSection(SolutionItems) = preProject
-		DownloadURLs.TXT = DownloadURLs.TXT
 		NuGet.Config = NuGet.Config
 		README.md = README.md
 		SolutionMetadataTemplate.t4 = SolutionMetadataTemplate.t4
@@ -84,8 +83,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {44F03BC2-35ED-43E8-A43D-71C089CCD611}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
+		SolutionGuid = {44F03BC2-35ED-43E8-A43D-71C089CCD611}
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

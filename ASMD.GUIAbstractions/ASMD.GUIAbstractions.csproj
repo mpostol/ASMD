@@ -29,7 +29,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\VS.git\ASMD\ASMD.GUIAbstractions\UAOOI.ASMD.GUIAbstractions.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
 </Project>

@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-
 using CAS.Lib.CodeProtect;
 using CAS.UA.Model.Designer.Properties;
 using System;

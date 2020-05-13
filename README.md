@@ -15,10 +15,10 @@ The ASMD was written by CAS Lodz Poland. I am the founder and Executive Director
 
 We use [Semantic Versioning][SV] for versioning. For the versions available, see the [releases on this repository][REL]. For your convenience, the versions of the repository, tools and NuGet packages has been listed in the next subsections.
 
-| Version | Milestone                                                          | Date|
-|:-------:|--------------------------------------------------------------------|:--:|
-| 4.1 | [Public release of the ASMD][ASMD410] |  Dec 17, 2019 |
-| 3.20.1| [ASMD last available Windows installation released by CAS][CAS.ASMD]| May 17, 2016|
+| Version | Milestone                                                          | Date|Notes|
+|:-------:|--------------------------------------------------------------------|:--:|-|
+| 4.1 | [Public release of the ASMD][ASMD410] |  Dec 17, 2019 ||
+| 3.20.1| [ASMD last available Windows installation released by CAS]| May 17, 2016|deprecated|
 
 ## Key Features
 
@@ -147,8 +147,7 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 - [OPC UA Address Space Model Designer Help][github.MD]
 - [WIKI - Help Documentation][WIKI]
 - [Mariusz Postol. Address Space and Address Space Model](https://commsvr.gitbook.io/ooi/semantic-data-processing/addressspaceaddressspacemodel)
-- [ASMD Re. 3.30.1 installation released by CAS][CAS.ASMD]
-- [OPC UA Address Space Model Designer, 2019][CAS.ASMD]
+- [OPC UA Address Space Model Designer][CAS.ASMD]
 - Wolfgang Mahnke, Stefan Helmut Leitner, Matthias Damm. OPC Unified Architecture. Berlin: Springer, 2009.
 - [OPC Unified Architecture Specification Part 3: Address Space Model, OPC Foundation, Rel. 1.04, 2017-11-22][Opc.UA.Part3]
 - [OPC Unified Architecture Specification Part 5: Information Model, OPC Foundation, Rel. 1.04, 2017-11-22][OPC.UA.Part5]
@@ -176,13 +175,12 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 [OPC.UA.Part5]:https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-5-information-model/
 [Opc.UA.Part3]:https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-3-address-space-model/
 [Opc.UA.Part6]:https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-6-mappings/
-[CAS.ASMD]: http://www.commsvr.com/Products/OPCUA/UAModelDesigner.aspx
 [REL]: https://github.com/mpostol/ASMD/releases
 [boiler]: https://commsvr.gitbook.io/ooi/reactive-communication/referenceapplication/simulator.boiler#informal-model-of-boiler
 [ADI]: https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment/companionspecificationinformationmodelfforanalyzers
 [IMD]: https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment
 [ADI]:https://opcfoundation.org/developer-tools/specifications-opc-ua-information-models/opc-unified-architecture-for-analyzer-devices-adi/
-[CAS.ASMD]:http://www.commsvr.com/COInstal/UAModelDesignerPro/setup.exe
+[CAS.ASMD]:https://commsvr-com.github.io/Documentation/ModelDesigner
 [OPENXML]:https://www.microsoft.com/en-us/download/details.aspx?id=30425
 [DEPGraph]:https://github.com/mpostol/ASMD/network/dependencies
 [CAS.VideoInstances]:https://youtu.be/LvGHl-hRwZw
