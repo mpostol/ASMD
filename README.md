@@ -56,14 +56,6 @@ Check out the [WIKI - Help Documentation][WIKI] to get a more detailed descripti
 
 This section describes prerequisites to compile the software and run tests.
 
-### Open XML SDK
-
-The following package must be installed on the development computer to build the solution
-
-- [Open XML SDK 2.5 for Microsoft Office][OPENXML]
-
-Open XML is an open ECMA 376 standard and is also approved as the ISO/IEC 29500 standard that defines a set of XML schemas for representing spreadsheets, charts, presentations, and word processing documents. Microsoft Office Word 2007, Excel 2007, PowerPoint 2007, and the later versions all use Open XML as the default file format.
-
 ### NuGet packages
 
 The list of packages used is listed on the page [Dependency graph][DEPGraph] of this repository. All packages are included in this GitHub repository in the local folder `_nugets` or published on NuGet. The local folder is configured in the `NuGet.Config`. The NuGet Gallery is the public package repository used by all package authors and consumers. All required packages are loaded before the build.
@@ -158,7 +150,7 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 - [ASMD releases page][REL]
 - [OPC 10020 - UA for Analyzer Devices (ADI), OPC Foundation Rel 1.1a, 2015][ADI]
 - [Semantic Versioning][SV]
-- [Open XML SDK 2.5 for Microsoft Office][OPENXML]
+- [Open XML SDK 2.5 for Microsoft Office; GitHub repository OfficeDev/Open-XML-SDK][OPENXML]
 - [How to reinstall and update packages][NUGETInstall].
 - [Dependency graph][DEPGraph]
 - [OPCFoundation/UA-ModelCompiler][OPC.UA.ModelCompiler]
@@ -181,7 +173,7 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 [IMD]: https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment
 [ADI]:https://opcfoundation.org/developer-tools/specifications-opc-ua-information-models/opc-unified-architecture-for-analyzer-devices-adi/
 [CAS.ASMD]:https://commsvr-com.github.io/Documentation/ModelDesigner
-[OPENXML]:https://www.microsoft.com/en-us/download/details.aspx?id=30425
+[OPENXML]:https://github.com/OfficeDev/Open-XML-SDK
 [DEPGraph]:https://github.com/mpostol/ASMD/network/dependencies
 [CAS.VideoInstances]:https://youtu.be/LvGHl-hRwZw
 [CAS.VideBuild]:https://youtu.be/y3tndTA7YYo

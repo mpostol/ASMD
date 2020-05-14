@@ -19,8 +19,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid( "7f6b3ca8-1d1c-41e2-85d9-938cd835034d" )]
-[assembly: AssemblyVersion("<#= CASCommServerUAConfigurationEditorVersion #>.*")]
-[assembly: AssemblyFileVersion("<#= CASCommServerUAConfigurationEditorVersion #>")]
+[assembly: AssemblyVersion("<#= CASUAMDVersion #>.*")]
+[assembly: AssemblyFileVersion("<#= CASUAMDVersion #>")]
 
 <#@ include file = "..\..\SolutionMetadataTemplate.t4" #>
 <#+

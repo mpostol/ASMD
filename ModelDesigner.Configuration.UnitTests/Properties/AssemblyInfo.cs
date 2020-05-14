@@ -10,10 +10,10 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("CAS UA ModelDesigner Configuration Unit Tests")]
-[assembly: AssemblyDescription("Object Oriented Internet: CAS UA ModelDesigner Configuration Unit Tests")]
+[assembly: AssemblyDescription("CAS CommServer Family: CAS UA ModelDesigner Configuration Unit Tests")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mariusz Postol")]
-[assembly: AssemblyProduct("Object Oriented Internet")]
+[assembly: AssemblyProduct("CAS CommServer Family")]
 [assembly: AssemblyCopyright("Copyright (C) 2019, Mariusz Postol LODZ POLAND.")]
 [assembly: AssemblyTrademark("CommServer")]
 [assembly: AssemblyCulture("")]

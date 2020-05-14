@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 [assembly: Guid( "ADD17203-F2A5-41BD-B653-47B319C90B26" )]
-[assembly: AssemblyVersion("<#= CASCommServerUAConfigurationEditorVersion #>.*")]
-[assembly: AssemblyFileVersion("<#= CASCommServerUAConfigurationEditorVersion #>")]
+[assembly: AssemblyVersion("<#= CASUAMDVersion #>.*")]
+[assembly: AssemblyFileVersion("<#= CASUAMDVersion #>")]
 
 <#@ include file = "..\..\SolutionMetadataTemplate.t4" #>
 

@@ -4,9 +4,9 @@
 ## Current release details:
 
 * Description:   OPC UA Information Model Design Studio.
-* Product:       [Object Oriented Internet](https://github.com/mpostol/OPC-UA-OOI)
+* Product:       [CAS CommServer Family](https://github.com/mpostol/OPC-UA-OOI)
 * Version:       4.1.0
-* Release Date:  3/28/2020
+* Release Date:  13.05.2020
 
 The main changes and new functionality are listed below:
 
@@ -61,7 +61,7 @@ The main changes and new functionality are listed below:
 	* errors are added as nodes to the browse view to be easily recognizable
  - Improved application instrumentation and by expanding events tracing to the log file.
  - Added Analyzer Device Integration (ADI) model
- - Synchronized example models with the White-paper: [OPC UA Information Model Deployment](https://www.researchgate.net/profile/Mariusz_Postol/publications)
+ - Synchronized example models with the White-paper: [OPC UA Information Model Deployment](http://www.commsvr.com/DownloadCenter/Publications/OPCUAInformationModelDeployment/tabid/563/language/en-US/Default.aspx)
  
 ## Version 3.00.03 
 ### Release Date: 2014.07.07
@@ -79,5 +79,5 @@ This is only bug-fix release. The main changes and new functionality are listed 
 
 # Archival Information
 
-For archival information visit the document [Version History](https://commsvr-com.github.io/Documentation/ModelDesigner/html/ada1af70-e1ba-49df-8d0a-8ddc87a0f287.htm)
+For archival information visit the document [Version History](http://www.commsvr.com/OPC-Help/Index.aspx?topic=html/ada1af70-e1ba-49df-8d0a-8ddc87a0f287.htm)
 

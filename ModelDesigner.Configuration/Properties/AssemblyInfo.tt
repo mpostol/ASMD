@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
                                                                        "d9ad606bd9f4e0a8e1b0c49fa37835630b16798ece56df81c756f4c6bd37f07d68cc91ebfa7be7" +
                                                                        "8149d016bbc6a364beda14fc1119698d8c8d9923805b40122bf594f08cc29f41cb0a31e5e141e3" +
                                                                        "f2421b9d", AllInternalsVisible = true)]
-[assembly: CAS.Lib.CodeProtect.AssemblyHelper( Company = "CAS", Email = "techsup.cas.eu", Phone = "+48 42 686 25 47", Product = "ASMD", Url = "www.commsvr.com" )]
+[assembly: CAS.Lib.CodeProtect.AssemblyHelper( Company = "<#= AssemblyCompany #>", Email = "<#= Email #>", Phone = "<#= Phone #>", Product =  "<#=CASUAMDProductName#>", Url = "<#= Url #>" )]
 
 <#@ include file = "..\..\SolutionMetadataTemplate.t4" #>
 
