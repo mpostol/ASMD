@@ -7,11 +7,10 @@
 //___________________________________________________________________________________
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("<#=CASUAMDProductName#> Unit Test")]
-[assembly: AssemblyDescription("<#=AssemblyProduct#>: <#=CASUAMDProductName#> Unit Test Project")]
+[assembly: AssemblyTitle("CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest")]
+[assembly: AssemblyDescription("DesignStudio UnitTest")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("<#=AssemblyCompany#>")]
 [assembly: AssemblyProduct("<#=AssemblyProduct#>")]
@@ -20,8 +19,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid("1f0f64d5-0977-4f85-8ad1-fc24af68e244")]
-[assembly: AssemblyVersion("<#= CASUAMDVersion #>.*")]
-[assembly: AssemblyFileVersion("<#= CASUAMDVersion #>")]
+[assembly: AssemblyVersion("<#= AssemblyVersion #>.*")]
+[assembly: AssemblyFileVersion("<#= AssemblyVersion #>")]
 
 <#@ include file = "..\..\SolutionMetadataTemplate.t4" #>
 

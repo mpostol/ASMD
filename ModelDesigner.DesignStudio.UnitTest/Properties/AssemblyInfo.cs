@@ -5,21 +5,20 @@
 //___________________________________________________________________________________
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("CAS OPC UA Address Space Model Designer Unit Test")]
-[assembly: AssemblyDescription("CAS CommServer Family: CAS OPC UA Address Space Model Designer Unit Test Project")]
+[assembly: AssemblyTitle("CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest")]
+[assembly: AssemblyDescription("DesignStudio UnitTest")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mariusz Postol")]
-[assembly: AssemblyProduct("CAS CommServer Family")]
-[assembly: AssemblyCopyright("Copyright (C) 2019, Mariusz Postol LODZ POLAND.")]
-[assembly: AssemblyTrademark("CommServer")]
+[assembly: AssemblyProduct("Object-Oriented Internet Address Space Model Designer")]
+[assembly: AssemblyCopyright("Copyright (c) 2020 Mariusz Postol")]
+[assembly: AssemblyTrademark("OOI ASMD")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid("1f0f64d5-0977-4f85-8ad1-fc24af68e244")]
-[assembly: AssemblyVersion("4.1.0.*")]
-[assembly: AssemblyFileVersion("4.1.0")]
+[assembly: AssemblyVersion("4.2.0.*")]
+[assembly: AssemblyFileVersion("4.2.0")]
 
 
 

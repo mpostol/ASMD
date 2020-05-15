@@ -9,8 +9,8 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("<#=m_AssemblyTitle#>")]
-[assembly: AssemblyDescription("<#=CASUAMDProductName#>: <#=m_AssemblyTitle#>")]
+[assembly: AssemblyTitle("CAS.CommServer.UA.ConfigurationEditor.ModelsContainer")]
+[assembly: AssemblyDescription("Address Space Model Designer - Models Container")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("<#=AssemblyCompany#>")]
 [assembly: AssemblyProduct("<#=AssemblyProduct#>")]
@@ -20,11 +20,7 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 [assembly: Guid( "ADD17203-F2A5-41BD-B653-47B319C90B26" )]
-[assembly: AssemblyVersion("<#= CASUAMDVersion #>.*")]
-[assembly: AssemblyFileVersion("<#= CASUAMDVersion #>")]
+[assembly: AssemblyVersion("<#= AssemblyVersion #>.*")]
+[assembly: AssemblyFileVersion("<#= AssemblyVersion #>")]
 
 <#@ include file = "..\..\SolutionMetadataTemplate.t4" #>
-
-<#+
-string m_AssemblyTitle = "Embedded models";
-#>

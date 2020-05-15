@@ -9,7 +9,7 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("<#=m_AssemblyTitle#>")]
+[assembly: AssemblyTitle("CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.UnitTests")]
 [assembly: AssemblyDescription("UA ConfigurationEditor Models Container Unit Tests")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("<#=AssemblyCompany#>")]
@@ -19,10 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid( "7f6b3ca8-1d1c-41e2-85d9-938cd835034d" )]
-[assembly: AssemblyVersion("<#= CASUAMDVersion #>.*")]
-[assembly: AssemblyFileVersion("<#= CASUAMDVersion #>")]
+[assembly: AssemblyVersion("<#= AssemblyVersion #>.*")]
+[assembly: AssemblyFileVersion("<#= AssemblyVersion #>")]
 
 <#@ include file = "..\..\SolutionMetadataTemplate.t4" #>
-<#+
-string m_AssemblyTitle = "CAS.CommServer.UA.ConfigurationEditor.ModelsContainer.UnitTests";
-#>

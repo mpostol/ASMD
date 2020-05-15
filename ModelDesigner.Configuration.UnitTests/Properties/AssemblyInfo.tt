@@ -8,11 +8,10 @@
 //___________________________________________________________________________________
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("<#=m_AssemblyTitle#>")]
-[assembly: AssemblyDescription("<#=AssemblyProduct#>: <#=m_AssemblyTitle#>")]
+[assembly: AssemblyTitle("CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests")]
+[assembly: AssemblyDescription("Configuration UnitTests")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("<#=AssemblyCompany#>")]
 [assembly: AssemblyProduct("<#=AssemblyProduct#>")]
@@ -21,10 +20,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
-// The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid( "c4b8d907-a0cd-42e5-8c08-dc61af69a2ac" )]
-[assembly: AssemblyVersion("<#= CASUAMDVersion #>.*")]
-[assembly: AssemblyFileVersion("<#= CASUAMDVersion #>")]
+[assembly: AssemblyVersion("<#= AssemblyVersion #>.*")]
+[assembly: AssemblyFileVersion("<#= AssemblyVersion #>")]
 
 <#@ include file = "..\..\SolutionMetadataTemplate.t4" #>
 

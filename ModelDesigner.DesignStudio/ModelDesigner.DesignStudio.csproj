@@ -662,10 +662,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModelDesigne.MeshDiagram3D\ModelDesigne.MeshDiagram3D\ModelDesigner.MeshDiagram3D.csproj">
-      <Project>{839c6517-d1bf-4142-8668-444f2047c7cf}</Project>
-      <Name>ModelDesigner.MeshDiagram3D</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ModelDesigner.Configuration\ModelDesigner.Configuration.csproj">
       <Project>{B4E9C610-790A-417C-BF68-7B3E0AECCAA4}</Project>
       <Name>ModelDesigner.Configuration</Name>
@@ -673,6 +669,10 @@
     <ProjectReference Include="..\ModelDesigner.ImportExport\ModelDesigner.ImportExport.csproj">
       <Project>{7c805bc4-b9c0-48e0-9d3f-d1c322b35acb}</Project>
       <Name>ModelDesigner.ImportExport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelDesigner.MeshDiagram3D\ModelDesigner.MeshDiagram3D.csproj">
+      <Project>{839c6517-d1bf-4142-8668-444f2047c7cf}</Project>
+      <Name>ModelDesigner.MeshDiagram3D</Name>
     </ProjectReference>
     <ProjectReference Include="..\ModelDesigner.ModelsContainer\ModelDesigner.ModelsContainer.csproj">
       <Project>{643a2a07-394d-418f-937c-2d394efe5015}</Project>

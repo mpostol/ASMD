@@ -7,18 +7,17 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Embedded models")]
-[assembly: AssemblyDescription("CAS OPC UA Address Space Model Designer: Embedded models")]
+[assembly: AssemblyTitle("CAS.CommServer.UA.ConfigurationEditor.ModelsContainer")]
+[assembly: AssemblyDescription("Address Space Model Designer - Models Container")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mariusz Postol")]
-[assembly: AssemblyProduct("CAS CommServer Family")]
-[assembly: AssemblyCopyright("Copyright (C) 2019, Mariusz Postol LODZ POLAND.")]
-[assembly: AssemblyTrademark("CommServer")]
+[assembly: AssemblyProduct("Object-Oriented Internet Address Space Model Designer")]
+[assembly: AssemblyCopyright("Copyright (c) 2020 Mariusz Postol")]
+[assembly: AssemblyTrademark("OOI ASMD")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 [assembly: Guid( "ADD17203-F2A5-41BD-B653-47B319C90B26" )]
-[assembly: AssemblyVersion("4.1.0.*")]
-[assembly: AssemblyFileVersion("4.1.0")]
-
+[assembly: AssemblyVersion("4.2.0.*")]
+[assembly: AssemblyFileVersion("4.2.0")]
 

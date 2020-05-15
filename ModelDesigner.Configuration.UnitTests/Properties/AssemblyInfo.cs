@@ -6,22 +6,20 @@
 //___________________________________________________________________________________
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("CAS UA ModelDesigner Configuration Unit Tests")]
-[assembly: AssemblyDescription("CAS CommServer Family: CAS UA ModelDesigner Configuration Unit Tests")]
+[assembly: AssemblyTitle("CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests")]
+[assembly: AssemblyDescription("Configuration UnitTests")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mariusz Postol")]
-[assembly: AssemblyProduct("CAS CommServer Family")]
-[assembly: AssemblyCopyright("Copyright (C) 2019, Mariusz Postol LODZ POLAND.")]
-[assembly: AssemblyTrademark("CommServer")]
+[assembly: AssemblyProduct("Object-Oriented Internet Address Space Model Designer")]
+[assembly: AssemblyCopyright("Copyright (c) 2020 Mariusz Postol")]
+[assembly: AssemblyTrademark("OOI ASMD")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
-// The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid( "c4b8d907-a0cd-42e5-8c08-dc61af69a2ac" )]
-[assembly: AssemblyVersion("4.1.0.*")]
-[assembly: AssemblyFileVersion("4.1.0")]
+[assembly: AssemblyVersion("4.2.0.*")]
+[assembly: AssemblyFileVersion("4.2.0")]
 
 

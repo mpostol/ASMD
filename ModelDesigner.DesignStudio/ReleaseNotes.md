@@ -1,12 +1,12 @@
 ﻿
-# Release Notes: CAS OPC UA Address Space Model Designer
+# Release Notes: Object-Oriented Internet Address Space Model Designer
 
 ## Current release details:
 
 * Description:   OPC UA Information Model Design Studio.
-* Product:       [CAS CommServer Family](https://github.com/mpostol/OPC-UA-OOI)
-* Version:       4.1.0
-* Release Date:  13.05.2020
+* Product:       [Object-Oriented Internet Address Space Model Designer](https://github.com/mpostol/OPC-UA-OOI)
+* Version:       4.2.0
+* Release Date:  15.05.2020
 
 The main changes and new functionality are listed below:
 
