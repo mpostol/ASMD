@@ -131,7 +131,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ModelDesigne.3DTools\ModelDesigne.3DTools\ModelDesigner.3DTools.csproj">
+    <ProjectReference Include="..\ModelDesigne.3DTools\ModelDesigne.3DTools\ModelDesigner.3DTools.csproj">
       <Project>{5f603892-de40-4246-a969-1c6717afe35d}</Project>
       <Name>ModelDesigner.3DTools</Name>
     </ProjectReference>
