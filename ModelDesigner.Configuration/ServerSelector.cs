@@ -265,10 +265,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       {
         _fileInfo = new FileInfo(Path.Combine(solutionPath, codebase));
         if (!_fileInfo.Exists && !string.IsNullOrEmpty(Assembly.GetExecutingAssembly().Location))
-        {
-          solutionPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-          _fileInfo = new FileInfo(Path.Combine(solutionPath, codebase));
-        }
+          _fileInfo = new FileInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), codebase));
         if (!_fileInfo.Exists)
           _fileInfo = null;
       }
@@ -304,7 +301,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         return;
       }
       ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, _assembly, GraphicalUserInterface, solutionPath, configuration);
-      //It must be last statement because ir raises an event using all properties.
+      //It must be the last statement because it raises an event using all properties.
       SelectedAssembly = newSelectedAssembly;
     }
     private static ServerWrapper OpenPlugInAssembly(ServerWrapper server)

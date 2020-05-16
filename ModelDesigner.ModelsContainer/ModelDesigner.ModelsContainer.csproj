@@ -65,7 +65,7 @@
     <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\OPC_DA_SampleAnalyser_tag_list.txt" />
+    <None Include="EmbeddedExample\ADISampleConfiguration\OPC_DA_SampleAnalyser_tag_list.txt" />
     <EmbeddedResource Include="EmbeddedExample\DemoConfiguration\DefaultConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -104,30 +104,22 @@
     <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance\FTNIRInstance.PredefinedNodes.uanodes">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance\FTNIRInstance.PredefinedNodes.uanodes" />
     <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance\FTNIRInstance.Types.bsd" />
     <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance\FTNIRInstance.Types.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel\FTNIR.PredefinedNodes.uanodes">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel\FTNIR.PredefinedNodes.uanodes" />
     <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel\FTNIR.Types.bsd" />
     <None Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel\FTNIR.Types.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel\Opc.Ua.Adi.PredefinedNodes.uanodes">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel\Opc.Ua.Adi.PredefinedNodes.uanodes" />
     <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel\Opc.Ua.Adi.Types.bsd" />
     <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel\Opc.Ua.Adi.Types.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.PredefinedNodes.uanodes">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.PredefinedNodes.uanodes" />
     <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.Types.bsd" />
     <None Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.Types.xsd">
       <SubType>Designer</SubType>
