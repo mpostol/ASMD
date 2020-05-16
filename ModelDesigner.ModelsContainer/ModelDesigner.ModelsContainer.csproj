@@ -52,12 +52,19 @@
     <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\DefaultConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel.xml" />
-    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance.xml" />
+    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\FTNIRModel.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel.xml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel.xml" />
+    <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\OPC_DA_SampleAnalyser_tag_list.txt" />
     <EmbeddedResource Include="EmbeddedExample\DemoConfiguration\DefaultConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -66,27 +73,27 @@
   <ItemGroup>
     <None Include="cas.snk" />
     <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\CAS.UAServer.DemoConfiguration.uasconfig">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\DemoConfiguration.oses">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\FTNIRModelInstance.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\OpcUaAdiModel.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedExample\BoilerExampleSolution.uamdsl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedExample\ADIExempleSolution.uamdsl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedExample\DemoConfiguration\BoilerExample.oses">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

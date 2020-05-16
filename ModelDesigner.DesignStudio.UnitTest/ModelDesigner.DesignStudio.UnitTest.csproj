@@ -157,6 +157,7 @@
     <Compile Include="Wrappers\ProjectTreeNodeUnitTest.cs" />
     <Compile Include="Wrappers\DataTypeDesignUnitTest.cs" />
     <Compile Include="Wrappers\BaseTreeNodeTestUnitTest.cs" />
+    <Compile Include="Wrappers\SolutionTreeNodeUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

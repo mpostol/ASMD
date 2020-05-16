@@ -20,7 +20,7 @@ namespace CAS.UA.Model.Designer.IO
     {
       string _defPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UAModelDesignerSolution.uax");
       Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
-      _IFileDialogMock.SetupProperty(x => x.FileName);
+      _IFileDialogMock.SetupProperty<string>(x => x.FileName);
       ConfigurationManagementFixture _newItem = new ConfigurationManagementFixture(_IFileDialogMock.Object, _defPath);
       Assert.IsFalse(_newItem.ChangesArePresent);
       Assert.IsFalse(String.IsNullOrEmpty(_newItem.DefaultDirectory));

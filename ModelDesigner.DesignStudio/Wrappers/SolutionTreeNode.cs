@@ -36,10 +36,25 @@ namespace CAS.UA.Model.Designer.Wrappers
     void OnNew();
   }
 
+  internal interface ISolutionTreeNodeUI : IBaseModel
+  {
+    /// <summary>
+    /// Gets the home directory.
+    /// </summary>
+    /// <value>The home directory.</value>
+    string HomeDirectory { get; }
+
+    /// <summary>
+    /// Gets the UI to select a server plug-in.
+    /// </summary>
+    /// <value>An instance of <see cref="ServerSelector"/> used by a software user to select a server plug-in.</value>
+    ServerSelector Server { get; }
+  }
+
   /// <summary>
   /// The class representing the solution node in the model.
   /// </summary>
-  internal class SolutionTreeNode : WrapperTreeNode, IBaseDirectoryProvider, IViewModel, ISolutionModel
+  internal class SolutionTreeNode : WrapperTreeNode, IBaseDirectoryProvider, IViewModel, ISolutionModel, ISolutionTreeNodeUI
   {
     #region private
 
@@ -60,6 +75,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         try
         {
           _newProject = new ProjectTreeNode(this, _project);
+          _nodes.Add(_newProject);
         }
         catch (FileNotFoundException _ex)
         {
@@ -67,16 +83,8 @@ namespace CAS.UA.Model.Designer.Wrappers
         }
         catch (Exception _ex)
         {
-          this.MessageBoxHandling.Show
-            (
-              string.Format(Properties.Resources.Project_FileOpenError, _ex.Message),
-              Properties.Resources.Project_OpenFileCaption,
-              MessageBoxButtons.OK,
-              MessageBoxIcon.Error
-            );
+          this.MessageBoxHandling.Show(string.Format(Properties.Resources.Project_FileOpenError, _ex.Message), Properties.Resources.Project_OpenFileCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        if (_project != null)
-          _nodes.Add(_newProject);
       }
       this.AddRange(_nodes);
     }
@@ -140,32 +148,14 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <param name="solution">The configuration.</param>
     /// <param name="solutionPath">The solution path.</param>
     /// <param name="OnChangeHandler">The on change handler.</param>
-    /// <param name="callBack">The call back.</param>
+    /// <param name="creteLibraryTreeNode">The call back to create <see cref="LibraryTreeNode"/>.</param>
     /// <exception cref="ArgumentNullException">configuration
     /// or
     /// messageBoxHandling</exception>
-    internal SolutionTreeNode(IMessageBoxHandling messageBoxHandling, UAModelDesignerSolution solution, string solutionPath, EventHandler<EventArgs> OnChangeHandler, Action<LibraryTreeNode> callBack) :
-      this(messageBoxHandling, solution, solutionPath, OnChangeHandler)
-    {
-      LibraryRoot.AddNodes(callBack);
-    }
-    /// <summary>
-    /// Initializes a new instance of the <see cref="SolutionTreeNode" /> class using solution file.
-    /// </summary>
-    /// <param name="messageBoxHandling">The Message Box instance to provide messages on the screen.</param>
-    /// <param name="solution">The configuration.</param>
-    /// <param name="solutionPath">The solution path.</param>
-    /// <param name="OnChangeHandler">The on change handler.</param>
-    /// <exception cref="ArgumentNullException">
-    /// configuration
-    /// or
-    /// messageBoxHandling
-    /// </exception>
-    internal SolutionTreeNode(IMessageBoxHandling messageBoxHandling, UAModelDesignerSolution solution, string solutionPath, EventHandler<EventArgs> OnChangeHandler) : base(null, solution.Name)
+    internal SolutionTreeNode(IMessageBoxHandling messageBoxHandling, UAModelDesignerSolution solution, string solutionPath, EventHandler<EventArgs> OnChangeHandler, Action<LibraryTreeNode> creteLibraryTreeNode) :
+      base(null, solution == null ? Guid.NewGuid().ToString() : solution.Name)
     {
       MessageBoxHandling = messageBoxHandling ?? throw new ArgumentNullException(nameof(messageBoxHandling));
-      if (solution == null)
-        throw new ArgumentNullException("configuration");
       HomeDirectory = solutionPath;
       Server = new ServerSelector(new GraphicalUserInterface(), solutionPath, solution.ServerDetails.codebase, solution.ServerDetails.configuration);
       Server.OnConfigurationChanged += new EventHandler<UAServerConfigurationEventArgs>(Server_OnConfigurationChanged);
@@ -174,6 +164,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       AddProjectsNodes(solution.Projects);
       BaseDirectoryHelper.Instance.SetBaseDirectoryProvider(this);
       SolutionRoot = this;
+      LibraryRoot.AddNodes(creteLibraryTreeNode);
     }
 
     #endregion constructor
@@ -221,8 +212,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       AddNode2AddressSpace(space);
     }
 
-    internal ServerSelector Server { get; private set; }
-
     /// <summary>
     /// Builds the solution and write any massages to specified output.
     /// </summary>
@@ -269,9 +258,23 @@ namespace CAS.UA.Model.Designer.Wrappers
       return Server.GetInstanceConfiguration(nodeUniqueIdentifier);
     }
 
-    internal string HomeDirectory { get; private set; }
-
     #endregion public
+
+    #region ISolutionTreeNodeUI
+
+    /// <summary>
+    /// Gets the UI to select a server plug-in.
+    /// </summary>
+    /// <value>An instance of <see cref="ServerSelector" /> used by a software user to select a server plug-in.</value>
+    public ServerSelector Server { get; private set; }
+
+    /// <summary>
+    /// Gets the home directory.
+    /// </summary>
+    /// <value>The home directory.</value>
+    public string HomeDirectory { get; private set; }
+
+    #endregion ISolutionTreeNodeUI
 
     #region ISolutionModel
 
@@ -350,5 +353,19 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
 
     #endregion WrapperTreeNode
+
+    #region Diagnostics
+
+    /// <summary>
+    /// Gets the libraries.
+    /// </summary>
+    /// <param name="callBack">The call back.</param>
+    [System.Diagnostics.Conditional("DEBUG")]
+    internal void GetLibraries(Action<Libraries> callBack)
+    {
+      callBack(LibraryRoot);
+    }
+
+    #endregion Diagnostics
   }
 }

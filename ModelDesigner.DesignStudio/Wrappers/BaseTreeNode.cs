@@ -11,11 +11,12 @@ using System.Collections.Generic;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-
   internal interface IBaseModel : IEnumerable<IBaseModel>
   {
     event EventHandler<BaseTreeNode.TextEventArgs> TextChanged;
+
     event EventHandler<BaseTreeNode.ProjectEventArgs> SubtreeChanged;
+
     string ToolTipText { get; set; }
     string Text { get; set; }
   }
@@ -25,109 +26,119 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// </summary>
   internal abstract class BaseTreeNode : IBaseModel
   {
-    
     #region private
+
     private List<IBaseModel> m_Children = new List<IBaseModel>();
     private string m_Text;
     private string m_ToolTipText;
+
     //TextChanged
     internal class TextEventArgs : EventArgs
     {
       public readonly BaseTreeNode Node;
-      public TextEventArgs(BaseTreeNode node) { Node = node; }
+
+      public TextEventArgs(BaseTreeNode node)
+      {
+        Node = node;
+      }
     }
+
     private void RaiseTextChanged()
     {
       TextChanged?.Invoke(this, new TextEventArgs(this));
     }
+
     //ProjectChanged
     internal class ProjectEventArgs : EventArgs { }
+
     protected void RaiseSubtreeChanged()
     {
       RaiseOnChangeHandler();
       SubtreeChanged?.Invoke(this, new ProjectEventArgs());
     }
+
     //protected abstract class TreeNode<T> : BaseTreeNodeControl<T, T>
     //  where T : BaseTreeNode
     //{
-      //  #region private
-      //  /// <summary>
-      //  /// Gets or sets the creator. 
-      //  /// This is the Wrapper object (from CAS.UA.Model.Designer.Wrappers), 
-      //  /// so this is a link to a mesh that store the model
-      //  /// </summary>
-      //  /// <value>The creator.</value>
-      //  protected T Creator { get; private set; }
-      //  private void OnTextChanged(object sender, TextEventArgs e)
-      //  {
-      //    Text = e.Node.Text;
-      //    ToolTipText = e.Node.ToolTipText;
-      //    //TODO Tree view could be null while adding Variable - fixed but impact must be analized.
-      //    //Completed: At revision: 9178  
-      //    if (TreeView != null)
-      //      TreeView.RebuildDictionary();
-      //  }
-      //  private void OnSubtreeChanged(object sender, ProjectEventArgs e)
-      //  {
-      //    if (this.TreeView != null)
-      //      this.TreeView.SuspendLayout();
-      //    RecreateSubtree();
-      //    if (this.TreeView != null)
-      //    {
-      //      this.TreeView.SelectedNode = this;
-      //      TreeView.RebuildDictionary();
-      //      this.TreeView.ResumeLayout();
-      //    }
-      //  }
-      //  protected void RecreateSubtree()
-      //  {
-      //    ClearChildren();
-      //    AddChildren(Creator);
-      //  }
-      //  protected override void Unregister()
-      //  {
-      //    ClearChildren();
-      //    Creator.TextChanged -= new EventHandler<TextEventArgs>(OnTextChanged);
-      //    Creator.SubtreeChanged -= new EventHandler<ProjectEventArgs>(OnSubtreeChanged);
-      //  }
-      //  protected void AddChildren(T parent)
-      //  {
-      //    foreach (BaseTreeNode node in parent)
-      //      Nodes.Add(node.GetTreeNode());
-      //  }
-      //  #endregion
+    //  #region private
+    //  /// <summary>
+    //  /// Gets or sets the creator.
+    //  /// This is the Wrapper object (from CAS.UA.Model.Designer.Wrappers),
+    //  /// so this is a link to a mesh that store the model
+    //  /// </summary>
+    //  /// <value>The creator.</value>
+    //  protected T Creator { get; private set; }
+    //  private void OnTextChanged(object sender, TextEventArgs e)
+    //  {
+    //    Text = e.Node.Text;
+    //    ToolTipText = e.Node.ToolTipText;
+    //    //TODO Tree view could be null while adding Variable - fixed but impact must be analized.
+    //    //Completed: At revision: 9178
+    //    if (TreeView != null)
+    //      TreeView.RebuildDictionary();
+    //  }
+    //  private void OnSubtreeChanged(object sender, ProjectEventArgs e)
+    //  {
+    //    if (this.TreeView != null)
+    //      this.TreeView.SuspendLayout();
+    //    RecreateSubtree();
+    //    if (this.TreeView != null)
+    //    {
+    //      this.TreeView.SelectedNode = this;
+    //      TreeView.RebuildDictionary();
+    //      this.TreeView.ResumeLayout();
+    //    }
+    //  }
+    //  protected void RecreateSubtree()
+    //  {
+    //    ClearChildren();
+    //    AddChildren(Creator);
+    //  }
+    //  protected override void Unregister()
+    //  {
+    //    ClearChildren();
+    //    Creator.TextChanged -= new EventHandler<TextEventArgs>(OnTextChanged);
+    //    Creator.SubtreeChanged -= new EventHandler<ProjectEventArgs>(OnSubtreeChanged);
+    //  }
+    //  protected void AddChildren(T parent)
+    //  {
+    //    foreach (BaseTreeNode node in parent)
+    //      Nodes.Add(node.GetTreeNode());
+    //  }
+    //  #endregion
 
-      //  #region creator
-      //public TreeNode(T parent)
-      //  : base(parent)
-      //{
-        //CommonOperationsForTheNodeCreation(parent);
-        //parent.TextChanged += new EventHandler<TextEventArgs>(OnTextChanged);
-        //parent.SubtreeChanged += new EventHandler<ProjectEventArgs>(OnSubtreeChanged);
-        //AddChildren(parent);
-      //}
+    //  #region creator
+    //public TreeNode(T parent)
+    //  : base(parent)
+    //{
+    //CommonOperationsForTheNodeCreation(parent);
+    //parent.TextChanged += new EventHandler<TextEventArgs>(OnTextChanged);
+    //parent.SubtreeChanged += new EventHandler<ProjectEventArgs>(OnSubtreeChanged);
+    //AddChildren(parent);
+    //}
 
-      //  private void CommonOperationsForTheNodeCreation(T parent)
-      //  {
-      //    Creator = parent;
-      //    Text = parent.m_Text;
-      //    ToolTipText = parent.ToolTipText;
-      //    this.ImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(Creator.GetType().Name, false);
-      //    this.SelectedImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(Creator.GetType().Name, true);
-      //  }
-      //  #endregion
+    //  private void CommonOperationsForTheNodeCreation(T parent)
+    //  {
+    //    Creator = parent;
+    //    Text = parent.m_Text;
+    //    ToolTipText = parent.ToolTipText;
+    //    this.ImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(Creator.GetType().Name, false);
+    //    this.SelectedImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(Creator.GetType().Name, true);
+    //  }
+    //  #endregion
 
-      //  #region public
-      //  internal override BaseDictionaryTreeNode CreateCopy()
-      //  {
-      //    return Creator.GetTreeNode();
-      //  }
-      //  #endregion
+    //  #region public
+    //  internal override BaseDictionaryTreeNode CreateCopy()
+    //  {
+    //    return Creator.GetTreeNode();
+    //  }
+    //  #endregion
     //}
     protected virtual void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
     {
       Parent.CreateInstanceConfigurations(node, SkipOpeningConfigurationFile, out CancelWasPressed);
     }
+
     /// <summary>
     /// If implemented in the derived class adds the node descriptors.
     /// </summary>
@@ -138,17 +149,22 @@ namespace CAS.UA.Model.Designer.Wrappers
       foreach (BaseTreeNode item in this)
         item.AddNodeDescriptors(dsptrs, ui.MemberwiseClone());
     }
-    #endregion
 
-    #region creator
+    #endregion private
+
+    #region constructor
+
     public BaseTreeNode(string text)
     {
       m_Text = text;
     }
-    #endregion
+
+    #endregion constructor
 
     #region public API
-    internal int Count { get { return m_Children.Count; } }
+
+    internal int Count => m_Children.Count;
+
     /// <summary>
     /// Gets the node descriptors.
     /// </summary>
@@ -157,6 +173,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       throw new NotImplementedException();
     }
+
     /// <summary>
     /// Tests if read only and return true if read only.
     /// </summary>
@@ -165,27 +182,33 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return Parent.TestIfReadOnlyAndRetrunTrueIfReadOnly();
     }
+
     /// <summary>
     /// Gets or sets the parent node in the model.
     /// </summary>
     /// <value>The parent node.</value>
     internal virtual BaseTreeNode Parent { get; set; }
+
     /// <summary>
     /// Raises the on change handler.
     /// </summary>
-    internal protected virtual void RaiseOnChangeHandler()
+    protected internal virtual void RaiseOnChangeHandler()
     {
       if (Parent != null)
         Parent.RaiseOnChangeHandler();
     }
-    #endregion
+
+    #endregion public API
 
     #region IBaseModel
+
     public event EventHandler<TextEventArgs> TextChanged;
+
     public event EventHandler<ProjectEventArgs> SubtreeChanged;
+
     public string ToolTipText
     {
-      get { return m_ToolTipText; }
+      get => m_ToolTipText;
       set
       {
         if (!string.IsNullOrEmpty(m_ToolTipText) && m_ToolTipText.CompareTo(value) == 0)
@@ -194,9 +217,10 @@ namespace CAS.UA.Model.Designer.Wrappers
         RaiseTextChanged();
       }
     }
+
     public string Text
     {
-      get { return m_Text; }
+      get => m_Text;
       set
       {
         if (!string.IsNullOrEmpty(m_Text) && m_Text.CompareTo(value) == 0)
@@ -205,17 +229,21 @@ namespace CAS.UA.Model.Designer.Wrappers
         RaiseTextChanged();
       }
     }
+
     public IEnumerator<IBaseModel> GetEnumerator()
     {
       return m_Children.GetEnumerator();
     }
+
     IEnumerator IEnumerable.GetEnumerator()
     {
       return m_Children.GetEnumerator();
     }
-    #endregion
+
+    #endregion IBaseModel
 
     #region ICollection<BaseTreeNode> Members
+
     /// <summary>
     /// Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1"/>.
     /// </summary>
@@ -229,6 +257,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       m_Children.Add(item);
       RaiseSubtreeChanged();
     }
+
     /// <summary>
     /// Adds the elements of the specified collection to the end of the <see cref="T:System.Collections.Generic.List`1"/>.
     /// </summary>
@@ -243,6 +272,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       m_Children.AddRange(collection);
       RaiseSubtreeChanged();
     }
+
     /// <summary>
     /// Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
     /// </summary>
@@ -254,13 +284,14 @@ namespace CAS.UA.Model.Designer.Wrappers
       m_Children.Clear();
       RaiseSubtreeChanged();
     }
+
     /// <summary>
     /// Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
     /// </summary>
     /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
     /// <returns>
-    /// true if <paramref name="item"/> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1"/>; 
-    /// otherwise, false. This method also returns false if <paramref name="item"/> is not found in the 
+    /// true if <paramref name="item"/> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1"/>;
+    /// otherwise, false. This method also returns false if <paramref name="item"/> is not found in the
     /// original <see cref="T:System.Collections.Generic.ICollection`1"/>.
     /// </returns>
     /// <exception cref="T:System.NotSupportedException">
@@ -273,20 +304,23 @@ namespace CAS.UA.Model.Designer.Wrappers
       RaiseSubtreeChanged();
       return ret;
     }
-    #endregion
+
+    #endregion ICollection<BaseTreeNode> Members
 
     #region IParent Members
+
     /// <summary>
     /// Gets the availiable namespaces.
     /// </summary>
     /// <value>The availiable namespaces.</value>
-    public virtual string[] AvailiableNamespaces { get { return Parent.AvailiableNamespaces; } }
+    public virtual string[] AvailiableNamespaces => Parent.AvailiableNamespaces;
+
     /// <summary>
     /// Gets the target namespace.
     /// </summary>
     /// <returns>The target namespace.</returns>
     public virtual string GetTargetNamespace() { return Parent.GetTargetNamespace(); }
-    #endregion
 
+    #endregion IParent Members
   }
 }

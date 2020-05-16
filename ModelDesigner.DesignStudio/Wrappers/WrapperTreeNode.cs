@@ -17,14 +17,13 @@ using UAOOI.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-
   /// <summary>
   /// Model node that has editable properties associated.
   /// </summary>
   internal abstract class WrapperTreeNode : BaseTreeNode, IModelNode, IModelNodeAdvance, IEnumerable<IModelNodeAdvance>
   {
-
     #region public
+
     internal static object GetModelDesignerNodeFromStringRepresentationFromClipboard()
     {
       string clipboard = string.Empty;
@@ -36,15 +35,19 @@ namespace CAS.UA.Model.Designer.Wrappers
       { return null; }
       return GetModelDesignerNodeFromStringRepresentation(clipboard);
     }
+
     /// <summary>
     /// Gets or sets the child - the object representing ModelDesign node class.
     /// </summary>
     /// <value>The child.</value>
     public virtual object Wrapper { get; private set; }
-    #endregion
+
+    #endregion public
 
     #region private
+
     protected List<Type> TypesAvailableToBePasted = new List<Type>();
+
     private bool ShouldPasteMenuBeEnabled(object DeserializedNode)
     {
       if (DeserializedNode == null)
@@ -54,6 +57,7 @@ namespace CAS.UA.Model.Designer.Wrappers
           return true;
       return false;
     }
+
     private static object GetModelDesignerNodeFromStringRepresentation(string modelDesignerNodeStringRepresentation)
     {
       if (string.IsNullOrEmpty(modelDesignerNodeStringRepresentation))
@@ -89,19 +93,24 @@ namespace CAS.UA.Model.Designer.Wrappers
         return null;
       }
     }
+
     #region private menu handlers
+
     internal void AddMenuItemPaste_Click(object sender, EventArgs e)
     {
       MenuItemPaste_Action();
     }
+
     internal void AddMenuItemCopy_Click(object sender, EventArgs e)
     {
       MenuItemCopy_Action();
     }
+
     internal void AddMenuItemCut_Click(object sender, EventArgs e)
     {
       MenuItemCut_Action();
     }
+
     internal void AddMenuItemDelete_Click(object sender, EventArgs e)
     {
       string msg = string.Format(WrapperResources.DeleteObjectWarning, this.Text, this.ToolTipText);
@@ -115,6 +124,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         return;
       this.Parent.Remove(this);
     }
+
     //TODO Removed dependency of the CAS.UA.Model.Designer.Wrappers on using System.Windows.Forms #38
     internal void AddMenuItemAdd_Click(object sender, EventArgs e)
     {
@@ -133,11 +143,13 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       node.Validate();
     }
-    #endregion
 
-    #endregion
+    #endregion private menu handlers
+
+    #endregion private
 
     #region creators
+
     /// <summary>
     /// Initializes a new instance of the <see cref="WrapperTreeNode"/> class.
     /// </summary>
@@ -145,26 +157,32 @@ namespace CAS.UA.Model.Designer.Wrappers
     public WrapperTreeNode(object wrapper)
       : this(wrapper, string.Empty)
     { }
+
     internal WrapperTreeNode(object wrapper, string nodeName) : base(nodeName)
     {
       Wrapper = wrapper;
       ErrorList = new List<Diagnostics>();
     }
+
     #endregion creators
 
     #region IModelNodeAdvanced
+
     public virtual void MenuItemCopy_Action()
     { }
+
     public virtual void MenuItemCut_Action()
     {
       MenuItemCopy_Action();
       this.Parent.Remove(this);
     }
+
     public virtual bool ShouldPasteMenuBeEnabled()
     {
       object DeserializedNode = GetModelDesignerNodeFromStringRepresentationFromClipboard();
       return ShouldPasteMenuBeEnabled(DeserializedNode);
     }
+
     public virtual void MenuItemPaste_Action()
     {
       object DeserializedNode = GetModelDesignerNodeFromStringRepresentationFromClipboard();
@@ -175,14 +193,18 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       MessageBoxHandling.Show(Resources.WrapperTreeNode_menu_paste_cannot_be_done);
     }
+
     public virtual Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> GetFolders()
     {
       return new Dictionary<FolderType, IEnumerable<IModelNodeAdvance>>();
     }
+
     public abstract NodeTypeEnum NodeType { get; }
-    #endregion
+
+    #endregion IModelNodeAdvanced
 
     #region IModelNode Members
+
     /// <summary>
     /// Gets the name of the help topic.
     /// </summary>
@@ -190,11 +212,13 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Unique identifier to be used as the key to select the help topic.
     /// </value>
     public abstract string HelpTopicName { get; }
+
     /// <summary>
     /// Gets the name of the node class.
     /// </summary>
     /// <value>The name of the node class.</value>
     public abstract NodeClassesEnum NodeClass { get; }
+
     /// <summary>
     /// Gets the name of the node.
     /// </summary>
@@ -202,16 +226,19 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// The name represented as an instance of the <see cref="string"/>.
     /// </value>
     public string Name => Text;
+
     /// <summary>
     /// Gets the error list.
     /// </summary>
     /// <value>The error list.</value>
     public IList<Diagnostics> ErrorList { get; private set; }
+
     /// <summary>
     /// Gets an editor that wraps the node in the property grid user interface.
     /// </summary>
     /// <value>The wrapper.</value>
     public object Wrapper4PropertyGrid => Wrapper;
+
     /// <summary>
     /// An instance of the interface <see cref="INodeDescriptor"/> that provides the description of the node to be
     /// bind with an external data source.
@@ -222,6 +249,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return null;
     }
+
     /// <summary>
     /// Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
     /// </summary>
@@ -229,15 +257,23 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <returns>true if the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only; otherwise, false.
     /// </returns>
     public bool IsReadOnly => TestIfReadOnlyAndRetrunTrueIfReadOnly();
+
     /// <summary>
     /// Gets the symbolic name.
     /// </summary>
     /// <value>The symbolic name.</value>
     public virtual XmlQualifiedName SymbolicName => new XmlQualifiedName();
+
+    /// <summary>
+    /// Gets or sets the message box handling.
+    /// </summary>
+    /// <value>The message box handling.</value>
     protected internal IMessageBoxHandling MessageBoxHandling { protected get; set; }
-    #endregion
+
+    #endregion IModelNode Members
 
     #region public
+
     /// <summary>
     /// Retries za instance of the interface <see cref="INodeDescriptor"/> that provides the description of the node to be
     /// bind with an external data source.
@@ -250,9 +286,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return null;
     }
-    #endregion
+
+    #endregion public
 
     #region IEnumerable<IModelNodeAdvance> Members
+
     /// <summary>
     /// Returns an enumerator that iterates through the collection.
     /// </summary>
@@ -270,15 +308,17 @@ namespace CAS.UA.Model.Designer.Wrappers
     private class WrapperTreeNodeImodelNodeEnumerator : IEnumerator<IModelNodeAdvance>
     {
       private System.Collections.IEnumerator myIEnumerator;
+
       internal WrapperTreeNodeImodelNodeEnumerator(WrapperTreeNode selectedWrapperTreeNode)
       {
         myIEnumerator = selectedWrapperTreeNode.GetEnumerator();
       }
+
       #region IEnumerator<IModelNodeAdvance> Members
 
       IModelNodeAdvance IEnumerator<IModelNodeAdvance>.Current => myIEnumerator.Current as IModelNodeAdvance;
 
-      #endregion
+      #endregion IEnumerator<IModelNodeAdvance> Members
 
       #region IDisposable Members
 
@@ -286,7 +326,8 @@ namespace CAS.UA.Model.Designer.Wrappers
       {
         ;
       }
-      #endregion
+
+      #endregion IDisposable Members
 
       #region IEnumerator Members
 
@@ -302,16 +343,28 @@ namespace CAS.UA.Model.Designer.Wrappers
         myIEnumerator.Reset();
       }
 
-      #endregion
+      #endregion IEnumerator Members
     }
-    #endregion
+
+    #endregion IEnumerable<IModelNodeAdvance> Members
 
     #region IEnumerable Members
+
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
     {
       return GetEnumerator();
     }
-    #endregion
 
+    #endregion IEnumerable Members
+
+    #region Diagnostics
+
+    [System.Diagnostics.Conditional("DEBUG")]
+    internal void GetMessageBoxHandling(Action<IMessageBoxHandling> messageBoxHandlingGetter)
+    {
+      messageBoxHandlingGetter(MessageBoxHandling);
+    }
+
+    #endregion Diagnostics
   }
 }
