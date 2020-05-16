@@ -4,7 +4,7 @@
 //
 //___________________________________________________________________________________
 
-namespace CAS.UA.Model.Designer.Wrappers
+namespace CAS.UA.Model.Designer.ToForms
 {
   internal interface IMessageBoxHandling
   {

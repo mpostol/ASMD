@@ -220,7 +220,8 @@
     <Compile Include="Controls\FolderTreeNodeControl.cs" />
     <Compile Include="Controls\TreeNodesFactory.cs" />
     <Compile Include="IO\ConfigurationManagement.cs" />
-    <Compile Include="Wrappers\IMessageBoxHandling.cs" />
+    <Compile Include="ToForms\MessageBoxHandling.cs" />
+    <Compile Include="ToForms\IMessageBoxHandling.cs" />
     <Compile Include="Controls\InstanceDesignTreeNodeControl.cs" />
     <Compile Include="Controls\LibraryTreeNodeControl.cs" />
     <Compile Include="Controls\MethodDesignTreeNodeControl.cs" />

@@ -6,6 +6,7 @@
 
 using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.Properties;
+using CAS.UA.Model.Designer.ToForms;
 using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.Collections.Generic;
@@ -156,17 +157,6 @@ namespace CAS.UA.Model.Designer.Controls
     /// <value>The symbolic name.</value>
     public virtual XmlQualifiedName SymbolicName => new XmlQualifiedName();
 
-    private class MessageBoxHandling : IMessageBoxHandling
-    {
-      public void Show(string message)
-      {
-        System.Windows.Forms.MessageBox.Show(message);
-      }
-      public DialogResult Show(string text, string caption, Wrappers.MessageBoxButtons buttons, Wrappers.MessageBoxIcon icon)
-      {
-        return (DialogResult)System.Windows.Forms.MessageBox.Show(text, caption, (System.Windows.Forms.MessageBoxButtons)buttons, (System.Windows.Forms.MessageBoxIcon)icon);
-      }
-    }
     #endregion
   }
 

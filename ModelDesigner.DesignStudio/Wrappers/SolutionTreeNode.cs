@@ -12,6 +12,7 @@ using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Solution;
+using CAS.UA.Model.Designer.ToForms;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,25 +21,34 @@ using System.Xml;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-
   internal interface ISolutionModel : IBaseModel
   {
     void GetPluginMenuItems(System.Windows.Forms.ToolStripItemCollection items);
+
     void AddProject(bool existing);
+
     void ImportNodeSet();
+
     void Save(bool prompt);
+
     void Open();
+
     void OnNew();
   }
+
   /// <summary>
   /// The class representing the solution node in the model.
   /// </summary>
   internal class SolutionTreeNode : WrapperTreeNode, IBaseDirectoryProvider, IViewModel, ISolutionModel
   {
-
     #region private
+
     private readonly EventHandler m_OnChangeHandler = null;
-    private void configuration_OnNameChanged(object sender, EventArgs e) { }
+
+    private void configuration_OnNameChanged(object sender, EventArgs e)
+    {
+    }
+
     private void AddProjectsNodes(IEnumerable<UAModelDesignerProject> configuration)
     {
       if (configuration == null)
@@ -70,6 +80,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       this.AddRange(_nodes);
     }
+
     private UAModelDesignerSolution SaveProjectsCreateConfiguration()
     {
       Server.Save(HomeDirectory);
@@ -86,11 +97,13 @@ namespace CAS.UA.Model.Designer.Wrappers
         ServerDetails = this.ServerDetails == null ? null : new UAModelDesignerSolutionServerDetails() { codebase = ServerDetails.Codebase, configuration = ServerDetails.Configuration }
       };
     }
+
     private void Server_OnConfigurationChanged(object sender, UAServerConfigurationEventArgs e)
     {
       if (e.ConfigurationFileChanged)
         this.RaiseSubtreeChanged();
     }
+
     /// <summary>
     /// Gets or sets detailed information on localization of the plug-in and configuration file.
     /// </summary>
@@ -109,64 +122,95 @@ namespace CAS.UA.Model.Designer.Wrappers
         return _descriptor;
       }
     }
+
     /// <summary>
     /// Gets or sets the library root.
     /// </summary>
     /// <value>The library root.</value>
     private Libraries LibraryRoot { get; set; } = new Libraries();
-    #endregion
+
+    #endregion private
 
     #region constructor
-    internal SolutionTreeNode(UAModelDesignerSolution configuration, string solutionPath, EventHandler<EventArgs> OnChangeHandler, Action<LibraryTreeNode> callBack) : this(configuration, solutionPath, OnChangeHandler)
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SolutionTreeNode" /> class.
+    /// </summary>
+    /// <param name="messageBoxHandling">The Message Box instance to provide messages on the screen.</param>
+    /// <param name="solution">The configuration.</param>
+    /// <param name="solutionPath">The solution path.</param>
+    /// <param name="OnChangeHandler">The on change handler.</param>
+    /// <param name="callBack">The call back.</param>
+    /// <exception cref="ArgumentNullException">configuration
+    /// or
+    /// messageBoxHandling</exception>
+    internal SolutionTreeNode(IMessageBoxHandling messageBoxHandling, UAModelDesignerSolution solution, string solutionPath, EventHandler<EventArgs> OnChangeHandler, Action<LibraryTreeNode> callBack) :
+      this(messageBoxHandling, solution, solutionPath, OnChangeHandler)
     {
       LibraryRoot.AddNodes(callBack);
     }
     /// <summary>
-    /// Initializes a new instance of the <see cref="SolutionTreeNode"/> class.
+    /// Initializes a new instance of the <see cref="SolutionTreeNode" /> class using solution file.
     /// </summary>
-    /// <param name="configuration">The configuration.</param>
-    /// <param name="NodeName">Name of the node.</param>
+    /// <param name="messageBoxHandling">The Message Box instance to provide messages on the screen.</param>
+    /// <param name="solution">The configuration.</param>
+    /// <param name="solutionPath">The solution path.</param>
     /// <param name="OnChangeHandler">The on change handler.</param>
-    internal SolutionTreeNode(UAModelDesignerSolution configuration, string solutionPath, EventHandler<EventArgs> OnChangeHandler) : base(null, configuration.Name)
+    /// <exception cref="ArgumentNullException">
+    /// configuration
+    /// or
+    /// messageBoxHandling
+    /// </exception>
+    internal SolutionTreeNode(IMessageBoxHandling messageBoxHandling, UAModelDesignerSolution solution, string solutionPath, EventHandler<EventArgs> OnChangeHandler) : base(null, solution.Name)
     {
-      if (configuration == null)
+      MessageBoxHandling = messageBoxHandling ?? throw new ArgumentNullException(nameof(messageBoxHandling));
+      if (solution == null)
         throw new ArgumentNullException("configuration");
       HomeDirectory = solutionPath;
-      Server = new ServerSelector(new GraphicalUserInterface(), solutionPath, configuration.ServerDetails.codebase, configuration.ServerDetails.configuration);
+      Server = new ServerSelector(new GraphicalUserInterface(), solutionPath, solution.ServerDetails.codebase, solution.ServerDetails.configuration);
       Server.OnConfigurationChanged += new EventHandler<UAServerConfigurationEventArgs>(Server_OnConfigurationChanged);
       //TODO OnDataChanged += OnChangeHandler;
       //TODO OnNameChanged += new EventHandler(configuration_OnNameChanged);
-      AddProjectsNodes(configuration.Projects);
+      AddProjectsNodes(solution.Projects);
       BaseDirectoryHelper.Instance.SetBaseDirectoryProvider(this);
       SolutionRoot = this;
     }
-    #endregion
 
-    #region WrapperTreeNode 
+    #endregion constructor
+
+    #region WrapperTreeNode
+
     public override NodeTypeEnum NodeType => NodeTypeEnum.SolutionNode;
+
     /// <summary>
     /// Gets the name of the help topic.
     /// </summary>
     /// <value>The name of the help topic.</value>
     public override string HelpTopicName => Resources.SolutionTreeNode;
+
     /// <summary>
     /// Gets the node class.
     /// </summary>
     /// <value>The node class.</value>
     public override NodeClassesEnum NodeClass => NodeClassesEnum.None;
+
     internal override bool TestIfReadOnlyAndRetrunTrueIfReadOnly()
     {
       return false;
     }
+
     public override object Wrapper => this.Create();
-    #endregion
+
+    #endregion WrapperTreeNode
 
     #region public
+
     /// <summary>
     /// Gets or sets the solution root.
     /// </summary>
     /// <value>The solution root.</value>
     internal static SolutionTreeNode SolutionRoot { get; set; }
+
     /// <summary>
     /// Resets the information model and adds recursively all nodes to the address space from <see cref="Root.LibraryRoot"/> and next from <see cref="Root.SolutionRoot"/>.
     /// </summary>
@@ -176,7 +220,9 @@ namespace CAS.UA.Model.Designer.Wrappers
       LibraryRoot.AddNode2AddressSpace(space);
       AddNode2AddressSpace(space);
     }
+
     internal ServerSelector Server { get; private set; }
+
     /// <summary>
     /// Builds the solution and write any massages to specified output.
     /// </summary>
@@ -188,12 +234,15 @@ namespace CAS.UA.Model.Designer.Wrappers
       foreach (ProjectTreeNode _project in this)
         _project.Build(output);
     }
+
     internal event EventHandler<EventArgs> OnDataChanged;
+
     internal void AddNode2AddressSpace(IAddressSpaceCreator space)
     {
       foreach (ProjectTreeNode node in this)
         node.AddNode2AddressSpace(space);
     }
+
     /// <summary>
     /// Finds the type starting form <see cref="Root.SolutionRoot"/> and if not succeeded tries <see cref="Root.LibraryRoot"/>.
     /// </summary>
@@ -209,6 +258,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       return LibraryRoot.FindType(myType);
     }
+
     /// <summary>
     /// Gets the instance configuration.
     /// </summary>
@@ -218,16 +268,20 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return Server.GetInstanceConfiguration(nodeUniqueIdentifier);
     }
+
     internal string HomeDirectory { get; private set; }
-    #endregion
+
+    #endregion public
 
     #region ISolutionModel
+
     public void GetPluginMenuItems(System.Windows.Forms.ToolStripItemCollection menu)
     {
       ICollection<System.Windows.Forms.ToolStripItem> _items = new List<System.Windows.Forms.ToolStripItem>();
       Server.GetPluginMenuItems(_items);
       menu.AddRange(_items.ToArray<System.Windows.Forms.ToolStripItem>());
     }
+
     public void AddProject(bool existing)
     {
       ProjectTreeNode _node = null;
@@ -240,6 +294,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         _node = ProjectTreeNode.CreateNewModel(this);
       Add(_node);
     }
+
     public void ImportNodeSet()
     {
       ProjectTreeNode node = ProjectTreeNode.ImportNodeSet(this, x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 186, x.ToString()), IO.ImportNodeSet.Import);
@@ -247,33 +302,41 @@ namespace CAS.UA.Model.Designer.Wrappers
         return;
       Add(node);
     }
+
     public void Save(bool prompt)
     {
       OPCFSolutionConfigurationManagement.DefaultInstance.Save(prompt, SaveProjectsCreateConfiguration());
     }
+
     public void Open()
     {
       OPCFSolutionConfigurationManagement.DefaultInstance.Open();
     }
+
     public void OnNew()
     {
       OPCFSolutionConfigurationManagement.DefaultInstance.OnNew();
     }
-    #endregion
+
+    #endregion ISolutionModel
 
     #region IBaseDirectoryProvider
+
     public string GetBaseDirectory()
     {
       return HomeDirectory;
     }
-    #endregion
+
+    #endregion IBaseDirectoryProvider
 
     #region WrapperTreeNode
+
     protected internal override void RaiseOnChangeHandler()
     {
       m_OnChangeHandler?.Invoke(this, EventArgs.Empty);
       OnDataChanged?.Invoke(this, EventArgs.Empty);
     }
+
     protected override void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
     {
       IConfiguration svr = Server.IServerConfiguration;
@@ -285,8 +348,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       INodeDescriptor[] _descriptors = node.GetNodeDescriptors();
       svr.CreateInstanceConfigurations(_descriptors, SkipOpeningConfigurationFile, out CancelWasPressed);
     }
-    #endregion
 
+    #endregion WrapperTreeNode
   }
-
 }
