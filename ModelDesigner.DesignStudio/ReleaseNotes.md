@@ -27,10 +27,10 @@
 
 The main changes and new functionality are listed below:
 
-- it is maintenance release
+- it is a maintenance release
 - fixed broken links to www.commsvr.com - the documentation has been published on GitHub in [a separate repository](https://github.com/commsvr-com/Documentation).
 - fixed reported problems - check out the commits list to get details
-- removed dependency on the Open XML SDK 2.5 for Microsoft Office - this functionality is provided by appropriate NuGet package instead.
+- removed dependency on the Open XML SDK 2.5 for Microsoft Office - this functionality is provided by the appropriate NuGet package instead.
 - updated dependencies
 
 ## Versions history
