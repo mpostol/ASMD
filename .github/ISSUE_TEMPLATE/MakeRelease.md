@@ -1,9 +1,9 @@
 ---
 name: Make release
 about: Make release tasks list
-title: 'RELEASE'
-labels: 'RELEASE, TAG'
-assignees: ''
+title: 'Close the milestone and make release'
+labels: 'Release'
+assignees: 'mpostol'
 
 ---
 
