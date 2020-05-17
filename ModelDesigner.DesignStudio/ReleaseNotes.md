@@ -6,7 +6,7 @@
 * Description:   OPC UA Information Model Design Studio.
 * Product:       [Object-Oriented Internet Address Space Model Designer](https://github.com/mpostol/OPC-UA-OOI)
 * Version:       4.2.0
-* Release Date:  15.05.2020
+* Release Date:  17.05.2020
 
 The main changes and new functionality are listed below:
 
@@ -79,5 +79,4 @@ This is only bug-fix release. The main changes and new functionality are listed 
 
 # Archival Information
 
-For archival information visit the document [Version History](http://www.commsvr.com/OPC-Help/Index.aspx?topic=html/ada1af70-e1ba-49df-8d0a-8ddc87a0f287.htm)
-
+For archival information visit the document [Version History](https://commsvr-com.github.io/Documentation/ModelDesigner/html/ada1af70-e1ba-49df-8d0a-8ddc87a0f287.htm)

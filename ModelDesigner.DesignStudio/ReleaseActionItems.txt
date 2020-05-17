@@ -1,9 +1,0 @@
-Release To Do:
-
-* ﻿Modify ReleaseNotes.old - copy relevant text from ReleaseNotes.txt
-* Update version information
-* Update ReleaseNotes.tt and generate ReleaseNotes.txt
-* Prepare and news to be used on CommServer, on-line help (maml),  RSS, (RSS is copied to LinkedIn, twitter)
-* Publish the installation package
-* Create Tag
-* Close milestone and move not closed tasks to new milestone or backlog.
