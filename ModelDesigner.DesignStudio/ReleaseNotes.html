@@ -22,6 +22,48 @@
     </head>
     <body class="vscode-light">
         <h1 id="object-oriented-internet-address-space-model-designer---release-notes">Object-Oriented Internet Address Space Model Designer - Release Notes</h1>
+<ul>
+<li><a href="#object-oriented-internet-address-space-model-designer---release-notes">Object-Oriented Internet Address Space Model Designer - Release Notes</a>
+<ul>
+<li><a href="#current-release-details">Current release details</a></li>
+<li><a href="#versions-history">Versions history</a>
+<ul>
+<li><a href="#version-v-41">Version V 4.1</a>
+<ul>
+<li><a href="#release-date-17-dec-2019">Release Date: 17 Dec 2019</a></li>
+<li><a href="#known-issues">Known issues</a></li>
+</ul>
+</li>
+<li><a href="#version-3201">Version: 3.20.1</a>
+<ul>
+<li><a href="#release-date-2016-05-17">Release Date: 2016-05-17</a></li>
+</ul>
+</li>
+<li><a href="#version-310">Version 3.10</a>
+<ul>
+<li><a href="#release-date-2015-03-31">Release Date: 2015-03-31</a></li>
+</ul>
+</li>
+<li><a href="#version-30010">Version 3.00.10</a>
+<ul>
+<li><a href="#release-date-2015-02-11">Release Date: 2015-02-11</a></li>
+</ul>
+</li>
+<li><a href="#version-30003">Version 3.00.03</a>
+<ul>
+<li><a href="#release-date-20140707">Release Date: 2014.07.07</a></li>
+</ul>
+</li>
+<li><a href="#version-30002">Version 3.00.02</a>
+<ul>
+<li><a href="#release-date-20110519">Release Date: 2011.05.19</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="current-release-details">Current release details</h2>
 <table>
 <thead>
@@ -47,18 +89,27 @@
 </table>
 <p>The main changes and new functionality are listed below:</p>
 <ul>
+<li>it is maintenance release</li>
+<li>fixed broken links to <a href="http://www.commsvr.com">www.commsvr.com</a> - the documentation has been published on GitHub in <a href="https://github.com/commsvr-com/Documentation">a separate repository</a>.</li>
+<li>fixed reported problems - check out the commits list to get details</li>
+<li>updated dependencies</li>
+</ul>
+<h2 id="versions-history">Versions history</h2>
+<h3 id="version-v-41">Version V 4.1</h3>
+<h4 id="release-date-17-dec-2019">Release Date: 17 Dec 2019</h4>
+<p>The main changes and new functionality are listed below:</p>
+<ul>
 <li>Refactoring application architecture to use dependency validation and separate libraries from dependency on <code>Windows.Forms</code> technology.</li>
 <li>Added a new version of the Model Compiler 1.01.335.1 as the application add-on.</li>
 <li>Updated ModelDesign schema and OPC UA Defined Types up to Model Compiler 1.11.335.1</li>
 <li>Improved tracking of the application activity</li>
 <li>Added the new version of the CAS OPC Viewer 3.11.17</li>
 </ul>
-<h3 id="for-assistance-contact">For assistance, contact</h3>
-<p><a href="https://mpostol.wordpress.com/about/">Mariusz Postol</a></p>
+<h4 id="known-issues">Known issues</h4>
 <ul>
-<li><img src="https://www.linkedin.com/img/webpromo/btn_viewmy_160x33.png" alt="View my profile on LinkedIn" title="View my profile on LinkedIn"></li>
+<li>The self-extracting zip file and the main application is not code-signed. Unsigned executables maybe not allowed by your company IT policy. The installer package containing signed stuff is on the project road map #89., The further development planning is based on the sponsors' priorities. Any comments and proposals add as the comments to #89.</li>
+<li>Property grid fonts scaling. Visit #86 to get more. Try the <a href="https://github.com/mpostol/ASMD/issues/86#issuecomment-578040136">workaround</a></li>
 </ul>
-<h2 id="versions-history">Versions history</h2>
 <h3 id="version-3201">Version: 3.20.1</h3>
 <h4 id="release-date-2016-05-17">Release Date: 2016-05-17</h4>
 <p>The main changes and new functionality are listed below:</p>
@@ -102,7 +153,7 @@ Improved application instrumentation and by expanding events tracing to the log 
 <li>Ported to the VS 2013 - refactoring</li>
 </ul>
 <h3 id="version-30002">Version 3.00.02</h3>
-<h4 id="release-20110519">Release 2011.05.19</h4>
+<h4 id="release-date-20110519">Release Date: 2011.05.19</h4>
 <p>This is only bug-fix release. The main changes and new functionality are listed below:</p>
 <ul>
 <li>Resolved issue with license installation (&quot;wrong hardware key&quot;);</li>

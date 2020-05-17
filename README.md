@@ -1,14 +1,13 @@
 
-# Address Space Model Designer (ASMD)
+# OOI Address Space Model Designer (OOI ASMD)
 
 ![Logo](_media/ASMDLogo-48.png)
 
-- [Address Space Model Designer (ASMD)](#address-space-model-designer-asmd)
+- [OOI Address Space Model Designer (OOI ASMD)](#ooi-address-space-model-designer-ooi-asmd)
   - [Preface](#preface)
   - [Releases](#releases)
   - [Key Features](#key-features)
   - [Getting Started](#getting-started)
-    - [NuGet packages](#nuget-packages)
     - [Ho to Install](#ho-to-install)
     - [How to build and run the unit tests in Visual Studio on Windows](#how-to-build-and-run-the-unit-tests-in-visual-studio-on-windows)
     - [How to open an example](#how-to-open-an-example)
@@ -20,9 +19,9 @@
 
 ## Preface
 
-OPC Unified Architecture (OPC UA) is the next generation of OPC. One of the most important improvements in OPC UA is a powerful Address Space and Information Model concepts. OPC UA allows for the presentation of a real-time process and underlying infrastructure as a consistent information model built up with nodes. The process model is represented by nodes, attributes, and their mutual relationships. Therefore, this powerful concept allows us to present in OPC UA not only raw process data but also complete information about the process state and process environment. The flexibility of UA ensures that no existing or future system is too complex to be exposed via OPC UA. Of course, such flexibility leads to difficulties during configuration, that’s why the Address Space Model Designer (ASMD) design environment has been born.
+OPC Unified Architecture (OPC UA) is the next generation solution compared to OPC Classic. One of the most important improvements in OPC UA is a powerful Address Space and Information Model concept. OPC UA allows exposing real-time process data and underlying infrastructure as a consistent information model built up with nodes. The process model is represented by nodes, attributes, and their mutual relationships. Therefore, using OPC UA this powerful concept allows us to expose not only raw process data but also entire consistent information about the process state and behavior. The flexibility of the OPC UA ensures that no existing or future systems are too complex to be exposed via OPC UA. Of course, such flexibility leads to difficulties during design, development, and deployment, that’s why the Object Oriented-Internet Address Space Model Designer (ASMD) was born.
 
-The  OOI - OPC UA Address Space Model Designer supports the graphical design of the process model using **OPC UA Information and Address Space** concepts. The embedded model compiler may be used to generate all required file formats necessary to deploy custom models using any existing Software Development Kit. It is compliant with the OPC UA Specifications [OPC UA Part 3][Opc.UA.Part3] and [OPC UA Part 5][Opc.UA.Part5] and is a consistent part of the broader concept [Object-Oriented Internet](https://commsvr.gitbook.io/ooi/).
+The  OOI ASMD supports the graphical design of the process model using OPC UA Information and Address Space concepts. The embedded model compiler may be used to generate all required file formats necessary to deploy custom models on the client, server, publisher and subscriber side using any existing Software Development Kit. It is compliant with the OPC UA Specifications [OPC UA Part 3][Opc.UA.Part3], [OPC UA Part 5][Opc.UA.Part5], and [OPC UA Part 6][Opc.UA.Part6]. By design, it is also a consistent part of the broader concept [Object-Oriented Internet](https://commsvr.gitbook.io/ooi/).
 
 > **NOTE**:
 >
@@ -70,17 +69,11 @@ We use [Semantic Versioning][SV] for versioning. For the versions available, see
 - considerably improves robustness of the OPC UA Information Model deployment in any custom environment
 - any OPC UA SDK integration-ready (OPC UA SDK independent)
 
-Check out the [WIKI - Help Documentation][WIKI] to get a more detailed description
+Check out the [WIKI - Help Documentation][WIKI] and [Online Help]([github.MD]) to get a more detailed description.
 
 ## Getting Started
 
-This section describes prerequisites to compile the software and run tests.
-
-### NuGet packages
-
-The list of packages used is listed on the page [Dependency graph][DEPGraph] of this repository. All packages are included in this GitHub repository in the local folder `_nugets` or published on NuGet. The local folder is configured in the `NuGet.Config`. The NuGet Gallery is the public package repository used by all package authors and consumers. All required packages are loaded before the build.
-
-To get more visit the Microsoft documentation [How to reinstall and update packages][NUGETInstall].
+This section describes prerequisites to use the tool, compile the code and run unit tests.
 
 ### Ho to Install
 
@@ -95,6 +88,10 @@ Projects can be opened in Visual Studio 2017. Support for some projects depends 
 1. Set the `ModelDesigner.DesignStudio` as the Start-up Project
 1. Press `F5` to run the tool using Debug configuration
 1. Hit `Ctrl+r,Ctrl+a` to run all unit tests
+
+The list of packages used is listed on the page [Dependency graph][DEPGraph] of this repository. All packages are included in this GitHub repository in the local folder `_nugets` or published on NuGet. The local folder is configured in the `NuGet.Config`. The NuGet Gallery is the public package repository used by all package authors and consumers. All required packages are loaded before the build.
+
+To get more visit the Microsoft documentation [How to reinstall and update packages][NUGETInstall].
 
 ### How to open an example
 
