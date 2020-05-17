@@ -1,13 +1,33 @@
-# ![Logo](_media/ASMDLogo-48.png) Address Space Model Designer (ASMD)
+
+# Address Space Model Designer (ASMD)
+
+![Logo](_media/ASMDLogo-48.png)
+
+- [Address Space Model Designer (ASMD)](#address-space-model-designer-asmd)
+  - [Preface](#preface)
+  - [Releases](#releases)
+  - [Key Features](#key-features)
+  - [Getting Started](#getting-started)
+    - [NuGet packages](#nuget-packages)
+    - [Ho to Install](#ho-to-install)
+    - [How to build and run the unit tests in Visual Studio on Windows](#how-to-build-and-run-the-unit-tests-in-visual-studio-on-windows)
+    - [How to open an example](#how-to-open-an-example)
+  - [Related work](#related-work)
+    - [Object Oriented Internet](#object-oriented-internet)
+    - [CommServer](#commserver)
+    - [Object Oriented Internet Reactive Networking Configuration Editor](#object-oriented-internet-reactive-networking-configuration-editor)
+  - [See Also](#see-also)
+
+## Preface
 
 OPC Unified Architecture (OPC UA) is the next generation of OPC. One of the most important improvements in OPC UA is a powerful Address Space and Information Model concepts. OPC UA allows for the presentation of a real-time process and underlying infrastructure as a consistent information model built up with nodes. The process model is represented by nodes, attributes, and their mutual relationships. Therefore, this powerful concept allows us to present in OPC UA not only raw process data but also complete information about the process state and process environment. The flexibility of UA ensures that no existing or future system is too complex to be exposed via OPC UA. Of course, such flexibility leads to difficulties during configuration, that’s why the Address Space Model Designer (ASMD) design environment has been born.
 
-The ASMD provides graphical design of the process model using OPC UA Information and Address Space concepts. The embedded model compiler may be used to generate all required file formats necessary to deploy custom model using any existing Software Development Kit. It is compliant with the OPC UA Specifications listed in the `See Also` section.
+The  OOI - OPC UA Address Space Model Designer supports the graphical design of the process model using **OPC UA Information and Address Space** concepts. The embedded model compiler may be used to generate all required file formats necessary to deploy custom models using any existing Software Development Kit. It is compliant with the OPC UA Specifications [OPC UA Part 3][Opc.UA.Part3] and [OPC UA Part 5][Opc.UA.Part5] and is a consistent part of the broader concept [Object-Oriented Internet](https://commsvr.gitbook.io/ooi/).
 
 > **NOTE**:
 >
-> - The design, development and deployment of the OPC UA Information Model detailed description is covered by the document [Information Models Development][IMD].
-> - The help documentation is now available at [OPC UA Address Space Model Designer][github.MD]
+>- The design, development and deployment of the OPC UA Information Model detailed description is covered by the document [Information Models Development][IMD].
+>- The help documentation is now available at [OPC UA Address Space Model Designer Online Help][github.MD]
 
 ## Releases
 
@@ -62,13 +82,13 @@ The list of packages used is listed on the page [Dependency graph][DEPGraph] of 
 
 To get more visit the Microsoft documentation [How to reinstall and update packages][NUGETInstall].
 
-### Visual Studio
+### Ho to Install
 
-Projects can be opened in Visual Studio 2017. Support for some projects depends on the Visual Studio edition and installed components.
-
-## Ho to Guide
+Download and run the file `UA.ModelDesigner.exe` to unzip the content to the selected folder and create an icon on the desktop. The application will run after unpacking. To restart the application you may use the icon on the desktop or double click the application file `OOI.UA.ModelDesigner.exe` in the already selected target folder.
 
 ### How to build and run the unit tests in Visual Studio on Windows
+
+Projects can be opened in Visual Studio 2017. Support for some projects depends on the Visual Studio edition and installed components.
 
 1. Open the `CommServer.UA.ModelDesigner.sln` solution file using Visual Studio 2017.
 1. Hit `F6` to build all projects in the solution.
@@ -133,6 +153,16 @@ The project [CommServer Migration to Open-source][migration2osProj] will be used
 ### Object Oriented Internet Reactive Networking Configuration Editor
 
 OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of the [Reactive Communication][OOIBookToC].  The `OPC-UA-OOI.ConfigEditor` was written by CAS Lodz Poland. The [mpostol/OPC-UA-OOI.ConfigEditor][ConfigEditor] repository is aimed at the software migration from on-premise subversion repository to GitHub and publishing it as the Open-Source Software (OSS).  After migration, this repository will be used to manage all activities addressing the software maintenance process as a plug-in of the ASMD.
+
+[Mariusz Postol](https://mpostol.wordpress.com/about/)
+
+[![View my profile on LinkedIn](https://www.linkedin.com/img/webpromo/btn_viewmy_160x33.png "View my profile on LinkedIn")](https://pl.linkedin.com/in/mpostol)
+
+- [mpostol (at) cas.eu](https://cas.eu/index.php/contact)
+- [GitHub profile](https://github.com/mpostol)
+- [http://www.commsvr.com/](http://www.commsvr.com/)
+- [LinkedIn](https://linkedin.com/in/mpostol)
+- [twitter](https://twitter.com/mpostol)
 
 ## See Also
 

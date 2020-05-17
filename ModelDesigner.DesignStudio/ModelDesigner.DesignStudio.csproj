@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CAS.UA.Model.Designer</RootNamespace>
-    <AssemblyName>CAS.UA.ModelDesigner</AssemblyName>
+    <AssemblyName>OOI.UA.ModelDesigner</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>CAS.UA.Model.Designer.Program</StartupObject>
@@ -511,12 +511,17 @@
     <Compile Include="Wrappers\WrapperTreeNode.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ReleaseNotes.html" />
     <None Include="Controls\Controls.cd" />
     <Content Include="exe\CAS.CommServer.UA.ModelCompiler.Command.exe.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="DemoConfiguration.oses" />
     <None Include="Properties\app.manifest" />
+    <None Include="ReleaseNotes.md">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
     <None Include="Solution\UAModelDesignerSolution.GoXSD.cmd" />
     <None Include="Solution\UAModelDesignerSolution.GoCS.cmd" />
     <Content Include="exe\CAS.CommServer.UA.ModelCompiler.Command.exe">

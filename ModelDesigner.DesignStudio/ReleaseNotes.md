@@ -1,12 +1,35 @@
 ﻿# Object-Oriented Internet Address Space Model Designer - Release Notes
 
+- [Object-Oriented Internet Address Space Model Designer - Release Notes](#object-oriented-internet-address-space-model-designer---release-notes)
+	- [Current release details](#current-release-details)
+	- [Versions history](#versions-history)
+		- [Version V 4.1](#version-v-41)
+			- [Release Date: 17 Dec 2019](#release-date-17-dec-2019)
+			- [Known issues](#known-issues)
+		- [Version: 3.20.1](#version-3201)
+			- [Release Date: 2016-05-17](#release-date-2016-05-17)
+		- [Version 3.10](#version-310)
+			- [Release Date: 2015-03-31](#release-date-2015-03-31)
+		- [Version 3.00.10](#version-30010)
+			- [Release Date: 2015-02-11](#release-date-2015-02-11)
+		- [Version 3.00.03](#version-30003)
+			- [Release Date: 2014.07.07](#release-date-20140707)
+		- [Version 3.00.02](#version-30002)
+			- [Release Date: 2011.05.19](#release-date-20110519)
+
 ## Current release details
 
- | Title | Description |
+ | Title        | Description                                                                                    |
  | ------------ | ---------------------------------------------------------------------------------------------- |
- | Product | [Object-Oriented Internet Address Space Model Designer](https://github.com/mpostol/OPC-UA-OOI) |
- | Version | 4.2.0 |
- | Release Date | 17.05.2020 |
+ | Product      | [Object-Oriented Internet Address Space Model Designer](https://github.com/mpostol/OPC-UA-OOI) |
+ | Version      | 4.2.0                                                                                          |
+ | Release Date | 17.05.2020                                                                                     |
+
+## Versions history
+
+### Version V 4.1
+
+#### Release Date: 17 Dec 2019
 
 The main changes and new functionality are listed below:
 
@@ -16,13 +39,10 @@ The main changes and new functionality are listed below:
 - Improved tracking of the application activity
 - Added the new version of the CAS OPC Viewer 3.11.17
 
-### For assistance, contact
+#### Known issues
 
-[Mariusz Postol](https://mpostol.wordpress.com/about/)
-
-[![View my profile on LinkedIn](https://www.linkedin.com/img/webpromo/btn_viewmy_160x33.png "View my profile on LinkedIn")](https://pl.linkedin.com/in/mpostol)
-
-## Versions history
+- The self-extracting zip file and the main application is not code-signed. Unsigned executables maybe not allowed by your company IT policy. The installer package containing signed stuff is on the project road map #89., The further development planning is based on the sponsors' priorities. Any comments and proposals add as the comments to #89.
+- Property grid fonts scaling. Visit #86 to get more. Try the [workaround](https://github.com/mpostol/ASMD/issues/86#issuecomment-578040136)
 
 ### Version: 3.20.1
 
@@ -72,7 +92,7 @@ The main changes and new functionality are listed below:
 
 ### Version 3.00.02
 
-#### Release 2011.05.19
+#### Release Date: 2011.05.19
 
 This is only bug-fix release. The main changes and new functionality are listed below:
 
