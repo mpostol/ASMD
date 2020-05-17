@@ -9,8 +9,8 @@
   - [Key Features](#key-features)
   - [Getting Started](#getting-started)
     - [Ho to Install](#ho-to-install)
-    - [How to build and run the unit tests in Visual Studio on Windows](#how-to-build-and-run-the-unit-tests-in-visual-studio-on-windows)
     - [How to open an example](#how-to-open-an-example)
+    - [How to build and run the unit tests in Visual Studio on Windows](#how-to-build-and-run-the-unit-tests-in-visual-studio-on-windows)
   - [Related work](#related-work)
     - [Object Oriented Internet](#object-oriented-internet)
     - [CommServer](#commserver)
@@ -37,7 +37,7 @@ We use [Semantic Versioning][SV] for versioning. For the versions available, see
 | Version | Milestone                                                          | Date|Notes|
 |:-------:|--------------------------------------------------------------------|:--:|-|
 | 4.1 | [Public release of the ASMD][ASMD410] |  Dec 17, 2019 ||
-| 3.20.1| [ASMD last available Windows installation released by CAS]| May 17, 2016|deprecated|
+| 3.20.1| *ASMD last available Windows installation released by CAS*| May 17, 2016|deprecated|
 
 ## Key Features
 
@@ -77,21 +77,7 @@ This section describes prerequisites to use the tool, compile the code and run u
 
 ### Ho to Install
 
-Download and run the file `UA.ModelDesigner.exe` to unzip the content to the selected folder and create an icon on the desktop. The application will run after unpacking. To restart the application you may use the icon on the desktop or double click the application file `OOI.UA.ModelDesigner.exe` in the already selected target folder.
-
-### How to build and run the unit tests in Visual Studio on Windows
-
-Projects can be opened in Visual Studio 2017. Support for some projects depends on the Visual Studio edition and installed components.
-
-1. Open the `CommServer.UA.ModelDesigner.sln` solution file using Visual Studio 2017.
-1. Hit `F6` to build all projects in the solution.
-1. Set the `ModelDesigner.DesignStudio` as the Start-up Project
-1. Press `F5` to run the tool using Debug configuration
-1. Hit `Ctrl+r,Ctrl+a` to run all unit tests
-
-The list of packages used is listed on the page [Dependency graph][DEPGraph] of this repository. All packages are included in this GitHub repository in the local folder `_nugets` or published on NuGet. The local folder is configured in the `NuGet.Config`. The NuGet Gallery is the public package repository used by all package authors and consumers. All required packages are loaded before the build.
-
-To get more visit the Microsoft documentation [How to reinstall and update packages][NUGETInstall].
+Download and run the file `UA.ModelDesigner.exe` to unzip the content to the selected folder and create an icon on the desktop. The application will run after unpacking. To restart the application you may use the icon on the desktop or double click the application file `<target>\UA.ModelDesigner\OOI.UA.ModelDesigner.exe`, where \<target\> is the already selected folder during the installation. To uninstall the software and embedded example simply delete the \<target\> folder and the icon.
 
 ### How to open an example
 
@@ -99,9 +85,8 @@ This section contains information about the Address Space Model Designer sample 
 
 The section [Information Models Development][IMD] of the online ebook covers details on how to get started using the attached examples. The solution `BoilerExampleSolution` contains a boiler model. This model is described in the [ReferenceApplication Producer - Boilers Set Simulator][boiler]. Check out the section [Companion Specification - Information Model for Analyzers][ADI] to get more about `ADIExempleSolution` example.
 
-Selected examples are also published on the [ASMD releases page][REL]. The following step by step, instruction will guide you on how to open the examples.
+Selected examples is added to the folder `<target>\UA.ModelDesigner\EmbeddedExample`. The following step by step instruction will guide you on how to open the examples.
 
-- From the [ASMD releases page][REL] download and unzip the file `ASMD.EmbeddedExample.zip` to the selected folder
 - The folder `EmbeddedExample` contains two examples
   - `BoilerExampleSolution` - a set of unmanned boilers spread geographically, which have to be monitored and remotely controlled
   - `ADIExempleSolution` - a set of models to be used as an example of adopting companion standard models, i.e. [analyzer devices integration][ADI]
@@ -121,12 +106,25 @@ The files of the sample solution are listed in the following table.
 File | Content
 |----|---------|
 `*.uamdsl` |Address Space Model Designer solution. This file contains the configuration of the sample solution and references to other files that are used in this solution (e.g. projects, plug-ins, etc.)
-`CAS.UA.Server.ServerConfiguration.dll` | A sample Plug-in file for CommServer UA that can be used to edit the configuration file and define process data bindings
 `*.csv` | A CSV file that contains Node Identifiers
 `*.xml` | An XML file that contains the model
-`*/CAS.UAServer.DemoConfiguration.uasconfig` | A sample configuration file of CommServer UA. This file is created and edited by `CAS.UA.Server.ServerConfiguration.dll` - configuration editor.
-`*/DefaultConfig.xml` |A sample CommServer configuration file. It can be edited by the Network Configuration application (part of CommServer package).
-`*/DemoConfiguration.oses` |A sample OPC DA client configuration (compatible with `OPC Viewer` and `DataPorter` products)
+`*/CAS.UAServer.DemoConfiguration.uasconfig` | A sample configuration file of OPC UA Server. This file is created and edited by the plug-in providing the configuration editor. It is compatible with  [mpostol/OPCUA.Server](https://github.com/mpostol/OPCUA.Server) Open Source Software.
+`*/DefaultConfig.xml` |A sample OPC DA Server configuration file (compatible with [mpostol/OPCDA.Server](https://github.com/mpostol/OPCDA.Server) Open Source Software).
+`*/DemoConfiguration.oses` |A sample OPC DA Client configuration (compatible with  [mpostol/OPCDA.Viewer](https://github.com/mpostol/OPCDA.Viewer) and [mpostol/OPCDA.DataPorter](https://github.com/mpostol/OPCDA.DataPorter) Open Source Software)
+
+### How to build and run the unit tests in Visual Studio on Windows
+
+Projects can be opened in Visual Studio 2017. Support for some projects depends on the Visual Studio edition and installed components.
+
+1. Open the `CommServer.UA.ModelDesigner.sln` solution file using Visual Studio 2017.
+1. Hit `F6` to build all projects in the solution.
+1. Set the `ModelDesigner.DesignStudio` as the Start-up Project
+1. Press `F5` to run the tool using Debug configuration
+1. Hit `Ctrl+r,Ctrl+a` to run all unit tests
+
+The list of packages used is listed on the page [Dependency graph][DEPGraph] of this repository. All packages are included in this GitHub repository in the local folder `_nugets` or published on NuGet. The local folder is configured in the `NuGet.Config`. The NuGet Gallery is the public package repository used by all package authors and consumers. All required packages are loaded before the build.
+
+To get more visit the Microsoft documentation [How to reinstall and update packages][NUGETInstall].
 
 ## Related work
 
