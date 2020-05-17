@@ -27,9 +27,16 @@ The comment below contains SFX script commands for RAR
 
 ```txt
 
-Path=.\ASMD
-Setup=Release\CAS.UA.ModelDesigner.exe installic
+Path=OOI
+Setup=UA.ModelDesigner\OOI.UA.ModelDesigner.exe installic
 Title=Address Space Model Designer
-Shortcut=D, Release\CAS.UA.ModelDesigner.exe,  , "OPC UA Address Space Model Designer", asmd, Release\OPC_UA_ASMD_48.ico
+Shortcut=D, UA.ModelDesigner\OOI.UA.ModelDesigner.exe,  , "OPC UA Address Space Model Designer", asmd, UA.ModelDesigner\OPC_UA_ASMD_48.ico
 
 ```
+
+> Note
+>
+> - rename the folder name Release to UA.ModelDesigner
+> - configure Logo: _media\ASMDLogo_SFX_93_302.png
+> - configure Icon: _media\ASMDLogo-48.ico
+> - rename the CAS.UA.ModelDesigner.exe to OOI.UA.ModelDesigner.exe and the config file - it is necessary as long as the license container and editor will be fixed
