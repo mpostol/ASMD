@@ -12,9 +12,10 @@ assignees: 'mpostol'
 - [ ] Remove all not crucial tasks from the current milestone to a new one or backlog
 - [ ] Draft a new release
 - [ ] Update version information
+- [ ] Update ReleaseNotes.md and print it to .html using VC
 - [ ] Build the Release Configuration of the solution and perform functional tests
-- [ ] Update ReleaseNotes.md
 - [ ] Create the installation package and publish in on the Release page
+- [ ] Update the Release page
 - [ ] Publish the release
 - [ ] Close this issue and the parent milestone
 

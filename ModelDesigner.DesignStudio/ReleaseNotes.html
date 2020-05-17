@@ -1,18 +1,50 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title>Release Notes: CAS OPC UA Address Space Model Designer</title>
-</head>
-<body>
-
-    <h1 id="release-notes-cas-opc-ua-address-space-model-designer">Release Notes: CAS OPC UA Address Space Model Designer</h1>
-<h2 id="current-release-details">Current release details:</h2>
-<ul>
-<li>Description:   OPC UA Information Model Design Studio.</li>
-<li>Product:       <a href="https://github.com/mpostol/OPC-UA-OOI">Object Oriented Internet</a></li>
-<li>Version:       4.0.0-Alpha</li>
-<li>Release Date:  12.11.2019</li>
-</ul>
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Object-Oriented Internet Address Space Model Designer - Release Notes</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="object-oriented-internet-address-space-model-designer---release-notes">Object-Oriented Internet Address Space Model Designer - Release Notes</h1>
+<h2 id="current-release-details">Current release details</h2>
+<table>
+<thead>
+<tr>
+<th>Title</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Product</td>
+<td><a href="https://github.com/mpostol/OPC-UA-OOI">Object-Oriented Internet Address Space Model Designer</a></td>
+</tr>
+<tr>
+<td>Version</td>
+<td>4.2.0</td>
+</tr>
+<tr>
+<td>Release Date</td>
+<td>17.05.2020</td>
+</tr>
+</tbody>
+</table>
 <p>The main changes and new functionality are listed below:</p>
 <ul>
 <li>Refactoring application architecture to use dependency validation and separate libraries from dependency on <code>Windows.Forms</code> technology.</li>
@@ -21,26 +53,24 @@
 <li>Improved tracking of the application activity</li>
 <li>Added the new version of the CAS OPC Viewer 3.11.17</li>
 </ul>
-<hr />
-<blockquote>
-<p><strong>For assistance, contact:</strong></p>
-<p>Mariusz Postol <code>mailto: mpostol (at) cas.eu</code></p>
-<p>Copyright (C) 2019, Mariusz Postol LODZ POLAND.</p>
-</blockquote>
-<h1 id="versions-history">Versions history:</h1>
-<h2 id="version-3.20.1">Version:       3.20.1</h2>
-<h2 id="release-date-2016-05-17">Release Date:  2016-05-17</h2>
+<h3 id="for-assistance-contact">For assistance, contact</h3>
+<p><a href="https://mpostol.wordpress.com/about/">Mariusz Postol</a></p>
+<ul>
+<li><img src="https://www.linkedin.com/img/webpromo/btn_viewmy_160x33.png" alt="View my profile on LinkedIn" title="View my profile on LinkedIn"></li>
+</ul>
+<h2 id="versions-history">Versions history</h2>
+<h3 id="version-3201">Version: 3.20.1</h3>
+<h4 id="release-date-2016-05-17">Release Date: 2016-05-17</h4>
 <p>The main changes and new functionality are listed below:</p>
 <ul>
 <li>The application supports the OPC UA Object Oriented Internet paradigm. Its detailed description is available on-line: <a href="https://github.com/mpostol/OPC-UA-OOI">OPC-UA-OOI</a>. To improve adaptability, the application uses open source components available in the mentioned project work space.</li>
 <li>Import of the XML documents compliant with the <code>UANodeSet</code> XML schema uses the deliverable developed and maintained in the public domain. See detailed description: <a href="https://commsvr.gitbook.io/ooi/semantic-data-processing/addressspacecompliancetesttool">Address Space Prototyping Tool (asp.exe)</a></li>
-<li>Embedded OPC UA application configuration editor supports any external plug-in prepared on the basis of the Nuget package: <a href="https://www.nuget.org/packages/UAOOI.DataBindings/">https://www.nuget.org/packages/UAOOI.DataBindings/</a>.
-The package code is available as an open source at: <a href="https://www.nuget.org/packages/UAOOI.DataBindings/">DataBindings</a>.</li>
+<li>Embedded OPC UA application configuration editor supports any external plug-in prepared on the basis of the Nuget package: <a href="https://www.nuget.org/packages/UAOOI.DataBindings/">https://www.nuget.org/packages/UAOOI.DataBindings/</a>. The package code is available as an open source at: <a href="https://www.nuget.org/packages/UAOOI.DataBindings/">DataBindings</a>.</li>
 <li>Updated code for target .NET Framework 4.6.1. and the recent development environment.</li>
 <li>Added unit tests and fixed reported errors.</li>
 </ul>
-<h2 id="version-3.10">Version 3.10</h2>
-<h3 id="release-date-2015-03-31">Release Date: 2015-03-31</h3>
+<h3 id="version-310">Version 3.10</h3>
+<h4 id="release-date-2015-03-31">Release Date: 2015-03-31</h4>
 <ul>
 <li>Import support for XML documents compliant with the <code>UANodeSet</code> XML Schema.</li>
 </ul>
@@ -50,8 +80,8 @@ as a collection of nodes created according to the strictly observed rules. To in
 Space any reusable OPC UA Server needs a description of it. The OPC UA standard defines a formal
 definition of the syntax <code>UANodeSet</code> XML Schema. The semantics of a compliant with this schema XML
 document is explained in this manual : <a href="http://www.cas.internetdsl.pl/commserver/P_DowloadCenter/P_Publications/P-15010101-AddressSpaceInterchangeXML.pdf">Address Space Interchange XML</a></p>
-<h2 id="version-3.00.10">Version 3.00.10</h2>
-<h3 id="release-date-2015-02-11">Release Date: 2015-02-11</h3>
+<h3 id="version-30010">Version 3.00.10</h3>
+<h4 id="release-date-2015-02-11">Release Date: 2015-02-11</h4>
 <p>The main changes and new functionality are listed below:</p>
 <ul>
 <li>Build-in model is compliant with Rel 1.02 Specification</li>
@@ -59,29 +89,26 @@ document is explained in this manual : <a href="http://www.cas.internetdsl.pl/co
 <li>Embedded compiler validates the model during creation of the Browse view.
 <ul>
 <li>errors are logged to the Output window and log file</li>
-<li>errors are added as nodes to the browse view to be easily recognizable</li>
+<li>errors are added as nodes to the browse view to be easily recognizable
+Improved application instrumentation and by expanding events tracing to the log file.</li>
 </ul>
 </li>
-<li>Improved application instrumentation and by expanding events tracing to the log file.</li>
 <li>Added Analyzer Device Integration (ADI) model</li>
 <li>Synchronized example models with the White-paper: <a href="http://www.commsvr.com/DownloadCenter/Publications/OPCUAInformationModelDeployment/tabid/563/language/en-US/Default.aspx">OPC UA Information Model Deployment</a></li>
 </ul>
-<h2 id="version-3.00.03">Version 3.00.03</h2>
-<h3 id="release-date-2014.07.07">Release Date: 2014.07.07</h3>
+<h3 id="version-30003">Version 3.00.03</h3>
+<h4 id="release-date-20140707">Release Date: 2014.07.07</h4>
 <ul>
 <li>Ported to the VS 2013 - refactoring</li>
 </ul>
-<h2 id="version-3.00.02">Version 3.00.02</h2>
-<h3 id="release-2011.05.19">Release 2011.05.19</h3>
+<h3 id="version-30002">Version 3.00.02</h3>
+<h4 id="release-20110519">Release 2011.05.19</h4>
 <p>This is only bug-fix release. The main changes and new functionality are listed below:</p>
 <ul>
 <li>Resolved issue with license installation (&quot;wrong hardware key&quot;);</li>
 <li>Resolved issue with displaying information about license failure;</li>
 <li>Links to documentation are fixed.</li>
 </ul>
-<h1 id="archival-information">Archival Information</h1>
-<p>For archival information visit the document <a href="http://www.commsvr.com/OPC-Help/Index.aspx?topic=html/ada1af70-e1ba-49df-8d0a-8ddc87a0f287.htm">Version History</a></p>
 
-
-</body>
-</html>
+    </body>
+    </html>
