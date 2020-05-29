@@ -13,8 +13,11 @@ assignees: 'mpostol'
 - [ ] Draft a new release
 - [ ] Update version information
 - [ ] Update ReleaseNotes.md and print it to .html using VC
-- [ ] Build the Release Configuration of the solution and perform functional tests
+- [ ] Build the Release Configuration of the solution
+- [ ] rename the folder name Release to UA.ModelDesigner
+- [ ] rename the CAS.UA.ModelDesigner.exe to OOI.UA.ModelDesigner.exe  - it is necessary as long as the license container and editor will be fixed
 - [ ] Create the installation package and publish in on the Release page
+- [ ] perform functional tests
 - [ ] Update the Release page
 - [ ] Publish the release
 - [ ] Close this issue and the parent milestone
@@ -36,7 +39,5 @@ Shortcut=D, UA.ModelDesigner\OOI.UA.ModelDesigner.exe,  , "OPC UA Address Space 
 
 > Note
 >
-> - rename the folder name Release to UA.ModelDesigner
 > - configure Logo: _media\ASMDLogo_SFX_93_302.png
 > - configure Icon: _media\ASMDLogo-48.ico
-> - rename the CAS.UA.ModelDesigner.exe to OOI.UA.ModelDesigner.exe and the config file - it is necessary as long as the license container and editor will be fixed

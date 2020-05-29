@@ -157,6 +157,8 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       MessageBoxHandling = messageBoxHandling ?? throw new ArgumentNullException(nameof(messageBoxHandling));
       HomeDirectory = solutionPath;
+      if (solution.ServerDetails == null)
+        solution.ServerDetails = UAModelDesignerSolutionServerDetails.CreateEmptyInstance();
       Server = new ServerSelector(new GraphicalUserInterface(), solutionPath, solution.ServerDetails.codebase, solution.ServerDetails.configuration);
       Server.OnConfigurationChanged += new EventHandler<UAServerConfigurationEventArgs>(Server_OnConfigurationChanged);
       //TODO OnDataChanged += OnChangeHandler;
