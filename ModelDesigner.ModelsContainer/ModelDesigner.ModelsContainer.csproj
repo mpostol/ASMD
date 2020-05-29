@@ -179,9 +179,9 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <Content Include="EmbeddedExample\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll">
+    <EmbeddedResource Include="EmbeddedExample\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
     <Content Include="EmbeddedExample\DemoConfiguration\BoilersSet\Commsvr.UA.Examples.BoilersSet.NodeSet.xml" />
     <Content Include="EmbeddedExample\DemoConfiguration\BoilersSet\Commsvr.UA.Examples.BoilersSet.NodeSet2.xml">
       <SubType>Designer</SubType>
