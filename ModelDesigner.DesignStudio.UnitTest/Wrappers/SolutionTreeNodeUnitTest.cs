@@ -23,6 +23,14 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
 
     [TestMethod]
+    [ExpectedException(typeof(ArgumentNullException))]
+    public void ConstructorSolutionIsNullTest()
+    {
+      Mock<IMessageBoxHandling> _IMessageBoxHandlingMock = new Mock<IMessageBoxHandling>();
+      int _librariesCallCounter = 0;
+      SolutionTreeNode _stn = new SolutionTreeNode(_IMessageBoxHandlingMock.Object, null, String.Empty, (x, y) => { Assert.Fail(); }, z => _librariesCallCounter++);
+    }
+    [TestMethod]
     public void ConstructorTest()
     {
       Mock<IMessageBoxHandling> _IMessageBoxHandlingMock = new Mock<IMessageBoxHandling>();

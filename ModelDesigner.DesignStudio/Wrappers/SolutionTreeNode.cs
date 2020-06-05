@@ -157,7 +157,8 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       MessageBoxHandling = messageBoxHandling ?? throw new ArgumentNullException(nameof(messageBoxHandling));
       HomeDirectory = solutionPath;
-      //TODO Error while using Save operation #129 NullReferenceException
+      if (solution == null)
+        throw new ArgumentNullException(nameof(solution), $"In constructor {nameof(SolutionTreeNode)} this argument must not be null.");
       if (solution.ServerDetails == null)
         solution.ServerDetails = UAModelDesignerSolutionServerDetails.CreateEmptyInstance();
       Server = new ServerSelector(new GraphicalUserInterface(), solutionPath, solution.ServerDetails.codebase, solution.ServerDetails.configuration);

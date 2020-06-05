@@ -14,8 +14,8 @@
     <FileAlignment>512</FileAlignment>
     <StartupObject>CAS.UA.Model.Designer.Program</StartupObject>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <SignManifests>false</SignManifests>
-    <ManifestCertificateThumbprint>502D68F34386F28801A8BF04EA024544899F9713</ManifestCertificateThumbprint>
+    <SignManifests>true</SignManifests>
+    <ManifestCertificateThumbprint>23D18A05F61D12F417859EB23DE84152D6C5F120</ManifestCertificateThumbprint>
     <GenerateManifests>false</GenerateManifests>
     <ApplicationIcon>OPC_UA_ASMD_48.ico</ApplicationIcon>
     <SignAssembly>true</SignAssembly>
@@ -517,6 +517,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="DemoConfiguration.oses" />
+    <None Include="ModelDesigner.DesignStudio_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="ReleaseNotes.md">
       <DesignTime>True</DesignTime>
