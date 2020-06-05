@@ -124,8 +124,8 @@ namespace CAS.UA.Model.Designer
     }
     internal static Func<string, DialogResult> MessageBoxShow { get; set; } = (x) =>
                                                                                  {
-                                                                                   AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 108, x);
-                                                                                   return MessageBox.Show(x, "Excution Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+                                                                                   AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 2085089167, x);
+                                                                                   return MessageBox.Show(x, "Execution Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
                                                                                  };
     #endregion
 
@@ -197,13 +197,13 @@ namespace CAS.UA.Model.Designer
       try
       {
         _result = ShowThreadExceptionDialog(t.Exception);
-        AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 201, $"In UI exception handling procedure user selected {_result}");
+        AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 111680094, $"In UI exception handling procedure user selected {_result}");
       }
       catch (Exception _ex)
       {
         try
         {
-          AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Critical, 211, $"Application exits in the Form1_UIThreadException after next error: {_ex.Message}");
+          AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Critical, -695035256, $"Application exits in the Form1_UIThreadException after next error: {_ex.Message}");
         }
         finally
         {

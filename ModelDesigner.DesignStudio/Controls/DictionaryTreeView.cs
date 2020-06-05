@@ -190,6 +190,7 @@ namespace CAS.UA.Model.Designer.Controls
           {
             DictionaryTreeNode _coupledNode = GetNode(item.Value);
             if (!(_coupledNode is IDictionaryTreeNodeCreateCopy))
+              //TODO Error while using Save operation #129 NullReferenceException
               throw new ArgumentOutOfRangeException($"{nameof(DictionaryTreeView)} Cannot create coupled node for {_coupledNode.GetType().FullName}");
             DictionaryTreeNode newNode = ((IDictionaryTreeNodeCreateCopy)_coupledNode).CreateCopy();
             newNode.Text = string.Format("{0}: {1}", item.Key, newNode.Text);

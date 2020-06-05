@@ -631,7 +631,8 @@ namespace CAS.UA.Model.Designer
     }
     private void HelpReadmeToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      System.Diagnostics.Process.Start(Resources.MainForm_ReadmePage);
+      //TODO Error while using Save operation #129
+      Process.Start(Resources.MainForm_ReadmePage);
     }
     private void navigateForwardToolStripMenuItem_Click(object sender, EventArgs e)
     {
