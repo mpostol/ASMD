@@ -3,7 +3,8 @@
 - [Object-Oriented Internet Address Space Model Designer - Release Notes](#object-oriented-internet-address-space-model-designer---release-notes)
 	- [Current release details](#current-release-details)
 	- [Versions history](#versions-history)
-		- [Version V 4.1](#version-v-41)
+		- [Version: 4.2.0](#version-420)
+		- [Version: 4.1.0](#version-410)
 			- [Release Date: 17 Dec 2019](#release-date-17-dec-2019)
 			- [Known issues](#known-issues)
 		- [Version: 3.20.1](#version-3201)
@@ -22,8 +23,22 @@
  | Title        | Description                                                                                    |
  | ------------ | ---------------------------------------------------------------------------------------------- |
  | Product      | [Object-Oriented Internet Address Space Model Designer](https://github.com/mpostol/OPC-UA-OOI) |
- | Version      | 4.2.0                                                                                          |
- | Release Date | 17.05.2020                                                                                     |
+ | Version      | 4.2.1                                                                                          |
+ | Release Date | 29.05.2020                                                                                     |
+
+The main changes and new functionality are listed below:
+
+- Hot-fix - see the issues list for details
+
+## Versions history
+
+### Version: 4.2.0
+
+| Title        | Description                                                                                    |
+| ------------ | ---------------------------------------------------------------------------------------------- |
+| Product      | [Object-Oriented Internet Address Space Model Designer](https://github.com/mpostol/OPC-UA-OOI) |
+| Version      | 4.2.0                                                                                          |
+| Release Date | 17.05.2020                                                                                     |
 
 The main changes and new functionality are listed below:
 
@@ -33,9 +48,7 @@ The main changes and new functionality are listed below:
 - removed dependency on the Open XML SDK 2.5 for Microsoft Office - this functionality is provided by the appropriate NuGet package instead.
 - updated dependencies
 
-## Versions history
-
-### Version V 4.1
+### Version: 4.1.0
 
 #### Release Date: 17 Dec 2019
 

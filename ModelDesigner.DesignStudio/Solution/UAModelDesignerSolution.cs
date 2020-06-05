@@ -1,20 +1,12 @@
-﻿//_______________________________________________________________
-//  Title   : UAModelDesignerSolution
-//  System  : Microsoft VisualStudio 2015 / C#
-//  $LastChangedDate:  $
-//  $Rev: $
-//  $LastChangedBy: $
-//  $URL: $
-//  $Id:  $
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2017, CAS LODZ POLAND.
-//  TEL: +48 608 61 98 99 
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
-
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
+using System.Runtime.Serialization;
 
 namespace CAS.UA.Model.Designer.Solution
 {
@@ -33,9 +25,25 @@ namespace CAS.UA.Model.Designer.Solution
       {
         Name = Resources.DefaultSolutionName,
         Projects = new UAModelDesignerProject[] { },
-        ServerDetails = new UAModelDesignerSolutionServerDetails() { codebase = string.Empty, configuration = string.Empty }
+        ServerDetails = UAModelDesignerSolutionServerDetails.CreateEmptyInstance()
       };
+    }
 
+    [OnDeserialized()]
+    public void OnDeserialized(StreamingContext context)
+    {
+      ServerDetails = ServerDetails ?? UAModelDesignerSolutionServerDetails.CreateEmptyInstance();
+    }
+  }
+
+  /// <summary>
+  /// Class UAModelDesignerSolutionServerDetails - encapsulates details about the associated server configuration
+  /// </summary>
+  public partial class UAModelDesignerSolutionServerDetails
+  {
+    internal static UAModelDesignerSolutionServerDetails CreateEmptyInstance()
+    {
+      return new UAModelDesignerSolutionServerDetails() { codebase = string.Empty, configuration = string.Empty };
     }
   }
 }

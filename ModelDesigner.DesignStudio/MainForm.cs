@@ -454,22 +454,22 @@ namespace CAS.UA.Model.Designer
     }
     private void OnReset()
     {
-      Properties.Settings.Default.TargetNamespace = "http://cas.eu/UA/CommServer/";
-      Properties.Settings.Default.TargetXmlNamespace = "http://cas.eu/UA/CommServer/";
-      Properties.Settings.Default.DefaultSolutionFileName = "";
+      Properties.Settings.Default.TargetNamespace = @"http://cas.eu/UA/CommServer/";
+      Properties.Settings.Default.TargetXmlNamespace = @"http://cas.eu/UA/CommServer/";
+      Properties.Settings.Default.DefaultSolutionFileName = "UAModelDesignerSolution";
       Properties.Settings.Default.FontSize = 8;
       Properties.Settings.Default.CoupledNodesAreEnabled = true;
       Properties.Settings.Default.HelpSynchronizationIsEnabled = true;
-      Properties.Settings.Default.XmlUATypesNamespace = "http://opcfoundation.org/UA/2008/02/Types.xsd";
+      Properties.Settings.Default.XmlUATypesNamespace = @"http://opcfoundation.org/UA/2008/02/Types.xsd";
       Properties.Settings.Default.XmlUATypesPrefix = "ua";
       Properties.Settings.Default.Build_ProjectCompilationString = "-d2 \"{0}\"  -cg \"{1}\" -o \"{2}\" -console";
-      Properties.Settings.Default.ProjectCompilationExecutable = "Opc.Ua.ModelCompiler.exe";
+      Properties.Settings.Default.ProjectCompilationExecutable = @"exe\CAS.CommServer.UA.ModelCompiler.Command.exe";
       Properties.Settings.Default.TargetNamespaceXmlPrefix = "cas";
-      Properties.Settings.Default.XmlOPCTypesNamespace = "http://opcfoundation.org/UA/2008/02/Types.xsd";
+      Properties.Settings.Default.XmlOPCTypesNamespace = @"http://opcfoundation.org/UA/2008/02/Types.xsd";
       Properties.Settings.Default.XmlOPCTypesPrefix = "uax";
-      Properties.Settings.Default.XmlSchemaNamespace = "http://www.w3.org/2001/XMLSchema";
+      Properties.Settings.Default.XmlSchemaNamespace = @"http://www.w3.org/2001/XMLSchema";
       Properties.Settings.Default.XmlSchemaPrefix = "xsd";
-      Properties.Settings.Default.XmlSchemaInstanceNamespace = "http://www.w3.org/2001/XMLSchema-instance";
+      Properties.Settings.Default.XmlSchemaInstanceNamespace = @"http://www.w3.org/2001/XMLSchema-instance";
       Properties.Settings.Default.XmlSchemaInstancePrefix = "xsi";
     }
     private void OnOk()
@@ -631,7 +631,8 @@ namespace CAS.UA.Model.Designer
     }
     private void HelpReadmeToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      System.Diagnostics.Process.Start(Resources.MainForm_ReadmePage);
+      //TODO Error while using Save operation #129
+      Process.Start(Resources.MainForm_ReadmePage);
     }
     private void navigateForwardToolStripMenuItem_Click(object sender, EventArgs e)
     {
