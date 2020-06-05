@@ -76,7 +76,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion private
 
     #region constructors
-    internal ProjectTreeNode(IBaseDirectoryProvider solutionPath, string filePath, OPCFModelDesign model) :
+    private ProjectTreeNode(IBaseDirectoryProvider solutionPath, string filePath, OPCFModelDesign model) :
       this(solutionPath, Path.GetFileNameWithoutExtension(filePath))
     {
       UAModelDesignerProject = new UAModelDesignerProject()

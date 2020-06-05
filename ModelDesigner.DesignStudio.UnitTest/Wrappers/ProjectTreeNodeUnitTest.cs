@@ -5,6 +5,7 @@
 //___________________________________________________________________________________
 
 using CAS.CommServer.UA.Common;
+using CAS.UA.Model.Designer.Solution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -19,30 +20,59 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       ViewModelFactory.Factory = new ViewModelFactoryTest();
     }
+    //[TestMethod]
+    //public void ConstructorNewProjectTest()
+    //{
+    //  Moq.Mock<IBaseDirectoryProvider> _directory = new Moq.Mock<IBaseDirectoryProvider>();
+    //  _directory.Setup(x => x.GetBaseDirectory()).Returns(@"C:\");
+    //  ProjectTreeNode _newItem = new ProjectTreeNode(_directory.Object, @"C:\Model_33", new Opc.Ua.ModelCompiler.ModelDesign());
+    //  CheckConsistency(_newItem);
+    //}
     [TestMethod]
-    public void ConstructorNewProjectTest()
+    public void CreateNewModelTest()
     {
-      ProjectTreeNode _newItem = new ProjectTreeNode(new BaseDirectoryProvider(), string.Empty, new Opc.Ua.ModelCompiler.ModelDesign());
-      object _viewModel = _newItem.Wrapper;
-      Assert.IsNotNull(_viewModel);
-      Assert.AreSame(_viewModel, ViewModel.Instance);
-      Assert.IsTrue(_newItem.Name.StartsWith("Model_")); 
-      Assert.AreEqual<string>(@"$(ProjectFileName)", _newItem.BuildOutputDirectoryName);
-      Assert.IsFalse(String.IsNullOrEmpty(_newItem.BuildOutputDirectoryPath));
-      Assert.AreEqual<string>("$(ProjectFileName).csv", _newItem.CSVFileName);
-      Assert.IsFalse(String.IsNullOrEmpty(_newItem.CSVFilePath));
-      Assert.IsTrue(_newItem.FileName.StartsWith("Model_"));
-      Assert.IsFalse(String.IsNullOrEmpty(_newItem.FilePath));
-      Assert.IsNotNull(_newItem.ProjectIdentifier);
+      Moq.Mock<IBaseDirectoryProvider> _directory = new Moq.Mock<IBaseDirectoryProvider>();
+      _directory.Setup(x => x.GetBaseDirectory()).Returns(@"C:\");
+      CheckConsistency( ProjectTreeNode.CreateNewModel(_directory.Object));
     }
 
     #region instrumentation
-    private class BaseDirectoryProvider : IBaseDirectoryProvider
+    private void CheckConsistency(ProjectTreeNode _newItem)
     {
-      public string GetBaseDirectory()
-      {
-        return string.Empty;
-      }
+      Assert.IsNotNull(_newItem);
+      Assert.ThrowsException<NullReferenceException>(() => _newItem.AvailiableNamespaces);
+      Assert.AreEqual<string>("$(ProjectFileName)", _newItem.BuildOutputDirectoryName);
+      Assert.IsTrue(_newItem.BuildOutputDirectoryPath.StartsWith(@"C:\Model_"));
+      Assert.AreEqual<int>(1, _newItem.Count);
+      Assert.AreEqual<string>("$(ProjectFileName).csv", _newItem.CSVFileName);
+      Assert.IsTrue(_newItem.CSVFilePath.StartsWith(@"C:\Model_"));
+      Assert.AreEqual<string>(@".csv", System.IO.Path.GetExtension( _newItem.CSVFilePath));
+      Assert.IsNotNull(_newItem.ErrorList);
+      Assert.AreEqual<int>(0, _newItem.ErrorList.Count);
+      Assert.IsTrue(_newItem.FileName.StartsWith("Model_"));
+      Assert.IsTrue(_newItem.FilePath.StartsWith((@"C:\Model_")));
+      Assert.AreEqual<string>(@"", _newItem.HelpTopicName);
+      Assert.IsNull(_newItem.Parent);
+      Assert.IsNotNull(_newItem.SymbolicName);
+      Assert.IsTrue(_newItem.Text.StartsWith("Model_"));
+      Assert.IsTrue(String.IsNullOrEmpty(_newItem.ToolTipText));
+      CheckConsistency(_newItem.UAModelDesignerProject);
+      object _viewModel = _newItem.Wrapper;
+      Assert.IsNotNull(_viewModel);
+      Assert.AreSame(_viewModel, ViewModel.Instance);
+      object _w4pg = _newItem.Wrapper4PropertyGrid;
+      Assert.IsNotNull(_w4pg);
+      Assert.AreSame(_w4pg, ViewModel.Instance);
+    }
+    private void CheckConsistency(UAModelDesignerProject uaModelDesignerProject)
+    {
+      Assert.IsNotNull(uaModelDesignerProject);
+      Assert.AreEqual<string>("$(ProjectFileName)", uaModelDesignerProject.BuildOutputDirectoryName);
+      Assert.AreEqual<string>("$(ProjectFileName).csv", uaModelDesignerProject.CSVFileName);
+      Assert.IsTrue(uaModelDesignerProject.FileName.StartsWith((@"Model_")));
+      Assert.IsTrue(uaModelDesignerProject.Name.StartsWith((@"Model_")));
+      Guid _projectIdentifier = Guid.Parse(uaModelDesignerProject.ProjectIdentifier);
+      Assert.IsFalse(Guid.Empty == _projectIdentifier);
     }
     private class ViewModelFactoryTest : IViewModelFactory
     {

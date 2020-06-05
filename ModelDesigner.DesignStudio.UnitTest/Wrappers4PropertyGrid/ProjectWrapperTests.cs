@@ -26,7 +26,11 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
     [TestMethod()]
     public void Constructor1Test()
     {
-      WrappersModel.ProjectTreeNode _projectWrapper = new WrappersModel.ProjectTreeNode(new BaseDirectoryProvider(), string.Empty, new Opc.Ua.ModelCompiler.ModelDesign());
+      Moq.Mock<IBaseDirectoryProvider> _directory = new Moq.Mock<IBaseDirectoryProvider>();
+      _directory.Setup(x => x.GetBaseDirectory()).Returns(@"C:\");
+      WrappersModel.ProjectTreeNode _projectWrapper =  WrappersModel.ProjectTreeNode.CreateNewModel(_directory.Object);
+
+      //WrappersModel.ProjectTreeNode _projectWrapper = new WrappersModel.ProjectTreeNode(new BaseDirectoryProvider(), string.Empty, new Opc.Ua.ModelCompiler.ModelDesign());
       ProjectWrapper _wrapper = (ProjectWrapper)_projectWrapper.Wrapper;// new ProjectWrapper(_projectWrapper);
       // Assert.Inconclusive("_projectWrapper.Text is generated dynamically so it cannot be reproduced"); 
       // Assert.AreEqual<string>("Model_0", _projectWrapper.Text);
