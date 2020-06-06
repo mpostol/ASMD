@@ -5,7 +5,7 @@
 //___________________________________________________________________________________
 
 using CAS.CommServer.UA.Common;
-using CAS.Lib.CodeProtect;
+using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;

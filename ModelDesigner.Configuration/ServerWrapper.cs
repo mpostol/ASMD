@@ -91,7 +91,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       FileInfo _file = null;
       if (!string.IsNullOrEmpty(configuration))
         //TODO Error while using Save operation #129
-        if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(configuration))
+        if (!IO.RelativeFilePathsCalculator.TestIfPathIsAbsolute(configuration))
           _file = new FileInfo(Path.Combine(solutionPath, configuration));
         else
           _file = new FileInfo(configuration);

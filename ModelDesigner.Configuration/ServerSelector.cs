@@ -262,7 +262,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         return;
       FileInfo _fileInfo = null;
       //TODO Error while using Save operation #129
-      if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(codebase))
+      if (!IO.RelativeFilePathsCalculator.TestIfPathIsAbsolute(codebase))
       {
         _fileInfo = new FileInfo(Path.Combine(solutionPath, codebase));
         if (!_fileInfo.Exists && !string.IsNullOrEmpty(Assembly.GetExecutingAssembly().Location))

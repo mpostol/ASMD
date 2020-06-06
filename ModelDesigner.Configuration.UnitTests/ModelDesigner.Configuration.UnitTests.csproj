@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="Instrumentation\AssemblyHelpers.cs" />
     <Compile Include="Instrumentation\ConfigurationBaseImplementation.cs" />
+    <Compile Include="IO\RelativeFilePathsCalculatorUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
