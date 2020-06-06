@@ -4,10 +4,10 @@
 //
 //___________________________________________________________________________________
 
-using CAS.Lib.RTLib;
 using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.Windows.Forms;
+using UAOOI.ASMD.GUIAbstractions;
 
 namespace CAS.UA.Model.Designer.Controls
 {

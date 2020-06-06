@@ -144,12 +144,6 @@
       <HintPath>..\packages\CAS.MAML.HelpTopics.Content.1.0.3\lib\net35\CAS.MAML.HelpTopics.Content.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.RealTime, Version=5.0.6.23644, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.RealTime.5.0.6\lib\net451\CAS.RealTime.dll</HintPath>
-    </Reference>
-    <Reference Include="CAS.RealTime.Core, Version=5.0.6.23643, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.RealTime.5.0.6\lib\net451\CAS.RealTime.Core.dll</HintPath>
-    </Reference>
     <Reference Include="CAS.UA.IServerConfiguration, Version=1.0.0.32204, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.UA.IServerConfiguration.1.00.00\lib\net35\CAS.UA.IServerConfiguration.dll</HintPath>
       <Private>True</Private>
@@ -220,6 +214,7 @@
     <Compile Include="Controls\FolderTreeNodeControl.cs" />
     <Compile Include="Controls\TreeNodesFactory.cs" />
     <Compile Include="IO\ConfigurationManagement.cs" />
+    <Compile Include="IO\UniqueNameGenerator.cs" />
     <Compile Include="ToForms\MessageBoxHandling.cs" />
     <Compile Include="ToForms\IMessageBoxHandling.cs" />
     <Compile Include="Controls\InstanceDesignTreeNodeControl.cs" />
@@ -517,7 +512,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="DemoConfiguration.oses" />
-    <None Include="ModelDesigner.DesignStudio_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="ReleaseNotes.md">
       <DesignTime>True</DesignTime>
