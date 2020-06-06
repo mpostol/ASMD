@@ -22,74 +22,62 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
     /// <param name="pathToBeTested">The path to be tested.</param>
     /// <returns>true if path is rooted and not relative</returns>
     /// <exception cref="ArgumentOutOfRangeException">pathToBeTested - The path is rooted but not absolute</exception>
-    public static bool TestIfPathIsAbsolute( string pathToBeTested )
+    public static bool TestIfPathIsAbsolute(string pathToBeTested)
     {
       bool _ret = Path.IsPathRooted(pathToBeTested);
       if (_ret && (pathToBeTested != Path.GetFullPath(pathToBeTested)))
         throw new ArgumentOutOfRangeException(nameof(pathToBeTested), "The path is rooted but not absolute");
       return _ret;
     }
+
+    /// <summary>
     /// Tries the compute relative path.
     /// </summary>
-    /// <param name="BaseAbsolutePath">The base absolute path.</param>
-    /// <param name="RelativeToBeComputed">The relative to be computed.</param>
+    /// <param name="baseAbsolutePath">The base absolute path.</param>
+    /// <param name="filePath">The relative to be computed.</param>
     /// <returns>relative path if it was possible</returns>
-    public static string TryComputeRelativePath(string BaseAbsolutePath, string RelativeToBeComputed)
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// baseAbsolutePath - The parameter must be absolute path
+    /// or 
+    /// or
+    /// </exception>
+    public static string TryComputeRelativePath(string baseAbsolutePath, string filePath)
     {
-      if (string.IsNullOrEmpty(RelativeToBeComputed))
-        return RelativeToBeComputed;
-      string[] absoluteDirectories = BaseAbsolutePath.Split('\\');
-      string[] relativeDirectories = RelativeToBeComputed.Split('\\');
-      if (!Path.IsPathRooted(RelativeToBeComputed))
-        return RelativeToBeComputed;
-      if (!Path.IsPathRooted(BaseAbsolutePath) || (BaseAbsolutePath!= Path.GetFullPath(BaseAbsolutePath)))
-        throw new ArgumentException($"{nameof(BaseAbsolutePath)} must be absolute and routed path");
+      if (!TestIfPathIsAbsolute(baseAbsolutePath))
+        throw new ArgumentOutOfRangeException(nameof(baseAbsolutePath), "The parameter must be absolute path");
+      if (string.IsNullOrEmpty(Path.GetFileName(filePath)))
+        throw new ArgumentOutOfRangeException(nameof(filePath), " This parameter has to encapsulate file path");
+      if (!Path.IsPathRooted(filePath))
+        return filePath;
+      if (!TestIfPathIsAbsolute(filePath))
+        throw new ArgumentOutOfRangeException(nameof(filePath), "The path is rooted, but must be relative or absolute");
+      string[] absoluteDirectories = baseAbsolutePath.Split('\\');
+      string[] relativeDirectories = filePath.Split('\\');
       //Get the shortest of the two paths
-      int length = absoluteDirectories.Length < relativeDirectories.Length ? absoluteDirectories.Length : relativeDirectories.Length;
-
+      int _length = Math.Min(absoluteDirectories.Length, relativeDirectories.Length);
       //Use to determine where in the loop we exited
       int lastCommonRoot = -1;
-      int index;
-
       //Find common root
-      for (index = 0; index < length; index++)
-        if (absoluteDirectories[index] == relativeDirectories[index])
-          lastCommonRoot = index;
+      for (int _index = 0; _index < _length; _index++)
+        if (absoluteDirectories[_index] == relativeDirectories[_index])
+          lastCommonRoot = _index;
         else
           break;
-
-      //If we didn't find a common prefix then throw
+      //If we didn't find a common prefix then return filePath
       if (lastCommonRoot == -1)
-        return RelativeToBeComputed;
-
+        return filePath;
       //Build up the relative path
       StringBuilder relativePath = new StringBuilder();
-
       //Add on the ..
-      for (index = lastCommonRoot + 1; index < absoluteDirectories.Length; index++)
-        if (absoluteDirectories[index].Length > 0)
+      for (int _index = lastCommonRoot + 1; _index < absoluteDirectories.Length; _index++)
+        if (absoluteDirectories[_index].Length > 0)
           relativePath.Append("..\\");
-
       //Add on the folders
-      for (index = lastCommonRoot + 1; index < relativeDirectories.Length - 1; index++)
-        relativePath.Append(relativeDirectories[index] + "\\");
+      for (int _index = lastCommonRoot + 1; _index < relativeDirectories.Length - 1; _index++)
+        relativePath.Append(relativeDirectories[_index] + "\\");
       relativePath.Append(relativeDirectories[relativeDirectories.Length - 1]);
-
       return relativePath.ToString();
     }
 
-    ///// <summary>
-    ///// Gets the absolute path to file in application data folder.
-    ///// </summary>
-    ///// <param name="filePath">The file path.</param>
-    ///// <returns></returns>
-    //public static FileInfo GetAbsolutePathToFileInApplicationDataFolder( string filePath )
-    //{
-    //  bool isAbsolute = TestIfPathIsAbsolute( filePath );
-    //  if ( isAbsolute )
-    //    return new FileInfo( filePath );
-    //  else
-    //    return new FileInfo( Path.Combine( InstallContextNames.ApplicationDataPath, filePath ) );
-    //}
   }
 }
