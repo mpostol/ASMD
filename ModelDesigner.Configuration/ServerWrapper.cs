@@ -7,7 +7,6 @@
 
 using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
-using CAS.Lib.CodeProtect;
 using CAS.UA.IServerConfiguration;
 using System;
 using System.Collections.Generic;

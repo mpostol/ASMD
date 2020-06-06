@@ -1,17 +1,9 @@
-﻿//<summary>
-//  Title   : helper that contains Name and event that is raised everytime Name is changed
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2008, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Wrappers;
 using System;
@@ -29,7 +21,6 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     {
       OnNameChanged?.Invoke(this, EventArgs.Empty);
     }
-    private string m_name = "";
     private TModel m_Model;
     public NameWithEventBase(TModel model)
     {
