@@ -57,6 +57,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         //TODO Error while using Save operation #129 code doesn't have to change current directory. The code must use the full path while operating on files.
         Directory.SetCurrentDirectory(m_SolutionHomeDirectory.GetBaseDirectory());
         string _fullPath = Path.GetFullPath(fileName);
+        //TODO Error while using Save operation #129
         fileName = RelativeFilePathsCalculator.TryComputeRelativePath(m_SolutionHomeDirectory.GetBaseDirectory(), _fullPath);
       }
       return fileName;
@@ -69,6 +70,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     private string ReplaceTokenAndReturnFullPath(string nameToBeReturned)
     {
       string myName = nameToBeReturned.Replace(Resources.Token_ProjectFileName, Path.GetFileNameWithoutExtension(FileName));
+      //TODO Error while using Save operation #129
       if (RelativeFilePathsCalculator.TestIfPathIsAbsolute(myName))
         return myName;
       string directory = Path.GetDirectoryName(FilePath);

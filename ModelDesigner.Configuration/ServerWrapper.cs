@@ -90,6 +90,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       Initialize(plugin, assembly);
       FileInfo _file = null;
       if (!string.IsNullOrEmpty(configuration))
+        //TODO Error while using Save operation #129
         if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(configuration))
           _file = new FileInfo(Path.Combine(solutionPath, configuration));
         else

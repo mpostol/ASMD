@@ -124,8 +124,10 @@ namespace CAS.UA.Model.Designer.Wrappers
         if (_descriptor == null)
           return null;
         if (!string.IsNullOrEmpty(_descriptor.Codebase))
+          //TODO Error while using Save operation #129
           _descriptor.Codebase = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.Codebase);
         if (!string.IsNullOrEmpty(_descriptor.Configuration))
+          //TODO Error while using Save operation #129
           _descriptor.Configuration = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.Configuration);
         return _descriptor;
       }
