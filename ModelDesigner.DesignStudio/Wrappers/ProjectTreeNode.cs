@@ -54,6 +54,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       if (!string.IsNullOrEmpty(m_SolutionHomeDirectory.GetBaseDirectory()) && !string.IsNullOrEmpty(fileName))
       {
+        //TODO Error while using Save operation #129 code doesn't have to change current directory. The code must use the full path while operating on files.
         Directory.SetCurrentDirectory(m_SolutionHomeDirectory.GetBaseDirectory());
         string _fullPath = Path.GetFullPath(fileName);
         fileName = RelativeFilePathsCalculator.TryComputeRelativePath(m_SolutionHomeDirectory.GetBaseDirectory(), _fullPath);
