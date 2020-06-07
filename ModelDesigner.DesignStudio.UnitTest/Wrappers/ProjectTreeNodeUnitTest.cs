@@ -7,8 +7,11 @@
 using CAS.CommServer.UA.Common;
 using CAS.UA.Model.Designer.Solution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Moq.Language;
 using System;
 using System.IO;
+using System.Xml;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -21,26 +24,47 @@ namespace CAS.UA.Model.Designer.Wrappers
       ViewModelFactory.Factory = new ViewModelFactoryTest();
     }
 
-    //TODO Error while using Save operation #129 remove if useless
-    //[TestMethod]
-    //public void ConstructorNewProjectTest()
-    //{
-    //  Moq.Mock<IBaseDirectoryProvider> _directory = new Moq.Mock<IBaseDirectoryProvider>();
-    //  _directory.Setup(x => x.GetBaseDirectory()).Returns(@"C:\");
-    //  ProjectTreeNode _newItem = new ProjectTreeNode(_directory.Object, @"C:\Model_33", new Opc.Ua.ModelCompiler.ModelDesign());
-    //  CheckConsistency(_newItem);
-    //}
     [TestMethod]
     //TODO Error while using Save operation #129 work on the test
     public void CreateNewModelTest()
     {
       String _currentFolder = Directory.GetCurrentDirectory();
-      Moq.Mock<IBaseDirectoryProvider> _directory = new Moq.Mock<IBaseDirectoryProvider>();
+      Mock<IBaseDirectoryProvider> _directory = new Mock<IBaseDirectoryProvider>();
       _directory.Setup(x => x.GetBaseDirectory()).Returns(@"C:\");
       CheckConsistency(ProjectTreeNode.CreateNewModel(_directory.Object));
       Assert.AreEqual<string>(_currentFolder, Directory.GetCurrentDirectory());
     }
-
+    [TestMethod]
+    public void CreateTest()
+    {
+      Mock<IBaseDirectoryProvider> _directory = new Mock<IBaseDirectoryProvider>();
+      _directory.Setup(x => x.GetBaseDirectory()).Returns(@"C:\");
+      ProjectTreeNode _emptyModel = ProjectTreeNode.CreateNewModel(_directory.Object);
+      IViewModel _viewModel = _emptyModel.Create();
+      Assert.IsNotNull(_viewModel);
+    }
+    [TestMethod]
+    public void FindTest()
+    {
+      Mock<IBaseDirectoryProvider> _directory = new Mock<IBaseDirectoryProvider>();
+      _directory.Setup(x => x.GetBaseDirectory()).Returns(@"C:\");
+      ProjectTreeNode _emptyModel = ProjectTreeNode.CreateNewModel(_directory.Object);
+      XmlQualifiedName _toFind = new XmlQualifiedName("Name", "Namespace");
+      ITypeDesign _findReturn = _emptyModel.Find(_toFind);
+      Assert.IsNull(_findReturn);
+    }
+    [TestMethod]
+    public void GetTargetNamespaceTest()
+    {
+      Mock<IBaseDirectoryProvider> _directory = new Mock<IBaseDirectoryProvider>();
+      string _solutionDir = Path.Combine(Directory.GetCurrentDirectory(), "Temp");
+      Directory.CreateDirectory(_solutionDir);
+      _directory.Setup(x => x.GetBaseDirectory()).Returns(_solutionDir);
+      ProjectTreeNode _emptyModel = ProjectTreeNode.CreateNewModel(_directory.Object);
+      _emptyModel.Save();
+      string _expectedModelFileName = Path.Combine(_solutionDir, _emptyModel.FileName);
+      Assert.IsTrue(File.Exists(_expectedModelFileName), _expectedModelFileName);
+    }
     #region instrumentation
 
     private void CheckConsistency(ProjectTreeNode _newItem)
@@ -52,12 +76,16 @@ namespace CAS.UA.Model.Designer.Wrappers
       Assert.AreEqual<int>(1, _newItem.Count);
       Assert.AreEqual<string>("$(ProjectFileName).csv", _newItem.CSVFileName);
       Assert.IsTrue(_newItem.CSVFilePath.StartsWith(@"C:\Model_"));
-      Assert.AreEqual<string>(@".csv", System.IO.Path.GetExtension(_newItem.CSVFilePath));
+      Assert.AreEqual<string>(@".csv", Path.GetExtension(_newItem.CSVFilePath));
       Assert.IsNotNull(_newItem.ErrorList);
       Assert.AreEqual<int>(0, _newItem.ErrorList.Count);
-      Assert.IsTrue(_newItem.FileName.StartsWith(@"C:\Model_"), _newItem.FileName);
-      Assert.IsTrue(_newItem.FilePath.StartsWith(@"C:\Model_"));
+      Assert.IsTrue(_newItem.FileName.StartsWith(@"Model_"), _newItem.FileName);
+      Assert.IsTrue(_newItem.FileName.Contains(@".xml"), _newItem.FileName);
+      string _absoluteModelFilePath = _newItem.CalculateEffectiveAbsoluteModelFilePath();
+      Assert.IsTrue(_absoluteModelFilePath.StartsWith(@"C:\Model_"), _absoluteModelFilePath);
+      Assert.IsTrue(_absoluteModelFilePath.Contains(@".xml"), _absoluteModelFilePath);
       Assert.AreEqual<string>(@"", _newItem.HelpTopicName);
+      Assert.ThrowsException<NullReferenceException>( () => _newItem.GetTargetNamespace());
       Assert.IsNull(_newItem.Parent);
       Assert.IsNotNull(_newItem.SymbolicName);
       Assert.IsTrue(_newItem.Text.StartsWith(@"Model_"), _newItem.Text);

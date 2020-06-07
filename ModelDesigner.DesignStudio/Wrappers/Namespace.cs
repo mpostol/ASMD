@@ -12,22 +12,33 @@ namespace CAS.UA.Model.Designer.Wrappers
   internal partial class Namespace : WrapperBase<Wrappers4ProperyGrid.Namespace, Opc.Ua.ModelCompiler.Namespace>
   {
     #region constructor
-    public Namespace() : this(new Opc.Ua.ModelCompiler.Namespace()) { }
-    public Namespace(Opc.Ua.ModelCompiler.Namespace child) : base(new Wrappers4ProperyGrid.Namespace(child)) { }
-    #endregion
+
+    public Namespace() : this(new Opc.Ua.ModelCompiler.Namespace())
+    {
+    }
+
+    public Namespace(Opc.Ua.ModelCompiler.Namespace child) : base(new Wrappers4ProperyGrid.Namespace(child))
+    {
+    }
+
+    #endregion constructor
 
     #region public
+
     public override NodeTypeEnum NodeType => NodeTypeEnum.NamespaceNode;
+
     /// <summary>
     /// Gets the name of the help topic.
     /// </summary>
     /// <value>The name of the help topic.</value>
     public override string HelpTopicName => Resources.NodeClasses_Namespace;
+
     /// <summary>
     /// Gets the node class.
     /// </summary>
     /// <value>The node class.</value>
     public override NodeClassesEnum NodeClass => NodeClassesEnum.None;
+
     /// <summary>
     /// Returns a <see cref="System.String" /> that represents this instance.
     /// </summary>
@@ -37,18 +48,23 @@ namespace CAS.UA.Model.Designer.Wrappers
       string format = "{0}.{1}/{2}[{3}]";
       return string.Format(format, Wrapper.Prefix, this.Text, Wrapper.Value, Wrapper.XmlNamespace);
     }
+
     internal string NamespaceValue => Wrapper.Value;
-    #endregion
+
+    #endregion public
 
     #region private
+
     protected override string NodeName()
     {
       return Wrapper.Name;
     }
+
     protected override string NodeTip()
     {
       return ToString();
     }
-    #endregion
+
+    #endregion private
   }
 }

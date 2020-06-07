@@ -34,6 +34,9 @@ namespace CAS.UA.Model.Designer.Wrappers
   {
     #region private
 
+    //constants
+    private const string m_ModelExtension = ".xml";
+
     //var
     private static readonly object m_BuildLockObject = new object(); // this object is used to prevent many code generator usage at the same time
 
@@ -155,29 +158,28 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
 
     /// <summary>
-    /// Gets or sets the name of the file.
+    /// Gets or sets the model file name.
     /// </summary>
     /// <value>The name of the file.</value>
     internal string FileName
     {
       get
       {
-        string _ret = ReplaceTokenAndReturnFullPath(UAModelDesignerProject.FileName, UAModelDesignerProject.Name, m_SolutionHomeDirectory);
-        if (string.IsNullOrEmpty(_ret))
-          _ret = $"{Name}.xml";
-        return _ret;
+        if (!Path.HasExtension(UAModelDesignerProject.FileName))
+          return $"{UAModelDesignerProject.FileName}.{m_ModelExtension}";
+        else
+          return UAModelDesignerProject.FileName;
       }
       set => UAModelDesignerProject.FileName = RelativeFilePathsCalculator.TryComputeRelativePath(m_SolutionHomeDirectory.GetBaseDirectory(), value);
     }
 
-    internal string FilePath
+    /// <summary>
+    /// Calculates the effective absolute model file path.
+    /// </summary>
+    /// <returns>System.String.</returns>
+    internal string CalculateEffectiveAbsoluteModelFilePath()
     {
-      get
-      {
-        if (RelativeFilePathsCalculator.TestIfPathIsAbsolute(FileName) || (string.IsNullOrEmpty(m_SolutionHomeDirectory.GetBaseDirectory())))
-          return FileName;
-        return Path.GetFullPath(Path.Combine(this.m_SolutionHomeDirectory.GetBaseDirectory(), this.FileName));
-      }
+      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.FileName, m_SolutionHomeDirectory);
     }
 
     internal string CSVFileName
@@ -212,15 +214,15 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     internal string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName, UAModelDesignerProject.Name, m_SolutionHomeDirectory);
 
-    internal bool SaveModel(string solutionDirectory, XmlFile.DataToSerialize<Opc.Ua.ModelCompiler.ModelDesign> config)
-    {
-      return Model.SaveModel(FilePath);
-      //m_OPCFModelConfigurationManagement.DefaultFileName = FilePath;
-      //if (!m_OPCFModelConfigurationManagement.Save(false, config))
-      //  return false;
-      //FileName = m_OPCFModelConfigurationManagement.DefaultFileName;
-      //return true;
-    }
+    //internal bool SaveModel(string solutionDirectory, XmlFile.DataToSerialize<Opc.Ua.ModelCompiler.ModelDesign> config)
+    //{
+    //  return Model.SaveModel(FilePath);
+    //  //m_OPCFModelConfigurationManagement.DefaultFileName = FilePath;
+    //  //if (!m_OPCFModelConfigurationManagement.Save(false, config))
+    //  //  return false;
+    //  //FileName = m_OPCFModelConfigurationManagement.DefaultFileName;
+    //  //return true;
+    //}
 
     internal ModelDesign Model { get; private set; }
 
@@ -231,7 +233,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <returns></returns>
     internal bool Save()
     {
-      return Model.SaveModel(FilePath);
+      return Model.SaveModel(CalculateEffectiveAbsoluteModelFilePath());
     }
 
     /// <summary>
@@ -255,9 +257,10 @@ namespace CAS.UA.Model.Designer.Wrappers
           DirectoryInfo dirinfo = new DirectoryInfo(BuildOutputDirectoryPath);
           if (!dirinfo.Exists)
             Directory.CreateDirectory(BuildOutputDirectoryPath);
-          if (!new FileInfo(FilePath).Exists)
+          string _filePath = CalculateEffectiveAbsoluteModelFilePath();
+          if (!new FileInfo(_filePath).Exists)
           {
-            string msg = string.Format(Resources.BuildError_Fie_DoesNotExist, FilePath);
+            string msg = string.Format(Resources.BuildError_Fie_DoesNotExist, _filePath);
             output.WriteLine(msg);
             this.MessageBoxHandling.Show(msg, Resources.Build_Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
@@ -282,7 +285,7 @@ namespace CAS.UA.Model.Designer.Wrappers
               return;
             }
           }
-          string argument = string.Format(Properties.Settings.Default.Build_ProjectCompilationString, FilePath, CSVFilePath, BuildOutputDirectoryPath);
+          string argument = string.Format(Properties.Settings.Default.Build_ProjectCompilationString, _filePath, CSVFilePath, BuildOutputDirectoryPath);
           string CompilationExecutable = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Properties.Settings.Default.ProjectCompilationExecutable);
           ProcessStartInfo myStartInfo = new System.Diagnostics.ProcessStartInfo(CompilationExecutable)
           {

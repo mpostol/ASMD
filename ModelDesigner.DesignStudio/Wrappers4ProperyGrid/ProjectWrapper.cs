@@ -1,7 +1,8 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Wrappers;
@@ -10,18 +11,22 @@ using System.ComponentModel;
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
   /// <summary>
-  /// Class that represents the UA Model Designer project. 
+  /// Class that represents the UA Model Designer project.
   /// </summary>
   /// <remarks>Project wrapper to provide information about the project to the user.</remarks>
   [DefaultProperty("FilePath")]
   internal class ProjectWrapper : NameWithEventBase<ProjectTreeNode>, IViewModel
   {
-
     #region constructors
-    internal ProjectWrapper(ProjectTreeNode projectModel) : base(projectModel) { }
-    #endregion initialisation
 
-    #region browsable properties
+    internal ProjectWrapper(ProjectTreeNode projectModel) : base(projectModel)
+    {
+    }
+
+    #endregion constructors
+
+    #region brows-able properties
+
     /// <summary>
     /// Gets the project file path.
     /// </summary>
@@ -29,10 +34,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [DisplayName("Model file path")]
     [Category("Input")]
     [Description("Path of an xml file containing the model.")]
-    public string FilePath
-    {
-      get { return ModelEntity.FilePath; }
-    }
+    public string FilePath => ModelEntity.CalculateEffectiveAbsoluteModelFilePath();
+
     /// <summary>
     /// Gets or sets the name of the CSV file.
     /// </summary>
@@ -46,15 +49,10 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [NotifyParentProperty(true)]
     public string CSVFileName
     {
-      get
-      {
-        return ModelEntity.CSVFileName;
-      }
-      set
-      {
-        ModelEntity.CSVFileName = value;
-      }
+      get => ModelEntity.CSVFileName;
+      set => ModelEntity.CSVFileName = value;
     }
+
     /// <summary>
     /// Gets the CSV file path.
     /// </summary>
@@ -62,13 +60,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [DisplayName("CSV file path")]
     [Category("Output")]
     [Description("CSV file contains details about objects created by the UA server at start-up")]
-    public string CSVFilePath
-    {
-      get
-      {
-        return ModelEntity.CSVFilePath;
-      }
-    }
+    public string CSVFilePath => ModelEntity.CSVFilePath;
+
     [DisplayName("Build output directory")]
     [Category("Output")]
     [Description("The value indicates the directory where saves output files after model build.\r\n" +
@@ -77,15 +70,10 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [NotifyParentProperty(true)]
     public string BuildOutputDirectoryName
     {
-      get
-      {
-        return ModelEntity.BuildOutputDirectoryName;
-      }
-      set
-      {
-        ModelEntity.BuildOutputDirectoryName = value;
-      }
+      get => ModelEntity.BuildOutputDirectoryName;
+      set => ModelEntity.BuildOutputDirectoryName = value;
     }
+
     /// <summary>
     /// Gets the build output directory path.
     /// </summary>
@@ -93,16 +81,12 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [DisplayName("Build output directory path")]
     [Category("Output")]
     [Description("It locates a default place where all output files created during the build will be created.")]
-    public string BuildOutputDirectoryPath
-    {
-      get
-      {
-        return ModelEntity.BuildOutputDirectoryPath;
-      }
-    }
-    #endregion
+    public string BuildOutputDirectoryPath => ModelEntity.BuildOutputDirectoryPath;
+
+    #endregion brows-able properties
 
     #region override Object
+
     /// <summary>
     /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
     /// </summary>
@@ -113,7 +97,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     {
       return $"Project:{Name} ({ModelEntity.FileName})";
     }
-    #endregion
 
+    #endregion override Object
   }
 }
