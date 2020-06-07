@@ -5,6 +5,7 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
+using CAS.CommServer.UA.Common;
 using System;
 using System.IO;
 using System.Text;
@@ -38,7 +39,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
     /// <returns>relative path if it was possible</returns>
     /// <exception cref="ArgumentOutOfRangeException">
     /// baseAbsolutePath - The parameter must be absolute path
-    /// or 
+    /// or
     /// or
     /// </exception>
     public static string TryComputeRelativePath(string baseAbsolutePath, string filePath)
@@ -79,5 +80,17 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
       return relativePath.ToString();
     }
 
+    /// <summary>
+    /// Calculates the name of the absolute file name, If the <paramref name="name"/> is relative it prefixes it with the <see cref="IBaseDirectoryProvider.GetBaseDirectory"/>.
+    /// </summary>
+    /// <param name="name">The name to be converted to absolute name.</param>
+    /// <param name="solutionDirectory">The solution directory.</param>
+    /// <returns>Absolute file name prefixed by the <see cref="IBaseDirectoryProvider.GetBaseDirectory"/> if needed.</returns>
+    public static string CalculateAbsoluteFileName(string name, IBaseDirectoryProvider solutionDirectory)
+    {
+      if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(name))
+        name = Path.Combine(solutionDirectory.GetBaseDirectory(), name);
+      return name;
+    }
   }
 }

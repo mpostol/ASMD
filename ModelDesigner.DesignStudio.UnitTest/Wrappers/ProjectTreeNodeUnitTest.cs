@@ -55,12 +55,12 @@ namespace CAS.UA.Model.Designer.Wrappers
       Assert.AreEqual<string>(@".csv", System.IO.Path.GetExtension(_newItem.CSVFilePath));
       Assert.IsNotNull(_newItem.ErrorList);
       Assert.AreEqual<int>(0, _newItem.ErrorList.Count);
-      Assert.IsTrue(_newItem.FileName.StartsWith("Model_"));
-      Assert.IsTrue(_newItem.FilePath.StartsWith((@"C:\Model_")));
+      Assert.IsTrue(_newItem.FileName.StartsWith(@"C:\Model_"), _newItem.FileName);
+      Assert.IsTrue(_newItem.FilePath.StartsWith(@"C:\Model_"));
       Assert.AreEqual<string>(@"", _newItem.HelpTopicName);
       Assert.IsNull(_newItem.Parent);
       Assert.IsNotNull(_newItem.SymbolicName);
-      Assert.IsTrue(_newItem.Text.StartsWith("Model_"));
+      Assert.IsTrue(_newItem.Text.StartsWith(@"Model_"), _newItem.Text);
       Assert.IsTrue(String.IsNullOrEmpty(_newItem.ToolTipText));
       CheckConsistency(_newItem.UAModelDesignerProject);
       object _viewModel = _newItem.Wrapper;

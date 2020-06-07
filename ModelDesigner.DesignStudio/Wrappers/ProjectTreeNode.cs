@@ -70,14 +70,11 @@ namespace CAS.UA.Model.Designer.Wrappers
       Add(model);
     }
 
-    private string ReplaceTokenAndReturnFullPath(string nameToBeReturned)
+    internal static string ReplaceTokenAndReturnFullPath(string fileNameToBeProcessed, string projectName, IBaseDirectoryProvider solutionDirectory)
     {
-      string myName = nameToBeReturned.Replace(Resources.Token_ProjectFileName, Path.GetFileNameWithoutExtension(FileName));
+      string _Name = fileNameToBeProcessed.Replace(Resources.Token_ProjectFileName, projectName);
       //TODO Error while using Save operation #129
-      if (RelativeFilePathsCalculator.TestIfPathIsAbsolute(myName))
-        return myName;
-      string directory = Path.GetDirectoryName(FilePath);
-      return Path.Combine(directory, myName);
+      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(_Name, solutionDirectory);
     }
 
     private static string UniqueProjectName => m_UniqueNameGenerator.GenerateNewName();
@@ -165,7 +162,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get
       {
-        string _ret = ReplaceTokenAndReturnFullPath(UAModelDesignerProject.FileName);
+        string _ret = ReplaceTokenAndReturnFullPath(UAModelDesignerProject.FileName, UAModelDesignerProject.Name, m_SolutionHomeDirectory);
         if (string.IsNullOrEmpty(_ret))
           _ret = $"{Name}.xml";
         return _ret;
@@ -194,7 +191,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       set => UAModelDesignerProject.CSVFileName = value;
     }
 
-    internal string CSVFilePath => ReplaceTokenAndReturnFullPath(CSVFileName);
+    internal string CSVFilePath => ReplaceTokenAndReturnFullPath(CSVFileName, UAModelDesignerProject.Name, m_SolutionHomeDirectory);
 
     internal Guid ProjectIdentifier
     {
@@ -213,7 +210,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       set => UAModelDesignerProject.BuildOutputDirectoryName = value;
     }
 
-    internal string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName);
+    internal string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName, UAModelDesignerProject.Name, m_SolutionHomeDirectory);
 
     internal bool SaveModel(string solutionDirectory, XmlFile.DataToSerialize<Opc.Ua.ModelCompiler.ModelDesign> config)
     {
