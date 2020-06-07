@@ -155,7 +155,6 @@
     <Compile Include="Wrappers4PropertyGrid\UAModelDesignerSolutionWrapperTests.cs" />
     <Compile Include="Wrappers4PropertyGrid\UAModelDesignerSolutionUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\ProjectWrapperTests.cs" />
-    <Compile Include="Wrappers\ProjectTreeNodeUnitTest.cs" />
     <Compile Include="Wrappers\DataTypeDesignUnitTest.cs" />
     <Compile Include="Wrappers\BaseTreeNodeTestUnitTest.cs" />
     <Compile Include="Wrappers\SolutionTreeNodeUnitTest.cs" />
