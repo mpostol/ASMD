@@ -16,12 +16,15 @@ using System.Xml;
 namespace CAS.UA.Model.Designer.Wrappers
 {
   [TestClass]
+  [DeploymentItem(@"TestData\", @"TestData")]
   public class ProjectTreeNodeUnitTest
   {
     [ClassInitializeAttribute]
     public static void ClassInitialize(TestContext context)
     {
       ViewModelFactory.Factory = new ViewModelFactoryTest();
+      string m_DemoConfigurationAbsoluteFilePath = Path.Combine(context.TestRunDirectory, m_DemoConfigurationFilePath);
+      Assert.IsTrue(File.Exists(m_DemoConfigurationFilePath));
     }
 
     [TestMethod]
@@ -33,6 +36,20 @@ namespace CAS.UA.Model.Designer.Wrappers
       _directory.Setup(x => x.GetBaseDirectory()).Returns(@"C:\");
       CheckConsistency(ProjectTreeNode.CreateNewModel(_directory.Object));
       Assert.AreEqual<string>(_currentFolder, Directory.GetCurrentDirectory());
+    }
+    [TestMethod]
+    public void MyTestMethod()
+    {
+      Mock<IBaseDirectoryProvider> _directory = new Mock<IBaseDirectoryProvider>();
+      _directory.Setup(x => x.GetBaseDirectory()).Returns(Directory.GetCurrentDirectory());
+      UAModelDesignerProject _projectDescriptor = new UAModelDesignerProject()
+      {
+        BuildOutputDirectoryName = string.Empty,
+        CSVFileName = "CSVFileName",
+        FileName = m_DemoConfigurationFilePath,
+        Name = "TestProjectDescription", ProjectIdentifier = Guid.NewGuid().ToString()
+      };
+      ProjectTreeNode _openProject = new ProjectTreeNode(_directory.Object, _projectDescriptor);
     }
     [TestMethod]
     public void CreateTest()
@@ -66,6 +83,8 @@ namespace CAS.UA.Model.Designer.Wrappers
       Assert.IsTrue(File.Exists(_expectedModelFileName), _expectedModelFileName);
     }
     #region instrumentation
+
+    private const string  m_DemoConfigurationFilePath = @"TestData\DemoConfiguration\BoilerType.xml";
 
     private void CheckConsistency(ProjectTreeNode _newItem)
     {
