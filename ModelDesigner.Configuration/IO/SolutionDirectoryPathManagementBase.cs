@@ -14,9 +14,9 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
   /// Implements the <see cref="CAS.CommServer.UA.ModelDesigner.Configuration.IO.ISolutionDirectoryPathManagement" />
   /// </summary>
   /// <seealso cref="ISolutionDirectoryPathManagement" />
-  public class SolutionDirectoryPathManagementBase : ISolutionDirectoryPathManagement
+  public abstract class SolutionDirectoryPathManagementBase : ISolutionDirectoryPathManagement
   {
-    private string m_BaseDirectory;
+    private string m_BaseDirectory = String.Empty;
 
     /// <summary>
     /// Gets or sets the base directory.
