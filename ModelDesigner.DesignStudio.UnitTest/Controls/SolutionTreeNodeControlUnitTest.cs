@@ -10,7 +10,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using UAOOI.SemanticData.UANodeSetValidation;
 
 namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
 {
@@ -22,6 +21,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
     {
       TreeNodesFactory.Factory = new FactoryFixture();
     }
+
     [TestMethod]
     public void ConstructorTest()
     {
@@ -31,6 +31,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       Assert.AreEqual<string>("ToolTipText", _instance.ToolTipText);
       Assert.AreEqual<int>(0, _instance.Nodes.Count);
     }
+
     [TestMethod]
     public void Constructor4TreeTest()
     {
@@ -41,6 +42,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       SolutionTreeNodeControlTest _instance = new SolutionTreeNodeControlTest(_model);
       Assert.AreEqual<int>(1, _instance.Nodes.Count);
     }
+
     [TestMethod]
     public void BeforeMenuStripOpeningTest()
     {
@@ -50,6 +52,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       Assert.AreEqual<int>(9, _instance.ContextMenuStrip.Items.Count);
       Assert.AreEqual<string>("GetPluginMenuItems", _instance.ContextMenuStrip.Items[8].Text);
     }
+
     [TestMethod]
     public void EventsTest()
     {
@@ -58,6 +61,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       Assert.AreEqual<int>(1, _model.SubtreeChangedCount);
       Assert.AreEqual<int>(1, _model.TextChangedCount);
     }
+
     [TestMethod]
     public void AddProjectTest()
     {
@@ -70,6 +74,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
     }
 
     #region testing instrumentation
+
     private class FactoryFixture : CAS.UA.Model.Designer.Controls.ITreeNodesFactory
     {
       public DictionaryTreeNode GetTreeNode(IBaseModel wrapper)
@@ -79,27 +84,34 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         return new DictionaryTreeNodeTest();
       }
     }
+
     private class SolutionTreeNodeControlTest : SolutionTreeNodeControl
     {
-      public SolutionTreeNodeControlTest(ISolutionModel viewModel) : base(viewModel) { }
+      public SolutionTreeNodeControlTest(ISolutionModel viewModel) : base(viewModel)
+      {
+      }
+
       protected override void BeforeMenuStripOpening()
       {
         base.BeforeMenuStripOpening();
       }
+
       internal void RunBeforeMenuStripOpening()
       {
         BeforeMenuStripOpening();
       }
     }
+
     private class SolutionTreeNodeTest : List<IBaseModel>, ISolutionModel
     {
-
       internal int SubtreeChangedCount = 0;
       internal int TextChangedCount = 0;
 
       #region ISolutionModel
+
       public string Text { get; set; } = nameof(SolutionTreeNodeTest);
       public string ToolTipText { get; set; } = "ToolTipText";
+
       public event EventHandler<BaseTreeNode.ProjectEventArgs> SubtreeChanged
       {
         add
@@ -112,7 +124,9 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
           throw new InvalidOperationException();
         }
       }
+
       private EventHandler<BaseTreeNode.ProjectEventArgs> m_SubtreeChanged;
+
       public event EventHandler<BaseTreeNode.TextEventArgs> TextChanged
       {
         add
@@ -124,6 +138,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
           throw new InvalidOperationException();
         }
       }
+
       public void GetPluginMenuItems(ToolStripItemCollection items)
       {
         if (items.Count > 0)
@@ -131,30 +146,32 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         ToolStripMenuItem _menuItem = new ToolStripMenuItem("GetPluginMenuItems");
         items.Add(_menuItem);
       }
+
       public BaseDictionaryTreeNode GetTreeNode()
       {
         throw new NotImplementedException();
       }
-      public void ImportNodeSetHandler(Func<string, Action<TraceMessage>, Tuple<Opc.Ua.ModelCompiler.ModelDesign, string>> imprtNodeset)
-      {
-        throw new NotImplementedException();
-      }
+
       public void ImportNodeSet()
       {
         throw new NotImplementedException();
       }
+
       public void Save(bool v)
       {
         throw new NotImplementedException();
       }
+
       public void Open()
       {
         throw new NotImplementedException();
       }
+
       public void OnNew()
       {
         throw new NotImplementedException();
       }
+
       public void AddProject(bool existing)
       {
         if (existing)
@@ -165,41 +182,50 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
           m_SubtreeChanged?.Invoke(this, new BaseTreeNode.ProjectEventArgs());
         }
       }
-      #endregion
 
+      #endregion ISolutionModel
     }
+
     private class BaseModelTest : List<IBaseModel>, IBaseModel, IProjectModel
     {
-
       #region IProjectModel
+
       public string Name => throw new NotImplementedException();
+
       public void Remove()
       {
         throw new NotImplementedException();
       }
-      #endregion
+
+      #endregion IProjectModel
 
       #region IBaseModel
+
       public string Text
       {
         get => "Text";
 
         set => throw new NotImplementedException();
       }
+
       public string ToolTipText
       {
         get => "ToolTipText";
         set => throw new NotImplementedException();
       }
+
       public event EventHandler<BaseTreeNode.ProjectEventArgs> SubtreeChanged;
+
       public event EventHandler<BaseTreeNode.TextEventArgs> TextChanged;
+
       public BaseDictionaryTreeNode GetTreeNode()
       {
         return new DictionaryTreeNodeTest();
       }
-      #endregion
 
+      #endregion IBaseModel
     }
+
     private class DictionaryTreeNodeTest : DictionaryTreeNode
     {
       protected override void Unregister()
@@ -207,6 +233,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         throw new NotImplementedException();
       }
     }
-    #endregion
+
+    #endregion testing instrumentation
   }
 }

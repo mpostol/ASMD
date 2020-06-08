@@ -310,9 +310,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     #region IParent Members
 
     /// <summary>
-    /// Gets the availiable namespaces.
+    /// Gets the available namespaces.
     /// </summary>
-    /// <value>The availiable namespaces.</value>
+    /// <value>The available namespaces.</value>
     public virtual string[] AvailiableNamespaces => Parent.AvailiableNamespaces;
 
     /// <summary>

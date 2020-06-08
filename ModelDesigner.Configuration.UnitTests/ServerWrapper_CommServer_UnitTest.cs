@@ -5,10 +5,12 @@
 //___________________________________________________________________________________
 
 using CAS.CommServer.UA.ConfigurationEditor.ModelsContainer;
+using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentation;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.IServerConfiguration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.IO;
 using System.Reflection;
@@ -51,7 +53,9 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       _serverConfiguration.CreateDefaultConfiguration();
       Assert.IsTrue(_configurationChanged);
       _configurationChanged = false;
-      ServerWrapper _sw = new ServerWrapper(_serverConfiguration, _pluginAssembly, new GraphicalUserInterface(), @"Plugin\DemoConfiguration\BoilerExample.uasconfig");
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
+      _directory.SetupGet(x => x.BaseDirectory).Returns(Directory.GetCurrentDirectory());
+      ServerWrapper _sw = new ServerWrapper(_serverConfiguration, _pluginAssembly, new GraphicalUserInterface(), _directory.Object, @"Plugin\DemoConfiguration\BoilerExample.uasconfig");
       Assert.IsNotNull(_sw);
       Assert.IsTrue(_configurationChanged);
     }

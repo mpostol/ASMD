@@ -28,7 +28,6 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       m_TreeView.CoupledNodesAreEnabled = Settings.Default.CoupledNodesAreEnabled;
       //solution initialization:
       AddSolution();
-      //toolstrip initialization:
       m_BackForwardTreViewToolStrip.TreeView = this.m_TreeView;
       m_SearchTreeViewToolStrip.TreeView = this.m_TreeView;
       m_SearchTreeViewToolStrip.SetAdditionalNodeTestDelegate = new SearchTreeViewHelper.AdditionalNodeTestDelegate(NodeSearchTest);

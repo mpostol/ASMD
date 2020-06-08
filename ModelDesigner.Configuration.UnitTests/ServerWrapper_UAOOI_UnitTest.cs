@@ -4,10 +4,12 @@
 //
 //___________________________________________________________________________________
 
+using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentation;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.IServerConfiguration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.IO;
 using System.Reflection;
@@ -47,7 +49,9 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       Assert.IsTrue(_configurationChanged);
       _configurationChanged = false;
       //TODO UANetworkingConfiguration[T].ReadConfiguration shows popup if file has errors #73
-      ServerWrapper _sw = new ServerWrapper(_serverConfiguration, _pluginAssembly, new GraphicalUserInterface(), m_ConfigurationBaseFileName);
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
+      _directory.SetupGet(x => x.BaseDirectory).Returns(Directory.GetCurrentDirectory());
+      ServerWrapper _sw = new ServerWrapper(_serverConfiguration, _pluginAssembly, new GraphicalUserInterface(), _directory.Object, m_ConfigurationBaseFileName);
       Assert.IsNotNull(_sw);
       Assert.IsTrue(_configurationChanged);
     }

@@ -1,4 +1,10 @@
-﻿
+﻿//___________________________________________________________________________________
+//
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
+
 using CAS.CommServer.UA.Common;
 using CAS.UA.Common.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

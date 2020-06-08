@@ -5,7 +5,6 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration;
 using CAS.UA.Model.Designer.Wrappers;
 using System.ComponentModel;
@@ -17,7 +16,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// by the <see cref="XmlSerializer"/> to save information on the solution.
   /// </summary>
   [DefaultProperty("Server")]
-  internal class UAModelDesignerSolutionWrapper : NameWithEventBase<ISolutionTreeNodeUI>, IBaseDirectoryProvider, IViewModel
+  internal class UAModelDesignerSolutionWrapper : NameWithEventBase<ISolutionTreeNodeUI>, IViewModel
   {
     #region User Interface
 
@@ -28,7 +27,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [DisplayName("Home Directory")]
     [Category("Input")]
     [Description("Solution home directory.")]
-    public string HomeDirectory => ModelEntity.HomeDirectory;
+    public string HomeDirectory => ModelEntity.HomeDirectory.BaseDirectory;
 
     /// <summary>
     /// Gets or sets information of the plug-in for a server.
@@ -50,14 +49,5 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     }
 
     #endregion constructor
-
-    #region IBaseDirectoryProvider
-
-    public string GetBaseDirectory()
-    {
-      return this.HomeDirectory;
-    }
-
-    #endregion IBaseDirectoryProvider
   }
 }

@@ -1,7 +1,8 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.IServerConfiguration;
@@ -148,15 +149,13 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     #endregion private
 
-    #region creators
+    #region constructor
 
     /// <summary>
     /// Initializes a new instance of the <see cref="WrapperTreeNode"/> class.
     /// </summary>
     /// <param name="wrapper">The instance that will be used as a wrapper to provide user interface.</param>
-    public WrapperTreeNode(object wrapper)
-      : this(wrapper, string.Empty)
-    { }
+    public WrapperTreeNode(object wrapper) : this(wrapper, string.Empty) { }
 
     internal WrapperTreeNode(object wrapper, string nodeName) : base(nodeName)
     {
@@ -164,7 +163,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       ErrorList = new List<Diagnostics>();
     }
 
-    #endregion creators
+    #endregion constructor
 
     #region IModelNodeAdvanced
 
