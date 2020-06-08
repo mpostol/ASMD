@@ -50,10 +50,10 @@ namespace CAS.UA.Model.Designer.Wrappers
       Add(model);
     }
 
-    internal static string ReplaceTokenAndReturnFullPath(string fileNameToBeProcessed, string projectName, IBaseDirectoryProvider solutionDirectory)
+    private static string ReplaceTokenAndReturnFullPath(string fileNameToBeProcessed, string projectName, IBaseDirectoryProvider solutionDirectory)
     {
       string _Name = fileNameToBeProcessed.Replace(Resources.Token_ProjectFileName, projectName);
-      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(_Name, solutionDirectory);
+      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(_Name, solutionDirectory.GetBaseDirectory());
     }
 
     #endregion private
@@ -164,7 +164,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <returns>System.String.</returns>
     internal string CalculateEffectiveAbsoluteModelFilePath()
     {
-      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.FileName, m_SolutionHomeDirectory);
+      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.FileName, m_SolutionHomeDirectory.GetBaseDirectory());
     }
 
     internal string CSVFileName

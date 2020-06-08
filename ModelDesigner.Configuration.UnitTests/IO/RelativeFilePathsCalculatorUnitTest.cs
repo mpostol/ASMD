@@ -5,7 +5,6 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -44,13 +43,11 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.IO
     [TestMethod]
     public void CalculateAbsoluteFileNameTest()
     {
-      Moq.Mock<IBaseDirectoryProvider> _directory = new Moq.Mock<IBaseDirectoryProvider>();
-      _directory.Setup(x => x.GetBaseDirectory()).Returns(m_AbsolutePath);
-      Assert.AreEqual<string>(m_AbsolutePath, RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_AbsolutePath, _directory.Object));
-      Assert.AreEqual<string>(m_AbsoluteFilePath, RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_AbsoluteFilePath, _directory.Object));
-      Assert.ThrowsException<ArgumentOutOfRangeException>(() => RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_Relative1, _directory.Object));
-      Assert.ThrowsException<ArgumentOutOfRangeException>(() => RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_Relative2, _directory.Object));
-      Assert.AreEqual<string>(Path.Combine(m_AbsolutePath, m_FileName), RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_FileName, _directory.Object));
+      Assert.AreEqual<string>(m_AbsolutePath, RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_AbsolutePath, m_AbsolutePath));
+      Assert.AreEqual<string>(m_AbsoluteFilePath, RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_AbsoluteFilePath, m_AbsolutePath));
+      Assert.ThrowsException<ArgumentOutOfRangeException>(() => RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_Relative1, m_AbsolutePath));
+      Assert.ThrowsException<ArgumentOutOfRangeException>(() => RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_Relative2, m_AbsolutePath));
+      Assert.AreEqual<string>(Path.Combine(m_AbsolutePath, m_FileName), RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_FileName, m_AbsolutePath));
     }
 
     private const string m_AbsolutePath = @"C:\a\b\c\";

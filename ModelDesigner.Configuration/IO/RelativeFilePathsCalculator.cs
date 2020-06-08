@@ -81,15 +81,15 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
     }
 
     /// <summary>
-    /// Calculates the name of the absolute file name, If the <paramref name="name"/> is relative it prefixes it with the <see cref="IBaseDirectoryProvider.GetBaseDirectory"/>.
+    /// Calculates the name of the absolute file name, If the <paramref name="name"/> is relative it prefixes it with the <paramref name="solutionDirectory"/>.
     /// </summary>
     /// <param name="name">The name to be converted to absolute name.</param>
     /// <param name="solutionDirectory">The solution directory.</param>
-    /// <returns>Absolute file name prefixed by the <see cref="IBaseDirectoryProvider.GetBaseDirectory"/> if needed.</returns>
-    public static string CalculateAbsoluteFileName(string name, IBaseDirectoryProvider solutionDirectory)
+    /// <returns>Absolute file name prefixed by the <paramref name="solutionDirectory"/> if needed.</returns>
+    public static string CalculateAbsoluteFileName(string name, string solutionDirectory)
     {
       if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(name))
-        name = Path.Combine(solutionDirectory.GetBaseDirectory(), name);
+        name = Path.Combine(solutionDirectory, name);
       return name;
     }
   }
