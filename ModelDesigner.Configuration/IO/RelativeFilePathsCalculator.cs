@@ -5,7 +5,6 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.Common;
 using System;
 using System.IO;
 using System.Text;

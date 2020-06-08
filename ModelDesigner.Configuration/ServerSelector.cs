@@ -1,10 +1,11 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.Common;
+using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.Properties;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.Lib.CodeProtect;
@@ -27,8 +28,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
   /// </summary>
   public class ServerSelector
   {
+    #region brows-able properties
 
-    #region browsable properties
     /// <summary>
     /// Gets or sets the selected server assembly wrapper.
     /// </summary>
@@ -57,23 +58,28 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         m_Server.OnConfigurationChanged += new EventHandler<UAServerConfigurationEventArgs>(m_Server_OnConfigurationChanged);
       }
     }
-    #endregion
 
-    #region creators
+    #endregion brows-able properties
+
+    #region constructor
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ServerSelector"/> class.
     /// </summary>
-    public ServerSelector(IGraphicalUserInterface _graphicalUserInterface, string solutionPath, string codebase, string configuration)
+    public ServerSelector(IGraphicalUserInterface _graphicalUserInterface, ISolutionDirectoryPathManagement solutionPath, string codebase, string configuration)
     {
+      m_SolutionPath = solutionPath ?? throw new ArgumentNullException(nameof(solutionPath), $"while creating the {nameof(ServerSelector)} this parameter cannot be null");
       GraphicalUserInterface = _graphicalUserInterface ?? throw new ArgumentNullException(nameof(_graphicalUserInterface));
       OpenPlugIn(solutionPath, codebase, configuration);
       LicenseProtection.CheckConstrain();
     }
-    #endregion
+
+    #endregion creators
 
     #region public
+
     /// <summary>
-    /// Configuration plug-in descriptor containing configuration and plug-in codebase file path. 
+    /// Configuration plug-in descriptor containing configuration and plug-in codebase file path.
     /// </summary>
     public class ServerDescriptor
     {
@@ -81,10 +87,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       /// Codebase file path
       /// </summary>
       public string Codebase;
+
       /// <summary>
       /// Server configuration file path.
       /// </summary>
       public string Configuration;
+
       /// <summary>
       /// Returns a <see cref="T:System.String"/> that represents the current instance.
       /// </summary>
@@ -96,10 +104,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         return Codebase + " : " + Configuration;
       }
     }
+
     /// <summary>
     /// Occurs when the configuration has been changed.
     /// </summary>
     public event EventHandler<UAServerConfigurationEventArgs> OnConfigurationChanged;
+
     /// <summary>
     /// Gets or sets the server configuration - detailed information on localization of the plug-in and configuration file
     /// </summary>
@@ -114,7 +124,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         if (this.SelectedAssembly == null)
           return null;
         ServerDescriptor ret = null;
-        ret = new ServerDescriptor() { Configuration = String.Empty };
+        ret = new ServerDescriptor() { Configuration = string.Empty };
         ret.Codebase = SelectedAssembly.PluginDescription.CodeBase;
         if (SelectedAssembly.Configuration == null || SelectedAssembly.Configuration.ConfigurationFile == null)
           return ret;
@@ -122,6 +132,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         return ret;
       }
     }
+
     /// <summary>
     /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
     /// </summary>
@@ -132,6 +143,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     {
       return SelectedAssembly == null ? " Not selected; Expand this row and select the plug-in" : SelectedAssembly.ToPluginDescription();
     }
+
     /// <summary>
     /// Gets the instance configuration.
     /// </summary>
@@ -140,11 +152,13 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     {
       return SelectedAssembly == null ? null : SelectedAssembly.GetInstanceConfiguration(nodeUniqueIdentifier);
     }
+
     /// <summary>
     /// Gets the server configuration.
     /// </summary>
     /// <returns>An instance providing implementation of the <see cref="IConfiguration"/></returns>
     public IConfiguration IServerConfiguration => SelectedAssembly?.GetServerConfiguration();
+
     /// <summary>
     /// Gets the plugin menu items.
     /// </summary>
@@ -172,16 +186,18 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       if (SelectedAssembly != null)
         SelectedAssembly.GetPluginMenuItems(menu);
     }
+
     /// <summary>
     /// Saves the configuration and use the specified solution path to create relative paths if needed..
     /// </summary>
     /// <param name="solutionPath">The solution path.</param>
-    public void Save(string solutionPath)
+    public void Save(ISolutionDirectoryPathManagement solutionPath)
     {
       if (SelectedAssembly == null)
         return;
-      SelectedAssembly.Save(solutionPath);
+      SelectedAssembly.Save(solutionPath.BaseDirectory);
     }
+
     /// <summary>
     /// Sets the home directory to create relative paths of other files.
     /// </summary>
@@ -192,15 +208,19 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         return;
       SelectedAssembly.SetHomeDirectory(newHomeDirectory);
     }
-    #endregion
+
+    #endregion public
 
     #region private
+
     [LicenseProvider(typeof(CodeProtectLP))]
     [GuidAttribute("9F0B0964-93B8-4775-9106-95C0DCBFEAD5")]
     private sealed class LicenseProtection : SplashScreen.LogedIsLicensed<LicenseProtection>
     {
       #region public
+
       internal static bool IsLicensed { get; private set; }
+
       internal static void CheckConstrain()
       {
         if (m_Checked)
@@ -209,27 +229,35 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         IsLicensed = sc.Licensed;
         m_Checked = true;
       }
-      #endregion
+
+      #endregion public
 
       #region private
+
       private LicenseProtection()
       {
         IsLicensed = this.Licensed;
       }
+
       static LicenseProtection()
       {
         CheckConstrain();
       }
+
       private static bool m_Checked = false;
-      #endregion
+
+      #endregion private
     }
+
     private class ServerSelectorEditor : UITypeEditor
     {
       #region UITypeEditor override
+
       public override UITypeEditorEditStyle GetEditStyle(ITypeDescriptorContext context)
       {
         return UITypeEditorEditStyle.Modal;
       }
+
       /// <summary>
       /// Edits the specified object's value using the editor style indicated by the <see cref="M:System.Drawing.Design.UITypeEditor.GetEditStyle" /> method.
       /// </summary>
@@ -241,22 +269,27 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       {
         return OpenPlugInAssembly(value as ServerWrapper);
       }
-      #endregion
+
+      #endregion UITypeEditor override
     }
+
     private ServerWrapper m_Server = null;
+    private readonly ISolutionDirectoryPathManagement m_SolutionPath;
     private static IGraphicalUserInterface GraphicalUserInterface;
+
     //methods
     private void RaiseOnConfigurationChanged(bool serverChanged)
     {
       OnConfigurationChanged?.Invoke(this, new UAServerConfigurationEventArgs(serverChanged));
     }
+
     /// <summary>
     /// Opens the plug in. It  tries to open the DLL in the <paramref name="solutionPath"/> or from the application binaries or current directories
     /// </summary>
     /// <param name="solutionPath">The solution path.</param>
     /// <param name="codebase">The code-base path.</param>
     /// <param name="configuration">The configuration.</param>
-    private void OpenPlugIn(string solutionPath, string codebase, string configuration)
+    private void OpenPlugIn(ISolutionDirectoryPathManagement solutionPath, string codebase, string configuration)
     {
       if (string.IsNullOrEmpty(codebase))
         return;
@@ -264,7 +297,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       //TODO Error while using Save operation #129
       if (!IO.RelativeFilePathsCalculator.TestIfPathIsAbsolute(codebase))
       {
-        _fileInfo = new FileInfo(Path.Combine(solutionPath, codebase));
+        _fileInfo = new FileInfo(Path.Combine(solutionPath.BaseDirectory, codebase));
         if (!_fileInfo.Exists && !string.IsNullOrEmpty(Assembly.GetExecutingAssembly().Location))
           _fileInfo = new FileInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), codebase));
         if (!_fileInfo.Exists)
@@ -305,6 +338,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       //It must be the last statement because it raises an event using all properties.
       SelectedAssembly = newSelectedAssembly;
     }
+
     private static ServerWrapper OpenPlugInAssembly(ServerWrapper server)
     {
       FileInfo info;
@@ -312,7 +346,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       {
         using (IFileDialog _ofg = GraphicalUserInterface.OpenFileDialogFunc())
         {
-          string _baseDirectory = BaseDirectoryHelper.Instance.GetBaseDirectory(); //Problem with opening the server configuration editor plug-in #63
+          string _baseDirectory = server.SolutionPath.BaseDirectory; //Problem with opening the server configuration editor plug-in #63
           if (!string.IsNullOrEmpty(_baseDirectory))
             _ofg.InitialDirectory = _baseDirectory;
           if (server != null && server.PluginDescription != null)
@@ -336,7 +370,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
             GraphicalUserInterface.MessageBoxShowWarning(Resources.InterfaceNotImplemented, Resources.OpenPluginTitle);
             continue;
           }
-          server = new ServerWrapper(_serverConfiguration, _pluginAssembly, GraphicalUserInterface);
+          server = new ServerWrapper(_serverConfiguration, _pluginAssembly, GraphicalUserInterface, server.SolutionPath);
         }
         catch (Exception ex)
         {
@@ -345,6 +379,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       } while (false);
       return server;
     }
+
     private static void GetIServerConfiguration(FileInfo info, out Assembly pluginAssembly, out IConfiguration serverConfiguration)
     {
       string iName = typeof(IConfiguration).ToString();
@@ -364,26 +399,29 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     }
 
     #region event handlers
+
     private void m_Server_OnConfigurationChanged(object sender, UAServerConfigurationEventArgs e)
     {
       RaiseOnConfigurationChanged(e.ConfigurationFileChanged);
     }
+
     private void OnChangeHandler(object s, EventArgs arg)
     {
       RaiseOnConfigurationChanged(false);
     }
+
     private void PluginMenuItemsClear_Click(object sender, EventArgs e)
     {
       this.SelectedAssembly = null;
     }
+
     private void PluginMenuItemsOpen_Click(object sender, EventArgs e)
     {
       SelectedAssembly = OpenPlugInAssembly(SelectedAssembly);
     }
-    #endregion
 
-    #endregion
+    #endregion event handlers
 
+    #endregion private
   }
-
 }

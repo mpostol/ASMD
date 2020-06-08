@@ -49,7 +49,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       Assert.IsNotNull(_stn.ErrorList);
       Assert.AreEqual<int>(0, _stn.ErrorList.Count);
       Assert.AreEqual<string>("", _stn.HelpTopicName);
-      Assert.AreEqual<string>("", _stn.HomeDirectory);
+      Assert.AreEqual<string>("", _stn.HomeDirectory.BaseDirectory);
       Assert.IsFalse(_stn.IsReadOnly);
       Assert.AreEqual<string>(_solution.Name, _stn.Name);
       Assert.AreEqual<NodeClassesEnum>(NodeClassesEnum.None, _stn.NodeClass);

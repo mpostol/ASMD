@@ -1,11 +1,11 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-
-using CAS.CommServer.UA.Common;
+using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.IServerConfiguration;
 using System;
@@ -67,31 +67,33 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <param name="plugin">The interface to get access to the plugin.</param>
     /// <param name="assembly">An assembly containing the plug-in.</param>
     /// <param name="userInterface">The user interaction interface that provides basic functionality to implement user interactivity.</param>
-    public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface) : this(plugin, assembly, userInterface, string.Empty) { }
+    /// <param name="solutionPath">The solution path.</param>
+    public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface, ISolutionDirectoryPathManagement solutionPath) : this(plugin, assembly, userInterface, solutionPath, string.Empty) { }
+    ///// <summary>
+    ///// Initializes a new instance of the <see cref="ServerWrapper" /> class.
+    ///// </summary>
+    ///// <param name="plugin">The interface to get access to the plugin.</param>
+    ///// <param name="assembly">TAn assembly containing the plug-in.</param>
+    ///// <param name="userInterface">The user interaction interface that provides basic functionality to implement user interactivity.</param>
+    ///// <param name="configuration">The file path containing the configuration.</param>
+    //public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface, string configuration) : this(plugin, assembly, userInterface, BaseDirectoryHelper.Instance.GetBaseDirectory(), configuration) { }
     /// <summary>
     /// Initializes a new instance of the <see cref="ServerWrapper" /> class.
     /// </summary>
-    /// <param name="plugin">he interface to get access to the plugin.</param>
-    /// <param name="assembly">TAn assembly containing the plug-in.</param>
-    /// <param name="userInterface">The user interaction interface that provides basic functionality to implement user interactivity.</param>
-    /// <param name="configuration">The file path containing the configuration.</param>
-    public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface, string configuration) : this(plugin, assembly, userInterface, BaseDirectoryHelper.Instance.GetBaseDirectory(), configuration) { }
-    /// <summary>
-    /// Initializes a new instance of the <see cref="ServerWrapper" /> class.
-    /// </summary>
-    /// <param name="plugin">he interface to get access to the plugin.</param>
+    /// <param name="plugin">The interface to get access to the plugin.</param>
     /// <param name="assembly">TAn assembly containing the plug-in.</param>
     /// <param name="userInterface">The user interaction interface that provides basic functionality to implement user interactivity.</param>
     /// <param name="solutionPath">The solution path.</param>
     /// <param name="configuration">The file path containing the configuration.</param>
-    public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface, string solutionPath, string configuration)
+    public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface, ISolutionDirectoryPathManagement solutionPath, string configuration)
     {
+      this.SolutionPath = solutionPath;
       Initialize(plugin, assembly);
       FileInfo _file = null;
       if (!string.IsNullOrEmpty(configuration))
         //TODO Error while using Save operation #129
         if (!IO.RelativeFilePathsCalculator.TestIfPathIsAbsolute(configuration))
-          _file = new FileInfo(Path.Combine(solutionPath, configuration));
+          _file = new FileInfo(Path.Combine(solutionPath.BaseDirectory, configuration));
         else
           _file = new FileInfo(configuration);
       if (_file == null)
@@ -166,6 +168,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     {
       Configuration.SetHomeDirectory(newHomeDirectory);
     }
+    internal ISolutionDirectoryPathManagement SolutionPath { get; private set; }
     #endregion
 
     #region private

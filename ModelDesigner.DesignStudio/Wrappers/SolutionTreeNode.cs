@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration;
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
@@ -42,7 +41,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Gets the home directory.
     /// </summary>
     /// <value>The home directory.</value>
-    string HomeDirectory { get; }
+    ISolutionDirectoryPathManagement HomeDirectory { get; }
 
     /// <summary>
     /// Gets the UI to select a server plug-in.
@@ -54,10 +53,19 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// <summary>
   /// The class representing the solution node in the model.
   /// </summary>
-  internal class SolutionTreeNode : WrapperTreeNode, IBaseDirectoryProvider, IViewModel, ISolutionModel, ISolutionTreeNodeUI
+  internal class SolutionTreeNode : WrapperTreeNode, IViewModel, ISolutionModel, ISolutionTreeNodeUI
   {
     #region private
 
+    private class SolutionDirectoryPathManagement : SolutionDirectoryPathManagementBase
+    {
+      internal void SetNewPath(string path)
+      {
+        base.BaseDirectory = path;
+      }
+    }
+
+    private readonly SolutionDirectoryPathManagement m_PathManagement = new SolutionDirectoryPathManagement();
     private readonly EventHandler m_OnChangeHandler = null;
 
     private void configuration_OnNameChanged(object sender, EventArgs e)
@@ -74,7 +82,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         ProjectTreeNode _newProject = null;
         try
         {
-          _newProject = new ProjectTreeNode(this, _project);
+          _newProject = new ProjectTreeNode(HomeDirectory, _project);
           _nodes.Add(_newProject);
         }
         catch (FileNotFoundException _ex)
@@ -125,10 +133,10 @@ namespace CAS.UA.Model.Designer.Wrappers
           return null;
         if (!string.IsNullOrEmpty(_descriptor.Codebase))
           //TODO Error while using Save operation #129
-          _descriptor.Codebase = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.Codebase);
+          _descriptor.Codebase = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory.BaseDirectory, _descriptor.Codebase);
         if (!string.IsNullOrEmpty(_descriptor.Configuration))
           //TODO Error while using Save operation #129
-          _descriptor.Configuration = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory, _descriptor.Configuration);
+          _descriptor.Configuration = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory.BaseDirectory, _descriptor.Configuration);
         return _descriptor;
       }
     }
@@ -158,17 +166,16 @@ namespace CAS.UA.Model.Designer.Wrappers
       base(null, solution == null ? Guid.NewGuid().ToString() : solution.Name)
     {
       MessageBoxHandling = messageBoxHandling ?? throw new ArgumentNullException(nameof(messageBoxHandling));
-      HomeDirectory = solutionPath;
+      m_PathManagement.SetNewPath(solutionPath);
       if (solution == null)
         throw new ArgumentNullException(nameof(solution), $"In constructor {nameof(SolutionTreeNode)} this argument must not be null.");
       if (solution.ServerDetails == null)
         solution.ServerDetails = UAModelDesignerSolutionServerDetails.CreateEmptyInstance();
-      Server = new ServerSelector(new GraphicalUserInterface(), solutionPath, solution.ServerDetails.codebase, solution.ServerDetails.configuration);
+      Server = new ServerSelector(new GraphicalUserInterface(), m_PathManagement, solution.ServerDetails.codebase, solution.ServerDetails.configuration);
       Server.OnConfigurationChanged += new EventHandler<UAServerConfigurationEventArgs>(Server_OnConfigurationChanged);
       //TODO OnDataChanged += OnChangeHandler;
       //TODO OnNameChanged += new EventHandler(configuration_OnNameChanged);
       AddProjectsNodes(solution.Projects);
-      BaseDirectoryHelper.Instance.SetBaseDirectoryProvider(this);
       SolutionRoot = this;
       LibraryRoot.AddNodes(creteLibraryTreeNode);
     }
@@ -275,10 +282,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     public ServerSelector Server { get; private set; }
 
     /// <summary>
-    /// Gets the home directory.
+    /// Gets the home directory path management.
     /// </summary>
     /// <value>The home directory.</value>
-    public string HomeDirectory { get; private set; }
+    public ISolutionDirectoryPathManagement HomeDirectory => m_PathManagement;
 
     #endregion ISolutionTreeNodeUI
 
@@ -295,18 +302,15 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       ProjectTreeNode _node = null;
       if (existing)
-      {
-        string _DefaultFileName = Path.Combine(HomeDirectory, Resources.DefaultProjectName);
-        _node = ProjectTreeNode.ImportNodeSet(this, x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 186, x.ToString()), OPCFModelConfigurationManagement.ReadModelDesign);
-      }
+        _node = ProjectTreeNode.ImportNodeSet(HomeDirectory, x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 486245093, x.ToString()), OPCFModelConfigurationManagement.ReadModelDesign);
       else
-        _node = ProjectTreeNode.CreateNewModel(this);
+        _node = ProjectTreeNode.CreateNewModel(HomeDirectory);
       Add(_node);
     }
 
     public void ImportNodeSet()
     {
-      ProjectTreeNode node = ProjectTreeNode.ImportNodeSet(this, x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 186, x.ToString()), IO.ImportNodeSet.Import);
+      ProjectTreeNode node = ProjectTreeNode.ImportNodeSet(HomeDirectory, x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 186, x.ToString()), IO.ImportNodeSet.Import);
       if (node == null)
         return;
       Add(node);
@@ -328,15 +332,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
 
     #endregion ISolutionModel
-
-    #region IBaseDirectoryProvider
-
-    public string GetBaseDirectory()
-    {
-      return HomeDirectory;
-    }
-
-    #endregion IBaseDirectoryProvider
 
     #region WrapperTreeNode
 

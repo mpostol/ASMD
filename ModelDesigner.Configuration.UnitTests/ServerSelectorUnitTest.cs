@@ -4,9 +4,10 @@
 //
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.Common;
+using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 
@@ -19,8 +20,10 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     [TestMethod]
     public void ServerSelectorCreatorTest()
     {
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
+      _directory.SetupGet(x => x.BaseDirectory).Returns(@"C:\");
       TestGraphicalUserInterface _tg = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector(_tg, "", "", "");
+      ServerSelector _nss = new ServerSelector(_tg, _directory.Object, "", "");
       Assert.IsNull(_nss.SelectedAssembly);
       Assert.IsNull(_nss.ServerConfiguration);
       Assert.IsNull(_nss.IServerConfiguration);
@@ -28,15 +31,19 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     [TestMethod]
     public void ServerConfigurationNullTest()
     {
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
+      _directory.SetupGet(x => x.BaseDirectory).Returns(@"C:\");
       TestGraphicalUserInterface _tg = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector(_tg, "", "", "");
+      ServerSelector _nss = new ServerSelector(_tg, _directory.Object, "", "");
       Assert.IsFalse(_tg.WarningCalled);
     }
     [TestMethod]
     public void ServerConfigurationWrongAssemblyTest()
     {
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
+      _directory.SetupGet(x => x.BaseDirectory).Returns(@"wrong_path");
       TestGraphicalUserInterface _tgi = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector(_tgi, "wrong_path", "wrong.codebase", "wrong.configuration");
+      ServerSelector _nss = new ServerSelector(_tgi, _directory.Object, "wrong.codebase", "wrong.configuration");
       Assert.IsTrue(_tgi.WarningCalled);
       Assert.IsTrue(_tgi.WarningMessage.Contains("wrong.codebase"));
       Assert.AreEqual<string>("Open configuration editor", _tgi.WarningCaption);
@@ -44,8 +51,10 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     [TestMethod]
     public void ServerConfigurationWTest()
     {
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
+      _directory.SetupGet(x => x.BaseDirectory).Returns(@"wrong_path");
       TestGraphicalUserInterface _ui = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector(_ui, "wrong_path", "CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll", "");
+      ServerSelector _nss = new ServerSelector(_ui, _directory.Object, "CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll", "");
       Assert.AreEqual<int>(2, _ui.ExclamationCallCount);
       Assert.AreEqual<int>(0, _ui.ErrorCallCount);
       Assert.AreEqual<int>(0, _ui.OpenFileDialog4UnitTestAssertErrors);
@@ -58,8 +67,10 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     [TestMethod]
     public void EmptyServerDescriptorTest()
     {
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
+      _directory.SetupGet(x => x.BaseDirectory).Returns(string.Empty);
       TestGraphicalUserInterface _ui = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector(_ui, string.Empty, string.Empty, string.Empty);
+      ServerSelector _nss = new ServerSelector(_ui, _directory.Object, string.Empty, string.Empty);
       Assert.IsFalse(_ui.WarningCalled);
     }
 

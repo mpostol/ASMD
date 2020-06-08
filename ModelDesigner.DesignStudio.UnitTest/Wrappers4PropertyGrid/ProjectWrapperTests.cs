@@ -1,15 +1,17 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.Common;
+
+using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.UA.Model.Designer.Solution;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
-using System.IO;
 using WrappersModel = global::CAS.UA.Model.Designer.Wrappers;
 
 namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
@@ -23,16 +25,17 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
     {
       WrappersModel.ViewModelFactory.Factory = new ViewModelFactory();
     }
+
     [TestMethod()]
     public void Constructor1Test()
     {
-      Moq.Mock<IBaseDirectoryProvider> _directory = new Moq.Mock<IBaseDirectoryProvider>();
-      _directory.Setup(x => x.GetBaseDirectory()).Returns(@"C:\");
-      WrappersModel.ProjectTreeNode _projectWrapper =  WrappersModel.ProjectTreeNode.CreateNewModel(_directory.Object);
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
+      _directory.SetupGet(x => x.BaseDirectory).Returns(@"C:\");
+      WrappersModel.ProjectTreeNode _projectWrapper = WrappersModel.ProjectTreeNode.CreateNewModel(_directory.Object);
 
       //WrappersModel.ProjectTreeNode _projectWrapper = new WrappersModel.ProjectTreeNode(new BaseDirectoryProvider(), string.Empty, new Opc.Ua.ModelCompiler.ModelDesign());
       ProjectWrapper _wrapper = (ProjectWrapper)_projectWrapper.Wrapper;// new ProjectWrapper(_projectWrapper);
-      // Assert.Inconclusive("_projectWrapper.Text is generated dynamically so it cannot be reproduced"); 
+      // Assert.Inconclusive("_projectWrapper.Text is generated dynamically so it cannot be reproduced");
       // Assert.AreEqual<string>("Model_0", _projectWrapper.Text);
       // Assert.AreEqual<string>("Model_0", _wrapper.Name);
       Assert.AreEqual<string>(@"$(ProjectFileName)", _wrapper.BuildOutputDirectoryName);
@@ -45,6 +48,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
       //Assert.AreEqual<string>(m_Configuration.ProjectIdentifier, _wrapper.ProjectIdentifier.ToString());
       // Assert.AreEqual<string>("Project:Name (path.FileName.xml)", _wrapper.ToString());
     }
+
     [TestMethod()]
     public void SetNewSolutionHomeDirectoryTest()
     {
@@ -62,6 +66,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
       ////Assert.AreEqual<string>(m_Configuration.ProjectIdentifier, _wrapper.ProjectIdentifier.ToString());
       //Assert.AreEqual<string>("Project:Name (path.FileName.xml)", _wrapper.ToString());
     }
+
     [TestMethod()]
     public void ConstructorTest()
     {
@@ -76,6 +81,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
       ////Assert.AreEqual<string>(m_Configuration.ProjectIdentifier, _configuration.ProjectIdentifier.ToString());
       ////Assert.AreNotSame(_wrapper, m_Configuration);
     }
+
     [TestMethod()]
     public void ChangeNameTest()
     {
@@ -94,6 +100,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
       ////Assert.AreEqual<string>(_wrapper.Name, _configuration.Name);
       //Assert.AreNotSame(_wrapper, m_Configuration);
     }
+
     private readonly UAModelDesignerProject m_Configuration = new UAModelDesignerProject()
     {
       BuildOutputDirectoryName = "$(ProjectFileName).BuildOutputDirectoryName",
@@ -102,13 +109,5 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
       Name = "Name",
       ProjectIdentifier = new Guid().ToString()
     };
-    private class BaseDirectoryProvider : IBaseDirectoryProvider
-    {
-      public string GetBaseDirectory()
-      {
-        return Path.Combine(Environment.CurrentDirectory, "TestData");
-      }
-    }
-
   }
 }

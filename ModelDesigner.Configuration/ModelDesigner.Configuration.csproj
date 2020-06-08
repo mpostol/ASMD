@@ -67,10 +67,6 @@
       <HintPath>..\packages\CAS.CommServer.OPCClassic.SDK.Core.2.01.1062\lib\net451\CAS.CommServer.OPCClassicSDK.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.UA.Common, Version=3.0.5.33238, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.UA.Common.3.00.05\lib\net461\CAS.CommServer.UA.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="CAS.CommServer.UA.Stack.Core, Version=1.1.3265.40471, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.CommServer.UA.Stack.Core.1.01.3265\lib\net451\CAS.CommServer.UA.Stack.Core.dll</HintPath>
       <Private>True</Private>

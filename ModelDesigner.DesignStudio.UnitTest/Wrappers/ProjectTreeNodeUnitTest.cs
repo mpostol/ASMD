@@ -4,11 +4,10 @@
 //
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.Common;
+using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.UA.Model.Designer.Solution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Moq.Language;
 using System;
 using System.IO;
 using System.Xml;
@@ -32,59 +31,65 @@ namespace CAS.UA.Model.Designer.Wrappers
     public void CreateNewModelTest()
     {
       String _currentFolder = Directory.GetCurrentDirectory();
-      Mock<IBaseDirectoryProvider> _directory = new Mock<IBaseDirectoryProvider>();
-      _directory.Setup(x => x.GetBaseDirectory()).Returns(@"C:\");
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
+      _directory.SetupGet(x => x.BaseDirectory).Returns(@"C:\");
       CheckConsistency(ProjectTreeNode.CreateNewModel(_directory.Object));
       Assert.AreEqual<string>(_currentFolder, Directory.GetCurrentDirectory());
     }
+
     [TestMethod]
     public void MyTestMethod()
     {
-      Mock<IBaseDirectoryProvider> _directory = new Mock<IBaseDirectoryProvider>();
-      _directory.Setup(x => x.GetBaseDirectory()).Returns(Directory.GetCurrentDirectory());
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
+      _directory.SetupGet(x => x.BaseDirectory).Returns(@"C:\");
       UAModelDesignerProject _projectDescriptor = new UAModelDesignerProject()
       {
         BuildOutputDirectoryName = string.Empty,
         CSVFileName = "CSVFileName",
         FileName = m_DemoConfigurationFilePath,
-        Name = "TestProjectDescription", ProjectIdentifier = Guid.NewGuid().ToString()
+        Name = "TestProjectDescription",
+        ProjectIdentifier = Guid.NewGuid().ToString()
       };
       ProjectTreeNode _openProject = new ProjectTreeNode(_directory.Object, _projectDescriptor);
     }
+
     [TestMethod]
     public void CreateTest()
     {
-      Mock<IBaseDirectoryProvider> _directory = new Mock<IBaseDirectoryProvider>();
-      _directory.Setup(x => x.GetBaseDirectory()).Returns(@"C:\");
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
+      _directory.SetupGet(x => x.BaseDirectory).Returns(@"C:\");
       ProjectTreeNode _emptyModel = ProjectTreeNode.CreateNewModel(_directory.Object);
       IViewModel _viewModel = _emptyModel.Create();
       Assert.IsNotNull(_viewModel);
     }
+
     [TestMethod]
     public void FindTest()
     {
-      Mock<IBaseDirectoryProvider> _directory = new Mock<IBaseDirectoryProvider>();
-      _directory.Setup(x => x.GetBaseDirectory()).Returns(@"C:\");
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
+      _directory.SetupGet(x => x.BaseDirectory).Returns(@"C:\");
       ProjectTreeNode _emptyModel = ProjectTreeNode.CreateNewModel(_directory.Object);
       XmlQualifiedName _toFind = new XmlQualifiedName("Name", "Namespace");
       ITypeDesign _findReturn = _emptyModel.Find(_toFind);
       Assert.IsNull(_findReturn);
     }
+
     [TestMethod]
     public void GetTargetNamespaceTest()
     {
-      Mock<IBaseDirectoryProvider> _directory = new Mock<IBaseDirectoryProvider>();
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
       string _solutionDir = Path.Combine(Directory.GetCurrentDirectory(), "Temp");
       Directory.CreateDirectory(_solutionDir);
-      _directory.Setup(x => x.GetBaseDirectory()).Returns(_solutionDir);
+      _directory.SetupGet(x => x.BaseDirectory).Returns(_solutionDir);
       ProjectTreeNode _emptyModel = ProjectTreeNode.CreateNewModel(_directory.Object);
       _emptyModel.Save();
       string _expectedModelFileName = Path.Combine(_solutionDir, _emptyModel.FileName);
       Assert.IsTrue(File.Exists(_expectedModelFileName), _expectedModelFileName);
     }
+
     #region instrumentation
 
-    private const string  m_DemoConfigurationFilePath = @"TestData\DemoConfiguration\BoilerType.xml";
+    private const string m_DemoConfigurationFilePath = @"TestData\DemoConfiguration\BoilerType.xml";
 
     private void CheckConsistency(ProjectTreeNode _newItem)
     {
@@ -104,7 +109,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       Assert.IsTrue(_absoluteModelFilePath.StartsWith(@"C:\Model_"), _absoluteModelFilePath);
       Assert.IsTrue(_absoluteModelFilePath.Contains(@".xml"), _absoluteModelFilePath);
       Assert.AreEqual<string>(@"", _newItem.HelpTopicName);
-      Assert.ThrowsException<NullReferenceException>( () => _newItem.GetTargetNamespace());
+      Assert.ThrowsException<NullReferenceException>(() => _newItem.GetTargetNamespace());
       Assert.IsNull(_newItem.Parent);
       Assert.IsNotNull(_newItem.SymbolicName);
       Assert.IsTrue(_newItem.Text.StartsWith(@"Model_"), _newItem.Text);

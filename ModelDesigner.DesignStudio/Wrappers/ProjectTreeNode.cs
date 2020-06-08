@@ -5,7 +5,6 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.Common;
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
@@ -40,7 +39,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     private static readonly object m_BuildLockObject = new object(); // this object is used to prevent many code generator usage at the same time
 
     private static UniqueNameGenerator m_UniqueNameGenerator = new UniqueNameGenerator(Resources.DefaultProjectName);
-    private readonly IBaseDirectoryProvider m_SolutionHomeDirectory;
+    private readonly ISolutionDirectoryPathManagement m_SolutionHomeDirectory;
     private UAModelDesignerProject b_UAModelDesignerProject;
     private static string m_GetNextUniqueProjectName => m_UniqueNameGenerator.GenerateNewName();
 
@@ -50,52 +49,58 @@ namespace CAS.UA.Model.Designer.Wrappers
       Add(model);
     }
 
-    private static string ReplaceTokenAndReturnFullPath(string fileNameToBeProcessed, string projectName, IBaseDirectoryProvider solutionDirectory)
+    private static string ReplaceTokenAndReturnFullPath(string fileNameToBeProcessed, string projectName, string solutionDirectory)
     {
       string _Name = fileNameToBeProcessed.Replace(Resources.Token_ProjectFileName, projectName);
-      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(_Name, solutionDirectory.GetBaseDirectory());
+      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(_Name, solutionDirectory);
     }
 
     #endregion private
 
     #region constructors
 
-    private ProjectTreeNode(IBaseDirectoryProvider solutionPath, string nodeName) : base(null, nodeName)
+    private ProjectTreeNode(ISolutionDirectoryPathManagement solutionPath, string nodeName) : base(null, nodeName)
     {
       m_SolutionHomeDirectory = solutionPath;
+      m_SolutionHomeDirectory.BaseDirectoryPathChanged += SolutionHomeDirectoryBaseDirectoryPathChanged;
     }
 
-    private ProjectTreeNode(IBaseDirectoryProvider solutionPath, string filePath, OPCFModelDesign model) : this(solutionPath, Path.GetFileNameWithoutExtension(filePath))
+    private void SolutionHomeDirectoryBaseDirectoryPathChanged(object sender, NewDirectoryPathEventArgs e)
+    {
+      throw new NotImplementedException();
+    }
+
+    private ProjectTreeNode(ISolutionDirectoryPathManagement solutionPath, string filePath, OPCFModelDesign model) : this(solutionPath, Path.GetFileNameWithoutExtension(filePath))
     {
       UAModelDesignerProject = new UAModelDesignerProject()
       {
         BuildOutputDirectoryName = Resources.DefaultOutputBuildDirectory,
         CSVFileName = Resources.DefaultCSVFileName,
-        FileName = RelativeFilePathsCalculator.TryComputeRelativePath(solutionPath.GetBaseDirectory(), filePath),
+        FileName = RelativeFilePathsCalculator.TryComputeRelativePath(solutionPath.BaseDirectory, filePath),
         ProjectIdentifier = Guid.NewGuid().ToString(),
         Name = m_GetNextUniqueProjectName
       };
       InitializeComponent(new ModelDesign(model, false));
     }
 
-    internal ProjectTreeNode(IBaseDirectoryProvider solutionPath, UAModelDesignerProject projectDescription) : this(solutionPath, projectDescription.Name)
+    internal ProjectTreeNode(ISolutionDirectoryPathManagement solutionPath, UAModelDesignerProject projectDescription) : this(solutionPath, projectDescription.Name)
     {
       UAModelDesignerProject = projectDescription;
       ModelDesign _RootOfOPCUAInfromationModel = ModelDesign.CreateRootOfOPCUAInfromationModel(FileName);
       InitializeComponent(_RootOfOPCUAInfromationModel);
     }
 
-    internal static ProjectTreeNode ImportNodeSet(IBaseDirectoryProvider solutionPathProvider, Action<TraceMessage> traceEvent, Func<string, Action<TraceMessage>, Tuple<OPCFModelDesign, string>> importNodeSet)
+    internal static ProjectTreeNode ImportNodeSet(ISolutionDirectoryPathManagement solutionPathProvider, Action<TraceMessage> traceEvent, Func<string, Action<TraceMessage>, Tuple<OPCFModelDesign, string>> importNodeSet)
     {
-      Tuple<OPCFModelDesign, string> _model = importNodeSet(solutionPathProvider.GetBaseDirectory(), traceEvent);
+      Tuple<OPCFModelDesign, string> _model = importNodeSet(solutionPathProvider.BaseDirectory, traceEvent);
       if (_model == null)
         return null;
       return new ProjectTreeNode(solutionPathProvider, _model.Item2, _model.Item1);
     }
 
-    internal static ProjectTreeNode CreateNewModel(IBaseDirectoryProvider solutionPathProvider)
+    internal static ProjectTreeNode CreateNewModel(ISolutionDirectoryPathManagement solutionPathProvider)
     {
-      string _DefaultFileName = Path.Combine(solutionPathProvider.GetBaseDirectory(), m_GetNextUniqueProjectName);
+      string _DefaultFileName = Path.Combine(solutionPathProvider.BaseDirectory, m_GetNextUniqueProjectName);
       return new ProjectTreeNode(solutionPathProvider, _DefaultFileName, new OPCFModelDesign());
     }
 
@@ -164,7 +169,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <returns>System.String.</returns>
     internal string CalculateEffectiveAbsoluteModelFilePath()
     {
-      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.FileName, m_SolutionHomeDirectory.GetBaseDirectory());
+      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.FileName, m_SolutionHomeDirectory.BaseDirectory);
     }
 
     internal string CSVFileName
@@ -178,7 +183,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       set => UAModelDesignerProject.CSVFileName = value;
     }
 
-    internal string CSVFilePath => ReplaceTokenAndReturnFullPath(CSVFileName, UAModelDesignerProject.Name, m_SolutionHomeDirectory);
+    internal string CSVFilePath => ReplaceTokenAndReturnFullPath(CSVFileName, UAModelDesignerProject.Name, m_SolutionHomeDirectory.BaseDirectory);
 
     internal Guid ProjectIdentifier
     {
@@ -197,7 +202,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       set => UAModelDesignerProject.BuildOutputDirectoryName = value;
     }
 
-    internal string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName, UAModelDesignerProject.Name, m_SolutionHomeDirectory);
+    internal string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName, UAModelDesignerProject.Name, m_SolutionHomeDirectory.BaseDirectory);
 
     internal ModelDesign Model { get; private set; }
 
