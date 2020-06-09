@@ -38,6 +38,16 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
 
     [TestMethod]
+    public void ChangeSolutionBaseDirectioryTest()
+    {
+      SolutionDirectoryPathManagement _pathManagement = new SolutionDirectoryPathManagement();
+      _pathManagement.SetNewPath(@"C:\a\c\d");
+      ProjectTreeNode _projectTreeNode = ProjectTreeNode.CreateNewModel(_pathManagement);
+      _pathManagement.SetNewPath(@"C:\a\x\y");
+      Assert.IsTrue(_projectTreeNode.UAModelDesignerProject.FileName.StartsWith(@"..\..\..\c\d"), _projectTreeNode.UAModelDesignerProject.FileName);
+    }
+
+    [TestMethod]
     public void OpenExistingModelTest()
     {
       Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
@@ -132,6 +142,14 @@ namespace CAS.UA.Model.Designer.Wrappers
       Assert.IsTrue(uaModelDesignerProject.Name.StartsWith((@"Model_")));
       Guid _projectIdentifier = Guid.Parse(uaModelDesignerProject.ProjectIdentifier);
       Assert.IsFalse(Guid.Empty == _projectIdentifier);
+    }
+
+    private class SolutionDirectoryPathManagement : SolutionDirectoryPathManagementBase
+    {
+      internal void SetNewPath(string path)
+      {
+        base.BaseDirectory = path;
+      }
     }
 
     private class ViewModelFactoryTest : IViewModelFactory

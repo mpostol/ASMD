@@ -55,6 +55,13 @@ namespace CAS.UA.Model.Designer.Wrappers
       return RelativeFilePathsCalculator.CalculateAbsoluteFileName(_Name, solutionDirectory);
     }
 
+    private void SolutionHomeDirectoryBaseDirectoryPathChanged(object sender, NewDirectoryPathEventArgs e)
+    {
+      string _oldAbsoluteFilePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.UAModelDesignerProject.FileName, e.OldDirectoryPath);
+      string _newAbsoluteFilePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.UAModelDesignerProject.FileName, e.NewDirectoryPath);
+      this.UAModelDesignerProject.FileName = RelativeFilePathsCalculator.TryComputeRelativePath(_newAbsoluteFilePath, _oldAbsoluteFilePath);
+    }
+
     #endregion private
 
     #region constructors
@@ -63,11 +70,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       m_SolutionHomeDirectory = solutionPath;
       m_SolutionHomeDirectory.BaseDirectoryPathChanged += SolutionHomeDirectoryBaseDirectoryPathChanged;
-    }
-
-    private void SolutionHomeDirectoryBaseDirectoryPathChanged(object sender, NewDirectoryPathEventArgs e)
-    {
-      throw new NotImplementedException();
     }
 
     private ProjectTreeNode(ISolutionDirectoryPathManagement solutionPath, string filePath, OPCFModelDesign model) : this(solutionPath, Path.GetFileNameWithoutExtension(filePath))
@@ -84,7 +86,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ProjectTreeNode"/> class for existing UA model.
+    /// Initializes a new instance of the <see cref="ProjectTreeNode"/> encapsulating an existing UA model.
     /// </summary>
     /// <param name="solutionPath">The solution path.</param>
     /// <param name="projectDescription">The project description.</param>
@@ -95,6 +97,13 @@ namespace CAS.UA.Model.Designer.Wrappers
       InitializeComponent(_RootOfOPCUAInfromationModel);
     }
 
+    /// <summary>
+    /// Imports the UANodeSet encapsulated by a new project.
+    /// </summary>
+    /// <param name="solutionPathProvider">The solution path provider.</param>
+    /// <param name="traceEvent">The trace event.</param>
+    /// <param name="importNodeSet">The import node set.</param>
+    /// <returns>ProjectTreeNode.</returns>
     internal static ProjectTreeNode ImportNodeSet(ISolutionDirectoryPathManagement solutionPathProvider, Action<TraceMessage> traceEvent, Func<string, Action<TraceMessage>, Tuple<OPCFModelDesign, string>> importNodeSet)
     {
       Tuple<OPCFModelDesign, string> _model = importNodeSet(solutionPathProvider.BaseDirectory, traceEvent);
@@ -103,10 +112,14 @@ namespace CAS.UA.Model.Designer.Wrappers
       return new ProjectTreeNode(solutionPathProvider, _model.Item2, _model.Item1);
     }
 
+    /// <summary>
+    /// Creates new model encapsulated by a new project.
+    /// </summary>
+    /// <param name="solutionPathProvider">The solution path provider.</param>
+    /// <returns>ProjectTreeNode.</returns>
     internal static ProjectTreeNode CreateNewModel(ISolutionDirectoryPathManagement solutionPathProvider)
     {
-      string _DefaultFileName = Path.Combine(solutionPathProvider.BaseDirectory, m_GetNextUniqueProjectName);
-      return new ProjectTreeNode(solutionPathProvider, _DefaultFileName, new OPCFModelDesign());
+      return new ProjectTreeNode(solutionPathProvider, m_GetNextUniqueProjectName, new OPCFModelDesign());
     }
 
     #endregion constructors
