@@ -36,8 +36,10 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.IO
       Assert.AreEqual<string>(m_Relative3, RelativeFilePathsCalculator.TryComputeRelativePath(m_AbsolutePath, m_Relative3));
       Assert.AreEqual<string>(m_Relative3, RelativeFilePathsCalculator.TryComputeRelativePath(m_AbsolutePath, Path.Combine(m_AbsolutePath, m_Relative3)));
       Assert.AreEqual<string>(@"..\x\FileName.txt", RelativeFilePathsCalculator.TryComputeRelativePath(m_AbsolutePath, m_AbsoluteFilePath));
-      Assert.AreEqual<string>(@"..\..\..\a\b\x\FileName.txt", RelativeFilePathsCalculator.TryComputeRelativePath(@"C:\c\b\a\", m_AbsoluteFilePath));
-      Assert.AreEqual<string>(@"C:\a\b\x\FileName.txt", RelativeFilePathsCalculator.TryComputeRelativePath(@"D:\c\b\a\", m_AbsoluteFilePath));
+      Assert.AreEqual<string>(m_AbsoluteFilePath, Path.GetFullPath(Path.Combine(m_AbsolutePath, @"..\x\FileName.txt")));
+      Assert.AreEqual<string>(@"..\..\..\a\b\x\FileName.txt", RelativeFilePathsCalculator.TryComputeRelativePath(@"C:\c\b\a\", @"C:\a\b\x\FileName.txt"));
+      Assert.AreEqual<string>(@"..\x\FileName", RelativeFilePathsCalculator.TryComputeRelativePath(@"C:\a\b\a\", @"C:\a\b\x\FileName"));
+      Assert.AreEqual<string>(@m_AbsoluteFilePath, RelativeFilePathsCalculator.TryComputeRelativePath(@"D:\c\b\a\", m_AbsoluteFilePath));
     }
 
     [TestMethod]

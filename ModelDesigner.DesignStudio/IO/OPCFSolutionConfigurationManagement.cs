@@ -1,7 +1,8 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
@@ -17,22 +18,37 @@ namespace CAS.UA.Model.Designer.IO
   /// <summary>
   /// Singleton class to save and restore solution configuration to/from external file.
   /// </summary>
-  internal class OPCFSolutionConfigurationManagement : TypeGenericConfigurationManagement<UAModelDesignerSolution>//, IBaseDirectoryProvider
+  internal sealed class OPCFSolutionConfigurationManagement : TypeGenericConfigurationManagement<UAModelDesignerSolution>//, IBaseDirectoryProvider
   {
-
     #region private
+
+    /// <summary>
+    /// Class GraphicalUserInterface - stub implementation of the <see cref="IGraphicalUserInterface"/>
+    /// Implements the <see cref="IGraphicalUserInterface" />
+    /// </summary>
+    /// <seealso cref="IGraphicalUserInterface" />
+    private class GraphicalUserInterfaceStub : IGraphicalUserInterface
+    {
+      public Action<string, string> MessageBoxShowWarning => throw new NotImplementedException();
+
+      public Action<string, string> MessageBoxShowExclamation => throw new NotImplementedException();
+
+      public Action<string, string> MessageBoxShowError => throw new NotImplementedException();
+
+      public Func<IFileDialog> OpenFileDialogFunc => throw new NotImplementedException();
+
+      public Func<IFileDialog> SaveFileDialogFuc => throw new NotImplementedException();
+
+      public Func<IFolderBrowserDialog> OpenFolderBrowserDialogFunc => throw new NotImplementedException();
+
+      public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
+
+      public bool UseWaitCursor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    }
+
     private static OPCFSolutionConfigurationManagement m_This;
     private string m_LastOpenedFile = string.Empty;
-    protected override string ReadErrorInvalidOperationStringFormat => Resources.OPCFSolutionConfigurationManagement_ReadError;
-    protected override void RaiseConfigurationChanged(UAModelDesignerSolution model)
-    {
-      base.RaiseConfigurationChanged(model);
-      if (model == null)
-        model = UAModelDesignerSolution.CreateEmptyModel();
-      AfterSolutionChange?.Invoke(this, new AfterSolutionChangeEventArgs(model));
-      //e.Configuration.SetHomeDirectory(Path.GetDirectoryName(DefaultFileName));
-      //SolutionRootNode = new SolutionTreeNode(e.Configuration, new ViewModelFactory(), Path.GetDirectoryName(DefaultFileName), new EventHandler<EventArgs>(OnNodeChange));
-    }
+
     private void CommonInitialization()
     {
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 144, "Starting CommonInitialization and checking SaveConstrain");
@@ -50,15 +66,30 @@ namespace CAS.UA.Model.Designer.IO
       }
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 146, "Finished successfully CommonInitialization");
     }
+
     private void OPCFSolutionConfigurationManagement_BeforeRead(object sender, StringEventArgs e)
     {
       m_LastOpenedFile = e.String;
     }
-    private OPCFSolutionConfigurationManagement(IGraphicalUserInterface graphicalUserInterface, string fileName) : base(graphicalUserInterface, fileName) { }
-    #endregion
 
-    #region override
+    private OPCFSolutionConfigurationManagement(IGraphicalUserInterface graphicalUserInterface, string fileName) : base(graphicalUserInterface, fileName)
+    {
+    }
+
+    protected override string ReadErrorInvalidOperationStringFormat => Resources.OPCFSolutionConfigurationManagement_ReadError;
+
+    protected override void RaiseConfigurationChanged(UAModelDesignerSolution model)
+    {
+      base.RaiseConfigurationChanged(model);
+      if (model == null)
+        model = UAModelDesignerSolution.CreateEmptyModel();
+      AfterSolutionChange?.Invoke(this, new AfterSolutionChangeEventArgs(model));
+      //e.Configuration.SetHomeDirectory(Path.GetDirectoryName(DefaultFileName));
+      //SolutionRootNode = new SolutionTreeNode(e.Configuration, new ViewModelFactory(), Path.GetDirectoryName(DefaultFileName), new EventHandler<EventArgs>(OnNodeChange));
+    }
+
     protected override ConfigurationType Configuration => ConfigurationType.Solution;
+
     protected override XmlFile.DataToSerialize<UAModelDesignerSolution> GetConfiguration(UAModelDesignerSolution configuration)
     {
       string homeDirectory = Path.GetDirectoryName(this.DefaultFileName);
@@ -68,14 +99,17 @@ namespace CAS.UA.Model.Designer.IO
       _config.StylesheetName = "UAModelDesignerSolution.xslt";
       return _config;
     }
+
     public override void New()
     {
       DefaultFileName = Settings.Default.DefaultSolutionFileName;
       base.New();
     }
-    #endregion override
+
+    #endregion private
 
     #region internal singleton
+
     internal static OPCFSolutionConfigurationManagement DefaultInstance
     {
       get
@@ -86,7 +120,7 @@ namespace CAS.UA.Model.Designer.IO
           {
             AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 204, "Creating new instance OPCFSolutionConfigurationManagement");
             string _defPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UAModelDesignerSolution");
-            m_This = new OPCFSolutionConfigurationManagement(new GraphicalUserInterface(), _defPath);
+            m_This = new OPCFSolutionConfigurationManagement(new GraphicalUserInterfaceStub(), _defPath);
             m_This.CommonInitialization();
           }
           catch (Exception ex)
@@ -99,16 +133,19 @@ namespace CAS.UA.Model.Designer.IO
         return m_This;
       }
     }
+
     internal class AfterSolutionChangeEventArgs : EventArgs
     {
       public UAModelDesignerSolution Solution { get; private set; }
+
       public AfterSolutionChangeEventArgs(UAModelDesignerSolution solution)
       {
         Solution = solution;
       }
     }
-    internal event EventHandler<AfterSolutionChangeEventArgs> AfterSolutionChange;
-    #endregion
 
+    internal event EventHandler<AfterSolutionChangeEventArgs> AfterSolutionChange;
+
+    #endregion internal singleton
   }
 }

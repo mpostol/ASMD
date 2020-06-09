@@ -198,16 +198,16 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       SelectedAssembly.Save(solutionPath.BaseDirectory);
     }
 
-    /// <summary>
-    /// Sets the home directory to create relative paths of other files.
-    /// </summary>
-    /// <param name="newHomeDirectory">The new home directory.</param>
-    public void SetHomeDirectory(string newHomeDirectory)
-    {
-      if (SelectedAssembly == null)
-        return;
-      SelectedAssembly.SetHomeDirectory(newHomeDirectory);
-    }
+    ///// <summary>
+    ///// Sets the home directory to create relative paths of other files.
+    ///// </summary>
+    ///// <param name="newHomeDirectory">The new home directory.</param>
+    //public void SetHomeDirectory(string newHomeDirectory)
+    //{
+    //  if (SelectedAssembly == null)
+    //    return;
+    //  SelectedAssembly.SetHomeDirectory(newHomeDirectory);
+    //}
 
     #endregion public
 
