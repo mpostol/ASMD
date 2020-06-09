@@ -38,10 +38,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
 
     [TestMethod]
-    public void MyTestMethod()
+    public void OpenExistingModelTest()
     {
       Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
-      _directory.SetupGet(x => x.BaseDirectory).Returns(@"C:\");
+      _directory.SetupGet(x => x.BaseDirectory).Returns(Directory.GetCurrentDirectory());
       UAModelDesignerProject _projectDescriptor = new UAModelDesignerProject()
       {
         BuildOutputDirectoryName = string.Empty,

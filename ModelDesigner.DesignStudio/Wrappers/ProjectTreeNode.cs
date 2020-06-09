@@ -83,10 +83,15 @@ namespace CAS.UA.Model.Designer.Wrappers
       InitializeComponent(new ModelDesign(model, false));
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ProjectTreeNode"/> class for existing UA model.
+    /// </summary>
+    /// <param name="solutionPath">The solution path.</param>
+    /// <param name="projectDescription">The project description.</param>
     internal ProjectTreeNode(ISolutionDirectoryPathManagement solutionPath, UAModelDesignerProject projectDescription) : this(solutionPath, projectDescription.Name)
     {
       UAModelDesignerProject = projectDescription;
-      ModelDesign _RootOfOPCUAInfromationModel = ModelDesign.CreateRootOfOPCUAInfromationModel(FileName);
+      ModelDesign _RootOfOPCUAInfromationModel = ModelDesign.CreateRootOfOPCUAInfromationModel(this.CalculateEffectiveAbsoluteModelFilePath());
       InitializeComponent(_RootOfOPCUAInfromationModel);
     }
 

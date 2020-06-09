@@ -77,12 +77,12 @@ namespace CAS.UA.Model.Designer.Wrappers
       if (configuration == null)
         return;
       List<ProjectTreeNode> _nodes = new List<ProjectTreeNode>();
-      foreach (UAModelDesignerProject _project in configuration)
+      foreach (UAModelDesignerProject _projectDescriptor in configuration)
       {
         ProjectTreeNode _newProject = null;
         try
         {
-          _newProject = new ProjectTreeNode(HomeDirectory, _project);
+          _newProject = new ProjectTreeNode(HomeDirectory, _projectDescriptor);
           _nodes.Add(_newProject);
         }
         catch (FileNotFoundException _ex)
