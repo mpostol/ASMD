@@ -1,7 +1,8 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration;
@@ -57,32 +58,23 @@ namespace CAS.UA.Model.Designer.Wrappers
   {
     #region private
 
-    private class SolutionDirectoryPathManagement : SolutionDirectoryPathManagementBase
-    {
-      internal void SetNewPath(string path)
-      {
-        base.BaseDirectory = path;
-      }
-    }
-
-    private readonly SolutionDirectoryPathManagement m_PathManagement = new SolutionDirectoryPathManagement();
     private readonly EventHandler m_OnChangeHandler = null;
 
     private void configuration_OnNameChanged(object sender, EventArgs e)
     {
     }
 
-    private void AddProjectsNodes(IEnumerable<UAModelDesignerProject> configuration)
+    private void AddProjectsNodes(IEnumerable<IOPCFModelConfigurationManagement> configuration)
     {
       if (configuration == null)
         return;
       List<ProjectTreeNode> _nodes = new List<ProjectTreeNode>();
-      foreach (UAModelDesignerProject _projectDescriptor in configuration)
+      foreach (IOPCFModelConfigurationManagement _projectDescriptor in configuration)
       {
         ProjectTreeNode _newProject = null;
         try
         {
-          _newProject = new ProjectTreeNode(HomeDirectory, _projectDescriptor);
+          _newProject = new ProjectTreeNode(_projectDescriptor);
           _nodes.Add(_newProject);
         }
         catch (FileNotFoundException _ex)
@@ -97,22 +89,22 @@ namespace CAS.UA.Model.Designer.Wrappers
       this.AddRange(_nodes);
     }
 
-    private UAModelDesignerSolution SaveProjectsCreateConfiguration()
-    {
-      Server.Save(HomeDirectory);
-      List<ProjectTreeNode> _ListOfProjects = new List<ProjectTreeNode>();
-      foreach (ProjectTreeNode _project in this)
-        if (_project.Save())
-          _ListOfProjects.Add(_project);
-      this.Clear();
-      this.AddRange(_ListOfProjects);
-      return new UAModelDesignerSolution()
-      {
-        Name = this.Name,
-        Projects = this.Cast<ProjectTreeNode>().Select<ProjectTreeNode, UAModelDesignerProject>(x => x.UAModelDesignerProject).ToArray<UAModelDesignerProject>(),
-        ServerDetails = this.ServerDetails == null ? null : new UAModelDesignerSolutionServerDetails() { codebase = ServerDetails.Codebase, configuration = ServerDetails.Configuration }
-      };
-    }
+    //private UAModelDesignerSolution SaveProjectsCreateConfiguration()
+    //{
+    //  Server.Save(HomeDirectory);
+    //  List<ProjectTreeNode> _ListOfProjects = new List<ProjectTreeNode>();
+    //  foreach (ProjectTreeNode _project in this)
+    //    if (_project.Save())
+    //      _ListOfProjects.Add(_project);
+    //  this.Clear();
+    //  this.AddRange(_ListOfProjects);
+    //  return new UAModelDesignerSolution()
+    //  {
+    //    Name = this.Name,
+    //    Projects = this.Cast<ProjectTreeNode>().Select<ProjectTreeNode, UAModelDesignerProject>(x => x.UAModelDesignerProject).ToArray<UAModelDesignerProject>(),
+    //    ServerDetails = this.ServerDetails == null ? null : new UAModelDesignerSolutionServerDetails() { codebase = ServerDetails.Codebase, configuration = ServerDetails.Configuration }
+    //  };
+    //}
 
     private void Server_OnConfigurationChanged(object sender, UAServerConfigurationEventArgs e)
     {
@@ -128,7 +120,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get
       {
-        ServerSelector.ServerDescriptor _descriptor = Server.ServerConfiguration;
+        ServerSelector.ServerDescriptor _descriptor = this. Server.ServerConfiguration;
         if (_descriptor == null)
           return null;
         if (!string.IsNullOrEmpty(_descriptor.Codebase))
@@ -162,16 +154,12 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <exception cref="ArgumentNullException">configuration
     /// or
     /// messageBoxHandling</exception>
-    internal SolutionTreeNode(IMessageBoxHandling messageBoxHandling, UAModelDesignerSolution solution, string solutionPath, EventHandler<EventArgs> OnChangeHandler, Action<LibraryTreeNode> creteLibraryTreeNode) :
+    internal SolutionTreeNode(IMessageBoxHandling messageBoxHandling, ISolutionConfigurationManagement solution, string solutionPath, EventHandler<EventArgs> OnChangeHandler, Action<LibraryTreeNode> creteLibraryTreeNode) :
       base(null, solution == null ? Guid.NewGuid().ToString() : solution.Name)
     {
       MessageBoxHandling = messageBoxHandling ?? throw new ArgumentNullException(nameof(messageBoxHandling));
-      m_PathManagement.SetNewPath(solutionPath);
-      if (solution == null)
-        throw new ArgumentNullException(nameof(solution), $"In constructor {nameof(SolutionTreeNode)} this argument must not be null.");
-      if (solution.ServerDetails == null)
-        solution.ServerDetails = UAModelDesignerSolutionServerDetails.CreateEmptyInstance();
-      Server = new ServerSelector(new GraphicalUserInterface(), m_PathManagement, solution.ServerDetails.codebase, solution.ServerDetails.configuration);
+      m_ISolutionConfigurationManagement = solution ??  throw new ArgumentNullException(nameof(solution), $"In constructor {nameof(SolutionTreeNode)} this argument must not be null.");
+      Server = new ServerSelector(new GraphicalUserInterface(), HomeDirectory, solution.ServerDetails.codebase, solution.ServerDetails.configuration);
       Server.OnConfigurationChanged += new EventHandler<UAServerConfigurationEventArgs>(Server_OnConfigurationChanged);
       //TODO OnDataChanged += OnChangeHandler;
       //TODO OnNameChanged += new EventHandler(configuration_OnNameChanged);
@@ -271,6 +259,8 @@ namespace CAS.UA.Model.Designer.Wrappers
       return Server.GetInstanceConfiguration(nodeUniqueIdentifier);
     }
 
+    private readonly ISolutionConfigurationManagement m_ISolutionConfigurationManagement;
+
     #endregion public
 
     #region ISolutionTreeNodeUI
@@ -281,11 +271,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <value>An instance of <see cref="ServerSelector" /> used by a software user to select a server plug-in.</value>
     public ServerSelector Server { get; private set; }
 
-    /// <summary>
-    /// Gets the home directory path management.
-    /// </summary>
-    /// <value>The home directory.</value>
-    public ISolutionDirectoryPathManagement HomeDirectory => m_PathManagement;
+    public ISolutionDirectoryPathManagement HomeDirectory { get { return m_ISolutionConfigurationManagement.SolutionDirectoryPathManagement ?? throw new System.ArgumentNullException(); } }
+
+    ISolutionDirectoryPathManagement ISolutionTreeNodeUI.HomeDirectory => throw new NotImplementedException();
+
+    ServerSelector ISolutionTreeNodeUI.Server => throw new NotImplementedException();
 
     #endregion ISolutionTreeNodeUI
 
@@ -300,35 +290,30 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     public void AddProject(bool existing)
     {
-      ProjectTreeNode _node = null;
       if (existing)
-        _node = ProjectTreeNode.ImportNodeSet(HomeDirectory, x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 486245093, x.ToString()), OPCFModelConfigurationManagement.ReadModelDesign);
+        m_ISolutionConfigurationManagement.ImportNodeSet(x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 486245093, x.ToString()));
       else
-        _node = ProjectTreeNode.CreateNewModel(HomeDirectory);
-      Add(_node);
+        m_ISolutionConfigurationManagement.CreateNewModel(x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 289265892, x.ToString()));
     }
 
     public void ImportNodeSet()
     {
-      ProjectTreeNode node = ProjectTreeNode.ImportNodeSet(HomeDirectory, x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 186, x.ToString()), IO.ImportNodeSet.Import);
-      if (node == null)
-        return;
-      Add(node);
+      m_ISolutionConfigurationManagement.OpenExistingModel(x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 486245094, x.ToString()));
     }
 
     public void Save(bool prompt)
     {
-      OPCFSolutionConfigurationManagement.DefaultInstance.Save(prompt, SaveProjectsCreateConfiguration());
+      m_ISolutionConfigurationManagement.Save(prompt);
     }
 
     public void Open()
     {
-      OPCFSolutionConfigurationManagement.DefaultInstance.Open();
+      Open();
     }
 
     public void OnNew()
     {
-      OPCFSolutionConfigurationManagement.DefaultInstance.OnNew();
+      OnNew();
     }
 
     #endregion ISolutionModel

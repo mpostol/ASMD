@@ -44,7 +44,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       _pathManagement.SetNewPath(@"C:\a\c\d");
       ProjectTreeNode _projectTreeNode = ProjectTreeNode.CreateNewModel(_pathManagement);
       _pathManagement.SetNewPath(@"C:\a\c");
-      Assert.IsTrue(_projectTreeNode.UAModelDesignerProject.FileName.StartsWith(@"..\d\Model_2"), _projectTreeNode.UAModelDesignerProject.FileName);
+      Assert.IsTrue(_projectTreeNode.UAModelDesignerProject.FileName.StartsWith(@"..\d\Model_"), _projectTreeNode.UAModelDesignerProject.FileName);
     }
 
     [TestMethod]

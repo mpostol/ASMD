@@ -212,14 +212,14 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     #region internal
 
-    internal bool SaveModel(string filePath)
+    internal XmlFile.DataToSerialize<OPCFModelDesign> GetModel()
     {
       XmlFile.DataToSerialize<OPCFModelDesign> _config;
       _config.Data = ModelDesignerNode as OPCFModelDesign;
       _config.XmlNamespaces = XmlNamespaces;
       _config.StylesheetName = "OPCFModelDesign.xslt";
-      XmlFile.WriteXmlFile<OPCFModelDesign>(_config, filePath, System.IO.FileMode.Create);
-      return true;
+      //XmlFile.WriteXmlFile<OPCFModelDesign>(_config, filePath, System.IO.FileMode.Create);
+      return _config;
     }
 
     /// <summary>

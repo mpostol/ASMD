@@ -40,9 +40,10 @@
   <Class Name="CAS.UA.Model.Designer.IO.OPCFModelConfigurationManagement">
     <Position X="1.75" Y="10.5" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <HashCode>EAAAAAAAIQAAAAAAAIAAAAAAAABAAAAAgAAAAAEBAAA=</HashCode>
       <FileName>IO\OPCFModelConfigurationManagement.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement">
     <Position X="6" Y="10.5" Width="5.75" />
@@ -52,22 +53,28 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <NestedTypes>
-      <Class Name="CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>IO\OPCFSolutionConfigurationManagement.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
       <Class Name="CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement.GraphicalUserInterfaceStub" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>IO\OPCFSolutionConfigurationManagement.cs</NewMemberFileName>
         </TypeIdentifier>
         <Lollipop Position="0.2" />
       </Class>
+      <Class Name="CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement.SolutionDirectoryPathManagement" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>IO\OPCFSolutionConfigurationManagement.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>IO\OPCFSolutionConfigurationManagement.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>ACAAQCAAAAAAACCAAgCAAAEAAAAAABAAgAAAAAAAACA=</HashCode>
+      <HashCode>ACIAQCAAAAQAACCgAFCAAA0AAABAARAAgAgAAgEAACA=</HashCode>
       <FileName>IO\OPCFSolutionConfigurationManagement.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.SolutionTreeNode">
     <Position X="12.5" Y="11.25" Width="2.75" />
@@ -77,15 +84,8 @@
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
-    <NestedTypes>
-      <Class Name="CAS.UA.Model.Designer.Wrappers.SolutionTreeNode.SolutionDirectoryPathManagement" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Wrappers\SolutionTreeNode.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAgQTKCEBAEOYAAAEBQAQAggAAgAgAAAAAgAghABACA=</HashCode>
+      <HashCode>EAgQTOCEBAEOYAAAEAQAQAAgAAgAgAAAAAgAghEBACA=</HashCode>
       <FileName>Wrappers\SolutionTreeNode.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -143,16 +143,6 @@
       <Property Name="PluginDescription" />
       <Property Name="Configuration" />
     </ShowAsAssociation>
-  </Class>
-  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.UAModelDesignerProject">
-    <Position X="21.5" Y="14.5" Width="2.5" />
-    <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>ABAAAAgAAQAAAAICAIAAAAQAAAAAAAEAQAAAAABAAAA=</HashCode>
-      <FileName>Wrappers4ProperyGrid\UAModelDesignerSolution.xsd.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ConfigurationWrapper">
     <Position X="10.75" Y="2.5" Width="2.25" />

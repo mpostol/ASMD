@@ -27,7 +27,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       this.m_TreeView.ImageList = this.m_ImagesForNodes.ImageListNodes;
       m_TreeView.CoupledNodesAreEnabled = Settings.Default.CoupledNodesAreEnabled;
       //solution initialization:
-      AddSolution();
+      OPCFSolutionConfigurationManagement.DefaultInstance.New();
       m_BackForwardTreViewToolStrip.TreeView = this.m_TreeView;
       m_SearchTreeViewToolStrip.TreeView = this.m_TreeView;
       m_SearchTreeViewToolStrip.SetAdditionalNodeTestDelegate = new SearchTreeViewHelper.AdditionalNodeTestDelegate(NodeSearchTest);
@@ -124,12 +124,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       return IWrapperTreeNodeFoundNode.Wrapper4PropertyGrid != null;
     }
 
-    private void AddSolution()
-    {
-      AddSolution(UAModelDesignerSolution.CreateEmptyModel());
-    }
-
-    private void AddSolution(UAModelDesignerSolution Solution)
+    private void AddSolution(ISolutionConfigurationManagement Solution)
     {
       m_TreeView.Nodes.Clear();
       m_Solution = new SolutionTreeNode(new ToForms.MessageBoxHandling(), Solution, OPCFSolutionConfigurationManagement.DefaultInstance.DefaultDirectory, (x, y) => OPCFSolutionConfigurationManagement.DefaultInstance.SetChangesArePresent(),

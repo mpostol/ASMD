@@ -25,7 +25,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
       _IFileDialogMock.SetupProperty(x => x.FileName);
       _IFileDialogMock.Setup(x => x.InitialDirectory).Returns("RandomText");
-      OPCFModelConfigurationManagement _newItem = new OPCFModelConfigurationManagement(new GraphicalUserInterface(_IFileDialogMock.Object), _defPath);
+      OPCFModelConfigurationManagement _newItem = new OPCFModelConfigurationManagement(new GraphicalUserInterface(_IFileDialogMock.Object), uaModelDesignerProject: _defPath);
       _IFileDialogMock.VerifySet(x => x.FileName = It.IsAny<string>(), Times.Never);
       Assert.IsFalse(_newItem.ChangesArePresent);
       Assert.AreEqual<string>(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), _newItem.DefaultDirectory);

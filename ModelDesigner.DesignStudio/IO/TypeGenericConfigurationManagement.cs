@@ -33,7 +33,6 @@ namespace CAS.UA.Model.Designer.IO
     protected virtual void RaiseConfigurationChanged(Type4Serialization model)
     {
       ChangesArePresent = true;
-      //ConfigurationChanged?.Invoke(this, new ConfigurationEventArg(m_Model));
     }
     /// <summary>
     /// Gets the configuration.
