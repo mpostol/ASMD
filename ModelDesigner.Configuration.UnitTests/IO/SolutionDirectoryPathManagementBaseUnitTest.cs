@@ -17,12 +17,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.IO
     [TestMethod]
     public void SetNewPathTest()
     {
-      SolutionDirectoryPathManagementBaseFixture _newInstance = new SolutionDirectoryPathManagementBaseFixture();
+      SolutionDirectoryPathManagementBaseFixture _newInstance = new SolutionDirectoryPathManagementBaseFixture(@"C:\a\c\d");
       Assert.IsTrue(String.IsNullOrEmpty(_newInstance.BaseDirectory));
-      _newInstance.SetNewPath("NewPath");
+      _newInstance.SetNewPath(@"C:\a\x\y");
       Assert.AreEqual<int>(1, _newInstance.UpdateCounter);
-      Assert.AreEqual<string>(String.Empty, _newInstance.oldPath);
-      Assert.AreEqual<string>("NewPath", _newInstance.newPath);
+      Assert.AreEqual<string>(@"C:\a\c\d", _newInstance.oldPath);
+      Assert.AreEqual<string>(@"C:\a\x\y", _newInstance.newPath);
     }
 
     private class SolutionDirectoryPathManagementBaseFixture : SolutionDirectoryPathManagementBase
@@ -36,8 +36,9 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.IO
       internal string oldPath = String.Empty;
       internal string newPath = String.Empty;
 
-      public SolutionDirectoryPathManagementBaseFixture()
+      public SolutionDirectoryPathManagementBaseFixture(string path)
       {
+        base.BaseDirectory = path;
         base.BaseDirectoryPathChanged += (x, y) =>
           {
             Assert.AreSame(this, x);

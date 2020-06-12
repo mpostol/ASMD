@@ -39,7 +39,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     //private readonly ISolutionDirectoryPathManagement m_SolutionHomeDirectory;
     private readonly IOPCFModelConfigurationManagement m_ProjectConfigurationManager;
-    private IOPCFModelConfigurationManagement b_UAModelDesignerProject;
+    //private IOPCFModelConfigurationManagement b_UAModelDesignerProject;
     //private static string m_GetNextUniqueProjectName => m_UniqueNameGenerator.GenerateNewName();
 
     private void InitializeComponent(ModelDesign model)
