@@ -22,7 +22,7 @@ namespace CAS.UA.Model.Designer.Wrappers
   {
     #region creators
 
-    public ModelDesign()
+    internal ModelDesign()
       : this
       (
         new OPCFModelDesign()
@@ -60,14 +60,14 @@ namespace CAS.UA.Model.Designer.Wrappers
         OPCUATargetNamespace = Wrapper.TargetNamespace;
     }
 
-    internal static ModelDesign CreateRootOfOPCUAInfromationModel(string filePath)
-    {
-      FileInfo info = new FileInfo(filePath);
-      if (!info.Exists)
-        throw new FileNotFoundException($"Cannot find the file at { filePath}");
-      OPCFModelDesign _ModelDesign = XmlFile.ReadXmlFile<OPCFModelDesign>(filePath);
-      return new ModelDesign(_ModelDesign, false);
-    }
+    //internal static ModelDesign CreateRootOfOPCUAInfromationModel(string filePath)
+    //{
+    //  FileInfo info = new FileInfo(filePath);
+    //  if (!info.Exists)
+    //    throw new FileNotFoundException($"Cannot find the file at { filePath}");
+    //  OPCFModelDesign _ModelDesign = XmlFile.ReadXmlFile<OPCFModelDesign>(filePath);
+    //  return new ModelDesign(_ModelDesign, false);
+    //}
 
     #endregion creators
 

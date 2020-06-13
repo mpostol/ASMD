@@ -93,7 +93,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     internal ProjectTreeNode(IOPCFModelConfigurationManagement projectDescription) : this(projectDescription, projectDescription.Name)
     {
       m_UAModelDesignerProject = projectDescription;
-      ModelDesign _RootOfOPCUAInfromationModel = ModelDesign.CreateRootOfOPCUAInfromationModel(m_ProjectConfigurationManager.CalculateEffectiveAbsoluteModelFilePath());
+      ModelDesign _RootOfOPCUAInfromationModel = new ModelDesign(projectDescription.ModelDesign, false);
       InitializeComponent(_RootOfOPCUAInfromationModel);
     }
 

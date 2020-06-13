@@ -19,6 +19,14 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
     private string m_BaseDirectory = String.Empty;
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="SolutionDirectoryPathManagementBase"/> class encapsulating information about the a solution base directory location .
+    /// </summary>
+    /// <param name="baseDirectory">An initial value for the <see cref="SolutionDirectoryPathManagementBase.BaseDirectory"/>.</param>
+    protected SolutionDirectoryPathManagementBase(string baseDirectory)
+    {
+      m_BaseDirectory = baseDirectory;
+    }
+    /// <summary>
     /// Gets or sets the base directory.
     /// </summary>
     /// <value>The base directory.</value>

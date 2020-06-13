@@ -27,9 +27,8 @@ namespace CAS.UA.Model.Designer.IO
 
     bool SaveModelDesign();
 
-    void ReadModelDesign();
-    string CalculateEffectiveAbsoluteModelFilePath();
     void SaveModelDesign(XmlFile.DataToSerialize<OPCFModelDesign> modelDesign);
+
     void Build(TextWriter output);
   }
 
@@ -39,11 +38,10 @@ namespace CAS.UA.Model.Designer.IO
   internal class OPCFModelConfigurationManagement : TypeGenericConfigurationManagement<OPCFModelDesign>, IOPCFModelConfigurationManagement
   {
     #region private
-    private const string m_ModelExtension = ".xml";
 
     private readonly UAModelDesignerProject m_UAModelDesignerProject;
     private readonly ISolutionConfigurationManagement m_ISolutionConfigurationManagement;
-    private OPCFModelDesign m_ModelDesign;
+    private readonly OPCFModelDesign m_ModelDesign;
 
     /// <summary>
     /// Gets the type of the configuration.
@@ -60,33 +58,21 @@ namespace CAS.UA.Model.Designer.IO
     {
       throw new NotImplementedException();
     }
+
     private static string ReplaceTokenAndReturnFullPath(string fileNameToBeProcessed, string projectName, string solutionDirectory)
     {
       string _Name = fileNameToBeProcessed.Replace(Resources.Token_ProjectFileName, projectName);
       return RelativeFilePathsCalculator.CalculateAbsoluteFileName(_Name, solutionDirectory);
     }
+
     private void SolutionHomeDirectoryBaseDirectoryPathChanged(object sender, NewDirectoryPathEventArgs e)
     {
       string _oldAbsoluteFilePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.m_UAModelDesignerProject.FileName, e.OldDirectoryPath);
       string _newAbsoluteFilePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.m_UAModelDesignerProject.FileName, e.NewDirectoryPath);
       this.m_UAModelDesignerProject.FileName = RelativeFilePathsCalculator.TryComputeRelativePath(_newAbsoluteFilePath, _oldAbsoluteFilePath);
     }
-    /// <summary>
-    /// Gets or sets the model file name.
-    /// </summary>
-    /// <value>The name of the file.</value>
-    internal string FileName
-    {
-      get
-      {
-        if (!Path.HasExtension(m_UAModelDesignerProject.FileName))
-          return Path.ChangeExtension(m_UAModelDesignerProject.FileName, m_ModelExtension);
-        else
-          return m_UAModelDesignerProject.FileName;
-      }
-    }
 
-    internal string CSVFileName
+    private string CSVFileName
     {
       get
       {
@@ -97,15 +83,9 @@ namespace CAS.UA.Model.Designer.IO
       set => m_UAModelDesignerProject.CSVFileName = value;
     }
 
-    internal string CSVFilePath => ReplaceTokenAndReturnFullPath(CSVFileName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.SolutionDirectoryPathManagement.BaseDirectory);
+    private string CSVFilePath => ReplaceTokenAndReturnFullPath(CSVFileName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.SolutionDirectoryPathManagement.BaseDirectory);
 
-    internal Guid ProjectIdentifier
-    {
-      get => new Guid(m_UAModelDesignerProject.ProjectIdentifier);
-      set => m_UAModelDesignerProject.ProjectIdentifier = value.ToString();
-    }
-
-    internal string BuildOutputDirectoryName
+    private string BuildOutputDirectoryName
     {
       get
       {
@@ -116,35 +96,59 @@ namespace CAS.UA.Model.Designer.IO
       set => m_UAModelDesignerProject.BuildOutputDirectoryName = value;
     }
 
-    internal string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.SolutionDirectoryPathManagement.BaseDirectory);
+    private string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.SolutionDirectoryPathManagement.BaseDirectory);
 
-    #endregion private 
+    private static OPCFModelDesign ReadModelDesign(string solutionDirectoryPathManagementBaseDirectory, string fileName)
+    {
+      //m_ModelDesign = this.ReadConfiguration();
+      string _filePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(fileName, solutionDirectoryPathManagementBaseDirectory);
+      if (!File.Exists(_filePath))
+        throw new FileNotFoundException($"Cannot find the model file at { _filePath}");
+      return XmlFile.ReadXmlFile<OPCFModelDesign>(_filePath);
+    }
+
+    /// <summary>
+    /// Calculates the effective absolute model file path.
+    /// </summary>
+    /// <returns>System.String.</returns>
+    private string CalculateEffectiveAbsoluteModelFilePath()
+    {
+      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_UAModelDesignerProject.FileName, this.m_ISolutionConfigurationManagement.SolutionDirectoryPathManagement.BaseDirectory);
+    }
+
+    #endregion private
 
     #region constructor
 
-    internal OPCFModelConfigurationManagement(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, UAModelDesignerProject uaModelDesignerProject) :
-      base(graphicalUserInterface, uaModelDesignerProject.Name)
+    private OPCFModelConfigurationManagement(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, UAModelDesignerProject uaModelDesignerProject, OPCFModelDesign modelDesign) :
+      base(graphicalUserInterface, uaModelDesignerProject.FileName)
     {
-      m_UAModelDesignerProject = uaModelDesignerProject ?? throw new ArgumentNullException(nameof(uaModelDesignerProject));
-      m_ISolutionConfigurationManagement = solution ?? throw new ArgumentNullException(nameof(solution));
+      m_ISolutionConfigurationManagement = solution;
+      m_UAModelDesignerProject = uaModelDesignerProject;
       solution.SolutionDirectoryPathManagement.BaseDirectoryPathChanged += SolutionHomeDirectoryBaseDirectoryPathChanged;
-    }
-
-    public OPCFModelConfigurationManagement(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, string Name, OPCFModelDesign modelDesign) : base(graphicalUserInterface, Name)
-    {
       this.m_ModelDesign = modelDesign;
-      this.m_ISolutionConfigurationManagement = solution ?? throw new ArgumentNullException(nameof(solution));
-      this.m_ModelDesign = modelDesign;
-      solution.SolutionDirectoryPathManagement.BaseDirectoryPathChanged += SolutionHomeDirectoryBaseDirectoryPathChanged;
     }
 
     internal static IOPCFModelConfigurationManagement ImportNodeSet(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, Action<TraceMessage> traceEvent)
     {
+      if (solution == null) throw new ArgumentNullException(nameof(solution));
+      if (graphicalUserInterface == null) throw new ArgumentNullException(nameof(graphicalUserInterface));
       Tuple<OPCFModelDesign, string> _model = IO.ImportNodeSet.Import(solution.SolutionDirectoryPathManagement.BaseDirectory, traceEvent);
       if (_model == null)
         return null;
-      return new OPCFModelConfigurationManagement(solution, graphicalUserInterface, _model.Item2, _model.Item1);
+      UAModelDesignerProject _newProjctDesription = UAModelDesignerProject.CreateEmpty(solution.SolutionDirectoryPathManagement.BaseDirectory, _model.Item2);
+      return new OPCFModelConfigurationManagement(solution, graphicalUserInterface, _newProjctDesription, _model.Item1);
     }
+
+    internal static IOPCFModelConfigurationManagement ImportModelDesign(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, UAModelDesignerProject uaModelDesignerProject)
+    {
+      if (solution == null) throw new ArgumentNullException(nameof(solution));
+      if (graphicalUserInterface == null) throw new ArgumentNullException(nameof(graphicalUserInterface));
+      if (uaModelDesignerProject == null) throw new ArgumentNullException(nameof(uaModelDesignerProject));
+      OPCFModelDesign _modelDesign = ReadModelDesign(solution.SolutionDirectoryPathManagement.BaseDirectory, uaModelDesignerProject.FileName);
+      return new OPCFModelConfigurationManagement(solution, graphicalUserInterface, uaModelDesignerProject, _modelDesign);
+    }
+
     /// <summary>
     /// Creates new model encapsulated by instance of this class
     /// </summary>
@@ -154,53 +158,43 @@ namespace CAS.UA.Model.Designer.IO
     /// <returns><see cref="IOPCFModelConfigurationManagement"/>.</returns>
     internal static IOPCFModelConfigurationManagement CreateNew(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, string projectName)
     {
-      UAModelDesignerProject _projectDescription = new UAModelDesignerProject()
+      if (solution == null) throw new ArgumentNullException(nameof(solution));
+      if (graphicalUserInterface == null) throw new ArgumentNullException(nameof(graphicalUserInterface));
+      UAModelDesignerProject _projectDescription = UAModelDesignerProject.CreateEmpty(solution.SolutionDirectoryPathManagement.BaseDirectory, projectName);
+      OPCFModelDesign _OPCFModelDesign = new OPCFModelDesign()
       {
-        BuildOutputDirectoryName = Resources.DefaultOutputBuildDirectory,
-        CSVFileName = Resources.DefaultCSVFileName,
-        FileName = RelativeFilePathsCalculator.TryComputeRelativePath(solution.SolutionDirectoryPathManagement.BaseDirectory, projectName),
-        ProjectIdentifier = Guid.NewGuid().ToString(),
-        Name = projectName
+        TargetNamespace = Settings.Default.TargetNamespace,
+        Namespaces = new Opc.Ua.ModelCompiler.Namespace[]
+            { new  Opc.Ua.ModelCompiler.Namespace()
+               {
+                 Value = Settings.Default.TargetNamespace,
+                 XmlPrefix = Settings.Default.TargetNamespaceXmlPrefix,
+                 Name = Settings.Default.TargetNamespaceXmlPrefix
+               },
+             new Opc.Ua.ModelCompiler.Namespace()
+               {
+                 //Value = OPCUATargetNamespace, // TODO it is not present in new ModelCompiler release.
+                 XmlPrefix = Settings.Default.XmlUATypesPrefix,
+                 Name = Settings.Default.XmlUATypesPrefix
+               }
+            }
       };
-      return new OPCFModelConfigurationManagement(solution, graphicalUserInterface, projectName, new OPCFModelDesign());
+      return new OPCFModelConfigurationManagement(solution, graphicalUserInterface, _projectDescription, _OPCFModelDesign);
     }
+
     #endregion constructor
 
     #region IOPCFModelConfigurationManagement
 
     OPCFModelDesign IOPCFModelConfigurationManagement.ModelDesign => m_ModelDesign;
 
-    void IOPCFModelConfigurationManagement.ReadModelDesign()
-    {
-      m_ModelDesign = this.ReadConfiguration();
-    }
-
-    UAModelDesignerProject IOPCFModelConfigurationManagement.UAModelDesignerProject { get; }
-
+    UAModelDesignerProject IOPCFModelConfigurationManagement.UAModelDesignerProject => m_UAModelDesignerProject;
     string IOPCFModelConfigurationManagement.Name => this.m_UAModelDesignerProject.Name;
 
+    //TODO Changing of the solution location doesn't recalculate the projects paths #134 - save operations must be consolidated
     bool IOPCFModelConfigurationManagement.SaveModelDesign()
     {
       return base.Save(false, m_ModelDesign);
-    }
-
-    internal static IOPCFModelConfigurationManagement ImportModelDesign(OPCFSolutionConfigurationManagement oPCFSolutionConfigurationManagement, IGraphicalUserInterface graphicalUserInterface, UAModelDesignerProject x)
-    {
-      throw new NotImplementedException();
-    }
-
-    /// <summary>
-    /// Calculates the effective absolute model file path.
-    /// </summary>
-    /// <returns>System.String.</returns>
-    public string CalculateEffectiveAbsoluteModelFilePath()
-    {
-      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.FileName, this.m_ISolutionConfigurationManagement.SolutionDirectoryPathManagement.BaseDirectory);
-    }
-
-    string IOPCFModelConfigurationManagement.CalculateEffectiveAbsoluteModelFilePath()
-    {
-      throw new NotImplementedException();
     }
 
     void IOPCFModelConfigurationManagement.SaveModelDesign(XmlFile.DataToSerialize<OPCFModelDesign> modelDesign)
@@ -208,6 +202,7 @@ namespace CAS.UA.Model.Designer.IO
       string _filePath = CalculateEffectiveAbsoluteModelFilePath();
       XmlFile.WriteXmlFile<OPCFModelDesign>(modelDesign, _filePath, FileMode.Create);
     }
+
     /// <summary>
     /// Builds the project and write any massages to specified output.
     /// </summary>
@@ -285,7 +280,7 @@ namespace CAS.UA.Model.Designer.IO
           output.WriteLine(outputfrombuildprocess);
       }
     }
-    #endregion IOPCFModelConfigurationManagement
 
+    #endregion IOPCFModelConfigurationManagement
   }
 }

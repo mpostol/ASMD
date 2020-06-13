@@ -75,9 +75,8 @@ namespace CAS.UA.Model.Designer.IO
         base.BaseDirectory = path;
       }
 
-      public SolutionDirectoryPathManagement(string defaultPath)
+      public SolutionDirectoryPathManagement(string defaultPath) : base(defaultPath)
       {
-        base.BaseDirectory = defaultPath;
       }
     }
 

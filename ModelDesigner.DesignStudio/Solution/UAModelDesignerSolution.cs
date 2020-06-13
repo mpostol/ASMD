@@ -6,6 +6,8 @@
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
+using System;
+using System.IO;
 using System.Runtime.Serialization;
 
 namespace CAS.UA.Model.Designer.Solution
@@ -16,7 +18,7 @@ namespace CAS.UA.Model.Designer.Solution
   public partial class UAModelDesignerSolution
   {
     /// <summary>
-    /// Creates the empty model.
+    /// Creates an empty solution model.
     /// </summary>
     /// <returns>UAModelDesignerSolution.</returns>
     internal static UAModelDesignerSolution CreateEmptyModel()
@@ -44,6 +46,20 @@ namespace CAS.UA.Model.Designer.Solution
     internal static UAModelDesignerSolutionServerDetails CreateEmptyInstance()
     {
       return new UAModelDesignerSolutionServerDetails() { codebase = string.Empty, configuration = string.Empty };
+    }
+  }
+  public partial class UAModelDesignerProject
+  {
+    internal static UAModelDesignerProject CreateEmpty(string solutionBaseDirectory, string name)
+    {
+      return new UAModelDesignerProject()
+      {
+        buildOutputDirectoryNameField = Path.Combine(solutionBaseDirectory, name),
+        cSVFileNameField = Resources.DefaultCSVFileName,
+        fileNameField = Path.ChangeExtension(name, "xml"),
+        nameField = name,
+        ProjectIdentifier = Guid.NewGuid().ToString(), 
+      };
     }
   }
 }

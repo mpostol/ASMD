@@ -11,7 +11,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.IO;
-using System.Xml;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -26,6 +25,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       string m_DemoConfigurationAbsoluteFilePath = Path.Combine(context.TestRunDirectory, m_DemoConfigurationFilePath);
       Assert.IsTrue(File.Exists(m_DemoConfigurationFilePath));
     }
+
     [TestMethod]
     //TODO Error while using Save operation #129 work on the test
     public void CreateNewModelTest()
@@ -35,7 +35,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       CheckConsistency(new ProjectTreeNode(_directory.Object));
       Assert.AreEqual<string>(_currentFolder, Directory.GetCurrentDirectory());
     }
-
 
     // TODO Changing of the solution location doesn't recalculate the projects paths #134
     //[TestMethod]
@@ -127,6 +126,10 @@ namespace CAS.UA.Model.Designer.Wrappers
       internal void SetNewPath(string path)
       {
         base.BaseDirectory = path;
+      }
+
+      public SolutionDirectoryPathManagement(string baseDirectory) : base(baseDirectory)
+      {
       }
     }
 
