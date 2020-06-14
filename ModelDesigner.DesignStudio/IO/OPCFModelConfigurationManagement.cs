@@ -121,8 +121,9 @@ namespace CAS.UA.Model.Designer.IO
     #region constructor
 
     private OPCFModelConfigurationManagement(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, UAModelDesignerProject uaModelDesignerProject, OPCFModelDesign modelDesign) :
-      base(graphicalUserInterface, uaModelDesignerProject.FileName)
+      base(uaModelDesignerProject.FileName)
     {
+      GraphicalUserInterface = graphicalUserInterface;
       m_ISolutionConfigurationManagement = solution;
       m_UAModelDesignerProject = uaModelDesignerProject;
       solution.SolutionDirectoryPathManagement.BaseDirectoryPathChanged += SolutionHomeDirectoryBaseDirectoryPathChanged;

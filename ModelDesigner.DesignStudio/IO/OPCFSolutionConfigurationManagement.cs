@@ -34,6 +34,8 @@ namespace CAS.UA.Model.Designer.IO
     void CreateNewModel(Action<TraceMessage> traceEvent);
 
     void OpenExistingModel(Action<TraceMessage> traceEvent);
+
+    IGraphicalUserInterface GraphicalUserInterface { get; set; }
   }
 
   /// <summary>
@@ -42,30 +44,6 @@ namespace CAS.UA.Model.Designer.IO
   internal sealed class OPCFSolutionConfigurationManagement : TypeGenericConfigurationManagement<UAModelDesignerSolution>, ISolutionConfigurationManagement
   {
     #region private
-
-    /// <summary>
-    /// Class GraphicalUserInterface - stub implementation of the <see cref="IGraphicalUserInterface"/>
-    /// Implements the <see cref="IGraphicalUserInterface" />
-    /// </summary>
-    /// <seealso cref="IGraphicalUserInterface" />
-    private class GraphicalUserInterfaceStub : IGraphicalUserInterface
-    {
-      public Action<string, string> MessageBoxShowWarning => throw new NotImplementedException();
-
-      public Action<string, string> MessageBoxShowExclamation => throw new NotImplementedException();
-
-      public Action<string, string> MessageBoxShowError => throw new NotImplementedException();
-
-      public Func<IFileDialog> OpenFileDialogFunc => throw new NotImplementedException();
-
-      public Func<IFileDialog> SaveFileDialogFuc => throw new NotImplementedException();
-
-      public Func<IFolderBrowserDialog> OpenFolderBrowserDialogFunc => throw new NotImplementedException();
-
-      public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
-
-      public bool UseWaitCursor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    }
 
     private class SolutionDirectoryPathManagement : SolutionDirectoryPathManagementBase
     {
@@ -111,7 +89,7 @@ namespace CAS.UA.Model.Designer.IO
       m_LastOpenedFile = e.String;
     }
 
-    private OPCFSolutionConfigurationManagement(IGraphicalUserInterface graphicalUserInterface, string fileName) : base(graphicalUserInterface, fileName)
+    private OPCFSolutionConfigurationManagement(string fileName) : base(fileName)
     {
       m_PathManagement = new SolutionDirectoryPathManagement(Path.GetDirectoryName(fileName));
     }
@@ -186,7 +164,7 @@ namespace CAS.UA.Model.Designer.IO
           {
             AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 204, "Creating new instance OPCFSolutionConfigurationManagement");
             string _defPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UAModelDesignerSolution");
-            m_This = new OPCFSolutionConfigurationManagement(new GraphicalUserInterfaceStub(), _defPath);
+            m_This = new OPCFSolutionConfigurationManagement(_defPath);
             m_This.CommonInitialization();
           }
           catch (Exception ex)
