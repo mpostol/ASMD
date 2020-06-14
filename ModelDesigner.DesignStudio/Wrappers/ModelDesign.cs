@@ -22,28 +22,28 @@ namespace CAS.UA.Model.Designer.Wrappers
   {
     #region creators
 
-    internal ModelDesign()
-      : this
-      (
-        new OPCFModelDesign()
-        {
-          TargetNamespace = Settings.Default.TargetNamespace,
-          Namespaces = new Opc.Ua.ModelCompiler.Namespace[]
-            { new  Opc.Ua.ModelCompiler.Namespace()
-               { Value = Settings.Default.TargetNamespace,
-                 XmlPrefix = Settings.Default.TargetNamespaceXmlPrefix,
-                 Name = Settings.Default.TargetNamespaceXmlPrefix
-               },
-             new Opc.Ua.ModelCompiler.Namespace()
-               { Value = OPCUATargetNamespace,
-                 XmlPrefix = Settings.Default.XmlUATypesPrefix,
-                 Name = Settings.Default.XmlUATypesPrefix
-               }
-            }
-        },
-        false
-      )
-    { }
+    //internal ModelDesign()
+    //  : this
+    //  (
+    //    new OPCFModelDesign()
+    //    {
+    //      TargetNamespace = Settings.Default.TargetNamespace,
+    //      Namespaces = new Opc.Ua.ModelCompiler.Namespace[]
+    //        { new  Opc.Ua.ModelCompiler.Namespace()
+    //           { Value = Settings.Default.TargetNamespace,
+    //             XmlPrefix = Settings.Default.TargetNamespaceXmlPrefix,
+    //             Name = Settings.Default.TargetNamespaceXmlPrefix
+    //           },
+    //         new Opc.Ua.ModelCompiler.Namespace()
+    //           { Value = OPCUATargetNamespace,
+    //             XmlPrefix = Settings.Default.XmlUATypesPrefix,
+    //             Name = Settings.Default.XmlUATypesPrefix
+    //           }
+    //        }
+    //    },
+    //    false
+    //  )
+    //{ }
 
     internal ModelDesign(OPCFModelDesign node, bool library) : base(new Wrappers4ProperyGrid.ModelDesign(node))
     {

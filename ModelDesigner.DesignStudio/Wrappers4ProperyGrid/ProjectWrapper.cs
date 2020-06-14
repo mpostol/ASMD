@@ -15,11 +15,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// </summary>
   /// <remarks>Project wrapper to provide information about the project to the user.</remarks>
   [DefaultProperty("FilePath")]
-  internal class ProjectWrapper : NameWithEventBase<ProjectTreeNode>, IViewModel
+  internal class ProjectWrapper : NameWithEventBase<IProjectModel>, IViewModel
   {
     #region constructors
 
-    internal ProjectWrapper(ProjectTreeNode projectModel) : base(projectModel)
+    internal ProjectWrapper(IProjectModel projectModel) : base(projectModel)
     {
     }
 

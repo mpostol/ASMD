@@ -30,7 +30,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
     public void Constructor1Test()
     {
 
-      Mock<WrappersModel.ProjectTreeNode> _projectObjectModel = new Mock<WrappersModel.ProjectTreeNode>();
+      Mock<WrappersModel.IProjectModel> _projectObjectModel = new Mock<WrappersModel.IProjectModel>();
       ProjectWrapper _projectWrapper = new ProjectWrapper(_projectObjectModel.Object);
       Assert.Inconclusive("Use moc to test CAS.UA.Model.Designer.Wrappers4PropertyGrid #40");
       // Assert.Inconclusive("_projectWrapper.Text is generated dynamically so it cannot be reproduced");

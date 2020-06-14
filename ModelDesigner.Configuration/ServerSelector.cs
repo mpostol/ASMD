@@ -68,7 +68,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// </summary>
     public ServerSelector(IGraphicalUserInterface _graphicalUserInterface, ISolutionDirectoryPathManagement solutionPath, string codebase, string configuration)
     {
-      m_SolutionPath = solutionPath ?? throw new ArgumentNullException(nameof(solutionPath), $"while creating the {nameof(ServerSelector)} this parameter cannot be null");
       GraphicalUserInterface = _graphicalUserInterface ?? throw new ArgumentNullException(nameof(_graphicalUserInterface));
       OpenPlugIn(solutionPath, codebase, configuration);
       LicenseProtection.CheckConstrain();
@@ -274,7 +273,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     }
 
     private ServerWrapper m_Server = null;
-    private readonly ISolutionDirectoryPathManagement m_SolutionPath;
     private static IGraphicalUserInterface GraphicalUserInterface;
 
     //methods

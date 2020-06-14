@@ -23,22 +23,23 @@ namespace CAS.UA.Model.Designer.IO
   internal interface ISolutionConfigurationManagement
   {
     string Name { get; }
-    UAModelDesignerSolutionServerDetails ServerDetails { get; }
     IEnumerable<IOPCFModelConfigurationManagement> Projects { get; }
     ISolutionDirectoryPathManagement SolutionDirectoryPathManagement { get; }
+    ServerSelector ServerSelector { get; }
 
     void Save(bool prompt);
 
     void ImportNodeSet(Action<TraceMessage> traceEvent);
 
     void CreateNewModel(Action<TraceMessage> traceEvent);
+
     void OpenExistingModel(Action<TraceMessage> traceEvent);
   }
 
   /// <summary>
   /// Singleton class to save and restore solution configuration to/from external file.
   /// </summary>
-  internal sealed class OPCFSolutionConfigurationManagement : TypeGenericConfigurationManagement<UAModelDesignerSolution>, ISolutionConfigurationManagement//, IBaseDirectoryProvider
+  internal sealed class OPCFSolutionConfigurationManagement : TypeGenericConfigurationManagement<UAModelDesignerSolution>, ISolutionConfigurationManagement
   {
     #region private
 
@@ -66,8 +67,6 @@ namespace CAS.UA.Model.Designer.IO
       public bool UseWaitCursor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 
-    private static UniqueNameGenerator m_UniqueNameGenerator = new UniqueNameGenerator(Resources.DefaultProjectName);
-
     private class SolutionDirectoryPathManagement : SolutionDirectoryPathManagementBase
     {
       internal void SetNewPath(string path)
@@ -80,16 +79,14 @@ namespace CAS.UA.Model.Designer.IO
       }
     }
 
+    private static UniqueNameGenerator m_UniqueNameGenerator = new UniqueNameGenerator(Resources.DefaultProjectName);
     private readonly SolutionDirectoryPathManagement m_PathManagement;
-
-    /// <summary>
-    /// Gets the home directory path management.
-    /// </summary>
-    /// <value>The home directory.</value>
-    public ISolutionDirectoryPathManagement HomeDirectory => m_PathManagement;
-
+    private string m_Name;
     private static OPCFSolutionConfigurationManagement m_This;
     private string m_LastOpenedFile = string.Empty;
+    private UAModelDesignerSolutionServerDetails m_ServerDetails;
+    private ServerSelector m_Server;
+    private List<IOPCFModelConfigurationManagement> m_Projects;
 
     private void CommonInitialization()
     {
@@ -119,28 +116,18 @@ namespace CAS.UA.Model.Designer.IO
       m_PathManagement = new SolutionDirectoryPathManagement(Path.GetDirectoryName(fileName));
     }
 
-    private UAModelDesignerSolutionServerDetails m_ServerDetails;
-
     private UAModelDesignerSolution SaveProjectsCreateConfiguration()
     {
-      Server.Save(HomeDirectory);
+      m_Server.Save(m_PathManagement);
       foreach (IOPCFModelConfigurationManagement _project in m_Projects)
         _project.SaveModelDesign();
       return new UAModelDesignerSolution()
       {
-        Name = this.Name,
+        Name = this.m_Name,
         Projects = m_Projects.Select<IOPCFModelConfigurationManagement, UAModelDesignerProject>(x => x.UAModelDesignerProject).ToArray<UAModelDesignerProject>(),
         ServerDetails = this.m_ServerDetails ?? UAModelDesignerSolutionServerDetails.CreateEmptyInstance()
       };
     }
-
-    /// <summary>
-    /// Gets the UI to select a server plug-in.
-    /// </summary>
-    /// <value>An instance of <see cref="ServerSelector" /> used by a software user to select a server plug-in.</value>
-    public ServerSelector Server { get; private set; }
-
-    private List<IOPCFModelConfigurationManagement> m_Projects;
 
     protected override string ReadErrorInvalidOperationStringFormat => Resources.OPCFSolutionConfigurationManagement_ReadError;
 
@@ -150,8 +137,9 @@ namespace CAS.UA.Model.Designer.IO
       if (model == null)
         model = UAModelDesignerSolution.CreateEmptyModel();
       m_ServerDetails = model.ServerDetails ?? UAModelDesignerSolutionServerDetails.CreateEmptyInstance();
-      Name = model.Name;
+      m_Name = model.Name;
       m_Projects = model.Projects.Select<UAModelDesignerProject, IOPCFModelConfigurationManagement>(x => OPCFModelConfigurationManagement.ImportModelDesign(this, base.GraphicalUserInterface, x)).ToList<IOPCFModelConfigurationManagement>();
+      m_Server = new ServerSelector(base.GraphicalUserInterface, this.m_PathManagement, m_ServerDetails.codebase, m_ServerDetails.configuration);
       OnSolutionChanged();
       //e.Configuration.SetHomeDirectory(Path.GetDirectoryName(DefaultFileName));
       //SolutionRootNode = new SolutionTreeNode(e.Configuration, new ViewModelFactory(), Path.GetDirectoryName(DefaultFileName), new EventHandler<EventArgs>(OnNodeChange));
@@ -166,7 +154,7 @@ namespace CAS.UA.Model.Designer.IO
 
     protected override XmlFile.DataToSerialize<UAModelDesignerSolution> GetConfiguration(UAModelDesignerSolution configuration)
     {
-      string homeDirectory = Path.GetDirectoryName(this.DefaultFileName);
+      //string homeDirectory = Path.GetDirectoryName(this.DefaultFileName);
       XmlFile.DataToSerialize<UAModelDesignerSolution> _config;
       _config.Data = configuration;
       _config.XmlNamespaces = null;
@@ -174,13 +162,17 @@ namespace CAS.UA.Model.Designer.IO
       return _config;
     }
 
+    #endregion private
+
+    #region public
+
     public override void New()
     {
       DefaultFileName = Settings.Default.DefaultSolutionFileName;
       base.New();
     }
 
-    #endregion private
+    #endregion public
 
     #region internal singleton
 
@@ -208,17 +200,29 @@ namespace CAS.UA.Model.Designer.IO
       }
     }
 
+    internal class AfterSolutionChangeEventArgs : EventArgs
+    {
+      public ISolutionConfigurationManagement Solution { get; private set; }
+
+      public AfterSolutionChangeEventArgs(ISolutionConfigurationManagement solution)
+      {
+        Solution = solution;
+      }
+    }
+
+    internal event EventHandler<AfterSolutionChangeEventArgs> AfterSolutionChange;
+
+    #endregion internal singleton
+
     #region ISolutionConfigurationManagement
-
-    public string Name { get; private set; }
-
-    UAModelDesignerSolutionServerDetails ISolutionConfigurationManagement.ServerDetails => m_ServerDetails;
 
     IEnumerable<IOPCFModelConfigurationManagement> ISolutionConfigurationManagement.Projects => m_Projects;
 
     ISolutionDirectoryPathManagement ISolutionConfigurationManagement.SolutionDirectoryPathManagement => m_PathManagement;
 
-    string ISolutionConfigurationManagement.Name => throw new NotImplementedException();
+    string ISolutionConfigurationManagement.Name => m_Name;
+
+    ServerSelector ISolutionConfigurationManagement.ServerSelector => m_Server;
 
     void ISolutionConfigurationManagement.Save(bool prompt)
     {
@@ -259,19 +263,5 @@ namespace CAS.UA.Model.Designer.IO
     }
 
     #endregion ISolutionConfigurationManagement
-
-    internal class AfterSolutionChangeEventArgs : EventArgs
-    {
-      public ISolutionConfigurationManagement Solution { get; private set; }
-
-      public AfterSolutionChangeEventArgs(ISolutionConfigurationManagement solution)
-      {
-        Solution = solution;
-      }
-    }
-
-    internal event EventHandler<AfterSolutionChangeEventArgs> AfterSolutionChange;
-
-    #endregion internal singleton
   }
 }

@@ -7,11 +7,9 @@
 
 using CAS.CommServer.UA.ModelDesigner.Configuration;
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
-using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
-using CAS.UA.Model.Designer.Solution;
 using CAS.UA.Model.Designer.ToForms;
 using System;
 using System.Collections.Generic;
@@ -120,7 +118,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get
       {
-        ServerSelector.ServerDescriptor _descriptor = this. Server.ServerConfiguration;
+        ServerSelector.ServerDescriptor _descriptor = this.Server.ServerConfiguration;
         if (_descriptor == null)
           return null;
         if (!string.IsNullOrEmpty(_descriptor.Codebase))
@@ -148,18 +146,16 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </summary>
     /// <param name="messageBoxHandling">The Message Box instance to provide messages on the screen.</param>
     /// <param name="solution">The configuration.</param>
-    /// <param name="solutionPath">The solution path.</param>
     /// <param name="OnChangeHandler">The on change handler.</param>
     /// <param name="creteLibraryTreeNode">The call back to create <see cref="LibraryTreeNode"/>.</param>
     /// <exception cref="ArgumentNullException">configuration
     /// or
     /// messageBoxHandling</exception>
-    internal SolutionTreeNode(IMessageBoxHandling messageBoxHandling, ISolutionConfigurationManagement solution, string solutionPath, EventHandler<EventArgs> OnChangeHandler, Action<LibraryTreeNode> creteLibraryTreeNode) :
+    internal SolutionTreeNode(IMessageBoxHandling messageBoxHandling, ISolutionConfigurationManagement solution, EventHandler<EventArgs> OnChangeHandler, Action<LibraryTreeNode> creteLibraryTreeNode) :
       base(null, solution == null ? Guid.NewGuid().ToString() : solution.Name)
     {
       MessageBoxHandling = messageBoxHandling ?? throw new ArgumentNullException(nameof(messageBoxHandling));
-      m_ISolutionConfigurationManagement = solution ??  throw new ArgumentNullException(nameof(solution), $"In constructor {nameof(SolutionTreeNode)} this argument must not be null.");
-      Server = new ServerSelector(new GraphicalUserInterface(), HomeDirectory, solution.ServerDetails.codebase, solution.ServerDetails.configuration);
+      m_ISolutionConfigurationManagement = solution ?? throw new ArgumentNullException(nameof(solution), $"In constructor {nameof(SolutionTreeNode)} this argument must not be null.");
       Server.OnConfigurationChanged += new EventHandler<UAServerConfigurationEventArgs>(Server_OnConfigurationChanged);
       //TODO OnDataChanged += OnChangeHandler;
       //TODO OnNameChanged += new EventHandler(configuration_OnNameChanged);
@@ -269,9 +265,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Gets the UI to select a server plug-in.
     /// </summary>
     /// <value>An instance of <see cref="ServerSelector" /> used by a software user to select a server plug-in.</value>
-    public ServerSelector Server { get; private set; }
+    public ServerSelector Server => m_ISolutionConfigurationManagement.ServerSelector;
 
-    public ISolutionDirectoryPathManagement HomeDirectory { get { return m_ISolutionConfigurationManagement.SolutionDirectoryPathManagement ?? throw new System.ArgumentNullException(); } }
+    public ISolutionDirectoryPathManagement HomeDirectory => m_ISolutionConfigurationManagement.SolutionDirectoryPathManagement ?? throw new System.ArgumentNullException();
 
     ISolutionDirectoryPathManagement ISolutionTreeNodeUI.HomeDirectory => throw new NotImplementedException();
 

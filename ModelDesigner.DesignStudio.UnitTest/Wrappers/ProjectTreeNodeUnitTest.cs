@@ -11,6 +11,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.IO;
+using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -31,8 +32,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     public void CreateNewModelTest()
     {
       String _currentFolder = Directory.GetCurrentDirectory();
-      Mock<IOPCFModelConfigurationManagement> _directory = new Mock<IOPCFModelConfigurationManagement>();
-      CheckConsistency(new ProjectTreeNode(_directory.Object));
+      Mock<IOPCFModelConfigurationManagement> _project = new Mock<IOPCFModelConfigurationManagement>();
+      _project.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(new OPCFModelDesign());
+      _project.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
+      CheckConsistency(new ProjectTreeNode(_project.Object));
       Assert.AreEqual<string>(_currentFolder, Directory.GetCurrentDirectory());
     }
 
@@ -99,7 +102,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       Assert.ThrowsException<NullReferenceException>(() => _newItem.GetTargetNamespace());
       Assert.IsNull(_newItem.Parent);
       Assert.IsNotNull(_newItem.SymbolicName);
-      Assert.IsTrue(_newItem.Text.StartsWith(@"Model_"), _newItem.Text);
+      Assert.AreEqual<string>(@"EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327", _newItem.Text);
       Assert.IsTrue(String.IsNullOrEmpty(_newItem.ToolTipText));
       //CheckConsistency(_newItem.UAModelDesignerProject);
       object _viewModel = _newItem.Wrapper;
