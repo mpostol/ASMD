@@ -68,7 +68,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// </summary>
     public ServerSelector(IGraphicalUserInterface _graphicalUserInterface, ISolutionDirectoryPathManagement solutionPath, string codebase, string configuration)
     {
-      m_SolutionPath = solutionPath ?? throw new ArgumentNullException(nameof(solutionPath), $"while creating the {nameof(ServerSelector)} this parameter cannot be null");
       GraphicalUserInterface = _graphicalUserInterface ?? throw new ArgumentNullException(nameof(_graphicalUserInterface));
       OpenPlugIn(solutionPath, codebase, configuration);
       LicenseProtection.CheckConstrain();
@@ -195,19 +194,19 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     {
       if (SelectedAssembly == null)
         return;
-      SelectedAssembly.Save(solutionPath.BaseDirectory);
+      SelectedAssembly.Save(solutionPath.DefaultDirectory);
     }
 
-    /// <summary>
-    /// Sets the home directory to create relative paths of other files.
-    /// </summary>
-    /// <param name="newHomeDirectory">The new home directory.</param>
-    public void SetHomeDirectory(string newHomeDirectory)
-    {
-      if (SelectedAssembly == null)
-        return;
-      SelectedAssembly.SetHomeDirectory(newHomeDirectory);
-    }
+    ///// <summary>
+    ///// Sets the home directory to create relative paths of other files.
+    ///// </summary>
+    ///// <param name="newHomeDirectory">The new home directory.</param>
+    //public void SetHomeDirectory(string newHomeDirectory)
+    //{
+    //  if (SelectedAssembly == null)
+    //    return;
+    //  SelectedAssembly.SetHomeDirectory(newHomeDirectory);
+    //}
 
     #endregion public
 
@@ -274,7 +273,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     }
 
     private ServerWrapper m_Server = null;
-    private readonly ISolutionDirectoryPathManagement m_SolutionPath;
     private static IGraphicalUserInterface GraphicalUserInterface;
 
     //methods
@@ -297,7 +295,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       //TODO Error while using Save operation #129
       if (!IO.RelativeFilePathsCalculator.TestIfPathIsAbsolute(codebase))
       {
-        _fileInfo = new FileInfo(Path.Combine(solutionPath.BaseDirectory, codebase));
+        _fileInfo = new FileInfo(Path.Combine(solutionPath.DefaultDirectory, codebase));
         if (!_fileInfo.Exists && !string.IsNullOrEmpty(Assembly.GetExecutingAssembly().Location))
           _fileInfo = new FileInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), codebase));
         if (!_fileInfo.Exists)
@@ -346,7 +344,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       {
         using (IFileDialog _ofg = GraphicalUserInterface.OpenFileDialogFunc())
         {
-          string _baseDirectory = server.SolutionPath.BaseDirectory; //Problem with opening the server configuration editor plug-in #63
+          string _baseDirectory = server.SolutionPath.DefaultDirectory; //Problem with opening the server configuration editor plug-in #63
           if (!string.IsNullOrEmpty(_baseDirectory))
             _ofg.InitialDirectory = _baseDirectory;
           if (server != null && server.PluginDescription != null)

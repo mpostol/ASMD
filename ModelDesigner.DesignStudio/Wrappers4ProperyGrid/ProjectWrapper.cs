@@ -15,11 +15,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// </summary>
   /// <remarks>Project wrapper to provide information about the project to the user.</remarks>
   [DefaultProperty("FilePath")]
-  internal class ProjectWrapper : NameWithEventBase<ProjectTreeNode>, IViewModel
+  internal class ProjectWrapper : NameWithEventBase<IProjectModel>, IViewModel
   {
     #region constructors
 
-    internal ProjectWrapper(ProjectTreeNode projectModel) : base(projectModel)
+    internal ProjectWrapper(IProjectModel projectModel) : base(projectModel)
     {
     }
 
@@ -34,7 +34,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [DisplayName("Model file path")]
     [Category("Input")]
     [Description("Path of an xml file containing the model.")]
-    public string FilePath => ModelEntity.CalculateEffectiveAbsoluteModelFilePath();
+    public string FilePath => string.Empty;//ModelEntity.CalculateEffectiveAbsoluteModelFilePath();
 
     /// <summary>
     /// Gets or sets the name of the CSV file.
@@ -47,11 +47,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       "Set the name to particular name or combine the name with one of the following macros: \r\n" +
       "$(ProjectFileName) – project file name (without extension) \r\n")]
     [NotifyParentProperty(true)]
-    public string CSVFileName
-    {
-      get => ModelEntity.CSVFileName;
-      set => ModelEntity.CSVFileName = value;
-    }
+    public string CSVFileName => string.Empty; //ModelEntity.CSVFileName;
 
     /// <summary>
     /// Gets the CSV file path.
@@ -60,7 +56,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [DisplayName("CSV file path")]
     [Category("Output")]
     [Description("CSV file contains details about objects created by the UA server at start-up")]
-    public string CSVFilePath => ModelEntity.CSVFilePath;
+    public string CSVFilePath => string.Empty;// ModelEntity.CSVFilePath;
 
     [DisplayName("Build output directory")]
     [Category("Output")]
@@ -68,11 +64,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       "Set the name to particular name or combine the name with one of the following macros: \r\n" +
       "$(ProjectFileName) – project file name (without extension) \r\n")]
     [NotifyParentProperty(true)]
-    public string BuildOutputDirectoryName
-    {
-      get => ModelEntity.BuildOutputDirectoryName;
-      set => ModelEntity.BuildOutputDirectoryName = value;
-    }
+    public string BuildOutputDirectoryName => string.Empty;// ModelEntity.BuildOutputDirectoryName;
 
     /// <summary>
     /// Gets the build output directory path.
@@ -81,7 +73,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [DisplayName("Build output directory path")]
     [Category("Output")]
     [Description("It locates a default place where all output files created during the build will be created.")]
-    public string BuildOutputDirectoryPath => ModelEntity.BuildOutputDirectoryPath;
+    public string BuildOutputDirectoryPath => string.Empty; // ModelEntity.BuildOutputDirectoryPath;
 
     #endregion brows-able properties
 
@@ -95,7 +87,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     /// </returns>
     public override string ToString()
     {
-      return $"Project:{Name} ({ModelEntity.FileName})";
+      return $"Project:{Name} TBD"; // ({ModelEntity.FileName})";
     }
 
     #endregion override Object

@@ -25,7 +25,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
     public void ConstructorDefaultTest()
     {
       Mock<WrappersModel.ISolutionTreeNodeUI> _SolutionTreeNodeMock = new Mock<WrappersModel.ISolutionTreeNodeUI>();
-      _SolutionTreeNodeMock.Setup<string>(x => x.HomeDirectory.BaseDirectory).Returns(nameof(WrappersModel.ISolutionTreeNodeUI.HomeDirectory));
+      _SolutionTreeNodeMock.Setup<string>(x => x.HomeDirectory.DefaultDirectory).Returns(nameof(WrappersModel.ISolutionTreeNodeUI.HomeDirectory));
       _SolutionTreeNodeMock.Setup<string>(x => x.Text).Returns(nameof(WrappersModel.ISolutionTreeNodeUI.Text));
       _SolutionTreeNodeMock.Setup<string>(x => x.ToolTipText).Returns(nameof(WrappersModel.ISolutionTreeNodeUI.ToolTipText));
       UAModelDesignerSolutionWrapper _newSolution = new UAModelDesignerSolutionWrapper(_SolutionTreeNodeMock.Object);

@@ -27,7 +27,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [DisplayName("Home Directory")]
     [Category("Input")]
     [Description("Solution home directory.")]
-    public string HomeDirectory => ModelEntity.HomeDirectory.BaseDirectory;
+    public string HomeDirectory => ModelEntity.HomeDirectory.DefaultDirectory;
 
     /// <summary>
     /// Gets or sets information of the plug-in for a server.

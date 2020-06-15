@@ -22,28 +22,28 @@ namespace CAS.UA.Model.Designer.Wrappers
   {
     #region creators
 
-    public ModelDesign()
-      : this
-      (
-        new OPCFModelDesign()
-        {
-          TargetNamespace = Settings.Default.TargetNamespace,
-          Namespaces = new Opc.Ua.ModelCompiler.Namespace[]
-            { new  Opc.Ua.ModelCompiler.Namespace()
-               { Value = Settings.Default.TargetNamespace,
-                 XmlPrefix = Settings.Default.TargetNamespaceXmlPrefix,
-                 Name = Settings.Default.TargetNamespaceXmlPrefix
-               },
-             new Opc.Ua.ModelCompiler.Namespace()
-               { Value = OPCUATargetNamespace,
-                 XmlPrefix = Settings.Default.XmlUATypesPrefix,
-                 Name = Settings.Default.XmlUATypesPrefix
-               }
-            }
-        },
-        false
-      )
-    { }
+    //internal ModelDesign()
+    //  : this
+    //  (
+    //    new OPCFModelDesign()
+    //    {
+    //      TargetNamespace = Settings.Default.TargetNamespace,
+    //      Namespaces = new Opc.Ua.ModelCompiler.Namespace[]
+    //        { new  Opc.Ua.ModelCompiler.Namespace()
+    //           { Value = Settings.Default.TargetNamespace,
+    //             XmlPrefix = Settings.Default.TargetNamespaceXmlPrefix,
+    //             Name = Settings.Default.TargetNamespaceXmlPrefix
+    //           },
+    //         new Opc.Ua.ModelCompiler.Namespace()
+    //           { Value = OPCUATargetNamespace,
+    //             XmlPrefix = Settings.Default.XmlUATypesPrefix,
+    //             Name = Settings.Default.XmlUATypesPrefix
+    //           }
+    //        }
+    //    },
+    //    false
+    //  )
+    //{ }
 
     internal ModelDesign(OPCFModelDesign node, bool library) : base(new Wrappers4ProperyGrid.ModelDesign(node))
     {
@@ -60,14 +60,14 @@ namespace CAS.UA.Model.Designer.Wrappers
         OPCUATargetNamespace = Wrapper.TargetNamespace;
     }
 
-    internal static ModelDesign CreateRootOfOPCUAInfromationModel(string filePath)
-    {
-      FileInfo info = new FileInfo(filePath);
-      if (!info.Exists)
-        throw new FileNotFoundException($"Cannot find the file at { filePath}");
-      OPCFModelDesign _ModelDesign = XmlFile.ReadXmlFile<OPCFModelDesign>(filePath);
-      return new ModelDesign(_ModelDesign, false);
-    }
+    //internal static ModelDesign CreateRootOfOPCUAInfromationModel(string filePath)
+    //{
+    //  FileInfo info = new FileInfo(filePath);
+    //  if (!info.Exists)
+    //    throw new FileNotFoundException($"Cannot find the file at { filePath}");
+    //  OPCFModelDesign _ModelDesign = XmlFile.ReadXmlFile<OPCFModelDesign>(filePath);
+    //  return new ModelDesign(_ModelDesign, false);
+    //}
 
     #endregion creators
 
@@ -212,14 +212,14 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     #region internal
 
-    internal bool SaveModel(string filePath)
+    internal XmlFile.DataToSerialize<OPCFModelDesign> GetModel()
     {
       XmlFile.DataToSerialize<OPCFModelDesign> _config;
       _config.Data = ModelDesignerNode as OPCFModelDesign;
       _config.XmlNamespaces = XmlNamespaces;
       _config.StylesheetName = "OPCFModelDesign.xslt";
-      XmlFile.WriteXmlFile<OPCFModelDesign>(_config, filePath, System.IO.FileMode.Create);
-      return true;
+      //XmlFile.WriteXmlFile<OPCFModelDesign>(_config, filePath, System.IO.FileMode.Create);
+      return _config;
     }
 
     /// <summary>

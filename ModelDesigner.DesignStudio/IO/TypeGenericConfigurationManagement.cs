@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using System;
@@ -33,7 +32,6 @@ namespace CAS.UA.Model.Designer.IO
     protected virtual void RaiseConfigurationChanged(Type4Serialization model)
     {
       ChangesArePresent = true;
-      //ConfigurationChanged?.Invoke(this, new ConfigurationEventArg(m_Model));
     }
     /// <summary>
     /// Gets the configuration.
@@ -70,7 +68,7 @@ namespace CAS.UA.Model.Designer.IO
     #endregion private
 
     #region constructors
-    public TypeGenericConfigurationManagement(IGraphicalUserInterface graphicalUserInterface, string fileName) : base(graphicalUserInterface, fileName) { }
+    public TypeGenericConfigurationManagement(string fileName) : base(fileName) { }
     #endregion
 
     #region ConfigurationManagement

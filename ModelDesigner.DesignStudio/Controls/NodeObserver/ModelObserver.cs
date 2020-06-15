@@ -2,11 +2,11 @@
 //
 //  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
-using CAS.UA.Model.Designer.Solution;
 using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       this.m_TreeView.ImageList = this.m_ImagesForNodes.ImageListNodes;
       m_TreeView.CoupledNodesAreEnabled = Settings.Default.CoupledNodesAreEnabled;
       //solution initialization:
-      AddSolution();
+      OPCFSolutionConfigurationManagement.DefaultInstance.New();
       m_BackForwardTreViewToolStrip.TreeView = this.m_TreeView;
       m_SearchTreeViewToolStrip.TreeView = this.m_TreeView;
       m_SearchTreeViewToolStrip.SetAdditionalNodeTestDelegate = new SearchTreeViewHelper.AdditionalNodeTestDelegate(NodeSearchTest);
@@ -124,15 +124,10 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       return IWrapperTreeNodeFoundNode.Wrapper4PropertyGrid != null;
     }
 
-    private void AddSolution()
-    {
-      AddSolution(UAModelDesignerSolution.CreateEmptyModel());
-    }
-
-    private void AddSolution(UAModelDesignerSolution Solution)
+    private void AddSolution(ISolutionConfigurationManagement Solution)
     {
       m_TreeView.Nodes.Clear();
-      m_Solution = new SolutionTreeNode(new ToForms.MessageBoxHandling(), Solution, OPCFSolutionConfigurationManagement.DefaultInstance.DefaultDirectory, (x, y) => OPCFSolutionConfigurationManagement.DefaultInstance.SetChangesArePresent(),
+      m_Solution = new SolutionTreeNode(new ToForms.MessageBoxHandling(), Solution, (x, y) => OPCFSolutionConfigurationManagement.DefaultInstance.SetChangesArePresent(),
         x => m_TreeView.Nodes.Add(new LibraryTreeNodeControl(x)));
       SolutionTreeNodeControl _solutionRootTreeNode = new SolutionTreeNodeControl(m_Solution);
       m_Solution.OnDataChanged += new EventHandler<EventArgs>(Solution_OnDataChanged);

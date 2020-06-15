@@ -15,14 +15,20 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
   public interface ISolutionDirectoryPathManagement
   {
     /// <summary>
+    /// Gets or sets the default name of the file.
+    /// </summary>
+    /// <value>The default name of the file.</value>
+    string DefaultFileName { get; }
+
+    /// <summary>
     /// Gets the base directory path.
     /// </summary>
     /// <returns> <see cref="string"/> with the base directory path</returns>
-    string BaseDirectory { get; }
+    string DefaultDirectory { get; }
 
     /// <summary>
     /// Occurs when changes occur that affect the base directory path.
     /// </summary>
-    event EventHandler<NewDirectoryPathEventArgs> BaseDirectoryPathChanged;
+    event EventHandler<NewDirectoryPathEventArgs> DefaultFileNameHasChanged;
   }
 }

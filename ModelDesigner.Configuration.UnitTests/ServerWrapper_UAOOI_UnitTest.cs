@@ -50,7 +50,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       _configurationChanged = false;
       //TODO UANetworkingConfiguration[T].ReadConfiguration shows popup if file has errors #73
       Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
-      _directory.SetupGet(x => x.BaseDirectory).Returns(Directory.GetCurrentDirectory());
+      _directory.SetupGet(x => x.DefaultDirectory).Returns(Directory.GetCurrentDirectory());
       ServerWrapper _sw = new ServerWrapper(_serverConfiguration, _pluginAssembly, new GraphicalUserInterface(), _directory.Object, m_ConfigurationBaseFileName);
       Assert.IsNotNull(_sw);
       Assert.IsTrue(_configurationChanged);

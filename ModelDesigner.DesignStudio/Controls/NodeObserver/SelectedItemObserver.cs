@@ -1,19 +1,11 @@
-﻿
-/**///_______________________________________________________________
-//  Title   : SelectedItemObserver
-//  System  : Microsoft VisualStudio 2015 / C#
-//  $LastChangedDate:  $
-//  $Rev: $
-//  $LastChangedBy: $
-//  $URL: $
-//  $Id:  $
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2017, CAS LODZ POLAND.
-//  TEL: +48 608 61 98 99 
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
 
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Wrappers;
 using System;
@@ -23,12 +15,13 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {
   internal class SelectedItemObserver : UserControl, ISelectedItemObserver
   {
-
     #region private
+
     private bool m_RemoveMeFromParentTab = false;
     private IModelNode m_SelectedIModelNode;
     private TabPage m_TabPage = null;
     private TabControl m_TabControl = null;
+
     private void SelectedItemObserver_ParentChanged(object sender, System.EventArgs e)
     {
       if (Parent is TabPage)
@@ -39,18 +32,29 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       if (m_RemoveMeFromParentTab)
         RemoveMeFromParentTabControl();
     }
+
     #endregion private
 
     #region protected
-    protected virtual void AfterSolutionChange(object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e) { }
-    protected virtual void AfterSolution_OnDataChanged(object sender, EventArgs e) { }
+
+    protected virtual void AfterSolutionChange(object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e)
+    {
+    }
+
+    protected virtual void AfterSolution_OnDataChanged(object sender, EventArgs e)
+    {
+    }
+
     protected void ShowMessage(string message)
     {
-      Label infolabel = new Label();
-      infolabel.Size = this.Size;
-      infolabel.Text = message;
+      Label infolabel = new Label
+      {
+        Size = this.Size,
+        Text = message
+      };
       this.Controls.Add(infolabel);
     }
+
     protected void RemoveMeFromParentTabControl()
     {
       if (AutoTabAddRemoveIsOn)
@@ -64,34 +68,50 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
           m_RemoveMeFromParentTab = true;
       }
     }
+
     protected void AddMeToParentTabControl()
     {
       if (AutoTabAddRemoveIsOn && m_TabPage != null && m_TabControl != null && !m_TabControl.TabPages.Contains(m_TabPage))
         m_TabControl.TabPages.Add(m_TabPage);
     }
+
     protected void RaiseSelectedItemIsChanged(SelectedItemEventArgs e)
     {
       MainController.Instance.RaiseSelectedItemIsChanged(this, e);
     }
-    protected IModelNode SelectedIModelNode { get { return m_SelectedIModelNode; } }
-    protected virtual void OnSelectedItemIsChanged(object sender, SelectedItemEventArgs e) { }
+
+    protected IModelNode SelectedIModelNode => m_SelectedIModelNode;
+
+    protected virtual void OnSelectedItemIsChanged(object sender, SelectedItemEventArgs e)
+    {
+    }
+
     #endregion protected
 
     #region constructor
+
     protected SelectedItemObserver()
     {
       MainController.Instance.RegisterSelectedItemObserver(this);
       this.ParentChanged += new EventHandler(SelectedItemObserver_ParentChanged);
+      OPCFSolutionConfigurationManagement.DefaultInstance.GraphicalUserInterface = new GraphicalUserInterface();
       OPCFSolutionConfigurationManagement.DefaultInstance.AfterSolutionChange += new EventHandler<OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs>(AfterSolutionChange);
     }
-    #endregion
+
+    #endregion constructor
 
     #region internal API
+
     internal bool AutoTabAddRemoveIsOn { get; set; } = true;
-    internal virtual void Initialise() { }
-    #endregion internal
+
+    internal virtual void Initialise()
+    {
+    }
+
+    #endregion internal API
 
     #region ISelectedItemObserver
+
     public void OnSelectedItemIsChangedEventHandler(object sender, SelectedItemEventArgs e)
     {
       if (this != sender)
@@ -100,8 +120,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
         OnSelectedItemIsChanged(sender, e);
       }
     }
-    #endregion
 
+    #endregion ISelectedItemObserver
   }
-
 }
