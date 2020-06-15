@@ -128,7 +128,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       internal void SetNewPath(string path)
       {
-        base.BaseDirectory = path;
+        base.DefaultFileName = path;
       }
 
       public SolutionDirectoryPathManagement(string baseDirectory) : base(baseDirectory)

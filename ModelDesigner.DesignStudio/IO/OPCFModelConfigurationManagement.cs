@@ -83,7 +83,7 @@ namespace CAS.UA.Model.Designer.IO
       set => m_UAModelDesignerProject.CSVFileName = value;
     }
 
-    private string CSVFilePath => ReplaceTokenAndReturnFullPath(CSVFileName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.SolutionDirectoryPathManagement.BaseDirectory);
+    private string CSVFilePath => ReplaceTokenAndReturnFullPath(CSVFileName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.DefaultDirectory);
 
     private string BuildOutputDirectoryName
     {
@@ -96,7 +96,7 @@ namespace CAS.UA.Model.Designer.IO
       set => m_UAModelDesignerProject.BuildOutputDirectoryName = value;
     }
 
-    private string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.SolutionDirectoryPathManagement.BaseDirectory);
+    private string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.DefaultDirectory);
 
     private static OPCFModelDesign ReadModelDesign(string solutionDirectoryPathManagementBaseDirectory, string fileName)
     {
@@ -113,7 +113,7 @@ namespace CAS.UA.Model.Designer.IO
     /// <returns>System.String.</returns>
     private string CalculateEffectiveAbsoluteModelFilePath()
     {
-      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_UAModelDesignerProject.FileName, this.m_ISolutionConfigurationManagement.SolutionDirectoryPathManagement.BaseDirectory);
+      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_UAModelDesignerProject.FileName, this.m_ISolutionConfigurationManagement.DefaultDirectory);
     }
 
     #endregion private
@@ -126,7 +126,7 @@ namespace CAS.UA.Model.Designer.IO
       GraphicalUserInterface = graphicalUserInterface;
       m_ISolutionConfigurationManagement = solution;
       m_UAModelDesignerProject = uaModelDesignerProject;
-      solution.SolutionDirectoryPathManagement.BaseDirectoryPathChanged += SolutionHomeDirectoryBaseDirectoryPathChanged;
+      solution.DefaultFileNameHasChanged += SolutionHomeDirectoryBaseDirectoryPathChanged;
       this.m_ModelDesign = modelDesign;
     }
 
@@ -134,10 +134,10 @@ namespace CAS.UA.Model.Designer.IO
     {
       if (solution == null) throw new ArgumentNullException(nameof(solution));
       if (graphicalUserInterface == null) throw new ArgumentNullException(nameof(graphicalUserInterface));
-      Tuple<OPCFModelDesign, string> _model = IO.ImportNodeSet.Import(solution.SolutionDirectoryPathManagement.BaseDirectory, traceEvent);
+      Tuple<OPCFModelDesign, string> _model = IO.ImportNodeSet.Import(solution.DefaultDirectory, traceEvent);
       if (_model == null)
         return null;
-      UAModelDesignerProject _newProjctDesription = UAModelDesignerProject.CreateEmpty(solution.SolutionDirectoryPathManagement.BaseDirectory, _model.Item2);
+      UAModelDesignerProject _newProjctDesription = UAModelDesignerProject.CreateEmpty(solution.DefaultDirectory, _model.Item2);
       return new OPCFModelConfigurationManagement(solution, graphicalUserInterface, _newProjctDesription, _model.Item1);
     }
 
@@ -146,7 +146,7 @@ namespace CAS.UA.Model.Designer.IO
       if (solution == null) throw new ArgumentNullException(nameof(solution));
       if (graphicalUserInterface == null) throw new ArgumentNullException(nameof(graphicalUserInterface));
       if (uaModelDesignerProject == null) throw new ArgumentNullException(nameof(uaModelDesignerProject));
-      OPCFModelDesign _modelDesign = ReadModelDesign(solution.SolutionDirectoryPathManagement.BaseDirectory, uaModelDesignerProject.FileName);
+      OPCFModelDesign _modelDesign = ReadModelDesign(solution.DefaultDirectory, uaModelDesignerProject.FileName);
       return new OPCFModelConfigurationManagement(solution, graphicalUserInterface, uaModelDesignerProject, _modelDesign);
     }
 
@@ -161,7 +161,7 @@ namespace CAS.UA.Model.Designer.IO
     {
       if (solution == null) throw new ArgumentNullException(nameof(solution));
       if (graphicalUserInterface == null) throw new ArgumentNullException(nameof(graphicalUserInterface));
-      UAModelDesignerProject _projectDescription = UAModelDesignerProject.CreateEmpty(solution.SolutionDirectoryPathManagement.BaseDirectory, projectName);
+      UAModelDesignerProject _projectDescription = UAModelDesignerProject.CreateEmpty(solution.DefaultDirectory, projectName);
       OPCFModelDesign _OPCFModelDesign = new OPCFModelDesign()
       {
         TargetNamespace = Settings.Default.TargetNamespace,

@@ -30,15 +30,12 @@ namespace CAS.UA.Model.Designer.Wrappers
     [TestMethod]
     public void ConstructorSolutionIsNullTest()
     {
-      Mock<IMessageBoxHandling> _IMessageBoxHandlingMock = new Mock<IMessageBoxHandling>();
-      Mock<ISolutionDirectoryPathManagement> _solutionDirectory = new Mock<ISolutionDirectoryPathManagement>();
-      _solutionDirectory.SetupGet<string>(x => x.BaseDirectory).Returns(Directory.GetCurrentDirectory());
       Mock<IGraphicalUserInterface> _IGraphicalUserInterface = new Mock<IGraphicalUserInterface>();
-      ServerSelector _serverSelector = new ServerSelector(_IGraphicalUserInterface.Object, _solutionDirectory.Object, "", "");
       Mock<ISolutionConfigurationManagement> _solutionManagement = new Mock<ISolutionConfigurationManagement>();
       _solutionManagement.SetupGet<string>(x => x.Name).Returns("Name");
-      _solutionManagement.SetupGet<ISolutionDirectoryPathManagement>(x => x.SolutionDirectoryPathManagement).Returns(_solutionDirectory.Object);
+      ServerSelector _serverSelector = new ServerSelector(_IGraphicalUserInterface.Object, _solutionManagement.Object, "", "");
       _solutionManagement.SetupGet<ServerSelector>(x => x.ServerSelector).Returns(_serverSelector);
+      Mock<IMessageBoxHandling> _IMessageBoxHandlingMock = new Mock<IMessageBoxHandling>();
       int _librariesCallCounter = 0;
       Assert.ThrowsException<ArgumentNullException>(() => new SolutionTreeNode(null, _solutionManagement.Object, (x, y) => { Assert.Fail(); }, z => _librariesCallCounter++));
       Assert.ThrowsException<ArgumentNullException>(() => new SolutionTreeNode(_IMessageBoxHandlingMock.Object, null,  (x, y) => { Assert.Fail(); }, z => _librariesCallCounter++));
@@ -55,7 +52,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       Assert.IsNotNull(_stn.ErrorList);
       Assert.AreEqual<int>(0, _stn.ErrorList.Count);
       Assert.AreEqual<string>("", _stn.HelpTopicName);
-      Assert.AreEqual<string>(Directory.GetCurrentDirectory(), _stn.HomeDirectory.BaseDirectory);
+      Assert.AreSame(_solutionManagement.Object, _stn.HomeDirectory);
       Assert.IsFalse(_stn.IsReadOnly);
       Assert.AreEqual<string>(_solutionManagement.Object.Name, _stn.Name);
       Assert.AreEqual<NodeClassesEnum>(NodeClassesEnum.None, _stn.NodeClass);

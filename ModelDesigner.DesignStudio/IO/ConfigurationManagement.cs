@@ -5,6 +5,7 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
+using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.Properties;
 using System;
@@ -21,45 +22,49 @@ namespace CAS.UA.Model.Designer.IO
   /// Class to save and restore data to/from external file.
   /// This is base class and now it provides only common menu and file dialogs.
   /// </summary>
-  internal abstract class ConfigurationManagement
+  internal abstract class ConfigurationManagement : SolutionDirectoryPathManagementBase
   {
     #region constructors
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ConfigurationManagement"/> class.
     /// </summary>
-    public ConfigurationManagement(string fileName)
+    public ConfigurationManagement(string fileName): base(fileName)
     {
       GraphicalUserInterface = null;
-      DefaultFileName = fileName;
     }
 
     #endregion constructors
 
     #region public
 
-    public string DefaultDirectory => Path.GetDirectoryName(DefaultFileName);
+    //public string DefaultDirectory => Path.GetDirectoryName(DefaultFileName);
+
+    ///// <summary>
+    ///// Gets or sets the default name of the file.
+    ///// </summary>
+    ///// <value>The default name of the file.</value>
+    //public string DefaultFileName
+    //{
+    //  set
+    //  {
+    //    if (m_FileName == value)
+    //      return;
+    //    m_FileName = value;
+    //    RaiseDefaultFileNameHasChanged();
+    //  }
+    //  get => m_FileName;
+    //}
+
+    ///// <summary>
+    ///// Occurs when default file name has been changed.
+    ///// </summary>
+    //public event EventHandler<NewDirectoryPathEventArgs> DefaultFileNameHasChanged;
 
     /// <summary>
-    /// Gets or sets the default name of the file.
+    /// Occurs when ChangesArePresent has changed.
     /// </summary>
-    /// <value>The default name of the file.</value>
-    public string DefaultFileName
-    {
-      set
-      {
-        if (m_FileName == value)
-          return;
-        m_FileName = value;
-        RaiseDefaultFileNameHasChanged();
-      }
-      get => m_FileName;
-    }
-
-    /// <summary>
-    /// Occurs when default file name has been changed.
-    /// </summary>
-    public event EventHandler DefaultFileNameHasChanged;
+    public event EventHandler ChangesArePresentHasChanged;
 
     /// <summary>
     /// Create a new configuration.
@@ -88,11 +93,6 @@ namespace CAS.UA.Model.Designer.IO
         }
       }
     }
-
-    /// <summary>
-    /// Occurs when ChangesArePresent has changed.
-    /// </summary>
-    public event EventHandler ChangesArePresentHasChanged;
 
     /// <summary>
     /// Sets the changes are present.
@@ -141,10 +141,10 @@ namespace CAS.UA.Model.Designer.IO
       ChangesArePresentHasChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    private void RaiseDefaultFileNameHasChanged()
-    {
-      DefaultFileNameHasChanged?.Invoke(this, EventArgs.Empty);
-    }
+    //private void RaiseDefaultFileNameHasChanged(NewDirectoryPathEventArgs newDirectoryPath)
+    //{
+    //  DefaultFileNameHasChanged?.Invoke(this, newDirectoryPath);
+    //}
 
     protected bool ShowDialogOpenFileDialog()
     {

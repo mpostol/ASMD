@@ -55,7 +55,7 @@ namespace CAS.UA.Model.Designer.IO
       ConfigurationManagementFixture _newItem = new ConfigurationManagementFixture(_IFileDialogMock.Object, _defPath);
       int OnModificationCounter = 0;
       _newItem.DefaultFileNameHasChanged += (x, y) => OnModificationCounter++;
-      _newItem.DefaultFileName = @"c:\\folder\file.name";
+      _newItem.SetFilePath( @"c:\\folder\file.name");
       Assert.AreEqual<int>(1, OnModificationCounter);
       Assert.IsFalse(String.IsNullOrEmpty(_newItem.DefaultDirectory));
       Assert.IsFalse(_newItem.ChangesArePresent);
@@ -95,6 +95,11 @@ namespace CAS.UA.Model.Designer.IO
       public ConfigurationManagementFixture(IFileDialog mock, string fileName) : base(fileName)
       {
         GraphicalUserInterface = new GraphicalUserInterfaceFixture(mock);
+      }
+
+      internal void SetFilePath(string filePath)
+      {
+        DefaultFileName = filePath;
       }
 
       internal void SignalChanges()

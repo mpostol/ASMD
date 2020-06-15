@@ -4,6 +4,7 @@
 //
 //___________________________________________________________________________________
 
+using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.ExportingTools;
 using CAS.UA.Model.Designer.IO;
@@ -62,7 +63,7 @@ namespace CAS.UA.Model.Designer
     {
       if (m_MainContol != null)
       {
-        OPCFSolutionConfigurationManagement.DefaultInstance.DefaultFileNameHasChanged += new EventHandler(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
+        OPCFSolutionConfigurationManagement.DefaultInstance.DefaultFileNameHasChanged += new EventHandler<NewDirectoryPathEventArgs>(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
         OPCFSolutionConfigurationManagement.DefaultInstance.ChangesArePresentHasChanged += new EventHandler(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
       }
       if (Settings.Default.FontSize < 6)

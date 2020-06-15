@@ -1,7 +1,8 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
@@ -22,7 +23,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
     public void CreateNewTest()
     {
       Mock<ISolutionConfigurationManagement> _solutionMock = new Mock<ISolutionConfigurationManagement>();
-      _solutionMock.SetupGet(x => x.SolutionDirectoryPathManagement).Returns(new SolutionDirectoryPathManagementBaseFixture());
+      _solutionMock.SetupGet(x => x.DefaultDirectory).Returns(@"C:\a\b\c\");
       Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
       _IFileDialogMock.SetupGet(x => x.FileName).Throws<ApplicationException>();
       _IFileDialogMock.SetupGet(x => x.InitialDirectory).Throws<ApplicationException>();
@@ -59,7 +60,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
     public void OpenExistingModelTest()
     {
       Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
-      _directory.SetupGet(x => x.BaseDirectory).Returns(Directory.GetCurrentDirectory());
+      _directory.SetupGet(x => x.DefaultDirectory).Returns(Directory.GetCurrentDirectory());
       UAModelDesignerProject _projectDescriptor = new UAModelDesignerProject()
       {
         BuildOutputDirectoryName = string.Empty,
@@ -69,7 +70,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
         ProjectIdentifier = Guid.NewGuid().ToString()
       };
       Mock<ISolutionConfigurationManagement> _solutionMock = new Mock<ISolutionConfigurationManagement>();
-      _solutionMock.SetupGet(x => x.SolutionDirectoryPathManagement).Returns(new SolutionDirectoryPathManagementBaseFixture());
+      _solutionMock.SetupGet(x => x.DefaultDirectory).Returns(@"C:\a\b\c\");
       Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
       _IFileDialogMock.SetupGet(x => x.FileName).Throws<ApplicationException>();
       _IFileDialogMock.SetupGet(x => x.InitialDirectory).Throws<ApplicationException>();

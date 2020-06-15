@@ -6,6 +6,7 @@
 //___________________________________________________________________________________
 
 using System;
+using System.IO;
 
 namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
 {
@@ -16,12 +17,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
   /// <seealso cref="ISolutionDirectoryPathManagement" />
   public abstract class SolutionDirectoryPathManagementBase : ISolutionDirectoryPathManagement
   {
-    private string m_BaseDirectory = String.Empty;
+    private string m_BaseDirectory = string.Empty;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SolutionDirectoryPathManagementBase"/> class encapsulating information about the a solution base directory location .
     /// </summary>
-    /// <param name="baseDirectory">An initial value for the <see cref="SolutionDirectoryPathManagementBase.BaseDirectory"/>.</param>
+    /// <param name="baseDirectory">An initial value for the <see cref="SolutionDirectoryPathManagementBase.DefaultDirectory"/>.</param>
     protected SolutionDirectoryPathManagementBase(string baseDirectory)
     {
       m_BaseDirectory = baseDirectory;
@@ -30,22 +31,39 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
     /// Gets or sets the base directory.
     /// </summary>
     /// <value>The base directory.</value>
-    public string BaseDirectory
+    public string DefaultDirectory => Path.GetDirectoryName(DefaultFileName);
+    //{
+    //  get => m_BaseDirectory;
+    //  protected set
+    //  {
+    //    if (value == m_BaseDirectory)
+    //      return;
+    //    string _oldBaseDirectory = m_BaseDirectory;
+    //    m_BaseDirectory = value;
+    //    DefaultFileNameHasChanged?.Invoke(this, new NewDirectoryPathEventArgs(_oldBaseDirectory, value));
+    //  }
+    //}
+
+    /// <summary>
+    /// Gets or sets the default name of the file.
+    /// </summary>
+    /// <value>The default name of the file.</value>
+    public string DefaultFileName
     {
       get => m_BaseDirectory;
       protected set
       {
         if (value == m_BaseDirectory)
           return;
-        string _oldBaseDirectory = m_BaseDirectory;
+        string _oldBaseDirectory = DefaultDirectory;
         m_BaseDirectory = value;
-        BaseDirectoryPathChanged?.Invoke(this, new NewDirectoryPathEventArgs(_oldBaseDirectory, value));
+        DefaultFileNameHasChanged?.Invoke(this, new NewDirectoryPathEventArgs(_oldBaseDirectory, DefaultDirectory));
       }
     }
 
     /// <summary>
     /// Occurs when changes occur that affect the base directory .
     /// </summary>
-    public event EventHandler<NewDirectoryPathEventArgs> BaseDirectoryPathChanged;
+    public event EventHandler<NewDirectoryPathEventArgs> DefaultFileNameHasChanged;
   }
 }

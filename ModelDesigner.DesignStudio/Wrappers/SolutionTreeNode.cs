@@ -123,10 +123,10 @@ namespace CAS.UA.Model.Designer.Wrappers
           return null;
         if (!string.IsNullOrEmpty(_descriptor.Codebase))
           //TODO Error while using Save operation #129
-          _descriptor.Codebase = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory.BaseDirectory, _descriptor.Codebase);
+          _descriptor.Codebase = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory.DefaultDirectory, _descriptor.Codebase);
         if (!string.IsNullOrEmpty(_descriptor.Configuration))
           //TODO Error while using Save operation #129
-          _descriptor.Configuration = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory.BaseDirectory, _descriptor.Configuration);
+          _descriptor.Configuration = RelativeFilePathsCalculator.TryComputeRelativePath(HomeDirectory.DefaultDirectory, _descriptor.Configuration);
         return _descriptor;
       }
     }
@@ -267,7 +267,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <value>An instance of <see cref="ServerSelector" /> used by a software user to select a server plug-in.</value>
     public ServerSelector Server => m_ISolutionConfigurationManagement.ServerSelector;
 
-    public ISolutionDirectoryPathManagement HomeDirectory => m_ISolutionConfigurationManagement.SolutionDirectoryPathManagement ?? throw new System.ArgumentNullException();
+    public ISolutionDirectoryPathManagement HomeDirectory => m_ISolutionConfigurationManagement ?? throw new System.ArgumentNullException();
 
     ISolutionDirectoryPathManagement ISolutionTreeNodeUI.HomeDirectory => throw new NotImplementedException();
 

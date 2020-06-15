@@ -54,7 +54,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       Assert.IsTrue(_configurationChanged);
       _configurationChanged = false;
       Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
-      _directory.SetupGet(x => x.BaseDirectory).Returns(Directory.GetCurrentDirectory());
+      _directory.SetupGet(x => x.DefaultDirectory).Returns(Directory.GetCurrentDirectory());
       ServerWrapper _sw = new ServerWrapper(_serverConfiguration, _pluginAssembly, new GraphicalUserInterface(), _directory.Object, @"Plugin\DemoConfiguration\BoilerExample.uasconfig");
       Assert.IsNotNull(_sw);
       Assert.IsTrue(_configurationChanged);

@@ -20,11 +20,11 @@ using UAOOI.SemanticData.UANodeSetValidation;
 
 namespace CAS.UA.Model.Designer.IO
 {
-  internal interface ISolutionConfigurationManagement
+  internal interface ISolutionConfigurationManagement: ISolutionDirectoryPathManagement
   {
     string Name { get; }
     IEnumerable<IOPCFModelConfigurationManagement> Projects { get; }
-    ISolutionDirectoryPathManagement SolutionDirectoryPathManagement { get; }
+    //ISolutionDirectoryPathManagement SolutionDirectoryPathManagement { get; }
     ServerSelector ServerSelector { get; }
 
     void Save(bool prompt);
@@ -45,20 +45,20 @@ namespace CAS.UA.Model.Designer.IO
   {
     #region private
 
-    private class SolutionDirectoryPathManagement : SolutionDirectoryPathManagementBase
-    {
-      internal void SetNewPath(string path)
-      {
-        base.BaseDirectory = path;
-      }
+    //private class SolutionDirectoryPathManagement : SolutionDirectoryPathManagementBase
+    //{
+    //  internal void SetNewPath(string path)
+    //  {
+    //    base.DefaultDirectory = path;
+    //  }
 
-      public SolutionDirectoryPathManagement(string defaultPath) : base(defaultPath)
-      {
-      }
-    }
+    //  public SolutionDirectoryPathManagement(string defaultPath) : base(defaultPath)
+    //  {
+    //  }
+    //}
 
     private static UniqueNameGenerator m_UniqueNameGenerator = new UniqueNameGenerator(Resources.DefaultProjectName);
-    private readonly SolutionDirectoryPathManagement m_PathManagement;
+    //private readonly SolutionDirectoryPathManagement m_PathManagement;
     private string m_Name;
     private static OPCFSolutionConfigurationManagement m_This;
     private string m_LastOpenedFile = string.Empty;
@@ -91,12 +91,12 @@ namespace CAS.UA.Model.Designer.IO
 
     private OPCFSolutionConfigurationManagement(string fileName) : base(fileName)
     {
-      m_PathManagement = new SolutionDirectoryPathManagement(Path.GetDirectoryName(fileName));
+      //m_PathManagement = new SolutionDirectoryPathManagement(Path.GetDirectoryName(fileName));
     }
 
     private UAModelDesignerSolution SaveProjectsCreateConfiguration()
     {
-      m_Server.Save(m_PathManagement);
+      m_Server.Save(this);
       foreach (IOPCFModelConfigurationManagement _project in m_Projects)
         _project.SaveModelDesign();
       return new UAModelDesignerSolution()
@@ -117,7 +117,7 @@ namespace CAS.UA.Model.Designer.IO
       m_ServerDetails = model.ServerDetails ?? UAModelDesignerSolutionServerDetails.CreateEmptyInstance();
       m_Name = model.Name;
       m_Projects = model.Projects.Select<UAModelDesignerProject, IOPCFModelConfigurationManagement>(x => OPCFModelConfigurationManagement.ImportModelDesign(this, base.GraphicalUserInterface, x)).ToList<IOPCFModelConfigurationManagement>();
-      m_Server = new ServerSelector(base.GraphicalUserInterface, this.m_PathManagement, m_ServerDetails.codebase, m_ServerDetails.configuration);
+      m_Server = new ServerSelector(base.GraphicalUserInterface, this, m_ServerDetails.codebase, m_ServerDetails.configuration);
       OnSolutionChanged();
       //e.Configuration.SetHomeDirectory(Path.GetDirectoryName(DefaultFileName));
       //SolutionRootNode = new SolutionTreeNode(e.Configuration, new ViewModelFactory(), Path.GetDirectoryName(DefaultFileName), new EventHandler<EventArgs>(OnNodeChange));
@@ -196,7 +196,7 @@ namespace CAS.UA.Model.Designer.IO
 
     IEnumerable<IOPCFModelConfigurationManagement> ISolutionConfigurationManagement.Projects => m_Projects;
 
-    ISolutionDirectoryPathManagement ISolutionConfigurationManagement.SolutionDirectoryPathManagement => m_PathManagement;
+    //ISolutionDirectoryPathManagement ISolutionConfigurationManagement.SolutionDirectoryPathManagement => m_PathManagement;
 
     string ISolutionConfigurationManagement.Name => m_Name;
 
