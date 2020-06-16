@@ -126,12 +126,11 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     }
     #endregion handlers
 
-    #endregion private
+    #endregion SelectedItemObserver
 
     #region protected
     protected override void AfterSolutionChange(object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e)
     {
-      base.AfterSolutionChange(sender, e);
       mBuildIsRequired = true;
       TestIfBuildIsRequiredAndDoTheBuild(true);
     }

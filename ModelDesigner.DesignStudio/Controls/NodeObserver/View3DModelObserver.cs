@@ -13,6 +13,7 @@
 //  http://www.cas.eu
 //</summary>
 
+using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Wrappers;
 using MeshDiagram3D;
 using MeshDiagram3D.Elements3D;
@@ -27,8 +28,8 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {
   internal partial class View3DModelObserver : SelectedItemObserver
   {
-
     #region classes
+
     private class NodePoint3DSizedLabeledIModelNodeAdvance : Point3DSizedLabeledWithIModelNodeAdvance<IModelNodeAdvance>
     {
       //public NodePoint3DSizedLabeledIModelNodeAdvance( IModelNodeAdvance imna ):base()
@@ -36,19 +37,22 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       //  ( (IModelVisual3D)this ).Tag = imna;
       //}
     }
+
     private class IModelNodeAdvanceMeshTo3DView : IModelNodeAdvanceMeshTo3DView<Point3DSizedLabeledWithIModelNodeAdvance<IModelNodeAdvance>, IModelNodeAdvance>
     {
       public IModelNodeAdvanceMeshTo3DView(IModelNodeAdvance StartNode)
         : base(StartNode)
       { }
     }
+
     private class Point3DSizedLabeledWithIModelNodeAdvance<T_PointNode> : Point3DSizedLabeled
       where T_PointNode : IModelNodeAdvance
     {
       private T_PointNode mNode;
+
       public T_PointNode Node
       {
-        get { return mNode; }
+        get => mNode;
         set
         {
           mNode = value;
@@ -56,51 +60,60 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
         }
       }
     }
+
     private class IModelNodeAdvanceMeshTo3DView<T_Point3DSizedLabeled, T_Node>
       where T_Point3DSizedLabeled : Point3DSizedLabeledWithIModelNodeAdvance<T_Node>, new()
       where T_Node : IModelNodeAdvance
     {
-
       private const double defaultsize = 0.25;
       private const double defaultdistance = 1;
+
       private class IModelNodeAdvancePoint3DSizedLabeledPair
       {
         public T_Node Node { get; private set; }
         public T_Point3DSizedLabeled Point3DSizedLabeled { get; private set; }
+
         internal IModelNodeAdvancePoint3DSizedLabeledPair(T_Node Node, T_Point3DSizedLabeled Point3DSizedLabeled)
         {
           this.Node = Node;
           this.Point3DSizedLabeled = Point3DSizedLabeled;
         }
       }
+
       private ListOfIModelVisual3D elements;
+
       private int GetSubElementCount(IModelNodeAdvance imna)
       {
         int count = 0;
-        foreach (var folder in imna.GetFolders())
+        foreach (KeyValuePair<FolderType, IEnumerable<IModelNodeAdvance>> folder in imna.GetFolders())
         {
-          foreach (var el in folder.Value)
+          foreach (IModelNodeAdvance el in folder.Value)
             count++;
         }
         return count;
       }
+
       private static T_Point3DSizedLabeled CreateT_Point3DSizedLabeledBasedOnIModelNodeAdvance(IModelNodeAdvance imna)
       {
-        T_Point3DSizedLabeled point = new T_Point3DSizedLabeled();
-        point.Label = imna.Name;
-        point.Node = (T_Node)imna;
+        T_Point3DSizedLabeled point = new T_Point3DSizedLabeled
+        {
+          Label = imna.Name,
+          Node = (T_Node)imna
+        };
         //size and model type:
         switch (imna.NodeClass)
         {
           case NodeClassesEnum.ReferenceType:
             point.Size = defaultsize / 2;
             break;
+
           case NodeClassesEnum.DataType:
           case NodeClassesEnum.ObjectType:
           case NodeClassesEnum.VariableType:
             point.Size = defaultsize * 2;
             point.ModelType = ModelType.Cube;
             break;
+
           default:
             point.Size = defaultsize;
             point.ModelType = ModelType.Cube;
@@ -112,39 +125,46 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
           case NodeClassesEnum.ObjectType:
             point.MaterialNormal = new DiffuseMaterial(new SolidColorBrush(Colors.Purple));
             break;
+
           case NodeClassesEnum.Variable:
             point.MaterialNormal = new DiffuseMaterial(new SolidColorBrush(Colors.Orange));
             break;
+
           case NodeClassesEnum.VariableType:
             point.MaterialNormal = new DiffuseMaterial(new SolidColorBrush(Colors.Green));
             break;
+
           case NodeClassesEnum.DataType:
             point.MaterialNormal = new DiffuseMaterial(new SolidColorBrush(Colors.Blue));
             break;
+
           case NodeClassesEnum.ReferenceType:
             point.MaterialNormal = new DiffuseMaterial(new SolidColorBrush(Colors.Yellow));
             break;
+
           case NodeClassesEnum.Method:
             point.MaterialNormal = new DiffuseMaterial(new SolidColorBrush(Colors.Gray));
             break;
+
           case NodeClassesEnum.Property:
             point.MaterialNormal = new DiffuseMaterial(new SolidColorBrush(Colors.LightGreen));
             break;
+
           default:
             break;
         }
 
         return point;
-
       }
+
       private void AddChildElements(IModelNodeAdvancePoint3DSizedLabeledPair pair)
       {
         int count = GetSubElementCount(pair.Node);
         List<IModelNodeAdvancePoint3DSizedLabeledPair> MyPairs = new List<IModelNodeAdvancePoint3DSizedLabeledPair>(count);
         double current_z_level = pair.Point3DSizedLabeled.Z + defaultdistance;
-        foreach (var folder in pair.Node.GetFolders())
+        foreach (KeyValuePair<FolderType, IEnumerable<IModelNodeAdvance>> folder in pair.Node.GetFolders())
         {
-          foreach (var el in folder.Value)
+          foreach (IModelNodeAdvance el in folder.Value)
           {
             IModelNodeAdvance node = el as IModelNodeAdvance;
             T_Point3DSizedLabeled point = CreateT_Point3DSizedLabeledBasedOnIModelNodeAdvance(node);
@@ -172,33 +192,39 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
           AddChildElements(tnp3dpair);
         }
       }
+
       public void AddContentToScene(Panel3DUserControl PanelWithScene)
       {
-        foreach (var element in elements)
+        foreach (IModelVisual3D element in elements)
         {
           PanelWithScene.AddModelVisual3D(element);
         }
       }
+
       public IModelNodeAdvanceMeshTo3DView(T_Node StartTreeNode)
       {
         elements = new ListOfIModelVisual3D();
 
         T_Point3DSizedLabeled RootTreeNodePoint3DSizedLabeled =
-          new T_Point3DSizedLabeled();
-        RootTreeNodePoint3DSizedLabeled.X = 0;
-        RootTreeNodePoint3DSizedLabeled.Y = 0;
-        RootTreeNodePoint3DSizedLabeled.Z = 0;
-        RootTreeNodePoint3DSizedLabeled.Size = defaultsize;
-        RootTreeNodePoint3DSizedLabeled.Label = StartTreeNode.Name;
-        RootTreeNodePoint3DSizedLabeled.Node = StartTreeNode;
+          new T_Point3DSizedLabeled
+          {
+            X = 0,
+            Y = 0,
+            Z = 0,
+            Size = defaultsize,
+            Label = StartTreeNode.Name,
+            Node = StartTreeNode
+          };
         elements.Add(RootTreeNodePoint3DSizedLabeled);
         AddChildElements(new IModelNodeAdvancePoint3DSizedLabeledPair(
           StartTreeNode, RootTreeNodePoint3DSizedLabeled));
       }
     }
+
     #endregion classes
 
     #region public
+
     public View3DModelObserver()
     {
       InitializeComponent();
@@ -214,18 +240,23 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       else
         this.RemoveMeFromParentTabControl();
     }
-    #endregion
+
+    #endregion public
 
     #region private
+
     [LicenseProvider(typeof(CAS.Lib.CodeProtect.CodeProtectLP))]
     [System.Runtime.InteropServices.GuidAttribute("98925BC5-F27F-4114-BF1E-385BA2AEC9B7")]
     private sealed class LicenseProtection : StartUpSplashScreen.LogedIsLicensed<LicenseProtection> { }
+
     private void MeshDiagramViewport3D_IModelVisualIsSelected(object sender, EventArgs e)
     {
       IModelNodeAdvance imna = panel3DUserControl1.MeshDiagramViewport3D.SelectedIModelVisual.Tag as IModelNodeAdvance;
       RaiseSelectedItemIsChanged(new SelectedItemEventArgs(imna, false));
     }
+
     private IModelNodeAdvance previousMessage = null;
+
     private void View3DModelObserver_VisibleChanged(object sender, EventArgs e)
     {
       if (this.Visible && previousMessage != null)
@@ -234,6 +265,24 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
         previousMessage = null;
       }
     }
+
+    private void InitializeScene(IModelNodeAdvance imna)
+    {
+      if (imna != null)
+      {
+        IModelNodeAdvanceMeshTo3DView<NodePoint3DSizedLabeledIModelNodeAdvance, IModelNodeAdvance> myTreeViewTo3DView
+          = new IModelNodeAdvanceMeshTo3DView<NodePoint3DSizedLabeledIModelNodeAdvance, IModelNodeAdvance>(imna);
+        panel3DUserControl1.Clear();
+        myTreeViewTo3DView.AddContentToScene(panel3DUserControl1);
+        panel3DUserControl1.RefreshScene();
+        panel3DUserControl1.TryAutoZoom();
+      }
+    }
+
+    #endregion private
+
+    #region SelectedItemObserver
+
     protected override void OnSelectedItemIsChanged(object sender, SelectedItemEventArgs e)
     {
       //this is special observer that operates on IModelNodeAdvance (it requires references between nodes)
@@ -256,19 +305,11 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       else
         previousMessage = imna;
     }
-    private void InitializeScene(IModelNodeAdvance imna)
-    {
-      if (imna != null)
-      {
-        IModelNodeAdvanceMeshTo3DView<NodePoint3DSizedLabeledIModelNodeAdvance, IModelNodeAdvance> myTreeViewTo3DView
-          = new IModelNodeAdvanceMeshTo3DView<NodePoint3DSizedLabeledIModelNodeAdvance, IModelNodeAdvance>(imna);
-        panel3DUserControl1.Clear();
-        myTreeViewTo3DView.AddContentToScene(panel3DUserControl1);
-        panel3DUserControl1.RefreshScene();
-        panel3DUserControl1.TryAutoZoom();
-      }
-    }
-    #endregion
 
+    protected override void AfterSolutionChange(object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e)
+    {
+    }
+
+    #endregion SelectedItemObserver
   }
 }
