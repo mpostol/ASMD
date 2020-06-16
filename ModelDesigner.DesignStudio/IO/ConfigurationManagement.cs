@@ -12,11 +12,9 @@ using System;
 
 namespace CAS.UA.Model.Designer.IO
 {
-  internal enum ConfigurationType
-  {
-    Project, Solution
-  }
-
+  /// <summary>
+  /// Interface IConfigurationManagement - definitions related to the configuration management
+  /// </summary>
   internal interface IConfigurationManagement
   {
     /// <summary>
@@ -25,10 +23,20 @@ namespace CAS.UA.Model.Designer.IO
     /// <value><c>true</c> if [changes are present]; otherwise, <c>false</c>.</value>
     bool ChangesArePresent { get; }
 
+    /// <summary>
+    /// Occurs when changes are present.
+    /// </summary>
     event EventHandler ChangesArePresentHasChanged;
 
+    /// <summary>
+    /// Tests if changes are present, next display window and return true if they may be lost.
+    /// </summary>
+    /// <returns><c>true</c> if changes may be neglected and next operation may be executed, <c>false</c> otherwise.</returns>
     bool TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued();
 
+    /// <summary>
+    /// Sets that the changes are present.
+    /// </summary>
     void SetChangesArePresent();
   }
 
@@ -52,44 +60,15 @@ namespace CAS.UA.Model.Designer.IO
 
     #region public
 
-    //public string DefaultDirectory => Path.GetDirectoryName(DefaultFileName);
-
-    ///// <summary>
-    ///// Gets or sets the default name of the file.
-    ///// </summary>
-    ///// <value>The default name of the file.</value>
-    //public string DefaultFileName
-    //{
-    //  set
-    //  {
-    //    if (m_FileName == value)
-    //      return;
-    //    m_FileName = value;
-    //    RaiseDefaultFileNameHasChanged();
-    //  }
-    //  get => m_FileName;
-    //}
-
-    ///// <summary>
-    ///// Occurs when default file name has been changed.
-    ///// </summary>
-    //public event EventHandler<NewDirectoryPathEventArgs> DefaultFileNameHasChanged;
+    internal enum ConfigurationType
+    {
+      Project, Solution
+    }
 
     /// <summary>
     /// Occurs when ChangesArePresent has changed.
     /// </summary>
     public event EventHandler ChangesArePresentHasChanged;
-
-    ///// <summary>
-    ///// Create a new configuration.
-    ///// </summary>
-    //public abstract void New();
-
-    ///// <summary>
-    ///// Read the configuration from an external dictionary file.
-    ///// </summary>
-    ///// <returns></returns>
-    //public abstract bool Open();
 
     /// <summary>
     /// Gets or sets a value indicating whether [changes are present].

@@ -5,6 +5,7 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
+using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -55,7 +56,7 @@ namespace CAS.UA.Model.Designer.IO
       ConfigurationManagementFixture _newItem = new ConfigurationManagementFixture(_IFileDialogMock.Object, _defPath);
       int OnModificationCounter = 0;
       _newItem.DefaultFileNameHasChanged += (x, y) => OnModificationCounter++;
-      _newItem.SetFilePath( @"c:\\folder\file.name");
+      _newItem.SetFilePath(@"c:\\folder\file.name");
       Assert.AreEqual<int>(1, OnModificationCounter);
       Assert.IsFalse(String.IsNullOrEmpty(_newItem.DefaultDirectory));
       Assert.IsFalse(_newItem.ChangesArePresent);
@@ -80,11 +81,50 @@ namespace CAS.UA.Model.Designer.IO
       _IFileDialogMock.Setup(x => x.ShowDialog()).Returns(true);
       Mock<IGraphicalUserInterface> _guiMock = new Mock<IGraphicalUserInterface>();
       _guiMock.SetupGet(x => x.OpenFileDialogFunc).Returns(() => _IFileDialogMock.Object);
-      ConfigurationManagementFixture.ShowOpenDialog(_defPath, _guiMock.Object, ConfigurationType.Solution);
+      ConfigurationManagementFixture.ShowOpenDialog(_defPath, _guiMock.Object, ConfigurationManagement.ConfigurationType.Solution);
       _IFileDialogMock.VerifySet(x => x.DefaultExt = DefaultExt);
       _IFileDialogMock.VerifySet(x => x.Filter = Filter);
       _IFileDialogMock.VerifySet(x => x.Title = Title);
       Assert.AreEqual<string>(FileName, Path.GetFileName(_IFileDialogMock.Object.FileName));
+    }
+
+    [TestMethod]
+    public void ShowDialogSaveFileDialogTest()
+    {
+      const string DefaultExt = "uamdsl";
+      const string Filter = "UA Model Designer Solution File (* .uamdsl)|*.uamdsl|UA Model Designer Solution File (* .xml)|*.xml|All files(*.*)|*.*";
+      const string Title = "UA Model Designer Solution Open/Save dialog window";
+      Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
+      _IFileDialogMock.SetupProperty(x => x.FileName);
+      _IFileDialogMock.SetupProperty(x => x.DefaultExt);
+      _IFileDialogMock.SetupProperty(x => x.Filter);
+      _IFileDialogMock.SetupProperty(x => x.Title);
+      _IFileDialogMock.Setup(x => x.ShowDialog()).Returns(true);
+      string _defPath = @"c:\a\b\c\d.e";
+      string _altPath = @"c:\a\b\f\d.e";
+      _IFileDialogMock.SetupGet<string>(x => x.FileName).Returns(_altPath);
+      ConfigurationManagementFixture _item = new ConfigurationManagementFixture(_IFileDialogMock.Object, _defPath);
+      Assert.AreEqual<string>(_defPath, _item.DefaultFileName);
+      int _eventCounter = 0;
+      string NewDirectoryPath = String.Empty;
+      string OldDirectoryPath = String.Empty;
+      _item.DefaultFileNameHasChanged += (object sender, NewDirectoryPathEventArgs e) =>
+        {
+          _eventCounter++;
+          Assert.AreSame(_item, sender);
+          NewDirectoryPath = e.NewDirectoryPath;
+          OldDirectoryPath = e.OldDirectoryPath;
+        };
+      Assert.AreEqual<string>(_defPath, _item.DefaultFileName);
+      _item.SaveFixture();
+      Assert.AreEqual<string>(_altPath, _item.DefaultFileName);
+      Assert.AreEqual<int>(1, _eventCounter);
+      Assert.AreEqual<string>(@"c:\a\b\f", NewDirectoryPath);
+      Assert.AreEqual<string>(@"c:\a\b\c", OldDirectoryPath);
+      _IFileDialogMock.VerifySet(x => x.DefaultExt = DefaultExt);
+      _IFileDialogMock.VerifySet(x => x.Filter = Filter);
+      _IFileDialogMock.VerifySet(x => x.Title = Title);
+      _IFileDialogMock.VerifySet(x => x.FileName = _defPath);
     }
 
     #region instrumentation
@@ -110,6 +150,11 @@ namespace CAS.UA.Model.Designer.IO
       internal static void ShowOpenDialog(string defaultFileName, IGraphicalUserInterface graphicalUserInterface, ConfigurationType configuration)
       {
         ConfigurationManagement.ShowDialogOpenFileDialog(defaultFileName, graphicalUserInterface, configuration);
+      }
+
+      internal void SaveFixture()
+      {
+        base.ShowDialogSaveFileDialog();
       }
     }
 
