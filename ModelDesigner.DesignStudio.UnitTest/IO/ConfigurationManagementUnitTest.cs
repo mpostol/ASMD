@@ -78,8 +78,9 @@ namespace CAS.UA.Model.Designer.IO
       _IFileDialogMock.SetupProperty(x => x.Filter);
       _IFileDialogMock.SetupProperty(x => x.Title);
       _IFileDialogMock.Setup(x => x.ShowDialog()).Returns(true);
-      ConfigurationManagementFixture _newItem = new ConfigurationManagementFixture(_IFileDialogMock.Object, _defPath);
-      _newItem.ShowOpenDialog();
+      Mock<IGraphicalUserInterface> _guiMock = new Mock<IGraphicalUserInterface>();
+      _guiMock.SetupGet(x => x.OpenFileDialogFunc).Returns(() => _IFileDialogMock.Object);
+      ConfigurationManagementFixture.ShowOpenDialog(_defPath, _guiMock.Object, ConfigurationType.Solution);
       _IFileDialogMock.VerifySet(x => x.DefaultExt = DefaultExt);
       _IFileDialogMock.VerifySet(x => x.Filter = Filter);
       _IFileDialogMock.VerifySet(x => x.Title = Title);
@@ -92,9 +93,8 @@ namespace CAS.UA.Model.Designer.IO
     {
       protected override ConfigurationType Configuration => ConfigurationType.Solution;
 
-      public ConfigurationManagementFixture(IFileDialog mock, string fileName) : base(fileName)
+      public ConfigurationManagementFixture(IFileDialog mock, string fileName) : base(fileName, new GraphicalUserInterfaceFixture(mock))
       {
-        GraphicalUserInterface = new GraphicalUserInterfaceFixture(mock);
       }
 
       internal void SetFilePath(string filePath)
@@ -104,22 +104,12 @@ namespace CAS.UA.Model.Designer.IO
 
       internal void SignalChanges()
       {
-        this.SetChangesArePresent();
+        base.SetChangesArePresent();
       }
 
-      public override void New()
+      internal static void ShowOpenDialog(string defaultFileName, IGraphicalUserInterface graphicalUserInterface, ConfigurationType configuration)
       {
-        throw new NotImplementedException();
-      }
-
-      public override bool Open()
-      {
-        throw new NotImplementedException();
-      }
-
-      internal void ShowOpenDialog()
-      {
-        this.ShowDialogOpenFileDialog();
+        ConfigurationManagement.ShowDialogOpenFileDialog(defaultFileName, graphicalUserInterface, configuration);
       }
     }
 

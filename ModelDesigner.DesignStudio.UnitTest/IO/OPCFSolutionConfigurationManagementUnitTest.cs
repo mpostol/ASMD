@@ -1,9 +1,11 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -12,51 +14,43 @@ using System.IO;
 
 namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
 {
-
   [TestClass]
   public class OPCFSolutionConfigurationManagementUnitTest
   {
     [TestMethod]
-    public void SingletonTest()
+    public void NewSoliutionTest()
     {
-      OPCFSolutionConfigurationManagement _instance = OPCFSolutionConfigurationManagement.DefaultInstance;
+      Mock<IGraphicalUserInterface> _gui = new Mock<IGraphicalUserInterface>();
+      ISolutionConfigurationManagement _instance = SolutionConfigurationManagement.NewSoliution(_gui.Object);
       Assert.IsNotNull(_instance);
       Assert.IsFalse(_instance.ChangesArePresent);
       Assert.IsFalse(string.IsNullOrEmpty(_instance.DefaultDirectory));
       Assert.AreEqual<string>(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), _instance.DefaultDirectory);
       Assert.AreEqual<string>("UAModelDesignerSolution", Path.GetFileName(_instance.DefaultFileName));
     }
-    [TestMethod]
-    public void InterfaceTest()
-    {
-      ISolutionConfigurationManagement _instance = OPCFSolutionConfigurationManagement.DefaultInstance;
-      Assert.IsNotNull(_instance);
-      Assert.IsNull(_instance.GraphicalUserInterface);
-    }
 
     [TestMethod]
     public void CreateNewTest()
     {
-      OPCFSolutionConfigurationManagement _instance = OPCFSolutionConfigurationManagement.DefaultInstance;
-      Mock<Configuration.UserInterface.IGraphicalUserInterface> _gui = new Mock<Configuration.UserInterface.IGraphicalUserInterface>();
-      _instance.GraphicalUserInterface = _gui.Object;
-      int _solutionChangeCouinter = 0;
-      ISolutionConfigurationManagement _newSolution = null;
-      _instance.AfterSolutionChange += (object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e) =>
-      {
-        _solutionChangeCouinter++;
-        Assert.IsInstanceOfType(sender, typeof(ISolutionConfigurationManagement));
-        Assert.IsNotNull(e.Solution);
-        _newSolution = e.Solution;
-      };
-      _instance.New();
-      Assert.AreEqual<int>(1, _solutionChangeCouinter);
-      Assert.AreSame(_instance, _newSolution);
-    }
-
-    private void _instance_AfterSolutionChange(object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e)
-    {
-      throw new NotImplementedException();
+      const string DefaultExt = "uamdsl";
+      const string FileName = "UAModelDesignerSolution";
+      const string Filter = "UA Model Designer Solution File (* .uamdsl)|*.uamdsl|UA Model Designer Solution File (* .xml)|*.xml|All files(*.*)|*.*";
+      const string Title = "UA Model Designer Solution Open/Save dialog window";
+      Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
+      _IFileDialogMock.SetupProperty(x => x.FileName);
+      _IFileDialogMock.SetupProperty(x => x.DefaultExt);
+      _IFileDialogMock.SetupProperty(x => x.Filter);
+      _IFileDialogMock.SetupProperty(x => x.Title);
+      _IFileDialogMock.Setup(x => x.ShowDialog()).Returns(true);
+      Mock<IGraphicalUserInterface> _guiMock = new Mock<IGraphicalUserInterface>();
+      _guiMock.SetupGet(x => x.OpenFileDialogFunc).Returns(() => _IFileDialogMock.Object);
+      ISolutionConfigurationManagement _instance = SolutionConfigurationManagement.OpenExisting(_guiMock.Object);
+      _IFileDialogMock.VerifySet(x => x.DefaultExt = DefaultExt);
+      _IFileDialogMock.VerifySet(x => x.Filter = Filter);
+      _IFileDialogMock.VerifySet(x => x.Title = Title);
+      _IFileDialogMock.VerifySet(x => x.FileName = FileName, Times.Never);
+      _IFileDialogMock.Verify(x => x.ShowDialog(), Times.Once);
+      Assert.IsNull(_instance);
     }
   }
 }
