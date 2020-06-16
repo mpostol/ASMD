@@ -9,13 +9,27 @@ using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.Properties;
 using System;
-using System.IO;
 
 namespace CAS.UA.Model.Designer.IO
 {
   internal enum ConfigurationType
   {
     Project, Solution
+  }
+
+  internal interface IConfigurationManagement
+  {
+    /// <summary>
+    /// Gets or sets a value indicating whether [changes are present].
+    /// </summary>
+    /// <value><c>true</c> if [changes are present]; otherwise, <c>false</c>.</value>
+    bool ChangesArePresent { get; }
+
+    event EventHandler ChangesArePresentHasChanged;
+
+    bool TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued();
+
+    void SetChangesArePresent();
   }
 
   /// <summary>
@@ -29,9 +43,9 @@ namespace CAS.UA.Model.Designer.IO
     /// <summary>
     /// Initializes a new instance of the <see cref="ConfigurationManagement"/> class.
     /// </summary>
-    public ConfigurationManagement(string fileName): base(fileName)
+    public ConfigurationManagement(string fileName, IGraphicalUserInterface gui) : base(fileName)
     {
-      GraphicalUserInterface = null;
+      GraphicalUserInterface = gui;
     }
 
     #endregion constructors
@@ -66,16 +80,16 @@ namespace CAS.UA.Model.Designer.IO
     /// </summary>
     public event EventHandler ChangesArePresentHasChanged;
 
-    /// <summary>
-    /// Create a new configuration.
-    /// </summary>
-    public abstract void New();
+    ///// <summary>
+    ///// Create a new configuration.
+    ///// </summary>
+    //public abstract void New();
 
-    /// <summary>
-    /// Read the configuration from an external dictionary file.
-    /// </summary>
-    /// <returns></returns>
-    public abstract bool Open();
+    ///// <summary>
+    ///// Read the configuration from an external dictionary file.
+    ///// </summary>
+    ///// <returns></returns>
+    //public abstract bool Open();
 
     /// <summary>
     /// Gets or sets a value indicating whether [changes are present].
@@ -121,14 +135,13 @@ namespace CAS.UA.Model.Designer.IO
     /// </summary>
     /// <remarks>It is be injected by upper layer or dependency injection framework</remarks>
     /// <value>The graphical user interface.</value>
-    public IGraphicalUserInterface GraphicalUserInterface { get; set; }
+    public IGraphicalUserInterface GraphicalUserInterface { get; private set; }
 
     #endregion public
 
     #region private
 
     private bool m_ChangesArePresent = false;
-    private string m_FileName;
 
     /// <summary>
     /// Gets the type of the configuration.
@@ -146,15 +159,16 @@ namespace CAS.UA.Model.Designer.IO
     //  DefaultFileNameHasChanged?.Invoke(this, newDirectoryPath);
     //}
 
-    protected bool ShowDialogOpenFileDialog()
+    protected static string ShowDialogOpenFileDialog(string DefaultFileName, IGraphicalUserInterface GraphicalUserInterface, ConfigurationType Configuration)
     {
       using (IFileDialog _dialog = GraphicalUserInterface.OpenFileDialogFunc())
       {
-        SetupFileDialog(_dialog, this.DefaultFileName, Configuration);
+        SetupFileDialog(_dialog, DefaultFileName, Configuration);
         bool _ret = _dialog.ShowDialog();
         if (_ret)
-          DefaultFileName = _dialog.FileName;
-        return _ret;
+          return _dialog.FileName;
+        else
+          return null;
       }
     }
 
@@ -170,9 +184,10 @@ namespace CAS.UA.Model.Designer.IO
       }
     }
 
-    private static void SetupFileDialog(IFileDialog _dialog, string DefaultFileName, ConfigurationType Configuration)
+    private static void SetupFileDialog(IFileDialog _dialog, string defaultFileName, ConfigurationType Configuration)
     {
-      _dialog.FileName = DefaultFileName;
+      if (!String.IsNullOrEmpty(defaultFileName))
+        _dialog.FileName = defaultFileName;
       switch (Configuration)
       {
         case ConfigurationType.Project:

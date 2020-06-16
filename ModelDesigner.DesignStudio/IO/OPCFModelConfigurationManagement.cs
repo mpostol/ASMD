@@ -19,7 +19,7 @@ using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
 
 namespace CAS.UA.Model.Designer.IO
 {
-  internal interface IOPCFModelConfigurationManagement
+  internal interface IOPCFModelConfigurationManagement 
   {
     UAModelDesignerProject UAModelDesignerProject { get; }
     OPCFModelDesign ModelDesign { get; }
@@ -120,10 +120,9 @@ namespace CAS.UA.Model.Designer.IO
 
     #region constructor
 
-    private OPCFModelConfigurationManagement(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, UAModelDesignerProject uaModelDesignerProject, OPCFModelDesign modelDesign) :
-      base(uaModelDesignerProject.FileName)
+    private OPCFModelConfigurationManagement(ISolutionConfigurationManagement solution, IGraphicalUserInterface gui, UAModelDesignerProject uaModelDesignerProject, OPCFModelDesign modelDesign) :
+      base(uaModelDesignerProject.FileName, gui)
     {
-      GraphicalUserInterface = graphicalUserInterface;
       m_ISolutionConfigurationManagement = solution;
       m_UAModelDesignerProject = uaModelDesignerProject;
       solution.DefaultFileNameHasChanged += SolutionHomeDirectoryBaseDirectoryPathChanged;
