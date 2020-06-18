@@ -25,6 +25,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
     /// <param name="baseDirectory">An initial value for the <see cref="SolutionDirectoryPathManagementBase.DefaultDirectory"/>.</param>
     protected SolutionDirectoryPathManagementBase(string baseDirectory)
     {
+      if (String.IsNullOrEmpty(baseDirectory))
+        throw new ArgumentOutOfRangeException(baseDirectory, "The initial value of the file path cannot be null.");
       m_BaseDirectory = baseDirectory;
     }
     /// <summary>

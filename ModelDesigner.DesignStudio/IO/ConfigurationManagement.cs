@@ -9,42 +9,15 @@ using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.Properties;
 using System;
+using System.IO;
 
 namespace CAS.UA.Model.Designer.IO
 {
   /// <summary>
-  /// Interface IConfigurationManagement - definitions related to the configuration management
-  /// </summary>
-  internal interface IConfigurationManagement
-  {
-    /// <summary>
-    /// Gets or sets a value indicating whether [changes are present].
-    /// </summary>
-    /// <value><c>true</c> if [changes are present]; otherwise, <c>false</c>.</value>
-    bool ChangesArePresent { get; }
-
-    /// <summary>
-    /// Occurs when changes are present.
-    /// </summary>
-    event EventHandler ChangesArePresentHasChanged;
-
-    /// <summary>
-    /// Tests if changes are present, next display window and return true if they may be lost.
-    /// </summary>
-    /// <returns><c>true</c> if changes may be neglected and next operation may be executed, <c>false</c> otherwise.</returns>
-    bool TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued();
-
-    /// <summary>
-    /// Sets that the changes are present.
-    /// </summary>
-    void SetChangesArePresent();
-  }
-
-  /// <summary>
   /// Class to save and restore data to/from external file.
   /// This is base class and now it provides only common menu and file dialogs.
   /// </summary>
-  internal abstract class ConfigurationManagement : SolutionDirectoryPathManagementBase
+  internal abstract class ConfigurationManagement : SolutionDirectoryPathManagementBase, IConfigurationManagement
   {
     #region constructors
 
@@ -59,11 +32,6 @@ namespace CAS.UA.Model.Designer.IO
     #endregion constructors
 
     #region public
-
-    internal enum ConfigurationType
-    {
-      Project, Solution
-    }
 
     /// <summary>
     /// Occurs when ChangesArePresent has changed.
@@ -122,27 +90,26 @@ namespace CAS.UA.Model.Designer.IO
 
     private bool m_ChangesArePresent = false;
 
-    /// <summary>
-    /// Gets the type of the configuration.
-    /// </summary>
-    /// <value>The type of the configuration defined in <see cref="ConfigurationType"/>.</value>
-    protected abstract ConfigurationType Configuration { get; }
-
     private void RaiseChangesArePresentHasChanged()
     {
       ChangesArePresentHasChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    //private void RaiseDefaultFileNameHasChanged(NewDirectoryPathEventArgs newDirectoryPath)
-    //{
-    //  DefaultFileNameHasChanged?.Invoke(this, newDirectoryPath);
-    //}
-
-    protected static string ShowDialogOpenFileDialog(string DefaultFileName, IGraphicalUserInterface GraphicalUserInterface, ConfigurationType Configuration)
+    protected static string ShowDialogOpenFileDialog(IGraphicalUserInterface gui, Action<IFileDialog> setupFileDialog)
     {
-      using (IFileDialog _dialog = GraphicalUserInterface.OpenFileDialogFunc())
+      return ShowDialogOpenFileDialog(null, gui, setupFileDialog);
+    }
+
+    protected static string ShowDialogOpenFileDialog(string defaultFileName, IGraphicalUserInterface gui, Action<IFileDialog> setupFileDialog)
+    {
+      using (IFileDialog _dialog = gui.OpenFileDialogFunc())
       {
-        SetupFileDialog(_dialog, DefaultFileName, Configuration);
+        setupFileDialog(_dialog);
+        if (!String.IsNullOrEmpty(defaultFileName))
+        {
+          _dialog.InitialDirectory = Path.GetDirectoryName(defaultFileName);
+          _dialog.FileName = Path.GetFileNameWithoutExtension(defaultFileName);
+        }
         bool _ret = _dialog.ShowDialog();
         if (_ret)
           return _dialog.FileName;
@@ -151,38 +118,17 @@ namespace CAS.UA.Model.Designer.IO
       }
     }
 
-    protected bool ShowDialogSaveFileDialog()
+    protected bool ShowDialogSaveFileDialog(Action<IFileDialog> SetupFileDialog)
     {
       using (IFileDialog _dialog = GraphicalUserInterface.SaveFileDialogFuc())
       {
-        SetupFileDialog(_dialog, this.DefaultFileName, Configuration);
+        SetupFileDialog(_dialog);
+        _dialog.InitialDirectory = Path.GetDirectoryName(DefaultFileName);
+        _dialog.FileName = Path.GetFileNameWithoutExtension(DefaultFileName);
         bool _ret = _dialog.ShowDialog();
         if (_ret)
           DefaultFileName = _dialog.FileName;
         return _ret;
-      }
-    }
-
-    private static void SetupFileDialog(IFileDialog _dialog, string defaultFileName, ConfigurationType Configuration)
-    {
-      if (!String.IsNullOrEmpty(defaultFileName))
-        _dialog.FileName = defaultFileName;
-      switch (Configuration)
-      {
-        case ConfigurationType.Project:
-          _dialog.DefaultExt = Resources.Project_FileDialogDefaultExt;
-          _dialog.Filter = Resources.Project_FileDialogFilter;
-          _dialog.Title = Resources.Project_FileDialogTitle;
-          break;
-
-        case ConfigurationType.Solution:
-          _dialog.DefaultExt = Resources.Solution_FileDialogDefaultExt;
-          _dialog.Filter = Resources.Solution_FileDialogFilter;
-          _dialog.Title = Resources.Solution_FileDialogTitle;
-          break;
-
-        default:
-          break;
       }
     }
 
