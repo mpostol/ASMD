@@ -93,11 +93,11 @@ namespace CAS.UA.Model.Designer.ImportExport
         IndentChars = "  ",
         NewLineChars = "\r\n"
       };
-      FileStream _docStrm = new FileStream(path, mode, FileAccess.Write);
+      using (FileStream _docStrm = new FileStream(path, mode, FileAccess.Write))
       using (XmlWriter _writer = XmlWriter.Create(_docStrm, _setting))
       {
         if (!string.IsNullOrEmpty(stylesheetName))
-          _writer.WriteProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" " + String.Format("href=\"{0}\"", stylesheetName));
+          _writer.WriteProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" " + string.Format("href=\"{0}\"", stylesheetName));
         //TODO Error while using Save operation #129
         _srlzr.Serialize(_writer, dataObject, xmlNamespaces);
       }

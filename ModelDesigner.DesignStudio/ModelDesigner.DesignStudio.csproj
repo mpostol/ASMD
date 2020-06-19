@@ -214,6 +214,7 @@
     <Compile Include="Controls\FolderTreeNodeControl.cs" />
     <Compile Include="Controls\TreeNodesFactory.cs" />
     <Compile Include="IO\ConfigurationManagement.cs" />
+    <Compile Include="IO\IConfigurationManagement.cs" />
     <Compile Include="IO\UniqueNameGenerator.cs" />
     <Compile Include="ToForms\MessageBoxHandling.cs" />
     <Compile Include="ToForms\IMessageBoxHandling.cs" />
