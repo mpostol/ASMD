@@ -19,46 +19,29 @@ using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
 
 namespace CAS.UA.Model.Designer.IO
 {
-  internal interface IOPCFModelConfigurationManagement 
-  {
-    UAModelDesignerProject UAModelDesignerProject { get; }
-    OPCFModelDesign ModelDesign { get; }
-    string Name { get; }
 
-    bool SaveModelDesign();
-
-    void SaveModelDesign(XmlFile.DataToSerialize<OPCFModelDesign> modelDesign);
-
-    void Build(TextWriter output);
-  }
 
   /// <summary>
   /// Class to save and restore UA Information Model to/from external file.
   /// </summary>
-  internal class OPCFModelConfigurationManagement : TypeGenericConfigurationManagement<OPCFModelDesign>, IOPCFModelConfigurationManagement
+  internal class OPCFModelConfigurationManagement : TypeGenericConfigurationManagement<OPCFModelDesign>, IProjectConfigurationManagement
   {
     #region private
 
     private readonly UAModelDesignerProject m_UAModelDesignerProject;
     private readonly ISolutionConfigurationManagement m_ISolutionConfigurationManagement;
-    private readonly OPCFModelDesign m_ModelDesign;
+    private OPCFModelDesign m_ModelDesign;
 
     /// <summary>
     /// Gets the type of the configuration.
     /// </summary>
     /// <value>The type of the configuration defined in <see cref="ConfigurationType" />.</value>
-    protected override ConfigurationType Configuration => ConfigurationType.Project;
-
-    /// <summary>
-    /// Gets the configuration.
-    /// </summary>
-    /// <value>The configuration .</value>
-    /// <remarks>Not implemented in this class</remarks>
-    protected override XmlFile.DataToSerialize<OPCFModelDesign> GetConfiguration(OPCFModelDesign configuration)
+    private static void SetupFileDialog(IFileDialog _dialog)
     {
-      throw new NotImplementedException();
+      _dialog.DefaultExt = Resources.Project_FileDialogDefaultExt;
+      _dialog.Filter = Resources.Project_FileDialogFilter;
+      _dialog.Title = Resources.Project_FileDialogTitle;
     }
-
     private static string ReplaceTokenAndReturnFullPath(string fileNameToBeProcessed, string projectName, string solutionDirectory)
     {
       string _Name = fileNameToBeProcessed.Replace(Resources.Token_ProjectFileName, projectName);
@@ -129,7 +112,7 @@ namespace CAS.UA.Model.Designer.IO
       this.m_ModelDesign = modelDesign;
     }
 
-    internal static IOPCFModelConfigurationManagement ImportNodeSet(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, Action<TraceMessage> traceEvent)
+    internal static IProjectConfigurationManagement ImportNodeSet(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, Action<TraceMessage> traceEvent)
     {
       if (solution == null) throw new ArgumentNullException(nameof(solution));
       if (graphicalUserInterface == null) throw new ArgumentNullException(nameof(graphicalUserInterface));
@@ -140,7 +123,7 @@ namespace CAS.UA.Model.Designer.IO
       return new OPCFModelConfigurationManagement(solution, graphicalUserInterface, _newProjctDesription, _model.Item1);
     }
 
-    internal static IOPCFModelConfigurationManagement ImportModelDesign(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, UAModelDesignerProject uaModelDesignerProject)
+    internal static IProjectConfigurationManagement ImportModelDesign(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, UAModelDesignerProject uaModelDesignerProject)
     {
       if (solution == null) throw new ArgumentNullException(nameof(solution));
       if (graphicalUserInterface == null) throw new ArgumentNullException(nameof(graphicalUserInterface));
@@ -155,8 +138,8 @@ namespace CAS.UA.Model.Designer.IO
     /// <param name="solution">The solution description.</param>
     /// <param name="graphicalUserInterface">The graphical user interface.</param>
     /// <param name="projectName">Name of the project.</param>
-    /// <returns><see cref="IOPCFModelConfigurationManagement"/>.</returns>
-    internal static IOPCFModelConfigurationManagement CreateNew(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, string projectName)
+    /// <returns><see cref="IProjectConfigurationManagement"/>.</returns>
+    internal static IProjectConfigurationManagement CreateNew(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, string projectName)
     {
       if (solution == null) throw new ArgumentNullException(nameof(solution));
       if (graphicalUserInterface == null) throw new ArgumentNullException(nameof(graphicalUserInterface));
@@ -186,28 +169,32 @@ namespace CAS.UA.Model.Designer.IO
 
     #region IOPCFModelConfigurationManagement
 
-    OPCFModelDesign IOPCFModelConfigurationManagement.ModelDesign => m_ModelDesign;
+    OPCFModelDesign IProjectConfigurationManagement.ModelDesign => m_ModelDesign;
 
-    UAModelDesignerProject IOPCFModelConfigurationManagement.UAModelDesignerProject => m_UAModelDesignerProject;
-    string IOPCFModelConfigurationManagement.Name => this.m_UAModelDesignerProject.Name;
+    UAModelDesignerProject IProjectConfigurationManagement.UAModelDesignerProject => m_UAModelDesignerProject;
+    string IProjectConfigurationManagement.Name => this.m_UAModelDesignerProject.Name;
 
     //TODO Changing of the solution location doesn't recalculate the projects paths #134 - save operations must be consolidated
-    bool IOPCFModelConfigurationManagement.SaveModelDesign()
+    public bool SaveModelDesign()
     {
-      return base.Save(false, m_ModelDesign);
+      XmlFile.DataToSerialize<OPCFModelDesign> _config;
+      _config.Data = m_ModelDesign;
+      _config.XmlNamespaces = null;
+      _config.StylesheetName = "OPCUAModelDesign.xslt";
+      return base.Save(false, _config, SetupFileDialog);
     }
 
-    void IOPCFModelConfigurationManagement.SaveModelDesign(XmlFile.DataToSerialize<OPCFModelDesign> modelDesign)
+    bool IProjectConfigurationManagement.SaveModelDesign(OPCFModelDesign modelDesign)
     {
-      string _filePath = CalculateEffectiveAbsoluteModelFilePath();
-      XmlFile.WriteXmlFile<OPCFModelDesign>(modelDesign, _filePath, FileMode.Create);
+      m_ModelDesign = modelDesign;
+      return this.SaveModelDesign();
     }
 
     /// <summary>
     /// Builds the project and write any massages to specified output.
     /// </summary>
     /// <param name="output">The output containing text sent by the compiler.</param>
-    void IOPCFModelConfigurationManagement.Build(TextWriter output)
+    void IProjectConfigurationManagement.Build(TextWriter output)
     {
       // some verification at the beginning
       DirectoryInfo dirinfo = new DirectoryInfo(BuildOutputDirectoryPath);

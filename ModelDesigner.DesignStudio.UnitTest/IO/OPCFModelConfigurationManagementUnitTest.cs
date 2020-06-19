@@ -27,7 +27,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
       _IFileDialogMock.SetupGet(x => x.FileName).Throws<ApplicationException>();
       _IFileDialogMock.SetupGet(x => x.InitialDirectory).Throws<ApplicationException>();
-      IOPCFModelConfigurationManagement _newItem = OPCFModelConfigurationManagement.CreateNew(_solutionMock.Object, new GraphicalUserInterface(_IFileDialogMock.Object), "projectName");
+      IProjectConfigurationManagement _newItem = OPCFModelConfigurationManagement.CreateNew(_solutionMock.Object, new GraphicalUserInterface(_IFileDialogMock.Object), "projectName");
       Assert.IsNotNull(_newItem.ModelDesign);
       Assert.AreEqual<string>("projectName", _newItem.Name);
       Assert.IsNotNull(_newItem.UAModelDesignerProject);
@@ -40,6 +40,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       _IFileDialogMock.Verify(x => x.Filter, Times.Never);
       _IFileDialogMock.Verify(x => x.InitialDirectory, Times.Never);
       _IFileDialogMock.Verify(x => x.Title, Times.Never);
+      _IFileDialogMock.Verify(x => x.ShowDialog(), Times.Never);
     }
 
     //TODO Changing of the solution location doesn't recalculate the projects paths #134
@@ -74,7 +75,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
       _IFileDialogMock.SetupGet(x => x.FileName).Throws<ApplicationException>();
       _IFileDialogMock.SetupGet(x => x.InitialDirectory).Throws<ApplicationException>();
-      IOPCFModelConfigurationManagement _newItem;
+      IProjectConfigurationManagement _newItem;
       Assert.ThrowsException<ArgumentNullException>(() => _newItem = OPCFModelConfigurationManagement.ImportModelDesign(null, new GraphicalUserInterface(_IFileDialogMock.Object), _projectDescriptor));
       Assert.ThrowsException<ArgumentNullException>(() => _newItem = OPCFModelConfigurationManagement.ImportModelDesign(_solutionMock.Object, null, _projectDescriptor));
       Assert.ThrowsException<ArgumentNullException>(() => _newItem = OPCFModelConfigurationManagement.ImportModelDesign(_solutionMock.Object, new GraphicalUserInterface(_IFileDialogMock.Object), null));
