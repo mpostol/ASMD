@@ -29,22 +29,14 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
         throw new ArgumentOutOfRangeException(baseDirectory, "The initial value of the file path cannot be null.");
       m_BaseDirectory = baseDirectory;
     }
+
+    #region ISolutionDirectoryPathManagement
+
     /// <summary>
     /// Gets or sets the base directory.
     /// </summary>
     /// <value>The base directory.</value>
     public string DefaultDirectory => Path.GetDirectoryName(DefaultFileName);
-    //{
-    //  get => m_BaseDirectory;
-    //  protected set
-    //  {
-    //    if (value == m_BaseDirectory)
-    //      return;
-    //    string _oldBaseDirectory = m_BaseDirectory;
-    //    m_BaseDirectory = value;
-    //    DefaultFileNameHasChanged?.Invoke(this, new NewDirectoryPathEventArgs(_oldBaseDirectory, value));
-    //  }
-    //}
 
     /// <summary>
     /// Gets or sets the default name of the file.
@@ -67,5 +59,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
     /// Occurs when changes occur that affect the base directory .
     /// </summary>
     public event EventHandler<NewDirectoryPathEventArgs> DefaultFileNameHasChanged;
+
+    #endregion ISolutionDirectoryPathManagement
   }
 }

@@ -32,7 +32,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     public void CreateNewModelTest()
     {
       String _currentFolder = Directory.GetCurrentDirectory();
-      Mock<IOPCFModelConfigurationManagement> _project = new Mock<IOPCFModelConfigurationManagement>();
+      Mock<IProjectConfigurationManagement> _project = new Mock<IProjectConfigurationManagement>();
       _project.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(new OPCFModelDesign());
       _project.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
       CheckConsistency(new ProjectTreeNode(_project.Object));

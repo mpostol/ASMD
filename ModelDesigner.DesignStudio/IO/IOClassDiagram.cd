@@ -9,9 +9,10 @@
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AEIAAAAAACAAAAAAAgAAAAAAAIAAgAAQgAAAQQAgAAA=</HashCode>
+      <HashCode>AEIAAAAAACAAAAgAAgAAAAAAAIAAgAAAAAAAQQAgAAA=</HashCode>
       <FileName>IO\ConfigurationManagement.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.IO.TypeGenericConfigurationManagement&lt;Type4Serialization&gt;">
     <Position X="9.25" Y="4.5" Width="3.75" />
@@ -27,51 +28,45 @@
           <NewMemberFileName>IO\TypeGenericConfigurationManagement.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
-      <Class Name="CAS.UA.Model.Designer.IO.TypeGenericConfigurationManagement&lt;Type4Serialization&gt;.ConfigurationEventArg" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>IO\TypeGenericConfigurationManagement.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
     </NestedTypes>
+    <InheritanceLine Type="CAS.UA.Model.Designer.IO.ConfigurationManagement" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="11.125" Y="3.569" />
+        <Point X="11.125" Y="4.125" />
+        <Point X="11.125" Y="4.125" />
+        <Point X="11.125" Y="4.5" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>EAAAQIAAAAAAAAAAAAAAAAAABAAAAAAAgAAAAACAACQ=</HashCode>
+      <HashCode>EQAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>IO\TypeGenericConfigurationManagement.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CAS.UA.Model.Designer.IO.OPCFModelConfigurationManagement">
-    <Position X="6.75" Y="7.25" Width="4" />
-    <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
-      <Compartment Name="Properties" Collapsed="true" />
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>EBAABAAwMQAAAAAgAgAAAhAAAADAAAEAgAAAAAEBAJA=</HashCode>
-      <FileName>IO\OPCFModelConfigurationManagement.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement" Collapsed="true">
-    <Position X="0.5" Y="0.5" Width="3" />
+  <Class Name="CAS.UA.Model.Designer.IO.SolutionConfigurationManagementRoot">
+    <Position X="4.75" Y="3.5" Width="3" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
       <Compartment Name="Events" Collapsed="true" />
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <NestedTypes>
-      <Class Name="CAS.UA.Model.Designer.IO.OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs" Collapsed="true">
+      <Class Name="CAS.UA.Model.Designer.IO.SolutionConfigurationManagementRoot.AfterSolutionChangeEventArgs" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>IO\OPCFSolutionConfigurationManagement.cs</NewMemberFileName>
+          <NewMemberFileName>IO\SolutionConfigurationManagementRoot.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>ACAAAAAAAEAAAACAAAAAAAEAAAAAAAAAAAAAAAAAAEA=</HashCode>
-      <FileName>IO\OPCFSolutionConfigurationManagement.cs</FileName>
+      <HashCode>ACAAAAAAAEAAAACAAAAAAAMAAAAAAAAAAAAAAAAAAEg=</HashCode>
+      <FileName>IO\SolutionConfigurationManagementRoot.cs</FileName>
+      <NewMemberFileName>IO\OPCFSolutionConfigurationManagement.cs</NewMemberFileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurrentConfiguration" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.SolutionTreeNode">
-    <Position X="14.5" Y="3" Width="2.75" />
+    <Position X="14.5" Y="4.25" Width="2.75" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
       <Compartment Name="Events" Collapsed="true" />
@@ -85,7 +80,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.ProjectWrapper" Collapsed="true">
-    <Position X="20" Y="0.5" Width="1.5" />
+    <Position X="10.25" Y="14" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -153,7 +148,7 @@
     <TypeIdentifier />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Wrappers.WrapperTreeNode">
-    <Position X="14.75" Y="0.5" Width="2.25" />
+    <Position X="14.75" Y="1" Width="2.25" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
@@ -186,8 +181,21 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>EAIAAAAAAAQEIAAEAFDAAAIAAABAAQAAgAAAAAAEQCg=</HashCode>
+      <HashCode>EQIAAAAAAAQEIAAEAEDAAAAAAABAAQAQAAAAAAAEQAA=</HashCode>
       <FileName>IO\OPCFSolutionConfigurationManagement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.IO.ProjectConfigurationManagement">
+    <Position X="6.75" Y="7.25" Width="4" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ARAAhCQgMAAAAAAgAgABAgAAAAAAAAEQAAAAACEBAIA=</HashCode>
+      <FileName>IO\ProjectConfigurationManagement.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -197,6 +205,24 @@
       <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <TypeIdentifier />
+  </Interface>
+  <Interface Name="CAS.CommServer.UA.ModelDesigner.Configuration.IO.ISolutionDirectoryPathManagement" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="CAS.UA.Model.Designer.IO.IConfigurationManagement" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>IO\IConfigurationManagement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CAS.UA.Model.Designer.IO.ISolutionConfigurationManagement" Collapsed="true">
+    <Position X="5.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABIAAAAAAAAAAAEAAAAQAAAAAQAAAAAAAAAAAAQQ=</HashCode>
+      <FileName>IO\ISolutionConfigurationManagement.cs</FileName>
+    </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

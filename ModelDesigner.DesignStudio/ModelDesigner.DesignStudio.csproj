@@ -216,6 +216,9 @@
     <Compile Include="IO\ConfigurationManagement.cs" />
     <Compile Include="IO\IConfigurationManagement.cs" />
     <Compile Include="IO\IProjectConfigurationManagement.cs" />
+    <Compile Include="IO\ISolutionConfigurationManagement.cs" />
+    <Compile Include="IO\ProjectConfigurationManagement.cs" />
+    <Compile Include="IO\SolutionConfigurationManagementRoot.cs" />
     <Compile Include="IO\UniqueNameGenerator.cs" />
     <Compile Include="ToForms\MessageBoxHandling.cs" />
     <Compile Include="ToForms\IMessageBoxHandling.cs" />
@@ -438,7 +441,6 @@
     <Compile Include="ImagesForNodes.Designer.cs">
       <DependentUpon>ImagesForNodes.cs</DependentUpon>
     </Compile>
-    <Compile Include="IO\OPCFModelConfigurationManagement.cs" />
     <Compile Include="IO\OPCFSolutionConfigurationManagement.cs" />
     <Compile Include="IO\TypeGenericConfigurationManagement.cs" />
     <Compile Include="MainForm.cs">

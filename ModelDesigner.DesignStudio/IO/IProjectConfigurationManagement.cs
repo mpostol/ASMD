@@ -17,9 +17,7 @@ namespace CAS.UA.Model.Designer.IO
     OPCFModelDesign ModelDesign { get; }
     string Name { get; }
 
-    bool SaveModelDesign();
-
-    bool SaveModelDesign(OPCFModelDesign modelDesign);
+    void SaveModelDesign(OPCFModelDesign modelDesign);
 
     void Build(TextWriter output);
   }

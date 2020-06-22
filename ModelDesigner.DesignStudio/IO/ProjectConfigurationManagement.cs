@@ -19,40 +19,28 @@ using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
 
 namespace CAS.UA.Model.Designer.IO
 {
-
-
   /// <summary>
   /// Class to save and restore UA Information Model to/from external file.
   /// </summary>
-  internal class OPCFModelConfigurationManagement : TypeGenericConfigurationManagement<OPCFModelDesign>, IProjectConfigurationManagement
+  internal class ProjectConfigurationManagement : TypeGenericConfigurationManagement<OPCFModelDesign>, IProjectConfigurationManagement
   {
     #region private
 
     private readonly UAModelDesignerProject m_UAModelDesignerProject;
     private readonly ISolutionConfigurationManagement m_ISolutionConfigurationManagement;
-    private OPCFModelDesign m_ModelDesign;
+    private readonly OPCFModelDesign m_ModelDesign;
 
-    /// <summary>
-    /// Gets the type of the configuration.
-    /// </summary>
-    /// <value>The type of the configuration defined in <see cref="ConfigurationType" />.</value>
     private static void SetupFileDialog(IFileDialog _dialog)
     {
       _dialog.DefaultExt = Resources.Project_FileDialogDefaultExt;
       _dialog.Filter = Resources.Project_FileDialogFilter;
       _dialog.Title = Resources.Project_FileDialogTitle;
     }
+
     private static string ReplaceTokenAndReturnFullPath(string fileNameToBeProcessed, string projectName, string solutionDirectory)
     {
       string _Name = fileNameToBeProcessed.Replace(Resources.Token_ProjectFileName, projectName);
       return RelativeFilePathsCalculator.CalculateAbsoluteFileName(_Name, solutionDirectory);
-    }
-
-    private void SolutionHomeDirectoryBaseDirectoryPathChanged(object sender, NewDirectoryPathEventArgs e)
-    {
-      string _oldAbsoluteFilePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.m_UAModelDesignerProject.FileName, e.OldDirectoryPath);
-      string _newAbsoluteFilePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.m_UAModelDesignerProject.FileName, e.NewDirectoryPath);
-      this.m_UAModelDesignerProject.FileName = RelativeFilePathsCalculator.TryComputeRelativePath(_newAbsoluteFilePath, _oldAbsoluteFilePath);
     }
 
     private string CSVFileName
@@ -63,10 +51,10 @@ namespace CAS.UA.Model.Designer.IO
           m_UAModelDesignerProject.CSVFileName = Resources.DefaultCSVFileName;
         return m_UAModelDesignerProject.CSVFileName;
       }
-      set => m_UAModelDesignerProject.CSVFileName = value;
     }
 
     private string CSVFilePath => ReplaceTokenAndReturnFullPath(CSVFileName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.DefaultDirectory);
+    private string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.DefaultDirectory);
 
     private string BuildOutputDirectoryName
     {
@@ -74,20 +62,8 @@ namespace CAS.UA.Model.Designer.IO
       {
         if (string.IsNullOrEmpty(m_UAModelDesignerProject.BuildOutputDirectoryName))
           m_UAModelDesignerProject.BuildOutputDirectoryName = Resources.DefaultOutputBuildDirectory;
-        return m_UAModelDesignerProject.BuildOutputDirectoryName;
+        return Path.Combine(this.DefaultDirectory, m_UAModelDesignerProject.BuildOutputDirectoryName);
       }
-      set => m_UAModelDesignerProject.BuildOutputDirectoryName = value;
-    }
-
-    private string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.DefaultDirectory);
-
-    private static OPCFModelDesign ReadModelDesign(string solutionDirectoryPathManagementBaseDirectory, string fileName)
-    {
-      //m_ModelDesign = this.ReadConfiguration();
-      string _filePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(fileName, solutionDirectoryPathManagementBaseDirectory);
-      if (!File.Exists(_filePath))
-        throw new FileNotFoundException($"Cannot find the model file at { _filePath}");
-      return XmlFile.ReadXmlFile<OPCFModelDesign>(_filePath);
     }
 
     /// <summary>
@@ -99,70 +75,80 @@ namespace CAS.UA.Model.Designer.IO
       return RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_UAModelDesignerProject.FileName, this.m_ISolutionConfigurationManagement.DefaultDirectory);
     }
 
+    protected override XmlFile.DataToSerialize<OPCFModelDesign> PrepareDataToSerialize(OPCFModelDesign modelDesign)
+    {
+      XmlFile.DataToSerialize<OPCFModelDesign> _config;
+      _config.Data = modelDesign;
+      _config.XmlNamespaces = null;
+      _config.StylesheetName = "OPCUAModelDesign.xslt";
+      return _config;
+    }
+
     #endregion private
 
     #region constructor
 
-    private OPCFModelConfigurationManagement(ISolutionConfigurationManagement solution, IGraphicalUserInterface gui, UAModelDesignerProject uaModelDesignerProject, OPCFModelDesign modelDesign) :
-      base(uaModelDesignerProject.FileName, gui)
+    private ProjectConfigurationManagement(UAModelDesignerProject uaModelDesignerProject, ISolutionConfigurationManagement solution, Tuple<OPCFModelDesign, string> modelDesign, IGraphicalUserInterface gui) :
+      base(modelDesign.Item2, gui)
     {
-      m_ISolutionConfigurationManagement = solution;
       m_UAModelDesignerProject = uaModelDesignerProject;
-      solution.DefaultFileNameHasChanged += SolutionHomeDirectoryBaseDirectoryPathChanged;
-      this.m_ModelDesign = modelDesign;
+      m_ISolutionConfigurationManagement = solution;
+      this.m_ModelDesign = modelDesign.Item1;
     }
 
     internal static IProjectConfigurationManagement ImportNodeSet(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, Action<TraceMessage> traceEvent)
     {
       if (solution == null) throw new ArgumentNullException(nameof(solution));
       if (graphicalUserInterface == null) throw new ArgumentNullException(nameof(graphicalUserInterface));
-      Tuple<OPCFModelDesign, string> _model = IO.ImportNodeSet.Import(solution.DefaultDirectory, traceEvent);
-      if (_model == null)
+      Tuple<OPCFModelDesign, string> _modelDesign = IO.ImportNodeSet.Import(solution.DefaultDirectory, traceEvent);
+      if (_modelDesign == null)
         return null;
-      UAModelDesignerProject _newProjctDesription = UAModelDesignerProject.CreateEmpty(solution.DefaultDirectory, _model.Item2);
-      return new OPCFModelConfigurationManagement(solution, graphicalUserInterface, _newProjctDesription, _model.Item1);
+      UAModelDesignerProject _newProjctDesription = UAModelDesignerProject.CreateEmpty(solution.DefaultDirectory, _modelDesign.Item2);
+      return new ProjectConfigurationManagement(_newProjctDesription, solution, _modelDesign, graphicalUserInterface);
     }
 
-    internal static IProjectConfigurationManagement ImportModelDesign(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, UAModelDesignerProject uaModelDesignerProject)
+    internal static IProjectConfigurationManagement ImportModelDesign(ISolutionConfigurationManagement solution, IGraphicalUserInterface gui, UAModelDesignerProject uaModelDesignerProject)
     {
       if (solution == null) throw new ArgumentNullException(nameof(solution));
-      if (graphicalUserInterface == null) throw new ArgumentNullException(nameof(graphicalUserInterface));
+      if (gui == null) throw new ArgumentNullException(nameof(gui));
       if (uaModelDesignerProject == null) throw new ArgumentNullException(nameof(uaModelDesignerProject));
-      OPCFModelDesign _modelDesign = ReadModelDesign(solution.DefaultDirectory, uaModelDesignerProject.FileName);
-      return new OPCFModelConfigurationManagement(solution, graphicalUserInterface, uaModelDesignerProject, _modelDesign);
+      string _filePath = Path.Combine(solution.DefaultDirectory, uaModelDesignerProject.FileName);
+      Tuple<OPCFModelDesign, string> _modelDesign = new Tuple<OPCFModelDesign, string>(TypeGenericConfigurationManagement<OPCFModelDesign>.ReadConfiguration(Path.Combine(solution.DefaultDirectory, uaModelDesignerProject.FileName), gui), _filePath);
+      return new ProjectConfigurationManagement(uaModelDesignerProject, solution, _modelDesign, gui);
     }
 
     /// <summary>
     /// Creates new model encapsulated by instance of this class
     /// </summary>
     /// <param name="solution">The solution description.</param>
-    /// <param name="graphicalUserInterface">The graphical user interface.</param>
+    /// <param name="gui">The graphical user interface.</param>
     /// <param name="projectName">Name of the project.</param>
     /// <returns><see cref="IProjectConfigurationManagement"/>.</returns>
-    internal static IProjectConfigurationManagement CreateNew(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, string projectName)
+    internal static IProjectConfigurationManagement CreateNew(ISolutionConfigurationManagement solution, IGraphicalUserInterface gui, string projectName)
     {
       if (solution == null) throw new ArgumentNullException(nameof(solution));
-      if (graphicalUserInterface == null) throw new ArgumentNullException(nameof(graphicalUserInterface));
+      if (gui == null) throw new ArgumentNullException(nameof(gui));
       UAModelDesignerProject _projectDescription = UAModelDesignerProject.CreateEmpty(solution.DefaultDirectory, projectName);
       OPCFModelDesign _OPCFModelDesign = new OPCFModelDesign()
       {
         TargetNamespace = Settings.Default.TargetNamespace,
         Namespaces = new Opc.Ua.ModelCompiler.Namespace[]
-            { new  Opc.Ua.ModelCompiler.Namespace()
+            {
+              new  Opc.Ua.ModelCompiler.Namespace()
                {
                  Value = Settings.Default.TargetNamespace,
                  XmlPrefix = Settings.Default.TargetNamespaceXmlPrefix,
                  Name = Settings.Default.TargetNamespaceXmlPrefix
                },
-             new Opc.Ua.ModelCompiler.Namespace()
+              new Opc.Ua.ModelCompiler.Namespace()
                {
-                 //Value = OPCUATargetNamespace, // TODO it is not present in new ModelCompiler release.
                  XmlPrefix = Settings.Default.XmlUATypesPrefix,
                  Name = Settings.Default.XmlUATypesPrefix
                }
             }
       };
-      return new OPCFModelConfigurationManagement(solution, graphicalUserInterface, _projectDescription, _OPCFModelDesign);
+      string _defFilePath = Path.ChangeExtension(Path.Combine(solution.DefaultDirectory, projectName), Resources.Project_FileDialogDefaultExt);
+      return new ProjectConfigurationManagement(_projectDescription, solution, new Tuple<OPCFModelDesign, string>(_OPCFModelDesign, _defFilePath), gui);
     }
 
     #endregion constructor
@@ -170,25 +156,8 @@ namespace CAS.UA.Model.Designer.IO
     #region IOPCFModelConfigurationManagement
 
     OPCFModelDesign IProjectConfigurationManagement.ModelDesign => m_ModelDesign;
-
     UAModelDesignerProject IProjectConfigurationManagement.UAModelDesignerProject => m_UAModelDesignerProject;
     string IProjectConfigurationManagement.Name => this.m_UAModelDesignerProject.Name;
-
-    //TODO Changing of the solution location doesn't recalculate the projects paths #134 - save operations must be consolidated
-    public bool SaveModelDesign()
-    {
-      XmlFile.DataToSerialize<OPCFModelDesign> _config;
-      _config.Data = m_ModelDesign;
-      _config.XmlNamespaces = null;
-      _config.StylesheetName = "OPCUAModelDesign.xslt";
-      return base.Save(false, _config, SetupFileDialog);
-    }
-
-    bool IProjectConfigurationManagement.SaveModelDesign(OPCFModelDesign modelDesign)
-    {
-      m_ModelDesign = modelDesign;
-      return this.SaveModelDesign();
-    }
 
     /// <summary>
     /// Builds the project and write any massages to specified output.
@@ -266,6 +235,11 @@ namespace CAS.UA.Model.Designer.IO
         if (!string.IsNullOrEmpty(outputfrombuildprocess))
           output.WriteLine(outputfrombuildprocess);
       }
+    }
+
+    void IProjectConfigurationManagement.SaveModelDesign(OPCFModelDesign modelDesign)
+    {
+      base.Save(modelDesign);
     }
 
     #endregion IOPCFModelConfigurationManagement

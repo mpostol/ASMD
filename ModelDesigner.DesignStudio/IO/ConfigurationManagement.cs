@@ -95,6 +95,35 @@ namespace CAS.UA.Model.Designer.IO
       ChangesArePresentHasChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    /// <summary>
+    /// Selects the save path.
+    /// </summary>
+    /// <param name="prompt">if set to <c>true</c> [prompt].</param>
+    /// <param name="setupFileDialog">The setup file dialog.</param>
+    /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+    protected bool SelectSavePath(bool prompt, Action<IFileDialog> setupFileDialog)
+    {
+      bool _Empty = !File.Exists(DefaultFileName);
+      prompt = _Empty || prompt;
+      if (prompt && !ShowDialogSaveFileDialog(setupFileDialog))
+        return false;
+      return true;
+    }
+
+    protected bool ShowDialogSaveFileDialog(Action<IFileDialog> SetupFileDialog)
+    {
+      using (IFileDialog _dialog = GraphicalUserInterface.SaveFileDialogFuc())
+      {
+        SetupFileDialog(_dialog);
+        _dialog.InitialDirectory = Path.GetDirectoryName(DefaultFileName);
+        _dialog.FileName = Path.GetFileNameWithoutExtension(DefaultFileName);
+        bool _ret = _dialog.ShowDialog();
+        if (_ret)
+          DefaultFileName = _dialog.FileName;
+        return _ret;
+      }
+    }
+
     protected static string ShowDialogOpenFileDialog(IGraphicalUserInterface gui, Action<IFileDialog> setupFileDialog)
     {
       return ShowDialogOpenFileDialog(null, gui, setupFileDialog);
@@ -115,20 +144,6 @@ namespace CAS.UA.Model.Designer.IO
           return _dialog.FileName;
         else
           return null;
-      }
-    }
-
-    protected bool ShowDialogSaveFileDialog(Action<IFileDialog> SetupFileDialog)
-    {
-      using (IFileDialog _dialog = GraphicalUserInterface.SaveFileDialogFuc())
-      {
-        SetupFileDialog(_dialog);
-        _dialog.InitialDirectory = Path.GetDirectoryName(DefaultFileName);
-        _dialog.FileName = Path.GetFileNameWithoutExtension(DefaultFileName);
-        bool _ret = _dialog.ShowDialog();
-        if (_ret)
-          DefaultFileName = _dialog.FileName;
-        return _ret;
       }
     }
 

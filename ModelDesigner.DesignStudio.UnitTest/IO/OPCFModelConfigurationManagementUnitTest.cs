@@ -27,7 +27,9 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
       _IFileDialogMock.SetupGet(x => x.FileName).Throws<ApplicationException>();
       _IFileDialogMock.SetupGet(x => x.InitialDirectory).Throws<ApplicationException>();
-      IProjectConfigurationManagement _newItem = OPCFModelConfigurationManagement.CreateNew(_solutionMock.Object, new GraphicalUserInterface(_IFileDialogMock.Object), "projectName");
+      _IFileDialogMock.Setup(x => x.Dispose());
+      _IFileDialogMock.Setup(x => x.ShowDialog());
+      IProjectConfigurationManagement _newItem = ProjectConfigurationManagement.CreateNew(_solutionMock.Object, new GraphicalUserInterface(_IFileDialogMock.Object), "projectName");
       Assert.IsNotNull(_newItem.ModelDesign);
       Assert.AreEqual<string>("projectName", _newItem.Name);
       Assert.IsNotNull(_newItem.UAModelDesignerProject);
@@ -41,6 +43,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       _IFileDialogMock.Verify(x => x.InitialDirectory, Times.Never);
       _IFileDialogMock.Verify(x => x.Title, Times.Never);
       _IFileDialogMock.Verify(x => x.ShowDialog(), Times.Never);
+      _IFileDialogMock.Verify(x => x.Dispose(), Times.Never);
     }
 
     //TODO Changing of the solution location doesn't recalculate the projects paths #134
@@ -76,10 +79,10 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       _IFileDialogMock.SetupGet(x => x.FileName).Throws<ApplicationException>();
       _IFileDialogMock.SetupGet(x => x.InitialDirectory).Throws<ApplicationException>();
       IProjectConfigurationManagement _newItem;
-      Assert.ThrowsException<ArgumentNullException>(() => _newItem = OPCFModelConfigurationManagement.ImportModelDesign(null, new GraphicalUserInterface(_IFileDialogMock.Object), _projectDescriptor));
-      Assert.ThrowsException<ArgumentNullException>(() => _newItem = OPCFModelConfigurationManagement.ImportModelDesign(_solutionMock.Object, null, _projectDescriptor));
-      Assert.ThrowsException<ArgumentNullException>(() => _newItem = OPCFModelConfigurationManagement.ImportModelDesign(_solutionMock.Object, new GraphicalUserInterface(_IFileDialogMock.Object), null));
-      Assert.ThrowsException<FileNotFoundException>(() => _newItem = OPCFModelConfigurationManagement.ImportModelDesign(_solutionMock.Object, new GraphicalUserInterface(_IFileDialogMock.Object), _projectDescriptor));
+      Assert.ThrowsException<ArgumentNullException>(() => _newItem = ProjectConfigurationManagement.ImportModelDesign(null, new GraphicalUserInterface(_IFileDialogMock.Object), _projectDescriptor));
+      Assert.ThrowsException<ArgumentNullException>(() => _newItem = ProjectConfigurationManagement.ImportModelDesign(_solutionMock.Object, null, _projectDescriptor));
+      Assert.ThrowsException<ArgumentNullException>(() => _newItem = ProjectConfigurationManagement.ImportModelDesign(_solutionMock.Object, new GraphicalUserInterface(_IFileDialogMock.Object), null));
+      Assert.ThrowsException<FileNotFoundException>(() => _newItem = ProjectConfigurationManagement.ImportModelDesign(_solutionMock.Object, new GraphicalUserInterface(_IFileDialogMock.Object), _projectDescriptor));
     }
 
     private class SolutionDirectoryPathManagementBaseFixture : CAS.CommServer.UA.ModelDesigner.Configuration.IO.SolutionDirectoryPathManagementBase
