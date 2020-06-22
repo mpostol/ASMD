@@ -126,7 +126,7 @@ namespace CAS.UA.Model.Designer.IO
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 146, "Finished successfully CommonInitialization");
     }
 
-    internal SolutionConfigurationManagement(Tuple<UAModelDesignerSolution, string> solutionDescription, IGraphicalUserInterface gui) : base(solutionDescription.Item2, gui)
+    internal SolutionConfigurationManagement(Tuple<UAModelDesignerSolution, string> solutionDescription, bool changesArePresent, IGraphicalUserInterface gui) : base(solutionDescription.Item2, changesArePresent, gui)
     {
       m_Name = solutionDescription.Item1.Name;
       m_ServerDetails = solutionDescription.Item1.ServerDetails ?? throw new ArgumentNullException(nameof(UAModelDesignerSolution.ServerDetails));

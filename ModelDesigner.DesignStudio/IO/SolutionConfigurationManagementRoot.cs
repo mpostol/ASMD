@@ -74,7 +74,7 @@ namespace CAS.UA.Model.Designer.IO
       try
       {
         AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 234587501, "Opening an existing instance of the OPCFSolutionConfigurationManagement");
-        SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(_solution, gui);
+        SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(_solution, false, gui);
         DefaultInstance.OnSolutionChanged(_newSolution);
         return _newSolution;
       }
@@ -95,7 +95,7 @@ namespace CAS.UA.Model.Designer.IO
       try
       {
         AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 234587501, "Opening an existing instance of the OPCFSolutionConfigurationManagement");
-        SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(_solution, gui);
+        SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(_solution, false, gui);
         DefaultInstance.OnSolutionChanged(_newSolution);
         return _newSolution;
       }
@@ -111,7 +111,7 @@ namespace CAS.UA.Model.Designer.IO
     {
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 234587503, "Creating new instance of the OPCFSolutionConfigurationManagement");
       string _defPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UAModelDesignerSolution");
-      SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(new Tuple<UAModelDesignerSolution, string>(UAModelDesignerSolution.CreateEmptyModel(), _defPath), gui);
+      SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(new Tuple<UAModelDesignerSolution, string>(UAModelDesignerSolution.CreateEmptyModel(), _defPath), true, gui);
       DefaultInstance.OnSolutionChanged(_newSolution);
       return _newSolution;
     }

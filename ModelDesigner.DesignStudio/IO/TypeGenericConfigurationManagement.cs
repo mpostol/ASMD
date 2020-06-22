@@ -28,7 +28,7 @@ namespace CAS.UA.Model.Designer.IO
     /// </summary>
     /// <param name="gui">The graphical user interface.</param>
     /// <param name="fileName">Absolute path of the file.</param>
-    protected TypeGenericConfigurationManagement(string fileName, IGraphicalUserInterface gui) : base(fileName, gui)
+    protected TypeGenericConfigurationManagement(string fileName, bool changesArePresent, IGraphicalUserInterface gui) : base(fileName, changesArePresent, gui)
     {
     }
 

@@ -149,7 +149,7 @@ namespace CAS.UA.Model.Designer.IO
 
     private class ConfigurationManagementFixture : ConfigurationManagement
     {
-      public ConfigurationManagementFixture(IFileDialog mock, string fileName) : base(fileName, new GraphicalUserInterfaceFixture(mock))
+      public ConfigurationManagementFixture(IFileDialog mock, string fileName) : base(fileName, false, new GraphicalUserInterfaceFixture(mock))
       {
       }
 

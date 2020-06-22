@@ -24,9 +24,10 @@ namespace CAS.UA.Model.Designer.IO
     /// <summary>
     /// Initializes a new instance of the <see cref="ConfigurationManagement"/> class.
     /// </summary>
-    public ConfigurationManagement(string fileName, IGraphicalUserInterface gui) : base(fileName)
+    public ConfigurationManagement(string fileName, bool changesArePresent, IGraphicalUserInterface gui) : base(fileName)
     {
       GraphicalUserInterface = gui;
+      m_ChangesArePresent = changesArePresent;
     }
 
     #endregion constructors

@@ -89,11 +89,33 @@ namespace CAS.UA.Model.Designer.IO
     #region constructor
 
     private ProjectConfigurationManagement(UAModelDesignerProject uaModelDesignerProject, ISolutionConfigurationManagement solution, Tuple<OPCFModelDesign, string> modelDesign, IGraphicalUserInterface gui) :
-      base(modelDesign.Item2, gui)
+      base(modelDesign.Item2, modelDesign.Item1 == null, gui)
     {
       m_UAModelDesignerProject = uaModelDesignerProject;
       m_ISolutionConfigurationManagement = solution;
-      this.m_ModelDesign = modelDesign.Item1;
+      this.m_ModelDesign = modelDesign.Item1 == null ? Def() : modelDesign.Item1;
+    }
+
+    private OPCFModelDesign Def()
+    {
+      return new OPCFModelDesign()
+      {
+        TargetNamespace = Settings.Default.TargetNamespace,
+        Namespaces = new Opc.Ua.ModelCompiler.Namespace[]
+        {
+          new  Opc.Ua.ModelCompiler.Namespace()
+               {
+                 Value = Settings.Default.TargetNamespace,
+                 XmlPrefix = Settings.Default.TargetNamespaceXmlPrefix,
+                 Name = Settings.Default.TargetNamespaceXmlPrefix
+               },
+          new Opc.Ua.ModelCompiler.Namespace()
+               {
+                 XmlPrefix = Settings.Default.XmlUATypesPrefix,
+                 Name = Settings.Default.XmlUATypesPrefix
+               }
+        }
+      };
     }
 
     internal static IProjectConfigurationManagement ImportNodeSet(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, Action<TraceMessage> traceEvent)
@@ -129,26 +151,8 @@ namespace CAS.UA.Model.Designer.IO
       if (solution == null) throw new ArgumentNullException(nameof(solution));
       if (gui == null) throw new ArgumentNullException(nameof(gui));
       UAModelDesignerProject _projectDescription = UAModelDesignerProject.CreateEmpty(solution.DefaultDirectory, projectName);
-      OPCFModelDesign _OPCFModelDesign = new OPCFModelDesign()
-      {
-        TargetNamespace = Settings.Default.TargetNamespace,
-        Namespaces = new Opc.Ua.ModelCompiler.Namespace[]
-            {
-              new  Opc.Ua.ModelCompiler.Namespace()
-               {
-                 Value = Settings.Default.TargetNamespace,
-                 XmlPrefix = Settings.Default.TargetNamespaceXmlPrefix,
-                 Name = Settings.Default.TargetNamespaceXmlPrefix
-               },
-              new Opc.Ua.ModelCompiler.Namespace()
-               {
-                 XmlPrefix = Settings.Default.XmlUATypesPrefix,
-                 Name = Settings.Default.XmlUATypesPrefix
-               }
-            }
-      };
       string _defFilePath = Path.ChangeExtension(Path.Combine(solution.DefaultDirectory, projectName), Resources.Project_FileDialogDefaultExt);
-      return new ProjectConfigurationManagement(_projectDescription, solution, new Tuple<OPCFModelDesign, string>(_OPCFModelDesign, _defFilePath), gui);
+      return new ProjectConfigurationManagement(_projectDescription, solution, new Tuple<OPCFModelDesign, string>(null, _defFilePath), gui);
     }
 
     #endregion constructor

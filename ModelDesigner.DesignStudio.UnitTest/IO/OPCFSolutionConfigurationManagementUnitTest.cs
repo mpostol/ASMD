@@ -23,14 +23,14 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Mock<IGraphicalUserInterface> _gui = new Mock<IGraphicalUserInterface>();
       ISolutionConfigurationManagement _instance = SolutionConfigurationManagementRoot.NewSoliution(_gui.Object);
       Assert.IsNotNull(_instance);
-      Assert.IsFalse(_instance.ChangesArePresent);
+      Assert.IsTrue(_instance.ChangesArePresent);
       Assert.IsFalse(string.IsNullOrEmpty(_instance.DefaultDirectory));
       Assert.AreEqual<string>(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), _instance.DefaultDirectory);
       Assert.AreEqual<string>("UAModelDesignerSolution", Path.GetFileName(_instance.DefaultFileName));
     }
 
     [TestMethod]
-    public void CreateNewTest()
+    public void OpenExistingTest()
     {
       const string DefaultExt = "uamdsl";
       const string FileName = "UAModelDesignerSolution";
@@ -45,6 +45,11 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Mock<IGraphicalUserInterface> _guiMock = new Mock<IGraphicalUserInterface>();
       _guiMock.SetupGet(x => x.OpenFileDialogFunc).Returns(() => _IFileDialogMock.Object);
       ISolutionConfigurationManagement _instance = SolutionConfigurationManagementRoot.OpenExisting(_guiMock.Object);
+      Assert.IsNotNull(_instance);
+      Assert.IsTrue(_instance.ChangesArePresent);
+      Assert.IsFalse(string.IsNullOrEmpty(_instance.DefaultDirectory));
+      Assert.AreEqual<string>(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), _instance.DefaultDirectory);
+      Assert.AreEqual<string>("UAModelDesignerSolution", Path.GetFileName(_instance.DefaultFileName));
       _IFileDialogMock.VerifySet(x => x.DefaultExt = DefaultExt);
       _IFileDialogMock.VerifySet(x => x.Filter = Filter);
       _IFileDialogMock.VerifySet(x => x.Title = Title);
