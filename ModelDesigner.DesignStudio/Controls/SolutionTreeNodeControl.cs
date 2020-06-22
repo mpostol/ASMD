@@ -4,6 +4,7 @@
 //
 //___________________________________________________________________________________
 
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.Windows.Forms;
@@ -63,11 +64,11 @@ namespace CAS.UA.Model.Designer.Controls
     }
     protected override void Open()
     {
-      ModelEntity.Open();
+      ModelEntity.Open(new GraphicalUserInterface());
     }
     protected override void New()
     {
-      ModelEntity.OnNew();
+      ModelEntity.OnNew(new GraphicalUserInterface());
     }
     protected override void Save()
     {

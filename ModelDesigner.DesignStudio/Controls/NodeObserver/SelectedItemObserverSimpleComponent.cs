@@ -1,17 +1,9 @@
-﻿//_______________________________________________________________
-//  Title   : SelectedItemObserverSimpleComponent
-//  System  : Microsoft VisualStudio 2015 / C#
-//  $LastChangedDate:  $
-//  $Rev: $
-//  $LastChangedBy: $
-//  $URL: $
-//  $Id:  $
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2017, CAS LODZ POLAND.
-//  TEL: +48 608 61 98 99 
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Wrappers;
 using System.ComponentModel;
@@ -24,13 +16,18 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     {
       MainController.Instance.RaiseSelectedItemIsChanged(this, e);
     }
+
     protected SelectedItemObserverSimpleComponent()
     {
       MainController.Instance.RegisterSelectedItemObserver(this);
     }
-    protected virtual void OnSelectedItemIsChanged(object sender, SelectedItemEventArgs e) { }
+
+    protected virtual void OnSelectedItemIsChanged(object sender, SelectedItemEventArgs e)
+    {
+    }
 
     #region ISelectedItemObserver
+
     public void OnSelectedItemIsChangedEventHandler(object sender, SelectedItemEventArgs e)
     {
       if (this != sender)
@@ -38,8 +35,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
         OnSelectedItemIsChanged(sender, e);
       }
     }
-    #endregion
 
+    #endregion ISelectedItemObserver
   }
-
 }

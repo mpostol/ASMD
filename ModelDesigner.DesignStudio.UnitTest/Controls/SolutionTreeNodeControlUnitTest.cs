@@ -4,6 +4,7 @@
 //
 //___________________________________________________________________________________
 
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Wrappers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -162,16 +163,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         throw new NotImplementedException();
       }
 
-      public void Open()
-      {
-        throw new NotImplementedException();
-      }
-
-      public void OnNew()
-      {
-        throw new NotImplementedException();
-      }
-
       public void AddProject(bool existing)
       {
         if (existing)
@@ -181,6 +172,16 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
           Add(new BaseModelTest());
           m_SubtreeChanged?.Invoke(this, new BaseTreeNode.ProjectEventArgs());
         }
+      }
+
+      public void Open(IGraphicalUserInterface gui)
+      {
+        throw new NotImplementedException();
+      }
+
+      public void OnNew(IGraphicalUserInterface gui)
+      {
+        throw new NotImplementedException();
       }
 
       #endregion ISolutionModel

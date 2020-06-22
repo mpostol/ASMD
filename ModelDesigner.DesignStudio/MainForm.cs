@@ -5,7 +5,9 @@
 //___________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.Controls;
+using CAS.UA.Model.Designer.Controls.NodeObserver;
 using CAS.UA.Model.Designer.ExportingTools;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
@@ -24,16 +26,16 @@ using UAOOI.Windows.Forms.ControlExtenders;
 
 namespace CAS.UA.Model.Designer
 {
-
   public partial class MainForm : Form
   {
-
     #region constructors
+
     public MainForm(string SolutionFileName)
       : this(false)
     {
       m_StartupFileName = SolutionFileName;
     }
+
     public MainForm(bool setAfterInstallationFlag)
     {
       SetAfterInstallationFlag = setAfterInstallationFlag;
@@ -41,31 +43,33 @@ namespace CAS.UA.Model.Designer
       InitializeComponent();
       ProcessInitialization();
     }
-    #endregion
+
+    #endregion constructors
 
     #region public
+
     private bool SetAfterInstallationFlag { set; get; }
-    #endregion
+
+    #endregion public
 
     #region private
 
     #region private members and helper functions
+
     //types
     [LicenseProvider(typeof(CAS.Lib.CodeProtect.CodeProtectLP))]
     [GuidAttribute("0D675C59-39B8-4522-9FA6-074AF8A3EA9D")]
     private sealed class ImportConstrain : StartUpSplashScreen.LogedIsLicensed<ImportConstrain> { }
+
     [LicenseProvider(typeof(CAS.Lib.CodeProtect.CodeProtectLP))]
     [GuidAttribute("4DF37528-E9CB-4fb7-AE1A-5AD9639EC04E")]
     private sealed class BuildSolutionConstrain : StartUpSplashScreen.LogedIsLicensed<BuildSolutionConstrain> { }
+
     //vars
     private StartUpSplashScreen m_SplashScreenObj = new StartUpSplashScreen();
+    private ISolutionConfigurationManagement m_Solution { get; set; }
     private void ProcessInitialization()
     {
-      if (m_MainContol != null)
-      {
-        OPCFSolutionConfigurationManagement.DefaultInstance.DefaultFileNameHasChanged += new EventHandler<NewDirectoryPathEventArgs>(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
-        OPCFSolutionConfigurationManagement.DefaultInstance.ChangesArePresentHasChanged += new EventHandler(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
-      }
       if (Settings.Default.FontSize < 6)
       {
         Settings.Default.FontSize = 6;
@@ -78,7 +82,9 @@ namespace CAS.UA.Model.Designer
       }
       else
         this.Font = new Font(Form.DefaultFont.FontFamily, Settings.Default.FontSize);
+
       #region docking and debug panel
+
       // declare dockExtender as a member of the form
       DockExtender dockExtender;
       dockExtender = new DockExtender(toolStripContainer1); // 'this' is Form1
@@ -88,8 +94,11 @@ namespace CAS.UA.Model.Designer
       this.windowsToolStripMenuItem.DropDownItems.AddRange(dockExtender.GetListOfToolStripMenuItem());
       foreach (ToolStripMenuItem _menuItem in this.windowsToolStripMenuItem.DropDownItems)
         _menuItem.ToolTipText = "Show/hide " + _menuItem.Text;
+
       #endregion docking and debug panel
+
       #region toolstrip (toolbars) show/hide context menus
+
       // Show and hide toolstrip menus
       this.toolStripContainerHelper = new ToolStripContainerHelper(toolStripContainer1);
       this.toolbarsToolStripMenuItem.DropDownItems.AddRange(toolStripContainerHelper.GetListOfToolStripMenuItem());
@@ -107,7 +116,9 @@ namespace CAS.UA.Model.Designer
       if (toolStripContainer1.RightToolStripPanel.ContextMenuStrip == null)
         toolStripContainer1.RightToolStripPanel.ContextMenuStrip = new ContextMenuStrip();
       toolStripContainer1.RightToolStripPanel.ContextMenuStrip.Items.AddRange(toolStripContainerHelper.GetListOfToolStripMenuItem());
+
       #endregion toolstrip (toolbars) show/hide context menus
+
       goToToolStripMenuItem.DropDownOpening += new EventHandler(goToToolStripMenuItem_DropDownOpening);
       m_EditToolStripMenuItem.DropDownOpening += new EventHandler(editToolStripMenuItem_DropDownOpening);
       CheckSaveConstrain(m_SplashScreenObj);
@@ -119,6 +130,7 @@ namespace CAS.UA.Model.Designer
         this.WindowState = FormWindowState.Maximized;
       }
     }
+
     private void CheckSaveConstrain(StartUpSplashScreen ss)
     {
       if (!new ImportConstrain().Licensed)
@@ -150,10 +162,14 @@ namespace CAS.UA.Model.Designer
       ss.AppendText(string.Format(Resources.SplashScreenLicenseDemoPeriodExpired, Assembly.GetEntryAssembly().GetName().Name), true);
       ss.ActivateBuyNow();
     }
+
     private ToolStripContainerHelper toolStripContainerHelper;
+
     private MessageBoxSentEmail messageBoxSentEmail = new MessageBoxSentEmail(Resources.FeatureRequest_EmailAddress,
       Resources.FeatureRequest_Email_Subject, Resources.FeatureRequest_MessageBox_Caption);
+
     private PropertyGrid myGrid;
+
     //methods
     private void FeatureRequest(ToolStripMenuItem menuItem)
     {
@@ -173,37 +189,43 @@ namespace CAS.UA.Model.Designer
       messageBoxSentEmail.ShowMessageAndSendEmailIfOK(string.Format(Resources.FeatureRequest_MessageBox_Body, featureName, featureDescription),
         string.Format(Resources.FeatureRequest_Email_Body, featureName));
     }
+
     private void UpdateWindowTitle()
     {
       this.Text = Resources.MainWindowName;
       string separator = ": ";
-      if (OPCFSolutionConfigurationManagement.DefaultInstance.ChangesArePresent)
+      if (m_Solution.ChangesArePresent)
         separator += Resources.MainForm_Title_ChangesArePresent;
-      this.Text += separator + System.IO.Path.GetFileName(OPCFSolutionConfigurationManagement.DefaultInstance.DefaultFileName);
+      this.Text += separator + System.IO.Path.GetFileName(m_Solution.DefaultFileName);
     }
+
     private bool TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued()
     {
       if (m_MainContol == null)
         return true;
-      return OPCFSolutionConfigurationManagement.DefaultInstance.TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued();
+      return m_Solution.TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued();
     }
-    #endregion
+
+    #endregion private members and helper functions
 
     #region private event handlers
+
     private void Floaty_Docking(object sender, EventArgs e)
     {
       this.tabControl_Main.BringToFront();
       this.debugDockPanelUserControl1.SendToBack();
       this.BringToFront();
     }
+
     private void OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged(object sender, EventArgs e)
     {
       UpdateWindowTitle();
     }
+
     private void OpenSolution(string solutionFileName)
     {
-      if (string.IsNullOrEmpty(solutionFileName))
-        return;
+      if (String.IsNullOrEmpty(solutionFileName))
+        CreateEmptySolution();
       try
       {
         if (solutionFileName.StartsWith("file://"))
@@ -213,42 +235,68 @@ namespace CAS.UA.Model.Designer
           solutionFileName = solutionFileName.Replace("/", "\\");
         }
         debugDockPanelUserControl1.TextWriterStream.WriteLine("Opening: " + solutionFileName);
-        OPCFSolutionConfigurationManagement.DefaultInstance.Open(solutionFileName);
+        m_Solution = SolutionConfigurationManagementRoot.OpenExisting(solutionFileName, new GraphicalUserInterface());
+        MainController.Instance.Initialize(m_Solution);
         debugDockPanelUserControl1.TextWriterStream.WriteLine("Opened");
+        if (m_MainContol != null)
+        {
+          m_Solution.DefaultFileNameHasChanged += new EventHandler<NewDirectoryPathEventArgs>(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
+          m_Solution.ChangesArePresentHasChanged += new EventHandler(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
+        }
       }
       catch (Exception ex)
       {
         MessageBox.Show(string.Format(Resources.MainForm_StartupExceptionMessage, ex.Message), "Command line error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
       }
     }
+    private void CreateEmptySolution()
+    {
+      debugDockPanelUserControl1.TextWriterStream.WriteLine("Opening new solution");
+      m_Solution = SolutionConfigurationManagementRoot.NewSoliution(new GraphicalUserInterface());
+      MainController.Instance.Initialize(m_Solution);
+      debugDockPanelUserControl1.TextWriterStream.WriteLine("Opened");
+      if (m_MainContol != null)
+      {
+        m_Solution.DefaultFileNameHasChanged += new EventHandler<NewDirectoryPathEventArgs>(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
+        m_Solution.ChangesArePresentHasChanged += new EventHandler(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
+      }
+    }
 
     #region Menu
 
     #region File
+
     private void MHExitToolStripMenuItem_Click(object sender, EventArgs e)
     {
       this.Close();
     }
+
     private void MHNewToolStripMenuItem_Click(object sender, EventArgs e)
     {
       if (TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
-        OPCFSolutionConfigurationManagement.DefaultInstance.New();
+        m_Solution = SolutionConfigurationManagementRoot.NewSoliution(new GraphicalUserInterface());
     }
+
     private void MHOpenToolStripMenuItem_Click(object sender, EventArgs e)
     {
       if (TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
-        OPCFSolutionConfigurationManagement.DefaultInstance.Open();
+      {
+        ISolutionConfigurationManagement _Solution = SolutionConfigurationManagementRoot.OpenExisting(new GraphicalUserInterface());
+      }
     }
+
     private void MHSaveToolStripMenuItem_Click(object sender, EventArgs e)
     {
       m_MainContol.Save(false);
     }
+
     private void MHSaveAsToolStripMenuItem_Click(object sender, EventArgs e)
     {
       m_MainContol.Save(true);
     }
 
     #region import
+
     private void MHFileImport_DropDownOpening(object sender, EventArgs e)
     {
       ToolStripMenuItem _mm = sender as ToolStripMenuItem;
@@ -263,74 +311,92 @@ namespace CAS.UA.Model.Designer
       _mm.DropDownItems.Add(m_FromEnterpriceArchitectToolStripMenuItem);
       _mm.DropDownItems.Add(m_FileImportFromTSMI);
     }
+
     private void MHFromFileImportTSMI_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void MHFromVisioToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void MHFromEnterpriceArchitectToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void MHFromUMLDiagramToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void MHFromXMLSchemaToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void m_FromUANodeSetToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
-    #endregion
+
+    #endregion import
 
     #region export
+
     private void MHExport2Word_Click(object sender, EventArgs e)
     {
       ExportTool.ExportToDocument(m_MainContol.SelectedIModelNodeAdvanced, ExportTool.TypeOfTheDocument.Docx);
     }
+
     private void MHExport2Excel_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void MHExport2MAML_Click(object sender, EventArgs e)
     {
       ExportTool.ExportToDocument(m_MainContol.SelectedIModelNodeAdvanced, ExportTool.TypeOfTheDocument.Maml);
     }
+
     private void MHExport2Graphic_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void MHExport2Eny_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void MHExport2XMLSchema_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void MHExport2UML_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void MHExport2EnterpriceArchitect_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void MHExport2Visio_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
-    #endregion
 
-    #endregion
+    #endregion export
+
+    #endregion File
 
     #region Edit
+
     private void editToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
     {
       cutToolStripMenuItem.Enabled = false;
@@ -343,6 +409,7 @@ namespace CAS.UA.Model.Designer
         copyToolStripMenuItem.Enabled = true;
       }
     }
+
     private void goToToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
     {
       goToToolStripMenuItem.DropDownItems.Clear();
@@ -352,7 +419,8 @@ namespace CAS.UA.Model.Designer
         goToToolStripMenuItem.DropDownItems.AddRange(menulist.ToArray());
       }
     }
-    #endregion
+
+    #endregion Edit
 
     private void HelpAboutUaModelDesignerToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -362,10 +430,12 @@ namespace CAS.UA.Model.Designer
         dial.ShowDialog(this);
       }
     }
+
     private void HelpAboutOpcUaModelCompilerToolStripMenuItem_Click(object sender, EventArgs e)
     {
       new AboutOpcUaModelCompilerWindow().ShowDialog(this);
     }
+
     private void contentsToolStripMenuItem_Click(object sender, EventArgs e)
     {
       try
@@ -377,6 +447,7 @@ namespace CAS.UA.Model.Designer
         MessageBox.Show(string.Format(Resources.MainForm_DefaultAppMissing, Resources.AsmdHelp, ex.Message));
       }
     }
+
     private void HelpConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
     {
       myGrid = new PropertyGrid
@@ -449,10 +520,12 @@ namespace CAS.UA.Model.Designer
         AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 379, Resources.ProblemWithDescriptionForOption + ex.Message);
       }
     }
+
     private void OnCancel()
     {
       Properties.Settings.Default.Reload();
     }
+
     private void OnReset()
     {
       Properties.Settings.Default.TargetNamespace = @"http://cas.eu/UA/CommServer/";
@@ -473,15 +546,18 @@ namespace CAS.UA.Model.Designer
       Properties.Settings.Default.XmlSchemaInstanceNamespace = @"http://www.w3.org/2001/XMLSchema-instance";
       Properties.Settings.Default.XmlSchemaInstancePrefix = "xsi";
     }
+
     private void OnOk()
     {
       Properties.Settings.Default.Save();
       MessageBox.Show(Resources.ConfigurationForm_MessageAfterChange);
     }
+
     private void buildToolStripMenuItem_Click(object sender, EventArgs e)
     {
       m_MainContol.Build(debugDockPanelUserControl1.TextWriterStream);
     }
+
     private void stateMachineEditorToolStripMenuItem_Click(object sender, EventArgs e)
     {
       IModelNodeAdvance imna = m_MainContol.SelectedIModelNodeAdvanced;
@@ -492,165 +568,205 @@ namespace CAS.UA.Model.Designer
       }
       MessageBox.Show(Resources.ProblemWithStateMachine_Header, Resources.ProblemWithStateMachine_Info, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
     }
+
     private void coupledNodesToolStripMenuItem_Click(object sender, EventArgs e)
     {
       m_MainContol.ModelCoupledNodesAreEnabled = coupledNodesToolStripMenuItem.Checked;
       Settings.Default.CoupledNodesAreEnabled = coupledNodesToolStripMenuItem.Checked;
     }
+
     private void automaticHelpSynchronisationToolStripMenuItem_Click(object sender, EventArgs e)
     {
       Settings.Default.HelpSynchronizationIsEnabled = automaticHelpSynchonisationToolStripMenuItem.Checked;
     }
+
     private void pageSetupToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void printToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void recentSolutionsToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void undoToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void redoToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void findToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void replaceToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void allReferencesToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void findUnusedNodesToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void addToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void removeToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void toggleBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void disableEnableAllBookmarksToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void disableEnableBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void previousBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void nextBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void clearAllBookmarksToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void objectToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void childrenToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void referenceToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void nodeClassToolStripMenuItem_Click(object sender, EventArgs e)
     {
       this.m_MainContol.PerformNodeClassFiltering();
     }
+
     private void nAmeToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void allReferencesToolStripMenuItem1_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void othersToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void synchronizeTreeToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void collapsAllNodesToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void buildProjectToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void verifySolutionToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void verifyProjectToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void customizeToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void technicalSupportToolStripMenuItem_Click(object sender, EventArgs e)
     {
       System.Diagnostics.Process.Start(Resources.MainForm_TechnicalSupportPage);
     }
+
     private void HelpSendUsCommentToolStripMenuItem_Click(object sender, EventArgs e)
     {
       MessageBoxSentEmail.OpenEmailClient(Resources.FeatureRequest_EmailAddress,
         Resources.FeatureRequest_Email_Subject_Comments, Resources.FeatureRequest_Email_Body_Comments);
     }
+
     private void HelpReadmeToolStripMenuItem_Click(object sender, EventArgs e)
     {
       //TODO Error while using Save operation #129 System.IO.FileNotFoundException
       Process.Start(Resources.MainForm_ReadmePage);
     }
+
     private void navigateForwardToolStripMenuItem_Click(object sender, EventArgs e)
     {
       m_MainContol.NavigateViewForward();
     }
+
     private void navigateBackwardToolStripMenuItem_Click(object sender, EventArgs e)
     {
       m_MainContol.NavigateViewBackward();
     }
+
     private void nodeClassToolStripMenuItem1_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void alphabeticallyToolStripMenuItem_Click(object sender, EventArgs e)
     {
       FeatureRequest(sender as ToolStripMenuItem);
     }
+
     private void cutToolStripMenuItem_Click(object sender, EventArgs e)
     {
       if (m_MainContol.ModelTreeViewIsFocused)
@@ -663,6 +779,7 @@ namespace CAS.UA.Model.Designer
       else
         MessageBox.Show(Resources.MianWindow_FunctionalityAvailiableOnlyInModelView);
     }
+
     private void copyToolStripMenuItem_Click(object sender, EventArgs e)
     {
       if (m_MainContol.ModelTreeViewIsFocused)
@@ -675,6 +792,7 @@ namespace CAS.UA.Model.Designer
       else
         MessageBox.Show(Resources.MianWindow_FunctionalityAvailiableOnlyInModelView);
     }
+
     private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
     {
       if (m_MainContol.ModelTreeViewIsFocused)
@@ -687,6 +805,7 @@ namespace CAS.UA.Model.Designer
       else
         MessageBox.Show(Resources.MianWindow_FunctionalityAvailiableOnlyInModelView);
     }
+
     private void oPCViewerToolStripMenuItem_Click(object sender, EventArgs e)
     {
       try
@@ -699,6 +818,7 @@ namespace CAS.UA.Model.Designer
         AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 700, $"OPC Viewer has thrown the exception {ex.Message}");
       }
     }
+
     private void visualisationToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
     {
       visualisationToolStripMenuItem.DropDownItems.Clear();
@@ -706,13 +826,15 @@ namespace CAS.UA.Model.Designer
     }
 
     #region Server UA
+
     private void m_MenuServerUA_DropDownOpening(object sender, EventArgs e)
     {
       ToolStripMenuItem _sender = sender as ToolStripMenuItem;
       _sender.DropDownItems.Clear();
       m_MainContol.GetServerUAMenu(_sender.DropDownItems);
     }
-    #endregion
+
+    #endregion Server UA
 
     #endregion Menu
 
@@ -726,6 +848,7 @@ namespace CAS.UA.Model.Designer
         dial.ShowDialog(this);
       }
     }
+
     private void m_LogsContainingFolderToolStripMenuItem_Click(object sender, EventArgs e)
     {
       string path = CAS.Lib.CodeProtect.InstallContextNames.ApplicationDataPath + "\\log";
@@ -744,6 +867,7 @@ namespace CAS.UA.Model.Designer
         return;
       }
     }
+
     private void m_EnterTheUnlockCodeToolStripMenuItem_Click(object sender, EventArgs e)
     {
       using (UnlockKeyDialog dialog = new UnlockKeyDialog())
@@ -753,7 +877,9 @@ namespace CAS.UA.Model.Designer
     }
 
     #region Main
+
     private string m_StartupFileName = string.Empty;
+
     private void MainForm_Load(object sender, EventArgs e)
     {
       OpenSolution(m_StartupFileName);
@@ -761,23 +887,24 @@ namespace CAS.UA.Model.Designer
       m_SplashScreenObj.Dispose();
       m_SplashScreenObj = null;
     }
+
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
     {
       if (!TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
         e.Cancel = true;
     }
+
     private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
     {
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 763, "Application is closing");
       AssemblyTraceEvent.Tracer.Flush();
       AssemblyTraceEvent.Tracer.Close();
     }
-    #endregion
+
+    #endregion Main
 
     #endregion private event handlers
 
     #endregion private
-
   }
-
 }

@@ -38,7 +38,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     private static readonly object m_BuildLockObject = new object(); // this object is used to prevent many code generator usage at the same time
 
     //private readonly ISolutionDirectoryPathManagement m_SolutionHomeDirectory;
-    private readonly IOPCFModelConfigurationManagement m_ProjectConfigurationManager;
+    private readonly IProjectConfigurationManagement m_ProjectConfigurationManager;
     //private IOPCFModelConfigurationManagement b_UAModelDesignerProject;
     //private static string m_GetNextUniqueProjectName => m_UniqueNameGenerator.GenerateNewName();
 
@@ -65,14 +65,14 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     #region constructors
 
-    private ProjectTreeNode(IOPCFModelConfigurationManagement projectConfigurationManager, string nodeName) : base(null, projectConfigurationManager.Name)
+    private ProjectTreeNode(IProjectConfigurationManagement projectConfigurationManager, string nodeName) : base(null, projectConfigurationManager.Name)
     {
       m_ProjectConfigurationManager = projectConfigurationManager;
       //m_SolutionHomeDirectory = solutionPath;
       //m_SolutionHomeDirectory.BaseDirectoryPathChanged += SolutionHomeDirectoryBaseDirectoryPathChanged;
     }
 
-    private ProjectTreeNode(IOPCFModelConfigurationManagement projectConfigurationManager, string filePath, OPCFModelDesign model) : this(projectConfigurationManager, Path.GetFileNameWithoutExtension(filePath))
+    private ProjectTreeNode(IProjectConfigurationManagement projectConfigurationManager, string filePath, OPCFModelDesign model) : this(projectConfigurationManager, Path.GetFileNameWithoutExtension(filePath))
     {
       //UAModelDesignerProject = new UAModelDesignerProject()
       //{
@@ -84,13 +84,13 @@ namespace CAS.UA.Model.Designer.Wrappers
       //};
       InitializeComponent(new ModelDesign(model, false));
     }
-    private IOPCFModelConfigurationManagement m_UAModelDesignerProject = null;
+    private IProjectConfigurationManagement m_UAModelDesignerProject = null;
     /// <summary>
     /// Initializes a new instance of the <see cref="ProjectTreeNode"/> encapsulating an existing UA model.
     /// </summary>
     /// <param name="solutionPath">The solution path.</param>
     /// <param name="projectDescription">The project description.</param>
-    internal ProjectTreeNode(IOPCFModelConfigurationManagement projectDescription) : this(projectDescription, projectDescription.Name)
+    internal ProjectTreeNode(IProjectConfigurationManagement projectDescription) : this(projectDescription, projectDescription.Name)
     {
       m_UAModelDesignerProject = projectDescription;
       ModelDesign _RootOfOPCUAInfromationModel = new ModelDesign(projectDescription.ModelDesign, false);
@@ -232,8 +232,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <returns></returns>
     internal bool Save()
     {
-      XmlFile.DataToSerialize < OPCFModelDesign > _modelDesign = Model.GetModel();
-      m_ProjectConfigurationManager.SaveModelDesign(_modelDesign);
+      m_ProjectConfigurationManager.SaveModelDesign(Model.GetModel());
       return true;
     }
 

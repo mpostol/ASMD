@@ -7,6 +7,7 @@
 
 using CAS.CommServer.UA.ModelDesigner.Configuration;
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
@@ -29,9 +30,9 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     void Save(bool prompt);
 
-    void Open();
+    void Open(IGraphicalUserInterface gui);
 
-    void OnNew();
+    void OnNew(IGraphicalUserInterface gui);
   }
 
   internal interface ISolutionTreeNodeUI : IBaseModel
@@ -62,12 +63,12 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
     }
 
-    private void AddProjectsNodes(IEnumerable<IOPCFModelConfigurationManagement> configuration)
+    private void AddProjectsNodes(IEnumerable<IProjectConfigurationManagement> configuration)
     {
       if (configuration == null)
         return;
       List<ProjectTreeNode> _nodes = new List<ProjectTreeNode>();
-      foreach (IOPCFModelConfigurationManagement _projectDescriptor in configuration)
+      foreach (IProjectConfigurationManagement _projectDescriptor in configuration)
       {
         ProjectTreeNode _newProject = null;
         try
@@ -299,17 +300,19 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     public void Save(bool prompt)
     {
+      foreach (ProjectTreeNode item in this)
+        item.Save();
       m_ISolutionConfigurationManagement.Save(prompt);
     }
 
-    public void Open()
+    public void Open(IGraphicalUserInterface gui)
     {
-      Open();
+      SolutionConfigurationManagementRoot.OpenExisting(gui);
     }
 
-    public void OnNew()
+    public void OnNew(IGraphicalUserInterface gui)
     {
-      OnNew();
+      SolutionConfigurationManagementRoot.NewSoliution(gui);
     }
 
     #endregion ISolutionModel

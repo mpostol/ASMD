@@ -5,7 +5,6 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Wrappers;
 using System;
@@ -13,12 +12,11 @@ using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {
-  internal class SelectedItemObserver : UserControl, ISelectedItemObserver
+  internal abstract class SelectedItemObserver : UserControl, ISelectedItemObserver
   {
     #region private
 
     private bool m_RemoveMeFromParentTab = false;
-    private IModelNode m_SelectedIModelNode;
     private TabPage m_TabPage = null;
     private TabControl m_TabControl = null;
 
@@ -37,9 +35,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
 
     #region protected
 
-    protected virtual void AfterSolutionChange(object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e)
-    {
-    }
+    protected abstract void AfterSolutionChange(object sender, SolutionConfigurationManagementRoot.AfterSolutionChangeEventArgs e);
 
     protected virtual void AfterSolution_OnDataChanged(object sender, EventArgs e)
     {
@@ -80,7 +76,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       MainController.Instance.RaiseSelectedItemIsChanged(this, e);
     }
 
-    protected IModelNode SelectedIModelNode => m_SelectedIModelNode;
+    protected IModelNode SelectedIModelNode { get; private set; }
 
     protected virtual void OnSelectedItemIsChanged(object sender, SelectedItemEventArgs e)
     {
@@ -94,8 +90,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     {
       MainController.Instance.RegisterSelectedItemObserver(this);
       this.ParentChanged += new EventHandler(SelectedItemObserver_ParentChanged);
-      OPCFSolutionConfigurationManagement.DefaultInstance.GraphicalUserInterface = new GraphicalUserInterface();
-      OPCFSolutionConfigurationManagement.DefaultInstance.AfterSolutionChange += new EventHandler<OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs>(AfterSolutionChange);
+      SolutionConfigurationManagementRoot.DefaultInstance.AfterSolutionChange += new EventHandler<SolutionConfigurationManagementRoot.AfterSolutionChangeEventArgs>(AfterSolutionChange);
     }
 
     #endregion constructor
@@ -116,7 +111,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     {
       if (this != sender)
       {
-        m_SelectedIModelNode = e.SelectedIModelNode;
+        SelectedIModelNode = e.SelectedIModelNode;
         OnSelectedItemIsChanged(sender, e);
       }
     }

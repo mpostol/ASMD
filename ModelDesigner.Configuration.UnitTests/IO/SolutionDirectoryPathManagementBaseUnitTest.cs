@@ -15,6 +15,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.IO
   public class SolutionDirectoryPathManagementBaseUnitTest
   {
     [TestMethod]
+    public void ConstructorTest()
+    {
+      Assert.ThrowsException<ArgumentOutOfRangeException>(() => new SolutionDirectoryPathManagementBaseFixture(String.Empty));
+      Assert.ThrowsException<ArgumentOutOfRangeException>(() => new SolutionDirectoryPathManagementBaseFixture(null));
+    }
+    [TestMethod]
     public void SetNewPathTest()
     {
       SolutionDirectoryPathManagementBaseFixture _newInstance = new SolutionDirectoryPathManagementBaseFixture(@"C:\a\c\d\name.ext");
@@ -25,7 +31,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.IO
       Assert.AreEqual<string>(@"C:\a\c\d", _newInstance.oldPath);
       Assert.AreEqual<string>(@"C:\a\x\y", _newInstance.newPath);
     }
-
     private class SolutionDirectoryPathManagementBaseFixture : SolutionDirectoryPathManagementBase
     {
       internal void SetNewPath(string path)
@@ -37,7 +42,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.IO
       internal string oldPath = String.Empty;
       internal string newPath = String.Empty;
 
-      public SolutionDirectoryPathManagementBaseFixture(string path): base(path)
+      public SolutionDirectoryPathManagementBaseFixture(string path) : base(path)
       {
         base.DefaultFileNameHasChanged += (x, y) =>
           {

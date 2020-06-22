@@ -5,6 +5,7 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
+using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -55,7 +56,7 @@ namespace CAS.UA.Model.Designer.IO
       ConfigurationManagementFixture _newItem = new ConfigurationManagementFixture(_IFileDialogMock.Object, _defPath);
       int OnModificationCounter = 0;
       _newItem.DefaultFileNameHasChanged += (x, y) => OnModificationCounter++;
-      _newItem.SetFilePath( @"c:\\folder\file.name");
+      _newItem.SetFilePath(@"c:\\folder\file.name");
       Assert.AreEqual<int>(1, OnModificationCounter);
       Assert.IsFalse(String.IsNullOrEmpty(_newItem.DefaultDirectory));
       Assert.IsFalse(_newItem.ChangesArePresent);
@@ -74,27 +75,82 @@ namespace CAS.UA.Model.Designer.IO
       string _defPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), FileName);
       Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
       _IFileDialogMock.SetupProperty(x => x.FileName);
+      _IFileDialogMock.SetupGet<string>(x => x.FileName).Returns(_defPath);
       _IFileDialogMock.SetupProperty(x => x.DefaultExt);
       _IFileDialogMock.SetupProperty(x => x.Filter);
       _IFileDialogMock.SetupProperty(x => x.Title);
       _IFileDialogMock.Setup(x => x.ShowDialog()).Returns(true);
-      ConfigurationManagementFixture _newItem = new ConfigurationManagementFixture(_IFileDialogMock.Object, _defPath);
-      _newItem.ShowOpenDialog();
+      _IFileDialogMock.Setup(x => x.Dispose());
+      Mock<IGraphicalUserInterface> _guiMock = new Mock<IGraphicalUserInterface>();
+      _guiMock.SetupGet(x => x.OpenFileDialogFunc).Returns(() => _IFileDialogMock.Object);
+      string _retPath = ConfigurationManagementFixture.ShowOpenDialog(_defPath, _guiMock.Object);
+      _IFileDialogMock.VerifySet(x => x.DefaultExt = DefaultExt);
+      _IFileDialogMock.VerifySet(x => x.FileName = FileName);
+      _IFileDialogMock.VerifySet(x => x.Filter = Filter);
+      _IFileDialogMock.VerifySet(x => x.Title = Title);
+      _IFileDialogMock.VerifySet(x => x.InitialDirectory = Path.GetDirectoryName(_defPath));
+      _IFileDialogMock.Verify(x => x.Dispose(), Times.Once);
+      _IFileDialogMock.Verify(x => x.ShowDialog(), Times.Once);
+      Assert.AreEqual<string>(_defPath, _retPath);
+    }
+
+    [TestMethod]
+    public void ShowDialogSaveFileDialogTest()
+    {
+      const string DefaultExt = "uamdsl";
+      const string Filter = "UA Model Designer Solution File (* .uamdsl)|*.uamdsl|UA Model Designer Solution File (* .xml)|*.xml|All files(*.*)|*.*";
+      const string Title = "UA Model Designer Solution Open/Save dialog window";
+      string _defPath = @"c:\a\b\c\d.e";
+      string _altPath = @"c:\a\b\f\d.e";
+      Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
+      _IFileDialogMock.SetupProperty(x => x.FileName);
+      _IFileDialogMock.SetupProperty(x => x.DefaultExt);
+      _IFileDialogMock.SetupProperty(x => x.Filter);
+      _IFileDialogMock.SetupProperty(x => x.Title);
+      _IFileDialogMock.Setup(x => x.ShowDialog()).Returns(true);
+      _IFileDialogMock.Setup(x => x.Dispose());
+      _IFileDialogMock.SetupGet<string>(x => x.FileName).Returns(_altPath);
+      ConfigurationManagementFixture _item = new ConfigurationManagementFixture(_IFileDialogMock.Object, _defPath);
+      Assert.AreEqual<string>(_defPath, _item.DefaultFileName);
+      int _eventCounter = 0;
+      string NewDirectoryPath = String.Empty;
+      string OldDirectoryPath = String.Empty;
+      _item.DefaultFileNameHasChanged += (object sender, NewDirectoryPathEventArgs e) =>
+        {
+          _eventCounter++;
+          Assert.AreSame(_item, sender);
+          NewDirectoryPath = e.NewDirectoryPath;
+          OldDirectoryPath = e.OldDirectoryPath;
+        };
+      Assert.AreEqual<string>(_defPath, _item.DefaultFileName);
+      _item.SaveFixture();
+      Assert.AreEqual<string>(_altPath, _item.DefaultFileName);
+      Assert.AreEqual<int>(1, _eventCounter);
+      Assert.AreEqual<string>(@"c:\a\b\f", NewDirectoryPath);
+      Assert.AreEqual<string>(@"c:\a\b\c", OldDirectoryPath);
       _IFileDialogMock.VerifySet(x => x.DefaultExt = DefaultExt);
       _IFileDialogMock.VerifySet(x => x.Filter = Filter);
       _IFileDialogMock.VerifySet(x => x.Title = Title);
-      Assert.AreEqual<string>(FileName, Path.GetFileName(_IFileDialogMock.Object.FileName));
+      _IFileDialogMock.VerifySet(x => x.FileName = Path.GetFileNameWithoutExtension(_defPath));
+      _IFileDialogMock.VerifySet(x => x.InitialDirectory = Path.GetDirectoryName(_defPath));
+      _IFileDialogMock.Verify(x => x.Dispose(), Times.Once);
+      _IFileDialogMock.Verify(x => x.ShowDialog(), Times.Once);
+    }
+
+    [TestMethod]
+    public void ShowDialogSaveFileDialogEmptyDefPathTest()
+    {
+      Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
+      Assert.ThrowsException<ArgumentOutOfRangeException>(() => new ConfigurationManagementFixture(_IFileDialogMock.Object, String.Empty));
+      Assert.ThrowsException<ArgumentOutOfRangeException>(() => new ConfigurationManagementFixture(_IFileDialogMock.Object, null));
     }
 
     #region instrumentation
 
     private class ConfigurationManagementFixture : ConfigurationManagement
     {
-      protected override ConfigurationType Configuration => ConfigurationType.Solution;
-
-      public ConfigurationManagementFixture(IFileDialog mock, string fileName) : base(fileName)
+      public ConfigurationManagementFixture(IFileDialog mock, string fileName) : base(fileName, new GraphicalUserInterfaceFixture(mock))
       {
-        GraphicalUserInterface = new GraphicalUserInterfaceFixture(mock);
       }
 
       internal void SetFilePath(string filePath)
@@ -104,23 +160,25 @@ namespace CAS.UA.Model.Designer.IO
 
       internal void SignalChanges()
       {
-        this.SetChangesArePresent();
+        base.SetChangesArePresent();
       }
 
-      public override void New()
+      internal static string ShowOpenDialog(string defaultFileName, IGraphicalUserInterface graphicalUserInterface)
       {
-        throw new NotImplementedException();
+        return ConfigurationManagement.ShowDialogOpenFileDialog(defaultFileName, graphicalUserInterface, SetupFileDialog);
       }
 
-      public override bool Open()
+      internal void SaveFixture()
       {
-        throw new NotImplementedException();
+        base.ShowDialogSaveFileDialog(SetupFileDialog);
       }
+    }
 
-      internal void ShowOpenDialog()
-      {
-        this.ShowDialogOpenFileDialog();
-      }
+    private static void SetupFileDialog(IFileDialog _dialog)
+    {
+      _dialog.DefaultExt = "uamdsl";
+      _dialog.Filter = "UA Model Designer Solution File (* .uamdsl)|*.uamdsl|UA Model Designer Solution File (* .xml)|*.xml|All files(*.*)|*.*";
+      _dialog.Title = "UA Model Designer Solution Open/Save dialog window";
     }
 
     private class GraphicalUserInterfaceFixture : IGraphicalUserInterface
