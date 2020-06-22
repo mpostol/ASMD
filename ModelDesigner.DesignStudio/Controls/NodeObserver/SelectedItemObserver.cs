@@ -35,7 +35,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
 
     #region protected
 
-    protected abstract void AfterSolutionChange(object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e);
+    protected abstract void AfterSolutionChange(object sender, SolutionConfigurationManagementRoot.AfterSolutionChangeEventArgs e);
 
     protected virtual void AfterSolution_OnDataChanged(object sender, EventArgs e)
     {
@@ -90,7 +90,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     {
       MainController.Instance.RegisterSelectedItemObserver(this);
       this.ParentChanged += new EventHandler(SelectedItemObserver_ParentChanged);
-      OPCFSolutionConfigurationManagement.DefaultInstance.AfterSolutionChange += new EventHandler<OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs>(AfterSolutionChange);
+      SolutionConfigurationManagementRoot.DefaultInstance.AfterSolutionChange += new EventHandler<SolutionConfigurationManagementRoot.AfterSolutionChangeEventArgs>(AfterSolutionChange);
     }
 
     #endregion constructor

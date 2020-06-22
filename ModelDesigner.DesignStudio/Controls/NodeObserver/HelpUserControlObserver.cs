@@ -35,7 +35,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
         NavigateHelpContentToName(e.SelectedIModelNode.Name, e.SelectedIModelNode.HelpTopicName);
     }
 
-    protected override void AfterSolutionChange(object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e)
+    protected override void AfterSolutionChange(object sender, SolutionConfigurationManagementRoot.AfterSolutionChangeEventArgs e)
     {
     }
 

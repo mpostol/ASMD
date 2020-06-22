@@ -62,7 +62,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
 
     #region SelectedItemObserver
 
-    protected override void AfterSolutionChange(object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e)
+    protected override void AfterSolutionChange(object sender, SolutionConfigurationManagementRoot.AfterSolutionChangeEventArgs e)
     {
     }
 

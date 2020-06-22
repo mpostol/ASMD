@@ -129,7 +129,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     #endregion SelectedItemObserver
 
     #region protected
-    protected override void AfterSolutionChange(object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e)
+    protected override void AfterSolutionChange(object sender, SolutionConfigurationManagementRoot.AfterSolutionChangeEventArgs e)
     {
       mBuildIsRequired = true;
       TestIfBuildIsRequiredAndDoTheBuild(true);

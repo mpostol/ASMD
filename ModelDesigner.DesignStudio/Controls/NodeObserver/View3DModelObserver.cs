@@ -306,7 +306,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
         previousMessage = imna;
     }
 
-    protected override void AfterSolutionChange(object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e)
+    protected override void AfterSolutionChange(object sender, SolutionConfigurationManagementRoot.AfterSolutionChangeEventArgs e)
     {
     }
 

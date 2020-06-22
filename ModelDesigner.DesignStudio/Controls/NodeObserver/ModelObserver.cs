@@ -21,13 +21,12 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
   {
     #region constructor
 
-    public ModelObserver()
+    public ModelObserver() : base()
     {
       InitializeComponent();
       this.m_TreeView.ImageList = this.m_ImagesForNodes.ImageListNodes;
       m_TreeView.CoupledNodesAreEnabled = Settings.Default.CoupledNodesAreEnabled;
       //solution initialization:
-      OPCFSolutionConfigurationManagement.DefaultInstance.New();
       m_BackForwardTreViewToolStrip.TreeView = this.m_TreeView;
       m_SearchTreeViewToolStrip.TreeView = this.m_TreeView;
       m_SearchTreeViewToolStrip.SetAdditionalNodeTestDelegate = new SearchTreeViewHelper.AdditionalNodeTestDelegate(NodeSearchTest);
@@ -127,8 +126,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     private void AddSolution(ISolutionConfigurationManagement Solution)
     {
       m_TreeView.Nodes.Clear();
-      m_Solution = new SolutionTreeNode(new ToForms.MessageBoxHandling(), Solution, (x, y) => OPCFSolutionConfigurationManagement.DefaultInstance.SetChangesArePresent(),
-        x => m_TreeView.Nodes.Add(new LibraryTreeNodeControl(x)));
+      m_Solution = new SolutionTreeNode(new ToForms.MessageBoxHandling(), Solution, (x, y) => Solution.SetChangesArePresent(), x => m_TreeView.Nodes.Add(new LibraryTreeNodeControl(x)));
       SolutionTreeNodeControl _solutionRootTreeNode = new SolutionTreeNodeControl(m_Solution);
       m_Solution.OnDataChanged += new EventHandler<EventArgs>(Solution_OnDataChanged);
       m_TreeView.Nodes.Insert(0, _solutionRootTreeNode);
@@ -158,7 +156,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       RaiseSelectedItemIsChanged(args);
     }
 
-    protected override void AfterSolutionChange(object sender, OPCFSolutionConfigurationManagement.AfterSolutionChangeEventArgs e)
+    protected override void AfterSolutionChange(object sender, SolutionConfigurationManagementRoot.AfterSolutionChangeEventArgs e)
     {
       this.AddSolution(e.Solution);
     }

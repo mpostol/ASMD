@@ -235,7 +235,7 @@ namespace CAS.UA.Model.Designer
           solutionFileName = solutionFileName.Replace("/", "\\");
         }
         debugDockPanelUserControl1.TextWriterStream.WriteLine("Opening: " + solutionFileName);
-        m_Solution = SolutionConfigurationManagement.OpenExisting(solutionFileName, new GraphicalUserInterface());
+        m_Solution = SolutionConfigurationManagementRoot.OpenExisting(solutionFileName, new GraphicalUserInterface());
         MainController.Instance.Initialize(m_Solution);
         debugDockPanelUserControl1.TextWriterStream.WriteLine("Opened");
         if (m_MainContol != null)
@@ -252,7 +252,7 @@ namespace CAS.UA.Model.Designer
     private void CreateEmptySolution()
     {
       debugDockPanelUserControl1.TextWriterStream.WriteLine("Opening new solution");
-      m_Solution = SolutionConfigurationManagement.NewSoliution(new GraphicalUserInterface());
+      m_Solution = SolutionConfigurationManagementRoot.NewSoliution(new GraphicalUserInterface());
       MainController.Instance.Initialize(m_Solution);
       debugDockPanelUserControl1.TextWriterStream.WriteLine("Opened");
       if (m_MainContol != null)
@@ -274,14 +274,14 @@ namespace CAS.UA.Model.Designer
     private void MHNewToolStripMenuItem_Click(object sender, EventArgs e)
     {
       if (TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
-        m_Solution = SolutionConfigurationManagement.NewSoliution(new GraphicalUserInterface());
+        m_Solution = SolutionConfigurationManagementRoot.NewSoliution(new GraphicalUserInterface());
     }
 
     private void MHOpenToolStripMenuItem_Click(object sender, EventArgs e)
     {
       if (TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
       {
-        ISolutionConfigurationManagement _Solution = SolutionConfigurationManagement.OpenExisting(new GraphicalUserInterface());
+        ISolutionConfigurationManagement _Solution = SolutionConfigurationManagementRoot.OpenExisting(new GraphicalUserInterface());
       }
     }
 
