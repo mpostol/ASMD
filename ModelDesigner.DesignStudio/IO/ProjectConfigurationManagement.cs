@@ -10,6 +10,7 @@ using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Solution;
+using Opc.Ua.ModelCompiler;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -93,29 +94,7 @@ namespace CAS.UA.Model.Designer.IO
     {
       m_UAModelDesignerProject = uaModelDesignerProject;
       m_ISolutionConfigurationManagement = solution;
-      this.m_ModelDesign = modelDesign.Item1 == null ? Def() : modelDesign.Item1;
-    }
-
-    private OPCFModelDesign Def()
-    {
-      return new OPCFModelDesign()
-      {
-        TargetNamespace = Settings.Default.TargetNamespace,
-        Namespaces = new Opc.Ua.ModelCompiler.Namespace[]
-        {
-          new  Opc.Ua.ModelCompiler.Namespace()
-               {
-                 Value = Settings.Default.TargetNamespace,
-                 XmlPrefix = Settings.Default.TargetNamespaceXmlPrefix,
-                 Name = Settings.Default.TargetNamespaceXmlPrefix
-               },
-          new Opc.Ua.ModelCompiler.Namespace()
-               {
-                 XmlPrefix = Settings.Default.XmlUATypesPrefix,
-                 Name = Settings.Default.XmlUATypesPrefix
-               }
-        }
-      };
+      this.m_ModelDesign = modelDesign.Item1 == null ? OpcUaModelCompilerModelDesigner.GetDefault() : modelDesign.Item1;
     }
 
     internal static IProjectConfigurationManagement ImportNodeSet(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, Action<TraceMessage> traceEvent)

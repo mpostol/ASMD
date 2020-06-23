@@ -217,6 +217,7 @@
     <Compile Include="IO\IConfigurationManagement.cs" />
     <Compile Include="IO\IProjectConfigurationManagement.cs" />
     <Compile Include="IO\ISolutionConfigurationManagement.cs" />
+    <Compile Include="IO\OpcUaModelCompilerModelDesigner.cs" />
     <Compile Include="IO\ProjectConfigurationManagement.cs" />
     <Compile Include="IO\SolutionConfigurationManagement.cs" />
     <Compile Include="IO\SolutionConfigurationManagementRoot.cs" />
