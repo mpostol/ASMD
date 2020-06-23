@@ -83,12 +83,13 @@ namespace CAS.UA.Model.Designer.IO
       _IFileDialogMock.Setup(x => x.Dispose());
       Mock<IGraphicalUserInterface> _guiMock = new Mock<IGraphicalUserInterface>();
       _guiMock.SetupGet(x => x.OpenFileDialogFunc).Returns(() => _IFileDialogMock.Object);
-      string _retPath = ConfigurationManagementFixture.ShowOpenDialog(_defPath, _guiMock.Object);
+      string _retPath = ConfigurationManagementFixture.ShowOpenDialog(_guiMock.Object);
       _IFileDialogMock.VerifySet(x => x.DefaultExt = DefaultExt);
-      _IFileDialogMock.VerifySet(x => x.FileName = FileName);
+      _IFileDialogMock.VerifySet(x => x.FileName = It.IsAny<String>(), Times.Never);
+      _IFileDialogMock.VerifyGet(x => x.FileName, Times.Once);
       _IFileDialogMock.VerifySet(x => x.Filter = Filter);
       _IFileDialogMock.VerifySet(x => x.Title = Title);
-      _IFileDialogMock.VerifySet(x => x.InitialDirectory = Path.GetDirectoryName(_defPath));
+      _IFileDialogMock.Verify(x => x.InitialDirectory, Times.Never);
       _IFileDialogMock.Verify(x => x.Dispose(), Times.Once);
       _IFileDialogMock.Verify(x => x.ShowDialog(), Times.Once);
       Assert.AreEqual<string>(_defPath, _retPath);
@@ -163,9 +164,9 @@ namespace CAS.UA.Model.Designer.IO
         base.SetChangesArePresent();
       }
 
-      internal static string ShowOpenDialog(string defaultFileName, IGraphicalUserInterface graphicalUserInterface)
+      internal static string ShowOpenDialog(IGraphicalUserInterface graphicalUserInterface)
       {
-        return ConfigurationManagement.ShowDialogOpenFileDialog(defaultFileName, graphicalUserInterface, SetupFileDialog);
+        return ConfigurationManagement.ShowDialogOpenFileDialog(graphicalUserInterface, SetupFileDialog);
       }
 
       internal void SaveFixture()

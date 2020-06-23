@@ -127,19 +127,9 @@ namespace CAS.UA.Model.Designer.IO
 
     protected static string ShowDialogOpenFileDialog(IGraphicalUserInterface gui, Action<IFileDialog> setupFileDialog)
     {
-      return ShowDialogOpenFileDialog(null, gui, setupFileDialog);
-    }
-
-    protected static string ShowDialogOpenFileDialog(string defaultFileName, IGraphicalUserInterface gui, Action<IFileDialog> setupFileDialog)
-    {
       using (IFileDialog _dialog = gui.OpenFileDialogFunc())
       {
         setupFileDialog(_dialog);
-        if (!String.IsNullOrEmpty(defaultFileName))
-        {
-          _dialog.InitialDirectory = Path.GetDirectoryName(defaultFileName);
-          _dialog.FileName = Path.GetFileNameWithoutExtension(defaultFileName);
-        }
         bool _ret = _dialog.ShowDialog();
         if (_ret)
           return _dialog.FileName;

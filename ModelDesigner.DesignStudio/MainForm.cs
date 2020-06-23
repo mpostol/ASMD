@@ -281,7 +281,7 @@ namespace CAS.UA.Model.Designer
     {
       if (TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
       {
-        ISolutionConfigurationManagement _Solution = SolutionConfigurationManagementRoot.OpenExisting(new GraphicalUserInterface());
+        ISolutionConfigurationManagement _Solution = SolutionConfigurationManagementRoot.OpenExisting(null, new GraphicalUserInterface());
       }
     }
 

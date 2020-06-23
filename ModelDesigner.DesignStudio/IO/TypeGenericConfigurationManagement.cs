@@ -105,8 +105,8 @@ namespace CAS.UA.Model.Designer.IO
       try
       {
         gui.UseWaitCursor = true;
-        Type4Serialization _return = XmlFile.ReadXmlFile<Type4Serialization>(fileName);
-        return _return;
+        Type4Serialization _graph = XmlFile.ReadXmlFile<Type4Serialization>(fileName);
+        return _graph;
       }
       catch (InvalidOperationException _ioe)
       {
@@ -125,16 +125,16 @@ namespace CAS.UA.Model.Designer.IO
     }
 
     /// <summary>
-    /// Open dialog box to select the file and deserialize an instance of <typeparamref name="Type4Serialization"/>.
+    /// Open dialog box to select the file to deserialize as the instance of <typeparamref name="Type4Serialization"/>.
     /// </summary>
-    /// <returns>The configuration retrieved from a file and the rooted absolute file path. </returns>
+    /// <returns>The configuration <typeparamref name="Type4Serialization"/> retrieved from a file and the rooted absolute file path or <c>null</c> if the file selection is skipped. </returns>
     internal static Tuple<Type4Serialization, string> ReadConfiguration(IGraphicalUserInterface gui, Action<IFileDialog> setupFileDialog)
     {
       string fileName = ShowDialogOpenFileDialog(gui, setupFileDialog);
       if (String.IsNullOrEmpty(fileName))
         return null;
-      Type4Serialization _return = ReadConfiguration(fileName, gui);
-      return new Tuple<Type4Serialization, string>(_return, fileName);
+      Type4Serialization _graph = ReadConfiguration(fileName, gui);
+      return new Tuple<Type4Serialization, string>(_graph, fileName);
     }
 
     #endregion private
