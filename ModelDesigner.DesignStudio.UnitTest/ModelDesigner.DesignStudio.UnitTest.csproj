@@ -130,6 +130,9 @@
     <None Include="TestData\DemoConfiguration\BoilerType.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="TestData\EmptySolution.uamdsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -141,10 +144,11 @@
     <Compile Include="Controls\LibraryTreeNodeControlUnitTest.cs" />
     <Compile Include="Controls\SolutionTreeNodeControlUnitTest.cs" />
     <Compile Include="Instrumentation\Extensions.cs" />
-    <Compile Include="IO\OPCFSolutionConfigurationManagementUnitTest.cs" />
     <Compile Include="IO\OPCFModelConfigurationManagementUnitTest.cs" />
     <Compile Include="IO\ConfigurationManagementUnitTest.cs" />
+    <Compile Include="IO\SolutionConfigurationManagementtUnitTest.cs" />
     <Compile Include="IO\UniqueNameGeneratorUnitTest.cs" />
+    <Compile Include="IO\UnitTest1.cs" />
     <Compile Include="ProgramUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>

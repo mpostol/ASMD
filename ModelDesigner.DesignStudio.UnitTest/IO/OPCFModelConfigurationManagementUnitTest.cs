@@ -17,25 +17,29 @@ using System.IO;
 namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
 {
   [TestClass]
-  public class OPCFModelConfigurationManagementUnitTest
+  public class ProjectConfigurationManagementUnitTest
   {
     [TestMethod]
     public void CreateNewTest()
     {
       Mock<ISolutionConfigurationManagement> _solutionMock = new Mock<ISolutionConfigurationManagement>();
       _solutionMock.SetupGet(x => x.DefaultDirectory).Returns(@"C:\a\b\c\");
+      _solutionMock.Setup(x => x.DefaultFileName);
       Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
       _IFileDialogMock.SetupGet(x => x.FileName).Throws<ApplicationException>();
       _IFileDialogMock.SetupGet(x => x.InitialDirectory).Throws<ApplicationException>();
       _IFileDialogMock.Setup(x => x.Dispose());
       _IFileDialogMock.Setup(x => x.ShowDialog());
       IProjectConfigurationManagement _newItem = ProjectConfigurationManagement.CreateNew(_solutionMock.Object, new GraphicalUserInterface(_IFileDialogMock.Object), "projectName");
+      Assert.IsTrue(((ProjectConfigurationManagement)_newItem).ChangesArePresent);
       Assert.IsNotNull(_newItem.ModelDesign);
       Assert.AreEqual<string>("projectName", _newItem.Name);
       Assert.IsNotNull(_newItem.UAModelDesignerProject);
       Assert.AreEqual<string>(@"C:\a\b\c\projectName", _newItem.UAModelDesignerProject.BuildOutputDirectoryName);
       Assert.AreEqual<string>("projectName.xml", _newItem.UAModelDesignerProject.FileName);
       Assert.AreEqual<string>("projectName", _newItem.UAModelDesignerProject.Name);
+      _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);
+      _solutionMock.Verify(x => x.DefaultFileName, Times.Never);
       //_IFileDialogMock
       _IFileDialogMock.Verify(x => x.InitialDirectory, Times.Never);
       _IFileDialogMock.Verify(x => x.FileName, Times.Never);

@@ -57,45 +57,24 @@ namespace CAS.UA.Model.Designer.IO
 
     internal static ISolutionConfigurationManagement OpenExisting(string solutionFileName, IGraphicalUserInterface gui)
     {
-      if (String.IsNullOrEmpty(solutionFileName))
-        return NewSoliution(gui);
-      if (!File.Exists(solutionFileName))
-        return OpenExisting(gui);
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 234587501, $"Opening an existing solution captured in the file {solutionFileName} of the {nameof(SolutionConfigurationManagement)}");
       Tuple<UAModelDesignerSolution, string> _solution = null;
-      if (File.Exists(solutionFileName))
-        _solution = new Tuple<UAModelDesignerSolution, string>(SolutionConfigurationManagement.ReadConfiguration(solutionFileName, gui), solutionFileName);
-      else
-      {
-        _solution = SolutionConfigurationManagement.ReadConfiguration(gui, SolutionConfigurationManagement.SetupFileDialog);
-        if (_solution == null)
-          return null;
-      }
-      UAModelDesignerSolutionServerDetails _ServerDetails = _solution.Item1.ServerDetails ?? UAModelDesignerSolutionServerDetails.CreateEmptyInstance();
       try
       {
-        AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 234587501, "Opening an existing instance of the OPCFSolutionConfigurationManagement");
-        SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(_solution, gui);
-        DefaultInstance.OnSolutionChanged(_newSolution);
-        return _newSolution;
-      }
-      catch (Exception ex)
-      {
-        string _tmp = "Cannot initialize {0} described by {1} because of exception: {2}.";
-        AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Critical, 234587502, string.Format(_tmp, typeof(SolutionConfigurationManagement).FullName, _solution.Item2, ex.Message));
-        throw;
-      }
-    }
-
-    internal static ISolutionConfigurationManagement OpenExisting(IGraphicalUserInterface gui)
-    {
-      Tuple<UAModelDesignerSolution, string> _solution = SolutionConfigurationManagement.ReadConfiguration(gui, SolutionConfigurationManagement.SetupFileDialog);
-      if (_solution == null)
-        return null;
-      UAModelDesignerSolutionServerDetails _ServerDetails = _solution.Item1.ServerDetails ?? UAModelDesignerSolutionServerDetails.CreateEmptyInstance();
-      try
-      {
-        AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 234587501, "Opening an existing instance of the OPCFSolutionConfigurationManagement");
-        SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(_solution, gui);
+        if (String.IsNullOrEmpty(solutionFileName) || !File.Exists(solutionFileName))
+        {
+          _solution = SolutionConfigurationManagement.ReadConfiguration(gui, SolutionConfigurationManagement.SetupFileDialog);
+          if (_solution == null)
+            return null;
+        }
+        else
+        {
+          solutionFileName = Path.GetFullPath(solutionFileName);
+          _solution = new Tuple<UAModelDesignerSolution, string>(SolutionConfigurationManagement.ReadConfiguration(solutionFileName, gui), solutionFileName);
+        }
+        if (_solution.Item1.ServerDetails == null)
+          _solution.Item1.ServerDetails = UAModelDesignerSolutionServerDetails.CreateEmptyInstance();
+        SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(_solution, false, gui);
         DefaultInstance.OnSolutionChanged(_newSolution);
         return _newSolution;
       }
@@ -109,9 +88,9 @@ namespace CAS.UA.Model.Designer.IO
 
     internal static ISolutionConfigurationManagement NewSoliution(IGraphicalUserInterface gui)
     {
-      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 234587503, "Creating new instance of the OPCFSolutionConfigurationManagement");
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 234587503, $"Creating new instance of the {nameof(SolutionConfigurationManagement)}");
       string _defPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UAModelDesignerSolution");
-      SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(new Tuple<UAModelDesignerSolution, string>(UAModelDesignerSolution.CreateEmptyModel(), _defPath), gui);
+      SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(new Tuple<UAModelDesignerSolution, string>(UAModelDesignerSolution.CreateEmptyModel(), _defPath), true, gui);
       DefaultInstance.OnSolutionChanged(_newSolution);
       return _newSolution;
     }

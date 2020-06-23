@@ -307,7 +307,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     public void Open(IGraphicalUserInterface gui)
     {
-      SolutionConfigurationManagementRoot.OpenExisting(gui);
+      SolutionConfigurationManagementRoot.OpenExisting(null, gui);
     }
 
     public void OnNew(IGraphicalUserInterface gui)
