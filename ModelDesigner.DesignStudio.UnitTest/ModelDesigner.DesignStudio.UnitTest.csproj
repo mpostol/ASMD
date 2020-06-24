@@ -148,7 +148,7 @@
     <Compile Include="IO\ConfigurationManagementUnitTest.cs" />
     <Compile Include="IO\SolutionConfigurationManagementtUnitTest.cs" />
     <Compile Include="IO\UniqueNameGeneratorUnitTest.cs" />
-    <Compile Include="IO\UnitTest1.cs" />
+    <Compile Include="IO\OpcUaModelCompilerModelDesignerUnitTest.cs" />
     <Compile Include="ProgramUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>

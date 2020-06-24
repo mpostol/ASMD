@@ -2,7 +2,7 @@
 name: User Interface Test
 about: Test application functionality using User Interface (UI)
 title: 'Test application functionality using User Interface (UI)'
-labels: 'Testing'
+labels: 'Testing :test_tube:'
 assignees: 'mpostol'
 
 ---

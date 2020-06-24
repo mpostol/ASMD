@@ -240,6 +240,7 @@ namespace CAS.UA.Model.Designer
         debugDockPanelUserControl1.TextWriterStream.WriteLine("Opened");
         if (m_MainContol != null)
         {
+          //TODO m_Solution - System.NullReferenceException; Test application functionality using User Interface (UI) #144  
           m_Solution.DefaultFileNameHasChanged += new EventHandler<NewDirectoryPathEventArgs>(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
           m_Solution.ChangesArePresentHasChanged += new EventHandler(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
         }
