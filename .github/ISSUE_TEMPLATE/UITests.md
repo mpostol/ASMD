@@ -7,9 +7,12 @@ assignees: 'mpostol'
 
 ---
 
-## Release ToDo List
+## Testing ToDo List
 
-- [ ] Open solution
+- [ ] run programm
+  - [ ] creates empty solution
+  - [ ] ask before closing main program.
+- [ ] Open existing solution
 - [ ] Open new solution
 - [ ] Save as
 - [ ] Import

@@ -226,29 +226,29 @@ namespace CAS.UA.Model.Designer
     {
       if (String.IsNullOrEmpty(solutionFileName))
         CreateEmptySolution();
-      try
-      {
-        if (solutionFileName.StartsWith("file://"))
+      else
+        try
         {
-          solutionFileName = (new System.Uri(solutionFileName)).AbsolutePath;
-          solutionFileName = solutionFileName.Replace("%20", " ");
-          solutionFileName = solutionFileName.Replace("/", "\\");
+          if (solutionFileName.StartsWith("file://"))
+          {
+            solutionFileName = (new System.Uri(solutionFileName)).AbsolutePath;
+            solutionFileName = solutionFileName.Replace("%20", " ");
+            solutionFileName = solutionFileName.Replace("/", "\\");
+          }
+          debugDockPanelUserControl1.TextWriterStream.WriteLine("Opening: " + solutionFileName);
+          m_Solution = SolutionConfigurationManagementRoot.OpenExisting(solutionFileName, new GraphicalUserInterface());
+          MainController.Instance.Initialize(m_Solution);
+          debugDockPanelUserControl1.TextWriterStream.WriteLine("Opened");
+          if (m_MainContol != null)
+          {
+            m_Solution.DefaultFileNameHasChanged += new EventHandler<NewDirectoryPathEventArgs>(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
+            m_Solution.ChangesArePresentHasChanged += new EventHandler(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
+          }
         }
-        debugDockPanelUserControl1.TextWriterStream.WriteLine("Opening: " + solutionFileName);
-        m_Solution = SolutionConfigurationManagementRoot.OpenExisting(solutionFileName, new GraphicalUserInterface());
-        MainController.Instance.Initialize(m_Solution);
-        debugDockPanelUserControl1.TextWriterStream.WriteLine("Opened");
-        if (m_MainContol != null)
+        catch (Exception ex)
         {
-          //TODO m_Solution - System.NullReferenceException; Test application functionality using User Interface (UI) #144  
-          m_Solution.DefaultFileNameHasChanged += new EventHandler<NewDirectoryPathEventArgs>(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
-          m_Solution.ChangesArePresentHasChanged += new EventHandler(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
+          MessageBox.Show(string.Format(Resources.MainForm_StartupExceptionMessage, ex.Message), "Command line error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
         }
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show(string.Format(Resources.MainForm_StartupExceptionMessage, ex.Message), "Command line error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-      }
     }
     private void CreateEmptySolution()
     {
