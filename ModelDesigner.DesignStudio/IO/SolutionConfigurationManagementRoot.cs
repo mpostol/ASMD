@@ -17,6 +17,7 @@ namespace CAS.UA.Model.Designer.IO
   {
     #region private
 
+    private static readonly UniqueNameGenerator m_UniqueNameGenerator = new UniqueNameGenerator(Properties.Resources.DefaultSolutionName);
     private static SolutionConfigurationManagementRoot m_This;
     private ISolutionConfigurationManagement CurrentConfiguration { get; set; }
 
@@ -90,7 +91,7 @@ namespace CAS.UA.Model.Designer.IO
     {
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 234587503, $"Creating new instance of the {nameof(SolutionConfigurationManagement)}");
       string _defPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UAModelDesignerSolution");
-      SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(new Tuple<UAModelDesignerSolution, string>(UAModelDesignerSolution.CreateEmptyModel(), _defPath), true, gui);
+      SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(new Tuple<UAModelDesignerSolution, string>(UAModelDesignerSolution.CreateEmptyModel(m_UniqueNameGenerator.GenerateNewName()), _defPath), true, gui);
       DefaultInstance.OnSolutionChanged(_newSolution);
       return _newSolution;
     }

@@ -21,11 +21,11 @@ namespace CAS.UA.Model.Designer.Solution
     /// Creates an empty solution model.
     /// </summary>
     /// <returns>UAModelDesignerSolution.</returns>
-    internal static UAModelDesignerSolution CreateEmptyModel()
+    internal static UAModelDesignerSolution CreateEmptyModel(string solutionName)
     {
       return new UAModelDesignerSolution()
       {
-        Name = Resources.DefaultSolutionName,
+        Name = solutionName,
         Projects = new UAModelDesignerProject[] { },
         ServerDetails = UAModelDesignerSolutionServerDetails.CreateEmptyInstance()
       };
@@ -58,7 +58,7 @@ namespace CAS.UA.Model.Designer.Solution
         cSVFileNameField = Resources.DefaultCSVFileName,
         fileNameField = Path.ChangeExtension(name, "xml"),
         nameField = name,
-        ProjectIdentifier = Guid.NewGuid().ToString(), 
+        ProjectIdentifier = Guid.NewGuid().ToString(),
       };
     }
   }

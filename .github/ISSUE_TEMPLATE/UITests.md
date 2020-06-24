@@ -12,8 +12,8 @@ assignees: 'mpostol'
 - [ ] run programm
   - [ ] creates empty solution
   - [ ] ask before closing main program.
+- [ ] Create new empty solution
 - [ ] Open existing solution
-- [ ] Open new solution
 - [ ] Save as
 - [ ] Import
 - [ ] Export
