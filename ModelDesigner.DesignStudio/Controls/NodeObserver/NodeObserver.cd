@@ -7,18 +7,10 @@
       <Compartment Name="Events" Collapsed="true" />
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
-    <AssociationLine Name="m_SelectedItemObserverList" Type="CAS.UA.Model.Designer.Controls.NodeObserver.ISelectedItemObserver">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.225" Y="0.488" />
-      </MemberNameLabel>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>IAAAAAABCAAAAAAAAAQAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAABCAAAAQCBAAQAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Controls\NodeObserver\MainController.cs</FileName>
     </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Field Name="m_SelectedItemObserverList" />
-    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.BindingsPropertyObserver">
     <Position X="5.75" Y="5" Width="2.5" />
@@ -52,7 +44,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAABAAAAACAAAAAAAACAIIAGAAgAAAgAgAAAAAAAAQA=</HashCode>
+      <HashCode>ACABAAAAACAAAAAAAACAIIAGAAgAAAgAgAAAAAAAAQA=</HashCode>
       <FileName>Controls\NodeObserver\PropertyGridObserver.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -92,7 +84,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ICABABQALCIAAAQYAADAAIACAQAAAMIREgAAACQAAEA=</HashCode>
+      <HashCode>ICABBJQALCIAAAQZAADAAIACAQAAgMIREgAAACQAAEA=</HashCode>
       <FileName>Controls\NodeObserver\ModelObserver.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -108,7 +100,7 @@
   <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.SelectedItemObserver" Collapsed="true">
     <Position X="9.75" Y="2" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>ADADACgBAIAAAQAAAAAAAAiAAQAAAAAAACEAAACAAAI=</HashCode>
+      <HashCode>ADADACgBAAAAAQAAAAAAAAiAAQAAAAAAACEAAACAAAI=</HashCode>
       <FileName>Controls\NodeObserver\SelectedItemObserver.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="1.37" />
@@ -127,21 +119,21 @@
   <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.HelpUserControlObserver" Collapsed="true">
     <Position X="13" Y="3.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAABIAAQACAQAAAAAACAEAACAAAAAAIABAABAAAAACA=</HashCode>
+      <HashCode>ACABIAAQACAQAAAAAACAEAACAAAAAAIABAABAAAAACA=</HashCode>
       <FileName>Controls\NodeObserver\HelpUserControlObserver.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.NodeClassLabelObserver" Collapsed="true">
     <Position X="15.75" Y="3.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAACAAAACgAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ACABAAAAACAAAACgAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\NodeObserver\NodeClassLabelObserver.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.View3DModelObserver" Collapsed="true">
     <Position X="18.5" Y="3.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AICBIAAAACAAAAAERACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AKCBIAAAACAAAAAERACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\NodeObserver\View3DModelObserver.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -166,9 +158,9 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.DictionaryTreeView" Collapsed="true">
-    <Position X="3" Y="5.25" Width="2" />
+    <Position X="3.25" Y="5.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAACAAAwEYAACAAAACEEAABAoBAABBgAgAFAE=</HashCode>
+      <HashCode>AAAAAIAAACAAAwAYAACAAAACEEAABAgBAABBgAgAFAE=</HashCode>
       <FileName>Controls\DictionaryTreeView.cs</FileName>
     </TypeIdentifier>
   </Class>

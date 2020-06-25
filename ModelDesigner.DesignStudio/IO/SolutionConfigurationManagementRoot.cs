@@ -17,8 +17,8 @@ namespace CAS.UA.Model.Designer.IO
   {
     #region private
 
+    private static readonly UniqueNameGenerator m_UniqueNameGenerator = new UniqueNameGenerator(Properties.Resources.DefaultSolutionName);
     private static SolutionConfigurationManagementRoot m_This;
-    private ISolutionConfigurationManagement CurrentConfiguration { get; set; }
 
     private void OnSolutionChanged(ISolutionConfigurationManagement solution)
     {
@@ -27,6 +27,8 @@ namespace CAS.UA.Model.Designer.IO
     }
 
     #endregion private
+
+    internal ISolutionConfigurationManagement CurrentConfiguration { get; private set; }
 
     internal class AfterSolutionChangeEventArgs : EventArgs
     {
@@ -55,17 +57,29 @@ namespace CAS.UA.Model.Designer.IO
       }
     }
 
-    internal static ISolutionConfigurationManagement OpenExisting(string solutionFileName, IGraphicalUserInterface gui)
+    internal static void OpenExisting(string solutionFileName, IGraphicalUserInterface gui)
     {
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 234587501, $"Opening an existing solution captured in the file {solutionFileName} of the {nameof(SolutionConfigurationManagement)}");
+      if ((DefaultInstance.CurrentConfiguration != null) && !DefaultInstance.CurrentConfiguration.TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
+        return;
       Tuple<UAModelDesignerSolution, string> _solution = null;
+      bool _ChangesArePresent = false;
       try
       {
         if (String.IsNullOrEmpty(solutionFileName) || !File.Exists(solutionFileName))
         {
-          _solution = SolutionConfigurationManagement.ReadConfiguration(gui, SolutionConfigurationManagement.SetupFileDialog);
-          if (_solution == null)
-            return null;
+          if (DefaultInstance.CurrentConfiguration != null)
+          {
+            _solution = SolutionConfigurationManagement.ReadConfiguration(gui, SolutionConfigurationManagement.SetupFileDialog);
+            if (_solution == null)
+              return;
+          }
+          else
+          {
+            string _defPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UAModelDesignerSolution");
+            _solution = new Tuple<UAModelDesignerSolution, string>(UAModelDesignerSolution.CreateEmptyModel(m_UniqueNameGenerator.GenerateNewName()), _defPath);
+            _ChangesArePresent = true;
+          }
         }
         else
         {
@@ -74,9 +88,9 @@ namespace CAS.UA.Model.Designer.IO
         }
         if (_solution.Item1.ServerDetails == null)
           _solution.Item1.ServerDetails = UAModelDesignerSolutionServerDetails.CreateEmptyInstance();
-        SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(_solution, false, gui);
+        ISolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(_solution, _ChangesArePresent, gui);
         DefaultInstance.OnSolutionChanged(_newSolution);
-        return _newSolution;
+        return;
       }
       catch (Exception ex)
       {
@@ -86,13 +100,16 @@ namespace CAS.UA.Model.Designer.IO
       }
     }
 
-    internal static ISolutionConfigurationManagement NewSoliution(IGraphicalUserInterface gui)
+    internal static void NewSoliution(IGraphicalUserInterface gui)
     {
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 234587504, $"New instance of the {nameof(SolutionConfigurationManagement)} is required");
+      if ((DefaultInstance.CurrentConfiguration != null) && (!DefaultInstance.CurrentConfiguration.TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued()))
+        return;
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 234587503, $"Creating new instance of the {nameof(SolutionConfigurationManagement)}");
       string _defPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UAModelDesignerSolution");
-      SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(new Tuple<UAModelDesignerSolution, string>(UAModelDesignerSolution.CreateEmptyModel(), _defPath), true, gui);
+      SolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(new Tuple<UAModelDesignerSolution, string>(UAModelDesignerSolution.CreateEmptyModel(m_UniqueNameGenerator.GenerateNewName()), _defPath), true, gui);
       DefaultInstance.OnSolutionChanged(_newSolution);
-      return _newSolution;
+      return;
     }
   }
 }

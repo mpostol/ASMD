@@ -39,7 +39,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       Assert.AreEqual<string>(_currentFolder, Directory.GetCurrentDirectory());
     }
 
-    // TODO Changing of the solution location doesn't recalculate the projects paths #134
+    //TODO Test application functionality using User Interface (UI) #144
     //[TestMethod]
     //public void CreateTest()
     //{
@@ -50,7 +50,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     //  Assert.IsNotNull(_viewModel);
     //}
 
-    // TODO Changing of the solution location doesn't recalculate the projects paths #134
+    //TODO Test application functionality using User Interface (UI) #144
     //[TestMethod]
     //public void FindTest()
     //{
@@ -62,7 +62,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     //  Assert.IsNull(_findReturn);
     //}
 
-    // TODO Changing of the solution location doesn't recalculate the projects paths #134
+    //TODO Test application functionality using User Interface (UI) #144
     //[TestMethod]
     //public void GetTargetNamespaceTest()
     //{
@@ -80,7 +80,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     private const string m_DemoConfigurationFilePath = @"TestData\DemoConfiguration\BoilerType.xml";
 
-    // TODO Changing of the solution location doesn't recalculate the projects paths #134
+    //Test application functionality using User Interface (UI) #144
     private void CheckConsistency(ProjectTreeNode _newItem)
     {
       Assert.IsNotNull(_newItem);

@@ -29,10 +29,13 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
     public void NewSoliutionTest()
     {
       Mock<IGraphicalUserInterface> _gui = new Mock<IGraphicalUserInterface>();
+      _gui.SetupGet(x => x.MessageBoxShowWarningAskYN).Returns(() => (x, y) => true);
       int _eventCounter = 0;
       ISolutionConfigurationManagement _newSolution = null;
       SolutionConfigurationManagementRoot.DefaultInstance.AfterSolutionChange += (x, y) => { _eventCounter++; _newSolution = y.Solution; Assert.AreSame(x, SolutionConfigurationManagementRoot.DefaultInstance); };
-      ISolutionConfigurationManagement _instance = SolutionConfigurationManagementRoot.NewSoliution(_gui.Object);
+      ISolutionConfigurationManagement _instance = null;
+      SolutionConfigurationManagementRoot.DefaultInstance.AfterSolutionChange += (x, y) => _instance = y.Solution;
+      SolutionConfigurationManagementRoot.NewSoliution(_gui.Object);
       Assert.IsNotNull(_instance);
       Assert.IsTrue(_instance.ChangesArePresent);
       Assert.IsFalse(string.IsNullOrEmpty(_instance.DefaultDirectory));
@@ -53,8 +56,10 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       _IFileDialogMock.Setup(x => x.ShowDialog()).Returns(false);
       Mock<IGraphicalUserInterface> _guiMock = new Mock<IGraphicalUserInterface>();
       _guiMock.SetupGet(x => x.OpenFileDialogFunc).Returns(() => _IFileDialogMock.Object);
-      ISolutionConfigurationManagement _instance = SolutionConfigurationManagementRoot.OpenExisting(null, _guiMock.Object);
-      Assert.IsNull(_instance);
+      _guiMock.SetupGet(x => x.MessageBoxShowWarningAskYN).Returns(() => (x, y) => true);
+      ISolutionConfigurationManagement _instance = null;
+      SolutionConfigurationManagementRoot.DefaultInstance.AfterSolutionChange += (x, y) => _instance = y.Solution;
+      SolutionConfigurationManagementRoot.OpenExisting(null, _guiMock.Object);
       _IFileDialogMock.VerifySet(x => x.DefaultExt = DefaultExt, Times.Once);
       _IFileDialogMock.VerifySet(x => x.Filter = Filter, Times.Once);
       _IFileDialogMock.VerifySet(x => x.Title = Title, Times.Once);
@@ -69,8 +74,12 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
       _IFileDialogMock.Setup(x => x.ShowDialog()).Returns(false);
       Mock<IGraphicalUserInterface> _guiMock = new Mock<IGraphicalUserInterface>();
+      _guiMock.SetupSet(x => x.UseWaitCursor = It.IsAny<bool>());
       _guiMock.SetupGet(x => x.OpenFileDialogFunc).Returns(() => _IFileDialogMock.Object);
-      ISolutionConfigurationManagement _instance = SolutionConfigurationManagementRoot.OpenExisting(@"TestData\EmptySolution.uamdsl", _guiMock.Object);
+      _guiMock.SetupGet(x => x.MessageBoxShowWarningAskYN).Returns(() => (x, y) => true);
+      ISolutionConfigurationManagement _instance = null;
+      SolutionConfigurationManagementRoot.DefaultInstance.AfterSolutionChange += (x, y) => _instance = y.Solution;
+      SolutionConfigurationManagementRoot.OpenExisting(@"TestData\EmptySolution.uamdsl", _guiMock.Object);
       Assert.IsNotNull(_instance);
       Assert.IsFalse(_instance.ChangesArePresent);
       Assert.AreEqual<string>(Path.Combine(Directory.GetCurrentDirectory(), @"TestData\EmptySolution.uamdsl"), _instance.DefaultFileName);
@@ -81,6 +90,8 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       _IFileDialogMock.VerifySet(x => x.InitialDirectory = It.IsAny<string>(), Times.Never);
       _IFileDialogMock.Verify(x => x.ShowDialog(), Times.Never);
       _IFileDialogMock.Verify(x => x.Dispose(), Times.Never);
+      _guiMock.Verify(x => x.MessageBoxShowWarningAskYN, Times.Never);
+      _guiMock.VerifySet(x => x.UseWaitCursor = It.IsAny<bool>(), Times.Exactly(2));
     }
   }
 }

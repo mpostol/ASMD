@@ -2,15 +2,19 @@
 name: User Interface Test
 about: Test application functionality using User Interface (UI)
 title: 'Test application functionality using User Interface (UI)'
-labels: 'Testing'
+labels: 'Testing :test_tube:'
 assignees: 'mpostol'
 
 ---
 
-## Release ToDo List
+## Testing ToDo List
 
-- [ ] Open solution
-- [ ] Open new solution
+- [ ] run programm
+  - [ ] creates empty solution
+  - [ ] ask before closing main program.
+- [ ] Create new empty solution
+- [ ] Save new empty splution
+- [ ] Open existing solution
 - [ ] Save as
 - [ ] Import
 - [ ] Export

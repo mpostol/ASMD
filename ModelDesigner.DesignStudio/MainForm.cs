@@ -4,12 +4,8 @@
 //
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
-using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.Controls;
-using CAS.UA.Model.Designer.Controls.NodeObserver;
 using CAS.UA.Model.Designer.ExportingTools;
-using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.StateMachineEditor;
 using CAS.UA.Model.Designer.Wrappers;
@@ -67,7 +63,7 @@ namespace CAS.UA.Model.Designer
 
     //vars
     private StartUpSplashScreen m_SplashScreenObj = new StartUpSplashScreen();
-    private ISolutionConfigurationManagement m_Solution { get; set; }
+
     private void ProcessInitialization()
     {
       if (Settings.Default.FontSize < 6)
@@ -192,18 +188,7 @@ namespace CAS.UA.Model.Designer
 
     private void UpdateWindowTitle()
     {
-      this.Text = Resources.MainWindowName;
-      string separator = ": ";
-      if (m_Solution.ChangesArePresent)
-        separator += Resources.MainForm_Title_ChangesArePresent;
-      this.Text += separator + System.IO.Path.GetFileName(m_Solution.DefaultFileName);
-    }
-
-    private bool TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued()
-    {
-      if (m_MainContol == null)
-        return true;
-      return m_Solution.TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued();
+      this.Text = $"{Resources.MainWindowName}:{m_MainContol.SolutionDisplayName}";
     }
 
     #endregion private members and helper functions
@@ -217,51 +202,6 @@ namespace CAS.UA.Model.Designer
       this.BringToFront();
     }
 
-    private void OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged(object sender, EventArgs e)
-    {
-      UpdateWindowTitle();
-    }
-
-    private void OpenSolution(string solutionFileName)
-    {
-      if (String.IsNullOrEmpty(solutionFileName))
-        CreateEmptySolution();
-      try
-      {
-        if (solutionFileName.StartsWith("file://"))
-        {
-          solutionFileName = (new System.Uri(solutionFileName)).AbsolutePath;
-          solutionFileName = solutionFileName.Replace("%20", " ");
-          solutionFileName = solutionFileName.Replace("/", "\\");
-        }
-        debugDockPanelUserControl1.TextWriterStream.WriteLine("Opening: " + solutionFileName);
-        m_Solution = SolutionConfigurationManagementRoot.OpenExisting(solutionFileName, new GraphicalUserInterface());
-        MainController.Instance.Initialize(m_Solution);
-        debugDockPanelUserControl1.TextWriterStream.WriteLine("Opened");
-        if (m_MainContol != null)
-        {
-          m_Solution.DefaultFileNameHasChanged += new EventHandler<NewDirectoryPathEventArgs>(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
-          m_Solution.ChangesArePresentHasChanged += new EventHandler(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
-        }
-      }
-      catch (Exception ex)
-      {
-        MessageBox.Show(string.Format(Resources.MainForm_StartupExceptionMessage, ex.Message), "Command line error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-      }
-    }
-    private void CreateEmptySolution()
-    {
-      debugDockPanelUserControl1.TextWriterStream.WriteLine("Opening new solution");
-      m_Solution = SolutionConfigurationManagementRoot.NewSoliution(new GraphicalUserInterface());
-      MainController.Instance.Initialize(m_Solution);
-      debugDockPanelUserControl1.TextWriterStream.WriteLine("Opened");
-      if (m_MainContol != null)
-      {
-        m_Solution.DefaultFileNameHasChanged += new EventHandler<NewDirectoryPathEventArgs>(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
-        m_Solution.ChangesArePresentHasChanged += new EventHandler(OPCFModelConfigurationManagement_DefaultFileNameOrChangesArePresentHasChanged);
-      }
-    }
-
     #region Menu
 
     #region File
@@ -273,16 +213,12 @@ namespace CAS.UA.Model.Designer
 
     private void MHNewToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      if (TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
-        m_Solution = SolutionConfigurationManagementRoot.NewSoliution(new GraphicalUserInterface());
+      m_MainContol.NewSolution();
     }
 
     private void MHOpenToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      if (TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
-      {
-        ISolutionConfigurationManagement _Solution = SolutionConfigurationManagementRoot.OpenExisting(null, new GraphicalUserInterface());
-      }
+      m_MainContol.OpenSolution(null);
     }
 
     private void MHSaveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -882,15 +818,29 @@ namespace CAS.UA.Model.Designer
 
     private void MainForm_Load(object sender, EventArgs e)
     {
-      OpenSolution(m_StartupFileName);
+      string solutionFileName = m_StartupFileName;
+      if (solutionFileName.StartsWith("file://"))
+      {
+        solutionFileName = (new System.Uri(solutionFileName)).AbsolutePath;
+        solutionFileName = solutionFileName.Replace("%20", " ");
+        solutionFileName = solutionFileName.Replace("/", "\\");
+      }
+      m_MainContol.PropertyChanged += M_MainContol_PropertyChanged;
+      m_MainContol.OpenSolution(solutionFileName);
       m_SplashScreenObj.CloseSplashScreen();
       m_SplashScreenObj.Dispose();
       m_SplashScreenObj = null;
     }
 
+    private void M_MainContol_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+      if (e.PropertyName == nameof(Main.SolutionDisplayName))
+        this.UpdateWindowTitle();
+    }
+
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
     {
-      if (!TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
+      if (!m_MainContol.TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
         e.Cancel = true;
     }
 

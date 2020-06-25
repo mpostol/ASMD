@@ -50,7 +50,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       _IFileDialogMock.Verify(x => x.Dispose(), Times.Never);
     }
 
-    //TODO Changing of the solution location doesn't recalculate the projects paths #134
+    //TODO Test application functionality using User Interface (UI) #144
     //[TestMethod]
     //public void ChangeSolutionBaseDirectioryTest()
     //{
