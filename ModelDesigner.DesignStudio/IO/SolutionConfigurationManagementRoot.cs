@@ -60,16 +60,26 @@ namespace CAS.UA.Model.Designer.IO
     internal static void OpenExisting(string solutionFileName, IGraphicalUserInterface gui)
     {
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 234587501, $"Opening an existing solution captured in the file {solutionFileName} of the {nameof(SolutionConfigurationManagement)}");
-      if ( (DefaultInstance.CurrentConfiguration != null) && !DefaultInstance.CurrentConfiguration.TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
+      if ((DefaultInstance.CurrentConfiguration != null) && !DefaultInstance.CurrentConfiguration.TestIfChangesArePresentDisplayWindowAndReturnTrueIfShouldBeContinued())
         return;
       Tuple<UAModelDesignerSolution, string> _solution = null;
+      bool _ChangesArePresent = false;
       try
       {
         if (String.IsNullOrEmpty(solutionFileName) || !File.Exists(solutionFileName))
         {
-          _solution = SolutionConfigurationManagement.ReadConfiguration(gui, SolutionConfigurationManagement.SetupFileDialog);
-          if (_solution == null)
-            return;
+          if (DefaultInstance.CurrentConfiguration != null)
+          {
+            _solution = SolutionConfigurationManagement.ReadConfiguration(gui, SolutionConfigurationManagement.SetupFileDialog);
+            if (_solution == null)
+              return;
+          }
+          else
+          {
+            string _defPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UAModelDesignerSolution");
+            _solution = new Tuple<UAModelDesignerSolution, string>(UAModelDesignerSolution.CreateEmptyModel(m_UniqueNameGenerator.GenerateNewName()), _defPath);
+            _ChangesArePresent = true;
+          }
         }
         else
         {
@@ -78,7 +88,7 @@ namespace CAS.UA.Model.Designer.IO
         }
         if (_solution.Item1.ServerDetails == null)
           _solution.Item1.ServerDetails = UAModelDesignerSolutionServerDetails.CreateEmptyInstance();
-        ISolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(_solution, false, gui);
+        ISolutionConfigurationManagement _newSolution = new SolutionConfigurationManagement(_solution, _ChangesArePresent, gui);
         DefaultInstance.OnSolutionChanged(_newSolution);
         return;
       }

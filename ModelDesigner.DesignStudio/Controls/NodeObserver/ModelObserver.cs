@@ -5,7 +5,6 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
@@ -100,10 +99,8 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       try
       {
         AssemblyTraceEvent.Tracer.TraceInformation($"On opening new solution {solutionFileName}");
-        if (String.IsNullOrEmpty(solutionFileName))
-          SolutionConfigurationManagementRoot.NewSoliution(new GraphicalUserInterface());
-        else
-          SolutionConfigurationManagementRoot.OpenExisting(solutionFileName, new GraphicalUserInterface());
+        SolutionConfigurationManagementRoot.OpenExisting(solutionFileName, new GraphicalUserInterface());
+        AssemblyTraceEvent.Tracer.TraceInformation($"On opened new solution {solutionFileName}");
       }
       catch (Exception ex)
       {
