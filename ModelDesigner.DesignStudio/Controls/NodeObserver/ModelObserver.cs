@@ -5,6 +5,8 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
+using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
+using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
@@ -24,6 +26,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     public ModelObserver() : base()
     {
       InitializeComponent();
+      SolutionConfigurationManagementRoot.DefaultInstance.AfterSolutionChange += AfterSolutionChange;
       this.m_TreeView.ImageList = this.m_ImagesForNodes.ImageListNodes;
       m_TreeView.CoupledNodesAreEnabled = Settings.Default.CoupledNodesAreEnabled;
       //solution initialization:
@@ -87,6 +90,28 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       m_Solution.Save(prompt);
     }
 
+    internal void NewSolution()
+    {
+      SolutionConfigurationManagementRoot.NewSoliution(new GraphicalUserInterface());
+    }
+
+    internal void OpenSolution(string solutionFileName)
+    {
+      try
+      {
+        AssemblyTraceEvent.Tracer.TraceInformation($"On opening new solution {solutionFileName}");
+        if (String.IsNullOrEmpty(solutionFileName))
+          SolutionConfigurationManagementRoot.NewSoliution(new GraphicalUserInterface());
+        else
+          SolutionConfigurationManagementRoot.OpenExisting(solutionFileName, new GraphicalUserInterface());
+      }
+      catch (Exception ex)
+      {
+        AssemblyTraceEvent.Tracer.TraceInformation($"Opening new solution from {solutionFileName} failed {ex.Message}");
+        MessageBox.Show(string.Format(Resources.MainForm_StartupExceptionMessage, ex.Message), "Command line error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+    }
+
     internal void GetImportMenu(ToolStripItemCollection items)
     {
       //TODO NullReferenceException after opening the file\import menu before selecting the root node in the TreeView #88 - root node is not selected after starting the application.
@@ -123,10 +148,11 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       return IWrapperTreeNodeFoundNode.Wrapper4PropertyGrid != null;
     }
 
-    private void AddSolution(ISolutionConfigurationManagement Solution)
+    private void AddSolution(ISolutionConfigurationManagement solution)
     {
+      MainController.Instance.Initialize(solution);
       m_TreeView.Nodes.Clear();
-      m_Solution = new SolutionTreeNode(new ToForms.MessageBoxHandling(), Solution, (x, y) => Solution.SetChangesArePresent(), x => m_TreeView.Nodes.Add(new LibraryTreeNodeControl(x)));
+      m_Solution = new SolutionTreeNode(new ToForms.MessageBoxHandling(), solution, (x, y) => solution.SetChangesArePresent(), x => m_TreeView.Nodes.Add(new LibraryTreeNodeControl(x)));
       SolutionTreeNodeControl _solutionRootTreeNode = new SolutionTreeNodeControl(m_Solution);
       m_Solution.OnDataChanged += new EventHandler<EventArgs>(Solution_OnDataChanged);
       m_TreeView.Nodes.Insert(0, _solutionRootTreeNode);

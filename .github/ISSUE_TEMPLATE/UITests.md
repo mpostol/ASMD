@@ -13,6 +13,7 @@ assignees: 'mpostol'
   - [ ] creates empty solution
   - [ ] ask before closing main program.
 - [ ] Create new empty solution
+- [ ] Save new empty splution
 - [ ] Open existing solution
 - [ ] Save as
 - [ ] Import
