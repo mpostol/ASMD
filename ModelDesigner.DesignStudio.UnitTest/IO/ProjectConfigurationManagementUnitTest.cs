@@ -17,8 +17,16 @@ using System.IO;
 namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
 {
   [TestClass]
+  [DeploymentItem(@"TestData\", @"TestData")]
   public class ProjectConfigurationManagementUnitTest
   {
+    [TestMethod]
+    public void ConfigurationFileExistsTest()
+    {
+      Assert.IsTrue(Directory.Exists("TestData"), $"{Directory.GetCurrentDirectory()}");
+      Assert.IsTrue(File.Exists(@"TestData\EmptySolution.uamdsl"));
+    }
+
     [TestMethod]
     public void CreateNewTest()
     {
@@ -35,12 +43,44 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Assert.IsNotNull(_newItem.ModelDesign);
       Assert.AreEqual<string>("projectName", _newItem.Name);
       Assert.IsNotNull(_newItem.UAModelDesignerProject);
-      Assert.AreEqual<string>(@"C:\a\b\c\projectName", _newItem.UAModelDesignerProject.BuildOutputDirectoryName);
-      //TODO Save not empty solution failed #148
-      Assert.AreEqual<string>(@"C:\a\b\c\projectName.xml", _newItem.UAModelDesignerProject.FileName);
+      Assert.AreEqual<string>(@"$(ProjectFileName)", _newItem.UAModelDesignerProject.BuildOutputDirectoryName);
+      Assert.AreEqual<string>(@"$(ProjectFileName).xml", _newItem.UAModelDesignerProject.FileName);
       Assert.AreEqual<string>("projectName", _newItem.UAModelDesignerProject.Name);
+      //_solutionMock
       _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);
       _solutionMock.Verify(x => x.DefaultFileName, Times.Never);
+      //_IFileDialogMock
+      _IFileDialogMock.Verify(x => x.InitialDirectory, Times.Never);
+      _IFileDialogMock.Verify(x => x.FileName, Times.Never);
+      _IFileDialogMock.Verify(x => x.Filter, Times.Never);
+      _IFileDialogMock.Verify(x => x.InitialDirectory, Times.Never);
+      _IFileDialogMock.Verify(x => x.Title, Times.Never);
+      _IFileDialogMock.Verify(x => x.ShowDialog(), Times.Never);
+      _IFileDialogMock.Verify(x => x.Dispose(), Times.Never);
+    }
+
+    [TestMethod]
+    public void SaveNewTest()
+    {
+      string _solutionPath = Path.Combine(Directory.GetCurrentDirectory(), "TestData");
+      Mock<ISolutionConfigurationManagement> _solutionMock = new Mock<ISolutionConfigurationManagement>();
+      _solutionMock.SetupGet(x => x.DefaultDirectory).Returns(_solutionPath);
+      Mock<IFileDialog> _IFileDialogMock = new Mock<IFileDialog>();
+      Mock<IGraphicalUserInterface> _guiMock = new Mock<IGraphicalUserInterface>();
+      _guiMock.SetupGet(z => z.OpenFileDialogFunc).Returns(() => _IFileDialogMock.Object);
+      _guiMock.SetupSet(z => z.UseWaitCursor = It.IsAny<bool>());
+      IProjectConfigurationManagement _newItem = ProjectConfigurationManagement.CreateNew(_solutionMock.Object, _guiMock.Object, "projectName");
+      Assert.IsTrue(((ProjectConfigurationManagement)_newItem).ChangesArePresent);
+      Assert.IsNotNull(_newItem.ModelDesign);
+      Assert.AreEqual<string>("projectName", _newItem.Name);
+      Assert.IsNotNull(_newItem.UAModelDesignerProject);
+      _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);
+      _solutionMock.Verify(x => x.DefaultFileName, Times.Never);
+      string projectPath = _newItem.Save(_solutionPath);
+      _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);
+      _solutionMock.Verify(x => x.DefaultFileName, Times.Never);
+      //_guiMock.Verify(x => x.UseWaitCursor, Times.AtLeastOnce);
+      Assert.IsTrue(File.Exists(Path.Combine(_solutionPath, "projectName.xml")));
       //_IFileDialogMock
       _IFileDialogMock.Verify(x => x.InitialDirectory, Times.Never);
       _IFileDialogMock.Verify(x => x.FileName, Times.Never);

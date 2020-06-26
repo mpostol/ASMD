@@ -96,7 +96,7 @@ namespace CAS.UA.Model.Designer.IO
     /// Reads the configuration.
     /// </summary>
     /// <param name="fileName">The fully qualified name of the file, or the relative file name.</param>
-    /// <exception cref="FileNotFoundException">The exception that is thrown when an attempt to access a filethat does not exist on disk fails.</exception>
+    /// <exception cref="FileNotFoundException">The exception that is thrown when an attempt to access a file that does not exist on disk fails.</exception>
     /// <exception cref="InvalidOperationException">An error occurred during deserialization. The original exception is available using the System.Exception.InnerException property.</exception>
     internal static Type4Serialization ReadConfiguration(string fileName, IGraphicalUserInterface gui)
     {

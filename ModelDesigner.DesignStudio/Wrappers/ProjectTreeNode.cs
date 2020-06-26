@@ -232,7 +232,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <returns></returns>
     internal bool Save()
     {
-      m_ProjectConfigurationManager.SaveModelDesign(Model.GetModel());
+      m_ProjectConfigurationManager.Save(Model.GetModel());
       return true;
     }
 

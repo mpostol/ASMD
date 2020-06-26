@@ -28,6 +28,8 @@ namespace CAS.UA.Model.Designer.IO
 
     #endregion private
 
+    #region API
+
     internal ISolutionConfigurationManagement CurrentConfiguration { get; private set; }
 
     internal class AfterSolutionChangeEventArgs : EventArgs
@@ -111,5 +113,18 @@ namespace CAS.UA.Model.Designer.IO
       DefaultInstance.OnSolutionChanged(_newSolution);
       return;
     }
+
+    #endregion API
+
+    #region DEBUG
+
+    [ConditionalAttribute("DEBUG")]
+    internal static void GetInstance(Action<SolutionConfigurationManagementRoot> constructor)
+    {
+      m_This = new SolutionConfigurationManagementRoot();
+      constructor(m_This);
+    }
+
+    #endregion DEBUG
   }
 }

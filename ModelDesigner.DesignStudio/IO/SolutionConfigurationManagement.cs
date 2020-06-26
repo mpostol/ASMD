@@ -63,15 +63,20 @@ namespace CAS.UA.Model.Designer.IO
     void ISolutionConfigurationManagement.Save(bool prompt)
     {
       m_Server.Save(this);
+      this.SelectSavePath(prompt, SetupFileDialog);
+      List<UAModelDesignerProject> _projects = new List<UAModelDesignerProject>();
+      foreach (IProjectConfigurationManagement _item in m_Projects)
+      {
+        UAModelDesignerProject _projectDescriptor = _item.UAModelDesignerProject;
+        string _effectiveAbsolutePath = _item.Save(this.DefaultDirectory);
+        _projectDescriptor.FileName = RelativeFilePathsCalculator.TryComputeRelativePath(this.DefaultDirectory, _effectiveAbsolutePath);
+      }
       UAModelDesignerSolution _solutionDesription = new UAModelDesignerSolution()
       {
         Name = this.m_Name,
         Projects = m_Projects.Select<IProjectConfigurationManagement, UAModelDesignerProject>(x => x.UAModelDesignerProject).ToArray<UAModelDesignerProject>(),
         ServerDetails = this.m_ServerDetails ?? UAModelDesignerSolutionServerDetails.CreateEmptyInstance()
       };
-      this.SelectSavePath(prompt, SetupFileDialog);
-      foreach (UAModelDesignerProject _item in _solutionDesription.Projects)
-        _item.FileName = RelativeFilePathsCalculator.TryComputeRelativePath(this.DefaultDirectory, _item.FileName);
       this.Save(_solutionDesription);
     }
 
