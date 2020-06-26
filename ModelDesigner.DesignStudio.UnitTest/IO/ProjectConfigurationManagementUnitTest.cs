@@ -36,7 +36,8 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Assert.AreEqual<string>("projectName", _newItem.Name);
       Assert.IsNotNull(_newItem.UAModelDesignerProject);
       Assert.AreEqual<string>(@"C:\a\b\c\projectName", _newItem.UAModelDesignerProject.BuildOutputDirectoryName);
-      Assert.AreEqual<string>("projectName.xml", _newItem.UAModelDesignerProject.FileName);
+      //TODO Save not empty solution failed #148
+      Assert.AreEqual<string>(@"C:\a\b\c\projectName.xml", _newItem.UAModelDesignerProject.FileName);
       Assert.AreEqual<string>("projectName", _newItem.UAModelDesignerProject.Name);
       _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);
       _solutionMock.Verify(x => x.DefaultFileName, Times.Never);
