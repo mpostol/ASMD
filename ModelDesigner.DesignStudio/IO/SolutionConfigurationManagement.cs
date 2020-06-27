@@ -15,7 +15,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using UAOOI.SemanticData.UANodeSetValidation;
 
 namespace CAS.UA.Model.Designer.IO
 {
@@ -31,6 +30,11 @@ namespace CAS.UA.Model.Designer.IO
     private UAModelDesignerSolutionServerDetails m_ServerDetails;
     private ServerSelector m_Server;
     private List<IProjectConfigurationManagement> m_Projects;
+    private void AddProjectTCollection(IProjectConfigurationManagement _newModel)
+    {
+      m_Projects.Add(_newModel);
+      SolutionConfigurationManagementRoot.DefaultInstance.OnSolutionChanged();
+    }
 
     #endregion private
 
@@ -86,31 +90,28 @@ namespace CAS.UA.Model.Designer.IO
     /// <param name="solutionPathProvider">The solution path provider.</param>
     /// <param name="traceEvent">The trace event.</param>
     /// <returns>ProjectTreeNode.</returns>
-    void ISolutionConfigurationManagement.ImportNodeSet(Action<TraceMessage> traceEvent)
+    void ISolutionConfigurationManagement.ImportNodeSet()
     {
-      IProjectConfigurationManagement _newModel = ProjectConfigurationManagement.ImportNodeSet(this, base.GraphicalUserInterface, traceEvent);
+      IProjectConfigurationManagement _newModel = ProjectConfigurationManagement.ImportNodeSet(this, base.GraphicalUserInterface, x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 486245093, x.ToString()));
       if (_newModel == null)
         return;
-      m_Projects.Add(_newModel);
-      SolutionConfigurationManagementRoot.DefaultInstance.OnSolutionChanged();
+      AddProjectTCollection(_newModel);
     }
 
-    void ISolutionConfigurationManagement.CreateNewModel(Action<TraceMessage> traceEvent)
+    void ISolutionConfigurationManagement.NewModelDesign()
     {
       IProjectConfigurationManagement _newModel = ProjectConfigurationManagement.CreateNew(this, base.GraphicalUserInterface, m_UniqueNameGenerator.GenerateNewName());
       if (_newModel == null)
         throw new ApplicationException("New project must be created");
-      m_Projects.Add(_newModel);
-      SolutionConfigurationManagementRoot.DefaultInstance.OnSolutionChanged();
+      AddProjectTCollection(_newModel);
     }
 
-    void ISolutionConfigurationManagement.OpenExistingModel(Action<TraceMessage> traceEvent)
+    void ISolutionConfigurationManagement.ImportModelDesign()
     {
-      IProjectConfigurationManagement _newModel = ProjectConfigurationManagement.CreateNew(this, base.GraphicalUserInterface, m_UniqueNameGenerator.GenerateNewName());
+      IProjectConfigurationManagement _newModel = ProjectConfigurationManagement.ImportModelDesign(this, base.GraphicalUserInterface);
       if (_newModel == null)
-        throw new ApplicationException("New project must be created");
-      m_Projects.Add(_newModel);
-      SolutionConfigurationManagementRoot.DefaultInstance.OnSolutionChanged();
+        return;
+      AddProjectTCollection(_newModel);
     }
 
     #endregion ISolutionConfigurationManagement

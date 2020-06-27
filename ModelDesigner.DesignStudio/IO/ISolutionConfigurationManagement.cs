@@ -7,9 +7,7 @@
 
 using CAS.CommServer.UA.ModelDesigner.Configuration;
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
-using System;
 using System.Collections.Generic;
-using UAOOI.SemanticData.UANodeSetValidation;
 
 namespace CAS.UA.Model.Designer.IO
 {
@@ -21,10 +19,10 @@ namespace CAS.UA.Model.Designer.IO
 
     void Save(bool prompt);
 
-    void ImportNodeSet(Action<TraceMessage> traceEvent);
+    void ImportNodeSet();
 
-    void CreateNewModel(Action<TraceMessage> traceEvent);
+    void NewModelDesign();
 
-    void OpenExistingModel(Action<TraceMessage> traceEvent);
+    void ImportModelDesign();
   }
 }
