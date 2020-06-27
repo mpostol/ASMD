@@ -288,14 +288,14 @@ namespace CAS.UA.Model.Designer.Wrappers
     public void AddProject(bool existing)
     {
       if (existing)
-        m_ISolutionConfigurationManagement.ImportNodeSet(x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 486245093, x.ToString()));
+        m_ISolutionConfigurationManagement.ImportModelDesign();
       else
-        m_ISolutionConfigurationManagement.CreateNewModel(x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 289265892, x.ToString()));
+        m_ISolutionConfigurationManagement.NewModelDesign();
     }
 
     public void ImportNodeSet()
     {
-      m_ISolutionConfigurationManagement.OpenExistingModel(x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 486245094, x.ToString()));
+      m_ISolutionConfigurationManagement.ImportNodeSet();
     }
 
     public void Save(bool prompt)

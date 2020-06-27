@@ -109,6 +109,17 @@ namespace CAS.UA.Model.Designer.IO
       return new ProjectConfigurationManagement(true, _newProjctDesription, solution, _modelDesign, graphicalUserInterface);
     }
 
+    internal static IProjectConfigurationManagement ImportModelDesign(ISolutionConfigurationManagement solution, IGraphicalUserInterface gui)
+    {
+      if (solution == null) throw new ArgumentNullException(nameof(solution));
+      if (gui == null) throw new ArgumentNullException(nameof(gui));
+      Tuple<OPCFModelDesign, string> _modelDesign = TypeGenericConfigurationManagement<OPCFModelDesign>.ReadConfiguration(gui, SetupFileDialog);
+      if (_modelDesign.Item1 == null)
+        return null;
+      UAModelDesignerProject uaModelDesignerProject = UAModelDesignerProject.CreateEmpty(Path.GetFileNameWithoutExtension(_modelDesign.Item2));
+      uaModelDesignerProject.FileName = CAS.CommServer.UA.ModelDesigner.Configuration.IO.RelativeFilePathsCalculator.TryComputeRelativePath(solution.DefaultDirectory, _modelDesign.Item2);
+      return new ProjectConfigurationManagement(false, uaModelDesignerProject, solution, _modelDesign, gui);
+    }
     internal static IProjectConfigurationManagement ImportModelDesign(ISolutionConfigurationManagement solution, IGraphicalUserInterface gui, UAModelDesignerProject uaModelDesignerProject)
     {
       if (solution == null) throw new ArgumentNullException(nameof(solution));
