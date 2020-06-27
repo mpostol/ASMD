@@ -79,7 +79,8 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       string projectPath = _newItem.Save(_solutionPath);
       _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);
       _solutionMock.Verify(x => x.DefaultFileName, Times.Never);
-      //_guiMock.Verify(x => x.UseWaitCursor, Times.AtLeastOnce);
+      _guiMock.VerifySet(x => x.UseWaitCursor = true, Times.Once);
+      _guiMock.VerifySet(x => x.UseWaitCursor = false, Times.Once);
       Assert.IsTrue(File.Exists(Path.Combine(_solutionPath, "projectName.xml")));
       //_IFileDialogMock
       _IFileDialogMock.Verify(x => x.InitialDirectory, Times.Never);
@@ -90,20 +91,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       _IFileDialogMock.Verify(x => x.ShowDialog(), Times.Never);
       _IFileDialogMock.Verify(x => x.Dispose(), Times.Never);
     }
-
-    //TODO Test application functionality using User Interface (UI) #144
-    //[TestMethod]
-    //public void ChangeSolutionBaseDirectioryTest()
-    //{
-    //  Mock<ISolutionConfigurationManagement> _solutionMock = new Mock<ISolutionConfigurationManagement>();
-    //  _solutionMock.SetupGet(x => x.SolutionDirectoryPathManagement).Returns(new SolutionDirectoryPathManagementBaseFixture());
-    //  Mock<IGraphicalUserInterface> _graphicalUIMock = new Mock<IGraphicalUserInterface>();
-    //  //SolutionDirectoryPathManagement _pathManagement = new SolutionDirectoryPathManagement(_solutionMock);
-    //  //_pathManagement.SetNewPath(@"C:\a\c\d");
-    //  IOPCFModelConfigurationManagement _projectTreeNode = OPCFModelConfigurationManagement.CreateNew(_solutionMock.Object, _graphicalUIMock.Object, @"C:\VS.git\UAOOI\OPC-UA-OOI");
-    //  //_pathManagement.SetNewPath(@"C:\a\c");
-    //  Assert.IsTrue(_projectTreeNode.UAModelDesignerProject.FileName.StartsWith(@"..\d\Model_"), _projectTreeNode.UAModelDesignerProject.FileName);
-    //}
 
     [TestMethod]
     public void OpenExistingModelTest()
