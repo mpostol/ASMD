@@ -17,8 +17,14 @@ namespace CAS.UA.Model.Designer.IO
     OPCFModelDesign ModelDesign { get; }
     string Name { get; }
 
-    void SaveModelDesign(OPCFModelDesign modelDesign);
+    void Save(OPCFModelDesign modelDesign);
 
     void Build(TextWriter output);
+    /// <summary>
+    /// Saves the project at calculated effective path in relation to the default solution directory.
+    /// </summary>
+    /// <param name="defaultDirectory">The default solution location path.</param>
+    /// <returns>Effective project location absolute path.</returns>
+    string Save(string defaultDirectory);
   }
 }

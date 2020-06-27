@@ -9,12 +9,14 @@ assignees: 'mpostol'
 
 ## Testing ToDo List
 
-- [ ] run programm
+- [ ] run the program
   - [ ] creates empty solution
   - [ ] ask before closing main program.
 - [ ] Create new empty solution
-- [ ] Save new empty splution
-- [ ] Open existing solution
-- [ ] Save as
+- [ ] Save new empty solution
+- [ ] Open existing empty solution
+- [ ] Create empty project
+- [ ] Save not empty solution
+- [ ] Save as not empty solution
 - [ ] Import
 - [ ] Export

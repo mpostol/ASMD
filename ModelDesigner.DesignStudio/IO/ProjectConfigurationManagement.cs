@@ -10,7 +10,6 @@ using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Solution;
-using Opc.Ua.ModelCompiler;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -30,6 +29,7 @@ namespace CAS.UA.Model.Designer.IO
     private readonly UAModelDesignerProject m_UAModelDesignerProject;
     private readonly ISolutionConfigurationManagement m_ISolutionConfigurationManagement;
     private readonly OPCFModelDesign m_ModelDesign;
+    private readonly bool m_NewModel = false;
 
     private static void SetupFileDialog(IFileDialog _dialog)
     {
@@ -89,12 +89,13 @@ namespace CAS.UA.Model.Designer.IO
 
     #region constructor
 
-    private ProjectConfigurationManagement(UAModelDesignerProject uaModelDesignerProject, ISolutionConfigurationManagement solution, Tuple<OPCFModelDesign, string> modelDesign, IGraphicalUserInterface gui) :
-      base(modelDesign.Item2, modelDesign.Item1 == null, gui)
+    private ProjectConfigurationManagement(bool newModel, UAModelDesignerProject uaModelDesignerProject, ISolutionConfigurationManagement solution, Tuple<OPCFModelDesign, string> modelDesign, IGraphicalUserInterface gui) :
+      base(modelDesign.Item2, newModel, gui)
     {
       m_UAModelDesignerProject = uaModelDesignerProject;
       m_ISolutionConfigurationManagement = solution;
-      this.m_ModelDesign = modelDesign.Item1 == null ? OpcUaModelCompilerModelDesigner.GetDefault() : modelDesign.Item1;
+      this.m_ModelDesign = modelDesign.Item1;
+      m_NewModel = newModel;
     }
 
     internal static IProjectConfigurationManagement ImportNodeSet(ISolutionConfigurationManagement solution, IGraphicalUserInterface graphicalUserInterface, Action<TraceMessage> traceEvent)
@@ -104,8 +105,8 @@ namespace CAS.UA.Model.Designer.IO
       Tuple<OPCFModelDesign, string> _modelDesign = IO.ImportNodeSet.Import(solution.DefaultDirectory, traceEvent);
       if (_modelDesign == null)
         return null;
-      UAModelDesignerProject _newProjctDesription = UAModelDesignerProject.CreateEmpty(solution.DefaultDirectory, _modelDesign.Item2);
-      return new ProjectConfigurationManagement(_newProjctDesription, solution, _modelDesign, graphicalUserInterface);
+      UAModelDesignerProject _newProjctDesription = UAModelDesignerProject.CreateEmpty(_modelDesign.Item2);
+      return new ProjectConfigurationManagement(true, _newProjctDesription, solution, _modelDesign, graphicalUserInterface);
     }
 
     internal static IProjectConfigurationManagement ImportModelDesign(ISolutionConfigurationManagement solution, IGraphicalUserInterface gui, UAModelDesignerProject uaModelDesignerProject)
@@ -115,11 +116,11 @@ namespace CAS.UA.Model.Designer.IO
       if (uaModelDesignerProject == null) throw new ArgumentNullException(nameof(uaModelDesignerProject));
       string _filePath = Path.Combine(solution.DefaultDirectory, uaModelDesignerProject.FileName);
       Tuple<OPCFModelDesign, string> _modelDesign = new Tuple<OPCFModelDesign, string>(TypeGenericConfigurationManagement<OPCFModelDesign>.ReadConfiguration(Path.Combine(solution.DefaultDirectory, uaModelDesignerProject.FileName), gui), _filePath);
-      return new ProjectConfigurationManagement(uaModelDesignerProject, solution, _modelDesign, gui);
+      return new ProjectConfigurationManagement(false, uaModelDesignerProject, solution, _modelDesign, gui);
     }
 
     /// <summary>
-    /// Creates new model encapsulated by instance of this class
+    /// Creates new model encapsulated by an instance of this class
     /// </summary>
     /// <param name="solution">The solution description.</param>
     /// <param name="gui">The graphical user interface.</param>
@@ -129,14 +130,14 @@ namespace CAS.UA.Model.Designer.IO
     {
       if (solution == null) throw new ArgumentNullException(nameof(solution));
       if (gui == null) throw new ArgumentNullException(nameof(gui));
-      UAModelDesignerProject _projectDescription = UAModelDesignerProject.CreateEmpty(solution.DefaultDirectory, projectName);
+      UAModelDesignerProject _projectDescription = UAModelDesignerProject.CreateEmpty(projectName);
       string _defFilePath = Path.ChangeExtension(Path.Combine(solution.DefaultDirectory, projectName), Resources.Project_FileDialogDefaultExt);
-      return new ProjectConfigurationManagement(_projectDescription, solution, new Tuple<OPCFModelDesign, string>(null, _defFilePath), gui);
+      return new ProjectConfigurationManagement(true, _projectDescription, solution, new Tuple<OPCFModelDesign, string>(OpcUaModelCompilerModelDesigner.GetDefault(), _defFilePath), gui);
     }
 
     #endregion constructor
 
-    #region IOPCFModelConfigurationManagement
+    #region IProjectConfigurationManagement
 
     OPCFModelDesign IProjectConfigurationManagement.ModelDesign => m_ModelDesign;
     UAModelDesignerProject IProjectConfigurationManagement.UAModelDesignerProject => m_UAModelDesignerProject;
@@ -220,11 +221,19 @@ namespace CAS.UA.Model.Designer.IO
       }
     }
 
-    void IProjectConfigurationManagement.SaveModelDesign(OPCFModelDesign modelDesign)
+    void IProjectConfigurationManagement.Save(OPCFModelDesign modelDesign)
     {
       base.Save(modelDesign);
     }
 
-    #endregion IOPCFModelConfigurationManagement
+    string IProjectConfigurationManagement.Save(string defaultDirectory)
+    {
+      if (m_NewModel)
+        this.DefaultFileName = Path.ChangeExtension(Path.Combine(defaultDirectory, m_UAModelDesignerProject.Name), Resources.Project_FileDialogDefaultExt);
+      base.Save(m_ModelDesign);
+      return DefaultFileName;
+    }
+
+    #endregion IProjectConfigurationManagement
   }
 }

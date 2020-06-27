@@ -50,13 +50,13 @@ namespace CAS.UA.Model.Designer.Solution
   }
   public partial class UAModelDesignerProject
   {
-    internal static UAModelDesignerProject CreateEmpty(string solutionBaseDirectory, string name)
+    internal static UAModelDesignerProject CreateEmpty(string name)
     {
       return new UAModelDesignerProject()
       {
-        buildOutputDirectoryNameField = Path.Combine(solutionBaseDirectory, name),
+        buildOutputDirectoryNameField = Resources.Token_ProjectFileName,
         cSVFileNameField = Resources.DefaultCSVFileName,
-        fileNameField = Path.ChangeExtension(name, "xml"),
+        fileNameField = Path.ChangeExtension(Resources.Token_ProjectFileName, Resources.Project_FileDialogDefaultExt),
         nameField = name,
         ProjectIdentifier = Guid.NewGuid().ToString(),
       };

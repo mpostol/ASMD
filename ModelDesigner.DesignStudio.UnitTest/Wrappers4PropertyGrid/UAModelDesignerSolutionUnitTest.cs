@@ -22,6 +22,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
       Assert.IsTrue(Directory.Exists("TestData"), $"{Directory.GetCurrentDirectory()}");
       Assert.IsTrue(File.Exists(@"TestData\BoilerExampleSolution.uamdsl"));
     }
+
     [TestMethod]
     public void ReadConfigurationTest()
     {
@@ -33,6 +34,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
       Assert.AreEqual<string>(@"CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll", _configuration.ServerDetails.codebase);
       Assert.AreEqual<string>(@"DemoConfiguration\BoilerExample.uasconfig", _configuration.ServerDetails.configuration);
     }
+
     [TestMethod]
     public void SaveConfigurationTest()
     {
@@ -41,23 +43,25 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
       Assert.IsTrue(_referenceFile.Exists);
       Assert.AreEqual<long>(1178L, _referenceFile.Length);
     }
+
     [TestMethod]
     public void UAModelDesignerProjectCreateEmptyTest()
     {
-      UAModelDesignerProject _newItem = UAModelDesignerProject.CreateEmpty("solutionBaseDirectory", "name");
+      UAModelDesignerProject _newItem = UAModelDesignerProject.CreateEmpty("name");
       Assert.IsNotNull(_newItem);
-      Assert.AreEqual<string>(Path.Combine("solutionBaseDirectory", "name"), _newItem.BuildOutputDirectoryName);
+      Assert.AreEqual<string>("$(ProjectFileName)", _newItem.BuildOutputDirectoryName);
       Assert.AreEqual<string>("$(ProjectFileName).csv", _newItem.CSVFileName);
-      Assert.AreEqual<string>("name.xml", _newItem.FileName);
+      Assert.AreEqual<string>("$(ProjectFileName).xml", _newItem.FileName);
       Assert.AreEqual<string>("name", _newItem.Name);
       Guid _projectId = Guid.Empty;
       Assert.IsTrue(Guid.TryParse(_newItem.ProjectIdentifier, out _projectId));
-      Assert.IsFalse(_projectId ==  Guid.Empty);
+      Assert.IsFalse(_projectId == Guid.Empty);
     }
 
-    private static string m_Path = @"TestData\BoilerExampleSolution.uamdsl";
-    private static string m_ReferenceModelPath = @"TestData\ReferenceSolution.uamdsl";
-    private static UAModelDesignerSolution _referenceModel = new UAModelDesignerSolution()
+    private static readonly string m_Path = @"TestData\BoilerExampleSolution.uamdsl";
+    private static readonly string m_ReferenceModelPath = @"TestData\ReferenceSolution.uamdsl";
+
+    private static readonly UAModelDesignerSolution _referenceModel = new UAModelDesignerSolution()
     {
       Name = "Boiler Example Solution",
       Projects = new UAModelDesignerProject[]
