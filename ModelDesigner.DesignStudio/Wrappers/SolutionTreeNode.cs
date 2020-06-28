@@ -14,6 +14,7 @@ using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.ToForms;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Xml;
@@ -161,6 +162,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       //TODO OnDataChanged += OnChangeHandler;
       //TODO OnNameChanged += new EventHandler(configuration_OnNameChanged);
       AddProjectsNodes(solution.Projects);
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 325542572, "Creating Libraries");
       SolutionRoot = this;
       LibraryRoot.AddNodes(creteLibraryTreeNode);
     }

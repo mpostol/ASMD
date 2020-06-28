@@ -1,14 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="CAS.UA.Model.Designer.Main">
-    <Position X="3.25" Y="2.25" Width="2.5" />
+    <Position X="7.75" Y="2.25" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="m_ModelObserver" Type="CAS.UA.Model.Designer.Controls.NodeObserver.ModelObserver" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.25" Y="4.938" />
+        <Point X="10.625" Y="4.938" />
+        <Point X="10.625" Y="5.346" />
+        <Point X="12.25" Y="5.346" />
+      </Path>
+    </AssociationLine>
     <AssociationLine Name="m_BindingsPropertyObserver" Type="CAS.UA.Model.Designer.Controls.NodeObserver.BindingsPropertyObserver">
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="0.079" Y="-0.305" Height="0.182" Width="2.079" />
+        <Position X="-0.056" Y="0.101" Height="0.182" Width="2.079" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>QAAAVZAAVCTACAAgAQjQAACCgCAAgAgIAAIAYCQACkM=</HashCode>
+      <HashCode>QAAAVZAAVCTACAAAAQjQAECCgCAAgAgIAAIAYCQACkM=</HashCode>
       <FileName>Main.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -20,35 +33,35 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="System.Windows.Forms.HelpProvider" Collapsed="true">
-    <Position X="8" Y="3.75" Width="2.5" />
+    <Position X="12.25" Y="3" Width="2.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.BindingsPropertyObserver" Collapsed="true">
-    <Position X="8.25" Y="5.5" Width="2" />
+    <Position X="12.25" Y="4" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAACAAAAAAAACAAIACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\NodeObserver\BindingsPropertyObserver.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.ModelObserver" Collapsed="true">
-    <Position X="8.5" Y="7.5" Width="1.5" />
+    <Position X="12.25" Y="5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>ICABBJQALCIAAAQZAADAAIACAQAAgMIREgAAACQAAEA=</HashCode>
+      <HashCode>ICABBJQALCIACAQZAADAAIACAQAAgMoREgAAACQAAEA=</HashCode>
       <FileName>Controls\NodeObserver\ModelObserver.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.MainController">
-    <Position X="0.5" Y="2.25" Width="1.5" />
+    <Position X="0.5" Y="1" Width="1.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <AssociationLine Name="Instance" Type="CAS.UA.Model.Designer.Controls.NodeObserver.MainController" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="1.032" Y="4.767" />
+        <Point X="1.032" Y="3.517" />
         <Point X="1.032" Y="5.017" />
         <Point X="1.75" Y="5.017" />
-        <Point X="1.75" Y="4.767" />
+        <Point X="1.75" Y="3.517" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -60,16 +73,18 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.SelectedItemObserverComponent" Collapsed="true">
-    <Position X="7.75" Y="2.25" Width="2.5" />
+    <Position X="12.25" Y="2" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAACAAAAACACCAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\NodeObserver\SelectedItemObserverComponent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CAS.UA.Model.Designer.MainForm">
-    <Position X="12.25" Y="0.5" Width="3.5" />
+    <Position X="2.25" Y="1" Width="3.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
     </Compartments>
     <NestedTypes>
       <Class Name="CAS.UA.Model.Designer.MainForm.ImportConstrain" Collapsed="true">
@@ -84,7 +99,7 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>jo/iV/7e/KFv0tct1tSiXZdXD//MeYByD/+f/DPp6Bg=</HashCode>
+      <HashCode>jo/id/7e/KFv0tct1tSiXZdXD//MeYByD/+f/DPp6Bg=</HashCode>
       <FileName>MainForm.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

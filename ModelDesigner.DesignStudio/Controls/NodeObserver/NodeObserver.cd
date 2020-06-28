@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.MainController">
+  <Class Name="CAS.UA.Model.Designer.Controls.NodeObserver.MainController" Collapsed="true">
     <Position X="14.5" Y="7" Width="3" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
@@ -84,7 +84,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ICABBJQALCIAAAQZAADAAIACAQAAgMIREgAAACQAAEA=</HashCode>
+      <HashCode>ICABBJQALCIACAQZAADAAIACAQAAgMoREgAAACQAAEA=</HashCode>
       <FileName>Controls\NodeObserver\ModelObserver.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -158,7 +158,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CAS.UA.Model.Designer.Controls.DictionaryTreeView" Collapsed="true">
-    <Position X="3.25" Y="5.25" Width="2" />
+    <Position X="3" Y="5.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAACAAAwAYAACAAAACEEAABAgBAABBgAgAFAE=</HashCode>
       <FileName>Controls\DictionaryTreeView.cs</FileName>
