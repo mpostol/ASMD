@@ -1,7 +1,8 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Controls;
@@ -818,15 +819,16 @@ namespace CAS.UA.Model.Designer
 
     private void MainForm_Load(object sender, EventArgs e)
     {
-      string solutionFileName = m_StartupFileName;
-      if (solutionFileName.StartsWith("file://"))
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 144, "Starting application");
+      string _solutionFileName = m_StartupFileName;
+      if (_solutionFileName.StartsWith("file://"))
       {
-        solutionFileName = (new System.Uri(solutionFileName)).AbsolutePath;
-        solutionFileName = solutionFileName.Replace("%20", " ");
-        solutionFileName = solutionFileName.Replace("/", "\\");
+        _solutionFileName = (new System.Uri(_solutionFileName)).AbsolutePath;
+        _solutionFileName = _solutionFileName.Replace("%20", " ");
+        _solutionFileName = _solutionFileName.Replace("/", "\\");
       }
       m_MainContol.PropertyChanged += M_MainContol_PropertyChanged;
-      m_MainContol.OpenSolution(solutionFileName);
+      m_MainContol.OpenSolution(_solutionFileName);
       m_SplashScreenObj.CloseSplashScreen();
       m_SplashScreenObj.Dispose();
       m_SplashScreenObj = null;

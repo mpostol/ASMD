@@ -118,27 +118,19 @@ namespace CAS.UA.Model.Designer.IO
 
     #region constructors
 
-    private void CommonInitialization()
+    internal SolutionConfigurationManagement(Tuple<UAModelDesignerSolution, string> solutionDescription, bool changesArePresent, IGraphicalUserInterface gui) : base(solutionDescription.Item2, changesArePresent, gui)
     {
-      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 144, "Starting CommonInitialization and checking SaveConstrain");
-      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 146, "Creating Libraries");
-      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 151, "Updating Settings Open File Dialog");
-      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 172, "Creating new private solution using Empty model");
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 335242041, "Creating new private solution using Empty model");
+      m_Name = solutionDescription.Item1.Name;
+      m_ServerDetails = solutionDescription.Item1.ServerDetails ?? throw new ArgumentNullException(nameof(UAModelDesignerSolution.ServerDetails));
+      m_Projects = solutionDescription.Item1.Projects.Select<UAModelDesignerProject, IProjectConfigurationManagement>(x => ProjectConfigurationManagement.ImportModelDesign(this, base.GraphicalUserInterface, x)).ToList<IProjectConfigurationManagement>();
+      m_Server = new ServerSelector(base.GraphicalUserInterface, this, m_ServerDetails.codebase, m_ServerDetails.configuration);
       if (string.IsNullOrEmpty(Settings.Default.DefaultSolutionFileName))
       {
         Settings.Default.DefaultSolutionFileName = DefaultFileName;
         Settings.Default.Save();
       }
-      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 146, "Finished successfully CommonInitialization");
-    }
-
-    internal SolutionConfigurationManagement(Tuple<UAModelDesignerSolution, string> solutionDescription, bool changesArePresent, IGraphicalUserInterface gui) : base(solutionDescription.Item2, changesArePresent, gui)
-    {
-      m_Name = solutionDescription.Item1.Name;
-      m_ServerDetails = solutionDescription.Item1.ServerDetails ?? throw new ArgumentNullException(nameof(UAModelDesignerSolution.ServerDetails));
-      m_Projects = solutionDescription.Item1.Projects.Select<UAModelDesignerProject, IProjectConfigurationManagement>(x => ProjectConfigurationManagement.ImportModelDesign(this, base.GraphicalUserInterface, x)).ToList<IProjectConfigurationManagement>();
-      m_Server = new ServerSelector(base.GraphicalUserInterface, this, m_ServerDetails.codebase, m_ServerDetails.configuration);
-      CommonInitialization();
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 335242042, "Finished successfully CommonInitialization");
     }
 
     #endregion constructors
