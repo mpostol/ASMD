@@ -300,8 +300,6 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     public void Save(bool prompt)
     {
-      foreach (ProjectTreeNode item in this)
-        item.Save();
       m_ISolutionConfigurationManagement.Save(prompt);
     }
 

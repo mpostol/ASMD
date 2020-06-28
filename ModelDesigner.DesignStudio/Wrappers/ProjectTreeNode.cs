@@ -5,18 +5,13 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.ToForms;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 using System.Xml;
-using UAOOI.SemanticData.UANodeSetValidation;
-using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -31,16 +26,10 @@ namespace CAS.UA.Model.Designer.Wrappers
   {
     #region private
 
-    //constants
-    //private const string m_ModelExtension = ".xml";
-
     //var
     private static readonly object m_BuildLockObject = new object(); // this object is used to prevent many code generator usage at the same time
 
-    //private readonly ISolutionDirectoryPathManagement m_SolutionHomeDirectory;
     private readonly IProjectConfigurationManagement m_ProjectConfigurationManager;
-    //private IOPCFModelConfigurationManagement b_UAModelDesignerProject;
-    //private static string m_GetNextUniqueProjectName => m_UniqueNameGenerator.GenerateNewName();
 
     private void InitializeComponent(ModelDesign model)
     {
@@ -48,53 +37,20 @@ namespace CAS.UA.Model.Designer.Wrappers
       Add(model);
     }
 
-    //private static string ReplaceTokenAndReturnFullPath(string fileNameToBeProcessed, string projectName, string solutionDirectory)
-    //{
-    //  string _Name = fileNameToBeProcessed.Replace(Resources.Token_ProjectFileName, projectName);
-    //  return RelativeFilePathsCalculator.CalculateAbsoluteFileName(_Name, solutionDirectory);
-    //}
-
-    //private void SolutionHomeDirectoryBaseDirectoryPathChanged(object sender, NewDirectoryPathEventArgs e)
-    //{
-    //  string _oldAbsoluteFilePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.UAModelDesignerProject.FileName, e.OldDirectoryPath);
-    //  string _newAbsoluteFilePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.UAModelDesignerProject.FileName, e.NewDirectoryPath);
-    //  this.UAModelDesignerProject.FileName = RelativeFilePathsCalculator.TryComputeRelativePath(_newAbsoluteFilePath, _oldAbsoluteFilePath);
-    //}
-
     #endregion private
 
     #region constructors
 
-    private ProjectTreeNode(IProjectConfigurationManagement projectConfigurationManager, string nodeName) : base(null, projectConfigurationManager.Name)
-    {
-      m_ProjectConfigurationManager = projectConfigurationManager;
-      //m_SolutionHomeDirectory = solutionPath;
-      //m_SolutionHomeDirectory.BaseDirectoryPathChanged += SolutionHomeDirectoryBaseDirectoryPathChanged;
-    }
-
-    private ProjectTreeNode(IProjectConfigurationManagement projectConfigurationManager, string filePath, OPCFModelDesign model) : this(projectConfigurationManager, Path.GetFileNameWithoutExtension(filePath))
-    {
-      //UAModelDesignerProject = new UAModelDesignerProject()
-      //{
-      //  BuildOutputDirectoryName = Resources.DefaultOutputBuildDirectory,
-      //  CSVFileName = Resources.DefaultCSVFileName,
-      //  FileName = RelativeFilePathsCalculator.TryComputeRelativePath(solutionPath.BaseDirectory, filePath),
-      //  ProjectIdentifier = Guid.NewGuid().ToString(),
-      //  Name = m_GetNextUniqueProjectName
-      //};
-      InitializeComponent(new ModelDesign(model, false));
-    }
-    private IProjectConfigurationManagement m_UAModelDesignerProject = null;
     /// <summary>
     /// Initializes a new instance of the <see cref="ProjectTreeNode"/> encapsulating an existing UA model.
     /// </summary>
     /// <param name="solutionPath">The solution path.</param>
     /// <param name="projectDescription">The project description.</param>
-    internal ProjectTreeNode(IProjectConfigurationManagement projectDescription) : this(projectDescription, projectDescription.Name)
+    internal ProjectTreeNode(IProjectConfigurationManagement projectDescription) : base(null, projectDescription.Name)
     {
-      m_UAModelDesignerProject = projectDescription;
-      ModelDesign _RootOfOPCUAInfromationModel = new ModelDesign(projectDescription.ModelDesign, false);
-      InitializeComponent(_RootOfOPCUAInfromationModel);
+      m_ProjectConfigurationManager = projectDescription;
+      m_ProjectConfigurationManager.GetModel = () => Model.GetModel();
+      InitializeComponent(new ModelDesign(projectDescription.ModelDesign, false));
     }
 
     ///// <summary>
@@ -225,16 +181,6 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     internal ModelDesign Model { get; private set; }
 
-    /// <summary>
-    /// Saves the project to the specified directory.
-    /// </summary>
-    /// <param name="solutionDirectory">The solution directory.</param>
-    /// <returns></returns>
-    internal bool Save()
-    {
-      m_ProjectConfigurationManager.Save(Model.GetModel());
-      return true;
-    }
 
     /// <summary>
     /// Builds the project and write any massages to specified output.
@@ -328,11 +274,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       {
         output.WriteLine(Resources.BuildError_nocontinuation + "\n\r" + ex.Message, "Build", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
-    }
-
-    internal static ProjectTreeNode ImportNodeSet(ISolutionConfigurationManagement m_ISolutionConfigurationManagement, Action<TraceMessage> p)
-    {
-      throw new NotImplementedException();
     }
 
     internal void AddNode2AddressSpace(IAddressSpaceCreator space)

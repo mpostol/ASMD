@@ -76,6 +76,10 @@ namespace CAS.UA.Model.Designer.IO
       return RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_UAModelDesignerProject.FileName, this.m_ISolutionConfigurationManagement.DefaultDirectory);
     }
 
+    #endregion private
+
+    #region TypeGenericConfigurationManagement<OPCFModelDesign>
+
     protected override XmlFile.DataToSerialize<OPCFModelDesign> PrepareDataToSerialize(OPCFModelDesign modelDesign)
     {
       XmlFile.DataToSerialize<OPCFModelDesign> _config;
@@ -85,7 +89,7 @@ namespace CAS.UA.Model.Designer.IO
       return _config;
     }
 
-    #endregion private
+    #endregion TypeGenericConfigurationManagement<OPCFModelDesign>
 
     #region constructor
 
@@ -120,6 +124,7 @@ namespace CAS.UA.Model.Designer.IO
       uaModelDesignerProject.FileName = CAS.CommServer.UA.ModelDesigner.Configuration.IO.RelativeFilePathsCalculator.TryComputeRelativePath(solution.DefaultDirectory, _modelDesign.Item2);
       return new ProjectConfigurationManagement(false, uaModelDesignerProject, solution, _modelDesign, gui);
     }
+
     internal static IProjectConfigurationManagement ImportModelDesign(ISolutionConfigurationManagement solution, IGraphicalUserInterface gui, UAModelDesignerProject uaModelDesignerProject)
     {
       if (solution == null) throw new ArgumentNullException(nameof(solution));
@@ -153,6 +158,8 @@ namespace CAS.UA.Model.Designer.IO
     OPCFModelDesign IProjectConfigurationManagement.ModelDesign => m_ModelDesign;
     UAModelDesignerProject IProjectConfigurationManagement.UAModelDesignerProject => m_UAModelDesignerProject;
     string IProjectConfigurationManagement.Name => this.m_UAModelDesignerProject.Name;
+
+    public Func<OPCFModelDesign> GetModel { set; private get; }
 
     /// <summary>
     /// Builds the project and write any massages to specified output.
@@ -232,16 +239,11 @@ namespace CAS.UA.Model.Designer.IO
       }
     }
 
-    void IProjectConfigurationManagement.Save(OPCFModelDesign modelDesign)
-    {
-      base.Save(modelDesign);
-    }
-
     string IProjectConfigurationManagement.Save(string defaultDirectory)
     {
       if (m_NewModel)
         this.DefaultFileName = Path.ChangeExtension(Path.Combine(defaultDirectory, m_UAModelDesignerProject.Name), Resources.Project_FileDialogDefaultExt);
-      base.Save(m_ModelDesign);
+      base.Save(GetModel());
       return DefaultFileName;
     }
 

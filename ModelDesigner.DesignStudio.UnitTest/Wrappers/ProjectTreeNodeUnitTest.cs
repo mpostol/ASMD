@@ -10,6 +10,7 @@ using CAS.UA.Model.Designer.Solution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
 
@@ -28,14 +29,17 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
 
     [TestMethod]
-    //TODO Error while using Save operation #129 work on the test
     public void CreateNewModelTest()
     {
       String _currentFolder = Directory.GetCurrentDirectory();
       Mock<IProjectConfigurationManagement> _project = new Mock<IProjectConfigurationManagement>();
-      _project.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(new OPCFModelDesign());
+      Mock<OPCFModelDesign> _OPCFModelDesignMock = new Mock<OPCFModelDesign>();
+      _project.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(_OPCFModelDesignMock.Object);
       _project.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
-      CheckConsistency(new ProjectTreeNode(_project.Object));
+      Mock<BaseTreeNode> _parentMock = new Mock<BaseTreeNode>("ParentBaseNode");
+      _parentMock.SetupGet<string[]>(x => x.AvailiableNamespaces).Returns(new List<string>(){ "ns1", "ns2"}.ToArray());
+      _parentMock.Setup(x => x.GetTargetNamespace()).Returns("GetTargetNamespace");
+      CheckConsistency(new ProjectTreeNode(_project.Object) { Parent = _parentMock.Object });
       Assert.AreEqual<string>(_currentFolder, Directory.GetCurrentDirectory());
     }
 
@@ -50,7 +54,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     //  Assert.IsNotNull(_viewModel);
     //}
 
-    //TODO Test application functionality using User Interface (UI) #144
     //[TestMethod]
     //public void FindTest()
     //{
@@ -62,7 +65,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     //  Assert.IsNull(_findReturn);
     //}
 
-    //TODO Test application functionality using User Interface (UI) #144
     //[TestMethod]
     //public void GetTargetNamespaceTest()
     //{
@@ -80,48 +82,24 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     private const string m_DemoConfigurationFilePath = @"TestData\DemoConfiguration\BoilerType.xml";
 
-    //Test application functionality using User Interface (UI) #144
     private void CheckConsistency(ProjectTreeNode _newItem)
     {
-      Assert.IsNotNull(_newItem);
-      Assert.ThrowsException<NullReferenceException>(() => _newItem.AvailiableNamespaces);
-      //Assert.AreEqual<string>("$(ProjectFileName)", _newItem.BuildOutputDirectoryName);
-      //Assert.IsTrue(_newItem.BuildOutputDirectoryPath.StartsWith(@"C:\Model_"));
+      Assert.IsNotNull(_newItem.Parent);
+      Assert.AreEqual<int>(2, _newItem.AvailiableNamespaces.Length);
       Assert.AreEqual<int>(1, _newItem.Count);
-      //Assert.AreEqual<string>("$(ProjectFileName).csv", _newItem.CSVFileName);
-      //Assert.IsTrue(_newItem.CSVFilePath.StartsWith(@"C:\Model_"));
-      //Assert.AreEqual<string>(@".csv", Path.GetExtension(_newItem.CSVFilePath));
       Assert.IsNotNull(_newItem.ErrorList);
       Assert.AreEqual<int>(0, _newItem.ErrorList.Count);
-      //Assert.IsTrue(_newItem.FileName.StartsWith(@"Model_"), _newItem.FileName);
-      //Assert.IsTrue(_newItem.FileName.Contains(@".xml"), _newItem.FileName);
-      //string _absoluteModelFilePath = _newItem.CalculateEffectiveAbsoluteModelFilePath();
-      //Assert.IsTrue(_absoluteModelFilePath.StartsWith(@"C:\Model_"), _absoluteModelFilePath);
-      //Assert.IsTrue(_absoluteModelFilePath.Contains(@".xml"), _absoluteModelFilePath);
       Assert.AreEqual<string>(@"", _newItem.HelpTopicName);
-      Assert.ThrowsException<NullReferenceException>(() => _newItem.GetTargetNamespace());
-      Assert.IsNull(_newItem.Parent);
+      Assert.AreEqual<string>("GetTargetNamespace",  _newItem.GetTargetNamespace());
       Assert.IsNotNull(_newItem.SymbolicName);
       Assert.AreEqual<string>(@"EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327", _newItem.Text);
       Assert.IsTrue(String.IsNullOrEmpty(_newItem.ToolTipText));
-      //CheckConsistency(_newItem.UAModelDesignerProject);
       object _viewModel = _newItem.Wrapper;
       Assert.IsNotNull(_viewModel);
       Assert.AreSame(_viewModel, ViewModel.Instance);
       object _w4pg = _newItem.Wrapper4PropertyGrid;
       Assert.IsNotNull(_w4pg);
       Assert.AreSame(_w4pg, ViewModel.Instance);
-    }
-
-    private void CheckConsistency(UAModelDesignerProject uaModelDesignerProject)
-    {
-      Assert.IsNotNull(uaModelDesignerProject);
-      Assert.AreEqual<string>("$(ProjectFileName)", uaModelDesignerProject.BuildOutputDirectoryName);
-      Assert.AreEqual<string>("$(ProjectFileName).csv", uaModelDesignerProject.CSVFileName);
-      Assert.IsTrue(uaModelDesignerProject.FileName.StartsWith((@"Model_")));
-      Assert.IsTrue(uaModelDesignerProject.Name.StartsWith((@"Model_")));
-      Guid _projectIdentifier = Guid.Parse(uaModelDesignerProject.ProjectIdentifier);
-      Assert.IsFalse(Guid.Empty == _projectIdentifier);
     }
 
     private class SolutionDirectoryPathManagement : SolutionDirectoryPathManagementBase
