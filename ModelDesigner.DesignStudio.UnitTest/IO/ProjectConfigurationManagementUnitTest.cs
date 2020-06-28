@@ -42,10 +42,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Assert.IsTrue(((ProjectConfigurationManagement)_newItem).ChangesArePresent);
       Assert.IsNotNull(_newItem.ModelDesign);
       Assert.AreEqual<string>("projectName", _newItem.Name);
-      Assert.IsNotNull(_newItem.UAModelDesignerProject);
-      Assert.AreEqual<string>(@"$(ProjectFileName)", _newItem.UAModelDesignerProject.BuildOutputDirectoryName);
-      Assert.AreEqual<string>(@"$(ProjectFileName).xml", _newItem.UAModelDesignerProject.FileName);
-      Assert.AreEqual<string>("projectName", _newItem.UAModelDesignerProject.Name);
+      CheckConsistency(_newItem.UAModelDesignerProject);
       //_solutionMock
       _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);
       _solutionMock.Verify(x => x.DefaultFileName, Times.Never);
@@ -57,6 +54,16 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       _IFileDialogMock.Verify(x => x.Title, Times.Never);
       _IFileDialogMock.Verify(x => x.ShowDialog(), Times.Never);
       _IFileDialogMock.Verify(x => x.Dispose(), Times.Never);
+    }
+    private void CheckConsistency(UAModelDesignerProject uaModelDesignerProject)
+    {
+      Assert.IsNotNull(uaModelDesignerProject);
+      Assert.AreEqual<string>(@"$(ProjectFileName)", uaModelDesignerProject.BuildOutputDirectoryName);
+      Assert.AreEqual<string>("$(ProjectFileName).csv", uaModelDesignerProject.CSVFileName);
+      Assert.AreEqual<string>(@"$(ProjectFileName).xml", uaModelDesignerProject.FileName);
+      Assert.AreEqual<string>("projectName", uaModelDesignerProject.Name);
+      Guid _projectIdentifier = Guid.Parse(uaModelDesignerProject.ProjectIdentifier);
+      Assert.IsFalse(Guid.Empty == _projectIdentifier);
     }
 
     [TestMethod]
@@ -70,6 +77,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       _guiMock.SetupGet(z => z.OpenFileDialogFunc).Returns(() => _IFileDialogMock.Object);
       _guiMock.SetupSet(z => z.UseWaitCursor = It.IsAny<bool>());
       IProjectConfigurationManagement _newItem = ProjectConfigurationManagement.CreateNew(_solutionMock.Object, _guiMock.Object, "projectName");
+      _newItem.GetModel = () => _newItem.ModelDesign;
       Assert.IsTrue(((ProjectConfigurationManagement)_newItem).ChangesArePresent);
       Assert.IsNotNull(_newItem.ModelDesign);
       Assert.AreEqual<string>("projectName", _newItem.Name);
