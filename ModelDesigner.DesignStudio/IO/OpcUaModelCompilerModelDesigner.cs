@@ -24,14 +24,16 @@ namespace CAS.UA.Model.Designer.IO
         {
           new  Opc.Ua.ModelCompiler.Namespace()
                {
+                 Name = Settings.Default.TargetNamespaceXmlPrefix,
                  Value = Settings.Default.TargetNamespace,
-                 XmlPrefix = Settings.Default.TargetNamespaceXmlPrefix,
-                 Name = Settings.Default.TargetNamespaceXmlPrefix
+                 XmlPrefix = Settings.Default.TargetNamespaceXmlPrefix, 
                },
           new Opc.Ua.ModelCompiler.Namespace()
                {
-                 XmlPrefix = Settings.Default.XmlUATypesPrefix,
-                 Name = Settings.Default.XmlUATypesPrefix
+                 Name = Settings.Default.XmlUAName,
+                 Value = Settings.Default.XmlUANamespaceURI,
+                 XmlNamespace = Settings.Default.XmlUATypesNamespace,
+                 Prefix = Settings.Default.XmlUAPrefix
                }
         }
       };

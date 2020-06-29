@@ -319,5 +319,41 @@ namespace CAS.UA.Model.Designer.Properties {
                 return ((string)(this["HelpDocumentationAllTopicsWebAddress"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://opcfoundation.org/UA/")]
+        public string XmlUANamespaceURI {
+            get {
+                return ((string)(this["XmlUANamespaceURI"]));
+            }
+            set {
+                this["XmlUANamespaceURI"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("OpcUa")]
+        public string XmlUAName {
+            get {
+                return ((string)(this["XmlUAName"]));
+            }
+            set {
+                this["XmlUAName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Opc.Ua")]
+        public string XmlUAPrefix {
+            get {
+                return ((string)(this["XmlUAPrefix"]));
+            }
+            set {
+                this["XmlUAPrefix"] = value;
+            }
+        }
     }
 }

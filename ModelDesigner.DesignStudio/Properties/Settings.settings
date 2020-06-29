@@ -80,5 +80,14 @@
     <Setting Name="HelpDocumentationAllTopicsWebAddress" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://commsvr-com.github.io/Documentation/OPCUAebook/allTopics.xml</Value>
     </Setting>
+    <Setting Name="XmlUANamespaceURI" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://opcfoundation.org/UA/</Value>
+    </Setting>
+    <Setting Name="XmlUAName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">OpcUa</Value>
+    </Setting>
+    <Setting Name="XmlUAPrefix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Opc.Ua</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -29,6 +29,10 @@ namespace CAS.UA.Model.Designer.IO
       Assert.IsFalse(_default.TargetPublicationDateSpecified);
       Assert.IsTrue(string.IsNullOrEmpty(_default.TargetVersion));
       Assert.IsNull(_default.TargetXmlNamespace);
+      Assert.AreEqual<string>("OpcUa", _default.Namespaces[1].Name);
+      Assert.AreEqual<string>("Opc.Ua", _default.Namespaces[1].Prefix);
+      Assert.AreEqual<string>(@"http://opcfoundation.org/UA/", _default.Namespaces[1].Value);
+      Assert.AreEqual<string>(@"http://opcfoundation.org/UA/2008/02/Types.xsd", _default.Namespaces[1].XmlNamespace);
     }
   }
 }
