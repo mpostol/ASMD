@@ -1,8 +1,4 @@
-# ASMD Rel 5.0 OPC UA Information Models testing
-
-## Generic message
-
-Hi All,
+# ASMD Rel 5.0 OPC UA Information Models Testing Partnership Program
 
 Let me inform you about the opportunity to test your custom OPC UA Information Models against the specification for free. Now I am working on the new release of the Address Space Model Designer, and I have commenced the testing process. Therefore I will appreciate the possibility to test the tool against your custom model and by the way the models against the specification, namely Part 3 and Part 5. Contact me if you have any models that can be made available to me for this purpose?
 
