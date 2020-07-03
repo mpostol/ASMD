@@ -4,7 +4,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Reflection;
-using System.Windows.Forms;
 
 namespace CASCAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest
 {
@@ -25,7 +24,7 @@ namespace CASCAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest
       FileInfo _resourcesFile = new FileInfo(@"CAS.CommonResources.dll");
       Assert.IsTrue(_resourcesFile.Exists, $"The file doesn't exist in the folder {Directory.GetCurrentDirectory()}");
       string _lastMessage = null;
-      Program.MessageBoxShow = x => { _lastMessage = x; return DialogResult.OK; };
+      Program.MessageBoxShow = (x, y) => _lastMessage = x;
       Program.DoInstallLicense(true);
       Assert.IsNull(_lastMessage, _lastMessage);
     }
