@@ -63,7 +63,13 @@ namespace CAS.UA.Model.Designer
     private sealed class BuildSolutionConstrain : StartUpSplashScreen.LogedIsLicensed<BuildSolutionConstrain> { }
 
     //vars
+
+    private ToolStripContainerHelper toolStripContainerHelper;
+    private PropertyGrid myGrid;
     private StartUpSplashScreen m_SplashScreenObj = new StartUpSplashScreen();
+    private MessageBoxSentEmail messageBoxSentEmail = new MessageBoxSentEmail(Resources.FeatureRequest_EmailAddress, Resources.FeatureRequest_Email_Subject, Resources.FeatureRequest_MessageBox_Caption);
+
+    //methods
 
     private void ProcessInitialization()
     {
@@ -128,6 +134,7 @@ namespace CAS.UA.Model.Designer
       }
     }
 
+    //TODO Remove limitation related to CAS licensing programs #53
     private void CheckSaveConstrain(StartUpSplashScreen ss)
     {
       if (!new ImportConstrain().Licensed)
@@ -160,14 +167,6 @@ namespace CAS.UA.Model.Designer
       ss.ActivateBuyNow();
     }
 
-    private ToolStripContainerHelper toolStripContainerHelper;
-
-    private MessageBoxSentEmail messageBoxSentEmail = new MessageBoxSentEmail(Resources.FeatureRequest_EmailAddress,
-      Resources.FeatureRequest_Email_Subject, Resources.FeatureRequest_MessageBox_Caption);
-
-    private PropertyGrid myGrid;
-
-    //methods
     private void FeatureRequest(ToolStripMenuItem menuItem)
     {
       string featureName = "not set";
