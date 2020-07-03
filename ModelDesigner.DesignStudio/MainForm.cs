@@ -43,12 +43,6 @@ namespace CAS.UA.Model.Designer
 
     #endregion constructors
 
-    #region public
-
-    private bool SetAfterInstallationFlag { set; get; }
-
-    #endregion public
-
     #region private
 
     #region private members and helper functions
@@ -68,6 +62,7 @@ namespace CAS.UA.Model.Designer
     private PropertyGrid myGrid;
     private StartUpSplashScreen m_SplashScreenObj = new StartUpSplashScreen();
     private MessageBoxSentEmail messageBoxSentEmail = new MessageBoxSentEmail(Resources.FeatureRequest_EmailAddress, Resources.FeatureRequest_Email_Subject, Resources.FeatureRequest_MessageBox_Caption);
+    private bool SetAfterInstallationFlag { set; get; }
 
     //methods
 
@@ -132,6 +127,9 @@ namespace CAS.UA.Model.Designer
         debugDockPanelUserControl1.Hide();
         this.WindowState = FormWindowState.Maximized;
       }
+      else
+        this.WindowState = FormWindowState.Normal;
+
     }
 
     //TODO Remove limitation related to CAS licensing programs #53
@@ -818,7 +816,7 @@ namespace CAS.UA.Model.Designer
 
     private void MainForm_Load(object sender, EventArgs e)
     {
-      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 144, "Starting application");
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 1334099901, "Starting application");
       string _solutionFileName = m_StartupFileName;
       if (_solutionFileName.StartsWith("file://"))
       {

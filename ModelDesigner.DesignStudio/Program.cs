@@ -1,7 +1,8 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.Lib.CodeProtect;
@@ -49,7 +50,7 @@ namespace CAS.UA.Model.Designer
           }
           catch (Exception ex)
           {
-            MessageBoxShow(string.Format(Resources.InstalationOfExampleSolutionException, ex.Message));
+            MessageBoxShow(string.Format(Resources.InstalationOfExampleSolutionException, ex.Message), 944007288);
           }
           // license installation 
           try
@@ -59,7 +60,7 @@ namespace CAS.UA.Model.Designer
           catch (Exception ex)
           {
             string _message = "License installation has failed, reason: " + ex.Message;
-            MessageBoxShow(_message);
+            MessageBoxShow(_message, 944007289);
           }
           finally
           {
@@ -99,7 +100,7 @@ namespace CAS.UA.Model.Designer
       }
       catch (Exception ex)
       {
-        MessageBoxShow(string.Format(Resources.MainForm_StartupExceptionMessage, ex.Message));
+        MessageBoxShow(string.Format(Resources.MainForm_StartupExceptionMessage, ex.Message), 2085089168);
       }
       finally
       {
@@ -119,13 +120,13 @@ namespace CAS.UA.Model.Designer
       }
       catch (Exception ex)
       {
-        MessageBoxShow(string.Format(Resources.MainProgram_LicenseInstalation_Failure, ex.Message));
+        MessageBoxShow(string.Format(Resources.MainProgram_LicenseInstalation_Failure, ex.Message), 2085089167);
       }
     }
-    internal static Func<string, DialogResult> MessageBoxShow { get; set; } = (x) =>
+    internal static Action<string, int> MessageBoxShow { get; set; } = (x, y) =>
                                                                                  {
-                                                                                   AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 2085089167, x);
-                                                                                   return MessageBox.Show(x, "Execution Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+                                                                                   AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, y, x);
+                                                                                   MessageBox.Show(x, "Execution Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                                                                                  };
     #endregion
 
@@ -193,78 +194,23 @@ namespace CAS.UA.Model.Designer
     /// <param name="t">The <see cref="ThreadExceptionEventArgs"/> instance containing the event data.</param>
     private static void Form1_UIThreadException(object sender, ThreadExceptionEventArgs t)
     {
-      DialogResult _result = DialogResult.Cancel;
-      try
-      {
-        _result = ShowThreadExceptionDialog(t.Exception);
-        AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 111680094, $"In UI exception handling procedure user selected {_result}");
-      }
-      catch (Exception _ex)
-      {
-        try
-        {
-          AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Critical, -695035256, $"Application exits in the Form1_UIThreadException after next error: {_ex.Message}");
-        }
-        finally
-        {
-          Application.Exit();
-        }
-      }
-      if (_result == DialogResult.Abort)
-      {
-        AssemblyTraceEvent.Tracer.TraceInformation("Exits the program when the user clicks Abort");
-        Application.Exit();
-      }
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 111680094, $"In UI an error has been encountered {t.Exception.Message}");
+      MessageBox.Show($"Fatal UI Error - {t.Exception.Message}", "Fatal UI Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+      AssemblyTraceEvent.Tracer.TraceInformation("Exits the program.");
+      Application.Exit();
     }
     /// <summary>
-    /// Handle the UI exceptions by showing a dialog box, and asking the user whether or not they wish to abort execution.
+    /// Handle the UI exceptions.
     /// </summary>
-    /// <remarks>
-    /// NOTE: This exception cannot be kept from terminating the application - it can only log the event, and inform the user about it.
-    /// </remarks>
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">The <see cref="UnhandledExceptionEventArgs"/> instance containing the event data.</param>
     private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
     {
-      try
-      {
-        Exception ex = (Exception)e.ExceptionObject;
-        string errorMsg = "An application error occurred. Please contact the administrator with the following information:\n\n";
-        // Since we can't prevent the app from terminating, log this to the event log.
-        if (!EventLog.SourceExists("ThreadException"))
-        {
-          EventLog.CreateEventSource("ThreadException", "Application");
-        }
-        // Create an EventLog instance and assign its source.
-        EventLog myLog = new EventLog
-        {
-          Source = "ThreadException"
-        };
-        myLog.WriteEntry(errorMsg + ex.Message + "\n\nStack Trace:\n" + ex.StackTrace);
-      }
-      catch (Exception exc)
-      {
-        try
-        {
-          MessageBox.Show("Fatal Non-UI Error", "Fatal Non-UI Error. Could not write the error to the event log. Reason: " + exc.Message, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-        }
-        finally
-        {
-          Application.Exit();
-        }
-      }
-    }
-    /// <summary>
-    /// Creates the error message and displays it.
-    /// </summary>
-    /// <param name="title">The title.</param>
-    /// <param name="e">The e.</param>
-    /// <returns>DialogResult.</returns>
-    private static DialogResult ShowThreadExceptionDialog(Exception e)
-    {
-      string errorMsg = "An application error occurred. Please contact the administrator with the following information:\n\n";
-      errorMsg = errorMsg + e.Message + "\n\nStack Trace:\n" + e.StackTrace;
-      return MessageBoxShow(errorMsg);
+      Exception ex = (Exception)e.ExceptionObject;
+      AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, 111680094, $"In UI an error has been encountered {ex.Message}");
+      MessageBox.Show($"Fatal UI Error - {ex.Message}", "Fatal UI Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+      AssemblyTraceEvent.Tracer.TraceInformation("Exits the program.");
+      Application.Exit();
     }
     #endregion
 
