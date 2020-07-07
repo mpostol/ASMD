@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-
 using CAS.CommServer.UA.ModelDesigner.Configuration.Properties;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.IServerConfiguration;
@@ -18,12 +17,12 @@ using System.Windows.Forms;
 namespace CAS.CommServer.UA.ModelDesigner.Configuration
 {
   /// <summary>
-  /// ConfigurationWrapper class is to be used as user interface in the <see cref="System.Windows.Forms.PropertyGrid"/>.
+  /// ConfigurationWrapper class is to be used as user interface in the <see cref="PropertyGrid"/>.
   /// </summary>
   public class ConfigurationWrapper
   {
-
     #region public properties
+
     /// <summary>
     /// It provides detailed information on the configuration file.
     /// </summary>
@@ -36,9 +35,11 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     ReadOnly(true)
     ]
     public FileInfo ConfigurationFile { get; private set; }
-    #endregion
+
+    #endregion public properties
 
     #region creators
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ConfigurationWrapper" /> class that is to manage the sever configuration file.
     /// </summary>
@@ -52,12 +53,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// </exception>
     public ConfigurationWrapper(FileInfo file, IConfiguration configurationEditor, IGraphicalUserInterface userInterface)
     {
-      if (configurationEditor == null)
-        throw new System.ArgumentNullException("The server configuration editor main interface cannot be null");
-      if (userInterface == null)
-        throw new System.ArgumentNullException($"The {nameof(userInterface)} cannot be null");
-      m_ServerConfiguration = configurationEditor;
-      m_userInterface = userInterface;
+      m_ServerConfiguration = configurationEditor ?? throw new System.ArgumentNullException("The server configuration editor main interface cannot be null");
+      m_userInterface = userInterface ?? throw new System.ArgumentNullException($"The {nameof(userInterface)} cannot be null");
       if (file != null)
         ConfigurationFile = file;
       else
@@ -94,9 +91,11 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         Read(file);
       }
     }
-    #endregion
+
+    #endregion creators
 
     #region public
+
     /// <summary>
     /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
     /// </summary>
@@ -107,6 +106,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     {
       return "(Configuration file selection)";
     }
+
     /// <summary>
     /// Gets the instance configuration.
     /// </summary>
@@ -118,6 +118,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     {
       return m_ServerConfiguration.GetInstanceConfiguration(nodeUniqueIdentifier);
     }
+
     /// <summary>
     /// Saves the configuration and use the specified solution path to create relative paths if needed.
     /// </summary>
@@ -127,6 +128,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       m_SolutionPath = solutionPath;
       Save(false);
     }
+
     internal void Read()
     {
       FileInfo newFile = FindConfigurationFile();
@@ -134,10 +136,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         return;
       Read(newFile);
     }
+
     internal void SetHomeDirectory(string newHomeDirectory)
     {
       m_SolutionPath = newHomeDirectory;
     }
+
     /// <summary>
     /// Adds a set of the <see cref="ToolStripMenuItem"/> to the plugin menu items.
     /// </summary>
@@ -153,7 +157,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       ToolStripMenuItem create = new ToolStripMenuItem()
       {
         Text = Resources.MenuNewText,
-        ToolTipText = Resources.MenuNewToolTip,
+        ToolTipText = Resources.MenuNewToolTip, 
       };
       create.Click += new EventHandler(create_Click);
       configuration.DropDownItems.Add(create);
@@ -188,13 +192,17 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       edit.Click += new EventHandler(edit_Click);
       configuration.DropDownItems.Add(edit);
     }
-    #endregion
+
+    #endregion public
 
     #region private
+
     private IConfiguration m_ServerConfiguration { set; get; }
+
     private class ConfigurationFileEditor : UITypeEditor
     {
       #region UITypeEditor override
+
       /// <summary>
       /// Edits the specified object's value using the editor style indicated by the <see cref="M:System.Drawing.Design.UITypeEditor.GetEditStyle"/> method.
       /// </summary>
@@ -212,6 +220,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         ptr.m_ServerConfiguration.EditConfiguration();
         return value;
       }
+
       /// <summary>
       /// Gets the editor style used by the <see cref="M:System.Drawing.Design.UITypeEditor.EditValue(System.IServiceProvider,System.Object)"/> method.
       /// </summary>
@@ -223,8 +232,10 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       {
         return UITypeEditorEditStyle.Modal;
       }
-      #endregion
+
+      #endregion UITypeEditor override
     }
+
     private string m_SolutionPath;
     private IGraphicalUserInterface m_userInterface;
 
@@ -249,6 +260,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         m_ServerConfiguration.CreateDefaultConfiguration();
       }
     }
+
     private void Save(bool prompt)
     {
       if (ConfigurationFile == null || prompt)
@@ -273,9 +285,9 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
           );
       }
     }
+
     private void SetFileDialogDefaults(UserInterface.IFileDialog ofg)
     {
-
       try
       {
         ofg.DefaultExt = Path.GetExtension(Path.GetExtension(m_ServerConfiguration.DefaultFileName));
@@ -291,13 +303,14 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       }
       ofg.Title = Resources.UAServerConfigurationTitle;
     }
+
     private FileInfo FindConfigurationFile()
     {
       FileInfo newFile = null;
       using (IFileDialog _ofg = m_userInterface.OpenFileDialogFunc())
       {
         SetFileDialogDefaults(_ofg);
-        //TODO add icon 
+        //TODO add icon
         if (_ofg.ShowDialog() && !String.IsNullOrEmpty(_ofg.FileName))
           newFile = new FileInfo(_ofg.FileName);
       }
@@ -305,6 +318,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         return newFile;
       return null;
     }
+
     private FileInfo OpenSaveFileDialog()
     {
       using (IFileDialog sfd = m_userInterface.SaveFileDialogFuc())
@@ -323,31 +337,36 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     }
 
     #region menu event handlers
+
     private void open_Click(object sender, EventArgs e)
     {
       Read();
     }
+
     private void create_Click(object sender, EventArgs e)
     {
       m_ServerConfiguration.CreateDefaultConfiguration();
       ConfigurationFile = null;
       Save(true);
     }
+
     private void edit_Click(object sender, EventArgs e)
     {
       m_ServerConfiguration.EditConfiguration();
     }
+
     private void save_Click(object sender, EventArgs e)
     {
       Save(false);
     }
+
     private void saveAs_Click(object sender, EventArgs e)
     {
       Save(true);
     }
-    #endregion
 
-    #endregion
+    #endregion menu event handlers
 
+    #endregion private
   }
 }

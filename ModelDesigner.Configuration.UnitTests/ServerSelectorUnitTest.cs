@@ -1,7 +1,8 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
@@ -10,33 +11,35 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
 {
   [TestClass]
   public class ServerSelectorUnitTest
   {
-
     [TestMethod]
     public void ServerSelectorCreatorTest()
     {
       Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
       _directory.SetupGet(x => x.DefaultDirectory).Returns(@"C:\");
-      TestGraphicalUserInterface _tg = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector(_tg, _directory.Object, "", "");
+      Mock<IGraphicalUserInterface> _guiMock = new Mock<IGraphicalUserInterface>();
+      ServerSelector _nss = new ServerSelector(_guiMock.Object, _directory.Object, "", "");
       Assert.IsNull(_nss.SelectedAssembly);
       Assert.IsNull(_nss.ServerConfiguration);
       Assert.IsNull(_nss.IServerConfiguration);
     }
+
     [TestMethod]
     public void ServerConfigurationNullTest()
     {
       Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
       _directory.SetupGet(x => x.DefaultDirectory).Returns(@"C:\");
-      TestGraphicalUserInterface _tg = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector(_tg, _directory.Object, "", "");
-      Assert.IsFalse(_tg.WarningCalled);
+      TestGraphicalUserInterface _testGUI = new TestGraphicalUserInterface();
+      ServerSelector _nss = new ServerSelector(_testGUI, _directory.Object, "", "");
+      Assert.IsFalse(_testGUI.WarningCalled);
     }
+
     [TestMethod]
     public void ServerConfigurationWrongAssemblyTest()
     {
@@ -48,6 +51,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       Assert.IsTrue(_tgi.WarningMessage.Contains("wrong.codebase"));
       Assert.AreEqual<string>("Open configuration editor", _tgi.WarningCaption);
     }
+
     [TestMethod]
     public void ServerConfigurationWTest()
     {
@@ -64,6 +68,24 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       CollectionAssert.AreEqual(new string[] { "You did not choose the configuration file. Please select a location of the default configuration file.",
                                                "Folder is not selected, configuration will be created in the default location." }, _ui.ExclamationMessage);
     }
+
+    [TestMethod]
+    public void ServerLoadTest()
+    {
+      string PluginPath = @"lib\net461\";
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
+      _directory.SetupGet(x => x.DefaultDirectory).Returns(Path.Combine(Directory.GetCurrentDirectory(), PluginPath));
+      TestGraphicalUserInterface _ui = new TestGraphicalUserInterface();
+      ServerSelector _nss = new ServerSelector(_ui, _directory.Object, "CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll", "");
+
+      Assert.IsNotNull(_nss.IServerConfiguration);
+      Assert.IsFalse(String.IsNullOrEmpty(_nss.IServerConfiguration.DefaultFileName));
+      Assert.AreEqual<string>("CAS.UAServer.Configuration.uasconfig", _nss.IServerConfiguration.DefaultFileName);
+      Assert.IsNotNull(_nss.SelectedAssembly);
+      Assert.IsNotNull(_nss.ServerConfiguration);
+
+    }
+
     [TestMethod]
     public void EmptyServerDescriptorTest()
     {
@@ -75,16 +97,19 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     }
 
     #region Instrumentation
+
     private class OpenFileDialog4UnitTest : IFileDialog
     {
       private string m_DefaultExt;
       private readonly Action m_ReportAssertError;
+
       public OpenFileDialog4UnitTest(Action reportAssertError)
       {
         if (reportAssertError == null)
           throw new NullReferenceException(nameof(reportAssertError));
         m_ReportAssertError = reportAssertError;
       }
+
       /// <summary>
       /// Gets or sets the default file name extension.
       /// </summary>
@@ -99,6 +124,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
             m_ReportAssertError();
         }
       }
+
       public string FileName
       {
         get => throw new NotImplementedException();
@@ -108,6 +134,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
             m_ReportAssertError();
         }
       }
+
       public string Filter
       {
         get => throw new NotImplementedException();
@@ -117,12 +144,14 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
             m_ReportAssertError();
         }
       }
+
       public string InitialDirectory
       {
         get => throw new NotImplementedException();
 
         set => throw new NotImplementedException();
       }
+
       public string Title
       {
         get => throw new NotImplementedException();
@@ -132,12 +161,17 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
             m_ReportAssertError();
         }
       }
-      public void Dispose() { }
+
+      public void Dispose()
+      {
+      }
+
       public bool ShowDialog()
       {
         return false;
       }
     }
+
     private class FolderBrowserDialog : IFolderBrowserDialog
     {
       public string SelectedPath
@@ -145,12 +179,19 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
         get => Environment.CurrentDirectory;
         set => throw new NotImplementedException();
       }
-      public void Dispose() { }
-      public bool ShowDialog() { return false; }
+
+      public void Dispose()
+      {
+      }
+
+      public bool ShowDialog()
+      {
+        return false;
+      }
     }
+
     private class TestGraphicalUserInterface : IGraphicalUserInterface
     {
-
       internal List<string> ErrorCaption = new List<string>();
       internal List<string> ErrorMessage = new List<string>();
       internal List<string> ExclamationCaption = new List<string>();
@@ -167,30 +208,33 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
         MessageBoxShowWarning = MessageBoxShowMethod;
         OpenFileDialogFunc = () => new OpenFileDialog4UnitTest(() => OpenFileDialog4UnitTestAssertErrors++);
       }
+
       public Action<string, string> MessageBoxShowWarning
       {
         get; set;
       }
+
       public Func<IFileDialog> OpenFileDialogFunc
       {
         get;
         private set;
       }
+
       public Action<string, string> MessageBoxShowExclamation => (x, y) => { ExclamationCaption.Add(y); ExclamationMessage.Add(x); ExclamationCallCount++; };
       public Action<string, string> MessageBoxShowError => (x, y) => { ErrorCaption.Add(y); ErrorMessage.Add(x); ErrorCallCount++; };
       public Func<IFileDialog> SaveFileDialogFuc => throw new NotImplementedException();
       public Func<IFolderBrowserDialog> OpenFolderBrowserDialogFunc => () => new FolderBrowserDialog();
       public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
       public bool UseWaitCursor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
       private void MessageBoxShowMethod(string text, string caption)
       {
         WarningCalled = true;
         WarningMessage = text;
         WarningCaption = caption;
       }
-
     }
-    #endregion
 
+    #endregion Instrumentation
   }
 }

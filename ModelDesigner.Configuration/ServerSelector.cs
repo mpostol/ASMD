@@ -26,6 +26,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
   /// <summary>
   /// PropertyGrid wrapper to select a server plug-in.
   /// </summary>
+  //TODO Problem with opening the server configuration editor plug-in #63
   public class ServerSelector
   {
     #region brows-able properties
@@ -66,9 +67,11 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <summary>
     /// Initializes a new instance of the <see cref="ServerSelector"/> class.
     /// </summary>
-    public ServerSelector(IGraphicalUserInterface _graphicalUserInterface, ISolutionDirectoryPathManagement solutionPath, string codebase, string configuration)
+    public ServerSelector(IGraphicalUserInterface graphicalUserInterface, ISolutionDirectoryPathManagement solutionPath, string codebase, string configuration)
     {
-      GraphicalUserInterface = _graphicalUserInterface ?? throw new ArgumentNullException(nameof(_graphicalUserInterface));
+      if (string.IsNullOrEmpty(codebase))
+        return;
+      GraphicalUserInterface = graphicalUserInterface ?? throw new ArgumentNullException(nameof(graphicalUserInterface));
       OpenPlugIn(solutionPath, codebase, configuration);
       LicenseProtection.CheckConstrain();
     }
@@ -289,8 +292,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <param name="configuration">The configuration.</param>
     private void OpenPlugIn(ISolutionDirectoryPathManagement solutionPath, string codebase, string configuration)
     {
-      if (string.IsNullOrEmpty(codebase))
-        return;
       FileInfo _fileInfo = null;
       //TODO Error while using Save operation #129
       if (!IO.RelativeFilePathsCalculator.TestIfPathIsAbsolute(codebase))
@@ -302,9 +303,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
           _fileInfo = null;
       }
       else
-      {
         _fileInfo = new FileInfo(codebase);
-      }
       if (_fileInfo == null)
         _fileInfo = new FileInfo(codebase);
       if (!_fileInfo.Exists)

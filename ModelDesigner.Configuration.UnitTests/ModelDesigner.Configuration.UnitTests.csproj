@@ -118,6 +118,7 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="UAOOI.Common.Infrastructure, Version=4.0.1.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
       <HintPath>..\packages\UAOOI.Common.Infrastructure.4.0.1\lib\netstandard2.0\UAOOI.Common.Infrastructure.dll</HintPath>
     </Reference>
@@ -142,6 +143,7 @@
     <Compile Include="ServerWrapper_CommServer_UnitTest.cs" />
     <Compile Include="ServerSelectorUnitTest.cs" />
     <Compile Include="ServerWrapper_UAOOI_UnitTest.cs" />
+    <Compile Include="ConfigurationWrapperUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -155,6 +157,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="TestData\BoilerExample.uasconfig">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.3.20.4.nupkg" />
     <None Include="TestData\ConfigurationDataConsumer.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -173,7 +179,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EmbeddedExample\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll" />
+    <None Include="EmbeddedExample\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\lib\net461\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
