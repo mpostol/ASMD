@@ -65,9 +65,6 @@
       <HintPath>..\packages\CAS.CommServer.OPCClassic.SDK.Core.2.01.1062\lib\net451\CAS.CommServer.OPCClassicSDK.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration, Version=3.20.4.39032, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.3.20.4\lib\net461\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll</HintPath>
-    </Reference>
     <Reference Include="CAS.CommServer.UA.Stack.Core, Version=1.1.3265.40471, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.CommServer.UA.Stack.Core.1.01.3265\lib\net451\CAS.CommServer.UA.Stack.Core.dll</HintPath>
       <Private>True</Private>
@@ -140,10 +137,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyInfo.tt</DependentUpon>
     </Compile>
-    <Compile Include="ServerWrapper_CommServer_UnitTest.cs" />
     <Compile Include="ServerSelectorUnitTest.cs" />
     <Compile Include="ServerWrapper_UAOOI_UnitTest.cs" />
     <Compile Include="ConfigurationWrapperUnitTest.cs" />
+    <Compile Include="ServerWrapperUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -160,7 +157,6 @@
     <None Include="TestData\BoilerExample.uasconfig">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.3.20.4.nupkg" />
     <None Include="TestData\ConfigurationDataConsumer.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -178,19 +174,10 @@
       <Name>ModelDesigner.ModelsContainer</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="EmbeddedExample\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="TestData\lib\net461\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-      rem xcopy /Y /S "$(SolutionDir)..\PR35-ASMD_Plugins\CommServerUAConfiguration\bin\$(ConfigurationName)\*.*" "$(TargetDir)\Plugin\"
-    </PostBuildEvent>
+    <PostBuildEvent>rem xcopy /Y /S "$(SolutionDir)..\PR35-ASMD_Plugins\CommServerUAConfiguration\bin\$(ConfigurationName)\*.*" "$(TargetDir)\Plugin\"
+</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

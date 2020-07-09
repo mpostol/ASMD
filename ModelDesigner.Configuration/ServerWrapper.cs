@@ -32,9 +32,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// </summary>
     /// <value>A <see cref="string"/> that is the simple name of the assembly.
     /// </value>
-
-    #region Attributes
-
     [
      DisplayName("Plug-in description"),
      CategoryAttribute("Configuration plug-in"),
@@ -42,10 +39,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
      TypeConverterAttribute(typeof(ExpandableObjectConverter)),
      NotifyParentProperty(true)
     ]
-
-    #endregion Attributes
-
-    public IDataProviderDescription PluginDescription => m_PluginDescription;
+    public IDataProviderDescription PluginDescription { get; private set; }
 
     /// <summary>
     /// Gets or sets the configuration.
@@ -54,8 +48,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     [
     DisplayName("Configuration"),
     Category("Configuration editor"),
-    DescriptionAttribute("It displays a dialog to edit the configuration of the UA server and all data sources available" +
-      "to be used by this UA server."),
+    DescriptionAttribute("It displays a dialog to edit the configuration of the UA server and all data sources available to be used by this UA server."),
     EditorAttribute(typeof(ConfigurationWrapperEditor), typeof(UITypeEditor)),
     TypeConverterAttribute(typeof(ExpandableObjectConverter)),
     NotifyParentProperty(true),
@@ -74,7 +67,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <param name="assembly">An assembly containing the plug-in.</param>
     /// <param name="userInterface">The user interaction interface that provides basic functionality to implement user interactivity.</param>
     /// <param name="solutionPath">The solution path.</param>
-    public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface, ISolutionDirectoryPathManagement solutionPath) : this(plugin, assembly, userInterface, solutionPath, string.Empty) { }
+    public ServerWrapper(IConfiguration plugin, IDataProviderDescription assembly, IGraphicalUserInterface userInterface, ISolutionDirectoryPathManagement solutionPath) : this(plugin, assembly, userInterface, solutionPath, string.Empty) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ServerWrapper" /> class.
@@ -84,10 +77,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <param name="userInterface">The user interaction interface that provides basic functionality to implement user interactivity.</param>
     /// <param name="solutionPath">The solution path.</param>
     /// <param name="configuration">The file path containing the configuration.</param>
-    public ServerWrapper(IConfiguration plugin, Assembly assembly, IGraphicalUserInterface userInterface, ISolutionDirectoryPathManagement solutionPath, string configuration)
+    public ServerWrapper(IConfiguration plugin, IDataProviderDescription assembly, IGraphicalUserInterface userInterface, ISolutionDirectoryPathManagement solutionPath, string configuration)
     {
       this.SolutionPath = solutionPath ?? throw new ArgumentNullException(nameof(solutionPath));
-      Initialize(plugin, assembly);
+      m_Server = plugin;
+      m_Server.OnModified += new EventHandler<UAServerConfigurationEventArgs>(OnConfigurationDataChangeHandler);
+      PluginDescription = assembly;
       FileInfo _file = null;
       if (!string.IsNullOrEmpty(configuration))
       {
@@ -110,7 +105,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// </returns>
     public override string ToString()
     {
-      return m_PluginDescription.ToString();
+      return PluginDescription.ToString();
     }
 
     #endregion object override
@@ -211,15 +206,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       }
     }
 
-    private IDataProviderDescription m_PluginDescription;
     private IConfiguration m_Server;
-
-    private void Initialize(IConfiguration plugin, Assembly assembly)
-    {
-      m_Server = plugin;
-      m_Server.OnModified += new EventHandler<UAServerConfigurationEventArgs>(OnConfigurationDataChangeHandler);
-      m_PluginDescription = new DataProviderDescription(assembly);
-    }
 
     private void RaiseOnConfigurationChanged(bool serverChanged)
     {

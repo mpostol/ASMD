@@ -22,38 +22,38 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     [TestMethod]
     public void DeploymentTest()
     {
-      Assert.IsTrue(File.Exists(_configurationPath));
+      Assert.IsTrue(File.Exists(ConfigurationPath));
     }
 
     [TestMethod]
     public void ConstructorTest()
     {
-      FileInfo _fileInforMock = new FileInfo(_configurationPath);
+      FileInfo _configurationFileInfor = new FileInfo(ConfigurationPath);
       Mock<IConfiguration> _iConfigurationMock = new Mock<IConfiguration>();
       Mock<IGraphicalUserInterface> _iGraphicalUserInterface = new Mock<IGraphicalUserInterface>();
-      ConfigurationWrapper _underTestItem = new ConfigurationWrapper(_fileInforMock, _iConfigurationMock.Object, _iGraphicalUserInterface.Object);
+      ConfigurationWrapper _underTestItem = new ConfigurationWrapper(_configurationFileInfor, _iConfigurationMock.Object, _iGraphicalUserInterface.Object);
       Assert.IsNotNull(_underTestItem.ConfigurationFile);
-      Assert.AreEqual<string>(_configurationPath, _underTestItem.ConfigurationFile.FullName);
+      Assert.AreEqual<string>(ConfigurationPath, _underTestItem.ConfigurationFile.FullName);
     }
 
     [TestMethod]
     public void SetHomeDirectoryTest()
     {
-      FileInfo _fileInforFixture = new FileInfo(_configurationPath);
+      FileInfo _fileInforFixture = new FileInfo(ConfigurationPath);
       Mock<IConfiguration> _iConfigurationMock = new Mock<IConfiguration>();
       _iConfigurationMock.Setup(x => x.SaveConfiguration(It.IsAny<string>(), _fileInforFixture));
       Mock<IGraphicalUserInterface> _iGraphicalUserInterface = new Mock<IGraphicalUserInterface>();
       ConfigurationWrapper _underTestItem = new ConfigurationWrapper(_fileInforFixture, _iConfigurationMock.Object, _iGraphicalUserInterface.Object);
-      Assert.AreEqual<string>(_configurationPath, _underTestItem.ConfigurationFile.FullName);
+      Assert.AreEqual<string>(ConfigurationPath, _underTestItem.ConfigurationFile.FullName);
       _underTestItem.Save("wrong_path");
       _iConfigurationMock.Verify(x => x.SaveConfiguration("wrong_path", _fileInforFixture), Times.Once);
-      Assert.AreEqual<string>(_configurationPath, _underTestItem.ConfigurationFile.FullName);
+      Assert.AreEqual<string>(ConfigurationPath, _underTestItem.ConfigurationFile.FullName);
     }
 
     [TestMethod]
     public void GetPluginMenuItemsTest()
     {
-      FileInfo _fileInforFixture = new FileInfo(_configurationPath);
+      FileInfo _fileInforFixture = new FileInfo(ConfigurationPath);
       Mock<IConfiguration> _iConfigurationMock = new Mock<IConfiguration>();
       _iConfigurationMock.Setup(x => x.SaveConfiguration(It.IsAny<string>(), _fileInforFixture));
       Mock<IGraphicalUserInterface> _iGraphicalUserInterface = new Mock<IGraphicalUserInterface>();
@@ -70,6 +70,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       _iConfigurationMock.Verify(x => x.SaveConfiguration(@"C:\x\y\z", _fileInforFixture), Times.Once);
     }
 
-    private readonly string _configurationPath = Path.Combine(Directory.GetCurrentDirectory(), @"TestData\BoilerExample.uasconfig");
+    private readonly string ConfigurationPath = Path.Combine(Directory.GetCurrentDirectory(), @"TestData\BoilerExample.uasconfig");
   }
 }

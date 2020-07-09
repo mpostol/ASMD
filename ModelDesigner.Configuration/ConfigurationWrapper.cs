@@ -53,8 +53,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// </exception>
     public ConfigurationWrapper(FileInfo file, IConfiguration configurationEditor, IGraphicalUserInterface userInterface)
     {
-      m_ServerConfiguration = configurationEditor ?? throw new System.ArgumentNullException("The server configuration editor main interface cannot be null");
-      m_userInterface = userInterface ?? throw new System.ArgumentNullException($"The {nameof(userInterface)} cannot be null");
+      m_ServerConfiguration = configurationEditor ?? throw new ArgumentNullException("The server configuration editor main interface cannot be null");
+      m_userInterface = userInterface ?? throw new ArgumentNullException($"The {nameof(userInterface)} cannot be null");
       if (file != null)
         ConfigurationFile = file;
       else

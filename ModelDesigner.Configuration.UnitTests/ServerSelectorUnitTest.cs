@@ -5,6 +5,7 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
+using CAS.CommServer.UA.ConfigurationEditor.ModelsContainer;
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -18,85 +19,85 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
   [TestClass]
   public class ServerSelectorUnitTest
   {
-    [TestMethod]
-    public void ServerSelectorCreatorTest()
+    [ClassInitialize]
+    public static void ConfigTest(TestContext context)
     {
-      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
-      _directory.SetupGet(x => x.DefaultDirectory).Returns(@"C:\");
-      Mock<IGraphicalUserInterface> _guiMock = new Mock<IGraphicalUserInterface>();
-      ServerSelector _nss = new ServerSelector(_guiMock.Object, _directory.Object, "", "");
-      Assert.IsNull(_nss.SelectedAssembly);
-      Assert.IsNull(_nss.ServerConfiguration);
-      Assert.IsNull(_nss.IServerConfiguration);
+      Console.WriteLine(Directory.GetCurrentDirectory());
+      if (Directory.Exists(m_ExamplePath))
+        Directory.Delete(m_ExamplePath, true);
+      ContainerResources.ExampleSolutionInstallation(m_ExamplePath, (x, y) => Console.WriteLine(x));
     }
 
     [TestMethod]
-    public void ServerConfigurationNullTest()
+    public void TestEnvironment()
     {
-      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
-      _directory.SetupGet(x => x.DefaultDirectory).Returns(@"C:\");
-      TestGraphicalUserInterface _testGUI = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector(_testGUI, _directory.Object, "", "");
-      Assert.IsFalse(_testGUI.WarningCalled);
+      Assert.IsTrue(File.Exists(m_PluginFullPath));
+      Assert.IsTrue(File.Exists($@"{m_ExamplePath}\DemoConfiguration\DefaultConfig.xml"));
+      Assert.IsTrue(File.Exists($@"{m_ExamplePath}\DemoConfiguration\BoilerExample.oses"));
+      Assert.IsTrue(File.Exists($@"{m_ExamplePath}\DemoConfiguration\BoilerExample.uasconfig"));
+      Assert.IsTrue(File.Exists($@"{m_ExamplePath}\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll"));
     }
 
     [TestMethod]
-    public void ServerConfigurationWrongAssemblyTest()
+    public void ConstructorWrongAssemblyTest()
     {
       Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
-      _directory.SetupGet(x => x.DefaultDirectory).Returns(@"wrong_path");
+      _directory.SetupGet(x => x.DefaultDirectory).Returns(Directory.GetCurrentDirectory());
       TestGraphicalUserInterface _tgi = new TestGraphicalUserInterface();
       ServerSelector _nss = new ServerSelector(_tgi, _directory.Object, "wrong.codebase", "wrong.configuration");
+      //_nss
+      Assert.IsNull(_nss.IServerConfiguration);
+      Assert.IsNull(_nss.SelectedAssembly);
+      Assert.IsNull(_nss.ServerConfiguration);
+      //_tgi
       Assert.IsTrue(_tgi.WarningCalled);
       Assert.IsTrue(_tgi.WarningMessage.Contains("wrong.codebase"));
       Assert.AreEqual<string>("Open configuration editor", _tgi.WarningCaption);
     }
 
     [TestMethod]
-    public void ServerConfigurationWTest()
+    public void PluginOkWrongConfigurationTest()
     {
       Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
-      _directory.SetupGet(x => x.DefaultDirectory).Returns(@"wrong_path");
-      TestGraphicalUserInterface _ui = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector(_ui, _directory.Object, "CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll", "");
-      Assert.AreEqual<int>(2, _ui.ExclamationCallCount);
-      Assert.AreEqual<int>(0, _ui.ErrorCallCount);
-      Assert.AreEqual<int>(0, _ui.OpenFileDialog4UnitTestAssertErrors);
-      CollectionAssert.AreEqual(new string[] { }, _ui.ErrorCaption);
-      CollectionAssert.AreEqual(new string[] { }, _ui.ErrorMessage);
-      CollectionAssert.AreEqual(new string[] { "No configuration file has been selected!", "No folder is selected" }, _ui.ExclamationCaption);
+      _directory.SetupGet(x => x.DefaultDirectory).Returns(Directory.GetCurrentDirectory());
+      TestGraphicalUserInterface _tgi = new TestGraphicalUserInterface();
+      ServerSelector _underTestItem = new ServerSelector(_tgi, _directory.Object, m_PluginFullPath, "");
+      //_underTestItem
+      int _configurationChanged = 0;
+      bool _configuration = false; ;
+      _underTestItem.OnConfigurationChanged += (x, y) => { _configurationChanged++; _configuration = y.ConfigurationFileChanged; };
+      Assert.IsNotNull(_underTestItem.IServerConfiguration);
+      Assert.IsFalse(String.IsNullOrEmpty(_underTestItem.IServerConfiguration.DefaultFileName));
+      Assert.AreEqual<string>("CAS.UAServer.Configuration.uasconfig", _underTestItem.IServerConfiguration.DefaultFileName);
+      Assert.IsNotNull(_underTestItem.SelectedAssembly);
+      Assert.IsNotNull(_underTestItem.SelectedAssembly.Configuration);
+      Assert.IsNotNull(_underTestItem.ServerConfiguration);
+      Assert.AreEqual<string>(m_PluginFullPath, _underTestItem.ServerConfiguration.Codebase);
+      Assert.AreEqual<string>(Path.Combine(Directory.GetCurrentDirectory(), _underTestItem.IServerConfiguration.DefaultFileName), _underTestItem.ServerConfiguration.Configuration);
+      Assert.AreEqual<int>(0, _configurationChanged);
+      Assert.IsFalse(_configuration);
+      _underTestItem.IServerConfiguration.CreateDefaultConfiguration();
+      Assert.AreEqual<int>(2, _configurationChanged);
+      Assert.IsTrue(_configuration);
+      _underTestItem.IServerConfiguration.CreateDefaultConfiguration();
+      Assert.AreEqual<int>(4, _configurationChanged);
+      Assert.IsTrue(_configuration);
+
+      //_tgi
+      Assert.AreEqual<int>(2, _tgi.ExclamationCallCount);
+      Assert.AreEqual<int>(0, _tgi.ErrorCallCount);
+      Assert.AreEqual<int>(0, _tgi.OpenFileDialog4UnitTestAssertErrors);
+      CollectionAssert.AreEqual(new string[] { }, _tgi.ErrorCaption);
+      CollectionAssert.AreEqual(new string[] { }, _tgi.ErrorMessage);
+      CollectionAssert.AreEqual(new string[] { "No configuration file has been selected!", "No folder is selected" }, _tgi.ExclamationCaption);
       CollectionAssert.AreEqual(new string[] { "You did not choose the configuration file. Please select a location of the default configuration file.",
-                                               "Folder is not selected, configuration will be created in the default location." }, _ui.ExclamationMessage);
-    }
-
-    [TestMethod]
-    public void ServerLoadTest()
-    {
-      string PluginPath = @"lib\net461\";
-      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
-      _directory.SetupGet(x => x.DefaultDirectory).Returns(Path.Combine(Directory.GetCurrentDirectory(), PluginPath));
-      TestGraphicalUserInterface _ui = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector(_ui, _directory.Object, "CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll", "");
-
-      Assert.IsNotNull(_nss.IServerConfiguration);
-      Assert.IsFalse(String.IsNullOrEmpty(_nss.IServerConfiguration.DefaultFileName));
-      Assert.AreEqual<string>("CAS.UAServer.Configuration.uasconfig", _nss.IServerConfiguration.DefaultFileName);
-      Assert.IsNotNull(_nss.SelectedAssembly);
-      Assert.IsNotNull(_nss.ServerConfiguration);
-
-    }
-
-    [TestMethod]
-    public void EmptyServerDescriptorTest()
-    {
-      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
-      _directory.SetupGet(x => x.DefaultDirectory).Returns(string.Empty);
-      TestGraphicalUserInterface _ui = new TestGraphicalUserInterface();
-      ServerSelector _nss = new ServerSelector(_ui, _directory.Object, string.Empty, string.Empty);
-      Assert.IsFalse(_ui.WarningCalled);
+                                               "Folder is not selected, configuration will be created in the default location." }, _tgi.ExclamationMessage);
     }
 
     #region Instrumentation
+
+    private static readonly string m_ExamplePath = Path.Combine((Directory.GetCurrentDirectory()), "Plugin");
+    private static readonly string m_PluginFullPath = $@"{m_ExamplePath}\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll";
 
     private class OpenFileDialog4UnitTest : IFileDialog
     {
