@@ -26,7 +26,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
   /// <summary>
   /// PropertyGrid wrapper to select a server plug-in.
   /// </summary>
-  //TODO Problem with opening the server configuration editor plug-in #63
   public class ServerSelector
   {
     #region brows-able properties
@@ -42,8 +41,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     DisplayName("Editor Assembly"),
     BrowsableAttribute(true),
     CategoryAttribute("Configuration editor"),
-    DescriptionAttribute("It displays a dialog to select a plug-in assembly that provides the configuration editor. This assembly is to be used to configure" +
-   "the UA server and all data sources available.")
+    DescriptionAttribute("It displays a dialog to select a plug-in assembly that provides the configuration editor. This assembly is to be used to configure the UA server and all data sources available.")
     ]
     public ServerWrapper SelectedAssembly
     {
@@ -285,7 +283,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     private void OpenPlugIn(ISolutionDirectoryPathManagement solutionPath, string codebase, string configuration)
     {
       FileInfo _fileInfo = null;
-      //TODO Error while using Save operation #129
       if (!IO.RelativeFilePathsCalculator.TestIfPathIsAbsolute(codebase))
       {
         _fileInfo = new FileInfo(Path.Combine(solutionPath.DefaultDirectory, codebase));
@@ -335,7 +332,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       {
         using (IFileDialog _ofg = GraphicalUserInterface.OpenFileDialogFunc())
         {
-          string _baseDirectory = server.SolutionPath.DefaultDirectory; //Problem with opening the server configuration editor plug-in #63
+          string _baseDirectory = server.SolutionPath.DefaultDirectory;
           if (!string.IsNullOrEmpty(_baseDirectory))
             _ofg.InitialDirectory = _baseDirectory;
           if (server != null && server.PluginDescription != null)

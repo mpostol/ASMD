@@ -87,7 +87,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       if (!string.IsNullOrEmpty(configuration))
       {
         string _path = IO.RelativeFilePathsCalculator.CalculateAbsoluteFileName(configuration, solutionPath.DefaultDirectory);
-        //TODO Error while using Save operation #129
         _file = new FileInfo(_path);
       }
       Configuration = new ConfigurationWrapper(_file, m_Server, userInterface);

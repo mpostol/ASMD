@@ -677,7 +677,6 @@ namespace CAS.UA.Model.Designer
 
     private void HelpReadmeToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      //TODO Error while using Save operation #129 System.IO.FileNotFoundException
       Process.Start(Resources.MainForm_ReadmePage);
     }
 
