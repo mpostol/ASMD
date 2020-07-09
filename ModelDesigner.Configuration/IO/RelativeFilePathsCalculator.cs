@@ -26,6 +26,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
     {
       bool _ret = Path.IsPathRooted(pathToBeTested);
       if (_ret && (pathToBeTested != Path.GetFullPath(pathToBeTested)))
+        //TODO TestIfPathIsAbsolute throws exception in path contains `..` #167
         throw new ArgumentOutOfRangeException(nameof(pathToBeTested), "The path is rooted but not absolute");
       return _ret;
     }

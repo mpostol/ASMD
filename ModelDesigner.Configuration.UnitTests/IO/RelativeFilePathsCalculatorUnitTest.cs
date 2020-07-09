@@ -25,6 +25,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.IO
       Assert.IsFalse(RelativeFilePathsCalculator.TestIfPathIsAbsolute(m_Relative3));
       Assert.IsTrue(RelativeFilePathsCalculator.TestIfPathIsAbsolute(Path.Combine(m_Relative3, m_AbsolutePath)));
       Assert.IsTrue(RelativeFilePathsCalculator.TestIfPathIsAbsolute(Path.Combine(m_AbsolutePath, m_Relative3)));
+      Assert.IsTrue(RelativeFilePathsCalculator.TestIfPathIsAbsolute(@"C:\VS.git\UAOOI\ASMD210\ModelDesigner.ModelsContainer\bin\Release\..\Model_0.xml"));
     }
 
     [TestMethod]
