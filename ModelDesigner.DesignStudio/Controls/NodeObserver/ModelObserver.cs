@@ -129,8 +129,8 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     #region private
 
     //vars
-    private OKCancelForm m_filterForm;
 
+    private OKCancelForm m_filterForm;
     private FiltersControl m_FiltersControl;
     private FiltersControl.FilterSettings m_FiltersControlSettings;
     private TreeNode m_SelectedTreeNode = null;

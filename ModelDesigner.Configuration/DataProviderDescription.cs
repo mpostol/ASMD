@@ -1,17 +1,9 @@
-﻿//_______________________________________________________________
-//  Title   : class DataProviderDescription
-//  System  : Microsoft VisualStudio 2015 / C#
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2016, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration.Properties;
 using System;
@@ -25,7 +17,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
   /// <summary>
   /// Allows to get by the client all information identifying the plug-in component. Implements <see cref="IDataProviderDescription"/>
   /// </summary>
-  internal class DataProviderDescription : IDataProviderDescription
+  public class DataProviderDescription : IDataProviderDescription
   {
     #region private
     private Assembly m_Fingerprint;
@@ -65,10 +57,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     CategoryAttribute("Plug-in Assembly Info"),
     DescriptionAttribute("A string that is the full name of the assembly, also known as the display name.")
     ]
-    public string FullName
-    {
-      get { return m_Fingerprint.GetName().FullName; }
-    }
+    public string FullName => m_Fingerprint.GetName().FullName;
     /// <summary>
     /// Gets a company name custom attribute for the plug-in assembly manifest.
     /// </summary>
@@ -123,10 +112,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     CategoryAttribute("Plug-in Assembly Info"),
     DescriptionAttribute("A text representing the major, minor, build, and revision numbers of the assembly.")
     ]
-    public Version Version
-    {
-      get { return m_Fingerprint.GetName().Version; }
-    }
+    public Version Version => m_Fingerprint.GetName().Version;
     /// <summary>
     /// Data of last modification or release of the component.
     /// </summary>
@@ -224,13 +210,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       + " it is the location of the assembly as specified originally,"
       + " for example, in an System.Reflection.AssemblyName object.")
     ]
-    public string CodeBase
-    {
-      get
-      {
-        return m_Fingerprint.Location;
-      }
-    }
+    public string CodeBase => m_Fingerprint.Location;
     #endregion
 
     #region object override
@@ -244,7 +224,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
 
     #endregion
 
-    #region creator
+    #region constructor
     internal DataProviderDescription(Assembly pAss)
     {
       m_Fingerprint = pAss;

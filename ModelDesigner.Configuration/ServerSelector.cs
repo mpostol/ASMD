@@ -41,8 +41,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     DisplayName("Editor Assembly"),
     BrowsableAttribute(true),
     CategoryAttribute("Configuration editor"),
-    DescriptionAttribute("It displays a dialog to select a plug-in assembly that provides the configuration editor. This assembly is to be used to configure" +
-   "the UA server and all data sources available.")
+    DescriptionAttribute("It displays a dialog to select a plug-in assembly that provides the configuration editor. This assembly is to be used to configure the UA server and all data sources available.")
     ]
     public ServerWrapper SelectedAssembly
     {
@@ -66,14 +65,16 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <summary>
     /// Initializes a new instance of the <see cref="ServerSelector"/> class.
     /// </summary>
-    public ServerSelector(IGraphicalUserInterface _graphicalUserInterface, ISolutionDirectoryPathManagement solutionPath, string codebase, string configuration)
+    public ServerSelector(IGraphicalUserInterface graphicalUserInterface, ISolutionDirectoryPathManagement solutionPath, string codebase, string configuration)
     {
-      GraphicalUserInterface = _graphicalUserInterface ?? throw new ArgumentNullException(nameof(_graphicalUserInterface));
+      if (string.IsNullOrEmpty(codebase))
+        return;
+      GraphicalUserInterface = graphicalUserInterface ?? throw new ArgumentNullException(nameof(graphicalUserInterface));
       OpenPlugIn(solutionPath, codebase, configuration);
       LicenseProtection.CheckConstrain();
     }
 
-    #endregion creators
+    #endregion constructor
 
     #region public
 
@@ -113,7 +114,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// Gets or sets the server configuration - detailed information on localization of the plug-in and configuration file
     /// </summary>
     /// <value>
-    /// The information on localization of the server and configuration file..
+    /// The information on localization of the server and configuration file.
     /// </value>
     [Browsable(false)]
     public ServerDescriptor ServerConfiguration
@@ -122,13 +123,11 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       {
         if (this.SelectedAssembly == null)
           return null;
-        ServerDescriptor ret = null;
-        ret = new ServerDescriptor() { Configuration = string.Empty };
-        ret.Codebase = SelectedAssembly.PluginDescription.CodeBase;
+        ServerDescriptor _ret = new ServerDescriptor() { Configuration = string.Empty, Codebase = SelectedAssembly.PluginDescription.CodeBase };
         if (SelectedAssembly.Configuration == null || SelectedAssembly.Configuration.ConfigurationFile == null)
-          return ret;
-        ret.Configuration = SelectedAssembly.Configuration.ConfigurationFile.FullName;
-        return ret;
+          return _ret;
+        _ret.Configuration = SelectedAssembly.Configuration.ConfigurationFile.FullName;
+        return _ret;
       }
     }
 
@@ -197,21 +196,11 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       SelectedAssembly.Save(solutionPath.DefaultDirectory);
     }
 
-    ///// <summary>
-    ///// Sets the home directory to create relative paths of other files.
-    ///// </summary>
-    ///// <param name="newHomeDirectory">The new home directory.</param>
-    //public void SetHomeDirectory(string newHomeDirectory)
-    //{
-    //  if (SelectedAssembly == null)
-    //    return;
-    //  SelectedAssembly.SetHomeDirectory(newHomeDirectory);
-    //}
-
     #endregion public
 
-    #region private
+    #region LicenseProvider
 
+    //TODO Remove limitation related to CAS licensing programs #53
     [LicenseProvider(typeof(CodeProtectLP))]
     [GuidAttribute("9F0B0964-93B8-4775-9106-95C0DCBFEAD5")]
     private sealed class LicenseProtection : SplashScreen.LogedIsLicensed<LicenseProtection>
@@ -247,6 +236,10 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
 
       #endregion private
     }
+
+    #endregion LicenseProvider
+
+    #region private
 
     private class ServerSelectorEditor : UITypeEditor
     {
@@ -289,10 +282,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <param name="configuration">The configuration.</param>
     private void OpenPlugIn(ISolutionDirectoryPathManagement solutionPath, string codebase, string configuration)
     {
-      if (string.IsNullOrEmpty(codebase))
-        return;
       FileInfo _fileInfo = null;
-      //TODO Error while using Save operation #129
       if (!IO.RelativeFilePathsCalculator.TestIfPathIsAbsolute(codebase))
       {
         _fileInfo = new FileInfo(Path.Combine(solutionPath.DefaultDirectory, codebase));
@@ -302,9 +292,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
           _fileInfo = null;
       }
       else
-      {
         _fileInfo = new FileInfo(codebase);
-      }
       if (_fileInfo == null)
         _fileInfo = new FileInfo(codebase);
       if (!_fileInfo.Exists)
@@ -332,7 +320,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 173, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, Resources.AssemblyLoadErropr));
         return;
       }
-      ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, _assembly, GraphicalUserInterface, solutionPath, configuration);
+      ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, new DataProviderDescription(_assembly), GraphicalUserInterface, solutionPath, configuration);
       //It must be the last statement because it raises an event using all properties.
       SelectedAssembly = newSelectedAssembly;
     }
@@ -344,7 +332,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       {
         using (IFileDialog _ofg = GraphicalUserInterface.OpenFileDialogFunc())
         {
-          string _baseDirectory = server.SolutionPath.DefaultDirectory; //Problem with opening the server configuration editor plug-in #63
+          string _baseDirectory = server.SolutionPath.DefaultDirectory;
           if (!string.IsNullOrEmpty(_baseDirectory))
             _ofg.InitialDirectory = _baseDirectory;
           if (server != null && server.PluginDescription != null)
@@ -368,7 +356,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
             GraphicalUserInterface.MessageBoxShowWarning(Resources.InterfaceNotImplemented, Resources.OpenPluginTitle);
             continue;
           }
-          server = new ServerWrapper(_serverConfiguration, _pluginAssembly, GraphicalUserInterface, server.SolutionPath);
+          server = new ServerWrapper(_serverConfiguration, new DataProviderDescription(_pluginAssembly), GraphicalUserInterface, server.SolutionPath);
         }
         catch (Exception ex)
         {

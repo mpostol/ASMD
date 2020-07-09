@@ -3,6 +3,8 @@
   <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ServerSelector">
     <Position X="2" Y="0.75" Width="3.75" />
     <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
@@ -32,29 +34,32 @@
         <Position X="0.266" Y="0.06" />
       </MemberNameLabel>
     </AssociationLine>
-    <AssociationLine Name="m_Server" Type="CAS.CommServer.UA.ModelDesigner.Configuration.ServerWrapper" FixedFromPoint="true">
+    <AssociationLine Name="IServerConfiguration" Type="CAS.UA.IServerConfiguration.IConfiguration" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="5.75" Y="1.988" />
-        <Point X="7.75" Y="1.988" />
+        <Point X="5.75" Y="4.558" />
+        <Point X="15.875" Y="4.558" />
+        <Point X="15.875" Y="3.188" />
+        <Point X="16.25" Y="3.188" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.985" Y="0.05" />
+        <Position X="8.893" Y="-1.088" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAIAIAACIAEAAAEEgAAAAYAAAAAAgAQAQAQCAAAwAA=</HashCode>
+      <HashCode>AAAIAIAACIAEAIAEEgAAAAYAAAAAAgAwAQAQCAAAQAA=</HashCode>
       <FileName>ServerSelector.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="m_Server" />
+      <Field Name="GraphicalUserInterface" />
       <Property Name="SelectedAssembly" />
-      <Property Name="GraphicalUserInterface" />
+      <Property Name="IServerConfiguration" />
     </ShowAsAssociation>
   </Class>
   <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ServerWrapper">
     <Position X="7.75" Y="1.5" Width="2.5" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
     </Compartments>
     <NestedTypes>
       <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ServerWrapper.ConfigurationWrapperEditor" Collapsed="true">
@@ -65,21 +70,25 @@
     </NestedTypes>
     <AssociationLine Name="Configuration" Type="CAS.CommServer.UA.ModelDesigner.Configuration.ConfigurationWrapper" FixedFromPoint="true">
       <Path>
-        <Point X="10.25" Y="1.812" />
-        <Point X="11.75" Y="1.812" />
+        <Point X="10.25" Y="1.768" />
+        <Point X="11.75" Y="1.768" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAIAIAACEAECQAEEAAAAAAAAAAAAAgAgAAAJAAAwAA=</HashCode>
+      <HashCode>AAAIAIAACEAECAAEEAAAAAAAAAAAAAgAgAAAIAIAwAA=</HashCode>
       <FileName>ServerWrapper.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="PluginDescription" />
       <Property Name="Configuration" />
+      <Property Name="PluginDescription" />
     </ShowAsAssociation>
   </Class>
   <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ConfigurationWrapper">
     <Position X="11.75" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
     <NestedTypes>
       <Class Name="CAS.CommServer.UA.ModelDesigner.Configuration.ConfigurationWrapper.ConfigurationFileEditor" Collapsed="true">
         <TypeIdentifier>
@@ -87,6 +96,17 @@
         </TypeIdentifier>
       </Class>
     </NestedTypes>
+    <AssociationLine Name="m_ServerConfiguration" Type="CAS.UA.IServerConfiguration.IConfiguration" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14" Y="1.592" />
+        <Point X="15.875" Y="1.592" />
+        <Point X="15.875" Y="2.938" />
+        <Point X="16.25" Y="2.938" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.516" Y="1.008" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAQAIEAQAAEAAAEEQAEACAgAEAAAEAEAAAAAABAgAQ=</HashCode>
       <FileName>ConfigurationWrapper.cs</FileName>
@@ -97,25 +117,25 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="System.IO.FileInfo" Collapsed="true">
-    <Position X="15.75" Y="1.5" Width="1.5" />
+    <Position X="16" Y="0.5" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Interface Name="CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface.IGraphicalUserInterface" Collapsed="true">
     <Position X="7.75" Y="0.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAQAAAAAAAAAAAAABAABIIAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAABAQAAACAAAAAAAAABAABIIBAAAAAAAA=</HashCode>
       <FileName>UserInterface\IGraphicalUserInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="CAS.CommServer.UA.ModelDesigner.Configuration.IDataProviderDescription" Collapsed="true">
-    <Position X="7.75" Y="5" Width="2.5" />
+    <Position X="11.75" Y="2.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAABAAAgAMAAAAAAAAAAAAAAEAABAAAARACAAAA=</HashCode>
       <FileName>IDataProviderDescription.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="CAS.UA.IServerConfiguration.IConfiguration" Collapsed="true">
-    <Position X="15.75" Y="2.75" Width="1.5" />
+    <Position X="16.25" Y="2.75" Width="1.5" />
     <TypeIdentifier />
   </Interface>
   <Font Name="Segoe UI" Size="9" />

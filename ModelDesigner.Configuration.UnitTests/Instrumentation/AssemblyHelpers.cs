@@ -1,4 +1,10 @@
-﻿
+﻿//___________________________________________________________________________________
+//
+//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
+
 using CAS.UA.IServerConfiguration;
 using System;
 using System.IO;
@@ -9,14 +15,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentatio
   internal static class AssemblyHelpers
   {
 
-    internal static void CreateInstance(string assemblyFile, out Assembly pluginAssembly, out IConfiguration serverConfiguration)
-    {
-      FileInfo _pluginFileName = new FileInfo(assemblyFile);
-      if (!_pluginFileName.Exists)
-        throw new FileNotFoundException(nameof(assemblyFile));
-      pluginAssembly = Assembly.LoadFrom(_pluginFileName.FullName);
-      serverConfiguration = CreateInstance(pluginAssembly);
-    }
     internal static IConfiguration CreateInstance(Assembly pluginAssembly)
     {
       if (pluginAssembly == null)

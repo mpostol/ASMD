@@ -10,19 +10,17 @@ using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.IServerConfiguration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 using System.IO;
 using System.Reflection;
 
 namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
 {
-
   [TestClass]
+  [DeploymentItem(@"TestData\", @"TestData\")]
   public class ServerWrapper_UAOOI_UnitTest
   {
     //<package id = "UAOOI.Configuration.DataBindings" version="2.0.0-Alpha" targetFramework="net461" />
     [TestMethod]
-    [DeploymentItem(@"TestData\", @"TestData\")]
     public void EnvironmentTest()
     {
       FileInfo _configurationFile = new FileInfo(m_ConfigurationBaseFileName);
@@ -35,8 +33,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       _serverConfiguration.ReadConfiguration(_configurationFile);
       Assert.AreEqual<int>(1, _serverConfiguration.CurrentConfiguration.DataSets.Length);
     }
+
     [TestMethod]
-    [DeploymentItem(@"TestData\", @"TestData\")]
     public void UAOOIDataBindingsTestMethod()
     {
       Assembly _pluginAssembly = Assembly.GetExecutingAssembly();
@@ -51,60 +49,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       //TODO UANetworkingConfiguration[T].ReadConfiguration shows popup if file has errors #73
       Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
       _directory.SetupGet(x => x.DefaultDirectory).Returns(Directory.GetCurrentDirectory());
-      ServerWrapper _sw = new ServerWrapper(_serverConfiguration, _pluginAssembly, new GraphicalUserInterface(), _directory.Object, m_ConfigurationBaseFileName);
+      Mock<IGraphicalUserInterface> _guiMock = new Mock<IGraphicalUserInterface>();
+      ServerWrapper _sw = new ServerWrapper(_serverConfiguration, new DataProviderDescription(_pluginAssembly), _guiMock.Object, _directory.Object, m_ConfigurationBaseFileName);
       Assert.IsNotNull(_sw);
       Assert.IsTrue(_configurationChanged);
     }
+
     private const string m_ConfigurationBaseFileName = @"TestData\ConfigurationDataConsumer.xml";
-    private class GraphicalUserInterface : IGraphicalUserInterface
-    {
-      public Action<string, string> MessageBoxShowError
-      {
-        get
-        {
-          throw new NotImplementedException();
-        }
-      }
-      public Action<string, string> MessageBoxShowExclamation
-      {
-        get
-        {
-          throw new NotImplementedException();
-        }
-      }
-      public Action<string, string> MessageBoxShowWarning
-      {
-        get
-        {
-          throw new NotImplementedException();
-        }
-      }
-      public Func<IFileDialog> OpenFileDialogFunc
-      {
-        get
-        {
-          throw new NotImplementedException();
-        }
-      }
-      public Func<IFolderBrowserDialog> OpenFolderBrowserDialogFunc
-      {
-        get
-        {
-          throw new NotImplementedException();
-        }
-      }
-      public Func<IFileDialog> SaveFileDialogFuc
-      {
-        get
-        {
-          throw new NotImplementedException();
-        }
-      }
-      public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
-      public bool UseWaitCursor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-    }
-    public object AssemblyHelper { get; private set; }
   }
-
 }
