@@ -282,26 +282,17 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <param name="configuration">The configuration.</param>
     private void OpenPlugIn(ISolutionDirectoryPathManagement solutionPath, string codebase, string configuration)
     {
-      FileInfo _fileInfo = null;
-      if (!IO.RelativeFilePathsCalculator.TestIfPathIsAbsolute(codebase))
-      {
-        _fileInfo = new FileInfo(Path.Combine(solutionPath.DefaultDirectory, codebase));
-        if (!_fileInfo.Exists && !string.IsNullOrEmpty(Assembly.GetExecutingAssembly().Location))
-          _fileInfo = new FileInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), codebase));
-        if (!_fileInfo.Exists)
-          _fileInfo = null;
-      }
-      else
-        _fileInfo = new FileInfo(codebase);
-      if (_fileInfo == null)
-        _fileInfo = new FileInfo(codebase);
-      if (!_fileInfo.Exists)
+      string _pluginFullName = IO.RelativeFilePathsCalculator.CalculateAbsoluteFileName(solutionPath.DefaultDirectory, codebase);
+      if (!File.Exists(_pluginFullName))
+        _pluginFullName = Path.Combine(solutionPath.DefaultDirectory, codebase);
+      if (!File.Exists(_pluginFullName))
       {
         string _mss = string.Format(Resources.CASConfiguration_MessageBox_plugin_file_exception, codebase);
         GraphicalUserInterface.MessageBoxShowWarning(_mss, Resources.OpenPluginTitle);
         TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 155, "ServerSelector", _mss);
         return;
       }
+      FileInfo _fileInfo = new FileInfo(_pluginFullName);
       Assembly _assembly;
       IConfiguration _svrInterface;
       try
