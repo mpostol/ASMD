@@ -86,7 +86,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       FileInfo _file = null;
       if (!string.IsNullOrEmpty(configuration))
       {
-        string _path = IO.RelativeFilePathsCalculator.CalculateAbsoluteFileName(configuration, solutionPath.DefaultDirectory);
+        string _path = IO.RelativeFilePathsCalculator.CalculateAbsoluteFileName(solutionPath.DefaultDirectory, configuration);
         _file = new FileInfo(_path);
       }
       Configuration = new ConfigurationWrapper(_file, m_Server, userInterface);

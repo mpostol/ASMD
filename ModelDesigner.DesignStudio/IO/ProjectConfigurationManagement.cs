@@ -41,7 +41,7 @@ namespace CAS.UA.Model.Designer.IO
     private static string ReplaceTokenAndReturnFullPath(string fileNameToBeProcessed, string projectName, string solutionDirectory)
     {
       string _Name = fileNameToBeProcessed.Replace(Resources.Token_ProjectFileName, projectName);
-      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(_Name, solutionDirectory);
+      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(solutionDirectory, _Name);
     }
 
     private string CSVFileName
@@ -65,15 +65,6 @@ namespace CAS.UA.Model.Designer.IO
           m_UAModelDesignerProject.BuildOutputDirectoryName = Resources.DefaultOutputBuildDirectory;
         return Path.Combine(this.DefaultDirectory, m_UAModelDesignerProject.BuildOutputDirectoryName);
       }
-    }
-
-    /// <summary>
-    /// Calculates the effective absolute model file path.
-    /// </summary>
-    /// <returns>System.String.</returns>
-    private string CalculateEffectiveAbsoluteModelFilePath()
-    {
-      return RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_UAModelDesignerProject.FileName, this.m_ISolutionConfigurationManagement.DefaultDirectory);
     }
 
     #endregion private
@@ -171,7 +162,7 @@ namespace CAS.UA.Model.Designer.IO
       DirectoryInfo dirinfo = new DirectoryInfo(BuildOutputDirectoryPath);
       if (!dirinfo.Exists)
         Directory.CreateDirectory(BuildOutputDirectoryPath);
-      string _filePath = CalculateEffectiveAbsoluteModelFilePath();
+      string _filePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.m_ISolutionConfigurationManagement.DefaultDirectory, m_UAModelDesignerProject.FileName);
       if (!new FileInfo(_filePath).Exists)
       {
         string msg = string.Format(Resources.BuildError_Fie_DoesNotExist, _filePath);

@@ -17,20 +17,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
   public static class RelativeFilePathsCalculator
   {
     /// <summary>
-    /// Tests if path is absolute.
-    /// </summary>
-    /// <param name="pathToBeTested">The path to be tested.</param>
-    /// <returns>true if path is rooted and not relative</returns>
-    /// <exception cref="ArgumentOutOfRangeException">pathToBeTested - The path is rooted but not absolute</exception>
-    public static bool TestIfPathIsAbsolute(string pathToBeTested)
-    {
-      bool _ret = Path.IsPathRooted(pathToBeTested);
-      if (_ret && (pathToBeTested != Path.GetFullPath(pathToBeTested)))
-        throw new ArgumentOutOfRangeException(nameof(pathToBeTested), "The path is rooted but not absolute");
-      return _ret;
-    }
-
-    /// <summary>
     /// Tries the compute relative path.
     /// </summary>
     /// <param name="baseAbsolutePath">The base absolute path.</param>
@@ -43,14 +29,9 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
     /// </exception>
     public static string TryComputeRelativePath(string baseAbsolutePath, string filePath)
     {
-      if (!TestIfPathIsAbsolute(baseAbsolutePath))
-        throw new ArgumentOutOfRangeException(nameof(baseAbsolutePath), "The parameter must be absolute path");
-      if (string.IsNullOrEmpty(Path.GetFileName(filePath)))
-        throw new ArgumentOutOfRangeException(nameof(filePath), " This parameter has to encapsulate file path");
+      TestIfPathIsAbsolute(baseAbsolutePath, filePath);
       if (!Path.IsPathRooted(filePath))
         return filePath;
-      if (!TestIfPathIsAbsolute(filePath))
-        throw new ArgumentOutOfRangeException(nameof(filePath), "The path is rooted, but must be relative or absolute");
       string[] absoluteDirectories = baseAbsolutePath.Split('\\');
       string[] relativeDirectories = filePath.Split('\\');
       //Get the shortest of the two paths
@@ -82,14 +63,31 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
     /// <summary>
     /// Calculates the name of the absolute file name, If the <paramref name="name"/> is relative it prefixes it with the <paramref name="solutionDirectory"/>.
     /// </summary>
-    /// <param name="name">The name to be converted to absolute name.</param>
     /// <param name="solutionDirectory">The solution directory.</param>
+    /// <param name="name">The name to be converted to absolute name.</param>
     /// <returns>Absolute file name prefixed by the <paramref name="solutionDirectory"/> if needed.</returns>
-    public static string CalculateAbsoluteFileName(string name, string solutionDirectory)
+    public static string CalculateAbsoluteFileName(string solutionDirectory, string name)
     {
-      if (!RelativeFilePathsCalculator.TestIfPathIsAbsolute(name))
-        name = Path.Combine(solutionDirectory, name);
-      return name;
+      TestIfPathIsAbsolute(solutionDirectory, name);
+      return Path.GetFullPath(Path.Combine(solutionDirectory, name));
     }
+
+    #region private
+
+    /// <summary>
+    /// Tests if path is absolute.
+    /// </summary>
+    /// <param name="pathToBeTested">The path to be tested.</param>
+    /// <exception cref="ArgumentOutOfRangeException">pathToBeTested - The path is rooted but not absolute</exception>
+    private static void TestIfPathIsAbsolute(string pathToBeTested, string filePath)
+    {
+      bool _ret = Path.IsPathRooted(pathToBeTested);
+      if (Path.IsPathRooted(pathToBeTested) && (pathToBeTested != Path.GetFullPath(pathToBeTested)))
+        throw new ArgumentOutOfRangeException(nameof(pathToBeTested), "The path is rooted but not absolute");
+      if (string.IsNullOrEmpty(Path.GetFileName(filePath)))
+        throw new ArgumentOutOfRangeException(nameof(filePath), " This parameter has to encapsulate file path");
+    }
+
+    #endregion private
   }
 }

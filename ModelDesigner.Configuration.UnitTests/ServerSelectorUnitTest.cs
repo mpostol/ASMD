@@ -96,8 +96,9 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
 
     #region Instrumentation
 
+    private const string m_PlaginCodeBaseRelativePath = @"CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll";
     private static readonly string m_ExamplePath = Path.Combine((Directory.GetCurrentDirectory()), "Plugin");
-    private static readonly string m_PluginFullPath = $@"{m_ExamplePath}\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll";
+    private static readonly string m_PluginFullPath = Path.Combine(m_ExamplePath, m_PlaginCodeBaseRelativePath);
 
     private class OpenFileDialog4UnitTest : IFileDialog
     {
