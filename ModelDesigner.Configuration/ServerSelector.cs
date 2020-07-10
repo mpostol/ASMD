@@ -240,6 +240,63 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
 
     #region private
 
+    private static class PluginHelper
+    {
+      internal static ServerWrapper OpenPlugInAssembly(ServerWrapper serverWrapper, Action<IFileDialog> setupGUI, ISolutionDirectoryPathManagement solutionPath, IGraphicalUserInterface gui)
+      {
+        ServerWrapper _ret = serverWrapper;
+        FileInfo info;
+        do
+        {
+          using (IFileDialog _ofg = gui.OpenFileDialogFunc())
+          {
+            setupGUI(_ofg);
+            if (!_ofg.ShowDialog())
+              return _ret;
+            info = new FileInfo(_ofg.FileName);
+          }
+          try
+          {
+            if (!info.Exists)
+            {
+              gui.MessageBoxShowWarning(Resources.OpenPluginWarningNotExist, Resources.OpenPluginTitle);
+              continue;
+            }
+            GetIServerConfiguration(info, out Assembly _pluginAssembly, out IConfiguration _serverConfiguration);
+            if (_serverConfiguration == null)
+            {
+              gui.MessageBoxShowWarning(Resources.InterfaceNotImplemented, Resources.OpenPluginTitle);
+              continue;
+            }
+            _ret = new ServerWrapper(_serverConfiguration, new DataProviderDescription(_pluginAssembly), gui, solutionPath);
+          }
+          catch (Exception ex)
+          {
+            gui.MessageBoxShowWarning(ex.Message, Resources.OpenPluginTitle);
+          }
+        } while (false);
+        return _ret;
+      }
+
+      internal static void GetIServerConfiguration(FileInfo info, out Assembly pluginAssembly, out IConfiguration serverConfiguration)
+      {
+        string iName = typeof(IConfiguration).ToString();
+        pluginAssembly = Assembly.LoadFrom(info.FullName);
+        serverConfiguration = null;
+        foreach (Type pluginType in pluginAssembly.GetExportedTypes())
+          //Only look at public types
+          if (pluginType.IsPublic && !pluginType.IsAbstract && pluginType.GetInterface(iName) != null)
+            try
+            {
+              serverConfiguration = (IConfiguration)Activator.CreateInstance(pluginType);
+            }
+            catch (TargetInvocationException _ex)
+            {
+              throw new ApplicationException(string.Format("The server configuration plug-in {0}/{1} cannot be loaded. Contact the vendor to get current version of this component", pluginType.FullName, info.Name), _ex);
+            }
+      }
+    }
+
     private class ServerSelectorEditor : UITypeEditor
     {
       #region UITypeEditor override
@@ -362,62 +419,5 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     #endregion event handlers
 
     #endregion private
-
-    private static class PluginHelper
-    {
-      internal static ServerWrapper OpenPlugInAssembly(ServerWrapper serverWrapper, Action<IFileDialog> setupGUI, ISolutionDirectoryPathManagement solutionPath, IGraphicalUserInterface gui)
-      {
-        ServerWrapper _ret = serverWrapper;
-        FileInfo info;
-        do
-        {
-          using (IFileDialog _ofg = gui.OpenFileDialogFunc())
-          {
-            setupGUI(_ofg);
-            if (!_ofg.ShowDialog())
-              return _ret;
-            info = new FileInfo(_ofg.FileName);
-          }
-          try
-          {
-            if (!info.Exists)
-            {
-              gui.MessageBoxShowWarning(Resources.OpenPluginWarningNotExist, Resources.OpenPluginTitle);
-              continue;
-            }
-            GetIServerConfiguration(info, out Assembly _pluginAssembly, out IConfiguration _serverConfiguration);
-            if (_serverConfiguration == null)
-            {
-              gui.MessageBoxShowWarning(Resources.InterfaceNotImplemented, Resources.OpenPluginTitle);
-              continue;
-            }
-            _ret = new ServerWrapper(_serverConfiguration, new DataProviderDescription(_pluginAssembly), gui, solutionPath);
-          }
-          catch (Exception ex)
-          {
-            gui.MessageBoxShowWarning(ex.Message, Resources.OpenPluginTitle);
-          }
-        } while (false);
-        return _ret;
-      }
-
-      internal static void GetIServerConfiguration(FileInfo info, out Assembly pluginAssembly, out IConfiguration serverConfiguration)
-      {
-        string iName = typeof(IConfiguration).ToString();
-        pluginAssembly = Assembly.LoadFrom(info.FullName);
-        serverConfiguration = null;
-        foreach (Type pluginType in pluginAssembly.GetExportedTypes())
-          //Only look at public types
-          if (pluginType.IsPublic && !pluginType.IsAbstract && pluginType.GetInterface(iName) != null)
-            try
-            {
-              serverConfiguration = (IConfiguration)Activator.CreateInstance(pluginType);
-            }
-            catch (TargetInvocationException _ex)
-            {
-              throw new ApplicationException(string.Format("The server configuration plug-in {0}/{1} cannot be loaded. Contact the vendor to get current version of this component", pluginType.FullName, info.Name), _ex);
-            }
-      }
-    }
   }
 }

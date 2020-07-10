@@ -79,6 +79,7 @@ namespace CAS.UA.Model.Designer.IO
       {
         Name = this.m_Name,
         Projects = m_Projects.Select<IProjectConfigurationManagement, UAModelDesignerProject>(x => x.UAModelDesignerProject).ToArray<UAModelDesignerProject>(),
+        //TODO OpenPlugInAssembly test fails #171 m_ServerDetails is empty 
         ServerDetails = this.m_ServerDetails ?? UAModelDesignerSolutionServerDetails.CreateEmptyInstance()
       };
       this.Save(_solutionDesription);
