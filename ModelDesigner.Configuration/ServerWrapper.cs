@@ -74,13 +74,13 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// </summary>
     /// <param name="plugin">The interface to get access to the plugin.</param>
     /// <param name="assembly">TAn assembly containing the plug-in.</param>
-    /// <param name="userInterface">The user interaction interface that provides basic functionality to implement user interactivity.</param>
+    /// <param name="gui">The user interaction interface that provides basic functionality to implement user interactivity.</param>
     /// <param name="solutionPath">The solution path.</param>
     /// <param name="configuration">The file path containing the configuration.</param>
-    public ServerWrapper(IConfiguration plugin, IDataProviderDescription assembly, IGraphicalUserInterface userInterface, ISolutionDirectoryPathManagement solutionPath, string configuration)
+    public ServerWrapper(IConfiguration plugin, IDataProviderDescription assembly, IGraphicalUserInterface gui, ISolutionDirectoryPathManagement solutionPath, string configuration)
     {
-      this.SolutionPath = solutionPath ?? throw new ArgumentNullException(nameof(solutionPath));
-      m_Server = plugin;
+      SolutionPath = solutionPath ?? throw new ArgumentNullException(nameof(solutionPath));
+      m_Server = plugin ?? throw new ArgumentNullException(nameof(plugin)); ;
       m_Server.OnModified += new EventHandler<UAServerConfigurationEventArgs>(OnConfigurationDataChangeHandler);
       PluginDescription = assembly;
       FileInfo _file = null;
@@ -89,7 +89,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         string _path = IO.RelativeFilePathsCalculator.CalculateAbsoluteFileName(solutionPath.DefaultDirectory, configuration);
         _file = new FileInfo(_path);
       }
-      Configuration = new ConfigurationWrapper(_file, m_Server, userInterface);
+      Configuration = new ConfigurationWrapper(_file, m_Server, gui);
     }
 
     #endregion Constructors
