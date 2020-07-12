@@ -68,6 +68,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
     /// <returns>Absolute file name prefixed by the <paramref name="solutionDirectory"/> if needed.</returns>
     public static string CalculateAbsoluteFileName(string solutionDirectory, string name)
     {
+      if (string.IsNullOrEmpty(name))
+        return String.Empty;
       TestIfPathIsAbsolute(solutionDirectory, name);
       return Path.GetFullPath(Path.Combine(solutionDirectory, name));
     }

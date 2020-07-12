@@ -94,6 +94,32 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
                                                "Folder is not selected, configuration will be created in the default location." }, _tgi.ExclamationMessage);
     }
 
+    [TestMethod]
+    public void GetPluginRelativePathNamesTest()
+    {
+      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
+      _directory.SetupGet(x => x.DefaultDirectory).Returns(Directory.GetCurrentDirectory());
+      Mock<IGraphicalUserInterface> _gui = new Mock<IGraphicalUserInterface>();
+      Mock<IFileDialog> _openFileDialogMock = new Mock<IFileDialog>();
+      Mock<IFolderBrowserDialog> _IFolderBrowserDialog = new Mock<IFolderBrowserDialog>();
+      string _message = String.Empty;
+      string _caption = String.Empty;
+      _gui.Setup(x => x.MessageBoxShowWarning);
+      _gui.SetupGet(x => x.MessageBoxShowExclamation).Returns(() => (message, caption) => { _message = message; _caption = caption; });
+      _gui.SetupGet(x => x.OpenFileDialogFunc).Returns(() => () => _openFileDialogMock.Object);
+      _gui.SetupGet(x => x.OpenFolderBrowserDialogFunc).Returns(() => () => _IFolderBrowserDialog.Object);
+      ServerSelector _underTestItem = new ServerSelector(_gui.Object, _directory.Object, m_PluginFullPath, "");
+      (string codebaseRelativePathName, string configurationRelativePathName) = _underTestItem.GetPluginRelativePathNames(String.Empty);
+      //test behavior
+      _gui.Verify(x => x.MessageBoxShowWarning, Times.Never);
+      _gui.Verify(x => x.MessageBoxShowExclamation, Times.Exactly(2));
+      _gui.Verify(x => x.OpenFileDialogFunc, Times.Once);
+      _gui.Verify(x => x.OpenFolderBrowserDialogFunc, Times.Once);
+      //test result
+      Assert.AreEqual<string>(string.Empty, configurationRelativePathName);
+      Assert.AreEqual<string>(m_PlaginCodeBaseRelativePath, codebaseRelativePathName);
+    }
+
     #region Instrumentation
 
     private const string m_PlaginCodeBaseRelativePath = @"CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll";

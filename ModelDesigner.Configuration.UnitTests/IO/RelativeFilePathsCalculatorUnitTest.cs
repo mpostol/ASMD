@@ -44,6 +44,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.IO
       Assert.AreEqual<string>(Path.Combine(m_AbsolutePath, m_FileName), RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_AbsolutePath, m_FileName));
       Assert.AreEqual<string>(@"C:\VS.git\UAOOI\ASMD210\ModelDesigner.ModelsContainer\bin\Model_0.xml",
                               RelativeFilePathsCalculator.CalculateAbsoluteFileName(@"C:\VS.git\UAOOI\ASMD210\ModelDesigner.ModelsContainer\bin\Release\", @"..\Model_0.xml"));
+      Assert.AreEqual<string>(String.Empty, RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_AbsolutePath, String.Empty));
+      Assert.AreEqual<string>(String.Empty, RelativeFilePathsCalculator.CalculateAbsoluteFileName(m_AbsolutePath, null));
     }
 
     private const string m_AbsolutePath = @"C:\a\b\c\";

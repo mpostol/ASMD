@@ -105,6 +105,18 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     }
 
     /// <summary>
+    /// Gets the plugin relative path names.
+    /// </summary>
+    /// <param name="defaultDirectory">The default directory.</param>
+    /// <returns>System.ValueTuple&lt;System.String, System.String&gt;.</returns>
+    public (string codebaseRelativePathName, string configurationRelativePathName) GetPluginRelativePathNames(string defaultDirectory)
+    {
+      string _codebaseRelativePathName = IO.RelativeFilePathsCalculator.TryComputeRelativePath(defaultDirectory, @"c:\x\y\z\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll");
+      string _configurationRelativePathName = String.Empty;
+      return new ValueTuple<string, string>(_codebaseRelativePathName, _configurationRelativePathName);
+    }
+
+    /// <summary>
     /// Occurs when the configuration has been changed.
     /// </summary>
     public event EventHandler<UAServerConfigurationEventArgs> OnConfigurationChanged;
@@ -245,7 +257,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       internal static ServerWrapper OpenPlugInAssembly(ServerWrapper serverWrapper, Action<IFileDialog> setupGUI, ISolutionDirectoryPathManagement solutionPath, IGraphicalUserInterface gui)
       {
         ServerWrapper _ret = serverWrapper;
-        FileInfo info;
+        string _newAssemblyFile;
         do
         {
           using (IFileDialog _ofg = gui.OpenFileDialogFunc())
@@ -253,16 +265,16 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
             setupGUI(_ofg);
             if (!_ofg.ShowDialog())
               return _ret;
-            info = new FileInfo(_ofg.FileName);
+            _newAssemblyFile = _ofg.FileName;
           }
           try
           {
-            if (!info.Exists)
+            if (!File.Exists(_newAssemblyFile))
             {
               gui.MessageBoxShowWarning(Resources.OpenPluginWarningNotExist, Resources.OpenPluginTitle);
               continue;
             }
-            GetIServerConfiguration(info, out Assembly _pluginAssembly, out IConfiguration _serverConfiguration);
+            GetIServerConfiguration(_newAssemblyFile, out Assembly _pluginAssembly, out IConfiguration _serverConfiguration);
             if (_serverConfiguration == null)
             {
               gui.MessageBoxShowWarning(Resources.InterfaceNotImplemented, Resources.OpenPluginTitle);
@@ -278,10 +290,10 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         return _ret;
       }
 
-      internal static void GetIServerConfiguration(FileInfo info, out Assembly pluginAssembly, out IConfiguration serverConfiguration)
+      internal static void GetIServerConfiguration(string assemblyFile, out Assembly pluginAssembly, out IConfiguration serverConfiguration)
       {
         string iName = typeof(IConfiguration).ToString();
-        pluginAssembly = Assembly.LoadFrom(info.FullName);
+        pluginAssembly = Assembly.LoadFrom(assemblyFile);
         serverConfiguration = null;
         foreach (Type pluginType in pluginAssembly.GetExportedTypes())
           //Only look at public types
@@ -292,7 +304,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
             }
             catch (TargetInvocationException _ex)
             {
-              throw new ApplicationException(string.Format("The server configuration plug-in {0}/{1} cannot be loaded. Contact the vendor to get current version of this component", pluginType.FullName, info.Name), _ex);
+              throw new ApplicationException($"The server configuration plug-in {assemblyFile} cannot be loaded. Contact the vendor to get current version of this component", _ex);
             }
       }
     }
@@ -354,20 +366,21 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         return;
       string _pluginFullName = IO.RelativeFilePathsCalculator.CalculateAbsoluteFileName(solutionPath.DefaultDirectory, codebase);
       if (!File.Exists(_pluginFullName))
-        _pluginFullName = Path.Combine(solutionPath.DefaultDirectory, codebase);
+        _pluginFullName = codebase;
+      if (!File.Exists(_pluginFullName))
+        _pluginFullName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), codebase);
       if (!File.Exists(_pluginFullName))
       {
         string _mss = string.Format(Resources.CASConfiguration_MessageBox_plugin_file_exception, codebase);
         GraphicalUserInterface.MessageBoxShowWarning(_mss, Resources.OpenPluginTitle);
-        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 155, "ServerSelector", _mss);
+        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 983071265, nameof(ServerSelector.OpenPlugIn), _mss);
         return;
       }
-      FileInfo _fileInfo = new FileInfo(_pluginFullName);
       Assembly _assembly;
       IConfiguration _svrInterface;
       try
       {
-        PluginHelper.GetIServerConfiguration(_fileInfo, out _assembly, out _svrInterface);
+        PluginHelper.GetIServerConfiguration(_pluginFullName, out _assembly, out _svrInterface);
       }
       catch (Exception ex)
       {
