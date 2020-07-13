@@ -32,12 +32,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       Mock<IConfiguration> _iConfigurationMock = new Mock<IConfiguration>();
       Mock<IGraphicalUserInterface> _iGraphicalUserInterface = new Mock<IGraphicalUserInterface>();
       ConfigurationWrapper _underTestItem = new ConfigurationWrapper(_configurationFileInfor, _iConfigurationMock.Object, _iGraphicalUserInterface.Object);
-      Assert.IsNotNull(_underTestItem.ConfigurationFile);
+      Assert.AreSame(_configurationFileInfor, _underTestItem.ConfigurationFile);
       Assert.AreEqual<string>(ConfigurationPath, _underTestItem.ConfigurationFile.FullName);
     }
 
     [TestMethod]
-    public void SetHomeDirectoryTest()
+    public void SaveTest()
     {
       FileInfo _fileInforFixture = new FileInfo(ConfigurationPath);
       Mock<IConfiguration> _iConfigurationMock = new Mock<IConfiguration>();

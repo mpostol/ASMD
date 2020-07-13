@@ -47,14 +47,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       Assert.IsTrue(_configurationChanged);
       _configurationChanged = false;
       //TODO UANetworkingConfiguration[T].ReadConfiguration shows popup if file has errors #73
-      Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
-      _directory.SetupGet(x => x.DefaultDirectory).Returns(Directory.GetCurrentDirectory());
       Mock<IGraphicalUserInterface> _guiMock = new Mock<IGraphicalUserInterface>();
-      ServerWrapper _sw = new ServerWrapper(_serverConfiguration, new DataProviderDescription(_pluginAssembly), _guiMock.Object, _directory.Object, m_ConfigurationBaseFileName);
+      ServerWrapper _sw = new ServerWrapper(_serverConfiguration, new DataProviderDescription(_pluginAssembly), _guiMock.Object, m_ConfigurationBaseFileName);
       Assert.IsNotNull(_sw);
       Assert.IsTrue(_configurationChanged);
     }
 
-    private const string m_ConfigurationBaseFileName = @"TestData\ConfigurationDataConsumer.xml";
+    private string m_ConfigurationBaseFileName = Path.Combine(Directory.GetCurrentDirectory(), @"TestData\ConfigurationDataConsumer.xml");
   }
 }

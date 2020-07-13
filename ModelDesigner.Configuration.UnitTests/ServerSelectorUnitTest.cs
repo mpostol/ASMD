@@ -117,6 +117,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       _gui.Verify(x => x.OpenFolderBrowserDialogFunc, Times.Once);
       //test result
       Assert.AreEqual<string>(string.Empty, configurationRelativePathName);
+      Assert.Inconclusive();
       Assert.AreEqual<string>(m_PlaginCodeBaseRelativePath, codebaseRelativePathName);
     }
 

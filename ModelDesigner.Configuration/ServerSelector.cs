@@ -104,6 +104,12 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       }
     }
 
+
+    /// <summary>
+    /// Occurs when the configuration has been changed.
+    /// </summary>
+    public event EventHandler<UAServerConfigurationEventArgs> OnConfigurationChanged;
+
     /// <summary>
     /// Gets the plugin relative path names.
     /// </summary>
@@ -115,11 +121,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       string _configurationRelativePathName = String.Empty;
       return new ValueTuple<string, string>(_codebaseRelativePathName, _configurationRelativePathName);
     }
-
-    /// <summary>
-    /// Occurs when the configuration has been changed.
-    /// </summary>
-    public event EventHandler<UAServerConfigurationEventArgs> OnConfigurationChanged;
 
     /// <summary>
     /// Gets or sets the server configuration - detailed information on localization of the plug-in and configuration file
@@ -254,9 +255,9 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
 
     private static class PluginHelper
     {
-      internal static ServerWrapper OpenPlugInAssembly(ServerWrapper serverWrapper, Action<IFileDialog> setupGUI, ISolutionDirectoryPathManagement solutionPath, IGraphicalUserInterface gui)
+      internal static Tuple<Assembly, IConfiguration> OpenPlugInAssembly(Action<IFileDialog> setupGUI, IGraphicalUserInterface gui)
       {
-        ServerWrapper _ret = serverWrapper;
+        Tuple<Assembly, IConfiguration> _ret = null;
         string _newAssemblyFile;
         do
         {
@@ -264,7 +265,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
           {
             setupGUI(_ofg);
             if (!_ofg.ShowDialog())
-              return _ret;
+              return null;
             _newAssemblyFile = _ofg.FileName;
           }
           try
@@ -280,7 +281,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
               gui.MessageBoxShowWarning(Resources.InterfaceNotImplemented, Resources.OpenPluginTitle);
               continue;
             }
-            _ret = new ServerWrapper(_serverConfiguration, new DataProviderDescription(_pluginAssembly), gui, solutionPath);
+            //_ret = new ServerWrapper(_serverConfiguration, new DataProviderDescription(_pluginAssembly), gui, solutionPath);
+            _ret = new Tuple<Assembly, IConfiguration>(_pluginAssembly, _serverConfiguration);
           }
           catch (Exception ex)
           {
@@ -330,7 +332,11 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         ServerWrapper _currentPlugin = value as ServerWrapper;
         if (_currentPlugin == null)
           return null;
-        return PluginHelper.OpenPlugInAssembly(_currentPlugin, x => SetupGUI(x, _currentPlugin), _currentPlugin.SolutionPath, new GraphicalUserInterface());
+        Tuple<Assembly, IConfiguration> _assemblyDesription = PluginHelper.OpenPlugInAssembly(x => SetupGUI(x, _currentPlugin), new GraphicalUserInterface());
+        if (_assemblyDesription != null)
+          return new ServerWrapper(_assemblyDesription.Item2, new DataProviderDescription(_assemblyDesription.Item1), _currentPlugin);
+        else
+          return _currentPlugin;
       }
 
       #endregion UITypeEditor override
@@ -366,15 +372,19 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         return;
       string _pluginFullName = IO.RelativeFilePathsCalculator.CalculateAbsoluteFileName(solutionPath.DefaultDirectory, codebase);
       if (!File.Exists(_pluginFullName))
-        _pluginFullName = codebase;
-      if (!File.Exists(_pluginFullName))
-        _pluginFullName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), codebase);
-      if (!File.Exists(_pluginFullName))
       {
-        string _mss = string.Format(Resources.CASConfiguration_MessageBox_plugin_file_exception, codebase);
-        GraphicalUserInterface.MessageBoxShowWarning(_mss, Resources.OpenPluginTitle);
-        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 983071265, nameof(ServerSelector.OpenPlugIn), _mss);
-        return;
+        _pluginFullName = codebase;
+        if (!File.Exists(_pluginFullName))
+        {
+          _pluginFullName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), codebase);
+          if (!File.Exists(_pluginFullName))
+          {
+            string _mss = string.Format(Resources.CASConfiguration_MessageBox_plugin_file_exception, codebase);
+            GraphicalUserInterface.MessageBoxShowWarning(_mss, Resources.OpenPluginTitle);
+            TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 983071265, nameof(ServerSelector.OpenPlugIn), _mss);
+            return;
+          }
+        }
       }
       Assembly _assembly;
       IConfiguration _svrInterface;
@@ -385,18 +395,27 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       catch (Exception ex)
       {
         GraphicalUserInterface.MessageBoxShowWarning(ex.Message, Resources.OpenPluginTitle);
-        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 167, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, ex.Message));
+        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 983071266, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, ex.Message));
         return;
       }
       if (_assembly == null || _svrInterface == null)
       {
         GraphicalUserInterface.MessageBoxShowWarning(Resources.AssemblyLoadErropr, Resources.OpenPluginTitle);
-        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 173, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, Resources.AssemblyLoadErropr));
+        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 983071267, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, Resources.AssemblyLoadErropr));
         return;
       }
-      ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, new DataProviderDescription(_assembly), GraphicalUserInterface, solutionPath, configuration);
+      string _path = IO.RelativeFilePathsCalculator.CalculateAbsoluteFileName(solutionPath.DefaultDirectory, configuration);
+      ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, new DataProviderDescription(_assembly), GraphicalUserInterface, _path);
       //It must be the last statement because it raises an event using all properties.
       SelectedAssembly = newSelectedAssembly;
+    }
+
+    private void SetupGUI(IFileDialog openFileDialog)
+    {
+      openFileDialog.InitialDirectory = this.SelectedAssembly == null ? SolutionPath.DefaultDirectory : Path.GetDirectoryName(SelectedAssembly.PluginDescription.CodeBase);
+      openFileDialog.FileName = this.SelectedAssembly == null ? String.Empty : Path.GetDirectoryName(SelectedAssembly.PluginDescription.CodeBase);
+      openFileDialog.Title = Properties.Resources.OpenPluginTitle;
+      openFileDialog.Filter = Properties.Resources.OpenPluginFilter;
     }
 
     #region event handlers
@@ -418,15 +437,10 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
 
     private void PluginMenuItemsOpen_Click(object sender, EventArgs e)
     {
-      SelectedAssembly = PluginHelper.OpenPlugInAssembly(this.SelectedAssembly, SetupGUI, this.SolutionPath, GraphicalUserInterface);
-    }
-
-    private void SetupGUI(IFileDialog openFileDialog)
-    {
-      openFileDialog.InitialDirectory = this.SelectedAssembly == null ? SolutionPath.DefaultDirectory : SelectedAssembly.SolutionPath.DefaultDirectory;
-      openFileDialog.FileName = this.SelectedAssembly == null ? String.Empty : SelectedAssembly.PluginDescription.CodeBase;
-      openFileDialog.Title = Properties.Resources.OpenPluginTitle;
-      openFileDialog.Filter = Properties.Resources.OpenPluginFilter;
+      Tuple<Assembly, IConfiguration> _assemblyDesription = PluginHelper.OpenPlugInAssembly(SetupGUI, GraphicalUserInterface);
+      if (_assemblyDesription == null)
+        return;
+      SelectedAssembly = new ServerWrapper(_assemblyDesription.Item2, new DataProviderDescription(_assemblyDesription.Item1), GraphicalUserInterface);
     }
 
     #endregion event handlers

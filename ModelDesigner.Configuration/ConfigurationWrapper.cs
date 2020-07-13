@@ -157,7 +157,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       ToolStripMenuItem create = new ToolStripMenuItem()
       {
         Text = Resources.MenuNewText,
-        ToolTipText = Resources.MenuNewToolTip, 
+        ToolTipText = Resources.MenuNewToolTip,
       };
       create.Click += new EventHandler(create_Click);
       configuration.DropDownItems.Add(create);
@@ -196,8 +196,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     #endregion public
 
     #region private
-
-    private IConfiguration m_ServerConfiguration { set; get; }
 
     private class ConfigurationFileEditor : UITypeEditor
     {
@@ -238,6 +236,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
 
     private string m_SolutionPath;
     private IGraphicalUserInterface m_userInterface;
+    private IConfiguration m_ServerConfiguration { set; get; }
 
     private void Read(FileInfo newFile)
     {
