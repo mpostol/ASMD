@@ -104,6 +104,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       }
     }
 
+
     /// <summary>
     /// Occurs when the configuration has been changed.
     /// </summary>
@@ -154,7 +155,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// Gets the server configuration.
     /// </summary>
     /// <returns>An instance providing implementation of the <see cref="IConfiguration"/></returns>
-    public IConfiguration IServerConfiguration => SelectedAssembly?.GetServerConfiguration();
+    public IConfiguration IServerConfiguration => SelectedAssembly?.GetServerConfiguration;
 
     /// <summary>
     /// Gets the plugin menu items.
@@ -240,6 +241,64 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
 
     #region private
 
+    private static class PluginHelper
+    {
+      internal static Tuple<Assembly, IConfiguration> OpenPlugInAssembly(Action<IFileDialog> setupGUI, IGraphicalUserInterface gui)
+      {
+        Tuple<Assembly, IConfiguration> _ret = null;
+        string _newAssemblyFile;
+        do
+        {
+          using (IFileDialog _ofg = gui.OpenFileDialogFunc())
+          {
+            setupGUI(_ofg);
+            if (!_ofg.ShowDialog())
+              return null;
+            _newAssemblyFile = _ofg.FileName;
+          }
+          try
+          {
+            if (!File.Exists(_newAssemblyFile))
+            {
+              gui.MessageBoxShowWarning(Resources.OpenPluginWarningNotExist, Resources.OpenPluginTitle);
+              continue;
+            }
+            GetIServerConfiguration(_newAssemblyFile, out Assembly _pluginAssembly, out IConfiguration _serverConfiguration);
+            if (_serverConfiguration == null)
+            {
+              gui.MessageBoxShowWarning(Resources.InterfaceNotImplemented, Resources.OpenPluginTitle);
+              continue;
+            }
+            //_ret = new ServerWrapper(_serverConfiguration, new DataProviderDescription(_pluginAssembly), gui, solutionPath);
+            _ret = new Tuple<Assembly, IConfiguration>(_pluginAssembly, _serverConfiguration);
+          }
+          catch (Exception ex)
+          {
+            gui.MessageBoxShowWarning(ex.Message, Resources.OpenPluginTitle);
+          }
+        } while (false);
+        return _ret;
+      }
+
+      internal static void GetIServerConfiguration(string assemblyFile, out Assembly pluginAssembly, out IConfiguration serverConfiguration)
+      {
+        string iName = typeof(IConfiguration).ToString();
+        pluginAssembly = Assembly.LoadFrom(assemblyFile);
+        serverConfiguration = null;
+        foreach (Type pluginType in pluginAssembly.GetExportedTypes())
+          //Only look at public types
+          if (pluginType.IsPublic && !pluginType.IsAbstract && pluginType.GetInterface(iName) != null)
+            try
+            {
+              serverConfiguration = (IConfiguration)Activator.CreateInstance(pluginType);
+            }
+            catch (TargetInvocationException _ex)
+            {
+              throw new ApplicationException($"The server configuration plug-in {assemblyFile} cannot be loaded. Contact the vendor to get current version of this component", _ex);
+            }
+      }
+    }
+
     private class ServerSelectorEditor : UITypeEditor
     {
       #region UITypeEditor override
@@ -261,7 +320,11 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         ServerWrapper _currentPlugin = value as ServerWrapper;
         if (_currentPlugin == null)
           return null;
-        return PluginHelper.OpenPlugInAssembly(_currentPlugin, x => SetupGUI(x, _currentPlugin), _currentPlugin.SolutionPath, new GraphicalUserInterface());
+        Tuple<Assembly, IConfiguration> _assemblyDesription = PluginHelper.OpenPlugInAssembly(x => SetupGUI(x, _currentPlugin), new GraphicalUserInterface());
+        if (_assemblyDesription != null)
+          return new ServerWrapper(_assemblyDesription.Item2, new DataProviderDescription(_assemblyDesription.Item1), _currentPlugin);
+        else
+          return _currentPlugin;
       }
 
       #endregion UITypeEditor override
@@ -297,36 +360,50 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
         return;
       string _pluginFullName = IO.RelativeFilePathsCalculator.CalculateAbsoluteFileName(solutionPath.DefaultDirectory, codebase);
       if (!File.Exists(_pluginFullName))
-        _pluginFullName = Path.Combine(solutionPath.DefaultDirectory, codebase);
-      if (!File.Exists(_pluginFullName))
       {
-        string _mss = string.Format(Resources.CASConfiguration_MessageBox_plugin_file_exception, codebase);
-        GraphicalUserInterface.MessageBoxShowWarning(_mss, Resources.OpenPluginTitle);
-        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 155, "ServerSelector", _mss);
-        return;
+        _pluginFullName = codebase;
+        if (!File.Exists(_pluginFullName))
+        {
+          _pluginFullName = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), codebase);
+          if (!File.Exists(_pluginFullName))
+          {
+            string _mss = string.Format(Resources.CASConfiguration_MessageBox_plugin_file_exception, codebase);
+            GraphicalUserInterface.MessageBoxShowWarning(_mss, Resources.OpenPluginTitle);
+            TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 983071265, nameof(ServerSelector.OpenPlugIn), _mss);
+            return;
+          }
+        }
       }
-      FileInfo _fileInfo = new FileInfo(_pluginFullName);
       Assembly _assembly;
       IConfiguration _svrInterface;
       try
       {
-        PluginHelper.GetIServerConfiguration(_fileInfo, out _assembly, out _svrInterface);
+        PluginHelper.GetIServerConfiguration(_pluginFullName, out _assembly, out _svrInterface);
       }
       catch (Exception ex)
       {
         GraphicalUserInterface.MessageBoxShowWarning(ex.Message, Resources.OpenPluginTitle);
-        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 167, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, ex.Message));
+        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 983071266, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, ex.Message));
         return;
       }
       if (_assembly == null || _svrInterface == null)
       {
         GraphicalUserInterface.MessageBoxShowWarning(Resources.AssemblyLoadErropr, Resources.OpenPluginTitle);
-        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 173, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, Resources.AssemblyLoadErropr));
+        TraceEvent.Tracer.TraceEvent(TraceEventType.Warning, 983071267, "ServerSelector", string.Format("{0} {1}", Resources.OpenPluginTitle, Resources.AssemblyLoadErropr));
         return;
       }
-      ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, new DataProviderDescription(_assembly), GraphicalUserInterface, solutionPath, configuration);
+      string _path = IO.RelativeFilePathsCalculator.CalculateAbsoluteFileName(solutionPath.DefaultDirectory, configuration);
+      ServerWrapper newSelectedAssembly = new ServerWrapper(_svrInterface, new DataProviderDescription(_assembly), GraphicalUserInterface, _path);
       //It must be the last statement because it raises an event using all properties.
       SelectedAssembly = newSelectedAssembly;
+    }
+
+    private void SetupGUI(IFileDialog openFileDialog)
+    {
+      openFileDialog.InitialDirectory = this.SelectedAssembly == null ? SolutionPath.DefaultDirectory : Path.GetDirectoryName(SelectedAssembly.PluginDescription.CodeBase);
+      openFileDialog.FileName = this.SelectedAssembly == null ? String.Empty : Path.GetDirectoryName(SelectedAssembly.PluginDescription.CodeBase);
+      openFileDialog.Title = Properties.Resources.OpenPluginTitle;
+      openFileDialog.Filter = Properties.Resources.OpenPluginFilter;
     }
 
     #region event handlers
@@ -348,76 +425,14 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
 
     private void PluginMenuItemsOpen_Click(object sender, EventArgs e)
     {
-      SelectedAssembly = PluginHelper.OpenPlugInAssembly(this.SelectedAssembly, SetupGUI, this.SolutionPath, GraphicalUserInterface);
-    }
-
-    private void SetupGUI(IFileDialog openFileDialog)
-    {
-      openFileDialog.InitialDirectory = this.SelectedAssembly == null ? SolutionPath.DefaultDirectory : SelectedAssembly.SolutionPath.DefaultDirectory;
-      openFileDialog.FileName = this.SelectedAssembly == null ? String.Empty : SelectedAssembly.PluginDescription.CodeBase;
-      openFileDialog.Title = Properties.Resources.OpenPluginTitle;
-      openFileDialog.Filter = Properties.Resources.OpenPluginFilter;
+      Tuple<Assembly, IConfiguration> _assemblyDesription = PluginHelper.OpenPlugInAssembly(SetupGUI, GraphicalUserInterface);
+      if (_assemblyDesription == null)
+        return;
+      SelectedAssembly = new ServerWrapper(_assemblyDesription.Item2, new DataProviderDescription(_assemblyDesription.Item1), GraphicalUserInterface);
     }
 
     #endregion event handlers
 
     #endregion private
-
-    private static class PluginHelper
-    {
-      internal static ServerWrapper OpenPlugInAssembly(ServerWrapper serverWrapper, Action<IFileDialog> setupGUI, ISolutionDirectoryPathManagement solutionPath, IGraphicalUserInterface gui)
-      {
-        ServerWrapper _ret = serverWrapper;
-        FileInfo info;
-        do
-        {
-          using (IFileDialog _ofg = gui.OpenFileDialogFunc())
-          {
-            setupGUI(_ofg);
-            if (!_ofg.ShowDialog())
-              return _ret;
-            info = new FileInfo(_ofg.FileName);
-          }
-          try
-          {
-            if (!info.Exists)
-            {
-              gui.MessageBoxShowWarning(Resources.OpenPluginWarningNotExist, Resources.OpenPluginTitle);
-              continue;
-            }
-            GetIServerConfiguration(info, out Assembly _pluginAssembly, out IConfiguration _serverConfiguration);
-            if (_serverConfiguration == null)
-            {
-              gui.MessageBoxShowWarning(Resources.InterfaceNotImplemented, Resources.OpenPluginTitle);
-              continue;
-            }
-            _ret = new ServerWrapper(_serverConfiguration, new DataProviderDescription(_pluginAssembly), gui, solutionPath);
-          }
-          catch (Exception ex)
-          {
-            gui.MessageBoxShowWarning(ex.Message, Resources.OpenPluginTitle);
-          }
-        } while (false);
-        return _ret;
-      }
-
-      internal static void GetIServerConfiguration(FileInfo info, out Assembly pluginAssembly, out IConfiguration serverConfiguration)
-      {
-        string iName = typeof(IConfiguration).ToString();
-        pluginAssembly = Assembly.LoadFrom(info.FullName);
-        serverConfiguration = null;
-        foreach (Type pluginType in pluginAssembly.GetExportedTypes())
-          //Only look at public types
-          if (pluginType.IsPublic && !pluginType.IsAbstract && pluginType.GetInterface(iName) != null)
-            try
-            {
-              serverConfiguration = (IConfiguration)Activator.CreateInstance(pluginType);
-            }
-            catch (TargetInvocationException _ex)
-            {
-              throw new ApplicationException(string.Format("The server configuration plug-in {0}/{1} cannot be loaded. Contact the vendor to get current version of this component", pluginType.FullName, info.Name), _ex);
-            }
-      }
-    }
   }
 }

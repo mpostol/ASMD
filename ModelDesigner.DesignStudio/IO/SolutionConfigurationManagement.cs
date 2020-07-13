@@ -27,9 +27,11 @@ namespace CAS.UA.Model.Designer.IO
 
     private static UniqueNameGenerator m_UniqueNameGenerator = new UniqueNameGenerator(Resources.DefaultProjectName);
     private readonly string m_Name;
-    private UAModelDesignerSolutionServerDetails m_ServerDetails;
+
     private ServerSelector m_Server;
+
     private List<IProjectConfigurationManagement> m_Projects;
+
     private void AddProjectTCollection(IProjectConfigurationManagement _newModel)
     {
       m_Projects.Add(_newModel);
@@ -75,11 +77,19 @@ namespace CAS.UA.Model.Designer.IO
         string _effectiveAbsolutePath = _item.Save(this.DefaultDirectory);
         _projectDescriptor.FileName = RelativeFilePathsCalculator.TryComputeRelativePath(this.DefaultDirectory, _effectiveAbsolutePath);
       }
+      string _codebaseRelativePathName = string.Empty;
+      string _configurationRelativePathName = string.Empty;
+      ServerSelector.ServerDescriptor _plugin = m_Server.ServerConfiguration;
+      if (_plugin != null)
+      {
+        _codebaseRelativePathName = RelativeFilePathsCalculator.TryComputeRelativePath(this.DefaultDirectory, _plugin.Codebase);
+        _configurationRelativePathName = RelativeFilePathsCalculator.TryComputeRelativePath(this.DefaultDirectory, _plugin.Configuration);
+      }
       UAModelDesignerSolution _solutionDesription = new UAModelDesignerSolution()
       {
         Name = this.m_Name,
         Projects = m_Projects.Select<IProjectConfigurationManagement, UAModelDesignerProject>(x => x.UAModelDesignerProject).ToArray<UAModelDesignerProject>(),
-        ServerDetails = this.m_ServerDetails ?? UAModelDesignerSolutionServerDetails.CreateEmptyInstance()
+        ServerDetails = new UAModelDesignerSolutionServerDetails { codebase = _codebaseRelativePathName, configuration = _configurationRelativePathName }
       };
       this.Save(_solutionDesription);
     }
@@ -122,9 +132,11 @@ namespace CAS.UA.Model.Designer.IO
     {
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 335242041, "Creating new private solution using Empty model");
       m_Name = solutionDescription.Item1.Name;
-      m_ServerDetails = solutionDescription.Item1.ServerDetails ?? throw new ArgumentNullException(nameof(UAModelDesignerSolution.ServerDetails));
+      UAModelDesignerSolutionServerDetails _ServerDetails = solutionDescription.Item1.ServerDetails ?? throw new ArgumentNullException(nameof(UAModelDesignerSolution.ServerDetails));
       m_Projects = solutionDescription.Item1.Projects.Select<UAModelDesignerProject, IProjectConfigurationManagement>(x => ProjectConfigurationManagement.ImportModelDesign(this, base.GraphicalUserInterface, x)).ToList<IProjectConfigurationManagement>();
-      m_Server = new ServerSelector(base.GraphicalUserInterface, this, m_ServerDetails.codebase, m_ServerDetails.configuration);
+      string _codebase = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.DefaultDirectory, _ServerDetails.codebase);
+      string _configuration = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.DefaultDirectory, _ServerDetails.configuration);
+      m_Server = new ServerSelector(base.GraphicalUserInterface, this, _codebase, _configuration);
       if (string.IsNullOrEmpty(Settings.Default.DefaultSolutionFileName))
       {
         Settings.Default.DefaultSolutionFileName = DefaultFileName;

@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using System.Xml;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -79,32 +80,15 @@ namespace CAS.UA.Model.Designer.Wrappers
         }
         catch (FileNotFoundException _ex)
         {
-          this.MessageBoxHandling.Show(string.Format(Resources.ProjectFileNotFound_Info, _ex.Message), Resources.ProjectFileNotFound_Header, MessageBoxButtons.OK, MessageBoxIcon.Error);
+          this.MessageBoxHandling.Show(string.Format(Resources.ProjectFileNotFound_Info, _ex.Message), Resources.ProjectFileNotFound_Header, ToForms.MessageBoxButtons.OK, ToForms.MessageBoxIcon.Error);
         }
         catch (Exception _ex)
         {
-          this.MessageBoxHandling.Show(string.Format(Properties.Resources.Project_FileOpenError, _ex.Message), Properties.Resources.Project_OpenFileCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+          this.MessageBoxHandling.Show(string.Format(Properties.Resources.Project_FileOpenError, _ex.Message), Properties.Resources.Project_OpenFileCaption, ToForms.MessageBoxButtons.OK, ToForms.MessageBoxIcon.Error);
         }
       }
       this.AddRange(_nodes);
     }
-
-    //private UAModelDesignerSolution SaveProjectsCreateConfiguration()
-    //{
-    //  Server.Save(HomeDirectory);
-    //  List<ProjectTreeNode> _ListOfProjects = new List<ProjectTreeNode>();
-    //  foreach (ProjectTreeNode _project in this)
-    //    if (_project.Save())
-    //      _ListOfProjects.Add(_project);
-    //  this.Clear();
-    //  this.AddRange(_ListOfProjects);
-    //  return new UAModelDesignerSolution()
-    //  {
-    //    Name = this.Name,
-    //    Projects = this.Cast<ProjectTreeNode>().Select<ProjectTreeNode, UAModelDesignerProject>(x => x.UAModelDesignerProject).ToArray<UAModelDesignerProject>(),
-    //    ServerDetails = this.ServerDetails == null ? null : new UAModelDesignerSolutionServerDetails() { codebase = ServerDetails.Codebase, configuration = ServerDetails.Configuration }
-    //  };
-    //}
 
     private void Server_OnConfigurationChanged(object sender, UAServerConfigurationEventArgs e)
     {
@@ -233,17 +217,17 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <summary>
     /// Finds the type starting form <see cref="Root.SolutionRoot"/> and if not succeeded tries <see cref="Root.LibraryRoot"/>.
     /// </summary>
-    /// <param name="myType">My type.</param>
+    /// <param name="typeName">The type name to find.</param>
     /// <returns></returns>
-    internal ITypeDesign FindType(XmlQualifiedName myType)
+    internal ITypeDesign FindType(XmlQualifiedName typeName)
     {
       foreach (ProjectTreeNode node in this)
       {
-        ITypeDesign ret = node.Find(myType);
+        ITypeDesign ret = node.Find(typeName);
         if (ret != null)
           return ret;
       }
-      return LibraryRoot.FindType(myType);
+      return LibraryRoot.FindType(typeName);
     }
 
     /// <summary>
@@ -270,10 +254,6 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     public ISolutionDirectoryPathManagement HomeDirectory => m_ISolutionConfigurationManagement ?? throw new System.ArgumentNullException();
 
-    ISolutionDirectoryPathManagement ISolutionTreeNodeUI.HomeDirectory => throw new NotImplementedException();
-
-    ServerSelector ISolutionTreeNodeUI.Server => throw new NotImplementedException();
-
     #endregion ISolutionTreeNodeUI
 
     #region ISolutionModel
@@ -282,7 +262,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       ICollection<System.Windows.Forms.ToolStripItem> _items = new List<System.Windows.Forms.ToolStripItem>();
       Server.GetPluginMenuItems(_items);
-      menu.AddRange(_items.ToArray<System.Windows.Forms.ToolStripItem>());
+      menu.AddRange(_items.ToArray<ToolStripItem>());
     }
 
     public void AddProject(bool existing)

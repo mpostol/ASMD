@@ -61,33 +61,40 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     #region Constructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="ServerWrapper" /> class.
+    /// Initializes a new instance of the <see cref="ServerWrapper"/> class.
     /// </summary>
     /// <param name="plugin">The interface to get access to the plugin.</param>
-    /// <param name="assembly">An assembly containing the plug-in.</param>
-    /// <param name="userInterface">The user interaction interface that provides basic functionality to implement user interactivity.</param>
-    /// <param name="solutionPath">The solution path.</param>
-    public ServerWrapper(IConfiguration plugin, IDataProviderDescription assembly, IGraphicalUserInterface userInterface, ISolutionDirectoryPathManagement solutionPath) : this(plugin, assembly, userInterface, solutionPath, string.Empty) { }
+    /// <param name="assembly">The assembly containing the plug-in.</param>
+    /// <param name="currentPlugin">The current plugin.</param>
+    public ServerWrapper(IConfiguration plugin, IDataProviderDescription assembly, ServerWrapper currentPlugin) : this(plugin, assembly, currentPlugin.m_GraphicalUserInterfaceField) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ServerWrapper" /> class.
     /// </summary>
     /// <param name="plugin">The interface to get access to the plugin.</param>
-    /// <param name="assembly">TAn assembly containing the plug-in.</param>
+    /// <param name="assembly">An assembly containing the plug-in.</param>
     /// <param name="gui">The user interaction interface that provides basic functionality to implement user interactivity.</param>
-    /// <param name="solutionPath">The solution path.</param>
+    public ServerWrapper(IConfiguration plugin, IDataProviderDescription assembly, IGraphicalUserInterface gui) : this(plugin, assembly, gui, string.Empty) { }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ServerWrapper" /> class.
+    /// </summary>
+    /// <param name="plugin">The interface to get access to the plugin.</param>
+    /// <param name="assembly">The assembly containing the plug-in.</param>
+    /// <param name="gui">The user interaction interface that provides basic functionality to implement user interactivity.</param>
     /// <param name="configuration">The file path containing the configuration.</param>
-    public ServerWrapper(IConfiguration plugin, IDataProviderDescription assembly, IGraphicalUserInterface gui, ISolutionDirectoryPathManagement solutionPath, string configuration)
+    public ServerWrapper(IConfiguration plugin, IDataProviderDescription assembly, IGraphicalUserInterface gui, string configuration)
     {
-      SolutionPath = solutionPath ?? throw new ArgumentNullException(nameof(solutionPath));
-      m_Server = plugin ?? throw new ArgumentNullException(nameof(plugin)); ;
+      m_Server = plugin ?? throw new ArgumentNullException(nameof(plugin));
+      PluginDescription = assembly ?? throw new ArgumentNullException(nameof(plugin));
+      m_GraphicalUserInterfaceField = gui ?? throw new ArgumentNullException(nameof(plugin));
       m_Server.OnModified += new EventHandler<UAServerConfigurationEventArgs>(OnConfigurationDataChangeHandler);
-      PluginDescription = assembly;
       FileInfo _file = null;
       if (!string.IsNullOrEmpty(configuration))
       {
-        string _path = IO.RelativeFilePathsCalculator.CalculateAbsoluteFileName(solutionPath.DefaultDirectory, configuration);
-        _file = new FileInfo(_path);
+        if (!Path.IsPathRooted(configuration))
+          throw new ArgumentOutOfRangeException(nameof(configuration));
+        _file = new FileInfo(configuration);
       }
       Configuration = new ConfigurationWrapper(_file, m_Server, gui);
     }
@@ -112,13 +119,15 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     #region public
 
     /// <summary>
+    /// Occurs when the configuration has been changed.
+    /// </summary>
+    internal event EventHandler<UAServerConfigurationEventArgs> OnConfigurationChanged;
+
+    /// <summary>
     /// Gets the server configuration.
     /// </summary>
     /// <returns>The <see cref="IConfiguration"/> providing access to the server configuration file editor.</returns>
-    internal IConfiguration GetServerConfiguration()
-    {
-      return m_Server;
-    }
+    internal IConfiguration GetServerConfiguration => m_Server;
 
     /// <summary>
     /// Gets the instance configuration providing access to the instance node configuration editor.
@@ -131,11 +140,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     {
       return Configuration.GetInstanceConfiguration(nodeUniqueIdentifier);
     }
-
-    /// <summary>
-    /// Occurs when the configuration has been changed.
-    /// </summary>
-    internal event EventHandler<UAServerConfigurationEventArgs> OnConfigurationChanged;
 
     /// <summary>
     /// Provides the plugin description.
@@ -168,8 +172,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     {
       Configuration.SetHomeDirectory(newHomeDirectory);
     }
-
-    internal ISolutionDirectoryPathManagement SolutionPath { get; private set; }
 
     #endregion public
 
@@ -206,6 +208,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     }
 
     private IConfiguration m_Server;
+    private readonly IGraphicalUserInterface m_GraphicalUserInterfaceField;
 
     private void RaiseOnConfigurationChanged(bool serverChanged)
     {
@@ -215,7 +218,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     }
 
     /// <summary>
-    /// Called when configuration data has benn changed.
+    /// Called when configuration data has been changed.
     /// </summary>
     /// <param name="s">The source.</param>
     /// <param name="arg">The <see cref="System.EventArgs"/> instance containing the event data.</param>
