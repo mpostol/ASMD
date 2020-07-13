@@ -95,7 +95,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     }
 
     [TestMethod]
-    public void GetPluginRelativePathNamesTest()
+    public void GetPluginRelativePathNamesXTest()
     {
       Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
       _directory.SetupGet(x => x.DefaultDirectory).Returns(Directory.GetCurrentDirectory());
@@ -105,25 +105,28 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
       string _message = String.Empty;
       string _caption = String.Empty;
       _gui.Setup(x => x.MessageBoxShowWarning);
+      _gui.Setup(x => x.MessageBoxShowError);
       _gui.SetupGet(x => x.MessageBoxShowExclamation).Returns(() => (message, caption) => { _message = message; _caption = caption; });
       _gui.SetupGet(x => x.OpenFileDialogFunc).Returns(() => () => _openFileDialogMock.Object);
       _gui.SetupGet(x => x.OpenFolderBrowserDialogFunc).Returns(() => () => _IFolderBrowserDialog.Object);
       ServerSelector _underTestItem = new ServerSelector(_gui.Object, _directory.Object, m_PluginFullPath, "");
-      (string codebaseRelativePathName, string configurationRelativePathName) = _underTestItem.GetPluginRelativePathNames(String.Empty);
+      ServerSelector.ServerDescriptor _pluginPaths = _underTestItem.ServerConfiguration;
       //test behavior
+      _gui.Verify(x => x.MessageBoxShowError, Times.Never);
       _gui.Verify(x => x.MessageBoxShowWarning, Times.Never);
       _gui.Verify(x => x.MessageBoxShowExclamation, Times.Exactly(2));
       _gui.Verify(x => x.OpenFileDialogFunc, Times.Once);
       _gui.Verify(x => x.OpenFolderBrowserDialogFunc, Times.Once);
       //test result
-      Assert.AreEqual<string>(string.Empty, configurationRelativePathName);
-      Assert.Inconclusive();
-      Assert.AreEqual<string>(m_PlaginCodeBaseRelativePath, codebaseRelativePathName);
+      Assert.IsNotNull(_pluginPaths);
+      Assert.AreEqual<string>(m_ConfigurationDefaultFileName, _pluginPaths.Configuration);
+      Assert.AreEqual<string>(m_PluginFullPath, _pluginPaths.Codebase);
     }
 
     #region Instrumentation
 
     private const string m_PlaginCodeBaseRelativePath = @"CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll";
+    private static readonly string m_ConfigurationDefaultFileName = Path.Combine((Directory.GetCurrentDirectory()), "CAS.UAServer.Configuration.uasconfig");
     private static readonly string m_ExamplePath = Path.Combine((Directory.GetCurrentDirectory()), "Plugin");
     private static readonly string m_PluginFullPath = Path.Combine(m_ExamplePath, m_PlaginCodeBaseRelativePath);
 

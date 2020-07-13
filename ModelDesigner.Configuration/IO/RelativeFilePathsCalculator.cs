@@ -80,6 +80,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.IO
     /// Tests if path is absolute.
     /// </summary>
     /// <param name="pathToBeTested">The path to be tested.</param>
+    /// <param name="filePath">The file path.</param>
     /// <exception cref="ArgumentOutOfRangeException">pathToBeTested - The path is rooted but not absolute</exception>
     private static void TestIfPathIsAbsolute(string pathToBeTested, string filePath)
     {

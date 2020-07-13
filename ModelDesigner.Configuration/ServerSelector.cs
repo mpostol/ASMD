@@ -111,18 +111,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     public event EventHandler<UAServerConfigurationEventArgs> OnConfigurationChanged;
 
     /// <summary>
-    /// Gets the plugin relative path names.
-    /// </summary>
-    /// <param name="defaultDirectory">The default directory.</param>
-    /// <returns>System.ValueTuple&lt;System.String, System.String&gt;.</returns>
-    public (string codebaseRelativePathName, string configurationRelativePathName) GetPluginRelativePathNames(string defaultDirectory)
-    {
-      string _codebaseRelativePathName = IO.RelativeFilePathsCalculator.TryComputeRelativePath(defaultDirectory, @"c:\x\y\z\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll");
-      string _configurationRelativePathName = String.Empty;
-      return new ValueTuple<string, string>(_codebaseRelativePathName, _configurationRelativePathName);
-    }
-
-    /// <summary>
     /// Gets or sets the server configuration - detailed information on localization of the plug-in and configuration file
     /// </summary>
     /// <value>
@@ -167,7 +155,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// Gets the server configuration.
     /// </summary>
     /// <returns>An instance providing implementation of the <see cref="IConfiguration"/></returns>
-    public IConfiguration IServerConfiguration => SelectedAssembly?.GetServerConfiguration();
+    public IConfiguration IServerConfiguration => SelectedAssembly?.GetServerConfiguration;
 
     /// <summary>
     /// Gets the plugin menu items.

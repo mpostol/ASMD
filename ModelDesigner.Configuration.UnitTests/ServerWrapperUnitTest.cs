@@ -58,11 +58,16 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
         new string[] { "You did not choose the configuration file. Please select a location of the default configuration file.", "Folder is not selected, configuration will be created in the default location." },
         _message.ToArray());
 
+      //Configuration
+      Assert.IsNotNull(_instanceUnderTest.Configuration);
       Assert.IsNotNull(_instanceUnderTest.Configuration.ConfigurationFile);
       Assert.AreEqual<string>(Path.Combine(Directory.GetCurrentDirectory(), _defaultConfigurationFileName), _instanceUnderTest.Configuration.ConfigurationFile.FullName);
-      Assert.IsNotNull(_instanceUnderTest.Configuration);
+      //PluginDescription
+      Assert.IsNotNull(_instanceUnderTest.PluginDescription);
       Assert.AreSame(_IDataProviderDescriptionMock.Object, _instanceUnderTest.PluginDescription);
-      //Assert.AreSame(_directoryMock.Object, _instanceUnderTest.SolutionPath);
+      IConfiguration _configurationEditor = _instanceUnderTest.GetServerConfiguration;
+      Assert.IsNotNull(_configurationEditor);
+      Assert.AreEqual(_IConfigurationMock.Object, _configurationEditor);
     }
   }
 }

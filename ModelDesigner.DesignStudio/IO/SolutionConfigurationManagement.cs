@@ -77,12 +77,18 @@ namespace CAS.UA.Model.Designer.IO
         string _effectiveAbsolutePath = _item.Save(this.DefaultDirectory);
         _projectDescriptor.FileName = RelativeFilePathsCalculator.TryComputeRelativePath(this.DefaultDirectory, _effectiveAbsolutePath);
       }
-      (string _codebaseRelativePathName, string _configurationRelativePathName) = m_Server.GetPluginRelativePathNames(this.DefaultDirectory);
+      string _codebaseRelativePathName = string.Empty;
+      string _configurationRelativePathName = string.Empty;
+      ServerSelector.ServerDescriptor _plugin = m_Server.ServerConfiguration;
+      if (_plugin != null)
+      {
+        _codebaseRelativePathName = RelativeFilePathsCalculator.TryComputeRelativePath(this.DefaultDirectory, _plugin.Codebase);
+        _configurationRelativePathName = RelativeFilePathsCalculator.TryComputeRelativePath(this.DefaultDirectory, _plugin.Configuration);
+      }
       UAModelDesignerSolution _solutionDesription = new UAModelDesignerSolution()
       {
         Name = this.m_Name,
         Projects = m_Projects.Select<IProjectConfigurationManagement, UAModelDesignerProject>(x => x.UAModelDesignerProject).ToArray<UAModelDesignerProject>(),
-        //TODO OpenPlugInAssembly test fails #171 m_ServerDetails is empty
         ServerDetails = new UAModelDesignerSolutionServerDetails { codebase = _codebaseRelativePathName, configuration = _configurationRelativePathName }
       };
       this.Save(_solutionDesription);

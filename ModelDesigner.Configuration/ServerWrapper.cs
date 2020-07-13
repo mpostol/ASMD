@@ -74,16 +74,14 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// <param name="plugin">The interface to get access to the plugin.</param>
     /// <param name="assembly">An assembly containing the plug-in.</param>
     /// <param name="gui">The user interaction interface that provides basic functionality to implement user interactivity.</param>
-    /// <param name="solutionPath">The solution path.</param>
     public ServerWrapper(IConfiguration plugin, IDataProviderDescription assembly, IGraphicalUserInterface gui) : this(plugin, assembly, gui, string.Empty) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ServerWrapper" /> class.
     /// </summary>
     /// <param name="plugin">The interface to get access to the plugin.</param>
-    /// <param name="assembly">Thn assembly containing the plug-in.</param>
+    /// <param name="assembly">The assembly containing the plug-in.</param>
     /// <param name="gui">The user interaction interface that provides basic functionality to implement user interactivity.</param>
-    /// <param name="solutionPath">The solution path.</param>
     /// <param name="configuration">The file path containing the configuration.</param>
     public ServerWrapper(IConfiguration plugin, IDataProviderDescription assembly, IGraphicalUserInterface gui, string configuration)
     {
@@ -129,10 +127,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     /// Gets the server configuration.
     /// </summary>
     /// <returns>The <see cref="IConfiguration"/> providing access to the server configuration file editor.</returns>
-    internal IConfiguration GetServerConfiguration()
-    {
-      return m_Server;
-    }
+    internal IConfiguration GetServerConfiguration => m_Server;
 
     /// <summary>
     /// Gets the instance configuration providing access to the instance node configuration editor.
