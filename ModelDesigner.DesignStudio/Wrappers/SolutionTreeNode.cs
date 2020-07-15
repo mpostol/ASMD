@@ -280,6 +280,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     public void Save(bool prompt)
     {
+      //TODO Tools => Build/Verify - failed #173 - all projects must be saved here - sees Build
       m_ISolutionConfigurationManagement.Save(prompt);
     }
 

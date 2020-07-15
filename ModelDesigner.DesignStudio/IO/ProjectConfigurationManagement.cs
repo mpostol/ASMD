@@ -162,6 +162,7 @@ namespace CAS.UA.Model.Designer.IO
       DirectoryInfo dirinfo = new DirectoryInfo(BuildOutputDirectoryPath);
       if (!dirinfo.Exists)
         Directory.CreateDirectory(BuildOutputDirectoryPath);
+      //Tools => Build/Verify - failed #173 - build must refer to current model file but not any calculated path
       string _filePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.m_ISolutionConfigurationManagement.DefaultDirectory, m_UAModelDesignerProject.FileName);
       if (!new FileInfo(_filePath).Exists)
       {
