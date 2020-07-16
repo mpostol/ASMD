@@ -11,6 +11,7 @@ using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Solution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Opc.Ua.ModelCompiler;
 using System;
 using System.IO;
 
@@ -42,6 +43,8 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Assert.IsTrue(((ProjectConfigurationManagement)_newItem).ChangesArePresent);
       Assert.IsNotNull(_newItem.ModelDesign);
       Assert.AreEqual<string>("projectName", _newItem.Name);
+      Assert.AreEqual<string>(@"C:\a\b\c", _newItem.DefaultDirectory);
+      Assert.AreEqual<string>(@"C:\a\b\c\projectName.xml", _newItem.DefaultFileName);
       CheckConsistency(_newItem.UAModelDesignerProject);
       //_solutionMock
       _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);
@@ -55,6 +58,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       _IFileDialogMock.Verify(x => x.ShowDialog(), Times.Never);
       _IFileDialogMock.Verify(x => x.Dispose(), Times.Never);
     }
+
     private void CheckConsistency(UAModelDesignerProject uaModelDesignerProject)
     {
       Assert.IsNotNull(uaModelDesignerProject);
@@ -69,6 +73,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
     [TestMethod]
     public void SaveNewTest()
     {
+      //TODO Creating new project the existing one should not be overridden #174
       string _solutionPath = Path.Combine(Directory.GetCurrentDirectory(), "TestData");
       Mock<ISolutionConfigurationManagement> _solutionMock = new Mock<ISolutionConfigurationManagement>();
       _solutionMock.SetupGet(x => x.DefaultDirectory).Returns(_solutionPath);
@@ -77,14 +82,15 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       _guiMock.SetupGet(z => z.OpenFileDialogFunc).Returns(() => _IFileDialogMock.Object);
       _guiMock.SetupSet(z => z.UseWaitCursor = It.IsAny<bool>());
       IProjectConfigurationManagement _newItem = ProjectConfigurationManagement.CreateNew(_solutionMock.Object, _guiMock.Object, "projectName");
-      _newItem.GetModel = () => _newItem.ModelDesign;
       Assert.IsTrue(((ProjectConfigurationManagement)_newItem).ChangesArePresent);
       Assert.IsNotNull(_newItem.ModelDesign);
       Assert.AreEqual<string>("projectName", _newItem.Name);
       Assert.IsNotNull(_newItem.UAModelDesignerProject);
       _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);
       _solutionMock.Verify(x => x.DefaultFileName, Times.Never);
-      string projectPath = _newItem.Save(_solutionPath);
+      ModelDesign _modelDesign = new ModelDesign();
+      //test save
+      _newItem.Save(_modelDesign);
       _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);
       _solutionMock.Verify(x => x.DefaultFileName, Times.Never);
       _guiMock.VerifySet(x => x.UseWaitCursor = true, Times.Once);

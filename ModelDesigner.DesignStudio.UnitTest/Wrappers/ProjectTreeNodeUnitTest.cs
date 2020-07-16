@@ -101,7 +101,25 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     }
 
-    //Tools => Build/Verify - failed #173 - add test for Save operation. It doesn't exist but must be defined to provide save functionality before build.
+    [TestMethod]
+    public void SaveTest()
+    {
+      //preparation
+      Mock<IProjectConfigurationManagement> _projectConfigurationMock = new Mock<IProjectConfigurationManagement>();
+      Mock<OPCFModelDesign> _OPCFModelDesignMock = new Mock<OPCFModelDesign>();
+      _projectConfigurationMock.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(_OPCFModelDesignMock.Object);
+      _projectConfigurationMock.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
+      Mock <BaseTreeNode> _parentMock = new Mock<BaseTreeNode>("ParentBaseNode");
+      _parentMock.SetupGet<string[]>(x => x.AvailiableNamespaces).Returns(new List<string>() { "ns1", "ns2" }.ToArray());
+      _parentMock.Setup(x => x.GetTargetNamespace()).Returns("GetTargetNamespace");
+      //create object under test
+      ProjectTreeNode _newItem = new ProjectTreeNode(_projectConfigurationMock.Object) { Parent = _parentMock.Object };
+
+      _newItem.Save();
+
+      _projectConfigurationMock.Verify(x => x.Save(It.IsAny< OPCFModelDesign>()), Times.Once);
+
+    }
 
     #region instrumentation
 

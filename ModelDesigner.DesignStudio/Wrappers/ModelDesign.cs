@@ -8,7 +8,6 @@ using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
@@ -137,7 +136,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     #endregion private
 
-    #region public
+    #region WrapperBase
 
     /// <summary>
     /// Gets the name of the help topic.
@@ -208,7 +207,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
     }
 
-    #endregion public
+    #endregion WrapperBase
 
     #region internal
 

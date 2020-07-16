@@ -28,8 +28,8 @@ namespace CAS.UA.Model.Designer.IO
 
     private readonly UAModelDesignerProject m_UAModelDesignerProject;
     private readonly ISolutionConfigurationManagement m_ISolutionConfigurationManagement;
-    private readonly OPCFModelDesign m_ModelDesign;
     private readonly bool m_NewModel = false;
+    private OPCFModelDesign m_ModelDesign;
 
     private static void SetupFileDialog(IFileDialog _dialog)
     {
@@ -44,6 +44,9 @@ namespace CAS.UA.Model.Designer.IO
       return RelativeFilePathsCalculator.CalculateAbsoluteFileName(solutionDirectory, _Name);
     }
 
+    private string CSVFilePath => ReplaceTokenAndReturnFullPath(CSVFileName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.DefaultDirectory);
+    private string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.DefaultDirectory);
+
     private string CSVFileName
     {
       get
@@ -53,9 +56,6 @@ namespace CAS.UA.Model.Designer.IO
         return m_UAModelDesignerProject.CSVFileName;
       }
     }
-
-    private string CSVFilePath => ReplaceTokenAndReturnFullPath(CSVFileName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.DefaultDirectory);
-    private string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.DefaultDirectory);
 
     private string BuildOutputDirectoryName
     {
@@ -138,7 +138,8 @@ namespace CAS.UA.Model.Designer.IO
       if (solution == null) throw new ArgumentNullException(nameof(solution));
       if (gui == null) throw new ArgumentNullException(nameof(gui));
       UAModelDesignerProject _projectDescription = UAModelDesignerProject.CreateEmpty(projectName);
-      string _defFilePath = Path.ChangeExtension(Path.Combine(solution.DefaultDirectory, projectName), Resources.Project_FileDialogDefaultExt);
+      //TODO Creating new project the existing one should not be overridden #174
+      string _defFilePath = Path.ChangeExtension(RelativeFilePathsCalculator.CalculateAbsoluteFileName(solution.DefaultDirectory, projectName), Resources.Project_FileDialogDefaultExt);
       return new ProjectConfigurationManagement(true, _projectDescription, solution, new Tuple<OPCFModelDesign, string>(OpcUaModelCompilerModelDesigner.GetDefault(), _defFilePath), gui);
     }
 
@@ -150,8 +151,6 @@ namespace CAS.UA.Model.Designer.IO
     UAModelDesignerProject IProjectConfigurationManagement.UAModelDesignerProject => m_UAModelDesignerProject;
     string IProjectConfigurationManagement.Name => this.m_UAModelDesignerProject.Name;
 
-    public Func<OPCFModelDesign> GetModel { set; private get; }
-
     /// <summary>
     /// Builds the project and write any massages to specified output.
     /// </summary>
@@ -162,7 +161,7 @@ namespace CAS.UA.Model.Designer.IO
       DirectoryInfo dirinfo = new DirectoryInfo(BuildOutputDirectoryPath);
       if (!dirinfo.Exists)
         Directory.CreateDirectory(BuildOutputDirectoryPath);
-      //Tools => Build/Verify - failed #173 - build must refer to current model file but not any calculated path
+      //TODO Tools => Build/Verify - failed #173 - build must refer to current model file but not any calculated path
       string _filePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.m_ISolutionConfigurationManagement.DefaultDirectory, m_UAModelDesignerProject.FileName);
       if (!new FileInfo(_filePath).Exists)
       {
@@ -231,12 +230,10 @@ namespace CAS.UA.Model.Designer.IO
       }
     }
 
-    string IProjectConfigurationManagement.Save(string defaultDirectory)
+    void IProjectConfigurationManagement.Save(OPCFModelDesign modelDesign)
     {
-      if (m_NewModel)
-        this.DefaultFileName = Path.ChangeExtension(Path.Combine(defaultDirectory, m_UAModelDesignerProject.Name), Resources.Project_FileDialogDefaultExt);
-      base.Save(GetModel());
-      return DefaultFileName;
+      m_ModelDesign = modelDesign;
+      base.Save(this.m_ModelDesign);
     }
 
     #endregion IProjectConfigurationManagement

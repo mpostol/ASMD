@@ -74,7 +74,7 @@ namespace CAS.UA.Model.Designer.IO
       foreach (IProjectConfigurationManagement _item in m_Projects)
       {
         UAModelDesignerProject _projectDescriptor = _item.UAModelDesignerProject;
-        string _effectiveAbsolutePath = _item.Save(this.DefaultDirectory);
+        string _effectiveAbsolutePath = _item.DefaultFileName;
         _projectDescriptor.FileName = RelativeFilePathsCalculator.TryComputeRelativePath(this.DefaultDirectory, _effectiveAbsolutePath);
       }
       string _codebaseRelativePathName = string.Empty;

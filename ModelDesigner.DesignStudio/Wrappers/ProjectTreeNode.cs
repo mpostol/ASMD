@@ -8,6 +8,7 @@
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.ToForms;
+using Opc.Ua.ModelCompiler;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,8 +44,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       m_ProjectConfigurationManager = projectDescription;
       Model = new ModelDesign(projectDescription.ModelDesign, false);
-      //Tools => Build/Verify - failed #173 - Model.GetModel must be called by the Save operation
-      m_ProjectConfigurationManager.GetModel = () => Model.GetModel();
       Add(Model);
     }
 
@@ -129,6 +128,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     public void Remove()
     {
       Parent.Remove(this);
+    }
+
+    internal void Save()
+    {
+      m_ProjectConfigurationManager.Save(Model.GetModel());
     }
 
     #endregion IProjectModel
