@@ -8,7 +8,7 @@ string AssemblyCopyright = "Copyright (c) 2020 Mariusz Postol";
 string AssemblyCompany = "Mariusz Postol";
 string AssemblyTrademark = "OOI ASMD";
 string AssemblyProduct = "Object-Oriented Internet Address Space Model Designer";
-string AssemblyVersion = "4.2.1";
+string AssemblyVersion = "4.3.0";
 string AssemblyVersionPrerelease = "";
 
 //Note: 
