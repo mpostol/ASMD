@@ -1,8 +1,12 @@
 ﻿# Object-Oriented Internet Address Space Model Designer - Release Notes
 
+## Table of Contents
+
 - [Object-Oriented Internet Address Space Model Designer - Release Notes](#object-oriented-internet-address-space-model-designer---release-notes)
+	- [Table of Contents](#table-of-contents)
 	- [Current release details](#current-release-details)
 	- [Versions history](#versions-history)
+		- [Version: 4.2.1](#version-421)
 		- [Version: 4.2.0](#version-420)
 		- [Version: 4.1.0](#version-410)
 			- [Release Date: 17 Dec 2019](#release-date-17-dec-2019)
@@ -23,14 +27,26 @@
  | Title        | Description                                                                                    |
  | ------------ | ---------------------------------------------------------------------------------------------- |
  | Product      | [Object-Oriented Internet Address Space Model Designer](https://github.com/mpostol/OPC-UA-OOI) |
+ | Version      | 4.3.0                                                                                          |
+ | Release Date | 17.06.2020                                                                                     |
+
+The main changes and new functionality are listed below:
+
+- Bug-fix release - see the issues list for details
+
+## Versions history
+
+### Version: 4.2.1
+
+ | Title        | Description                                                                                    |
+ | ------------ | ---------------------------------------------------------------------------------------------- |
+ | Product      | [Object-Oriented Internet Address Space Model Designer](https://github.com/mpostol/OPC-UA-OOI) |
  | Version      | 4.2.1                                                                                          |
  | Release Date | 29.05.2020                                                                                     |
 
 The main changes and new functionality are listed below:
 
 - Hot-fix - see the issues list for details
-
-## Versions history
 
 ### Version: 4.2.0
 
@@ -105,7 +121,7 @@ The main changes and new functionality are listed below:
 - Added Analyzer Device Integration (ADI) model
 - Synchronized example models with the White-paper: [OPC UA Information Model Deployment](http://www.commsvr.com/DownloadCenter/Publications/OPCUAInformationModelDeployment/tabid/563/language/en-US/Default.aspx)
 
-### Version 3.00.03 
+### Version 3.00.03
 
 #### Release Date: 2014.07.07
 
