@@ -4,7 +4,6 @@
 //
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.UA.Model.Designer.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -61,7 +60,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       //test behavior
       _projectConfigurationMock.VerifyGet(x => x.ModelDesign, Times.Once);
       _projectConfigurationMock.VerifyGet(x => x.Name, Times.Once);
-
     }
 
     [TestMethod]
@@ -78,7 +76,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       XmlQualifiedName _toFind = new XmlQualifiedName("Name", "Namespace");
       ITypeDesign _findReturn = _newItem.Find(_toFind);
       Assert.IsNull(_findReturn);
-
     }
 
     [TestMethod]
@@ -98,7 +95,6 @@ namespace CAS.UA.Model.Designer.Wrappers
 
       _projectConfigurationMock.Verify(x => x.Build(It.IsAny<TextWriter>()), Times.Once);
       _writer.Verify(x => x.WriteLine(It.IsAny<string>()), Times.AtMost(5));
-
     }
 
     [TestMethod]
@@ -109,7 +105,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       Mock<OPCFModelDesign> _OPCFModelDesignMock = new Mock<OPCFModelDesign>();
       _projectConfigurationMock.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(_OPCFModelDesignMock.Object);
       _projectConfigurationMock.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
-      Mock <BaseTreeNode> _parentMock = new Mock<BaseTreeNode>("ParentBaseNode");
+      Mock<BaseTreeNode> _parentMock = new Mock<BaseTreeNode>("ParentBaseNode");
       _parentMock.SetupGet<string[]>(x => x.AvailiableNamespaces).Returns(new List<string>() { "ns1", "ns2" }.ToArray());
       _parentMock.Setup(x => x.GetTargetNamespace()).Returns("GetTargetNamespace");
       //create object under test
@@ -117,8 +113,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 
       _newItem.Save();
 
-      _projectConfigurationMock.Verify(x => x.Save(It.IsAny< OPCFModelDesign>()), Times.Once);
-
+      _projectConfigurationMock.Verify(x => x.Save(It.IsAny<OPCFModelDesign>()), Times.Once);
     }
 
     #region instrumentation

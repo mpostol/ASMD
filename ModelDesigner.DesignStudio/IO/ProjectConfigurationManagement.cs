@@ -44,27 +44,18 @@ namespace CAS.UA.Model.Designer.IO
       return RelativeFilePathsCalculator.CalculateAbsoluteFileName(solutionDirectory, _Name);
     }
 
-    private string CSVFilePath => ReplaceTokenAndReturnFullPath(CSVFileName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.DefaultDirectory);
-    private string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName, m_UAModelDesignerProject.Name, m_ISolutionConfigurationManagement.DefaultDirectory);
-
-    private string CSVFileName
+    private (string CSVFileName, string OutputDirectory) BuildCalculateFileNames()
     {
-      get
-      {
-        if (string.IsNullOrEmpty(m_UAModelDesignerProject.CSVFileName))
-          m_UAModelDesignerProject.CSVFileName = Resources.DefaultCSVFileName;
-        return m_UAModelDesignerProject.CSVFileName;
-      }
-    }
-
-    private string BuildOutputDirectoryName
-    {
-      get
-      {
-        if (string.IsNullOrEmpty(m_UAModelDesignerProject.BuildOutputDirectoryName))
-          m_UAModelDesignerProject.BuildOutputDirectoryName = Resources.DefaultOutputBuildDirectory;
-        return Path.Combine(this.DefaultDirectory, m_UAModelDesignerProject.BuildOutputDirectoryName);
-      }
+      UAModelDesignerProject _def = UAModelDesignerProject.CreateEmpty("temporal");
+      if (String.IsNullOrEmpty(m_UAModelDesignerProject.Name))
+        m_UAModelDesignerProject.Name = Guid.NewGuid().ToString();
+      if (String.IsNullOrEmpty(m_UAModelDesignerProject.CSVFileName))
+        m_UAModelDesignerProject.CSVFileName = _def.CSVFileName;
+      if (String.IsNullOrEmpty(m_UAModelDesignerProject.BuildOutputDirectoryName))
+        m_UAModelDesignerProject.BuildOutputDirectoryName = _def.BuildOutputDirectoryName;
+      string _CSVFileName = ReplaceTokenAndReturnFullPath(m_UAModelDesignerProject.CSVFileName, m_UAModelDesignerProject.Name, this.DefaultDirectory);
+      string _OutputDirectory = ReplaceTokenAndReturnFullPath(m_UAModelDesignerProject.BuildOutputDirectoryName, m_UAModelDesignerProject.Name, this.DefaultDirectory);
+      return new ValueTuple<string, string>(_CSVFileName, _OutputDirectory);
     }
 
     #endregion private
@@ -157,76 +148,66 @@ namespace CAS.UA.Model.Designer.IO
     /// <param name="output">The output containing text sent by the compiler.</param>
     void IProjectConfigurationManagement.Build(TextWriter output)
     {
-      // some verification at the beginning
-      DirectoryInfo dirinfo = new DirectoryInfo(BuildOutputDirectoryPath);
-      if (!dirinfo.Exists)
-        Directory.CreateDirectory(BuildOutputDirectoryPath);
       //TODO Tools => Build/Verify - failed #173 - build must refer to current model file but not any calculated path
       string _filePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.m_ISolutionConfigurationManagement.DefaultDirectory, m_UAModelDesignerProject.FileName);
-      if (!new FileInfo(_filePath).Exists)
+      if (!File.Exists(this.DefaultFileName))
       {
         string msg = string.Format(Resources.BuildError_Fie_DoesNotExist, _filePath);
         output.WriteLine(msg);
         GraphicalUserInterface.MessageBoxShowError(msg, Resources.Build_Caption);
         return;
       }
-      if (!new FileInfo(CSVFilePath).Exists)
+      (string CSVFileName, string OutputDirectory) = BuildCalculateFileNames();
+      if (!Directory.Exists(OutputDirectory))
+        Directory.CreateDirectory(OutputDirectory);
+      if (!File.Exists(CSVFileName))
       {
-        string msg = string.Format(Resources.BuildError_Fie_DoesNotExist_doyouwanttocreateone, CSVFilePath);
+        string msg = string.Format(Resources.BuildError_Fie_DoesNotExist_doyouwanttocreateone, CSVFileName);
         if (GraphicalUserInterface.MessageBoxShowWarningAskYN(msg, Resources.Build_Caption))
-        {
-          //we are creating an blank file (one empty line inside)
-          StreamWriter myCsvFile = new StreamWriter(CSVFilePath, false);
-          using (myCsvFile)
+          using (StreamWriter myCsvFile = new StreamWriter(CSVFileName, false))//we are creating an blank file (one empty line inside)
           {
             myCsvFile.WriteLine(" ");
             myCsvFile.Flush();
-            myCsvFile.Close();
           }
-        }
         else
         {
-          output.WriteLine(string.Format(Resources.BuildError_Fie_DoesNotExist, CSVFilePath));
+          output.WriteLine(string.Format(Resources.BuildError_Fie_DoesNotExist, CSVFileName));
           return;
         }
       }
-      string argument = string.Format(Properties.Settings.Default.Build_ProjectCompilationString, _filePath, CSVFilePath, BuildOutputDirectoryPath);
-      string CompilationExecutable = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Properties.Settings.Default.ProjectCompilationExecutable);
-      ProcessStartInfo myStartInfo = new System.Diagnostics.ProcessStartInfo(CompilationExecutable)
+      string _commandLine = string.Format(Properties.Settings.Default.Build_ProjectCompilationString, _filePath, CSVFileName, OutputDirectory);
+      string _compilerPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Properties.Settings.Default.ProjectCompilationExecutable);
+      ProcessStartInfo myStartInfo = new ProcessStartInfo(_compilerPath)
       {
-        Arguments = argument,
+        Arguments = _commandLine,
         RedirectStandardOutput = true,
         RedirectStandardError = true,
         UseShellExecute = false,
         CreateNoWindow = true
       };
       output.WriteLine();
-      output.Write(CompilationExecutable);
+      output.Write(_compilerPath);
       output.Write(" ");
-      output.WriteLine(argument);
+      output.WriteLine(_commandLine);
       output.WriteLine();
-      Process myBuildProcess = new Process
+      Process _buildProcess = new Process
       {
         StartInfo = myStartInfo
       };
-      if (!myBuildProcess.Start())
+      if (!_buildProcess.Start())
         GraphicalUserInterface.MessageBoxShowWarning(Resources.Build_click_ok_when_build_has_finished, Resources.Build_Caption);
       else
       {
-        myBuildProcess.WaitForExit();
-        string outputfrombuildprocess = myBuildProcess.StandardOutput.ReadToEnd();
-        string erroroutputfrombuildprocess = myBuildProcess.StandardError.ReadToEnd();
-        if (!string.IsNullOrEmpty(erroroutputfrombuildprocess))
-        {
-          erroroutputfrombuildprocess = string.Format(Resources.BuildError_error_occured, erroroutputfrombuildprocess);
-        }
+        _buildProcess.WaitForExit();
+        string _outputfrombuildprocess = _buildProcess.StandardOutput.ReadToEnd();
+        string _erroroutputfrombuildprocess = _buildProcess.StandardError.ReadToEnd();
+        if (!string.IsNullOrEmpty(_erroroutputfrombuildprocess))
+          _erroroutputfrombuildprocess = string.Format(Resources.BuildError_error_occured, _erroroutputfrombuildprocess);
         else
-        {
-          erroroutputfrombuildprocess = Resources.Build_project_ok;
-        }
-        outputfrombuildprocess += erroroutputfrombuildprocess;
-        if (!string.IsNullOrEmpty(outputfrombuildprocess))
-          output.WriteLine(outputfrombuildprocess);
+          _erroroutputfrombuildprocess = Resources.Build_project_ok;
+        _outputfrombuildprocess += _erroroutputfrombuildprocess;
+        if (!string.IsNullOrEmpty(_outputfrombuildprocess))
+          output.WriteLine(_outputfrombuildprocess);
       }
     }
 
