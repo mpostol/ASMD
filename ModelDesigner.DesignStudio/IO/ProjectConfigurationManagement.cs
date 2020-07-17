@@ -148,7 +148,6 @@ namespace CAS.UA.Model.Designer.IO
     /// <param name="output">The output containing text sent by the compiler.</param>
     void IProjectConfigurationManagement.Build(TextWriter output)
     {
-      //TODO Tools => Build/Verify - failed #173 - build must refer to current model file but not any calculated path
       string _filePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.m_ISolutionConfigurationManagement.DefaultDirectory, m_UAModelDesignerProject.FileName);
       if (!File.Exists(this.DefaultFileName))
       {

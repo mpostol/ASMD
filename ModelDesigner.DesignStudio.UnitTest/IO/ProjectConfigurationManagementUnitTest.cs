@@ -169,8 +169,10 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
     }
 
     #region instrumentation
+
     private static readonly string m_TestSolutionPath = Path.Combine(Directory.GetCurrentDirectory(), "TestData");
     private static readonly string m_TestProjectPath = Path.Combine(m_TestSolutionPath, @"DemoConfiguration\BoilerType.xml");
+
     private void CheckConsistency(UAModelDesignerProject uaModelDesignerProject)
     {
       Assert.IsNotNull(uaModelDesignerProject);
@@ -181,6 +183,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Guid _projectIdentifier = Guid.Parse(uaModelDesignerProject.ProjectIdentifier);
       Assert.IsFalse(Guid.Empty == _projectIdentifier);
     }
+
     private class GraphicalUserInterface : IGraphicalUserInterface
     {
       private readonly IFileDialog m_Mock;
