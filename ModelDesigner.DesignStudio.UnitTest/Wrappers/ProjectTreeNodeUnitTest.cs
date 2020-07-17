@@ -4,14 +4,13 @@
 //
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.UA.Model.Designer.IO;
-using CAS.UA.Model.Designer.Solution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml;
 using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -31,66 +30,24 @@ namespace CAS.UA.Model.Designer.Wrappers
     [TestMethod]
     public void CreateNewModelTest()
     {
-      String _currentFolder = Directory.GetCurrentDirectory();
-      Mock<IProjectConfigurationManagement> _project = new Mock<IProjectConfigurationManagement>();
+      //preparation
+      Mock<IProjectConfigurationManagement> _projectConfigurationMock = new Mock<IProjectConfigurationManagement>();
       Mock<OPCFModelDesign> _OPCFModelDesignMock = new Mock<OPCFModelDesign>();
-      _project.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(_OPCFModelDesignMock.Object);
-      _project.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
+      _projectConfigurationMock.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(_OPCFModelDesignMock.Object);
+      _projectConfigurationMock.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
       Mock<BaseTreeNode> _parentMock = new Mock<BaseTreeNode>("ParentBaseNode");
-      _parentMock.SetupGet<string[]>(x => x.AvailiableNamespaces).Returns(new List<string>(){ "ns1", "ns2"}.ToArray());
+      _parentMock.SetupGet<string[]>(x => x.AvailiableNamespaces).Returns(new List<string>() { "ns1", "ns2" }.ToArray());
       _parentMock.Setup(x => x.GetTargetNamespace()).Returns("GetTargetNamespace");
-      CheckConsistency(new ProjectTreeNode(_project.Object) { Parent = _parentMock.Object });
-      Assert.AreEqual<string>(_currentFolder, Directory.GetCurrentDirectory());
-    }
-
-    //TODO Test application functionality using User Interface (UI) #144
-    //[TestMethod]
-    //public void CreateTest()
-    //{
-    //  Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
-    //  _directory.SetupGet(x => x.BaseDirectory).Returns(@"C:\");
-    //  ProjectTreeNode _emptyModel = ProjectTreeNode.CreateNewModel(_directory.Object);
-    //  IViewModel _viewModel = _emptyModel.Create();
-    //  Assert.IsNotNull(_viewModel);
-    //}
-
-    //[TestMethod]
-    //public void FindTest()
-    //{
-    //  Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
-    //  _directory.SetupGet(x => x.BaseDirectory).Returns(@"C:\");
-    //  ProjectTreeNode _emptyModel = ProjectTreeNode.CreateNewModel(_directory.Object);
-    //  XmlQualifiedName _toFind = new XmlQualifiedName("Name", "Namespace");
-    //  ITypeDesign _findReturn = _emptyModel.Find(_toFind);
-    //  Assert.IsNull(_findReturn);
-    //}
-
-    //[TestMethod]
-    //public void GetTargetNamespaceTest()
-    //{
-    //  Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
-    //  string _solutionDir = Path.Combine(Directory.GetCurrentDirectory(), "Temp");
-    //  Directory.CreateDirectory(_solutionDir);
-    //  _directory.SetupGet(x => x.BaseDirectory).Returns(_solutionDir);
-    //  ProjectTreeNode _emptyModel = ProjectTreeNode.CreateNewModel(_directory.Object);
-    //  _emptyModel.Save();
-    //  string _expectedModelFileName = Path.Combine(_solutionDir, _emptyModel.FileName);
-    //  Assert.IsTrue(File.Exists(_expectedModelFileName), _expectedModelFileName);
-    //}
-
-    #region instrumentation
-
-    private const string m_DemoConfigurationFilePath = @"TestData\DemoConfiguration\BoilerType.xml";
-
-    private void CheckConsistency(ProjectTreeNode _newItem)
-    {
+      //create object under test
+      ProjectTreeNode _newItem = new ProjectTreeNode(_projectConfigurationMock.Object) { Parent = _parentMock.Object };
+      //test consistency
       Assert.IsNotNull(_newItem.Parent);
       Assert.AreEqual<int>(2, _newItem.AvailiableNamespaces.Length);
       Assert.AreEqual<int>(1, _newItem.Count);
       Assert.IsNotNull(_newItem.ErrorList);
       Assert.AreEqual<int>(0, _newItem.ErrorList.Count);
       Assert.AreEqual<string>(@"", _newItem.HelpTopicName);
-      Assert.AreEqual<string>("GetTargetNamespace",  _newItem.GetTargetNamespace());
+      Assert.AreEqual<string>("GetTargetNamespace", _newItem.GetTargetNamespace());
       Assert.IsNotNull(_newItem.SymbolicName);
       Assert.AreEqual<string>(@"EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327", _newItem.Text);
       Assert.IsTrue(String.IsNullOrEmpty(_newItem.ToolTipText));
@@ -100,19 +57,68 @@ namespace CAS.UA.Model.Designer.Wrappers
       object _w4pg = _newItem.Wrapper4PropertyGrid;
       Assert.IsNotNull(_w4pg);
       Assert.AreSame(_w4pg, ViewModel.Instance);
+      //test behavior
+      _projectConfigurationMock.VerifyGet(x => x.ModelDesign, Times.Once);
+      _projectConfigurationMock.VerifyGet(x => x.Name, Times.Once);
     }
 
-    private class SolutionDirectoryPathManagement : SolutionDirectoryPathManagementBase
+    [TestMethod]
+    public void FindTest()
     {
-      internal void SetNewPath(string path)
-      {
-        base.DefaultFileName = path;
-      }
+      Mock<IProjectConfigurationManagement> _projectConfigurationMock = new Mock<IProjectConfigurationManagement>();
+      Mock<OPCFModelDesign> _OPCFModelDesignMock = new Mock<OPCFModelDesign>();
+      _projectConfigurationMock.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(_OPCFModelDesignMock.Object);
+      _projectConfigurationMock.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
+      Mock<BaseTreeNode> _parentMock = new Mock<BaseTreeNode>("ParentBaseNode");
+      _parentMock.SetupGet<string[]>(x => x.AvailiableNamespaces).Returns(new List<string>() { "ns1", "ns2" }.ToArray());
+      ProjectTreeNode _newItem = new ProjectTreeNode(_projectConfigurationMock.Object) { Parent = _parentMock.Object };
 
-      public SolutionDirectoryPathManagement(string baseDirectory) : base(baseDirectory)
-      {
-      }
+      XmlQualifiedName _toFind = new XmlQualifiedName("Name", "Namespace");
+      ITypeDesign _findReturn = _newItem.Find(_toFind);
+      Assert.IsNull(_findReturn);
     }
+
+    [TestMethod]
+    public void BuildTest()
+    {
+      Mock<IProjectConfigurationManagement> _projectConfigurationMock = new Mock<IProjectConfigurationManagement>();
+      Mock<OPCFModelDesign> _OPCFModelDesignMock = new Mock<OPCFModelDesign>();
+      _projectConfigurationMock.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(_OPCFModelDesignMock.Object);
+      _projectConfigurationMock.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
+
+      Mock<TextWriter> _writer = new Mock<TextWriter>();
+      _projectConfigurationMock.Setup(x => x.Build(_writer.Object));
+      Mock<BaseTreeNode> _parentMock = new Mock<BaseTreeNode>("ParentBaseNode");
+
+      ProjectTreeNode _newItem = new ProjectTreeNode(_projectConfigurationMock.Object) { Parent = _parentMock.Object };
+      _newItem.Build(_writer.Object);
+
+      _projectConfigurationMock.Verify(x => x.Build(It.IsAny<TextWriter>()), Times.Once);
+      _writer.Verify(x => x.WriteLine(It.IsAny<string>()), Times.AtMost(5));
+    }
+
+    [TestMethod]
+    public void SaveTest()
+    {
+      //preparation
+      Mock<IProjectConfigurationManagement> _projectConfigurationMock = new Mock<IProjectConfigurationManagement>();
+      Mock<OPCFModelDesign> _OPCFModelDesignMock = new Mock<OPCFModelDesign>();
+      _projectConfigurationMock.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(_OPCFModelDesignMock.Object);
+      _projectConfigurationMock.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
+      Mock<BaseTreeNode> _parentMock = new Mock<BaseTreeNode>("ParentBaseNode");
+      _parentMock.SetupGet<string[]>(x => x.AvailiableNamespaces).Returns(new List<string>() { "ns1", "ns2" }.ToArray());
+      _parentMock.Setup(x => x.GetTargetNamespace()).Returns("GetTargetNamespace");
+      //create object under test
+      ProjectTreeNode _newItem = new ProjectTreeNode(_projectConfigurationMock.Object) { Parent = _parentMock.Object };
+
+      _newItem.Save();
+
+      _projectConfigurationMock.Verify(x => x.Save(It.IsAny<OPCFModelDesign>()), Times.Once);
+    }
+
+    #region instrumentation
+
+    private const string m_DemoConfigurationFilePath = @"TestData\DemoConfiguration\BoilerType.xml";
 
     private class ViewModelFactoryTest : IViewModelFactory
     {

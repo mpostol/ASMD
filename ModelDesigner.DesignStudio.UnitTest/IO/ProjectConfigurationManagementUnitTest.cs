@@ -11,20 +11,25 @@ using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Solution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Opc.Ua.ModelCompiler;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
 {
   [TestClass]
   [DeploymentItem(@"TestData\", @"TestData")]
+  [DeploymentItem(@"exe\", @"exe")]
   public class ProjectConfigurationManagementUnitTest
   {
     [TestMethod]
     public void ConfigurationFileExistsTest()
     {
-      Assert.IsTrue(Directory.Exists("TestData"), $"{Directory.GetCurrentDirectory()}");
-      Assert.IsTrue(File.Exists(@"TestData\EmptySolution.uamdsl"));
+      Assert.IsTrue(Directory.Exists(m_TestSolutionPath), $"{Directory.GetCurrentDirectory()}");
+      Assert.IsTrue(File.Exists(m_TestProjectPath));
+      string _compilerPath = Path.Combine(Directory.GetCurrentDirectory(), @"exe\CAS.CommServer.UA.ModelCompiler.Command.exe");
+      Assert.IsTrue(File.Exists(_compilerPath));
     }
 
     [TestMethod]
@@ -42,6 +47,8 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Assert.IsTrue(((ProjectConfigurationManagement)_newItem).ChangesArePresent);
       Assert.IsNotNull(_newItem.ModelDesign);
       Assert.AreEqual<string>("projectName", _newItem.Name);
+      Assert.AreEqual<string>(@"C:\a\b\c", _newItem.DefaultDirectory);
+      Assert.AreEqual<string>(@"C:\a\b\c\projectName.xml", _newItem.DefaultFileName);
       CheckConsistency(_newItem.UAModelDesignerProject);
       //_solutionMock
       _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);
@@ -55,20 +62,11 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       _IFileDialogMock.Verify(x => x.ShowDialog(), Times.Never);
       _IFileDialogMock.Verify(x => x.Dispose(), Times.Never);
     }
-    private void CheckConsistency(UAModelDesignerProject uaModelDesignerProject)
-    {
-      Assert.IsNotNull(uaModelDesignerProject);
-      Assert.AreEqual<string>(@"$(ProjectFileName)", uaModelDesignerProject.BuildOutputDirectoryName);
-      Assert.AreEqual<string>("$(ProjectFileName).csv", uaModelDesignerProject.CSVFileName);
-      Assert.AreEqual<string>(@"$(ProjectFileName).xml", uaModelDesignerProject.FileName);
-      Assert.AreEqual<string>("projectName", uaModelDesignerProject.Name);
-      Guid _projectIdentifier = Guid.Parse(uaModelDesignerProject.ProjectIdentifier);
-      Assert.IsFalse(Guid.Empty == _projectIdentifier);
-    }
 
     [TestMethod]
     public void SaveNewTest()
     {
+      //TODO Creating new project the existing one should not be overridden #174
       string _solutionPath = Path.Combine(Directory.GetCurrentDirectory(), "TestData");
       Mock<ISolutionConfigurationManagement> _solutionMock = new Mock<ISolutionConfigurationManagement>();
       _solutionMock.SetupGet(x => x.DefaultDirectory).Returns(_solutionPath);
@@ -77,14 +75,15 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       _guiMock.SetupGet(z => z.OpenFileDialogFunc).Returns(() => _IFileDialogMock.Object);
       _guiMock.SetupSet(z => z.UseWaitCursor = It.IsAny<bool>());
       IProjectConfigurationManagement _newItem = ProjectConfigurationManagement.CreateNew(_solutionMock.Object, _guiMock.Object, "projectName");
-      _newItem.GetModel = () => _newItem.ModelDesign;
       Assert.IsTrue(((ProjectConfigurationManagement)_newItem).ChangesArePresent);
       Assert.IsNotNull(_newItem.ModelDesign);
       Assert.AreEqual<string>("projectName", _newItem.Name);
       Assert.IsNotNull(_newItem.UAModelDesignerProject);
       _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);
       _solutionMock.Verify(x => x.DefaultFileName, Times.Never);
-      string projectPath = _newItem.Save(_solutionPath);
+      ModelDesign _modelDesign = new ModelDesign();
+      //test save
+      _newItem.Save(_modelDesign);
       _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);
       _solutionMock.Verify(x => x.DefaultFileName, Times.Never);
       _guiMock.VerifySet(x => x.UseWaitCursor = true, Times.Once);
@@ -101,7 +100,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
     }
 
     [TestMethod]
-    public void OpenExistingModelTest()
+    public void OpenExistingModelFailedTest()
     {
       Mock<ISolutionDirectoryPathManagement> _directory = new Mock<ISolutionDirectoryPathManagement>();
       _directory.SetupGet(x => x.DefaultDirectory).Returns(Directory.GetCurrentDirectory());
@@ -125,11 +124,64 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Assert.ThrowsException<FileNotFoundException>(() => _newItem = ProjectConfigurationManagement.ImportModelDesign(_solutionMock.Object, new GraphicalUserInterface(_IFileDialogMock.Object), _projectDescriptor));
     }
 
-    private class SolutionDirectoryPathManagementBaseFixture : CAS.CommServer.UA.ModelDesigner.Configuration.IO.SolutionDirectoryPathManagementBase
+    [TestMethod]
+    public void OpenExistingModel()
     {
-      public SolutionDirectoryPathManagementBaseFixture() : base(@"C:\a\b\c")
+      Mock<ISolutionConfigurationManagement> _solutionMock = new Mock<ISolutionConfigurationManagement>();
+      _solutionMock.SetupGet(x => x.DefaultDirectory).Returns(m_TestSolutionPath);
+      Mock<IGraphicalUserInterface> _guiuMocck = new Mock<IGraphicalUserInterface>();
+      UAModelDesignerProject _projectDescriptor = new UAModelDesignerProject()
       {
-      }
+        BuildOutputDirectoryName = "15064369 - 0B00 - 4CA8 - BB0A - AB486AFCCA38",
+        CSVFileName = "CSVFileName",
+        FileName = @"DemoConfiguration\BoilerType.xml",
+        Name = "TestProjectDescription",
+        ProjectIdentifier = Guid.NewGuid().ToString()
+      };
+      IProjectConfigurationManagement _newItemUnderTest = ProjectConfigurationManagement.ImportModelDesign(_solutionMock.Object, _guiuMocck.Object, _projectDescriptor);
+      Assert.IsNotNull(_newItemUnderTest);
+      Assert.AreEqual<string>(Path.Combine(Path.Combine(m_TestSolutionPath, "DemoConfiguration")), _newItemUnderTest.DefaultDirectory);
+      Assert.AreEqual<string>(m_TestProjectPath, _newItemUnderTest.DefaultFileName);
+      Assert.IsNotNull(_newItemUnderTest.ModelDesign);
+      Assert.AreEqual<string>(@"http://tempuri.org/UA/Examples/BoilerType", _newItemUnderTest.ModelDesign.TargetNamespace);
+      Assert.AreEqual<string>("TestProjectDescription", _newItemUnderTest.Name);
+      Assert.IsNotNull(_newItemUnderTest.UAModelDesignerProject);
+      Assert.AreEqual<string>(@"DemoConfiguration\BoilerType.xml", _newItemUnderTest.UAModelDesignerProject.FileName);
+    }
+
+    [TestMethod]
+    public void BuildTest()
+    {
+      Mock<ISolutionConfigurationManagement> _solutionMock = new Mock<ISolutionConfigurationManagement>();
+      _solutionMock.SetupGet(x => x.DefaultDirectory).Returns(m_TestSolutionPath);
+      Mock<IGraphicalUserInterface> _guiuMocck = new Mock<IGraphicalUserInterface>();
+      _guiuMocck.SetupGet(x => x.MessageBoxShowWarningAskYN).Returns(() => (t, c) => true);
+      UAModelDesignerProject _projectDescriptor = _projectDescriptor = UAModelDesignerProject.CreateEmpty("BoilerType");
+      _projectDescriptor.FileName = @"DemoConfiguration\BoilerType.xml";
+      IProjectConfigurationManagement _newItemUnderTest = ProjectConfigurationManagement.ImportModelDesign(_solutionMock.Object, _guiuMocck.Object, _projectDescriptor);
+      Mock<TextWriter> _outputMock = new Mock<TextWriter>();
+      List<string> _log = new List<string>();
+      _outputMock.Setup(x => x.WriteLine(It.IsAny<string>())).Callback<string>(s => _log.Add(s));
+      _newItemUnderTest.Build(_outputMock.Object);
+      Assert.AreEqual<int>(2, _log.Count);
+      Assert.IsTrue(Directory.Exists(Path.Combine(m_TestSolutionPath, @"DemoConfiguration\BoilerType")));
+      Assert.AreEqual(7, Directory.GetFiles(Path.Combine(m_TestSolutionPath, @"DemoConfiguration\BoilerType")).Length);
+    }
+
+    #region instrumentation
+
+    private static readonly string m_TestSolutionPath = Path.Combine(Directory.GetCurrentDirectory(), "TestData");
+    private static readonly string m_TestProjectPath = Path.Combine(m_TestSolutionPath, @"DemoConfiguration\BoilerType.xml");
+
+    private void CheckConsistency(UAModelDesignerProject uaModelDesignerProject)
+    {
+      Assert.IsNotNull(uaModelDesignerProject);
+      Assert.AreEqual<string>(@"$(ProjectFileName)", uaModelDesignerProject.BuildOutputDirectoryName);
+      Assert.AreEqual<string>("$(ProjectFileName).csv", uaModelDesignerProject.CSVFileName);
+      Assert.AreEqual<string>(@"$(ProjectFileName).xml", uaModelDesignerProject.FileName);
+      Assert.AreEqual<string>("projectName", uaModelDesignerProject.Name);
+      Guid _projectIdentifier = Guid.Parse(uaModelDesignerProject.ProjectIdentifier);
+      Assert.IsFalse(Guid.Empty == _projectIdentifier);
     }
 
     private class GraphicalUserInterface : IGraphicalUserInterface
@@ -150,5 +202,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       public Func<string, string, bool> MessageBoxShowWarningAskYN => throw new NotImplementedException();
       public bool UseWaitCursor { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
+
+    #endregion instrumentation
   }
 }

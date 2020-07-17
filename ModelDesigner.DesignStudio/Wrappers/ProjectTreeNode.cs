@@ -8,6 +8,7 @@
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.ToForms;
+using Opc.Ua.ModelCompiler;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,16 +27,9 @@ namespace CAS.UA.Model.Designer.Wrappers
   {
     #region private
 
-    //var
-    private static readonly object m_BuildLockObject = new object(); // this object is used to prevent many code generator usage at the same time
-
     private readonly IProjectConfigurationManagement m_ProjectConfigurationManager;
-
-    private void InitializeComponent(ModelDesign model)
-    {
-      Model = model;
-      Add(model);
-    }
+    private readonly ModelDesign Model;
+    private static readonly object m_BuildLockObject = new object(); // this object is used to prevent many code generator usage at the same time
 
     #endregion private
 
@@ -49,34 +43,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     internal ProjectTreeNode(IProjectConfigurationManagement projectDescription) : base(null, projectDescription.Name)
     {
       m_ProjectConfigurationManager = projectDescription;
-      m_ProjectConfigurationManager.GetModel = () => Model.GetModel();
-      InitializeComponent(new ModelDesign(projectDescription.ModelDesign, false));
+      Model = new ModelDesign(projectDescription.ModelDesign, false);
+      Add(Model);
     }
-
-    ///// <summary>
-    ///// Imports the UANodeSet encapsulated by a new project.
-    ///// </summary>
-    ///// <param name="solutionPathProvider">The solution path provider.</param>
-    ///// <param name="traceEvent">The trace event.</param>
-    ///// <param name="importNodeSet">The import node set.</param>
-    ///// <returns>ProjectTreeNode.</returns>
-    //internal static ProjectTreeNode ImportNodeSet(ISolutionDirectoryPathManagement solutionPathProvider, Action<TraceMessage> traceEvent, Func<string, Action<TraceMessage>, Tuple<OPCFModelDesign, string>> importNodeSet)
-    //{
-    //  Tuple<OPCFModelDesign, string> _model = importNodeSet(solutionPathProvider.BaseDirectory, traceEvent);
-    //  if (_model == null)
-    //    return null;
-    //  return new ProjectTreeNode(solutionPathProvider, _model.Item2, _model.Item1);
-    //}
-
-    ///// <summary>
-    ///// Creates new model encapsulated by a new project.
-    ///// </summary>
-    ///// <param name="solutionPathProvider">The solution path provider.</param>
-    ///// <returns>ProjectTreeNode.</returns>
-    //internal static ProjectTreeNode CreateNewModel(ISolutionDirectoryPathManagement solutionPathProvider)
-    //{
-    //  return new ProjectTreeNode(solutionPathProvider, m_GetNextUniqueProjectName, new OPCFModelDesign());
-    //}
 
     #endregion constructors
 
@@ -85,6 +54,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     public override object Wrapper => this.Create();
     public override NodeTypeEnum NodeType => NodeTypeEnum.ProjectNode;
 
+    /// <summary>
+    /// Gets the folders.
+    /// </summary>
+    /// <returns>Dictionary{FolderType, IEnumerable&lt;IModelNodeAdvance}</returns>
     public override Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> GetFolders()
     {
       Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> toBeReturned = base.GetFolders();
@@ -108,80 +81,6 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     #region public
 
-    //is used only in UT
-    //internal IOPCFModelConfigurationManagement UAModelDesignerProject
-    //{
-    //  get
-    //  {
-    //    m_UAModelDesignerProject.Name = this.Text;
-    //    return m_UAModelDesignerProject;
-    //  }
-    //  private set
-    //  {
-    //    b_UAModelDesignerProject = value;
-    //    this.Text = m_UAModelDesignerProject.Name;
-    //  }
-    //}
-
-    ///// <summary>
-    ///// Gets or sets the model file name.
-    ///// </summary>
-    ///// <value>The name of the file.</value>
-    //internal string FileName
-    //{
-    //  get
-    //  {
-    //    if (!Path.HasExtension(m_UAModelDesignerProject.FileName))
-    //      return $"{m_UAModelDesignerProject.FileName}.{m_ModelExtension}";
-    //    else
-    //      return m_UAModelDesignerProject.FileName;
-    //  }
-    //}
-
-    ///// <summary>
-    ///// Calculates the effective absolute model file path.
-    ///// </summary>
-    ///// <returns>System.String.</returns>
-    //internal string CalculateEffectiveAbsoluteModelFilePath()
-    //{
-    //  return RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.FileName, m_SolutionHomeDirectory.BaseDirectory);
-    //}
-
-    //internal string CSVFileName
-    //{
-    //  get
-    //  {
-    //    if (string.IsNullOrEmpty(m_UAModelDesignerProject.CSVFileName))
-    //      m_UAModelDesignerProject.CSVFileName = Resources.DefaultCSVFileName;
-    //    return m_UAModelDesignerProject.CSVFileName;
-    //  }
-    //  set => m_UAModelDesignerProject.CSVFileName = value;
-    //}
-
-    //internal string CSVFilePath => ReplaceTokenAndReturnFullPath(CSVFileName, m_UAModelDesignerProject.Name, m_SolutionHomeDirectory.BaseDirectory);
-
-    //internal Guid ProjectIdentifier
-    //{
-    //  get => new Guid(m_UAModelDesignerProject.ProjectIdentifier);
-    //  set => m_UAModelDesignerProject.ProjectIdentifier = value.ToString();
-    //}
-
-    //internal string BuildOutputDirectoryName
-    //{
-    //  get
-    //  {
-    //    if (string.IsNullOrEmpty(m_UAModelDesignerProject.BuildOutputDirectoryName))
-    //      m_UAModelDesignerProject.BuildOutputDirectoryName = Resources.DefaultOutputBuildDirectory;
-    //    return m_UAModelDesignerProject.BuildOutputDirectoryName;
-    //  }
-    //  set => m_UAModelDesignerProject.BuildOutputDirectoryName = value;
-    //}
-
-    //internal string BuildOutputDirectoryPath => ReplaceTokenAndReturnFullPath(BuildOutputDirectoryName, m_UAModelDesignerProject.Name, m_SolutionHomeDirectory.BaseDirectory);
-
-    internal ModelDesign Model { get; private set; }
-
-
     /// <summary>
     /// Builds the project and write any massages to specified output.
     /// </summary>
@@ -195,80 +94,9 @@ namespace CAS.UA.Model.Designer.Wrappers
           output.WriteLine(string.Format(Resources.Build_project_name, this.Text));
           output.WriteLine(string.Format(Resources.Build_started_at, System.DateTime.Now.ToString()));
           m_ProjectConfigurationManager.Build(output);
-          //// some verification at the beginning
-          //DirectoryInfo dirinfo = new DirectoryInfo(BuildOutputDirectoryPath);
-          //if (!dirinfo.Exists)
-          //  Directory.CreateDirectory(BuildOutputDirectoryPath);
-          //string _filePath = CalculateEffectiveAbsoluteModelFilePath();
-          //if (!new FileInfo(_filePath).Exists)
-          //{
-          //  string msg = string.Format(Resources.BuildError_Fie_DoesNotExist, _filePath);
-          //  output.WriteLine(msg);
-          //  this.MessageBoxHandling.Show(msg, Resources.Build_Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-          //  return;
-          //}
-          //if (!new FileInfo(CSVFilePath).Exists)
-          //{
-          //  string msg = string.Format(Resources.BuildError_Fie_DoesNotExist_doyouwanttocreateone, CSVFilePath);
-          //  if (this.MessageBoxHandling.Show(msg, "Build", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-          //  {
-          //    //we are creating an blank file (one empty line inside)
-          //    StreamWriter myCsvFile = new StreamWriter(CSVFilePath, false);
-          //    using (myCsvFile)
-          //    {
-          //      myCsvFile.WriteLine(" ");
-          //      myCsvFile.Flush();
-          //      myCsvFile.Close();
-          //    }
-          //  }
-          //  else
-          //  {
-          //    output.WriteLine(string.Format(Resources.BuildError_Fie_DoesNotExist, CSVFilePath));
-          //    return;
-          //  }
-          //}
-          //string argument = string.Format(Properties.Settings.Default.Build_ProjectCompilationString, _filePath, CSVFilePath, BuildOutputDirectoryPath);
-          //string CompilationExecutable = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Properties.Settings.Default.ProjectCompilationExecutable);
-          //ProcessStartInfo myStartInfo = new System.Diagnostics.ProcessStartInfo(CompilationExecutable)
-          //{
-          //  Arguments = argument,
-          //  RedirectStandardOutput = true,
-          //  RedirectStandardError = true,
-          //  UseShellExecute = false,
-          //  CreateNoWindow = true
-          //};
-          //output.WriteLine();
-          //output.Write(CompilationExecutable);
-          //output.Write(" ");
-          //output.WriteLine(argument);
-          //output.WriteLine();
-          //Process myBuildProcess = new Process
-          //{
-          //  StartInfo = myStartInfo
-          //};
-          //if (!myBuildProcess.Start())
-          //  this.MessageBoxHandling.Show(Resources.Build_click_ok_when_build_has_finished);
-          //else
-          //{
-          //  myBuildProcess.WaitForExit();
-          //  string outputfrombuildprocess = myBuildProcess.StandardOutput.ReadToEnd();
-          //  string erroroutputfrombuildprocess = myBuildProcess.StandardError.ReadToEnd();
-          //  if (!string.IsNullOrEmpty(erroroutputfrombuildprocess))
-          //  {
-          //    erroroutputfrombuildprocess = string.Format(Resources.BuildError_error_occured, erroroutputfrombuildprocess);
-          //  }
-          //  else
-          //  {
-          //    erroroutputfrombuildprocess = Resources.Build_project_ok;
-          //  }
-          //  outputfrombuildprocess += erroroutputfrombuildprocess;
-          //  if (!string.IsNullOrEmpty(outputfrombuildprocess))
-          //    output.WriteLine(outputfrombuildprocess);
         }
         output.WriteLine(string.Format(Resources.Build_ended_at, System.DateTime.Now.ToString()));
         output.WriteLine();
-        // it is also possible in the future to use Opc.Ua.ModelCompiler.ModelGenerator2 gen = new Opc.Ua.ModelCompiler.ModelGenerator2();
-        // or it can be done as: C:\vs\UAtrunk\Source\Utilities\ModelDesigner\Program.cs, function ProcessCommandLine2
       }
       catch (Exception ex)
       {
@@ -300,6 +128,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     public void Remove()
     {
       Parent.Remove(this);
+    }
+
+    internal void Save()
+    {
+      m_ProjectConfigurationManager.Save(Model.GetModel());
     }
 
     #endregion IProjectModel
