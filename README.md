@@ -41,9 +41,10 @@ The ASMD was written by CAS Lodz Poland. I am the founder and Executive Director
 We use [Semantic Versioning][SV] for versioning. For the versions available, see the [releases on this repository][REL]. For your convenience, the versions of the repository, tools and NuGet packages has been listed in the next subsections.
 
 | Version | Milestone                                                          | Date|Notes|
-|:-------:|---|:--:|-|
+|:-:|---|:--:|-|
+| 4.3 | [Maintenance, refactoring, and bug-fix release](hhttps://github.com/mpostol/ASMD/releases/tag/4.3.0) | 18-07-2020 ||
 | 4.2 | [Maintenance and refactoring](https://github.com/mpostol/ASMD/releases/tag/4.2.0) |  18-05-2020 ||
-| 4.1 | [Public release of the ASMD][ASMD410] |  Dec 17, 2019 ||
+| 4.1 | [Public release of the ASMD][ASMD410] | Dec 17, 2019 ||
 | 3.20.1| *ASMD last available Windows installation released by CAS*| May 17, 2016|deprecated|
 
 ## Key Features
