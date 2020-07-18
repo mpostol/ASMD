@@ -28,6 +28,12 @@ The  OOI ASMD supports the graphical design of the process model using OPC UA In
 >- The design, development and deployment of the OPC UA Information Model detailed description is covered by the document [Information Models Development][IMD].
 >- The help documentation is now available at [OPC UA Address Space Model Designer Online Help][github.MD]
 
+I am a researcher who is passionate about applying knowledge and experience in building a machine-centric global village. Let's build it with you and for you. To join our effort and create an organization context I have launched the [**Object-Oriented Internet Partnership Program**](https://github.commsvr.com/AboutPartnershipProgram.md.html).
+
+> Consider joining as a sponsor, contributor or end-user. Details are covered by the section [**How to be involved**](https://github.commsvr.com/AboutPartnershipProgram.md.html#how-to-be-involved)
+>
+> Your participation is needed to make sure the work will continue as expected.
+
 ## Releases
 
 The ASMD was written by CAS Lodz Poland. I am the founder and Executive Director of CAS. Now CAS is just an individual business activity conducted by me, so I decided to move this software to Open Source.
@@ -35,7 +41,7 @@ The ASMD was written by CAS Lodz Poland. I am the founder and Executive Director
 We use [Semantic Versioning][SV] for versioning. For the versions available, see the [releases on this repository][REL]. For your convenience, the versions of the repository, tools and NuGet packages has been listed in the next subsections.
 
 | Version | Milestone                                                          | Date|Notes|
-|:-------:|--------------------------------------------------------------------|:--:|-|
+|:-------:|---|:--:|-|
 | 4.2 | [Maintenance and refactoring](https://github.com/mpostol/ASMD/releases/tag/4.2.0) |  18-05-2020 ||
 | 4.1 | [Public release of the ASMD][ASMD410] |  Dec 17, 2019 ||
 | 3.20.1| *ASMD last available Windows installation released by CAS*| May 17, 2016|deprecated|
@@ -70,7 +76,7 @@ We use [Semantic Versioning][SV] for versioning. For the versions available, see
 - considerably improves robustness of the OPC UA Information Model deployment in any custom environment
 - any OPC UA SDK integration-ready (OPC UA SDK independent)
 
-Check out the [WIKI - Help Documentation][WIKI] and [Online Help]([github.MD]) to get a more detailed description.
+Check out the [Online Help]([github.MD]) to get a more detailed description.
 
 ## Getting Started
 
@@ -79,6 +85,8 @@ This section describes prerequisites to use the tool, compile the code and run u
 ### Ho to Install
 
 Download and run the file `UA.ModelDesigner.exe` to unzip the content to the selected folder and create an icon on the desktop. The application will run after unpacking. To restart the application you may use the icon on the desktop or double click the application file `<target>\UA.ModelDesigner\OOI.UA.ModelDesigner.exe`, where \<target\> is the already selected folder during the installation. To uninstall the software and embedded example simply delete the \<target\> folder and the icon.
+
+> Note: The self-extracting zip file and the main application is not code-signed. The unsigned executable maybe not allowed by your company IT policy. The installer package containing signed stuff is on the project road map #89. Further development planning is based on the sponsors' priorities.
 
 ### How to open an example
 

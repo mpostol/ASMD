@@ -15,7 +15,6 @@ assignees: 'mpostol'
 - [ ] Update ReleaseNotes.md and print it to .html using VC
 - [ ] Build the Release Configuration of the solution
 - [ ] rename the folder name Release to UA.ModelDesigner
-- [ ] rename the CAS.UA.ModelDesigner.exe to OOI.UA.ModelDesigner.exe  - it is necessary as long as the license container and editor will be fixed
 - [ ] Create the installation package and publish in on the Release page
 - [ ] perform functional tests
 - [ ] Update the Release page
