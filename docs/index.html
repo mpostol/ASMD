@@ -2,230 +2,410 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>README.md</title>
-  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+    <meta charset="UTF-8">
+    <title>OOI Address Space Model Designer (OOI ASMD)</title>
+    <style>
+    </style>
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+    <style>
+        .task-list-item {
+            list-style-type: none;
+        }
+
+        .task-list-item-checkbox {
+            margin-left: -20px;
+            vertical-align: middle;
+        }
+    </style>
+
+
+
 </head>
 
-<body class="stackedit">
-  <div class="stackedit__left">
-    <div class="stackedit__toc">
-      
-<ul>
-<li><a href="#address-space-model-designer-asmd">Address Space Model Designer (ASMD)</a>
-<ul>
-<li><a href="#releases">Releases</a></li>
-<li><a href="#key-features">Key Features</a></li>
-<li><a href="#getting-started">Getting Started</a></li>
-<li><a href="#ho-to-guide">Ho to Guide</a></li>
-<li><a href="#related-work">Related work</a></li>
-<li><a href="#see-also">See Also</a></li>
-</ul>
-</li>
-</ul>
+<body class="vscode-light">
+    <h1 id="ooi-address-space-model-designer-ooi-asmd">OOI Address Space Model Designer (OOI ASMD)</h1>
+    <p><img src="file:///c:\VS.git\UAOOI\ASMD\_media\ASMDLogo-48.png" alt="Logo"></p>
+    <ul>
+        <li><a href="#ooi-address-space-model-designer-ooi-asmd">OOI Address Space Model Designer (OOI ASMD)</a>
+            <ul>
+                <li><a href="#preface">Preface</a></li>
+                <li><a href="#releases">Releases</a></li>
+                <li><a href="#key-features">Key Features</a></li>
+                <li><a href="#getting-started">Getting Started</a>
+                    <ul>
+                        <li><a href="#ho-to-install">Ho to Install</a></li>
+                        <li><a href="#how-to-open-an-example">How to open an example</a></li>
+                        <li><a href="#how-to-build-and-run-the-unit-tests-in-visual-studio-on-windows">How to build and
+                                run the unit tests in Visual Studio on Windows</a></li>
+                    </ul>
+                </li>
+                <li><a href="#related-work">Related work</a>
+                    <ul>
+                        <li><a href="#object-oriented-internet">Object Oriented Internet</a></li>
+                        <li><a href="#commserver">CommServer</a></li>
+                        <li><a href="#object-oriented-internet-reactive-networking-configuration-editor">Object Oriented
+                                Internet Reactive Networking Configuration Editor</a></li>
+                    </ul>
+                </li>
+                <li><a href="#see-also">See Also</a></li>
+            </ul>
+        </li>
+    </ul>
+    <h2 id="preface">Preface</h2>
+    <p>OPC Unified Architecture (OPC UA) is the next generation solution compared to OPC Classic. One of the most
+        important improvements in OPC UA is a powerful Address Space and Information Model concept. OPC UA allows
+        exposing real-time process data and underlying infrastructure as a consistent information model built up with
+        nodes. The process model is represented by nodes, attributes, and their mutual relationships. Therefore, using
+        OPC UA this powerful concept allows us to expose not only raw process data but also entire consistent
+        information about the process state and behavior. The flexibility of the OPC UA ensures that no existing or
+        future systems are too complex to be exposed via OPC UA. Of course, such flexibility leads to difficulties
+        during design, development, and deployment, that’s why the Object Oriented-Internet Address Space Model Designer
+        (ASMD) was born.</p>
+    <p>The OOI ASMD supports the graphical design of the process model using OPC UA Information and Address Space
+        concepts. The embedded model compiler may be used to generate all required file formats necessary to deploy
+        custom models on the client, server, publisher and subscriber side using any existing Software Development Kit.
+        It is compliant with the OPC UA Specifications <a
+            href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-3-address-space-model/">OPC
+            UA Part 3</a>, <a
+            href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-5-information-model/">OPC
+            UA Part 5</a>, and <a
+            href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-6-mappings/">OPC UA
+            Part 6</a>. By design, it is also a consistent part of the broader concept <a
+            href="https://commsvr.gitbook.io/ooi/">Object-Oriented Internet</a>.</p>
+    <blockquote>
+        <p><strong>NOTE</strong>:</p>
+        <ul>
+            <li>The design, development and deployment of the OPC UA Information Model detailed description is covered
+                by the document <a
+                    href="https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment">Information
+                    Models Development</a>.</li>
+            <li>The help documentation is now available at <a
+                    href="https://commsvr-com.github.io/Documentation/ModelDesigner">OPC UA Address Space Model Designer
+                    Online Help</a></li>
+        </ul>
+    </blockquote>
+    <p>I am a researcher who is passionate about applying knowledge and experience in building a machine-centric global
+        village. Let's build it with you and for you. To join our effort and create an organization context I have
+        launched the <a href="https://github.commsvr.com/AboutPartnershipProgram.md.html"><strong>Object-Oriented
+                Internet Partnership Program</strong></a>.</p>
+    <blockquote>
+        <p>Consider joining as a sponsor, contributor or end-user. Details are covered by the section <a
+                href="https://github.commsvr.com/AboutPartnershipProgram.md.html#how-to-be-involved"><strong>How to be
+                    involved</strong></a></p>
+        <p>Your participation is needed to make sure the work will continue as expected.</p>
+    </blockquote>
+    <h2 id="releases">Releases</h2>
+    <p>The ASMD was written by CAS Lodz Poland. I am the founder and Executive Director of CAS. Now CAS is just an
+        individual business activity conducted by me, so I decided to move this software to Open Source.</p>
+    <p>We use <a href="http://semver.org/">Semantic Versioning</a> for versioning. For the versions available, see the
+        <a href="https://github.com/mpostol/ASMD/releases">releases on this repository</a>. For your convenience, the
+        versions of the repository, tools and NuGet packages has been listed in the next subsections.</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align:center">Version</th>
+                <th>Milestone</th>
+                <th style="text-align:center">Date</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="text-align:center">4.3</td>
+                <td><a href="hhttps://github.com/mpostol/ASMD/releases/tag/4.3.0">Maintenance, refactoring, and bug-fix
+                        release</a></td>
+                <td style="text-align:center">18-07-2020</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align:center">4.2</td>
+                <td><a href="https://github.com/mpostol/ASMD/releases/tag/4.2.0">Maintenance and refactoring</a></td>
+                <td style="text-align:center">18-05-2020</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align:center">4.1</td>
+                <td><a href="https://github.com/mpostol/ASMD/releases/tag/4.1.0">Public release of the ASMD</a></td>
+                <td style="text-align:center">Dec 17, 2019</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="text-align:center">3.20.1</td>
+                <td><em>ASMD last available Windows installation released by CAS</em></td>
+                <td style="text-align:center">May 17, 2016</td>
+                <td>deprecated</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 id="key-features">Key Features</h2>
+    <ul>
+        <li>graphical modeling of the OPC UA Information Model according to <a
+                href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-5-information-model/">OPC
+                UA Part 5 specification</a>
+            <ul>
+                <li>easy addition and deletion of nodes from the model structure</li>
+                <li>definition of nodes relationship (references) and types</li>
+                <li>modes filtering</li>
+                <li>search and find utility</li>
+                <li>type declaration, definition and inheritance analysis</li>
+                <li>state machine custom editor</li>
+                <li>and more...</li>
+            </ul>
+        </li>
+        <li>graphical modeling of the OPC UA Address Space according to <a
+                href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-3-address-space-model/">OPC
+                UA Part 3 specification</a></li>
+        <li>3D modeling of the Information Model</li>
+        <li>the layered structure of the Information Model</li>
+        <li>contextual OPC UA Standard help documentation - synchronization of the model with OPC UA ebook</li>
+        <li>interoperability without programming
+            <ul>
+                <li>supports custom OPC UA Server/Client/PubSub configuration editor</li>
+                <li>supports definition and edition of the data bindings (leveraging machine to sensor connectivity)
+                    coupling the Address Space variables with the process (sensors, actuators, etc.) making an in-memory
+                    process replica</li>
+                <li>simple configuration of a custom OPC UA Server in context of the model design</li>
+                <li>no programming skills are required</li>
+            </ul>
+        </li>
+        <li>import and validation of any custom UANodeSet files to a new project</li>
+        <li>import the address space from an <strong>OPC DA server</strong> (embedded OPC DA Viewer) and create a new
+            OPC UA Information Model - an easier way to converge your old OPC Classic server and the Unified
+            Architecture world</li>
+        <li>documentation generation in MS Word and MAML formats</li>
+        <li>generates OPC UA compliant UANodeSet XML File according to the <a
+                href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-6-mappings/">OPC
+                UA Part 6 specification</a></li>
+        <li>provides embedded <a
+                href="https://github.com/OPCFoundation/UA-ModelCompiler">OPCFoundation/UA-ModelCompiler</a> maintained
+            by the OPC Foundation as the default model build tool</li>
+        <li>output window provides detailed diagnostic information about the build model process</li>
+        <li>works with any existing code generator</li>
+        <li>full adherence to OPC Specifications</li>
+        <li>considerably improves robustness of the OPC UA Information Model deployment in any custom environment</li>
+        <li>any OPC UA SDK integration-ready (OPC UA SDK independent)</li>
+    </ul>
+    <p>Check out the <a href="%5Bgithub.MD%5D">Online Help</a> to get a more detailed description.</p>
+    <h2 id="getting-started">Getting Started</h2>
+    <p>This section describes prerequisites to use the tool, compile the code and run unit tests.</p>
+    <h3 id="ho-to-install">Ho to Install</h3>
+    <p>Download and run the file <code>UA.ModelDesigner.exe</code> to unzip the content to the selected folder and
+        create an icon on the desktop. The application will run after unpacking. To restart the application you may use
+        the icon on the desktop or double click the application file
+        <code>&lt;target&gt;\UA.ModelDesigner\OOI.UA.ModelDesigner.exe</code>, where &lt;target&gt; is the already
+        selected folder during the installation. To uninstall the software and embedded example simply delete the
+        &lt;target&gt; folder and the icon.</p>
+    <blockquote>
+        <p>Note: The self-extracting zip file and the main application is not code-signed. The unsigned executable maybe
+            not allowed by your company IT policy. The installer package containing signed stuff is on the project road
+            map #89. Further development planning is based on the sponsors' priorities.</p>
+    </blockquote>
+    <h3 id="how-to-open-an-example">How to open an example</h3>
+    <p>This section contains information about the Address Space Model Designer sample solutions that illustrate the
+        structure and techniques used for designing models and defining bindings between model nodes and real-time
+        process data.</p>
+    <p>The section <a
+            href="https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment">Information
+            Models Development</a> of the online ebook covers details on how to get started using the attached examples.
+        The solution <code>BoilerExampleSolution</code> contains a boiler model. This model is described in the <a
+            href="https://commsvr.gitbook.io/ooi/reactive-communication/referenceapplication/simulator.boiler#informal-model-of-boiler">ReferenceApplication
+            Producer - Boilers Set Simulator</a>. Check out the section <a
+            href="https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment/companionspecificationinformationmodelfforanalyzers">Companion
+            Specification - Information Model for Analyzers</a> to get more about <code>ADIExempleSolution</code>
+        example.</p>
+    <p>Selected examples is added to the folder <code>&lt;target&gt;\UA.ModelDesigner\EmbeddedExample</code>. The
+        following step by step instruction will guide you on how to open the examples.</p>
+    <ul>
+        <li>The folder <code>EmbeddedExample</code> contains two examples
+            <ul>
+                <li><code>BoilerExampleSolution</code> - a set of unmanned boilers spread geographically, which have to
+                    be monitored and remotely controlled</li>
+                <li><code>ADIExempleSolution</code> - a set of models to be used as an example of adopting companion
+                    standard models, i.e. <a
+                        href="https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment/companionspecificationinformationmodelfforanalyzers">analyzer
+                        devices integration</a></li>
+            </ul>
+        </li>
+        <li>Now you may run the ASMD application and open the selected solution</li>
+    </ul>
+    <p>You can open the solution into ASMD in the following way:</p>
+    <ol>
+        <li>Click on the main menu Open item</li>
+        <li>Select the directory containing the sample solution</li>
+        <li>Open the <code>BoilerExampleSolution.uamdsl</code> file</li>
+        <li>Click on the confirmation (Open) button</li>
+    </ol>
+    <p><img src="https://github.com/mpostol/ASMD/wiki/_Media/ToOpenSampleSolution.jpg"
+            alt="How to open a Sample Solution"></p>
+    <p>The files of the sample solution are listed in the following table.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>File</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>*.uamdsl</code></td>
+                <td>Address Space Model Designer solution. This file contains the configuration of the sample solution
+                    and references to other files that are used in this solution (e.g. projects, plug-ins, etc.)</td>
+            </tr>
+            <tr>
+                <td><code>*.csv</code></td>
+                <td>A CSV file that contains Node Identifiers</td>
+            </tr>
+            <tr>
+                <td><code>*.xml</code></td>
+                <td>An XML file that contains the model</td>
+            </tr>
+            <tr>
+                <td><code>*/CAS.UAServer.DemoConfiguration.uasconfig</code></td>
+                <td>A sample configuration file of OPC UA Server. This file is created and edited by the plug-in
+                    providing the configuration editor. It is compatible with <a
+                        href="https://github.com/mpostol/OPCUA.Server">mpostol/OPCUA.Server</a> Open Source Software.
+                </td>
+            </tr>
+            <tr>
+                <td><code>*/DefaultConfig.xml</code></td>
+                <td>A sample OPC DA Server configuration file (compatible with <a
+                        href="https://github.com/mpostol/OPCDA.Server">mpostol/OPCDA.Server</a> Open Source Software).
+                </td>
+            </tr>
+            <tr>
+                <td><code>*/DemoConfiguration.oses</code></td>
+                <td>A sample OPC DA Client configuration (compatible with <a
+                        href="https://github.com/mpostol/OPCDA.Viewer">mpostol/OPCDA.Viewer</a> and <a
+                        href="https://github.com/mpostol/OPCDA.DataPorter">mpostol/OPCDA.DataPorter</a> Open Source
+                    Software)</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3 id="how-to-build-and-run-the-unit-tests-in-visual-studio-on-windows">How to build and run the unit tests in
+        Visual Studio on Windows</h3>
+    <p>Projects can be opened in Visual Studio 2017. Support for some projects depends on the Visual Studio edition and
+        installed components.</p>
+    <ol>
+        <li>Open the <code>CommServer.UA.ModelDesigner.sln</code> solution file using Visual Studio 2017.</li>
+        <li>Hit <code>F6</code> to build all projects in the solution.</li>
+        <li>Set the <code>ModelDesigner.DesignStudio</code> as the Start-up Project</li>
+        <li>Press <code>F5</code> to run the tool using Debug configuration</li>
+        <li>Hit <code>Ctrl+r,Ctrl+a</code> to run all unit tests</li>
+    </ol>
+    <p>The list of packages used is listed on the page <a
+            href="https://github.com/mpostol/ASMD/network/dependencies">Dependency graph</a> of this repository. All
+        packages are included in this GitHub repository in the local folder <code>_nugets</code> or published on NuGet.
+        The local folder is configured in the <code>NuGet.Config</code>. The NuGet Gallery is the public package
+        repository used by all package authors and consumers. All required packages are loaded before the build.</p>
+    <p>To get more visit the Microsoft documentation <a
+            href="https://docs.microsoft.com/en-us/nuget/consume-packages/reinstalling-and-updating-packages">How to
+            reinstall and update packages</a>.</p>
+    <h2 id="related-work">Related work</h2>
+    <h3 id="object-oriented-internet">Object Oriented Internet</h3>
+    <p>In this umbrella project, C# deliverables supporting a new Machine To Machine (M2M) communication approach based
+        on the <strong>Data-Oriented Architecture</strong> (DOA) paradigm is to be researched. The goal is to provide a
+        generic solution for publishing and updating information in a context that can be used to describe and discover
+        it by software applications. It is implemented based on the</p>
+    <ul>
+        <li><a href="http://goo.gl/y4EHUn">OPC Unified Architecture</a> - an industrial integration standard that
+            fulfills the proposed architecture requirements.</li>
+        <li>Object-Oriented Programming - well know and widely accepted programming language model in which data
+            processing is organized around 4 major principles, namely encapsulation, abstraction, polymorphism and
+            inheritance.</li>
+    </ul>
+    <p>The GitHub <a href="https://github.com/mpostol/OPC-UA-OOI">Object Oriented Internet</a> repository is aimed at
+        the maintenance of this project. The ASMD contributes to this project and is compliant with the OOI concept.</p>
+    <h3 id="commserver">CommServer</h3>
+    <p><a href="http://www.commsvr.com/">CommServer</a> is a package of software to manage data transfer using OPC
+        standards. Built-in technologies and algorithms support Machine to Machine (M2M) meaningful interoperability.
+        The <a href="http://www.commsvr.com/">CommServer</a> was written by CAS Lodz Poland.</p>
+    <p>The GitHub repository <a href="https://github.com/commsvr-com/migration2os">commsvr-com/migration2os</a> is aimed
+        at the <code>CommServer</code> software migration from on-premise subversion repository to GitHub and publishing
+        it as the Open-Source Software (OSS). The members of the <code>CommServer</code> family are to be converged with
+        the Object-Oriented Internet paradigms and integrated with the solutions maintained in this repository.</p>
+    <p>The project <a href="https://github.com/orgs/commsvr-com/projects">CommServer Migration to Open-source</a> will
+        be used to coordinate the migration process of transferring multi-parts software from an on-premise subversion
+        repository to a set of GitHub repositories.</p>
+    <h3 id="object-oriented-internet-reactive-networking-configuration-editor">Object Oriented Internet Reactive
+        Networking Configuration Editor</h3>
+    <p>OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of the <a
+            href="https://commsvr.gitbook.io/ooi/TableOfContent.md#reactive-communication">Reactive Communication</a>.
+        The <code>OPC-UA-OOI.ConfigEditor</code> was written by CAS Lodz Poland. The <a
+            href="https://github.com/mpostol/OPC-UA-OOI.ConfigEditor">mpostol/OPC-UA-OOI.ConfigEditor</a> repository is
+        aimed at the software migration from on-premise subversion repository to GitHub and publishing it as the
+        Open-Source Software (OSS). After migration, this repository will be used to manage all activities addressing
+        the software maintenance process as a plug-in of the ASMD.</p>
+    <p><a href="https://mpostol.wordpress.com/about/">Mariusz Postol</a></p>
+    <p><a href="https://pl.linkedin.com/in/mpostol"><img
+                src="https://www.linkedin.com/img/webpromo/btn_viewmy_160x33.png" alt="View my profile on LinkedIn"
+                title="View my profile on LinkedIn"></a></p>
+    <ul>
+        <li><a href="https://cas.eu/index.php/contact">mpostol (at) cas.eu</a></li>
+        <li><a href="https://github.com/mpostol">GitHub profile</a></li>
+        <li><a href="http://www.commsvr.com/">http://www.commsvr.com/</a></li>
+        <li><a href="https://linkedin.com/in/mpostol">LinkedIn</a></li>
+        <li><a href="https://twitter.com/mpostol">twitter</a></li>
+    </ul>
+    <h2 id="see-also">See Also</h2>
+    <ul>
+        <li><a href="https://commsvr-com.github.io/Documentation/ModelDesigner">OPC UA Address Space Model Designer
+                Help</a></li>
+        <li><a href="https://github.com/mpostol/ASMD/wiki">WIKI - Help Documentation</a></li>
+        <li><a href="https://commsvr.gitbook.io/ooi/semantic-data-processing/addressspaceaddressspacemodel">Mariusz
+                Postol. Address Space and Address Space Model</a></li>
+        <li><a href="https://commsvr-com.github.io/Documentation/ModelDesigner">OPC UA Address Space Model Designer</a>
+        </li>
+        <li>Wolfgang Mahnke, Stefan Helmut Leitner, Matthias Damm. OPC Unified Architecture. Berlin: Springer, 2009.
+        </li>
+        <li><a
+                href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-3-address-space-model/">OPC
+                Unified Architecture Specification Part 3: Address Space Model, OPC Foundation, Rel. 1.04,
+                2017-11-22</a></li>
+        <li><a
+                href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-5-information-model/">OPC
+                Unified Architecture Specification Part 5: Information Model, OPC Foundation, Rel. 1.04, 2017-11-22</a>
+        </li>
+        <li><a href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-6-mappings/">OPC
+                Unified Architecture Specification Part 6: Mappings, OPC Foundation, Rel. 1.04, 2017-11-22</a></li>
+        <li><a
+                href="https://commsvr.gitbook.io/ooi/reactive-communication/referenceapplication/simulator.boiler#informal-model-of-boiler">ReferenceApplication
+                Producer - Boilers Set Simulator</a></li>
+        <li><a
+                href="https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment/companionspecificationinformationmodelfforanalyzers">Companion
+                Specification - Information Model for Analyzers</a></li>
+        <li><a href="https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment">Information
+                Models Development</a></li>
+        <li><a href="https://github.com/mpostol/ASMD/releases">ASMD releases page</a></li>
+        <li><a
+                href="https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment/companionspecificationinformationmodelfforanalyzers">OPC
+                10020 - UA for Analyzer Devices (ADI), OPC Foundation Rel 1.1a, 2015</a></li>
+        <li><a href="http://semver.org/">Semantic Versioning</a></li>
+        <li><a href="https://github.com/OfficeDev/Open-XML-SDK">Open XML SDK 2.5 for Microsoft Office; GitHub repository
+                OfficeDev/Open-XML-SDK</a></li>
+        <li><a href="https://docs.microsoft.com/en-us/nuget/consume-packages/reinstalling-and-updating-packages">How to
+                reinstall and update packages</a>.</li>
+        <li><a href="https://github.com/mpostol/ASMD/network/dependencies">Dependency graph</a></li>
+        <li><a href="https://github.com/OPCFoundation/UA-ModelCompiler">OPCFoundation/UA-ModelCompiler</a></li>
+        <li><a href="https://youtu.be/LvGHl-hRwZw">OPC UA Information Model - How to Create Instances using ASMD;
+                Video</a></li>
+        <li><a href="https://youtu.be/y3tndTA7YYo">OPC UA Information Model - How to build the model; Video</a></li>
+        <li><a href="https://www.youtube.com/watch?v=pYOQA4atlRI&amp;feature=youtu.be">Introduction to OPC UA Address
+                Space modeling using CAS Address Space Model Designer; Video</a></li>
+        <li><a href="https://github.com/mpostol/ASMD/releases/tag/4.1.0">OOI - OPC UA Address Space Model Designer V
+                4.1</a></li>
+    </ul>
 
-    </div>
-  </div>
-  <div class="stackedit__right">
-    <div class="stackedit__html">
-      <h1 id="address-space-model-designer-asmd">Address Space Model Designer (ASMD)</h1>
-<p>OPC Unified Architecture (OPC UA) is the next generation of OPC. One of the most important improvements in OPC UA is a powerful Address Space and Information Model concepts. OPC UA allows for the presentation of a real-time process and underlying infrastructure as a consistent information model built up with nodes. The process model is represented by nodes, attributes, and their mutual relationships. Therefore, this powerful concept allows us to present in OPC UA not only raw process data but also complete information about the process state and process environment. The flexibility of UA ensures that no existing or future system is too complex to be exposed via OPC UA. Of course, such flexibility leads to difficulties during configuration, that’s why the Address Space Model Designer (ASMD) design environment has been born.</p>
-<p>The ASMD provides graphical design of the process model using OPC UA Information and Address Space concepts. The embedded model compiler may be used to generate all required file formats necessary to deploy custom model using any existing Software Development Kit. It is compliant with the OPC UA Specifications listed in the <code>See Also</code> section.</p>
-<blockquote>
-<p><strong>NOTE</strong>:</p>
-<ul>
-<li>The design, development and deployment of the OPC UA Information Model detailed description is covered by the document <a href="https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment">Information Models Development</a>.</li>
-<li>The help documentation is now available at <a href="https://commsvr-com.github.io/Documentation/ModelDesigner">OPC UA Address Space Model Designer</a></li>
-</ul>
-</blockquote>
-<h2 id="releases">Releases</h2>
-<p>The ASMD was written by CAS Lodz Poland. I am the founder and Executive Director of CAS. Now CAS is just an individual business activity conducted by me, so I decided to move this software to Open Source.</p>
-<p>We use <a href="http://semver.org/">Semantic Versioning</a> for versioning. For the versions available, see the <a href="https://github.com/mpostol/ASMD/releases">releases on this repository</a>. For your convenience, the versions of the repository, tools and NuGet packages has been listed in the next subsections.</p>
-
-<table>
-<thead>
-<tr>
-<th align="center">Version</th>
-<th>Milestone</th>
-<th align="center">Date</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">4.1</td>
-<td><a href="https://github.com/mpostol/ASMD/releases/tag/4.1.0">Public release of the ASMD</a></td>
-<td align="center">Dec 17, 2019</td>
-</tr>
-<tr>
-<td align="center">3.20.1</td>
-<td><a href="http://www.commsvr.com/Products/OPCUA/UAModelDesigner.aspx">ASMD last available Windows installation released by CAS</a></td>
-<td align="center">May 17, 2016</td>
-</tr>
-</tbody>
-</table><h2 id="key-features">Key Features</h2>
-<ul>
-<li>graphical modeling of the OPC UA Information Model according to <a href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-5-information-model/">OPC UA Part 5 specification</a>
-<ul>
-<li>easy addition and deletion of nodes from the model structure</li>
-<li>definition of nodes relationship (references) and types</li>
-<li>modes filtering</li>
-<li>search and find utility</li>
-<li>type declaration, definition and inheritance analysis</li>
-<li>state machine custom editor</li>
-<li>and more…</li>
-</ul>
-</li>
-<li>graphical modeling of the OPC UA Address Space according to <a href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-3-address-space-model/">OPC UA Part 3 specification</a></li>
-<li>3D modeling of the Information Model</li>
-<li>the layered structure of the Information Model</li>
-<li>contextual OPC UA Standard help documentation - synchronization of the model with OPC UA ebook</li>
-<li>interoperability without programming
-<ul>
-<li>supports custom OPC UA Server/Client/PubSub configuration editor</li>
-<li>supports definition and edition of the data bindings (leveraging machine to sensor connectivity) coupling the Address Space variables with the process (sensors, actuators, etc.) making an in-memory process replica</li>
-<li>simple configuration of a custom OPC UA Server in context of the model design</li>
-<li>no programming skills are required</li>
-</ul>
-</li>
-<li>import and validation of any custom UANodeSet files to a new project</li>
-<li>import the address space from an <strong>OPC DA server</strong> (embedded OPC DA Viewer) and create a new OPC UA Information Model - an easier way to converge your old OPC Classic server and the Unified Architecture world</li>
-<li>documentation generation in MS Word and MAML formats</li>
-<li>generates OPC UA compliant UANodeSet XML File according to the <a href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-6-mappings/">OPC UA Part 6 specification</a></li>
-<li>provides embedded <a href="https://github.com/OPCFoundation/UA-ModelCompiler">OPCFoundation/UA-ModelCompiler</a> maintained by the OPC Foundation as the default model build tool</li>
-<li>output window provides detailed diagnostic information about the build model process</li>
-<li>works with any existing code generator</li>
-<li>full adherence to OPC Specifications</li>
-<li>considerably improves robustness of the OPC UA Information Model deployment in any custom environment</li>
-<li>any OPC UA SDK integration-ready (OPC UA SDK independent)</li>
-</ul>
-<p>Check out the <a href="https://github.com/mpostol/ASMD/wiki">WIKI - Help Documentation</a> to get a more detailed description</p>
-<h2 id="getting-started">Getting Started</h2>
-<p>This section describes prerequisites to compile the software and run tests.</p>
-<h3 id="open-xml-sdk">Open XML SDK</h3>
-<p>The following package must be installed on the development computer to build the solution</p>
-<ul>
-<li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=30425">Open XML SDK 2.5 for Microsoft Office</a></li>
-</ul>
-<p>Open XML is an open ECMA 376 standard and is also approved as the ISO/IEC 29500 standard that defines a set of XML schemas for representing spreadsheets, charts, presentations, and word processing documents. Microsoft Office Word 2007, Excel 2007, PowerPoint 2007, and the later versions all use Open XML as the default file format.</p>
-<h3 id="nuget-packages">NuGet packages</h3>
-<p>The list of packages used is listed on the page <a href="https://github.com/mpostol/ASMD/network/dependencies">Dependency graph</a> of this repository. All packages are included in this GitHub repository in the local folder <code>_nugets</code> or published on NuGet. The local folder is configured in the <code>NuGet.Config</code>. The NuGet Gallery is the public package repository used by all package authors and consumers. All required packages are loaded before the build.</p>
-<p>To get more visit the Microsoft documentation <a href="https://docs.microsoft.com/en-us/nuget/consume-packages/reinstalling-and-updating-packages">How to reinstall and update packages</a>.</p>
-<h3 id="visual-studio">Visual Studio</h3>
-<p>Projects can be opened in Visual Studio 2017. Support for some projects depends on the Visual Studio edition and installed components.</p>
-<h2 id="ho-to-guide">Ho to Guide</h2>
-<h3 id="how-to-build-and-run-the-unit-tests-in-visual-studio-on-windows">How to build and run the unit tests in Visual Studio on Windows</h3>
-<ol>
-<li>Open the <code>CommServer.UA.ModelDesigner.sln</code> solution file using Visual Studio 2017.</li>
-<li>Hit <code>F6</code> to build all projects in the solution.</li>
-<li>Set the <code>ModelDesigner.DesignStudio</code> as the Start-up Project</li>
-<li>Press <code>F5</code> to run the tool using Debug configuration</li>
-<li>Hit <code>Ctrl+r,Ctrl+a</code> to run all unit tests</li>
-</ol>
-<h3 id="how-to-open-an-example">How to open an example</h3>
-<p>This section contains information about the Address Space Model Designer sample solutions that illustrate the structure and techniques used for designing models and defining bindings between model nodes and real-time process data.</p>
-<p>The section <a href="https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment">Information Models Development</a> of the online ebook covers details on how to get started using the attached examples. The solution <code>BoilerExampleSolution</code> contains a boiler model. This model is described in the <a href="https://commsvr.gitbook.io/ooi/reactive-communication/referenceapplication/simulator.boiler#informal-model-of-boiler">ReferenceApplication Producer - Boilers Set Simulator</a>. Check out the section <a href="https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment/companionspecificationinformationmodelfforanalyzers">Companion Specification - Information Model for Analyzers</a> to get more about <code>ADIExempleSolution</code> example.</p>
-<p>Selected examples are also published on the <a href="https://github.com/mpostol/ASMD/releases">ASMD releases page</a>. The following step by step, instruction will guide you on how to open the examples.</p>
-<ul>
-<li>From the <a href="https://github.com/mpostol/ASMD/releases">ASMD releases page</a> download and unzip the file <code>ASMD.EmbeddedExample.zip</code> to the selected folder</li>
-<li>The folder <code>EmbeddedExample</code> contains two examples
-<ul>
-<li><code>BoilerExampleSolution</code> - a set of unmanned boilers spread geographically, which have to be monitored and remotely controlled</li>
-<li><code>ADIExempleSolution</code> - a set of models to be used as an example of adopting companion standard models, i.e. <a href="https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment/companionspecificationinformationmodelfforanalyzers">analyzer devices integration</a></li>
-</ul>
-</li>
-<li>Now you may run the ASMD application and open the selected solution</li>
-</ul>
-<p>You can open the solution into ASMD in the following way:</p>
-<ol>
-<li>Click on the main menu Open item</li>
-<li>Select the directory containing the sample solution</li>
-<li>Open the <code>BoilerExampleSolution.uamdsl</code> file</li>
-<li>Click on the confirmation (Open) button</li>
-</ol>
-<p><img src="https://github.com/mpostol/ASMD/wiki/_Media/ToOpenSampleSolution.jpg" alt="How to open a Sample Solution"></p>
-<p>The files of the sample solution are listed in the following table.</p>
-
-<table>
-<thead>
-<tr>
-<th>File</th>
-<th>Content</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>*.uamdsl</code></td>
-<td>Address Space Model Designer solution. This file contains the configuration of the sample solution and references to other files that are used in this solution (e.g. projects, plug-ins, etc.)</td>
-</tr>
-<tr>
-<td><code>CAS.UA.Server.ServerConfiguration.dll</code></td>
-<td>A sample Plug-in file for CommServer UA that can be used to edit the configuration file and define process data bindings</td>
-</tr>
-<tr>
-<td><code>*.csv</code></td>
-<td>A CSV file that contains Node Identifiers</td>
-</tr>
-<tr>
-<td><code>*.xml</code></td>
-<td>An XML file that contains the model</td>
-</tr>
-<tr>
-<td><code>*/CAS.UAServer.DemoConfiguration.uasconfig</code></td>
-<td>A sample configuration file of CommServer UA. This file is created and edited by <code>CAS.UA.Server.ServerConfiguration.dll</code> - configuration editor.</td>
-</tr>
-<tr>
-<td><code>*/DefaultConfig.xml</code></td>
-<td>A sample CommServer configuration file. It can be edited by the Network Configuration application (part of CommServer package).</td>
-</tr>
-<tr>
-<td><code>*/DemoConfiguration.oses</code></td>
-<td>A sample OPC DA client configuration (compatible with <code>OPC Viewer</code> and <code>DataPorter</code> products)</td>
-</tr>
-</tbody>
-</table><h2 id="related-work">Related work</h2>
-<h3 id="object-oriented-internet">Object Oriented Internet</h3>
-<p>In this umbrella project, C# deliverables supporting a new Machine To Machine (M2M) communication approach based on the <strong>Data-Oriented Architecture</strong> (DOA) paradigm is to be researched. The goal is to provide a generic solution for publishing and updating information in a context that can be used to describe and discover it by software applications. It is implemented based on the</p>
-<ul>
-<li><a href="http://goo.gl/y4EHUn">OPC Unified Architecture</a> - an industrial integration standard that fulfills the proposed architecture requirements.</li>
-<li>Object-Oriented Programming - well know and widely accepted programming language model in which data processing is organized around 4 major principles, namely encapsulation, abstraction, polymorphism and inheritance.</li>
-</ul>
-<p>The GitHub <a href="https://github.com/mpostol/OPC-UA-OOI">Object Oriented Internet</a> repository is aimed at the maintenance of this project. The ASMD contributes to this project and is compliant with the OOI concept.</p>
-<h3 id="commserver">CommServer</h3>
-<p><a href="http://www.commsvr.com/">CommServer</a> is a package of software to manage data transfer using OPC standards. Built-in technologies and algorithms support Machine to Machine (M2M) meaningful interoperability. The <a href="http://www.commsvr.com/">CommServer</a> was written by CAS Lodz Poland.</p>
-<p>The GitHub repository <a href="https://github.com/commsvr-com/migration2os">commsvr-com/migration2os</a> is aimed at the <code>CommServer</code> software migration from on-premise subversion repository to GitHub and publishing it as the Open-Source Software (OSS). The members of the <code>CommServer</code> family are to be converged with the Object-Oriented Internet paradigms and integrated with the solutions maintained in this repository.</p>
-<p>The project <a href="https://github.com/orgs/commsvr-com/projects">CommServer Migration to Open-source</a> will be used to coordinate the migration process of transferring multi-parts software from an on-premise subversion repository to a set of GitHub repositories.</p>
-<h3 id="object-oriented-internet-reactive-networking-configuration-editor">Object Oriented Internet Reactive Networking Configuration Editor</h3>
-<p>OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of the <a href="https://commsvr.gitbook.io/ooi/TableOfContent.md#reactive-communication">Reactive Communication</a>.  The <code>OPC-UA-OOI.ConfigEditor</code> was written by CAS Lodz Poland. The <a href="https://github.com/mpostol/OPC-UA-OOI.ConfigEditor">mpostol/OPC-UA-OOI.ConfigEditor</a> repository is aimed at the software migration from on-premise subversion repository to GitHub and publishing it as the Open-Source Software (OSS).  After migration, this repository will be used to manage all activities addressing the software maintenance process as a plug-in of the ASMD.</p>
-<h2 id="see-also">See Also</h2>
-<ul>
-<li><a href="https://commsvr-com.github.io/Documentation/ModelDesigner">OPC UA Address Space Model Designer Help</a></li>
-<li><a href="https://github.com/mpostol/ASMD/wiki">WIKI - Help Documentation</a></li>
-<li><a href="https://commsvr.gitbook.io/ooi/semantic-data-processing/addressspaceaddressspacemodel">Mariusz Postol. Address Space and Address Space Model</a></li>
-<li><a href="http://www.commsvr.com/Products/OPCUA/UAModelDesigner.aspx">ASMD Re. 3.30.1 installation released by CAS</a></li>
-<li><a href="http://www.commsvr.com/Products/OPCUA/UAModelDesigner.aspx">OPC UA Address Space Model Designer, 2019</a></li>
-<li>Wolfgang Mahnke, Stefan Helmut Leitner, Matthias Damm. OPC Unified Architecture. Berlin: Springer, 2009.</li>
-<li><a href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-3-address-space-model/">OPC Unified Architecture Specification Part 3: Address Space Model, OPC Foundation, Rel. 1.04, 2017-11-22</a></li>
-<li><a href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-5-information-model/">OPC Unified Architecture Specification Part 5: Information Model, OPC Foundation, Rel. 1.04, 2017-11-22</a></li>
-<li><a href="https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-6-mappings/">OPC Unified Architecture Specification Part 6: Mappings, OPC Foundation, Rel. 1.04, 2017-11-22</a></li>
-<li><a href="https://commsvr.gitbook.io/ooi/reactive-communication/referenceapplication/simulator.boiler#informal-model-of-boiler">ReferenceApplication Producer - Boilers Set Simulator</a></li>
-<li><a href="https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment/companionspecificationinformationmodelfforanalyzers">Companion Specification - Information Model for Analyzers</a></li>
-<li><a href="https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment">Information Models Development</a></li>
-<li><a href="https://github.com/mpostol/ASMD/releases">ASMD releases page</a></li>
-<li><a href="https://commsvr.gitbook.io/ooi/semantic-data-processing/informationmodelsdevelopment/companionspecificationinformationmodelfforanalyzers">OPC 10020 - UA for Analyzer Devices (ADI), OPC Foundation Rel 1.1a, 2015</a></li>
-<li><a href="http://semver.org/">Semantic Versioning</a></li>
-<li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=30425">Open XML SDK 2.5 for Microsoft Office</a></li>
-<li><a href="https://docs.microsoft.com/en-us/nuget/consume-packages/reinstalling-and-updating-packages">How to reinstall and update packages</a>.</li>
-<li><a href="https://github.com/mpostol/ASMD/network/dependencies">Dependency graph</a></li>
-<li><a href="https://github.com/OPCFoundation/UA-ModelCompiler">OPCFoundation/UA-ModelCompiler</a></li>
-<li><a href="https://youtu.be/LvGHl-hRwZw">OPC UA Information Model - How to Create Instances using ASMD; Video</a></li>
-<li><a href="https://youtu.be/y3tndTA7YYo">OPC UA Information Model - How to build the model; Video</a></li>
-<li><a href="https://www.youtube.com/watch?v=pYOQA4atlRI&amp;feature=youtu.be">Introduction to OPC UA Address Space modeling using CAS Address Space Model Designer; Video</a></li>
-<li><a href="https://github.com/mpostol/ASMD/releases/tag/4.1.0">OOI - OPC UA Address Space Model Designer V 4.1</a></li>
-</ul>
-
-    </div>
-  </div>
 </body>
 
 </html>
