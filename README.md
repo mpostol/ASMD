@@ -1,7 +1,7 @@
 
 # OOI Address Space Model Designer (OOI ASMD) ![Logo](https://mpostol.github.io/ASMD/_media/ASMDLogo-48.png) <!-- omit in toc -->
 
-## Table of Content  <!-- omit in toc --> 
+## Table of Content  <!-- omit in toc -->
 
 - [Preface](#preface)
 - [Releases](#releases)
@@ -41,7 +41,7 @@ We use [Semantic Versioning][SV] for versioning. For the versions available, see
 
 | Version | Milestone                                                                                            |     Date     | Notes      |
 | :-----: | ---------------------------------------------------------------------------------------------------- | :----------: | ---------- |
-|   4.3   | [Maintenance, refactoring, and bug-fix release](https://github.com/mpostol/ASMD/releases/tag/4.3.0) |  18-07-2020  |            |
+|   4.3   | [Maintenance, refactoring, and bug-fix release](https://github.com/mpostol/ASMD/releases/tag/4.3.0)  |  18-07-2020  |            |
 |   4.2   | [Maintenance and refactoring](https://github.com/mpostol/ASMD/releases/tag/4.2.0)                    |  18-05-2020  |            |
 |   4.1   | [Public release of the ASMD][ASMD410]                                                                | Dec 17, 2019 |            |
 | 3.20.1  | *ASMD last available Windows installation released by CAS*                                           | May 17, 2016 | deprecated |
