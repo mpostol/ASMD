@@ -1,21 +1,20 @@
 
-# OOI Address Space Model Designer (OOI ASMD)
+# OOI Address Space Model Designer (OOI ASMD) ![Logo](https://mpostol.github.io/ASMD/_media/ASMDLogo-48.png) <!-- omit in toc -->
 
-![Logo](_media/ASMDLogo-48.png)
+## Table of Content  <!-- omit in toc --> 
 
-- [OOI Address Space Model Designer (OOI ASMD)](#ooi-address-space-model-designer-ooi-asmd)
-  - [Preface](#preface)
-  - [Releases](#releases)
-  - [Key Features](#key-features)
-  - [Getting Started](#getting-started)
-    - [Ho to Install](#ho-to-install)
-    - [How to open an example](#how-to-open-an-example)
-    - [How to build and run the unit tests in Visual Studio on Windows](#how-to-build-and-run-the-unit-tests-in-visual-studio-on-windows)
-  - [Related work](#related-work)
-    - [Object Oriented Internet](#object-oriented-internet)
-    - [CommServer](#commserver)
-    - [Object Oriented Internet Reactive Networking Configuration Editor](#object-oriented-internet-reactive-networking-configuration-editor)
-  - [See Also](#see-also)
+- [Preface](#preface)
+- [Releases](#releases)
+- [Key Features](#key-features)
+- [Getting Started](#getting-started)
+  - [Ho to Install](#ho-to-install)
+  - [How to open an example](#how-to-open-an-example)
+  - [How to build and run the unit tests in Visual Studio on Windows](#how-to-build-and-run-the-unit-tests-in-visual-studio-on-windows)
+- [Related work](#related-work)
+  - [Object Oriented Internet](#object-oriented-internet)
+  - [CommServer](#commserver)
+  - [Object Oriented Internet Reactive Networking Configuration Editor](#object-oriented-internet-reactive-networking-configuration-editor)
+- [See Also](#see-also)
 
 ## Preface
 
@@ -40,12 +39,12 @@ The ASMD was written by CAS Lodz Poland. I am the founder and Executive Director
 
 We use [Semantic Versioning][SV] for versioning. For the versions available, see the [releases on this repository][REL]. For your convenience, the versions of the repository, tools and NuGet packages has been listed in the next subsections.
 
-| Version | Milestone                                                          | Date|Notes|
-|:-:|---|:--:|-|
-| 4.3 | [Maintenance, refactoring, and bug-fix release](hhttps://github.com/mpostol/ASMD/releases/tag/4.3.0) | 18-07-2020 ||
-| 4.2 | [Maintenance and refactoring](https://github.com/mpostol/ASMD/releases/tag/4.2.0) |  18-05-2020 ||
-| 4.1 | [Public release of the ASMD][ASMD410] | Dec 17, 2019 ||
-| 3.20.1| *ASMD last available Windows installation released by CAS*| May 17, 2016|deprecated|
+| Version | Milestone                                                                                            |     Date     | Notes      |
+| :-----: | ---------------------------------------------------------------------------------------------------- | :----------: | ---------- |
+|   4.3   | [Maintenance, refactoring, and bug-fix release](hhttps://github.com/mpostol/ASMD/releases/tag/4.3.0) |  18-07-2020  |            |
+|   4.2   | [Maintenance and refactoring](https://github.com/mpostol/ASMD/releases/tag/4.2.0)                    |  18-05-2020  |            |
+|   4.1   | [Public release of the ASMD][ASMD410]                                                                | Dec 17, 2019 |            |
+| 3.20.1  | *ASMD last available Windows installation released by CAS*                                           | May 17, 2016 | deprecated |
 
 ## Key Features
 
@@ -113,14 +112,14 @@ You can open the solution into ASMD in the following way:
 
 The files of the sample solution are listed in the following table.
 
-File | Content
-|----|---------|
-`*.uamdsl` |Address Space Model Designer solution. This file contains the configuration of the sample solution and references to other files that are used in this solution (e.g. projects, plug-ins, etc.)
-`*.csv` | A CSV file that contains Node Identifiers
-`*.xml` | An XML file that contains the model
-`*/CAS.UAServer.DemoConfiguration.uasconfig` | A sample configuration file of OPC UA Server. This file is created and edited by the plug-in providing the configuration editor. It is compatible with  [mpostol/OPCUA.Server](https://github.com/mpostol/OPCUA.Server) Open Source Software.
-`*/DefaultConfig.xml` |A sample OPC DA Server configuration file (compatible with [mpostol/OPCDA.Server](https://github.com/mpostol/OPCDA.Server) Open Source Software).
-`*/DemoConfiguration.oses` |A sample OPC DA Client configuration (compatible with  [mpostol/OPCDA.Viewer](https://github.com/mpostol/OPCDA.Viewer) and [mpostol/OPCDA.DataPorter](https://github.com/mpostol/OPCDA.DataPorter) Open Source Software)
+| File                                         | Content                                                                                                                                                                                                                                       |
+| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `*.uamdsl`                                   | Address Space Model Designer solution. This file contains the configuration of the sample solution and references to other files that are used in this solution (e.g. projects, plug-ins, etc.)                                               |
+| `*.csv`                                      | A CSV file that contains Node Identifiers                                                                                                                                                                                                     |
+| `*.xml`                                      | An XML file that contains the model                                                                                                                                                                                                           |
+| `*/CAS.UAServer.DemoConfiguration.uasconfig` | A sample configuration file of OPC UA Server. This file is created and edited by the plug-in providing the configuration editor. It is compatible with  [mpostol/OPCUA.Server](https://github.com/mpostol/OPCUA.Server) Open Source Software. |
+| `*/DefaultConfig.xml`                        | A sample OPC DA Server configuration file (compatible with [mpostol/OPCDA.Server](https://github.com/mpostol/OPCDA.Server) Open Source Software).                                                                                             |
+| `*/DemoConfiguration.oses`                   | A sample OPC DA Client configuration (compatible with  [mpostol/OPCDA.Viewer](https://github.com/mpostol/OPCDA.Viewer) and [mpostol/OPCDA.DataPorter](https://github.com/mpostol/OPCDA.DataPorter) Open Source Software)                      |
 
 ### How to build and run the unit tests in Visual Studio on Windows
 
