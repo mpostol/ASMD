@@ -158,16 +158,6 @@ The project [CommServer Migration to Open-source][migration2osProj] will be used
 
 OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of the [Reactive Communication][OOIBookToC].  The `OPC-UA-OOI.ConfigEditor` was written by CAS Lodz Poland. The [mpostol/OPC-UA-OOI.ConfigEditor][ConfigEditor] repository is aimed at the software migration from on-premise subversion repository to GitHub and publishing it as the Open-Source Software (OSS).  After migration, this repository will be used to manage all activities addressing the software maintenance process as a plug-in of the ASMD.
 
-[Mariusz Postol](https://mpostol.wordpress.com/about/)
-
-[![View my profile on LinkedIn](https://www.linkedin.com/img/webpromo/btn_viewmy_160x33.png "View my profile on LinkedIn")](https://pl.linkedin.com/in/mpostol)
-
-- [mpostol (at) cas.eu](https://cas.eu/index.php/contact)
-- [GitHub profile](https://github.com/mpostol)
-- [http://www.commsvr.com/](http://www.commsvr.com/)
-- [LinkedIn](https://linkedin.com/in/mpostol)
-- [twitter](https://twitter.com/mpostol)
-
 ## Future Work
 
 The following list of projects is on the road map of the [**Object-Oriented Internet Partnership Program**](https://github.commsvr.com/AboutPartnershipProgram.md.html) as a part of building a machine-centric global village:
@@ -181,6 +171,16 @@ Follow the links to get a detailed description of the planned projects. Let's wo
 >
 > Your participation is needed to make sure the work will continue as expected.
  
+## Contact
+
+[![View my profile on LinkedIn](https://www.linkedin.com/img/webpromo/btn_viewmy_160x33.png "View my profile on LinkedIn")](https://pl.linkedin.com/in/mpostol)
+
+- [my blog on wordpress](https://mpostol.wordpress.com/about/)
+- [mpostol (at) cas.eu](https://cas.eu/index.php/contact)
+- [GitHub profile](https://github.com/mpostol)
+- [http://www.commsvr.com/](http://www.commsvr.com/)
+- [twitter](https://twitter.com/mpostol)
+
 ## See Also
 
 - [OPC UA Address Space Model Designer Help][github.MD]
