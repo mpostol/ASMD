@@ -25,7 +25,7 @@ The  OOI ASMD supports the graphical design of the process model using OPC UA In
 > **NOTE**:
 >
 >- The design, development and deployment of the OPC UA Information Model detailed description is covered by the document [Information Models Development][IMD].
->- The help documentation is now available at [OPC UA Address Space Model Designer Online Help][github.MD]
+>- The help documentation is now available at [OPC UA Address Space Model Designer On-line Help][github.MD]
 
 I am a researcher who is passionate about applying knowledge and experience in building a machine-centric global village. Let's build it with you and for you. To join our effort and create an organization context I have launched the [**Object-Oriented Internet Partnership Program**](https://github.commsvr.com/AboutPartnershipProgram.md.html).
 
@@ -76,7 +76,7 @@ We use [Semantic Versioning][SV] for versioning. For the versions available, see
 - considerably improves robustness of the OPC UA Information Model deployment in any custom environment
 - any OPC UA SDK integration-ready (OPC UA SDK independent)
 
-Check out the [Online Help]([github.MD]) to get a more detailed description.
+Check out the [On-line Help][github.MD] to get a more detailed description.
 
 ## Getting Started
 
@@ -141,7 +141,7 @@ To get more visit the Microsoft documentation [How to reinstall and update packa
 
 In this umbrella project, C\# deliverables supporting a new Machine To Machine \(M2M\) communication approach based on the **Data-Oriented Architecture** (DOA) paradigm is to be researched. The goal is to provide a generic solution for publishing and updating information in a context that can be used to describe and discover it by software applications. It is implemented based on the
 
-- [OPC Unified Architecture](http://goo.gl/y4EHUn) - an industrial integration standard that fulfills the proposed architecture requirements.
+- [OPC Unified Architecture](https://commsvr.gitbook.io/ooi/introduction/opcunifiedarchitecture) - an industrial integration standard that fulfills the proposed architecture requirements.
 - Object-Oriented Programming - well know and widely accepted programming language model in which data processing is organized around 4 major principles, namely encapsulation, abstraction, polymorphism and inheritance.
 
 The GitHub [Object Oriented Internet][OOI] repository is aimed at the maintenance of this project. The ASMD contributes to this project and is compliant with the OOI concept.
@@ -168,6 +168,19 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 - [LinkedIn](https://linkedin.com/in/mpostol)
 - [twitter](https://twitter.com/mpostol)
 
+## Future Work
+
+The following list of projects is on the road map of the [**Object-Oriented Internet Partnership Program**](https://github.commsvr.com/AboutPartnershipProgram.md.html) as a part of building a machine-centric global village:
+
+- [Cloud Metadata Schema Generation](https://mpostol.github.io/ASMD/CloudMetadataExport)
+- [OPC UA Information Models Testing Partnership Program](https://mpostol.github.io/ASMD/ASMD50-ModelsTesting)
+
+Follow the links to get a detailed description of the planned projects. Let's work on them with you and for you. Your experience To join our effort and create an organizational context I have launched the [**Object-Oriented Internet Partnership Program**](https://github.commsvr.com/AboutPartnershipProgram.md.html).
+
+> Consider joining as a sponsor, contributor, or end-user. Details are covered by the section [**How to be involved**](https://github.commsvr.com/AboutPartnershipProgram.md.html#how-to-be-involved)
+>
+> Your participation is needed to make sure the work will continue as expected.
+ 
 ## See Also
 
 - [OPC UA Address Space Model Designer Help][github.MD]
@@ -191,7 +204,6 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 - [OPC UA Information Model - How to Create Instances using ASMD; Video][CAS.VideoInstances]
 - [OPC UA Information Model - How to build the model; Video][CAS.VideBuild]
 - [Introduction to OPC UA Address Space modeling using CAS Address Space Model Designer; Video][CAS.MZASMDIntro]
-- [OOI - OPC UA Address Space Model Designer V 4.1][ASMD410]
 
 [CAS.MZASMDIntro]:https://www.youtube.com/watch?v=pYOQA4atlRI&feature=youtu.be
 [OPC.UA.ModelCompiler]:https://github.com/OPCFoundation/UA-ModelCompiler
@@ -217,5 +229,4 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 [OOIBookToC]: https://commsvr.gitbook.io/ooi/TableOfContent.md#reactive-communication
 [ConfigEditor]: https://github.com/mpostol/OPC-UA-OOI.ConfigEditor
 [OOI]: https://github.com/mpostol/OPC-UA-OOI
-[ASMD410]:https://github.com/mpostol/ASMD/releases/tag/4.1.0
 [github.MD]:https://commsvr-com.github.io/Documentation/ModelDesigner
