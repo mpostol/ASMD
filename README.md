@@ -1,4 +1,3 @@
-
 # OOI Address Space Model Designer (OOI ASMD) ![Logo](https://mpostol.github.io/ASMD/_media/ASMDLogo-48.png) <!-- omit in toc -->
 
 ## Table of Content  <!-- omit in toc -->
@@ -14,6 +13,8 @@
   - [Object Oriented Internet](#object-oriented-internet)
   - [CommServer](#commserver)
   - [Object Oriented Internet Reactive Networking Configuration Editor](#object-oriented-internet-reactive-networking-configuration-editor)
+- [Future Work](#future-work)
+- [Contact](#contact)
 - [See Also](#see-also)
 
 ## Preface
@@ -160,17 +161,17 @@ OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of 
 
 ## Future Work
 
-The following list of projects is on the road map of the [**Object-Oriented Internet Partnership Program**](https://github.commsvr.com/AboutPartnershipProgram.md.html) as a part of building a machine-centric global village:
+The following list of projects is to be conducted as part of the open-source inititives **[Object Oriented Internet][OOI]**:
 
-- [Cloud Metadata Schema Generation](https://mpostol.github.io/ASMD/CloudMetadataExport)
-- [OPC UA Information Models Testing Partnership Program](https://mpostol.github.io/ASMD/ASMD50-ModelsTesting)
+1. [Cloud Metadata Export](https://mpostol.github.io/ASMD/CloudMetadataExport)
+1. [OPC UA Information Models Compliance Testing](https://mpostol.github.io/ASMD/ASMD50-ModelsTesting)
 
-Follow the links to get a detailed description of the planned projects. Let's work on them with you and for you. Your experience To join our effort and create an organizational context I have launched the [**Object-Oriented Internet Partnership Program**](https://github.commsvr.com/AboutPartnershipProgram.md.html).
+Follow the links to get a detailed description of the planned projects. Let's work on them with you and for you. To join our effort and create an organizational context I have launched the **[Object-Oriented Internet Partnership Program](https://github.commsvr.com/AboutPartnershipProgram.md.html)**.
 
 > Consider joining as a sponsor, contributor, or end-user. Details are covered by the section [**How to be involved**](https://github.commsvr.com/AboutPartnershipProgram.md.html#how-to-be-involved)
 >
-> Your participation is needed to make sure the work will continue as expected.
- 
+> Your experience, knowledge, and direct participation is needed to make sure the work will continue as expected.
+
 ## Contact
 
 [![View my profile on LinkedIn](https://www.linkedin.com/img/webpromo/btn_viewmy_160x33.png "View my profile on LinkedIn")](https://pl.linkedin.com/in/mpostol)
@@ -187,6 +188,7 @@ Follow the links to get a detailed description of the planned projects. Let's wo
 - [WIKI - Help Documentation][WIKI]
 - [Mariusz Postol. Address Space and Address Space Model](https://commsvr.gitbook.io/ooi/semantic-data-processing/addressspaceaddressspacemodel)
 - [OPC UA Address Space Model Designer][CAS.ASMD]
+- [Object Oriented Internet][OOI]
 - Wolfgang Mahnke, Stefan Helmut Leitner, Matthias Damm. OPC Unified Architecture. Berlin: Springer, 2009.
 - [OPC Unified Architecture Specification Part 3: Address Space Model, OPC Foundation, Rel. 1.04, 2017-11-22][Opc.UA.Part3]
 - [OPC Unified Architecture Specification Part 5: Information Model, OPC Foundation, Rel. 1.04, 2017-11-22][OPC.UA.Part5]

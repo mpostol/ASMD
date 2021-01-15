@@ -1,4 +1,4 @@
-# ASMD Rel 5.0 OPC UA Information Models Testing Partnership Program
+# OPC UA Information Models Compliance Testing
 
 Let me inform you about the opportunity to test your custom OPC UA Information Models against the specification for free. Now I am working on the new release of the Address Space Model Designer, and I have commenced the testing process. Therefore I will appreciate the possibility to test the tool against your custom model and by the way the models against the specification, namely Part 3 and Part 5. Contact me if you have any models that can be made available to me for this purpose?
 
@@ -23,3 +23,14 @@ The preliminary list of tests is as follows.
 > - MS Word documentation will be available for the model owner
 > - website will be publicly available and published using GitHub pages
 > - any models inconsistency will be discussed with the model owner
+
+
+## Contact
+
+[![View my profile on LinkedIn](https://www.linkedin.com/img/webpromo/btn_viewmy_160x33.png "View my profile on LinkedIn")](https://pl.linkedin.com/in/mpostol)
+
+- [my blog on wordpress](https://mpostol.wordpress.com/about/)
+- [mpostol (at) cas.eu](https://cas.eu/index.php/contact)
+- [GitHub profile](https://github.com/mpostol)
+- [http://www.commsvr.com/](http://www.commsvr.com/)
+- [twitter](https://twitter.com/mpostol)
