@@ -4,6 +4,8 @@
 
 `OPC UA`, `Information Model`, `Address Space`, `ModelDesign`, `NodeSet`, `JSON`, `JSON-LD`, `SQL`, `Azure Device Template`, `Azure Device Capability Model`, `Smart Manufacturing Profiles`, `SMP`.
 
+## [Back to mpostol/ASMD][ASMD]
+
 ## Subject
 
 The **Cloud Metadata** (CM) defines how a device interacts with IoT cloud services. Usually, a solution developer can import a file that defines the CM, or use the web UI to create or edit it. The CM is a semantic-context used to expose the process data by the cloud frond-end. This context is necessary to make the exposed real-time process data meaningful.

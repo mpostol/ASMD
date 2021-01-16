@@ -87,8 +87,8 @@ This section describes prerequisites to use the tool, compile the code and run u
 
 Download and run the file `UA.ModelDesigner.exe` to unzip the content to the selected folder and create an icon on the desktop. The application will run after unpacking. To restart the application you may use the icon on the desktop or double click the application file `<target>\UA.ModelDesigner\OOI.UA.ModelDesigner.exe`, where \<target\> is the already selected folder during the installation. To uninstall the software and embedded example simply delete the \<target\> folder and the icon.
 
-> Note: The self-extracting zip file and the main application is not code-signed. The unsigned executable maybe not allowed by your company IT policy. The installer package containing signed stuff is on the project road map #89. Further development planning is based on the sponsors' priorities.
-
+> Note: The self-extracting zip file and the main application are not code-signed. The unsigned executable may not be allowed by your company IT policy. The installer package containing signed stuff is on the project road map #89. Further development planning is based on the sponsors' priorities.
+ 
 ### How to open an example
 
 This section contains information about the Address Space Model Designer sample solutions that illustrate the structure and techniques used for designing models and defining bindings between model nodes and real-time process data.
