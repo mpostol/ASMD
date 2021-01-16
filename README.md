@@ -16,6 +16,8 @@
 - [Future Work](#future-work)
 - [Contact](#contact)
 - [See Also](#see-also)
+  - [Documentation](#documentation)
+  - [Video](#video)
 
 ## Preface
 
@@ -184,6 +186,8 @@ Follow the links to get a detailed description of the planned projects. Let's wo
 
 ## See Also
 
+### Documentation
+
 - [OPC UA Address Space Model Designer Help][github.MD]
 - [WIKI - Help Documentation][WIKI]
 - [Mariusz Postol. Address Space and Address Space Model](https://commsvr.gitbook.io/ooi/semantic-data-processing/addressspaceaddressspacemodel)
@@ -203,14 +207,17 @@ Follow the links to get a detailed description of the planned projects. Let's wo
 - [How to reinstall and update packages][NUGETInstall].
 - [Dependency graph][DEPGraph]
 - [OPCFoundation/UA-ModelCompiler][OPC.UA.ModelCompiler]
-- [OPC UA Information Model - How to Create Instances using ASMD; Video][CAS.VideoInstances]
-- [OPC UA Information Model - How to build the model; Video][CAS.VideBuild]
+
+### Video
+
+- [**OPC UA Information Model How to Create Instances**][CAS.VideoInstances] - The main aim of this movie is to demonstrate how to use a tool - the Address Space Model Designer to design OPC UA Information Model and instantiate OPC UA Address Space for selected well-known Boiler example.
+- [**ASMD - How to Build Solution**][CAS.VideBuild] - How to get started using an embedded example.
 - [Introduction to OPC UA Address Space modeling using CAS Address Space Model Designer; Video][CAS.MZASMDIntro]
 
 [CAS.MZASMDIntro]:https://www.youtube.com/watch?v=pYOQA4atlRI&feature=youtu.be
 [OPC.UA.ModelCompiler]:https://github.com/OPCFoundation/UA-ModelCompiler
 [WIKI]:https://github.com/mpostol/ASMD/wiki
-[NUGETInstall]:https://docs.microsoft.com/en-us/nuget/consume-packages/reinstalling-and-updating-packages
+[NUGETInstall]:https://docs.microsoft.com/nuget/consume-packages/reinstalling-and-updating-packages
 [SV]:http://semver.org/
 [OPC.UA.Part5]:https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-5-information-model/
 [Opc.UA.Part3]:https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-3-address-space-model/
