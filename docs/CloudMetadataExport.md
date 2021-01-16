@@ -68,4 +68,4 @@ The GitHub **[Object Oriented Internet][OOI]** repository is aimed at the mainte
 
 [OOI]: https://github.com/mpostol/OPC-UA-OOI
 [ASMD]: https://github.com/mpostol/ASMD
-[cesmii]:https://www.cesmii.org/
+[cesmii]: https://www.cesmii.org
