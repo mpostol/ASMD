@@ -19,7 +19,7 @@
 
 ## Preface
 
-OPC Unified Architecture (OPC UA) is the next generation solution compared to OPC Classic. One of the most important improvements in OPC UA is a powerful Address Space and Information Model concept. OPC UA allows exposing real-time process data and underlying infrastructure as a consistent information model built up with nodes. The process model is represented by nodes, attributes, and their mutual relationships. Therefore, using OPC UA this powerful concept allows us to expose not only raw process data but also entire consistent information about the process state and behavior. The flexibility of the OPC UA ensures that no existing or future systems are too complex to be exposed via OPC UA. Of course, such flexibility leads to difficulties during design, development, and deployment, that’s why the Object Oriented-Internet Address Space Model Designer (ASMD) was born.
+OPC Unified Architecture (OPC UA) is the next generation solution compared to OPC Classic. One of the most important improvements in OPC UA is the powerful Address Space and Information Model concepts. OPC UA allows exposing real-time process data and underlying infrastructure as a consistent information model built up with nodes. The process model is represented by nodes, attributes, and their mutual relationships. Therefore, using OPC UA this powerful concept allows us to expose not only raw process data but also entire consistent information about the process state and behavior. The flexibility of the OPC UA ensures that no existing or future systems are too complex to be exposed via OPC UA. Of course, such flexibility leads to difficulties during design, development, and deployment, that’s why the Object Oriented-Internet Address Space Model Designer (ASMD) was born.
 
 The  OOI ASMD supports the graphical design of the process model using OPC UA Information and Address Space concepts. The embedded model compiler may be used to generate all required file formats necessary to deploy custom models on the client, server, publisher and subscriber side using any existing Software Development Kit. It is compliant with the OPC UA Specifications [OPC UA Part 3][Opc.UA.Part3], [OPC UA Part 5][Opc.UA.Part5], and [OPC UA Part 6][Opc.UA.Part6]. By design, it is also a consistent part of the broader concept [Object-Oriented Internet](https://commsvr.gitbook.io/ooi/).
 
@@ -40,19 +40,19 @@ The ASMD was written by CAS Lodz Poland. I am the founder and Executive Director
 
 We use [Semantic Versioning][SV] for versioning. For the versions available, see the [releases on this repository][REL]. For your convenience, the versions of the repository, tools and NuGet packages has been listed in the next subsections.
 
-| Version | Milestone                                                                                            |     Date     | Notes      |
-| :-----: | ---------------------------------------------------------------------------------------------------- | :----------: | ---------- |
-|   4.3   | [Maintenance, refactoring, and bug-fix release](https://github.com/mpostol/ASMD/releases/tag/4.3.0)  |  18-07-2020  |            |
-|   4.2   | [Maintenance and refactoring](https://github.com/mpostol/ASMD/releases/tag/4.2.0)                    |  18-05-2020  |            |
-|   4.1   | [Public release of the ASMD][ASMD410]                                                                | Dec 17, 2019 |            |
-| 3.20.1  | *ASMD last available Windows installation released by CAS*                                           | May 17, 2016 | deprecated |
+| Version | Milestone                                                                                           |     Date     | Notes      |
+| :-----: | --------------------------------------------------------------------------------------------------- | :----------: | ---------- |
+|   4.3   | [Maintenance, refactoring, and bug-fix release](https://github.com/mpostol/ASMD/releases/tag/4.3.0) |  18-07-2020  |            |
+|   4.2   | [Maintenance and refactoring](https://github.com/mpostol/ASMD/releases/tag/4.2.0)                   |  18-05-2020  |            |
+|   4.1   | Public release of the ASMD410                                                                       | Dec 17, 2019 | deprecated |
+| 3.20.1  | *ASMD last available Windows installation released by CAS*                                          | May 17, 2016 | deprecated |
 
 ## Key Features
 
 - graphical modeling of the OPC UA Information Model according to [OPC UA Part 5 specification][OPC.UA.Part5]
   - easy addition and deletion of nodes from the model structure
   - definition of nodes relationship (references) and types
-  - modes filtering
+  - nodes filtering
   - search and find utility
   - type declaration, definition and inheritance analysis
   - state machine custom editor
@@ -87,8 +87,8 @@ This section describes prerequisites to use the tool, compile the code and run u
 
 Download and run the file `UA.ModelDesigner.exe` to unzip the content to the selected folder and create an icon on the desktop. The application will run after unpacking. To restart the application you may use the icon on the desktop or double click the application file `<target>\UA.ModelDesigner\OOI.UA.ModelDesigner.exe`, where \<target\> is the already selected folder during the installation. To uninstall the software and embedded example simply delete the \<target\> folder and the icon.
 
-> Note: The self-extracting zip file and the main application is not code-signed. The unsigned executable maybe not allowed by your company IT policy. The installer package containing signed stuff is on the project road map #89. Further development planning is based on the sponsors' priorities.
-
+> Note: The self-extracting zip file and the main application are not code-signed. The unsigned executable may not be allowed by your company IT policy. The installer package containing signed stuff is on the project road map #89. Further development planning is based on the sponsors' priorities.
+ 
 ### How to open an example
 
 This section contains information about the Address Space Model Designer sample solutions that illustrate the structure and techniques used for designing models and defining bindings between model nodes and real-time process data.
