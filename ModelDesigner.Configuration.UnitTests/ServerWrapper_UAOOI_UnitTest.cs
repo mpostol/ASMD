@@ -1,17 +1,18 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
+
 using CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentation;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
-using CAS.UA.IServerConfiguration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.IO;
 using System.Reflection;
+using UAOOI.Configuration.Core;
 
 namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
 {

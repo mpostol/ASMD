@@ -6,12 +6,12 @@
 //___________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
-using CAS.UA.IServerConfiguration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using UAOOI.Configuration.Core;
 
 namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
 {

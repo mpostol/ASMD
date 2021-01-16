@@ -1,10 +1,10 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.UA.IServerConfiguration;
 using System;
 using System.IO;
 using UAOOI.Configuration.DataBindings;
@@ -40,7 +40,14 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentatio
     {
       CurrentConfiguration = new ConfigurationData();
     }
-    public override void CreateInstanceConfigurations(INodeDescriptor[] descriptors, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+    /// <summary>
+    /// Creates the instance configurations.
+    /// </summary>
+    /// <param name="descriptors">The descriptors.</param>
+    /// <param name="SkipOpeningConfigurationFile">if set to <c>true</c> [skip opening configuration file].</param>
+    /// <param name="CancelWasPressed">if set to <c>true</c> [cancel was pressed].</param>
+    /// <exception cref="NotImplementedException"></exception>
+    public override void CreateInstanceConfigurations(UAOOI.Configuration.Core.INodeDescriptor[] descriptors, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
     {
       throw new NotImplementedException();
     }
@@ -53,13 +60,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentatio
     {
       throw new NotImplementedException();
     }
-    /// <summary>
-    /// Gets the instance to be used by a user to configure the selected node.
-    /// </summary>
-    /// <param name="descriptor">Provides identifying description of the node to be configured.</param>
-    /// <returns>Returned object provides access to the instance node configuration edition functionality.</returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public override IInstanceConfiguration GetInstanceConfiguration(INodeDescriptor descriptor)
+    public override UAOOI.Configuration.Core.IInstanceConfiguration GetInstanceConfiguration(UAOOI.Configuration.Core.INodeDescriptor descriptor)
     {
       throw new NotImplementedException();
     }
