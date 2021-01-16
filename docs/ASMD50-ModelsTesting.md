@@ -24,13 +24,12 @@ The preliminary list of tests is as follows.
 > - website will be publicly available and published using GitHub pages
 > - any models inconsistency will be discussed with the model owner
 
-
 ## Contact
 
-[![View my profile on LinkedIn](https://www.linkedin.com/img/webpromo/btn_viewmy_160x33.png "View my profile on LinkedIn")](https://pl.linkedin.com/in/mpostol)
-
+- [![View my profile on LinkedIn](https://www.linkedin.com/img/webpromo/btn_viewmy_160x33.png "View my profile on LinkedIn")](https://pl.linkedin.com/in/mpostol)
 - [my blog on wordpress](https://mpostol.wordpress.com/about/)
 - [mpostol (at) cas.eu](https://cas.eu/index.php/contact)
 - [GitHub profile](https://github.com/mpostol)
 - [http://www.commsvr.com/](http://www.commsvr.com/)
 - [twitter](https://twitter.com/mpostol)
+- [![ORCID Mariusz Postół](https://orcid.org/sites/default/files/images/orcid_16x16.png) ORCID Mariusz Postół](https://orcid.org/0000-0002-9669-0565)
