@@ -176,13 +176,13 @@ Follow the links to get a detailed description of the planned projects. Let's wo
 
 ## Contact
 
-[![View my profile on LinkedIn](https://www.linkedin.com/img/webpromo/btn_viewmy_160x33.png "View my profile on LinkedIn")](https://pl.linkedin.com/in/mpostol)
-
+- [![View my profile on LinkedIn](https://www.linkedin.com/img/webpromo/btn_viewmy_160x33.png "View my profile on LinkedIn")](https://pl.linkedin.com/in/mpostol)
 - [my blog on wordpress](https://mpostol.wordpress.com/about/)
 - [mpostol (at) cas.eu](https://cas.eu/index.php/contact)
 - [GitHub profile](https://github.com/mpostol)
 - [http://www.commsvr.com/](http://www.commsvr.com/)
 - [twitter](https://twitter.com/mpostol)
+- [![ORCID Mariusz Postół](https://orcid.org/sites/default/files/images/orcid_16x16.png) ORCID Mariusz Postół](https://orcid.org/0000-0002-9669-0565)
 
 ## See Also
 
@@ -210,9 +210,9 @@ Follow the links to get a detailed description of the planned projects. Let's wo
 
 ### Video
 
-- [**OPC UA Information Model How to Create Instances**][CAS.VideoInstances] - The main aim of this movie is to demonstrate how to use a tool - the Address Space Model Designer to design OPC UA Information Model and instantiate OPC UA Address Space for selected well-known Boiler example.
-- [**ASMD - How to Build Solution**][CAS.VideBuild] - How to get started using an embedded example.
-- [Introduction to OPC UA Address Space modeling using CAS Address Space Model Designer; Video][CAS.MZASMDIntro]
+- [OPC UA Information Model How to Create Instances][CAS.VideoInstances] - The main aim of this movie is to demonstrate how to use a tool - the Address Space Model Designer to design OPC UA Information Model and instantiate OPC UA Address Space for selected well-known Boiler example.
+- [ASMD - How to Build Solution][CAS.VideBuild] - How to get started using an embedded example.
+- [Introduction to OPC UA Address Space modeling using CAS Address Space Model Designer][CAS.MZASMDIntro]
 
 [CAS.MZASMDIntro]:https://www.youtube.com/watch?v=pYOQA4atlRI&feature=youtu.be
 [OPC.UA.ModelCompiler]:https://github.com/OPCFoundation/UA-ModelCompiler
