@@ -113,9 +113,6 @@
     <Reference Include="CAS.CommServer.DAClientConfiguration, Version=5.1.6.25005, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.CommServer.DAClientConfiguration.5.01.06\lib\net451\CAS.CommServer.DAClientConfiguration.dll</HintPath>
     </Reference>
-    <Reference Include="CAS.CommServer.DAServerConfiguration, Version=5.1.6.25005, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.CommServer.DAServerConfiguration.5.01.06\lib\net451\CAS.CommServer.DAServerConfiguration.dll</HintPath>
-    </Reference>
     <Reference Include="CAS.CommServer.DeviceSimulator, Version=5.1.6.25004, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.CommServer.DeviceSimulator.5.01.06\lib\net451\CAS.CommServer.DeviceSimulator.dll</HintPath>
     </Reference>
@@ -741,7 +738,7 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>xcopy "$(SolutionDir)packages\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.3.20.4\lib\net461\*.*"  $(TargetDir) /y
-xcopy "$(SolutionDir)packages\CAS.CommServer.DAServerConfiguration.5.01.06\lib\net451\*.*" $(TargetDir) /y</PostBuildEvent>
+    <PostBuildEvent>rem xcopy "$(SolutionDir)packages\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.3.20.4\lib\net461\*.*"  $(TargetDir) /y
+rem xcopy "$(SolutionDir)packages\CAS.CommServer.DAServerConfiguration.5.01.06\lib\net451\*.*" $(TargetDir) /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
