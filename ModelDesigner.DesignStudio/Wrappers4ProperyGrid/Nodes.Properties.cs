@@ -1,16 +1,16 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.UA.IServerConfiguration;
 using CAS.UA.Model.Designer.Wrappers;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
 using System;
 using System.ComponentModel;
 using System.Xml;
+using UAOOI.Configuration.Core;
 using UAOOI.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid

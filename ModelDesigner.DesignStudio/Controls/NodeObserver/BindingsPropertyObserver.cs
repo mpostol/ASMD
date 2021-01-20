@@ -1,13 +1,13 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
-
 
 using System.ComponentModel;
 using CAS.UA.Model.Designer.Wrappers;
-using CAS.UA.IServerConfiguration;
+using UAOOI.Configuration.Core;
 
 namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {
@@ -16,12 +16,13 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
   /// </summary>
   internal partial class BindingsPropertyObserver: PropertyGridObserver
   {
-    #region creator
+    #region constructor
     public BindingsPropertyObserver()
     {
       InitializeComponent();
     }
     #endregion
+
     #region private
     protected override void UpdatePropertyGridSelectedObject( IModelNode imodelNode )
     {
@@ -99,5 +100,6 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       }
     }
     #endregion
+
   }
 }

@@ -1,14 +1,13 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.UA.IServerConfiguration;
 using System;
-using System.IO;
 using System.Reflection;
+using UAOOI.Configuration.Core;
 
 namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests.Instrumentation
 {

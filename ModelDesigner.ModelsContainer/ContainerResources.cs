@@ -1,17 +1,9 @@
-﻿//_______________________________________________________________
-//  Title   : Resources
-//  System  : Microsoft VisualStudio 2013 / C#
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2015, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
 
 using System;
 using System.Diagnostics;
@@ -39,7 +31,7 @@ namespace CAS.CommServer.UA.ConfigurationEditor.ModelsContainer
       int _cnt = 0;
       while (_destinationDirectoryInfo.Exists)
       {
-        _destinationPath = _path + String.Format("{0}", _cnt++);
+        _destinationPath = _path + string.Format("{0}", _cnt++);
         _destinationDirectoryInfo = new DirectoryInfo(_destinationPath);
       }
       _destinationDirectoryInfo.Create();
@@ -61,12 +53,12 @@ namespace CAS.CommServer.UA.ConfigurationEditor.ModelsContainer
         DirectoryInfo _di = _fi.Directory;
         if (!_di.Exists)
           _di.Create();
-        trace(String.Format("Installing the example file: {0}", _fi.FullName), TraceEventType.Verbose);
+        trace(string.Format("Installing the example file: {0}", _fi.FullName), TraceEventType.Verbose);
         using (Stream _res = myAssembly.GetManifestResourceStream(_name))
           CopyStream(_res, _fi);
       }
     }
-    private static string[] m_ProjectFolders = new string[] { "ADISampleConfiguration", "DemoConfiguration" };
+    private static readonly string[] m_ProjectFolders = new string[] { "ADISampleConfiguration", "DemoConfiguration" };
     private const string EmbeddedExampleFolder = ".EmbeddedExample."; // it is the name of the folder in the project that contains all demo files 
     /// <summary>
     /// Copies the contents of input to output. Doesn't close either stream.

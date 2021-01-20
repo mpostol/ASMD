@@ -175,6 +175,12 @@
     <Content Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.NodeSet.xml" />
     <Content Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.NodeSet2.xml" />
     <Content Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.PredefinedNodes.xml" />
+    <EmbeddedResource Include="EmbeddedExample\UAOOI.ProcessObserver.Configuration.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedExample\UAOOI.ProcessObserver.RealTime.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmbeddedExample\DemoConfiguration\BoilersSet.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

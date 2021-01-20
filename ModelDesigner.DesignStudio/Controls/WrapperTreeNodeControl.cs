@@ -1,16 +1,18 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.UA.IServerConfiguration;
+
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.ToForms;
 using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using UAOOI.Configuration.Core;
 
 namespace CAS.UA.Model.Designer.Controls
 {
