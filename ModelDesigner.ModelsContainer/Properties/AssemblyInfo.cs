@@ -12,12 +12,12 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mariusz Postol")]
 [assembly: AssemblyProduct("Object-Oriented Internet Address Space Model Designer")]
-[assembly: AssemblyCopyright("Copyright (c) 2020 Mariusz Postol")]
+[assembly: AssemblyCopyright("Copyright (c) 2021 Mariusz Postol")]
 [assembly: AssemblyTrademark("OOI ASMD")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 [assembly: Guid( "ADD17203-F2A5-41BD-B653-47B319C90B26" )]
-[assembly: AssemblyVersion("4.3.0.*")]
-[assembly: AssemblyFileVersion("4.3.0")]
+[assembly: AssemblyVersion("4.3.1.*")]
+[assembly: AssemblyFileVersion("4.3.1")]
 
