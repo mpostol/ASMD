@@ -16,7 +16,7 @@
 using System;
 using System.Collections.Generic;
 using UAOOI.SemanticData.InformationModelFactory;
-using UAOOI.SemanticData.UANodeSetValidation;
+using TraceMessage = UAOOI.SemanticData.UANodeSetValidation.TraceMessage;
 using InstanceDesign = Opc.Ua.ModelCompiler.InstanceDesign;
 using NodeDesign = Opc.Ua.ModelCompiler.NodeDesign;
 using ObjectDesign = Opc.Ua.ModelCompiler.ObjectDesign;
