@@ -19,7 +19,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Xml;
 using UAOOI.SemanticData.InformationModelFactory;
-using UAOOI.SemanticData.UANodeSetValidation;
+using TraceMessage = UAOOI.SemanticData.UANodeSetValidation.TraceMessage;
 using ModelDesign = Opc.Ua.ModelCompiler;
 
 namespace CAS.UA.Model.Designer.ImportExport.NodeSet

@@ -17,7 +17,8 @@ using CAS.UA.Model.Designer.ImportExport.Properties;
 using System;
 using System.IO;
 using ModelDesign = Opc.Ua.ModelCompiler;
-using OOI = UAOOI.SemanticData.UANodeSetValidation;
+// using OOI = UAOOI.SemanticData.UANodeSetValidation;
+//TODO Add anchors to UANodeSetValidation #194
 
 namespace CAS.UA.Model.Designer.ImportExport.NodeSet
 {
@@ -37,12 +38,12 @@ namespace CAS.UA.Model.Designer.ImportExport.NodeSet
     /// <param name="traceEvent">The trace event.</param>
     /// <returns>An object of <see cref="ModelDesign.ModelDesign"/>.</returns>
     /// <exception cref="System.IO.FileNotFoundException">The imported file does not exist</exception>
-    public static ModelDesign.ModelDesign CreateInstance(FileInfo filePath, Action<OOI.TraceMessage> traceEvent)
+    public static ModelDesign.ModelDesign CreateInstance(FileInfo filePath, Action<UAOOI.SemanticData.UANodeSetValidation.TraceMessage> traceEvent)
     {
       if (!filePath.Exists)
         throw new FileNotFoundException("The imported file does not exist", filePath.FullName);
-      traceEvent(OOI.TraceMessage.DiagnosticTraceMessage("Entering AddressSpaceContextService.CreateInstance"));
-      OOI.IAddressSpaceContext _as = new OOI.AddressSpaceContext(traceEvent);
+      traceEvent(UAOOI.SemanticData.UANodeSetValidation.TraceMessage.DiagnosticTraceMessage("Entering AddressSpaceContextService.CreateInstance"));
+      UAOOI.SemanticData.UANodeSetValidation.IAddressSpaceContext _as = new UAOOI.SemanticData.UANodeSetValidation.AddressSpaceContext(traceEvent);
       ModelFactory _factory = new ModelFactory(traceEvent);
       _as.InformationModelFactory = _factory;
       _as.ImportUANodeSet(filePath);

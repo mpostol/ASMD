@@ -1,13 +1,15 @@
 //___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
+
 
 using System;
 using System.Diagnostics;
 using System.Reflection;
-using UAOOI.SemanticData.UANodeSetValidation;
+using TraceMessage = UAOOI.SemanticData.UANodeSetValidation.TraceMessage;
 
 namespace CAS.UA.Model.Designer
 {
