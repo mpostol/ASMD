@@ -100,6 +100,9 @@
     <Reference Include="CAS.Windows.Forms, Version=6.1.2.24319, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.Windows.Forms.6.1.2\lib\net451\CAS.Windows.Forms.dll</HintPath>
     </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net46\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.12.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.12.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
@@ -123,13 +126,17 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UAOOI.SemanticDataInformationModelFactory, Version=2.0.0.32174, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.SemanticData.UANodeSetValidation.2.0.0-Alpha\lib\net461\UAOOI.SemanticDataInformationModelFactory.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="UAOOI.SemanticData.BuildingErrorsHandling, Version=5.1.0.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.SemanticData.BuildingErrorsHandling.5.1.0\lib\netstandard2.0\UAOOI.SemanticData.BuildingErrorsHandling.dll</HintPath>
     </Reference>
-    <Reference Include="UAOOI.SemanticDataUANodeSetValidation, Version=2.0.0.32321, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.SemanticData.UANodeSetValidation.2.0.0-Alpha\lib\net461\UAOOI.SemanticDataUANodeSetValidation.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="UAOOI.SemanticData.InformationModelFactory, Version=5.1.0.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.SemanticData.InformationModelFactory.5.1.0\lib\netstandard2.0\UAOOI.SemanticData.InformationModelFactory.dll</HintPath>
+    </Reference>
+    <Reference Include="UAOOI.SemanticData.UAModelDesignExport, Version=5.1.0.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.SemanticData.UAModelDesignExport.5.1.0\lib\netstandard2.0\UAOOI.SemanticData.UAModelDesignExport.dll</HintPath>
+    </Reference>
+    <Reference Include="UAOOI.SemanticData.UANodeSetValidation, Version=5.1.0.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.SemanticData.UANodeSetValidation.5.1.0\lib\netstandard2.0\UAOOI.SemanticData.UANodeSetValidation.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -147,25 +154,6 @@
     <Compile Include="IToolStripMenuItemInfo.cs" />
     <Compile Include="MamlCreator.cs" />
     <Compile Include="NodeSet\AddressSpaceContextService.cs" />
-    <Compile Include="NodeSet\DataTypeDefinitionFactoryBase.cs" />
-    <Compile Include="NodeSet\DataTypeFactoryBase.cs" />
-    <Compile Include="NodeSet\DataTypeFieldFactoryBase.cs" />
-    <Compile Include="NodeSet\Extensions.cs" />
-    <Compile Include="NodeSet\InformationModelFactoryBase.cs" />
-    <Compile Include="NodeSet\InstanceFactoryBase.cs" />
-    <Compile Include="NodeSet\MethodInstanceFactoryBase.cs" />
-    <Compile Include="NodeSet\ModelFactory.cs" />
-    <Compile Include="NodeSet\NodeFactoryBase.cs" />
-    <Compile Include="NodeSet\NodesContainer.cs" />
-    <Compile Include="NodeSet\ObjectInstanceFactoryBase.cs" />
-    <Compile Include="NodeSet\ObjectTypeFactoryBase.cs" />
-    <Compile Include="NodeSet\PropertyInstanceFactoryBase.cs" />
-    <Compile Include="NodeSet\ReferenceFactoryBase.cs" />
-    <Compile Include="NodeSet\ReferenceTypeFactoryBase.cs" />
-    <Compile Include="NodeSet\TypeFactoryBase.cs" />
-    <Compile Include="NodeSet\VariableInstanceFactoryBase.cs" />
-    <Compile Include="NodeSet\VariableTypeFactoryBase.cs" />
-    <Compile Include="NodeSet\ViewInstanceFactoryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

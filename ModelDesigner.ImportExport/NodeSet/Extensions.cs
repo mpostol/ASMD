@@ -15,8 +15,8 @@
 
 using System;
 using System.Collections.Generic;
+using UAOOI.SemanticData.BuildingErrorsHandling;
 using UAOOI.SemanticData.InformationModelFactory;
-using UAOOI.SemanticData.UANodeSetValidation;
 using ModelDesign = Opc.Ua.ModelCompiler;
 
 namespace CAS.UA.Model.Designer.ImportExport.NodeSet

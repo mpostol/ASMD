@@ -14,7 +14,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using TraceMessage = UAOOI.SemanticData.UANodeSetValidation.TraceMessage; 
+using TraceMessage = UAOOI.SemanticData.BuildingErrorsHandling.TraceMessage; 
 using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
 
 namespace CAS.UA.Model.Designer.IO

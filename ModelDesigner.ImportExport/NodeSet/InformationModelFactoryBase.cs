@@ -15,7 +15,7 @@
 
 using System;
 using UAOOI.SemanticData.InformationModelFactory;
-using TraceMessage = UAOOI.SemanticData.UANodeSetValidation.TraceMessage;
+using TraceMessage = UAOOI.SemanticData.BuildingErrorsHandling.TraceMessage;
 
 namespace CAS.UA.Model.Designer.ImportExport.NodeSet
 {

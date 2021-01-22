@@ -69,13 +69,14 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.XML" />
-    <Reference Include="UAOOI.SemanticDataInformationModelFactory, Version=2.0.0.32174, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UAOOI.SemanticData.UANodeSetValidation.2.0.0-Alpha\lib\net461\UAOOI.SemanticDataInformationModelFactory.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="UAOOI.SemanticData.BuildingErrorsHandling, Version=5.1.0.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.SemanticData.BuildingErrorsHandling.5.1.0\lib\netstandard2.0\UAOOI.SemanticData.BuildingErrorsHandling.dll</HintPath>
     </Reference>
-    <Reference Include="UAOOI.SemanticDataUANodeSetValidation, Version=2.0.0.32321, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UAOOI.SemanticData.UANodeSetValidation.2.0.0-Alpha\lib\net461\UAOOI.SemanticDataUANodeSetValidation.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="UAOOI.SemanticData.InformationModelFactory, Version=5.1.0.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.SemanticData.InformationModelFactory.5.1.0\lib\netstandard2.0\UAOOI.SemanticData.InformationModelFactory.dll</HintPath>
+    </Reference>
+    <Reference Include="UAOOI.SemanticData.UANodeSetValidation, Version=5.1.0.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.SemanticData.UANodeSetValidation.5.1.0\lib\netstandard2.0\UAOOI.SemanticData.UANodeSetValidation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Choose>
@@ -90,8 +91,6 @@
     <Compile Include="NodeSetUnitTest.cs" />
     <Compile Include="ArgumentUnitTest.cs" />
     <Compile Include="EncodeExampleTestMethod.cs" />
-    <Compile Include="NodeFactoryBaseUnitTest.cs" />
-    <Compile Include="ExtensionsUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

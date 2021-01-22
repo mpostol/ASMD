@@ -10,7 +10,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms; //TODO Removed dependency of the CAS.UA.Model.Designer.Wrappers on using System.Windows.Forms #38
-using TraceMessage = UAOOI.SemanticData.UANodeSetValidation.TraceMessage; 
+using TraceMessage = UAOOI.SemanticData.BuildingErrorsHandling.TraceMessage; 
 
 namespace CAS.UA.Model.Designer.IO
 {

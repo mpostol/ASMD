@@ -16,8 +16,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using UAOOI.SemanticData.BuildingErrorsHandling;
 using UAOOI.SemanticData.InformationModelFactory;
-using UAOOI.SemanticData.UANodeSetValidation;
 using InstanceDesign = Opc.Ua.ModelCompiler.InstanceDesign;
 using NodeDesign = Opc.Ua.ModelCompiler.NodeDesign;
 

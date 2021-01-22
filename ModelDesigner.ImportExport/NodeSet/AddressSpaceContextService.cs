@@ -16,9 +16,10 @@
 using CAS.UA.Model.Designer.ImportExport.Properties;
 using System;
 using System.IO;
+using UAOOI.SemanticData.BuildingErrorsHandling;
+using UAOOI.SemanticData.UAModelDesignExport;
+using UAOOI.SemanticData.UANodeSetValidation;
 using ModelDesign = Opc.Ua.ModelCompiler;
-// using OOI = UAOOI.SemanticData.UANodeSetValidation;
-//TODO Add anchors to UANodeSetValidation #194
 
 namespace CAS.UA.Model.Designer.ImportExport.NodeSet
 {
@@ -38,17 +39,17 @@ namespace CAS.UA.Model.Designer.ImportExport.NodeSet
     /// <param name="traceEvent">The trace event.</param>
     /// <returns>An object of <see cref="ModelDesign.ModelDesign"/>.</returns>
     /// <exception cref="System.IO.FileNotFoundException">The imported file does not exist</exception>
-    public static ModelDesign.ModelDesign CreateInstance(FileInfo filePath, Action<UAOOI.SemanticData.UANodeSetValidation.TraceMessage> traceEvent)
+    public static ModelDesign.ModelDesign CreateInstance(FileInfo filePath, Action<TraceMessage> traceEvent)
     {
       if (!filePath.Exists)
         throw new FileNotFoundException("The imported file does not exist", filePath.FullName);
-      traceEvent(UAOOI.SemanticData.UANodeSetValidation.TraceMessage.DiagnosticTraceMessage("Entering AddressSpaceContextService.CreateInstance"));
-      UAOOI.SemanticData.UANodeSetValidation.IAddressSpaceContext _as = new UAOOI.SemanticData.UANodeSetValidation.AddressSpaceContext(traceEvent);
-      ModelFactory _factory = new ModelFactory(traceEvent);
-      _as.InformationModelFactory = _factory;
+      traceEvent(TraceMessage.DiagnosticTraceMessage("Entering AddressSpaceContextService.CreateInstance"));
+      IAddressSpaceContext _as = AddressSpaceFactory.AddressSpace;
+      ModelDesignExport _exporter = new ModelDesignExport();
+      _as.InformationModelFactory = _exporter.GetFactory(String.Empty, traceEvent); //TODO UAOOI.SemanticData.UANodeSetValidation 5.1.0 is available #120
       _as.ImportUANodeSet(filePath);
       _as.ValidateAndExportModel();
-      return _factory.Export();
+      return null; // _factory.Export();
     }
     /// <summary>
     /// Creates from NodeSet menu item.
