@@ -1,27 +1,20 @@
-﻿//<summary>
-//  Title   : Localized Text
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2009, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
-      
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
+
 using System;
 using System.ComponentModel;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
   /// <summary>
   /// Localized Text
   /// </summary>
-  public class LocalizedText: Opc.Ua.ModelCompiler.LocalizedText
+  public class LocalizedText: OpcUaModelCompiler.LocalizedText
   {
     /// <summary>
     /// Determines whether this instance is empty (if any key or value is specified).
@@ -45,10 +38,10 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       this.Key = value.Key;
     }
     /// <summary>
-    /// Initializes a new instance of the <see cref="LocalizedText"/> class on the base of <see cref="Opc.Ua.ModelCompiler.LocalizedText"/>.
+    /// Initializes a new instance of the <see cref="LocalizedText"/> class on the base of <see cref="OpcUaModelCompiler.LocalizedText"/>.
     /// </summary>
     /// <param name="source">The source.</param>
-    public LocalizedText( Opc.Ua.ModelCompiler.LocalizedText source )
+    public LocalizedText( OpcUaModelCompiler.LocalizedText source )
     {
       if ( source == null )
         return;
@@ -85,20 +78,20 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         return "(not set)";
     }
     /// <summary>
-    /// Gets the source <see cref="Opc.Ua.ModelCompiler.LocalizedText"/> or null if empty.
+    /// Gets the source <see cref="OpcUaModelCompiler.LocalizedText"/> or null if empty.
     /// </summary>
     /// <value>The source.</value>
     [Browsable( false )]
-    public Opc.Ua.ModelCompiler.LocalizedText Source
+    public OpcUaModelCompiler.LocalizedText Source
     {
       get
       {
         return ( String.IsNullOrEmpty( Key ) && String.IsNullOrEmpty( Value ) ) ? null : CreateSource();
       }
     }
-    private Opc.Ua.ModelCompiler.LocalizedText CreateSource()
+    private OpcUaModelCompiler.LocalizedText CreateSource()
     {
-      Opc.Ua.ModelCompiler.LocalizedText source = new Opc.Ua.ModelCompiler.LocalizedText();
+      OpcUaModelCompiler.LocalizedText source = new OpcUaModelCompiler.LocalizedText();
       source.Key = Key;
       source.Value = Value;
       return source;

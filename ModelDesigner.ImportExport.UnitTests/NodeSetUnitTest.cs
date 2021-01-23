@@ -6,13 +6,12 @@
 //___________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Opc.Ua.ModelCompiler;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml;
 using UAOOI.SemanticData.BuildingErrorsHandling;
+using UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.ImportExport.UT
 {
@@ -21,27 +20,24 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
   [DeploymentItem(@"Models\", @"Models\")]
   public class NodeSetUnitTest
   {
-
     #region TestContext
+
     private TestContext testContextInstance;
+
     /// <summary>
     ///Gets or sets the test context which provides
     ///information about and functionality for the current test run.
     ///</summary>
     public TestContext TestContext
     {
-      get
-      {
-        return testContextInstance;
-      }
-      set
-      {
-        testContextInstance = value;
-      }
+      get => testContextInstance;
+      set => testContextInstance = value;
     }
-    #endregion
+
+    #endregion TestContext
 
     #region TestMethod
+
     [TestMethod]
     [ExpectedExceptionAttribute(typeof(FileNotFoundException))]
     public void FileNotFoundTestMethod()
@@ -52,6 +48,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       int _diagnosticCounter = 0;
       ModelDesign _actual = NodeSet.AddressSpaceContextService.CreateInstance(_testDataFileInfo, z => TraceDiagnostic(z, _trace, ref _diagnosticCounter));
     }
+
     [TestMethod]
     [ExpectedExceptionAttribute(typeof(System.InvalidOperationException))]
     public void WrongFileNFormatTestMethod()
@@ -62,6 +59,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       int _diagnosticCounter = 0;
       ModelDesign _actual = NodeSet.AddressSpaceContextService.CreateInstance(_testDataFileInfo, z => TraceDiagnostic(z, _trace, ref _diagnosticCounter));
     }
+
     [TestMethod]
     public void UAReferenceTestMethod()
     {
@@ -78,6 +76,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       //Assert.IsTrue(_refData.Items[0] is ReferenceTypeDesign);
       //Compare((ReferenceTypeDesign)_refData.Items[0], (ReferenceTypeDesign)_actual.Items[0]);
     }
+
     [TestMethod]
     public void UAObjectTypeTestMethod()
     {
@@ -99,6 +98,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       //Compare((MethodDesign)_expected.Items[2], (MethodDesign)_actual.Items[0]);
       //Compare((MethodDesign)_expected.Items[3], (MethodDesign)_actual.Items[1]);
     }
+
     [TestMethod]
     public void UAVariableTypeTestMethod()
     {
@@ -121,6 +121,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       //Compare((VariableTypeDesign)_expected.Items[1], (VariableTypeDesign)_actual.Items[1]);
       //Compare((VariableTypeDesign)_expected.Items[2], (VariableTypeDesign)_actual.Items[2]);
     }
+
     [TestMethod]
     public void UADataTypeTestMethod()
     {
@@ -137,9 +138,11 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       //Assert.IsTrue(_refData.Items[0] is DataTypeDesign);
       //Compare((DataTypeDesign)_refData.Items[0], (DataTypeDesign)_md.Items[0]);
     }
-    #endregion
+
+    #endregion TestMethod
 
     #region ModelDesign
+
     //private static void Compare(ModelDesign expected, ModelDesign actual)
     //{
     //  Assert.AreEqual<int>(expected.Items.Length, actual.Items.Length);
@@ -180,7 +183,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
     //  if (expected.ValueRankSpecified)
     //    Assert.AreEqual<ValueRank>(expected.ValueRank, actual.ValueRank);
     //  Assert.AreEqual<string>(expected.ArrayDimensions, actual.ArrayDimensions);
-    //  //Not supported by the VariableType NodeClass 
+    //  //Not supported by the VariableType NodeClass
     //  Assert.IsFalse(expected.ExposesItsChildren);
     //  Assert.IsFalse(actual.ExposesItsChildren);
     //  Assert.IsFalse(expected.AccessLevelSpecified);
@@ -276,10 +279,11 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
     //  Assert.AreEqual<string>(expected.StringId, actual.StringId);
     //  Assert.AreEqual<uint>(expected.PartNo, actual.PartNo);
     //}
-    #endregion
 
+    #endregion ModelDesign
 
     #region private helper
+
     //private static void Compare(Parameter[] expected, Parameter[] actual)
     //{
     //  if (expected == null && actual == null)
@@ -398,7 +402,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       else
         errors.Add(msg);
     }
-    #endregion
 
+    #endregion private helper
   }
 }

@@ -1,32 +1,31 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelCompiler.Common;
 using System;
 using System.Linq;
 using System.Xml;
-using UADataTypeDesign = Opc.Ua.ModelCompiler.DataTypeDesign;
-using UAModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
-using UANodeDesign = Opc.Ua.ModelCompiler.NodeDesign;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
   internal class Libraries : RootTreeNode
   {
     #region private
+
     private void InitializeTypes()
     {
-
       try
       {
         AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 37, "Loading the OPC UA Defined Types.");
-        UAModelDesign _modelTypes = UAResources.LoadUADefinedTypes();
+        OpcUaModelCompiler.ModelDesign _modelTypes = UAResources.LoadUADefinedTypes(); //TODO UAModelDesignExport must provide also ModelDesign but not only export to a file. #498
         if (Properties.Settings.Default.OnlyItemsInAddressSpace)
         {
-          _modelTypes.Items = _modelTypes.Items.Where<UANodeDesign>((x) => { UADataTypeDesign _dt = x as UADataTypeDesign; return _dt == null ? true : !_dt.NotInAddressSpace; }).ToArray<UANodeDesign>();
+          _modelTypes.Items = _modelTypes.Items.Where<OpcUaModelCompiler.NodeDesign>((x) => { OpcUaModelCompiler.DataTypeDesign _dt = x as OpcUaModelCompiler.DataTypeDesign; return _dt == null ? true : !_dt.NotInAddressSpace; }).ToArray<OpcUaModelCompiler.NodeDesign>();
           AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 41, "Removed DataTypeDesign items not belonging to the model.");
         }
         AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Verbose, 37, "Creating the LibraryTreeNode containing standard model");
@@ -38,9 +37,11 @@ namespace CAS.UA.Model.Designer.Wrappers
         AssemblyTraceEvent.Tracer.TraceEvent(System.Diagnostics.TraceEventType.Critical, 37, _tmp, typeof(Libraries).FullName, typeof(UAResources), _ex.Message);
       }
     }
-    #endregion
+
+    #endregion private
 
     #region creators
+
     /// <summary>
     /// Initializes a new instance of the <see cref="Libraries"/> class.
     /// </summary>
@@ -49,14 +50,17 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       InitializeTypes();
     }
-    #endregion
+
+    #endregion creators
 
     #region public
+
     internal void AddNodes(Action<LibraryTreeNode> callBack)
     {
       foreach (LibraryTreeNode lib in this)
         callBack(lib);
     }
+
     /// <summary>
     /// Resets the and adds to address space. For each <see cref="LibraryTreeNode"/> item in this collection call <see cref="LibraryTreeNode.AddNode2AddressSpace"/>
     /// </summary>
@@ -66,6 +70,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       foreach (LibraryTreeNode lib in this)
         lib.AddNode2AddressSpace(space);
     }
+
     internal ITypeDesign FindType(XmlQualifiedName myType)
     {
       foreach (LibraryTreeNode node in this)
@@ -76,6 +81,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       return null;
     }
-    #endregion
+
+    #endregion public
   }
 }

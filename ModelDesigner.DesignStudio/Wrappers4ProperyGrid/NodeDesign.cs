@@ -13,10 +13,12 @@ using System.Text;
 using System.Xml;
 using UAOOI.Configuration.Core;
 using UAOOI.Windows.Forms;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
   #region class Design
+
   /// <summary>
   /// Base class implementing the <see cref="IValidate" interface/>
   /// </summary>
@@ -31,16 +33,21 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         ret = ret.Substring(0, ret.IndexOf("`"));
       return ret;
     }
+
     //private void Initialize( T child );
     protected abstract void UpdateModelNode(T modelNode);
+
     internal T Update()
     {
       T modelNode = new T();
       UpdateModelNode(modelNode);
       return modelNode;
     }
+
     internal virtual IParent Parent { get; set; }
+
     #region IValidate Members
+
     /// <summary>
     /// Validates this instance.
     /// </summary>
@@ -48,25 +55,33 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     {
       Parent.Validate();
     }
-    #endregion
+
+    #endregion IValidate Members
 
     #region IXmlQualifiedNameEditorNamespaceProvider Members
+
     string[] IXmlQualifiedNameEditorNamespaceProvider.GetAvailiableNamespaces()
     {
       return this.Parent.AvailiableNamespaces;
     }
+
     public string GetTargetNamespace()
     {
       return Parent == null ? "not set" : Parent.GetTargetNamespace();
     }
-    #endregion
+
+    #endregion IXmlQualifiedNameEditorNamespaceProvider Members
   }
-  #endregion
+
+  #endregion class Design
+
   #region class NodeDesign
+
   internal abstract partial class NodeDesign<T> : Design<T>
-  where T : Opc.Ua.ModelCompiler.NodeDesign, new()
+  where T : OpcUaModelCompiler.NodeDesign, new()
   {
     #region creators
+
     public NodeDesign(T child)
     {
       this.BrowseName = child.BrowseName;
@@ -82,8 +97,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       this.PartNo = child.PartNo;
       //Import( null );
     }
-    #endregion
+
+    #endregion creators
+
     #region private
+
     /// <summary>
     /// Derives the properties values from the <paramref name="source"/>.
     /// </summary>
@@ -115,6 +133,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         this.NumericIdSpecified = source.NumericIdSpecified;
       }
     }
+
     /// <summary>
     /// Updates the specific child. This method should be overridden by child and should be called for complete update.
     /// </summary>
@@ -133,6 +152,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.WriteAccess = this.WriteAccess;
       node.PartNo = this.PartNo;
     }
+
     /// <summary>
     /// Imports this object.
     /// </summary>
@@ -169,17 +189,21 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         SymbolicId = new XmlQualifiedNameEditor(id, SymbolicName.NameSpace, this);
       }
     }
-    #endregion
+
+    #endregion private
   }
-  #endregion
+
+  #endregion class NodeDesign
+
   #region class ModelDesign
-  internal partial class ModelDesign : Design<Opc.Ua.ModelCompiler.ModelDesign>
+
+  internal partial class ModelDesign : Design<OpcUaModelCompiler.ModelDesign>
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="ModelDesign"/> class.
     /// </summary>
     /// <param name="child">The child.</param>
-    public ModelDesign(Opc.Ua.ModelCompiler.ModelDesign child)
+    public ModelDesign(OpcUaModelCompiler.ModelDesign child)
     {
       this.AnyAttr = child.AnyAttr;
       this.DefaultLocale = child.DefaultLocale;
@@ -188,11 +212,12 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       this.TargetVersion = child.TargetVersion;
       this.TargetXmlNamespace = child.TargetXmlNamespace;
     }
+
     /// <summary>
     /// Updates the model node.
     /// </summary>
     /// <param name="node">The node.</param>
-    protected override void UpdateModelNode(Opc.Ua.ModelCompiler.ModelDesign node)
+    protected override void UpdateModelNode(OpcUaModelCompiler.ModelDesign node)
     {
       node.AnyAttr = this.AnyAttr;
       node.DefaultLocale = this.DefaultLocale;
@@ -203,11 +228,14 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.TargetXmlNamespace = this.TargetXmlNamespace;
     }
   }
-  #endregion
+
+  #endregion class ModelDesign
+
   #region class Namespace
-  internal partial class Namespace : Design<Opc.Ua.ModelCompiler.Namespace>
+
+  internal partial class Namespace : Design<OpcUaModelCompiler.Namespace>
   {
-    public Namespace(Opc.Ua.ModelCompiler.Namespace child)
+    public Namespace(OpcUaModelCompiler.Namespace child)
     {
       this.InternalPrefix = child.InternalPrefix;
       this.Name = child.Name;
@@ -217,7 +245,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       this.FilePath = child.FilePath;
       this.XmlPrefix = child.XmlPrefix;
     }
-    protected override void UpdateModelNode(Opc.Ua.ModelCompiler.Namespace node)
+
+    protected override void UpdateModelNode(OpcUaModelCompiler.Namespace node)
     {
       node.InternalPrefix = this.InternalPrefix;
       node.Name = this.Name;
@@ -228,25 +257,29 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.XmlPrefix = this.XmlPrefix;
     }
   }
-  #endregion
+
+  #endregion class Namespace
+
   #region class Reference
+
   /// <summary>
   /// Defines a reference between two nodes.
   /// </summary>
-  internal partial class Reference : Design<Opc.Ua.ModelCompiler.Reference>
+  internal partial class Reference : Design<OpcUaModelCompiler.Reference>
   {
-    protected override void UpdateModelNode(Opc.Ua.ModelCompiler.Reference node)
+    protected override void UpdateModelNode(OpcUaModelCompiler.Reference node)
     {
       node.ReferenceType = this.ReferenceType.XmlQualifiedName;
       node.TargetId = this.TargetId.XmlQualifiedName;
       node.IsInverse = this.IsInverse;
       node.IsOneWay = this.IsOneWay;
     }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="Reference"/> class.
     /// </summary>
     /// <param name="child">The child.</param>
-    public Reference(Opc.Ua.ModelCompiler.Reference child)
+    public Reference(OpcUaModelCompiler.Reference child)
     {
       this.ReferenceType = new XmlQualifiedNameEditorWithDefaultValue(child.ReferenceType, this, BuildInXmlQualifiedNames.BaseReferenceType);
       this.TargetId = new XmlQualifiedNameEditor(child.TargetId, this);
@@ -254,18 +287,21 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       this.IsOneWay = child.IsOneWay;
     }
   }
-  #endregion
+
+  #endregion class Reference
+
   #region class Parameter
+
   /// <summary>
   /// Defines a Field in a DataType or Argument of a Method.
   /// </summary>
-  internal partial class Parameter : Design<Opc.Ua.ModelCompiler.Parameter>
+  internal partial class Parameter : Design<OpcUaModelCompiler.Parameter>
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="Parameter"/> class.
     /// </summary>
     /// <param name="child">The child.</param>
-    public Parameter(Opc.Ua.ModelCompiler.Parameter child)
+    public Parameter(OpcUaModelCompiler.Parameter child)
     {
       this.ArrayDimensions = child.ArrayDimensions;
       this.DataType = new XmlQualifiedNameEditor(child.DataType, this);
@@ -275,7 +311,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       this.Name = child.Name;
       this.Description = new LocalizedText(child.Description);
     }
-    protected override void UpdateModelNode(Opc.Ua.ModelCompiler.Parameter node)
+
+    protected override void UpdateModelNode(OpcUaModelCompiler.Parameter node)
     {
       node.ArrayDimensions = this.ArrayDimensions;
       node.DataType = this.DataType.XmlQualifiedName;
@@ -286,16 +323,20 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.Description = this.Description.Source;
     }
   }
-  #endregion
+
+  #endregion class Parameter
+
   #region class InstanceDesign
+
   /// <summary>
   /// A base type for all Instance Nodes (Object, Variable, and Method).
   /// </summary>
   /// <typeparam name="T"></typeparam>
   internal abstract partial class InstanceDesign<T> : NodeDesign<T>
-    where T : Opc.Ua.ModelCompiler.InstanceDesign, new()
+    where T : OpcUaModelCompiler.InstanceDesign, new()
   {
     #region creator
+
     /// <summary>
     /// Initializes a new instance of the <see cref="InstanceDesign"/> class.
     /// </summary>
@@ -315,9 +356,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       else
         this.ReferenceType = new XmlQualifiedNameEditorWithDefaultValue(node.ReferenceType, this, BuildInXmlQualifiedNames.HasComponent);
     }
-    #endregion
+
+    #endregion creator
 
     #region public
+
     /// <summary>
     /// Creates a new instance and derive property values from current object and the source <paramref name="source" />.
     /// </summary>
@@ -331,6 +374,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         ret.CopyPropertyValuesFrom(source);
       return ret;
     }
+
     /// <summary>
     /// Derives the properties values from the <paramref name="source" />.
     /// </summary>
@@ -353,11 +397,13 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       if (!this.PreserveDefaultAttributes) //by default it is false
         this.PreserveDefaultAttributes = source.PreserveDefaultAttributes;
     }
+
     internal override IParent Parent
     {
       get => base.Parent;
       set => base.Parent = value;
     }
+
     public INodeDescriptor GetINodeDescriptor(InstanceIdentifier uniqueNodeIdentifier, NodeClassesEnum nodeClasses)
     {
       return new NodeDescriptor(nodeClasses, uniqueNodeIdentifier.InstanceDeclaration)
@@ -367,12 +413,17 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         BindingDescription = this.Description.Value
       };
     }
-    internal bool IsMandatory => !ModellingRule.HasValue || (ModellingRule.Value == Opc.Ua.ModelCompiler.ModellingRule.Mandatory);
-    #endregion
+
+    internal bool IsMandatory => !ModellingRule.HasValue || (ModellingRule.Value == OpcUaModelCompiler.ModellingRule.Mandatory);
+
+    #endregion public
 
     #region private
+
     protected abstract XmlQualifiedName GetDefaultTypeDefinition { get; }
+
     protected abstract InstanceDesign<T> CreateNewInstance();
+
     /// <summary>
     /// Updates the specific child. This method should be overridden by child and should be called for complete update.
     /// </summary>
@@ -389,18 +440,20 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.Declaration = this.Declaration.XmlQualifiedName;
       node.TypeDefinition = this.TypeDefinition.XmlQualifiedName;
     }
+
     /// <summary>
     /// Gets the data type of the node if applicable, otherwise null.
     /// </summary>
     /// <returns>Data type of the variable, null for other node classes</returns>
     protected virtual XmlQualifiedName GetDataType => null;
+
     /// <summary>
     /// Base implementation of the INodeDescriptor
     /// </summary>
     private class NodeDescriptor : INodeDescriptor
     {
-
       #region creator
+
       public NodeDescriptor(NodeClassesEnum nodeClasses, bool instanceDeclaration)
       {
         switch (nodeClasses)
@@ -408,23 +461,29 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
           case NodeClassesEnum.Object:
             this.NodeClass = InstanceNodeClassesEnum.Object;
             break;
+
           case NodeClassesEnum.Variable:
             this.NodeClass = InstanceNodeClassesEnum.Variable;
             break;
+
           case NodeClassesEnum.Method:
             this.NodeClass = InstanceNodeClassesEnum.Method;
             break;
+
           case NodeClassesEnum.View:
             this.NodeClass = InstanceNodeClassesEnum.View;
             break;
+
           default:
             break;
         }
         InstanceDeclaration = instanceDeclaration;
       }
-      #endregion
+
+      #endregion creator
 
       #region INodeDescriptor Members
+
       /// <summary>
       /// Gets the node unique identifier.
       /// </summary>
@@ -457,31 +516,37 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       /// <value>The binding description - .</value>
       public string BindingDescription { get; internal set; }
 
-      #endregion
+      #endregion INodeDescriptor Members
     }
-    #endregion
+
+    #endregion private
   }
-  #endregion
+
+  #endregion class InstanceDesign
+
   #region class MethodDesign
+
   /// <summary>
   /// Defines the a Method in the information model.
   /// </summary>
-  internal partial class MethodDesign : InstanceDesign<Opc.Ua.ModelCompiler.MethodDesign>
+  internal partial class MethodDesign : InstanceDesign<OpcUaModelCompiler.MethodDesign>
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="MethodDesign"/> class.
     /// </summary>
     /// <param name="child">The child.</param>
-    public MethodDesign(Opc.Ua.ModelCompiler.MethodDesign node)
+    public MethodDesign(OpcUaModelCompiler.MethodDesign node)
       : base(node)
     {
       if (node.NonExecutableSpecified)
         this.NonExecutable = node.NonExecutable;
     }
-    protected override InstanceDesign<Opc.Ua.ModelCompiler.MethodDesign> CreateNewInstance()
+
+    protected override InstanceDesign<OpcUaModelCompiler.MethodDesign> CreateNewInstance()
     {
-      return new MethodDesign(new Opc.Ua.ModelCompiler.MethodDesign());
+      return new MethodDesign(new OpcUaModelCompiler.MethodDesign());
     }
+
     /// <summary>
     /// Derives the properties values from the <paramref name="source" />.
     /// </summary>
@@ -493,31 +558,36 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       if (this.NonExecutable == null)
         this.NonExecutable = ISource.NonExecutable;
     }
+
     /// <summary>
     /// Updates the specific child. This method should be overridden by child and should be called for complete update.
     /// </summary>
     /// <param name="node">The node.</param>
-    protected override void UpdateModelNode(Opc.Ua.ModelCompiler.MethodDesign node)
+    protected override void UpdateModelNode(OpcUaModelCompiler.MethodDesign node)
     {
       base.UpdateModelNode(node);
       node.NonExecutableSpecified = this.NonExecutable.HasValue;
       node.NonExecutable = this.NonExecutable.GetValueOrDefault();
     }
+
     /// <summary>
     /// Gets the default type definition.
     /// </summary>
     /// <returns></returns>
     protected override XmlQualifiedName GetDefaultTypeDefinition => new XmlQualifiedName();
   }
-  #endregion
+
+  #endregion class MethodDesign
+
   #region class TypeDesign
+
   /// <summary>
   /// A base type for all Type Nodes (ObjectType, VariableType, DataType and ReferenceType).
   /// </summary>
-  /// <typeparam name="T">Type of the node from the Opc.Ua.ModelCompiler namespace, 
-  /// must inherit <see cref="Opc.Ua.ModelCompiler.TypeDesign"/></typeparam>
+  /// <typeparam name="T">Type of the node from the OpcUaModelCompiler namespace,
+  /// must inherit <see cref="OpcUaModelCompiler.TypeDesign"/></typeparam>
   internal abstract partial class TypeDesign<T> : NodeDesign<T>
-    where T : Opc.Ua.ModelCompiler.TypeDesign, new()
+    where T : OpcUaModelCompiler.TypeDesign, new()
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="TypeDesign"/> class.
@@ -538,6 +608,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     /// </summary>
     /// <value>The get base type default value.</value>
     protected abstract XmlQualifiedName GetBaseTypeDefaultValue { get; }
+
     /// <summary>
     /// Updates the specific child. This method should be overridden by child and should be called for complete update.
     /// </summary>
@@ -559,14 +630,17 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     /// </value>
     internal bool IsItRootType { get; set; }
   }
-  #endregion
+
+  #endregion class TypeDesign
+
   #region class ObjectDesign
+
   /// <summary>
   /// Defines the structure of an Object in the information model.
   /// </summary>
   /// <typeparam name="T"></typeparam>
   internal partial class ObjectDesign<T> : InstanceDesign<T>
-    where T : Opc.Ua.ModelCompiler.ObjectDesign, new()
+    where T : OpcUaModelCompiler.ObjectDesign, new()
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="ObjectDesign"/> class.
@@ -578,6 +652,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       if (node.SupportsEventsSpecified)
         this.SupportsEvents = node.SupportsEvents;
     }
+
     /// <summary>
     /// Creates the new instance.
     /// </summary>
@@ -586,6 +661,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     {
       return new ObjectDesign<T>(new T());
     }
+
     /// <summary>
     /// Derives the properties values from the <paramref name="source" />.
     /// </summary>
@@ -597,6 +673,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       if (this.SupportsEvents == null)
         this.SupportsEvents = ISource.SupportsEvents;
     }
+
     /// <summary>
     /// Updates the specific child. This method should be overridden by child and should be called for complete update.
     /// </summary>
@@ -607,41 +684,47 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.SupportsEventsSpecified = this.SupportsEvents.HasValue;
       node.SupportsEvents = this.SupportsEvents.GetValueOrDefault();
     }
+
     /// <summary>
     /// Gets the default type definition.
     /// </summary>
     /// <returns></returns>
     protected override XmlQualifiedName GetDefaultTypeDefinition => BuildInXmlQualifiedNames.BaseObjectType;
   }
-  #endregion
+
+  #endregion class ObjectDesign
+
   #region class ReferenceTypeDesign
+
   /// <summary>
   /// ReferenceType define typed references between Nodes.
   /// </summary>
-  internal partial class ReferenceTypeDesign : TypeDesign<Opc.Ua.ModelCompiler.ReferenceTypeDesign>
+  internal partial class ReferenceTypeDesign : TypeDesign<OpcUaModelCompiler.ReferenceTypeDesign>
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="ReferenceTypeDesign"/> class.
     /// </summary>
     /// <param name="node"></param>
-    public ReferenceTypeDesign(Opc.Ua.ModelCompiler.ReferenceTypeDesign node)
+    public ReferenceTypeDesign(OpcUaModelCompiler.ReferenceTypeDesign node)
       : base(node)
     {
       this.InverseName = new LocalizedText(node.InverseName);
       if (node.SymmetricSpecified)
         this.Symmetric = node.Symmetric;
     }
+
     /// <summary>
     /// Updates the specific child. This method should be overridden by child and should be called for complete update.
     /// </summary>
     /// <param name="child">The child.</param>
-    protected override void UpdateModelNode(Opc.Ua.ModelCompiler.ReferenceTypeDesign node)
+    protected override void UpdateModelNode(OpcUaModelCompiler.ReferenceTypeDesign node)
     {
       base.UpdateModelNode(node);
       node.InverseName = this.InverseName.Source;
       node.Symmetric = this.Symmetric.GetValueOrDefault();
       node.SymmetricSpecified = this.Symmetric.HasValue;
     }
+
     protected override XmlQualifiedName GetBaseTypeDefaultValue
     {
       get
@@ -656,33 +739,38 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       }
     }
   }
-  #endregion
+
+  #endregion class ReferenceTypeDesign
+
   #region class DataTypeDesign
+
   /// <summary>
   /// DataTypes define structure of a Value for Variables in the information model.
   /// </summary>
-  internal partial class DataTypeDesign : TypeDesign<Opc.Ua.ModelCompiler.DataTypeDesign>
+  internal partial class DataTypeDesign : TypeDesign<OpcUaModelCompiler.DataTypeDesign>
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="DataTypeDesign"/> class.
     /// </summary>
     /// <param name="node"></param>
-    public DataTypeDesign(Opc.Ua.ModelCompiler.DataTypeDesign node)
+    public DataTypeDesign(OpcUaModelCompiler.DataTypeDesign node)
       : base(node)
     {
       this.NoArraysAllowed = node.NoArraysAllowed;
       this.NotInAddressSpace = node.NotInAddressSpace;
     }
+
     /// <summary>
     /// Updates the specific child. This method should be overridden by child and should be called for complete update.
     /// </summary>
     /// <param name="node">The node.</param>
-    protected override void UpdateModelNode(Opc.Ua.ModelCompiler.DataTypeDesign node)
+    protected override void UpdateModelNode(OpcUaModelCompiler.DataTypeDesign node)
     {
       base.UpdateModelNode(node);
       node.NoArraysAllowed = this.NoArraysAllowed;
       node.NotInAddressSpace = this.NotInAddressSpace;
     }
+
     /// <summary>
     /// Gets the get base type default value depending on the node class.
     /// </summary>
@@ -701,37 +789,44 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       }
     }
   }
-  #endregion
+
+  #endregion class DataTypeDesign
+
   #region class EncodingDesign
+
   /// <summary>
   /// Defines an Object which is a DataTypeEncoding for a DataType.
   /// </summary>
-  internal partial class EncodingDesign : ObjectDesign<Opc.Ua.ModelCompiler.EncodingDesign>
+  internal partial class EncodingDesign : ObjectDesign<OpcUaModelCompiler.EncodingDesign>
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="ObjectDesign"/> class.
     /// </summary>
     /// <param name="child">The child.</param>
-    public EncodingDesign(Opc.Ua.ModelCompiler.EncodingDesign child)
+    public EncodingDesign(OpcUaModelCompiler.EncodingDesign child)
       : base(child)
     { }
-    protected override void UpdateModelNode(Opc.Ua.ModelCompiler.EncodingDesign node)
+
+    protected override void UpdateModelNode(OpcUaModelCompiler.EncodingDesign node)
     {
       base.UpdateModelNode(node);
     }
   }
-  #endregion
+
+  #endregion class EncodingDesign
+
   #region class VariableTypeDesign
+
   /// <summary>
   /// VariableTypes define structure of a Variable in the information model.
   /// </summary>
-  internal partial class VariableTypeDesign : TypeDesign<Opc.Ua.ModelCompiler.VariableTypeDesign>
+  internal partial class VariableTypeDesign : TypeDesign<OpcUaModelCompiler.VariableTypeDesign>
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="VariableTypeDesignGeneric"/> class.
     /// </summary>
     /// <param name="child">The child.</param>
-    public VariableTypeDesign(Opc.Ua.ModelCompiler.VariableTypeDesign node)
+    public VariableTypeDesign(OpcUaModelCompiler.VariableTypeDesign node)
       : base(node)
     {
       if (node.ValueRankSpecified)
@@ -747,11 +842,12 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       this.DataType = new XmlQualifiedNameEditor(node.DataType, this);
       this.DefaultValue = node.DefaultValue;
     }
+
     /// <summary>
     /// Updates the specific child. This method should be overridden by child and should be called for complete update.
     /// </summary>
     /// <param name="child">The child.</param>
-    protected override void UpdateModelNode(Opc.Ua.ModelCompiler.VariableTypeDesign node)
+    protected override void UpdateModelNode(OpcUaModelCompiler.VariableTypeDesign node)
     {
       base.UpdateModelNode(node);
       node.ArrayDimensions = this.ArrayDimensions;
@@ -767,6 +863,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.DataType = this.DataType.XmlQualifiedName;
       node.DefaultValue = this.DefaultValue;
     }
+
     /// <summary>
     /// Gets the get base type default value depending on the node class.
     /// </summary>
@@ -785,14 +882,17 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       }
     }
   }
-  #endregion
+
+  #endregion class VariableTypeDesign
+
   #region class ObjectTypeDesign
+
   /// <summary>
   /// ObjectTypes define structure of an Object in the information model.
   /// </summary>
   /// <typeparam name="T"></typeparam>
   internal partial class ObjectTypeDesign<T> : TypeDesign<T>
-    where T : Opc.Ua.ModelCompiler.ObjectTypeDesign, new()
+    where T : OpcUaModelCompiler.ObjectTypeDesign, new()
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="ObjectTypeDesign&lt;T&gt;"/> class.
@@ -804,6 +904,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       if (node.SupportsEventsSpecified)
         this.SupportsEvents = node.SupportsEvents;
     }
+
     /// <summary>
     /// Updates the specific child. This method should be overridden by child and should be called for complete update.
     /// </summary>
@@ -814,6 +915,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.SupportsEvents = this.SupportsEvents.GetValueOrDefault();
       node.SupportsEventsSpecified = this.SupportsEvents.HasValue;
     }
+
     /// <summary>
     /// Gets the get base type default value depending on the node class.
     /// </summary>
@@ -832,44 +934,52 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       }
     }
   }
-  #endregion
+
+  #endregion class ObjectTypeDesign
+
   #region class ViewDesign
+
   /// <summary>
   /// ViewDesign define structure of an View in the information model.
   /// </summary>
-  internal partial class ViewDesign : NodeDesign<Opc.Ua.ModelCompiler.ViewDesign>
+  internal partial class ViewDesign : NodeDesign<OpcUaModelCompiler.ViewDesign>
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="ViewDesign"/> class.
     /// </summary>
     /// <param name="node">The node.</param>
-    public ViewDesign(Opc.Ua.ModelCompiler.ViewDesign node)
+    public ViewDesign(OpcUaModelCompiler.ViewDesign node)
       : base(node)
     {
       this.SupportsEvents = node.SupportsEvents;
       this.ContainsNoLoops = node.ContainsNoLoops;
     }
+
     /// <summary>
     /// Updates the specific child. This method should be overridden by child and should be called for complete update.
     /// </summary>
     /// <param name="node">The node.</param>
-    protected override void UpdateModelNode(Opc.Ua.ModelCompiler.ViewDesign node)
+    protected override void UpdateModelNode(OpcUaModelCompiler.ViewDesign node)
     {
       base.UpdateModelNode(node);
       node.SupportsEvents = this.SupportsEvents;
       node.ContainsNoLoops = this.ContainsNoLoops;
     }
   }
-  #endregion
+
+  #endregion class ViewDesign
+
   #region class VariableDesign
+
   /// <summary>
   /// Defines the structure of a Variable in the information model.
   /// </summary>
   /// <typeparam name="T"></typeparam>
   internal partial class VariableDesign<T> : InstanceDesign<T>
-    where T : Opc.Ua.ModelCompiler.VariableDesign, new()
+    where T : OpcUaModelCompiler.VariableDesign, new()
   {
     #region creators
+
     /// <summary>
     /// Initializes a new instance of the <see cref="VariableDesignGeneric"/> class.
     /// </summary>
@@ -889,11 +999,14 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       if (node.HistorizingSpecified)
         this.Historizing = node.Historizing;
     }
-    #endregion
+
+    #endregion creators
+
     protected override InstanceDesign<T> CreateNewInstance()
     {
       return new VariableDesign<T>(new T());
     }
+
     /// <summary>
     /// Derives the properties values from the <paramref name="source" />.
     /// </summary>
@@ -917,7 +1030,9 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       if (this.DefaultValue.IsEmpty())
         this.DefaultValue.UpdateValueBasedOnOtherVariableValueEditor(ISource.DefaultValue);
     }
+
     #region private
+
     /// <summary>
     /// Updates the specific child. This method should be overridden by child and should be called for complete update.
     /// </summary>
@@ -937,8 +1052,10 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.Historizing = this.Historizing.GetValueOrDefault();
       node.HistorizingSpecified = this.Historizing.HasValue;
     }
+
     protected override XmlQualifiedName GetDataType => this.DataType.XmlQualifiedName;
-    #endregion
+
+    #endregion private
 
     /// <summary>
     /// Gets the default type definition.
@@ -946,29 +1063,35 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     /// <returns></returns>
     protected override XmlQualifiedName GetDefaultTypeDefinition => BuildInXmlQualifiedNames.BaseVariableType;
   }
-  #endregion
+
+  #endregion class VariableDesign
+
   #region class DictionaryDesign
+
   /// <summary>
   /// Defines an Variable which is a DataTypeDictionary.
   /// </summary>
-  internal partial class DictionaryDesign : VariableDesign<Opc.Ua.ModelCompiler.DictionaryDesign>
+  internal partial class DictionaryDesign : VariableDesign<OpcUaModelCompiler.DictionaryDesign>
   {
     #region creators
+
     /// <summary>
     /// Initializes a new instance of the <see cref="DictionaryDesign"/> class.
     /// </summary>
     /// <param name="actualChild">The actual child.</param>
-    public DictionaryDesign(Opc.Ua.ModelCompiler.DictionaryDesign actualChild)
+    public DictionaryDesign(OpcUaModelCompiler.DictionaryDesign actualChild)
       : base(actualChild)
     {
       this.EncodingName = new XmlQualifiedNameEditor(actualChild.EncodingName, this);
     }
-    #endregion
 
-    protected override InstanceDesign<Opc.Ua.ModelCompiler.DictionaryDesign> CreateNewInstance()
+    #endregion creators
+
+    protected override InstanceDesign<OpcUaModelCompiler.DictionaryDesign> CreateNewInstance()
     {
-      return new DictionaryDesign(new Opc.Ua.ModelCompiler.DictionaryDesign());
+      return new DictionaryDesign(new OpcUaModelCompiler.DictionaryDesign());
     }
+
     /// <summary>
     /// Derives the properties values from the <paramref name="source" />.
     /// </summary>
@@ -982,47 +1105,57 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     }
 
     #region private
+
     /// <summary>
     /// Updates the specific child. This method should be overridden by child and should be called for complete update.
     /// </summary>
     /// <param name="child">The child.</param>
-    protected override void UpdateModelNode(Opc.Ua.ModelCompiler.DictionaryDesign node)
+    protected override void UpdateModelNode(OpcUaModelCompiler.DictionaryDesign node)
     {
       base.UpdateModelNode(node);
       node.EncodingName = this.EncodingName.XmlQualifiedName;
     }
-    #endregion
 
+    #endregion private
   }
-  #endregion
+
+  #endregion class DictionaryDesign
+
   #region class PropertyDesign
+
   /// <summary>
   /// Defines a Variable which is a Property for a Node.
   /// </summary>
-  internal partial class PropertyDesign : VariableDesign<Opc.Ua.ModelCompiler.PropertyDesign>
+  internal partial class PropertyDesign : VariableDesign<OpcUaModelCompiler.PropertyDesign>
   {
-    #region cretors
-    public PropertyDesign(Opc.Ua.ModelCompiler.PropertyDesign node)
+    #region constructor
+
+    public PropertyDesign(OpcUaModelCompiler.PropertyDesign node)
       : base(node)
     { }
-    #endregion
-    protected override InstanceDesign<Opc.Ua.ModelCompiler.PropertyDesign> CreateNewInstance()
+
+    #endregion constructor
+
+    protected override InstanceDesign<OpcUaModelCompiler.PropertyDesign> CreateNewInstance()
     {
-      return new PropertyDesign(new Opc.Ua.ModelCompiler.PropertyDesign());
+      return new PropertyDesign(new OpcUaModelCompiler.PropertyDesign());
     }
+
     /// <summary>
     /// Updates the specific child. This method should be overridden by child and should be called for complete update.
     /// </summary>
     /// <param name="node">The node.</param>
-    protected override void UpdateModelNode(Opc.Ua.ModelCompiler.PropertyDesign node)
+    protected override void UpdateModelNode(OpcUaModelCompiler.PropertyDesign node)
     {
       base.UpdateModelNode(node);
     }
+
     /// <summary>
     /// Gets the default type definition.
     /// </summary>
     /// <returns></returns>
     protected override XmlQualifiedName GetDefaultTypeDefinition => BuildInXmlQualifiedNames.PropertyType;
   }
-  #endregion
+
+  #endregion class PropertyDesign
 }

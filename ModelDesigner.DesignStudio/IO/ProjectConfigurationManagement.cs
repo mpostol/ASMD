@@ -1,6 +1,6 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
@@ -14,22 +14,22 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using TraceMessage = UAOOI.SemanticData.BuildingErrorsHandling.TraceMessage; 
-using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
+using TraceMessage = UAOOI.SemanticData.BuildingErrorsHandling.TraceMessage;
 
 namespace CAS.UA.Model.Designer.IO
 {
   /// <summary>
   /// Class to save and restore UA Information Model to/from external file.
   /// </summary>
-  internal class ProjectConfigurationManagement : TypeGenericConfigurationManagement<OPCFModelDesign>, IProjectConfigurationManagement
+  internal class ProjectConfigurationManagement : TypeGenericConfigurationManagement<OpcUaModelCompiler.ModelDesign>, IProjectConfigurationManagement
   {
     #region private
 
     private readonly UAModelDesignerProject m_UAModelDesignerProject;
     private readonly ISolutionConfigurationManagement m_ISolutionConfigurationManagement;
     private readonly bool m_NewModel = false;
-    private OPCFModelDesign m_ModelDesign;
+    private OpcUaModelCompiler.ModelDesign m_ModelDesign;
 
     private static void SetupFileDialog(IFileDialog _dialog)
     {
@@ -60,22 +60,22 @@ namespace CAS.UA.Model.Designer.IO
 
     #endregion private
 
-    #region TypeGenericConfigurationManagement<OPCFModelDesign>
+    #region TypeGenericConfigurationManagement<OpcUaModelCompiler.ModelDesign>
 
-    protected override XmlFile.DataToSerialize<OPCFModelDesign> PrepareDataToSerialize(OPCFModelDesign modelDesign)
+    protected override XmlFile.DataToSerialize<OpcUaModelCompiler.ModelDesign> PrepareDataToSerialize(OpcUaModelCompiler.ModelDesign modelDesign)
     {
-      XmlFile.DataToSerialize<OPCFModelDesign> _config;
+      XmlFile.DataToSerialize<OpcUaModelCompiler.ModelDesign> _config;
       _config.Data = modelDesign;
       _config.XmlNamespaces = null;
       _config.StylesheetName = "OPCUAModelDesign.xslt";
       return _config;
     }
 
-    #endregion TypeGenericConfigurationManagement<OPCFModelDesign>
+    #endregion TypeGenericConfigurationManagement<OpcUaModelCompiler.ModelDesign>
 
     #region constructor
 
-    private ProjectConfigurationManagement(bool newModel, UAModelDesignerProject uaModelDesignerProject, ISolutionConfigurationManagement solution, Tuple<OPCFModelDesign, string> modelDesign, IGraphicalUserInterface gui) :
+    private ProjectConfigurationManagement(bool newModel, UAModelDesignerProject uaModelDesignerProject, ISolutionConfigurationManagement solution, Tuple<OpcUaModelCompiler.ModelDesign, string> modelDesign, IGraphicalUserInterface gui) :
       base(modelDesign.Item2, newModel, gui)
     {
       m_UAModelDesignerProject = uaModelDesignerProject;
@@ -88,7 +88,7 @@ namespace CAS.UA.Model.Designer.IO
     {
       if (solution == null) throw new ArgumentNullException(nameof(solution));
       if (graphicalUserInterface == null) throw new ArgumentNullException(nameof(graphicalUserInterface));
-      Tuple<OPCFModelDesign, string> _modelDesign = IO.ImportNodeSet.Import(solution.DefaultDirectory, traceEvent);
+      Tuple<OpcUaModelCompiler.ModelDesign, string> _modelDesign = IO.ImportNodeSet.Import(solution.DefaultDirectory, traceEvent);
       if (_modelDesign == null)
         return null;
       UAModelDesignerProject _newProjctDesription = UAModelDesignerProject.CreateEmpty(_modelDesign.Item2);
@@ -99,7 +99,7 @@ namespace CAS.UA.Model.Designer.IO
     {
       if (solution == null) throw new ArgumentNullException(nameof(solution));
       if (gui == null) throw new ArgumentNullException(nameof(gui));
-      Tuple<OPCFModelDesign, string> _modelDesign = TypeGenericConfigurationManagement<OPCFModelDesign>.ReadConfiguration(gui, SetupFileDialog);
+      Tuple<OpcUaModelCompiler.ModelDesign, string> _modelDesign = TypeGenericConfigurationManagement<OpcUaModelCompiler.ModelDesign>.ReadConfiguration(gui, SetupFileDialog);
       if (_modelDesign.Item1 == null)
         return null;
       UAModelDesignerProject uaModelDesignerProject = UAModelDesignerProject.CreateEmpty(Path.GetFileNameWithoutExtension(_modelDesign.Item2));
@@ -113,7 +113,7 @@ namespace CAS.UA.Model.Designer.IO
       if (gui == null) throw new ArgumentNullException(nameof(gui));
       if (uaModelDesignerProject == null) throw new ArgumentNullException(nameof(uaModelDesignerProject));
       string _filePath = Path.Combine(solution.DefaultDirectory, uaModelDesignerProject.FileName);
-      Tuple<OPCFModelDesign, string> _modelDesign = new Tuple<OPCFModelDesign, string>(TypeGenericConfigurationManagement<OPCFModelDesign>.ReadConfiguration(Path.Combine(solution.DefaultDirectory, uaModelDesignerProject.FileName), gui), _filePath);
+      Tuple<OpcUaModelCompiler.ModelDesign, string> _modelDesign = new Tuple<OpcUaModelCompiler.ModelDesign, string>(TypeGenericConfigurationManagement<OpcUaModelCompiler.ModelDesign>.ReadConfiguration(Path.Combine(solution.DefaultDirectory, uaModelDesignerProject.FileName), gui), _filePath);
       return new ProjectConfigurationManagement(false, uaModelDesignerProject, solution, _modelDesign, gui);
     }
 
@@ -131,14 +131,14 @@ namespace CAS.UA.Model.Designer.IO
       UAModelDesignerProject _projectDescription = UAModelDesignerProject.CreateEmpty(projectName);
       //TODO Creating new project the existing one should not be overridden #174
       string _defFilePath = Path.ChangeExtension(RelativeFilePathsCalculator.CalculateAbsoluteFileName(solution.DefaultDirectory, projectName), Resources.Project_FileDialogDefaultExt);
-      return new ProjectConfigurationManagement(true, _projectDescription, solution, new Tuple<OPCFModelDesign, string>(OpcUaModelCompilerModelDesigner.GetDefault(), _defFilePath), gui);
+      return new ProjectConfigurationManagement(true, _projectDescription, solution, new Tuple<OpcUaModelCompiler.ModelDesign, string>(OpcUaModelCompilerModelDesigner.GetDefault(), _defFilePath), gui);
     }
 
     #endregion constructor
 
     #region IProjectConfigurationManagement
 
-    OPCFModelDesign IProjectConfigurationManagement.ModelDesign => m_ModelDesign;
+    OpcUaModelCompiler.ModelDesign IProjectConfigurationManagement.ModelDesign => m_ModelDesign;
     UAModelDesignerProject IProjectConfigurationManagement.UAModelDesignerProject => m_UAModelDesignerProject;
     string IProjectConfigurationManagement.Name => this.m_UAModelDesignerProject.Name;
 
@@ -210,7 +210,7 @@ namespace CAS.UA.Model.Designer.IO
       }
     }
 
-    void IProjectConfigurationManagement.Save(OPCFModelDesign modelDesign)
+    void IProjectConfigurationManagement.Save(OpcUaModelCompiler.ModelDesign modelDesign)
     {
       m_ModelDesign = modelDesign;
       base.Save(this.m_ModelDesign);

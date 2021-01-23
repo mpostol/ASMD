@@ -10,13 +10,14 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms; //TODO Removed dependency of the CAS.UA.Model.Designer.Wrappers on using System.Windows.Forms #38
-using TraceMessage = UAOOI.SemanticData.BuildingErrorsHandling.TraceMessage; 
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
+using TraceMessage = UAOOI.SemanticData.BuildingErrorsHandling.TraceMessage;
 
 namespace CAS.UA.Model.Designer.IO
 {
   internal static class ImportNodeSet
   {
-    internal static Tuple<Opc.Ua.ModelCompiler.ModelDesign, string> Import(string path, Action<TraceMessage> traceEvent)
+    internal static Tuple<OpcUaModelCompiler.ModelDesign, string> Import(string path, Action<TraceMessage> traceEvent)
     {
       try
       {
@@ -35,7 +36,7 @@ namespace CAS.UA.Model.Designer.IO
           FileInfo _fileInfo = new FileInfo(_ofd.FileName);
           Debug.Assert(_fileInfo.Exists);
           traceEvent(TraceMessage.DiagnosticTraceMessage($"Importing information model from the NodeSet file {_fileInfo.Name}"));
-          return new Tuple<Opc.Ua.ModelCompiler.ModelDesign, string>(ImportExport.NodeSet.AddressSpaceContextService.CreateInstance(_fileInfo, traceEvent), _fileInfo.Name);
+          return new Tuple<OpcUaModelCompiler.ModelDesign, string>(ImportExport.NodeSet.AddressSpaceContextService.CreateInstance(_fileInfo, traceEvent), _fileInfo.Name);
         }
       }
       catch (Exception _ex)
@@ -48,6 +49,7 @@ namespace CAS.UA.Model.Designer.IO
       }
       return null;
     }
+
     private static void ExceptionHandling(Exception exception, Action<TraceMessage> traceEvent)
     {
       string _msg = String.Format(Resources.NodeSet_ImportErrorMessage, exception.GetMessageFromException());

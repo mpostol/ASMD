@@ -34,7 +34,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Gets the model designer node and initialize it with the data from the tree.
     /// </summary>
     /// <value>
-    /// The model designer node derived from <see cref="Opc.Ua.ModelCompiler.NodeDesign"/>.
+    /// The model designer node derived from <see cref="OpcUaModelCompiler.NodeDesign"/>.
     /// </value>
     public abstract object ModelDesignerNode { get; }
 

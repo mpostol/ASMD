@@ -1,12 +1,13 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
 using System.Collections.Generic;
-using OpcUaModelCompiler = Opc.Ua.ModelCompiler;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -16,6 +17,7 @@ namespace CAS.UA.Model.Designer.Wrappers
   internal class ChildrenFolder : Folder
   {
     #region creators
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ChildrenFolder"/> class.
     /// </summary>
@@ -23,21 +25,25 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       TypesAvailableToBePasted.Add(typeof(OpcUaModelCompiler.InstanceDesign));
     }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ChildrenFolder"/> class.
     /// </summary>
     /// <param name="child">The collection of children - nodes referenced by HasComponent and HasProperty.</param>
-    public ChildrenFolder(Opc.Ua.ModelCompiler.ListOfChildren child) : this()
+    public ChildrenFolder(OpcUaModelCompiler.ListOfChildren child) : this()
     {
       if (child == null || child.Items == null || child.Items.Length == 0)
         return;
-      foreach (Opc.Ua.ModelCompiler.InstanceDesign item in child.Items)
+      foreach (OpcUaModelCompiler.InstanceDesign item in child.Items)
         this.Add(NodeFactory.Create(item));
     }
-    #endregion
+
+    #endregion creators
 
     #region public
+
     public override string HelpTopicName => Resources.NodeClasses_ChildrenFolder;
+
     internal OpcUaModelCompiler.ListOfChildren CreateNodes
     {
       get
@@ -48,10 +54,11 @@ namespace CAS.UA.Model.Designer.Wrappers
         list.Items = new OpcUaModelCompiler.InstanceDesign[Count];
         int ii = 0;
         foreach (IParent node in this)
-          list.Items[ii++] = (Opc.Ua.ModelCompiler.InstanceDesign)node.ModelDesignerNode;
+          list.Items[ii++] = (OpcUaModelCompiler.InstanceDesign)node.ModelDesignerNode;
         return list;
       }
     }
+
     /// <summary>
     /// Calculates a relative name of the reference.
     /// </summary>
@@ -61,10 +68,13 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return ((INodeDesign)this.Parent).CalculateReferenceRelativeName(targetIdName);
     }
+
     public override NodeTypeEnum NodeType => NodeTypeEnum.ChildrenFolderNode;
-    #endregion
+
+    #endregion public
 
     #region private
+
     internal virtual INodeFactory[] ListOfNodes
     {
       get
@@ -79,6 +89,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         return m_list.ToArray();
       }
     }
-    #endregion
+
+    #endregion private
   }
 }

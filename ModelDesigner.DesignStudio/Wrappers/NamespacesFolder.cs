@@ -1,46 +1,53 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
-
 
 using CAS.UA.Model.Designer.Properties;
 using System.Xml.Serialization;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
   internal class NamespacesFolder : Folder
   {
-    #region cretors
-    internal NamespacesFolder(Opc.Ua.ModelCompiler.ModelDesign child) : base("Namespaces", WrapperResources.NamespaceFolderToolTipText)
+    #region constructors
+
+    internal NamespacesFolder(OpcUaModelCompiler.ModelDesign child) : base("Namespaces", WrapperResources.NamespaceFolderToolTipText)
     {
-      TypesAvailableToBePasted.Add(typeof(Opc.Ua.ModelCompiler.Namespace));
+      TypesAvailableToBePasted.Add(typeof(OpcUaModelCompiler.Namespace));
       if (child.Namespaces == null || child.Namespaces.Length == 0)
         return;
-      foreach (Opc.Ua.ModelCompiler.Namespace ns in child.Namespaces)
+      foreach (OpcUaModelCompiler.Namespace ns in child.Namespaces)
         this.Add(new Namespace(ns));
     }
-    #endregion
+
+    #endregion constructors
 
     #region public
+
     public override NodeTypeEnum NodeType => NodeTypeEnum.NamespaceFolderNode;
+
     /// <summary>
     /// Gets the name of the help topic.
     /// </summary>
     /// <value>The name of the help topic.</value>
     public override string HelpTopicName => Resources.NodeClasses_NamespaceFolder;
-    internal Opc.Ua.ModelCompiler.Namespace[] Namespaces
+
+    internal OpcUaModelCompiler.Namespace[] Namespaces
     {
       get
       {
-        Opc.Ua.ModelCompiler.Namespace[] array = new Opc.Ua.ModelCompiler.Namespace[this.Count];
+        OpcUaModelCompiler.Namespace[] array = new OpcUaModelCompiler.Namespace[this.Count];
         int ii = 0;
         foreach (Namespace node in this)
-          array[ii++] = (Opc.Ua.ModelCompiler.Namespace)node.ModelDesignerNode;
+          array[ii++] = (OpcUaModelCompiler.Namespace)node.ModelDesignerNode;
         return array;
       }
     }
+
     /// <summary>
     /// Gets the XML namespaces <see cref="XmlSerializerNamespaces"/> to be used while serializing the model.
     /// </summary>
@@ -58,6 +65,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         return col;
       }
     }
+
     internal string[] GetAvailableNamespaces()
     {
       string[] AvailableNamespaces = new string[Count];
@@ -68,10 +76,13 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       return AvailableNamespaces;
     }
-    #endregion
+
+    #endregion public
 
     #region private
+
     private static int count = 0;
+
     private string PrepareNamespacePrefix(string namespacePrefix)
     {
       if (string.IsNullOrEmpty(namespacePrefix))
@@ -83,8 +94,9 @@ namespace CAS.UA.Model.Designer.Wrappers
         ret = Resources.NamespaceFolderCharacterNamespacePrefix_XMLatTheBeginningReplacement + ret;
       return ret;
     }
-    internal INodeFactory[] ListOfNodes => new TypeListItem<Namespace>[] { new TypeListItem<Namespace>() };
-    #endregion
 
+    internal INodeFactory[] ListOfNodes => new TypeListItem<Namespace>[] { new TypeListItem<Namespace>() };
+
+    #endregion private
   }
 }

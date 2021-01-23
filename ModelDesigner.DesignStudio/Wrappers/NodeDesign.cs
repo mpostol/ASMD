@@ -7,6 +7,7 @@
 using CAS.UA.Model.Designer.Properties;
 using System.Collections.Generic;
 using System.Xml;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -44,7 +45,7 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// <typeparam name="OPCType">The type of the PC type.</typeparam>
   internal abstract class NodeDesign<type, OPCType> : WrapperBase<type, OPCType>, INodeDesign
     where type : Wrappers4ProperyGrid.NodeDesign<OPCType>
-    where OPCType : Opc.Ua.ModelCompiler.NodeDesign, new()
+    where OPCType : OpcUaModelCompiler.NodeDesign, new()
   {
 
     #region public
@@ -68,7 +69,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Gets the model designer node and initialize it with the data from the tree.
     /// </summary>
     /// <value>
-    /// The model designer node derived from <see cref="Opc.Ua.ModelCompiler.NodeDesign"/>.
+    /// The model designer node derived from <see cref="OpcUaModelCompiler.NodeDesign"/>.
     /// </value>
     public override object ModelDesignerNode
     {
@@ -106,8 +107,8 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       Add(m_Children);
       Add(m_References);
-      TypesAvailableToBePasted.Add(typeof(Opc.Ua.ModelCompiler.InstanceDesign));
-      TypesAvailableToBePasted.Add(typeof(Opc.Ua.ModelCompiler.Reference));
+      TypesAvailableToBePasted.Add(typeof(OpcUaModelCompiler.InstanceDesign));
+      TypesAvailableToBePasted.Add(typeof(OpcUaModelCompiler.Reference));
     }
     private ReferencesFolder m_References;
     private ChildrenFolder m_Children;
@@ -152,12 +153,12 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       object DeserializedNode = GetModelDesignerNodeFromStringRepresentationFromClipboard();
       BaseTreeNode baseTreeNode = NodeFactory.Create(DeserializedNode);
-      if (DeserializedNode is Opc.Ua.ModelCompiler.InstanceDesign)
+      if (DeserializedNode is OpcUaModelCompiler.InstanceDesign)
       {
         this.m_Children.Add(baseTreeNode);
         return;
       }
-      else if (DeserializedNode is Opc.Ua.ModelCompiler.Reference)
+      else if (DeserializedNode is OpcUaModelCompiler.Reference)
       {
         this.m_References.Add(baseTreeNode);
         return;

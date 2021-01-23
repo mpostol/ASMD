@@ -1,12 +1,14 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Types;
 using System;
 using System.Xml;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -19,6 +21,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <param name="parent">The parent.</param>
     void InstanceDeclarations(IInstanceNodesCollection children, IInstanceNodeContext parent);
   }
+
   /// <summary>
   /// The class represent all types in the Information Model.
   /// </summary>
@@ -26,19 +29,22 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// <typeparam name="MT">The type of the node represented by an instance of this class.</typeparam>
   internal abstract class TypeDesign<type, MT> : NodeDesign<type, MT>, ITypeDesign
     where type : Wrappers4ProperyGrid.TypeDesign<MT>
-    where MT : Opc.Ua.ModelCompiler.TypeDesign, new()
+    where MT : OpcUaModelCompiler.TypeDesign, new()
   {
-
     #region creators
+
     protected TypeDesign(type child)
       : base(child)
     { }
+
     protected TypeDesign(type child, MT node)
       : base(child, node)
     { }
-    #endregion
+
+    #endregion creators
 
     #region private
+
     //protected abstract class TypeDesignTreeNodeControl<T> : NodeDesignTreeNodeControl<T, type, MT>
     //  where T : TypeDesign<type, MT>
     //{
@@ -79,7 +85,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     //  }
     //}
     private static byte m_InheritanceDepth = 0;
+
     private const byte m_MaxInheritanceDepth = 20;
+
     /// <summary>
     /// Adds the node to the address space <see cref="IAddressSpaceCreator" />.
     /// </summary>
@@ -93,16 +101,20 @@ namespace CAS.UA.Model.Designer.Wrappers
       children.RegisterChildrenInAddressSpace();
       space.AddReference(_addressSpaceIndex, BuildInXmlQualifiedNames.HasSubtype, true, this.Wrapper.BaseType.ValueOrDefault);
     }
-    #endregion
+
+    #endregion private
 
     #region public
+
     public override string CalculateReferenceRelativeName(string targetIdName)
     {
       return InstanceIdentifier.RemovePrefix(targetIdName, this.SymbolicName.Name);
     }
-    #endregion
+
+    #endregion public
 
     #region ITypeDesign Members
+
     /// <summary>
     /// Instances the declarations.
     /// </summary>
@@ -143,7 +155,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
     }
 
-    #endregion
-
+    #endregion ITypeDesign Members
   }
 }

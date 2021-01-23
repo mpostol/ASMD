@@ -1,12 +1,12 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
-using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.IO
 {
@@ -15,20 +15,20 @@ namespace CAS.UA.Model.Designer.IO
   /// </summary>
   internal static class OpcUaModelCompilerModelDesigner
   {
-    internal static OPCFModelDesign GetDefault()
-    { 
-      return new OPCFModelDesign()
+    internal static OpcUaModelCompiler.ModelDesign GetDefault()
+    {
+      return new OpcUaModelCompiler.ModelDesign()
       {
         TargetNamespace = Settings.Default.TargetNamespace,
-        Namespaces = new Opc.Ua.ModelCompiler.Namespace[]
+        Namespaces = new OpcUaModelCompiler.Namespace[]
         {
-          new  Opc.Ua.ModelCompiler.Namespace()
+          new  OpcUaModelCompiler.Namespace()
                {
                  Name = Settings.Default.TargetNamespaceXmlPrefix,
                  Value = Settings.Default.TargetNamespace,
-                 XmlPrefix = Settings.Default.TargetNamespaceXmlPrefix, 
+                 XmlPrefix = Settings.Default.TargetNamespaceXmlPrefix,
                },
-          new Opc.Ua.ModelCompiler.Namespace()
+          new OpcUaModelCompiler.Namespace()
                {
                  Name = Settings.Default.XmlUAName,
                  Value = Settings.Default.XmlUANamespaceURI,

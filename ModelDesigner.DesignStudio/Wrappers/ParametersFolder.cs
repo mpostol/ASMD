@@ -1,10 +1,13 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
+
 using CAS.UA.Model.Designer.Properties;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -20,16 +23,16 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <param name="toolStripTip">The tool strip tip text.</param>
     public ParametersFolder
       (
-        Opc.Ua.ModelCompiler.Parameter[] parameters,
+        OpcUaModelCompiler.Parameter[] parameters,
         string text,
         string toolStripTip
       )
       : base( text, toolStripTip )
     {
-      TypesAvailableToBePasted.Add( typeof( Opc.Ua.ModelCompiler.Parameter ) );
+      TypesAvailableToBePasted.Add( typeof( OpcUaModelCompiler.Parameter ) );
       if ( parameters == null || parameters.Length == 0 )
         return;
-      foreach ( Opc.Ua.ModelCompiler.Parameter rf in parameters )
+      foreach ( OpcUaModelCompiler.Parameter rf in parameters )
         Add( new Parameter( rf ) );
     }
     #endregion
@@ -43,14 +46,14 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get { return Resources.NodeClasses_Objects_ParametersFolder; }
     }
-    internal Opc.Ua.ModelCompiler.Parameter[] CreateParameters()
+    internal OpcUaModelCompiler.Parameter[] CreateParameters()
     {
       if ( Count == 0 )
         return null;
       int ii = 0;
-      Opc.Ua.ModelCompiler.Parameter[] array = new Opc.Ua.ModelCompiler.Parameter[ Count ];
+      OpcUaModelCompiler.Parameter[] array = new OpcUaModelCompiler.Parameter[ Count ];
       foreach ( Parameter node in this )
-        array[ ii++ ] = (Opc.Ua.ModelCompiler.Parameter)node.ModelDesignerNode;
+        array[ ii++ ] = (OpcUaModelCompiler.Parameter)node.ModelDesignerNode;
       return array;
     }
     public override NodeTypeEnum NodeType

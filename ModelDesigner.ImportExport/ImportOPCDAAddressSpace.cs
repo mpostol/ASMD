@@ -1,6 +1,6 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
@@ -8,13 +8,12 @@
 using CAS.Lib.OPC.AddressSpace;
 using CAS.UA.Model.Designer.ImportExport.Properties;
 using Opc.Ua;
-using Opc.Ua.ModelCompiler;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Xml;
-using LocalizedText = Opc.Ua.ModelCompiler.LocalizedText;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.ImportExport
 {
@@ -23,8 +22,8 @@ namespace CAS.UA.Model.Designer.ImportExport
   /// </summary>
   public static class OPCDA
   {
-
     #region internal
+
     /// <summary>
     /// Creates the import menu items.
     /// </summary>
@@ -36,12 +35,13 @@ namespace CAS.UA.Model.Designer.ImportExport
       imi.Click += handler;
       items.Add(imi);
     }
+
     /// <summary>
     /// Called when on import menu item click.
     /// </summary>
     /// <param name="targetNamespace">The target namespace.</param>
     /// <returns></returns>
-    public static NodeDesign[] OnImportMenuItemClick(string targetNamespace)
+    public static OpcUaModelCompiler.NodeDesign[] OnImportMenuItemClick(string targetNamespace)
     {
       using (DictionaryManagement dic = new DictionaryManagement())
       {
@@ -49,21 +49,25 @@ namespace CAS.UA.Model.Designer.ImportExport
           return null;
         if (dic.Dictionary.ServersTable.Count == 0)
           return null;
-        List<NodeDesign> nodes = new List<NodeDesign>();
+        List<OpcUaModelCompiler.NodeDesign> nodes = new List<OpcUaModelCompiler.NodeDesign>();
         ImportServer(dic.Dictionary.ServersTable[0], targetNamespace, new UniqueName(), nodes);
         return nodes.ToArray();
       }
     }
-    #endregion
+
+    #endregion internal
 
     #region private
+
     private static int m_Counter;
     private const string m_NameFormat = "Server{0}";
-    private static string NewName { get { return String.Format(m_NameFormat, m_Counter++); } }
+    private static string NewName => string.Format(m_NameFormat, m_Counter++);
     private const string m_Separator = "\\";
+
     private class UniqueName : SortedList<string, object>
     {
       private int count = 0;
+
       internal string GetUniqueName(string src)
       {
         if (this.ContainsKey(src))
@@ -72,6 +76,7 @@ namespace CAS.UA.Model.Designer.ImportExport
         return src;
       }
     }
+
     /// <summary>
     /// Creates from opcda menu item.
     /// </summary>
@@ -86,30 +91,31 @@ namespace CAS.UA.Model.Designer.ImportExport
         ToolTipText = Resources.CreateFromOPCDAMenuItemToolTip
       };
     }
-    private static ObjectDesign CreateFolder
-      (XmlQualifiedName name, string description, string displayName)
+
+    private static OpcUaModelCompiler.ObjectDesign CreateFolder(XmlQualifiedName name, string description, string displayName)
     {
       return CreateFolder(name, description, displayName, GetFolderType());
     }
-    private static ObjectDesign CreateFolder
-      (XmlQualifiedName name, string description, string displayName, XmlQualifiedName typeDefinition)
+
+    private static OpcUaModelCompiler.ObjectDesign CreateFolder(XmlQualifiedName name, string description, string displayName, XmlQualifiedName typeDefinition)
     {
-      return new ObjectDesign()
+      return new OpcUaModelCompiler.ObjectDesign()
       {
         TypeDefinition = typeDefinition,
         DisplayName = CreateLocalizedText(displayName),
         SymbolicName = name,
         Description = CreateLocalizedText(description),
-        Children = new ListOfChildren(),
+        Children = new OpcUaModelCompiler.ListOfChildren(),
       };
     }
+
     private static void ImportServer
-      (AddressSpaceDataBase.ServersTableRow svr, string targetNamespace, UniqueName uniqueName, List<NodeDesign> nodes)
+      (AddressSpaceDataBase.ServersTableRow svr, string targetNamespace, UniqueName uniqueName, List<OpcUaModelCompiler.NodeDesign> nodes)
     {
       string name = NewName;
       XmlQualifiedName sftName = new XmlQualifiedName(NewName, targetNamespace);
-      ObjectDesign sft = CreateFolder(sftName, svr.URLString, svr.URL.Path);
-      sft.References = new Reference[] { new Reference()
+      OpcUaModelCompiler.ObjectDesign sft = CreateFolder(sftName, svr.URLString, svr.URL.Path);
+      sft.References = new OpcUaModelCompiler.Reference[] { new OpcUaModelCompiler.Reference()
         {
           IsInverse = true,
           ReferenceType = CreateXmlQualifiedName( Opc.Ua.BrowseNames.Organizes ),
@@ -117,35 +123,35 @@ namespace CAS.UA.Model.Designer.ImportExport
         }
       };
       nodes.Add(sft);
-      List<InstanceDesign> cldrn = new List<InstanceDesign>();
+      List<OpcUaModelCompiler.InstanceDesign> cldrn = new List<OpcUaModelCompiler.InstanceDesign>();
       foreach (AddressSpaceDataBase.TagsTableRow item in svr.GetTagsTableRows())
         ImportTag(item, targetNamespace, uniqueName, sft.SymbolicName, nodes, cldrn);
-      sft.Children = new ListOfChildren() { Items = cldrn.ToArray() };
+      sft.Children = new OpcUaModelCompiler.ListOfChildren() { Items = cldrn.ToArray() };
     }
+
     private static void ImportTag
       (
         AddressSpaceDataBase.TagsTableRow parentItem,
         string targetNamespace,
         UniqueName uniqueName,
         XmlQualifiedName parentObject,
-        List<NodeDesign> nodes,
-        List<InstanceDesign> parentChildren
+        List<OpcUaModelCompiler.NodeDesign> nodes,
+        List<OpcUaModelCompiler.InstanceDesign> parentChildren
       )
     {
       Opc.Da.BrowseElement pbe = parentItem.GetBrowseElement();
       if (pbe.IsItem)
       {
-
-        VariableDesign var = new VariableDesign()
+        OpcUaModelCompiler.VariableDesign var = new OpcUaModelCompiler.VariableDesign()
         {
           SymbolicName = new XmlQualifiedName(uniqueName.GetUniqueName(pbe.Name), targetNamespace),
-          DisplayName = new LocalizedText() { Value = pbe.Name },
+          DisplayName = new OpcUaModelCompiler.LocalizedText() { Value = pbe.Name },
           DataType = GetBaseDataType(),
           TypeDefinition = GetBaseDataVariableType(),
-          Description = new LocalizedText() { Value = pbe.ItemName },
-          AccessLevel = AccessLevel.ReadWrite,
+          Description = new OpcUaModelCompiler.LocalizedText() { Value = pbe.ItemName },
+          AccessLevel = OpcUaModelCompiler.AccessLevel.ReadWrite,
           AccessLevelSpecified = true,
-          ValueRank = ValueRank.Scalar,
+          ValueRank = OpcUaModelCompiler.ValueRank.Scalar,
           ValueRankSpecified = true,
           WriteAccess = 0
         };
@@ -161,14 +167,14 @@ namespace CAS.UA.Model.Designer.ImportExport
       }
       else
       {
-        ObjectDesign sf = CreateFolder(new XmlQualifiedName(uniqueName.GetUniqueName(pbe.Name), targetNamespace), pbe.ItemName, pbe.Name);
+        OpcUaModelCompiler.ObjectDesign sf = CreateFolder(new XmlQualifiedName(uniqueName.GetUniqueName(pbe.Name), targetNamespace), pbe.ItemName, pbe.Name);
         nodes.Add(sf);
-        List<InstanceDesign> myChildren = new List<InstanceDesign>();
+        List<OpcUaModelCompiler.InstanceDesign> myChildren = new List<OpcUaModelCompiler.InstanceDesign>();
         foreach (AddressSpaceDataBase.TagsTableRow item in parentItem.GetTagsTableRows())
           ImportTag(item, targetNamespace, uniqueName, sf.SymbolicName, nodes, myChildren);
-        sf.Children = new ListOfChildren() { Items = myChildren.ToArray() };
-        sf.References = new Reference[]
-        { new Reference()
+        sf.Children = new OpcUaModelCompiler.ListOfChildren() { Items = myChildren.ToArray() };
+        sf.References = new OpcUaModelCompiler.Reference[]
+        { new OpcUaModelCompiler.Reference()
           {
             IsInverse = true,
             ReferenceType = CreateXmlQualifiedName( Opc.Ua.BrowseNames.Organizes ),
@@ -177,7 +183,8 @@ namespace CAS.UA.Model.Designer.ImportExport
         };
       }
     }
-    private static void GetACCESSRIGHTS(VariableDesign var, Opc.Da.ItemProperty itemProperty)
+
+    private static void GetACCESSRIGHTS(OpcUaModelCompiler.VariableDesign var, Opc.Da.ItemProperty itemProperty)
     {
       if ((itemProperty == null) || (itemProperty.Value == null))
         return;
@@ -185,20 +192,24 @@ namespace CAS.UA.Model.Designer.ImportExport
       switch (((Opc.Da.accessRights)itemProperty.Value))
       {
         case Opc.Da.accessRights.readWritable:
-          var.AccessLevel = AccessLevel.ReadWrite;
+          var.AccessLevel = OpcUaModelCompiler.AccessLevel.ReadWrite;
           break;
+
         case Opc.Da.accessRights.readable:
-          var.AccessLevel = AccessLevel.Read;
+          var.AccessLevel = OpcUaModelCompiler.AccessLevel.Read;
           break;
+
         case Opc.Da.accessRights.writable:
-          var.AccessLevel = AccessLevel.Write;
+          var.AccessLevel = OpcUaModelCompiler.AccessLevel.Write;
           break;
+
         default:
           var.AccessLevelSpecified = false;
           break;
       }
     }
-    private static void GetEUTYPE(VariableDesign var, SortedDictionary<int, Opc.Da.ItemProperty> prprts)
+
+    private static void GetEUTYPE(OpcUaModelCompiler.VariableDesign var, SortedDictionary<int, Opc.Da.ItemProperty> prprts)
     {
       if (!prprts.ContainsKey(Opc.Da.Property.EUTYPE.Code))
         return;
@@ -218,17 +229,17 @@ namespace CAS.UA.Model.Designer.ImportExport
               loweu = prprts[Opc.Da.Property.LOWEU.Code];
             if (higheu != null && loweu != null)
             {
-              PropertyDesign prop = new PropertyDesign()
+              OpcUaModelCompiler.PropertyDesign prop = new OpcUaModelCompiler.PropertyDesign()
               {
                 SymbolicName = CreateXmlQualifiedName(BrowseNames.EURange),
                 DataType = CreateXmlQualifiedName(BrowseNames.Range),
                 DefaultValue = CAS.UA.Common.Types.Range.CreateRange(higheu, loweu).XmlElement,
-                ValueRank = ValueRank.Scalar,
-                AccessLevel = AccessLevel.Read
+                ValueRank = OpcUaModelCompiler.ValueRank.Scalar,
+                AccessLevel = OpcUaModelCompiler.AccessLevel.Read
               };
-              var.Children = new ListOfChildren()
+              var.Children = new OpcUaModelCompiler.ListOfChildren()
               {
-                Items = new InstanceDesign[] { prop }
+                Items = new OpcUaModelCompiler.InstanceDesign[] { prop }
               };
             }
             break;
@@ -236,15 +247,17 @@ namespace CAS.UA.Model.Designer.ImportExport
         case Opc.Da.euType.enumerated:
           var.TypeDefinition = GetMultiStateDiscreteType();
           break;
+
         case Opc.Da.euType.noEnum:
           var.TypeDefinition = GetTwoStateDiscreteType();
           break;
+
         default:
           break;
       }
     }
 
-    private static void GetDATATYPE(VariableDesign var, Opc.Da.ItemProperty prprty)
+    private static void GetDATATYPE(OpcUaModelCompiler.VariableDesign var, Opc.Da.ItemProperty prprty)
     {
       if (prprty == null || prprty.Value == null)
         return;
@@ -295,38 +308,63 @@ namespace CAS.UA.Model.Designer.ImportExport
           break;
       }
       if (vt.IsArray)
-        var.ValueRank = ValueRank.OneOrMoreDimensions;
+        var.ValueRank = OpcUaModelCompiler.ValueRank.OneOrMoreDimensions;
     }
+
     private static XmlQualifiedName CreateXmlQualifiedName(string name)
     {
       return new XmlQualifiedName(name, Namespaces.OpcUa);
     }
-    private static LocalizedText CreateLocalizedText(string displayName)
+
+    private static OpcUaModelCompiler.LocalizedText CreateLocalizedText(string displayName)
     {
-      return new LocalizedText() { Value = displayName };
+      return new OpcUaModelCompiler.LocalizedText() { Value = displayName };
     }
+
     //ObjectTypes
     private static XmlQualifiedName GetFolderType() { return CreateXmlQualifiedName(BrowseNames.FolderType); }
+
     //DataTypes
     private static XmlQualifiedName GetBaseDataType() { return CreateXmlQualifiedName(BrowseNames.BaseDataType); }
+
     //VariableType
     private static XmlQualifiedName GetBaseDataVariableType() { return CreateXmlQualifiedName(Opc.Ua.BrowseNames.BaseDataVariableType); }
-    private static XmlQualifiedName GetDataItemType() { return CreateXmlQualifiedName(BrowseNames.DataItemType); }
-    private static XmlQualifiedName GetAnalogItemType() { return CreateXmlQualifiedName(BrowseNames.AnalogItemType); }
-    private static XmlQualifiedName GetMultiStateDiscreteType() { return CreateXmlQualifiedName(BrowseNames.MultiStateDiscreteType); }
-    private static XmlQualifiedName GetTwoStateDiscreteType() { return CreateXmlQualifiedName(BrowseNames.TwoStateDiscreteType); }
+
+    private static XmlQualifiedName GetDataItemType()
+    {
+      return CreateXmlQualifiedName(BrowseNames.DataItemType);
+    }
+
+    private static XmlQualifiedName GetAnalogItemType()
+    {
+      return CreateXmlQualifiedName(BrowseNames.AnalogItemType);
+    }
+
+    private static XmlQualifiedName GetMultiStateDiscreteType()
+    {
+      return CreateXmlQualifiedName(BrowseNames.MultiStateDiscreteType);
+    }
+
+    private static XmlQualifiedName GetTwoStateDiscreteType()
+    {
+      return CreateXmlQualifiedName(BrowseNames.TwoStateDiscreteType);
+    }
+
     //Properties
     private static XmlQualifiedName GetPropertyType() { return CreateXmlQualifiedName(BrowseNames.PropertyType); }
-    private static XmlQualifiedName GetEURange() { return CreateXmlQualifiedName(BrowseNames.EURange); }
+
+    private static XmlQualifiedName GetEURange()
+    {
+      return CreateXmlQualifiedName(BrowseNames.EURange);
+    }
+
     //Values
     //TODO Must be implemented.
     private static XmlElement CreateRange(Range range)
     {
       return EncodeableObject.EncodeXml(range, null);
     }
-    #endregion
 
+    #endregion private
   }
-
 }
-

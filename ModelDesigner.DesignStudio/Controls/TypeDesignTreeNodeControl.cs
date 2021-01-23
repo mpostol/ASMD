@@ -1,7 +1,8 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
@@ -9,17 +10,19 @@ using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Controls
 {
   internal abstract class TypeDesignTreeNodeControl<T, type, MT> : NodeDesignTreeNodeControl<T, type, MT>
     where type : Wrappers4ProperyGrid.TypeDesign<MT>
-    where MT : Opc.Ua.ModelCompiler.TypeDesign, new()
+    where MT : OpcUaModelCompiler.TypeDesign, new()
     where T : TypeDesign<type, MT>
   {
     public TypeDesignTreeNodeControl(T parent)
       : base(parent)
     { }
+
     protected override void BeforeMenuStripOpening()
     {
       AddMenuItemGoTo(Resources.WrapperTreeNodeAddMenuItemGoto
@@ -28,17 +31,20 @@ namespace CAS.UA.Model.Designer.Controls
         new EventHandler(AddMenuItemGoTo_Click));
       base.BeforeMenuStripOpening();
     }
+
     private void AddMenuItemGoTo_Click(object sender, System.EventArgs e)
     {
       TreeView.GoToNode(ModelEntity.Wrapper.BaseType.XmlQualifiedName);
     }
+
     internal override Dictionary<string, XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
     {
-      var list = base.GetCoupledNodesXmlQualifiedNames();
+      Dictionary<string, XmlQualifiedName> list = base.GetCoupledNodesXmlQualifiedNames();
       if (ModelEntity.Wrapper.BaseType.XmlQualifiedName != null && !ModelEntity.Wrapper.BaseType.XmlQualifiedName.IsEmpty)
         list.Add(Resources.WrapperTreeNodeAddMenuItemGoto_BaseType, ModelEntity.Wrapper.BaseType.XmlQualifiedName);
       return list;
     }
+
     /// <summary>
     /// Gets the unique identifier.
     /// </summary>
@@ -53,5 +59,4 @@ namespace CAS.UA.Model.Designer.Controls
       return true;
     }
   }
-
 }

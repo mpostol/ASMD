@@ -12,32 +12,37 @@ using System.ComponentModel;
 using System.Xml;
 using UAOOI.Configuration.Core;
 using UAOOI.Windows.Forms;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
   #region class Design
+
   /// <summary>
   /// Base Design class
   /// </summary>
   /// <typeparam name="T">Class from Opc UA Model Designer</typeparam>
   internal abstract partial class Design<T>
   { }
-  #endregion
+
+  #endregion class Design
 
   #region class ModelDesign
+
   /// <summary>
-  ///The primary objective of the OPC UA AddressSpace is to provide a standard way 
-  ///for servers to represent Objects to clients. 
-  ///The OPC UA Object Model has been designed to meet this objective. 
-  ///It defines Objects in terms of Variables and Methods. 
-  ///It also allows relationships to other Objects to be expressed. 
-  ///The elements of this model are represented in the AddressSpace as Nodes. 
-  ///Each Node is assigned to a NodeClass and each NodeClass represents a different 
-  ///element of the Object Model. 
+  ///The primary objective of the OPC UA AddressSpace is to provide a standard way
+  ///for servers to represent Objects to clients.
+  ///The OPC UA Object Model has been designed to meet this objective.
+  ///It defines Objects in terms of Variables and Methods.
+  ///It also allows relationships to other Objects to be expressed.
+  ///The elements of this model are represented in the AddressSpace as Nodes.
+  ///Each Node is assigned to a NodeClass and each NodeClass represents a different
+  ///element of the Object Model.
   /// </summary>
-  internal partial class ModelDesign : Design<Opc.Ua.ModelCompiler.ModelDesign>
+  internal partial class ModelDesign
   {
     #region public properties
+
     /// <summary>
     /// Gets or sets the target namespace.
     /// </summary>
@@ -49,13 +54,15 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Namespace")
     ]
     public string TargetNamespace { get; set; }
+
     [
     DisplayName("Target Version"),
     BrowsableAttribute(true),
-    DescriptionAttribute("The target verison of the model."),
+    DescriptionAttribute("The target version of the model."),
     CategoryAttribute("Namespace")
     ]
     public string TargetVersion { get; set; }
+
     /// <summary>
     /// Gets or sets the target publication date.
     /// </summary>
@@ -68,6 +75,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("TargetPublicationDate", typeof(DateTimeGetter))
     ]
     public DateTime? TargetPublicationDate { get; set; }
+
     /// <summary>
     /// Gets or sets the target XML namespace.
     /// </summary>
@@ -79,6 +87,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Namespace")
     ]
     public string TargetXmlNamespace { get; set; }
+
     /// <summary>
     /// Gets or sets the default locale.
     /// </summary>
@@ -90,6 +99,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Model")
     ]
     public string DefaultLocale { get; set; }
+
     /// <summary>
     /// Gets or sets any attr.
     /// </summary>
@@ -102,22 +112,25 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     ]
     public XmlAttribute[] AnyAttr { get; set; }
 
-    #endregion
+    #endregion public properties
   }
-  #endregion
+
+  #endregion class ModelDesign
 
   #region class Namespace
+
   /// <summary>
-  /// In general, a namespace is an abstract container providing context for the items 
+  /// In general, a namespace is an abstract container providing context for the items
   ///   it holds and allowing disambiguation of items having the same name (residing in different namespaces).
-  ///   As a rule, names in a namespace cannot have more than one meaning, that is, two or more things cannot share the same name. 
-  ///   A namespace is also called a context, as the valid meaning of a name can change depending on what namespace applies. 
-  ///   Names in it can represent objects as well as concept, whether it is a natural or ethnic language, 
+  ///   As a rule, names in a namespace cannot have more than one meaning, that is, two or more things cannot share the same name.
+  ///   A namespace is also called a context, as the valid meaning of a name can change depending on what namespace applies.
+  ///   Names in it can represent objects as well as concept, whether it is a natural or ethnic language,
   ///   a constructed language, the technical terminology of a profession, a dialect, a sociolect, or an artificial language (e.g., a programming language).
   /// </summary>
-  internal partial class Namespace : Design<Opc.Ua.ModelCompiler.Namespace>
+  internal partial class Namespace
   {
     #region public properties
+
     /// <summary>
     /// Gets or sets the name.
     /// </summary>
@@ -129,6 +142,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Namespace")
     ]
     public string Name { get; set; }
+
     /// <summary>
     /// Gets or sets the prefix.The Prefix is the C# namespace which qualifies the generated types.
     /// </summary>
@@ -140,6 +154,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Namespace")
     ]
     public string Prefix { get; set; }
+
     /// <summary>
     /// Gets or sets the internal prefix.The InternalPrefix is an optional C# namespace which qualifies the generated types used only by the server.
     /// </summary>
@@ -151,6 +166,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Namespace")
     ]
     public string InternalPrefix { get; set; }
+
     /// <summary>
     /// Gets or sets the XML namespace.
     /// </summary>
@@ -163,6 +179,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Namespace")
     ]
     public string XmlNamespace { get; set; }
+
     /// <summary>
     /// Gets or sets the file path of the model.
     /// </summary>
@@ -175,6 +192,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     ReadOnlyAttribute(false)
     ]
     public string FilePath { get; set; }
+
     /// <summary>
     /// Gets or sets the value of the Namespace element in the xml document. The value represents the model Namespace URI.
     /// </summary>
@@ -186,6 +204,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Namespace")
     ]
     public string Value { get; set; }
+
     /// <summary>
     /// Gets or sets the XML prefix.The Prefix is the XML namespace.
     /// </summary>
@@ -197,17 +216,21 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Namespace")
     ]
     public string XmlPrefix { get; set; }
-    #endregion
+
+    #endregion public properties
   }
-  #endregion
+
+  #endregion class Namespace
 
   #region class Reference
+
   /// <summary>
   /// Defines a reference between two nodes.
   /// </summary>
-  internal partial class Reference : Design<Opc.Ua.ModelCompiler.Reference>
+  internal partial class Reference
   {
     #region public properties
+
     /// <summary>
     /// Gets or sets the type of the reference.
     /// </summary>
@@ -221,6 +244,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("ReferenceType", typeof(GetterOfNameAsString))
     ]
     public XmlQualifiedNameEditorWithDefaultValue ReferenceType { get; set; }
+
     /// <summary>
     /// Gets or sets the target id.
     /// </summary>
@@ -235,6 +259,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("TargetId", typeof(GetterOfNameAsString))
     ]
     public XmlQualifiedNameEditor TargetId { get; set; }
+
     /// <summary>
     /// Gets or sets a value indicating whether this instance is inverse (the  value indicating whether this instance is inverse).
     /// </summary>
@@ -249,6 +274,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("IsInverse")
     ]
     public bool IsInverse { get; set; }
+
     /// <summary>
     /// Gets or sets a value indicating whether this instance is one way.
     /// </summary>
@@ -262,17 +288,21 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Reference")
     ]
     public bool IsOneWay { get; set; }
-    #endregion
+
+    #endregion public properties
   }
-  #endregion
+
+  #endregion class Reference
 
   #region class Parameter
+
   /// <summary>
   /// Defines a Field in a DataType or Argument of a Method.
   /// </summary>
-  internal partial class Parameter : Design<Opc.Ua.ModelCompiler.Parameter>
+  internal partial class Parameter
   {
     #region public properties
+
     /// <summary>
     /// Gets or sets the description.
     /// </summary>
@@ -286,6 +316,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("Description", typeof(GetterOfNameAsString))
     ]
     public LocalizedText Description { get; set; }
+
     /// <summary>
     /// Gets or sets the name.
     /// </summary>
@@ -298,6 +329,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("Name")
     ]
     public string Name { get; set; }
+
     /// <summary>
     /// Gets or sets the identifier.
     /// </summary>
@@ -310,6 +342,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("Identifier", typeof(GetterOfNameAsString))
     ]
     public int? Identifier { get; set; }
+
     /// <summary>
     /// Gets or sets the type of the data.
     /// </summary>
@@ -323,6 +356,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("DataType", typeof(GetterOfNameAsString))
     ]
     public XmlQualifiedNameEditor DataType { get; set; }
+
     /// <summary>
     /// Gets or sets the value rank.
     /// </summary>
@@ -340,7 +374,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       "ScalarOrOneDimension (-3)- the value can be a scalar or a one dimensional array."), CategoryAttribute("Parameter"),
     DocumentationAttribute("ValueRank", typeof(GetterOfNameAsString), "-1/[0]")
     ]
-    public Opc.Ua.ModelCompiler.ValueRank ValueRank { get; set; }
+    public OpcUaModelCompiler.ValueRank ValueRank { get; set; }
+
     /// <summary>
     /// Gets or sets the array dimensions.
     /// </summary>
@@ -355,21 +390,26 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Parameter")
     ]
     public string ArrayDimensions { get; set; }
-    #endregion
+
+    #endregion public properties
   }
-  #endregion
+
+  #endregion class Parameter
 
   #region class MethodDesign
+
   internal interface IMethodDesign : IInstanceDesign
   {
     bool? NonExecutable { get; set; }
   }
+
   /// <summary>
   /// Defines the a Method in the information model.
   /// </summary>
-  internal partial class MethodDesign : InstanceDesign<Opc.Ua.ModelCompiler.MethodDesign>, IMethodDesign
+  internal partial class MethodDesign : IMethodDesign
   {
     #region public properties
+
     /// <summary>
     /// Gets or sets a value indicating whether [non executable].
     /// </summary>
@@ -383,11 +423,14 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Method")
     ]
     public bool? NonExecutable { get; set; }
-    #endregion
+
+    #endregion public properties
   }
-  #endregion
+
+  #endregion class MethodDesign
 
   #region class InstanceDesign
+
   internal interface IInstanceDesign : INodeDesign
   {
     XmlQualifiedNameEditorWithDefaultValue ReferenceType { get; set; }
@@ -396,7 +439,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 
     XmlQualifiedNameEditorWithDefaultValue TypeDefinition { get; set; }
 
-    Opc.Ua.ModelCompiler.ModellingRule? ModellingRule { get; set; }
+    OpcUaModelCompiler.ModellingRule? ModellingRule { get; set; }
 
     uint MinCardinality { get; set; }
 
@@ -407,17 +450,16 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     IInstanceDesign DerivePropertyValuesFrom(IInstanceDesign source);
 
     INodeDescriptor GetINodeDescriptor(InstanceIdentifier uniqueNodeIdentifier, NodeClassesEnum nodeClasses);
-
   }
+
   /// <summary>
   /// A base type for all Instance Nodes (Object, Variable, and Method).
   /// </summary>
   /// <typeparam name="T">Class from Opc UA Model Designer</typeparam>
-  internal abstract partial class InstanceDesign<T> : NodeDesign<T>, IInstanceDesign
-    where T : Opc.Ua.ModelCompiler.InstanceDesign, new()
+  internal abstract partial class InstanceDesign<T> : IInstanceDesign
   {
-
     #region public properties
+
     /// <summary>
     /// Gets or sets the type of the reference.
     /// </summary>
@@ -434,6 +476,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Instance")
     ]
     public XmlQualifiedNameEditorWithDefaultValue ReferenceType { get; set; }
+
     /// <summary>
     /// Gets or sets the declaration.
     /// </summary>
@@ -446,6 +489,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Instance")
     ]
     public XmlQualifiedNameEditor Declaration { get; set; }
+
     /// <summary>
     /// Gets or sets the type definition.
     /// </summary>
@@ -459,6 +503,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
      DocumentationAttribute("TypeDefinition", typeof(GetterOfNameAsString))
      ]
     public XmlQualifiedNameEditorWithDefaultValue TypeDefinition { get; set; }
+
     /// <summary>
     /// Gets or sets the modelling rule.
     /// </summary>
@@ -477,7 +522,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Instance"),
     DocumentationAttribute("ModellingRule", typeof(StringGetter), "Mandatory")
     ]
-    public Opc.Ua.ModelCompiler.ModellingRule? ModellingRule { get; set; }
+    public OpcUaModelCompiler.ModellingRule? ModellingRule { get; set; }
+
     /// <summary>
     /// Gets or sets the min cardinality.
     /// </summary>
@@ -491,6 +537,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("MinCardinality", typeof(GetterOfNameAsString))
     ]
     public uint MinCardinality { get; set; }
+
     /// <summary>
     /// Gets or sets the max cardinality.
     /// </summary>
@@ -502,6 +549,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("MaxCardinality", typeof(GetterOfNameAsString))
     ]
     public uint MaxCardinality { get; set; }
+
     /// <summary>
     /// Gets or sets a value indicating whether [preserve default attributes].
     /// </summary>
@@ -514,12 +562,14 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Instance")
     ]
     public bool PreserveDefaultAttributes { get; set; }
-    #endregion
 
+    #endregion public properties
   }
-  #endregion
+
+  #endregion class InstanceDesign
 
   #region class NodeDesign
+
   public interface INodeDesign
   {
     string BrowseName { get; set; }
@@ -539,18 +589,18 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     string StringId { get; set; }
 
     uint WriteAccess { get; set; }
-
   }
+
   /// <summary>
-  /// Base class for all based on the BaseNode 
+  /// Base class for all based on the BaseNode
   /// </summary>
   /// <typeparam name="T">Class from Opc UA Model Designer</typeparam>
-  internal abstract partial class NodeDesign<T> : Design<T>, INodeDesign
-    where T : Opc.Ua.ModelCompiler.NodeDesign, new()
+  internal abstract partial class NodeDesign<T> : INodeDesign
   {
     #region public properties
+
     /// <summary>
-    /// Gets or sets the name of the browse.The BrowseName is the name used in the information model. 
+    /// Gets or sets the name of the browse.The BrowseName is the name used in the information model.
     ///  The validator will create the BrowseName automatically from the SymbolicName.
     ///  The BrowseName is qualified by the namespace used for the SymbolicName.
     /// </summary>
@@ -564,11 +614,12 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Node")
     ]
     public string BrowseName { get; set; }
+
     /// <summary>
     /// Gets or sets the display name.
     /// </summary>
-    /// <value>The display name.The DisplayName is a LocalizedText. 
-    /// Each server shall provide the DisplayName identical to the BrowseName of the Node for the LocaleId "en". 
+    /// <value>The display name.The DisplayName is a LocalizedText.
+    /// Each server shall provide the DisplayName identical to the BrowseName of the Node for the LocaleId "en".
     /// Whether the server provides translated names for other LocaleIds is vendor specific.</value>
     [
     DisplayName("DisplayName"),
@@ -580,12 +631,13 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Node")
     ]
     public LocalizedText DisplayName { get; set; }
+
     /// <summary>
     /// Gets or sets the description.
     /// </summary>
-    /// <value>The description. Optionally a vendor specific description is provided: The Description value of the Description attribute for the Node. 
-    /// This element includes an optional key that can be used to look up the Description for other 
-    /// locales in a resource DB. The validator automatically creates a generic Description from the 
+    /// <value>The description. Optionally a vendor specific description is provided: The Description value of the Description attribute for the Node.
+    /// This element includes an optional key that can be used to look up the Description for other
+    /// locales in a resource DB. The validator automatically creates a generic Description from the
     /// BrowseName and NodeClass. </value>
     [
     DisplayName("Description"),
@@ -599,6 +651,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("Description")
     ]
     public LocalizedText Description { get; set; }
+
     /// <summary>
     /// Gets or sets the name of the symbolic.
     /// </summary>
@@ -614,6 +667,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("SymbolicName", typeof(GetterOfNameAsString))
     ]
     public XmlQualifiedNameEditor SymbolicName { get; set; }
+
     /// <summary>
     /// Gets or sets the symbolic id.
     /// </summary>
@@ -627,6 +681,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Node")
     ]
     public XmlQualifiedNameEditor SymbolicId { get; set; }
+
     /// <summary>
     /// Gets or sets a value indicating whether this instance is declaration.
     /// </summary>
@@ -642,6 +697,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Node")
     ]
     public bool IsDeclaration { get; set; }
+
     /// <summary>
     /// Gets or sets the numeric id.
     /// </summary>
@@ -658,6 +714,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Node")
     ]
     public uint NumericId { get; set; }
+
     /// <summary>
     /// Gets or sets a value indicating whether [numeric id specified].
     /// </summary>
@@ -669,6 +726,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Node")
     ]
     public bool NumericIdSpecified { get; set; }
+
     /// <summary>
     /// Gets or sets the string id.
     /// </summary>
@@ -676,20 +734,21 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [
     DisplayName("StringId"),
     BrowsableAttribute(true),
-    DescriptionAttribute(" The StringId is an alternate unique identfier for the node. " +
+    DescriptionAttribute(" The StringId is an alternate unique identifier for the node. " +
       "It is used instead of the NumericId if it is specified in the CSV input file."),
     CategoryAttribute("Node")
     ]
     public string StringId { get; set; }
+
     /// <summary>
     /// Gets or sets the write access.
     /// </summary>
-    /// <value>The write access.Optionally the WriteMask Attribute can be provided. 
-    /// If the WriteMask Attribute is provided, it shall set all Attributes to 
-    /// not writeable that are not said to be vendor-specific. 
-    /// For example, the Description Attribute may be set to writeable 
-    /// since a Server may provide a server-specific description for the Node. 
-    /// The NodeId shall not be writeable, because it is defined for each Node 
+    /// <value>The write access.Optionally the WriteMask Attribute can be provided.
+    /// If the WriteMask Attribute is provided, it shall set all Attributes to
+    /// not writable that are not said to be vendor-specific.
+    /// For example, the Description Attribute may be set to writable
+    /// since a Server may provide a server-specific description for the Node.
+    /// The NodeId shall not be writable, because it is defined for each Node
     /// in this specification. </value>
     [
     DisplayName("WriteAccess"),
@@ -703,6 +762,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Node")
     ]
     public uint WriteAccess { get; set; }
+
     /// <summary>
     /// Gets or sets the part no.
     /// </summary>
@@ -716,33 +776,34 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Node")
     ]
     public uint PartNo { get; set; }
-    #endregion
-  }//NodeDesign 
-  #endregion
+
+    #endregion public properties
+  }//NodeDesign
+
+  #endregion class NodeDesign
 
   #region class TypeDesign
+
   /// <summary>
   /// A base type for all Type Nodes (ObjectType, VariableType, DataType and ReferenceType).
   /// </summary>
-  /// <typeparam name="T">Type of the node from the Opc.Ua.ModelCompiler namespace, 
-  /// must inherit <see cref="Opc.Ua.ModelCompiler.TypeDesign"/></typeparam>
-  internal partial class TypeDesign<T> : NodeDesign<T>
-    where T : Opc.Ua.ModelCompiler.TypeDesign, new()
+  internal partial class TypeDesign<T>
   {
     #region public properties
+
     /// <summary>
-    /// Gets or sets the name of the class.This is the name for the instance of the type. If not specified the validator 
-    /// creates it by removing the 'Type' suffix from the SymbolicName for the Node. 
+    /// Gets or sets the name of the class.This is the name for the instance of the type. If not specified the validator
+    /// creates it by removing the 'Type' suffix from the SymbolicName for the Node.
     /// </summary>
     /// <value>The name of the class.</value>
     [
     DisplayName("Class Name"),
     BrowsableAttribute(true),
-    DescriptionAttribute("This is the name for the instance of the type. If not specified the validator " +
-      "creates it by removing the 'Type' suffix from the SymbolicName for the Node. "),
+    DescriptionAttribute("This is the name for the instance of the type. If not specified the validator creates it by removing the 'Type' suffix from the SymbolicName for the Node. "),
     CategoryAttribute("Type")
     ]
     public string ClassName { get; set; }
+
     /// <summary>
     /// Gets or sets the type of the base.The SymbolicId for the BaseType.
     /// </summary>
@@ -750,12 +811,12 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [
     DisplayName("Base Type"),
     BrowsableAttribute(true),
-    DescriptionAttribute("The name of the base type pointed out by the HasSubtype reference. The semantic of" +
-                           " the HasSubtype type is to express a subtype relationship of types."),
+    DescriptionAttribute("The name of the base type pointed out by the HasSubtype reference. The semantic of the HasSubtype type is to express a subtype relationship of types."),
     TypeConverterAttribute(typeof(ExpandableObjectConverter)),
     CategoryAttribute("Type")
     ]
     public XmlQualifiedNameEditorWithDefaultValue BaseType { get; set; }
+
     /// <summary>
     /// Gets or sets a value indicating whether this instance is abstract.
     /// </summary>
@@ -769,6 +830,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Type")
     ]
     public bool IsAbstract { get; set; }
+
     /// <summary>
     /// Gets or sets a value indicating whether to supress class generation for the type..
     /// </summary>
@@ -776,21 +838,25 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [
     DisplayName("No Class Generation"),
     BrowsableAttribute(true),
-    DescriptionAttribute("Indicates whether to supress class generation for the type."),
+    DescriptionAttribute("Indicates whether to suppress class generation for the type."),
     CategoryAttribute("Type")
     ]
     public bool NoClassGeneration { get; set; }
-    #endregion
+
+    #endregion public properties
   }
-  #endregion
+
+  #endregion class TypeDesign
 
   #region class ReferenceTypeDesign
+
   /// <summary>
   /// ReferenceType define typed references between Nodes.
   /// </summary>
-  internal partial class ReferenceTypeDesign : TypeDesign<Opc.Ua.ModelCompiler.ReferenceTypeDesign>
+  internal partial class ReferenceTypeDesign
   {
     #region public properties
+
     /// <summary>
     /// Gets or sets the name of the inverse.
     /// </summary>
@@ -803,6 +869,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("ReferenceType")
     ]
     public LocalizedText InverseName { get; set; }
+
     /// <summary>
     /// Gets or sets a value indicating whether this <see cref="ReferenceTypeDesign"/> is symmetric.
     /// </summary>
@@ -810,23 +877,26 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     [
     DisplayName("Symmetric"),
     BrowsableAttribute(true),
-    DescriptionAttribute("A boolean Attribute with the following values: " +
-"TRUE the meaning of the ReferenceType is the same as seen from both the SourceNode and the TargetNode; " +
-"FALSE the meaning of the ReferenceType as seen from the TargetNode is the inverse of that as seen from the SourceNode."),
+    DescriptionAttribute("A boolean Attribute with the following values: TRUE the meaning of the ReferenceType is the same as seen from both the SourceNode and the TargetNode; " +
+        "FALSE the meaning of the ReferenceType as seen from the TargetNode is the inverse of that as seen from the SourceNode."),
     CategoryAttribute("ReferenceType")
     ]
     public bool? Symmetric { get; set; }
-    #endregion
+
+    #endregion public properties
   }
-  #endregion
+
+  #endregion class ReferenceTypeDesign
 
   #region class DataTypeDesign
+
   /// <summary>
   /// DataTypes define structure of a Value for Variables in the information model.
   /// </summary>
-  internal partial class DataTypeDesign : TypeDesign<Opc.Ua.ModelCompiler.DataTypeDesign>
+  internal partial class DataTypeDesign
   {
     #region public properties
+
     /// <summary>
     /// Gets or sets a value indicating whether no arrays are allowed.
     /// </summary>
@@ -838,6 +908,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("DataType")
     ]
     public bool NoArraysAllowed { get; set; }
+
     /// <summary>
     /// Gets or sets a value indicating whether [not in address space].
     /// </summary>
@@ -849,32 +920,36 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("DataType")
     ]
     public bool NotInAddressSpace { get; set; }
-    #endregion
+
+    #endregion public properties
   }
-  #endregion
+
+  #endregion class DataTypeDesign
 
   #region class EncodingDesign
+
   /// <summary>
   /// Defines an Object which is a Data Type Encoding for a DataType.
   /// </summary>
-  internal partial class EncodingDesign : ObjectDesign<Opc.Ua.ModelCompiler.EncodingDesign>
-  {
-  }
-  #endregion
+  internal partial class EncodingDesign { }
+
+  #endregion class EncodingDesign
 
   #region class ObjectDesign
+
   internal interface IObjectDesign : IInstanceDesign
   {
     bool? SupportsEvents { get; set; }
   }
+
   /// <summary>
   /// Defines the structure of an Object in the information model.
   /// </summary>
   /// <typeparam name="T">Class from Opc UA Model Designer</typeparam>
-  internal partial class ObjectDesign<T> : InstanceDesign<T>, IObjectDesign
-    where T : Opc.Ua.ModelCompiler.ObjectDesign, new()
+  internal partial class ObjectDesign<T> : IObjectDesign
   {
     #region public properties
+
     /// <summary>
     /// Gets or sets a value indicating whether it supports events.
     /// </summary>
@@ -886,17 +961,21 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Object")
     ]
     public bool? SupportsEvents { get; set; }
-    #endregion
+
+    #endregion public properties
   }
-  #endregion
+
+  #endregion class ObjectDesign
 
   #region class VariableTypeDesign
+
   /// <summary>
   /// VariableTypes define structure of a Variable in the information model.
   /// </summary>
-  internal partial class VariableTypeDesign : TypeDesign<Opc.Ua.ModelCompiler.VariableTypeDesign>
+  internal partial class VariableTypeDesign
   {
     #region public properties
+
     /// <summary>
     /// Gets or sets the default value.
     /// </summary>
@@ -909,6 +988,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("VariableType")
     ]
     public System.Xml.XmlElement DefaultValue { get; set; }
+
     /// <summary>
     /// Gets or sets the type of the data.
     /// </summary>
@@ -922,6 +1002,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("DataType", typeof(GetterOfNameAsString))
     ]
     public XmlQualifiedNameEditor DataType { get; set; }
+
     /// <summary>
     /// Gets or sets the value rank.
     /// </summary>
@@ -938,7 +1019,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       "Any (-2)- the value can be a scalar or an array with any number of dimensions; " +
       "ScalarOrOneDimension (-3)- the value can be a scalar or a one dimensional array."), CategoryAttribute("VariableType")
     ]
-    public Opc.Ua.ModelCompiler.ValueRank? ValueRank { get; set; }
+    public OpcUaModelCompiler.ValueRank? ValueRank { get; set; }
+
     /// <summary>
     /// Gets or sets the array dimensions.
     /// </summary>
@@ -953,6 +1035,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("VariableType")
     ]
     public string ArrayDimensions { get; set; }
+
     /// <summary>
     /// Gets or sets the access level.
     /// </summary>
@@ -965,7 +1048,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       "in the specification , the access level shall allow a current read; other settings are vendor specific."),
     CategoryAttribute("VariableType")
     ]
-    public Opc.Ua.ModelCompiler.AccessLevel? AccessLevel { get; set; }
+    public OpcUaModelCompiler.AccessLevel? AccessLevel { get; set; }
+
     /// <summary>
     /// Gets or sets the minimum sampling interval.
     /// </summary>
@@ -980,6 +1064,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       "item continuously. A MinimumSamplingInterval of -1 means indeterminate."), CategoryAttribute("VariableType")
     ]
     public int? MinimumSamplingInterval { get; set; }
+
     [
     DisplayName("Historizing"),
     BrowsableAttribute(true),
@@ -991,6 +1076,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("VariableType")
     ]
     public bool? Historizing { get; set; }
+
     /// <summary>
     /// Gets or sets a value indicating whether [exposes its children].
     /// </summary>
@@ -1002,17 +1088,19 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("VariableType")
     ]
     public bool ExposesItsChildren { get; set; }
-    #endregion
+
+    #endregion public properties
   }
-  #endregion
+
+  #endregion class VariableTypeDesign
 
   #region class ObjectTypeDesign
+
   /// <summary>
   /// ObjectTypes define structure of an Object in the information model.
   /// </summary>
   /// <typeparam name="T">Class from Opc UA Model Designer</typeparam>
-  internal partial class ObjectTypeDesign<T> : TypeDesign<T>
-    where T : Opc.Ua.ModelCompiler.ObjectTypeDesign, new()
+  internal partial class ObjectTypeDesign<T>
   {
     /// <summary>
     /// Gets or sets a value indicating whether the Object class node supports events.
@@ -1026,15 +1114,18 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     ]
     public bool? SupportsEvents { get; set; }
   }
-  #endregion
+
+  #endregion class ObjectTypeDesign
 
   #region class ViewDesign
+
   /// <summary>
   /// ViewDesign define structure of an View in the information model.
   /// </summary>
-  internal partial class ViewDesign : NodeDesign<Opc.Ua.ModelCompiler.ViewDesign>
+  internal partial class ViewDesign
   {
     #region public properties
+
     /// <summary>
     /// Gets or sets a value indicating whether this Object node class supports events.
     /// </summary>
@@ -1046,6 +1137,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("View")
     ]
     public bool SupportsEvents { get; set; }
+
     /// <summary>
     /// Gets or sets a value indicating whether the View contains no loops.
     /// </summary>
@@ -1063,29 +1155,33 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("View")
     ]
     public bool ContainsNoLoops { get; set; }
-    #endregion properties
+
+    #endregion public properties
   }
-  #endregion
+
+  #endregion class ViewDesign
 
   #region class VariableDesign
+
   internal interface IVariableDesign : IInstanceDesign
   {
     VariableValueEditor DefaultValue { get; set; }
     XmlQualifiedNameEditor DataType { get; set; }
-    Opc.Ua.ModelCompiler.ValueRank? ValueRank { get; set; }
+    OpcUaModelCompiler.ValueRank? ValueRank { get; set; }
     string ArrayDimensions { get; set; }
-    Opc.Ua.ModelCompiler.AccessLevel? AccessLevel { get; set; }
+    OpcUaModelCompiler.AccessLevel? AccessLevel { get; set; }
     int? MinimumSamplingInterval { get; set; }
     bool? Historizing { get; set; }
   }
+
   /// <summary>
   /// Defines the structure of a Variable in the information model.
   /// </summary>
   /// <typeparam name="T">Class from Opc UA Model Designer</typeparam>
-  internal partial class VariableDesign<T> : InstanceDesign<T>, IVariableDesign
-    where T : Opc.Ua.ModelCompiler.VariableDesign, new()
+  internal partial class VariableDesign<T> : IVariableDesign
   {
     #region public properties
+
     /// <summary>
     /// Gets or sets the default value.
     /// </summary>
@@ -1099,6 +1195,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     NotifyParentPropertyAttribute(true)
     ]
     public VariableValueEditor DefaultValue { get; set; }
+
     /// <summary>
     /// Gets or sets the type of the data.
     /// </summary>
@@ -1112,6 +1209,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     DocumentationAttribute("DataType", typeof(GetterOfNameAsString))
     ]
     public XmlQualifiedNameEditor DataType { get; set; }
+
     /// <summary>
     /// Gets or sets the value rank.
     /// </summary>
@@ -1129,7 +1227,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       "ScalarOrOneDimension (-3)- the value can be a scalar or a one dimensional array."),
     CategoryAttribute("Variable")
     ]
-    public Opc.Ua.ModelCompiler.ValueRank? ValueRank { get; set; }
+    public OpcUaModelCompiler.ValueRank? ValueRank { get; set; }
+
     /// <summary>
     /// Gets or sets the array dimensions.
     /// </summary>
@@ -1144,6 +1243,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Variable")
     ]
     public string ArrayDimensions { get; set; }
+
     /// <summary>
     /// Gets or sets the access level.
     /// </summary>
@@ -1156,7 +1256,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       "in the specification , the access level shall allow a current read; other settings are vendor specific."),
     CategoryAttribute("Variable")
     ]
-    public Opc.Ua.ModelCompiler.AccessLevel? AccessLevel { get; set; }
+    public OpcUaModelCompiler.AccessLevel? AccessLevel { get; set; }
+
     /// <summary>
     /// Gets or sets the minimum sampling interval.
     /// </summary>
@@ -1172,6 +1273,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Variable")
     ]
     public int? MinimumSamplingInterval { get; set; }
+
     /// <summary>
     /// Gets or sets a value indicating whether this <see cref="VariableDesign&lt;T&gt;"/> is historizing.
     /// </summary>
@@ -1187,21 +1289,26 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Variable")
     ]
     public bool? Historizing { get; set; }
-    #endregion
+
+    #endregion public properties
   }
-  #endregion
+
+  #endregion class VariableDesign
 
   #region class DictionaryDesign
+
   internal interface IDictionaryDesign : IVariableDesign
   {
     XmlQualifiedNameEditor EncodingName { get; set; }
   }
+
   /// <summary>
   /// Defines an Variable which is a DataTypeDictionary.
   /// </summary>
-  internal partial class DictionaryDesign : VariableDesign<Opc.Ua.ModelCompiler.DictionaryDesign>, IDictionaryDesign
+  internal partial class DictionaryDesign : IDictionaryDesign
   {
     #region public properties
+
     /// <summary>
     /// Gets or sets the name of the encoding.
     /// </summary>
@@ -1214,16 +1321,20 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Dictionary")
     ]
     public XmlQualifiedNameEditor EncodingName { get; set; }
-    #endregion
+
+    #endregion public properties
   }
-  #endregion
+
+  #endregion class DictionaryDesign
 
   #region class PropertyDesign
+
   /// <summary>
   /// Defines a Variable which is a Property for a Node.
   /// </summary>
-  internal partial class PropertyDesign : VariableDesign<Opc.Ua.ModelCompiler.PropertyDesign>
+  internal partial class PropertyDesign
   {
   }
-  #endregion
+
+  #endregion class PropertyDesign
 }

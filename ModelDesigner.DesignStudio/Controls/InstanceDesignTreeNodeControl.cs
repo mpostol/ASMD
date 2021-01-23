@@ -12,20 +12,25 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using UAOOI.Configuration.Core;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Controls
 {
   internal abstract class InstanceDesignTreeNodeControl<T, type, OPCType> : NodeDesignTreeNodeControl<T, type, OPCType>, IInstanceDesignTreeNode
     where type : Wrappers4ProperyGrid.InstanceDesign<OPCType>, IInstanceDesign
-    where OPCType : Opc.Ua.ModelCompiler.InstanceDesign, new()
+    where OPCType : OpcUaModelCompiler.InstanceDesign, new()
     where T : InstanceDesign<type, OPCType>
   {
-
     #region constructor
-    public InstanceDesignTreeNodeControl(T parent) : base(parent) { }
-    #endregion
+
+    public InstanceDesignTreeNodeControl(T parent) : base(parent)
+    {
+    }
+
+    #endregion constructor
 
     #region public
+
     internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
     {
       Dictionary<string, System.Xml.XmlQualifiedName> list = base.GetCoupledNodesXmlQualifiedNames();
@@ -33,6 +38,7 @@ namespace CAS.UA.Model.Designer.Controls
         list.Add(Resources.WrapperTreeNodeAddMenuItemGoto_TypeDefinition, ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName);
       return list;
     }
+
     /// <summary>
     /// Gets the unique identifier.
     /// </summary>
@@ -46,16 +52,20 @@ namespace CAS.UA.Model.Designer.Controls
       ui.Update(intermediate, ModelEntity.Wrapper.SymbolicName.XmlQualifiedName, false);
       return true;
     }
-    #endregion
+
+    #endregion public
 
     #region IInstanceDesign Members
+
     public void GetServerUAMenu(ToolStripItemCollection items)
     {
       GetInstanceMenuItems(items);
     }
-    #endregion
+
+    #endregion IInstanceDesign Members
 
     #region private
+
     protected override void BeforeMenuStripOpening()
     {
       UniqueIdentifier ui = new UniqueIdentifier();
@@ -68,6 +78,7 @@ namespace CAS.UA.Model.Designer.Controls
       GetInstanceMenuItems(this.ContextMenuStrip.Items);
       base.BeforeMenuStripOpening();
     }
+
     private void GetInstanceMenuItems(ToolStripItemCollection menu)
     {
       bool enabled = m_InstanceConfiguration != null;
@@ -96,13 +107,16 @@ namespace CAS.UA.Model.Designer.Controls
       item.DropDown.Items.Add(subItem);
       subItem.Click += new EventHandler(new_Click);
     }
+
     private void AddMenuItemGoTo_Click(object sender, System.EventArgs e)
     {
       TreeView.GoToNode(ModelEntity.Wrapper.TypeDefinition.XmlQualifiedName);
     }
+
     private IInstanceConfiguration m_InstanceConfiguration;
 
     #region Menu handlers
+
     private void new_Click(object sender, EventArgs e)
     {
       if (m_InstanceConfiguration == null)
@@ -110,15 +124,16 @@ namespace CAS.UA.Model.Designer.Controls
       //TODO Display worming
       m_InstanceConfiguration.ClearConfiguration();
     }
+
     private void edit_Click(object sender, EventArgs e)
     {
       if (m_InstanceConfiguration == null)
         return;
       m_InstanceConfiguration.Edit();
     }
-    #endregion
 
-    #endregion
+    #endregion Menu handlers
 
+    #endregion private
   }
 }

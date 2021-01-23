@@ -6,10 +6,10 @@
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
-using Opc.Ua.ModelCompiler;
 using System;
 using System.Xml;
 using UAOOI.Windows.Forms;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
@@ -17,6 +17,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   {
     string ConvertToString(object o, string DefaultValue);
   }
+
   /// <summary>
   /// This attribute is used by ExportingTool to get from nodes information, that should be placed in exported documentation.
   /// </summary>
@@ -31,8 +32,10 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       this.Name = name;
       this.ConverterToDocumentationString = new StringGetter();
     }
+
     public DocumentationAttribute(string name, Type ConverterToDocumentationString) : this(name, ConverterToDocumentationString, string.Empty)
     { }
+
     public DocumentationAttribute(string name, Type ConverterToDocumentationString, string defaultValue)
     {
       this.Name = name;
@@ -41,9 +44,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       this.DefaultValue = defaultValue;
     }
   }
+
   public class GetterOfNameAsString : IConverterToDocumentationString
   {
     #region IConverterToDocumentationString Members
+
     /// <summary>
     /// Converts to string.
     /// </summary>
@@ -54,8 +59,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     {
       if (o is LocalizedText)
         return ((LocalizedText)o).Value;
-      else if (o is ValueRank)
-        return ((ValueRank)o).ToString();
+      else if (o is OpcUaModelCompiler.ValueRank)
+        return ((OpcUaModelCompiler.ValueRank)o).ToString();
       else if (o is XmlQualifiedNameEditorWithDefaultValue)
         return ((XmlQualifiedNameEditorWithDefaultValue)o).ValueOrDefault.Name;
       else if (o is XmlQualifiedNameEditor)
@@ -64,11 +69,14 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         return ((XmlQualifiedName)o).Name;
       return DefaultValue;
     }
-    #endregion
+
+    #endregion IConverterToDocumentationString Members
   }
+
   internal class DateTimeGetter : IConverterToDocumentationString
   {
     #region IConverterToDocumentationString Members
+
     /// <summary>
     /// Converts to string .
     /// </summary>
@@ -82,11 +90,14 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         return _value.Value.Date.ToString();
       return DefaultValue;
     }
-    #endregion
+
+    #endregion IConverterToDocumentationString Members
   }
+
   internal class StringGetter : IConverterToDocumentationString
   {
     #region IConverterToDocumentationString Members
+
     /// <summary>
     /// Converts to string.
     /// </summary>
@@ -99,7 +110,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         return o.ToString();
       return DefaultValue;
     }
-    #endregion
-  }
 
+    #endregion IConverterToDocumentationString Members
+  }
 }

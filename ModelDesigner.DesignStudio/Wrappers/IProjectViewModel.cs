@@ -1,27 +1,17 @@
-﻿//_______________________________________________________________
-//  Title   : IProjectViewModel
-//  System  : Microsoft VisualStudio 2015 / C#
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2017, CAS LODZ POLAND.
-//  TEL: +48 608 61 98 99 
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-
   /// <summary>
   /// Interface IProjectViewModel - interface helper to implement inversion of control for Wrappers to ViewModel
   /// </summary>
   internal interface IViewModel
   {
-    
     ///// <summary>
     ///// Gets or sets the name of the file.
     ///// </summary>
@@ -39,7 +29,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     //string FilePath { get; }
     //string BuildOutputDirectoryPath { get; }
     //void SetNewSolutionHomeDirectory(string solutionDirectory);
-    //bool SaveModel(string solutionDirectory, XmlFile.DataToSerialize<Opc.Ua.ModelCompiler.ModelDesign> config);
-
+    //bool SaveModel(string solutionDirectory, XmlFile.DataToSerialize<OpcUaModelCompiler.ModelDesign> config);
   }
 }

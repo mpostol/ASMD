@@ -10,24 +10,34 @@ using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System.Collections.Generic;
 using System.Xml;
 using UAOOI.Configuration.Core;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
   internal abstract class InstanceDesign<type, OPCType> : NodeDesign<type, OPCType>, IInstanceNode
     where type : Wrappers4ProperyGrid.InstanceDesign<OPCType>, IInstanceDesign
-    where OPCType : Opc.Ua.ModelCompiler.InstanceDesign, new()
+    where OPCType : OpcUaModelCompiler.InstanceDesign, new()
   {
     #region constructors
-    protected InstanceDesign(type child) : base(child) { }
-    protected InstanceDesign(type child, OPCType node) : base(child, node) { }
-    #endregion
+
+    protected InstanceDesign(type child) : base(child)
+    {
+    }
+
+    protected InstanceDesign(type child, OPCType node) : base(child, node)
+    {
+    }
+
+    #endregion constructors
 
     #region private
+
     protected override void AddNodeDescriptors(List<INodeDescriptor> dsptrs, UniqueIdentifier ui)
     {
       ui.Update(false, Wrapper.SymbolicName.XmlQualifiedName, false);
       base.AddNodeDescriptors(dsptrs, ui);
     }
+
     /// <summary>
     /// Adds to address space.
     /// </summary>
@@ -46,6 +56,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       type.InstanceDeclarations(children, thisInstance);
     }
+
     /// <summary>
     /// Adds this instance to the address space.
     /// </summary>
@@ -55,9 +66,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       space.AddNode2AddressSpace(this);
     }
-    #endregion
+
+    #endregion private
 
     #region public
+
     public override string CalculateReferenceRelativeName(string targetIdName)
     {
       if (Parent == null)
@@ -67,6 +80,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         return targetIdName;
       return (parent.CalculateReferenceRelativeName(targetIdName));
     }
+
     /// <summary>
     /// Gets the node descriptors.
     /// </summary>
@@ -80,8 +94,9 @@ namespace CAS.UA.Model.Designer.Wrappers
       AddNodeDescriptors(_descriptors, ui);
       return _descriptors.ToArray();
     }
+
     /// <summary>
-    /// Retrieves aa instance of the interface <see cref="INodeDescriptor"/> that provides the description of the node to be
+    /// Retrieves an instance of the interface <see cref="INodeDescriptor"/> that provides the description of the node to be
     /// bind with an external data source.
     /// </summary>
     /// <param name="UniqueIdentifierOfRequestedWrapper">The unique identifier of requested node descriptor.</param>
@@ -92,9 +107,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return Wrapper.GetINodeDescriptor(UniqueIdentifierOfRequestedWrapper, NodeClass);
     }
-    #endregion
+
+    #endregion public
 
     #region IInstanceNode Members
+
     /// <summary>
     /// Adds all references for an instance declaration recursively.
     /// </summary>
@@ -105,10 +122,12 @@ namespace CAS.UA.Model.Designer.Wrappers
       foreach (Reference item in References)
         references.AddReference(item, this, typeParentID);
     }
+
     IInstanceDesign IInstanceNode.DerivePropertyValuesFrom(IInstanceDesign source)
     {
       return this.Wrapper.DerivePropertyValuesFrom(source);
     }
+
     /// <summary>
     /// Processes the node.
     /// </summary>
@@ -126,6 +145,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       space.AddReference(nodeContext.AddressSpaceIndex, BuildInXmlQualifiedNames.HasTypeDefinition, false, nodeContext.TypeDefinition);
       nodeContext.AddModelingRule();
     }
+
     /// <summary>
     /// Determines whether this instance is mandatory.
     /// </summary>
@@ -133,8 +153,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// 	<c>true</c> if this instance has associated mandatory modeling rule; otherwise, <c>false</c>.
     /// </value>
     bool IInstanceNode.IsMandatory => this.Wrapper.IsMandatory;
-    #endregion
+
+    #endregion IInstanceNode Members
   }
+
   /// <summary>
   /// Dedicated InstanceDesign interface to be used to represent this TreeNode in the user interface
   /// </summary>
@@ -147,4 +169,3 @@ namespace CAS.UA.Model.Designer.Wrappers
     void GetServerUAMenu(System.Windows.Forms.ToolStripItemCollection items);
   }
 }
-

@@ -1,22 +1,23 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal partial class PropertyDesign : InstanceDesign<Wrappers4ProperyGrid.PropertyDesign, Opc.Ua.ModelCompiler.PropertyDesign>
+  internal partial class PropertyDesign : InstanceDesign<Wrappers4ProperyGrid.PropertyDesign, OpcUaModelCompiler.PropertyDesign>
   {
-
     #region constructors
-    public PropertyDesign() : base(new Wrappers4ProperyGrid.PropertyDesign(new Opc.Ua.ModelCompiler.PropertyDesign()))
+    public PropertyDesign() : base(new Wrappers4ProperyGrid.PropertyDesign(new OpcUaModelCompiler.PropertyDesign()))
     {
       RemoveChildrenFolderFromSubTree();
     }
-    public PropertyDesign(Opc.Ua.ModelCompiler.PropertyDesign node) : base(new Wrappers4ProperyGrid.PropertyDesign(node), node)
+    public PropertyDesign(OpcUaModelCompiler.PropertyDesign node) : base(new Wrappers4ProperyGrid.PropertyDesign(node), node)
     {
       RemoveChildrenFolderFromSubTree();
     }

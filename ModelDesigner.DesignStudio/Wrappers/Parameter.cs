@@ -1,20 +1,22 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
 
-  internal partial class Parameter : WrapperBase<Wrappers4ProperyGrid.Parameter, Opc.Ua.ModelCompiler.Parameter>
+  internal partial class Parameter : WrapperBase<Wrappers4ProperyGrid.Parameter, OpcUaModelCompiler.Parameter>
   {
 
     #region creators
-    public Parameter() : base(new Wrappers4ProperyGrid.Parameter(new Opc.Ua.ModelCompiler.Parameter())) { }
-    public Parameter(Opc.Ua.ModelCompiler.Parameter parameter) : base(new Wrappers4ProperyGrid.Parameter(parameter)) { }
+    public Parameter() : base(new Wrappers4ProperyGrid.Parameter(new OpcUaModelCompiler.Parameter())) { }
+    public Parameter(OpcUaModelCompiler.Parameter parameter) : base(new Wrappers4ProperyGrid.Parameter(parameter)) { }
     #endregion
 
     #region protected
