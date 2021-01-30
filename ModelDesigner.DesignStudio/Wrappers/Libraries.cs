@@ -5,10 +5,11 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.CommServer.UA.ModelCompiler.Common;
 using System;
 using System.Linq;
 using System.Xml;
+using UAOOI.SemanticData.UAModelDesignExport.XML;
+
 using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
