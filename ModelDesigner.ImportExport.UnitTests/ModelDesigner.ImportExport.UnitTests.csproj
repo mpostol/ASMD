@@ -71,8 +71,8 @@
     <Reference Include="UAOOI.SemanticData.InformationModelFactory, Version=5.1.0.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
       <HintPath>..\packages\UAOOI.SemanticData.InformationModelFactory.5.1.0\lib\netstandard2.0\UAOOI.SemanticData.InformationModelFactory.dll</HintPath>
     </Reference>
-    <Reference Include="UAOOI.SemanticData.UAModelDesignExport, Version=5.2.0.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.SemanticData.UAModelDesignExport.5.2.2-Bravo\lib\netstandard2.0\UAOOI.SemanticData.UAModelDesignExport.dll</HintPath>
+    <Reference Include="UAOOI.SemanticData.UAModelDesignExport, Version=5.2.3.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.SemanticData.UAModelDesignExport.5.2.3-Charlie\lib\netstandard2.0\UAOOI.SemanticData.UAModelDesignExport.dll</HintPath>
     </Reference>
     <Reference Include="UAOOI.SemanticData.UANodeSetValidation, Version=5.1.0.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
       <HintPath>..\packages\UAOOI.SemanticData.UANodeSetValidation.5.1.0\lib\netstandard2.0\UAOOI.SemanticData.UANodeSetValidation.dll</HintPath>
