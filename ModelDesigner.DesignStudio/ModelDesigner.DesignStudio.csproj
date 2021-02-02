@@ -14,7 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <StartupObject>CAS.UA.Model.Designer.Program</StartupObject>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <ManifestCertificateThumbprint>23D18A05F61D12F417859EB23DE84152D6C5F120</ManifestCertificateThumbprint>
     <GenerateManifests>false</GenerateManifests>
     <ApplicationIcon>OPC_UA_ASMD_48.ico</ApplicationIcon>
