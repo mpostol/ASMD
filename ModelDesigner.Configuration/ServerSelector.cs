@@ -8,7 +8,6 @@
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.Properties;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
-using CAS.Lib.CodeProtect;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,10 +15,8 @@ using System.Diagnostics;
 using System.Drawing.Design;
 using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using UAOOI.Configuration.Core;
-using UAOOI.Windows.Forms.CodeProtectControls;
 
 namespace CAS.CommServer.UA.ModelDesigner.Configuration
 {
@@ -70,7 +67,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       GraphicalUserInterface = graphicalUserInterface ?? throw new ArgumentNullException(nameof(graphicalUserInterface));
       SolutionPath = solutionPath ?? throw new ArgumentNullException(nameof(solutionPath));
       OpenPlugIn(solutionPath, codebase, configuration);
-      LicenseProtection.CheckConstrain();
+      //LicenseProtection.CheckConstrain();
     }
 
     #endregion constructor
@@ -168,8 +165,8 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       ToolStripMenuItem open = new ToolStripMenuItem()
       {
         Text = Resources.MenuUAServerSelectText,
-        ToolTipText = LicenseProtection.IsLicensed ? Resources.MenuUAServerSelectToolTip : Resources.LicenseFeatureUnavailable,
-        Enabled = LicenseProtection.IsLicensed
+        ToolTipText =  Resources.MenuUAServerSelectToolTip,
+        Enabled = true
       };
       menu.Add(open);
       open.Click += new EventHandler(PluginMenuItemsOpen_Click);
@@ -197,47 +194,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
     }
 
     #endregion public
-
-    #region LicenseProvider
-
-    //TODO Remove limitation related to CAS licensing programs #53
-    [LicenseProvider(typeof(CodeProtectLP))]
-    [GuidAttribute("9F0B0964-93B8-4775-9106-95C0DCBFEAD5")]
-    private sealed class LicenseProtection : SplashScreen.LogedIsLicensed<LicenseProtection>
-    {
-      #region public
-
-      internal static bool IsLicensed { get; private set; }
-
-      internal static void CheckConstrain()
-      {
-        if (m_Checked)
-          return;
-        LicenseProtection sc = new LicenseProtection();
-        IsLicensed = sc.Licensed;
-        m_Checked = true;
-      }
-
-      #endregion public
-
-      #region private
-
-      private LicenseProtection()
-      {
-        IsLicensed = this.Licensed;
-      }
-
-      static LicenseProtection()
-      {
-        CheckConstrain();
-      }
-
-      private static bool m_Checked = false;
-
-      #endregion private
-    }
-
-    #endregion LicenseProvider
 
     #region private
 
