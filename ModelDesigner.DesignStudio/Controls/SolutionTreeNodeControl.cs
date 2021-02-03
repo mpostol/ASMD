@@ -1,7 +1,8 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
@@ -13,15 +14,16 @@ namespace CAS.UA.Model.Designer.Controls
 {
   internal class SolutionTreeNodeControl : FileMenuProviderControl<ISolutionModel>
   {
-
     #region constructor
+
     public SolutionTreeNodeControl(ISolutionModel model) : base(model)
     {
-      SaveConstrain.CheckConstrain();
     }
-    #endregion
+
+    #endregion constructor
 
     #region private
+
     /// <summary>
     /// Before the menu strip opening.
     /// </summary>
@@ -31,10 +33,12 @@ namespace CAS.UA.Model.Designer.Controls
       GetPluginMenuItems(this.ContextMenuStrip.Items);
       base.BeforeMenuStripOpening();
     }
+
     private void GetPluginMenuItems(ToolStripItemCollection items)
     {
       ModelEntity.GetPluginMenuItems(items);
     }
+
     internal override void AddItemsToMenu(ContextMenuStrip contextMenuStrip)
     {
       base.AddItemsToMenu(contextMenuStrip);
@@ -43,38 +47,46 @@ namespace CAS.UA.Model.Designer.Controls
       contextMenuStrip.Items.Add(MenuFactory.AddProject(AddNewProjectHandler, AddExistingProjectHandler));
       contextMenuStrip.Items.Add(MenuFactory.ImportSubmenu(new ToolStripMenuItem[] { MenuFactory.ImportNodeSetMenuItem(ImportNodeSetHandler) }));
     }
+
     private void AddNewProjectHandler(object sender, System.EventArgs e)
     {
       ModelEntity.AddProject(false);
     }
+
     private void AddExistingProjectHandler(object sender, System.EventArgs e)
     {
       ModelEntity.AddProject(true);
     }
+
     private void ImportNodeSetHandler(object sender, EventArgs e)
     {
       ModelEntity.ImportNodeSet();
     }
-    #endregion
+
+    #endregion private
 
     #region FileMenuProviderControl
+
     protected override void SaveAs()
     {
       ModelEntity.Save(true);
     }
+
     protected override void Open()
     {
       ModelEntity.Open(new GraphicalUserInterface());
     }
+
     protected override void New()
     {
       ModelEntity.OnNew(new GraphicalUserInterface());
     }
+
     protected override void Save()
     {
       ModelEntity.Save(false);
     }
-    #endregion
 
+    #endregion FileMenuProviderControl
   }
 }

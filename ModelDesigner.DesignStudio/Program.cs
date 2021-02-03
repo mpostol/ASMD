@@ -1,11 +1,10 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.Lib.CodeProtect;
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.Deployment.Application;
@@ -18,14 +17,13 @@ using ModelsContainer = CAS.CommServer.UA.ConfigurationEditor.ModelsContainer;
 
 namespace CAS.UA.Model.Designer
 {
-
   /// <summary>
   /// Class Program.
   /// </summary>
   internal static class Program
   {
-
     #region API
+
     /// <summary>
     /// Program entry point.
     /// </summary>
@@ -52,7 +50,7 @@ namespace CAS.UA.Model.Designer
           {
             MessageBoxShow(string.Format(Resources.InstalationOfExampleSolutionException, ex.Message), 944007288);
           }
-          // license installation 
+          // license installation
           try
           {
             DoInstallLicense(true);
@@ -93,7 +91,7 @@ namespace CAS.UA.Model.Designer
         if (installationWasPerformed || args == null || args.Length < 2 || string.IsNullOrEmpty(args[1]))
           m_ApplicationEntryForm = new MainForm(installationWasPerformed);
         else
-          m_ApplicationEntryForm = new MainForm(args[1]); //args[ 0 ] - is application file name , args[ 1 ] - is first argument 
+          m_ApplicationEntryForm = new MainForm(args[1]); //args[ 0 ] - is application file name , args[ 1 ] - is first argument
         Application.Run(m_ApplicationEntryForm);
         Settings.Default.Save();
         AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 40, "Application finished");
@@ -107,15 +105,18 @@ namespace CAS.UA.Model.Designer
         AssemblyTraceEvent.Tracer.Flush();
       }
     }
+
     private static void ComposeApplication()
     {
       Wrappers.ViewModelFactory.Factory = new Wrappers4ProperyGrid.ViewModelFactory();
     }
+
     internal static void DoInstallLicense(bool loadLicenseFromDefaultContainer)
     {
       try
       {
-        LibInstaller.InstallLicense(loadLicenseFromDefaultContainer);
+        //TODO Remove dependency on CodeProtect #200
+        CAS.Lib.CodeProtect.LibInstaller.InstallLicense(loadLicenseFromDefaultContainer);
         AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 113, "Installed the License without errors");
       }
       catch (Exception ex)
@@ -123,16 +124,20 @@ namespace CAS.UA.Model.Designer
         MessageBoxShow(string.Format(Resources.MainProgram_LicenseInstalation_Failure, ex.Message), 2085089167);
       }
     }
+
     internal static Action<string, int> MessageBoxShow { get; set; } = (x, y) =>
                                                                                  {
                                                                                    AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Error, y, x);
                                                                                    MessageBox.Show(x, "Execution Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                                                                                  };
-    #endregion
+
+    #endregion API
 
     #region private
+
     private static readonly string m_InstallLicenseString = "installic";
     private static Form m_ApplicationEntryForm;
+
     private static string[] GetArguments()
     {
       try
@@ -150,7 +155,6 @@ namespace CAS.UA.Model.Designer
             return commandLineArgs;
           }
         }
-
       }
       catch (DeploymentException) { }
       if (AppDomain.CurrentDomain.SetupInformation != null &&
@@ -167,6 +171,7 @@ namespace CAS.UA.Model.Designer
       //Command line execution.
       return Environment.GetCommandLineArgs();
     }
+
     private static bool IsFirstRun()
     {
       try
@@ -178,15 +183,17 @@ namespace CAS.UA.Model.Designer
         return false;
       }
     }
+
     public static void SetupExceptionHandlers()
     {
       // Add the event handler for handling UI thread exceptions to the event.
       Application.ThreadException += new ThreadExceptionEventHandler(Form1_UIThreadException);
       // Set the unhandled exception mode to force all Windows Forms errors to go through our handler.
       Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
-      // Add the event handler for handling non-UI thread exceptions to the event. 
+      // Add the event handler for handling non-UI thread exceptions to the event.
       AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
     }
+
     /// <summary>
     /// Handle the UI exceptions by showing a dialog box, and asking the user whether or not they wish to abort execution.
     /// </summary>
@@ -199,6 +206,7 @@ namespace CAS.UA.Model.Designer
       AssemblyTraceEvent.Tracer.TraceInformation("Exits the program.");
       Application.Exit();
     }
+
     /// <summary>
     /// Handle the UI exceptions.
     /// </summary>
@@ -212,7 +220,7 @@ namespace CAS.UA.Model.Designer
       AssemblyTraceEvent.Tracer.TraceInformation("Exits the program.");
       Application.Exit();
     }
-    #endregion
 
+    #endregion private
   }
 }

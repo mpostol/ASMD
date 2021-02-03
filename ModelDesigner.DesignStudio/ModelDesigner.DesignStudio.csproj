@@ -348,13 +348,10 @@
     <Compile Include="Controls\ViewDesignTreeNodeControl.cs" />
     <Compile Include="Controls\WrapperBaseTreeNodeControl.cs" />
     <Compile Include="Controls\WrapperTreeNodeControl.cs" />
-    <Compile Include="ExportingTools\ExportConstrain.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IAddressSpaceCreator.cs" />
     <Compile Include="IElement.cs" />
     <Compile Include="IO\ImportNodeSet.cs" />
-    <Compile Include="Controls\SaveConstrain.cs">
-    </Compile>
     <Compile Include="MenuFactory.cs" />
     <Compile Include="NodeClassesEnum.cs" />
     <Compile Include="Controls\AddNode.cs">
@@ -379,10 +376,6 @@
     <Compile Include="Solution\UAModelDesignerSolution.cs">
       <DependentUpon>UAModelDesignerSolution.xsd</DependentUpon>
     </Compile>
-    <Compile Include="StartUpSplashScreen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StateMachineEditor\CustomEditors.cs" />
     <Compile Include="StateMachineEditor\StateMachineControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -5,7 +5,6 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.ExportingTools;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.StateMachineEditor;
@@ -15,7 +14,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using UAOOI.Windows.Forms;
 using UAOOI.Windows.Forms.CodeProtectControls;
@@ -36,7 +34,6 @@ namespace CAS.UA.Model.Designer
     public MainForm(bool setAfterInstallationFlag)
     {
       SetAfterInstallationFlag = setAfterInstallationFlag;
-      m_SplashScreenObj.Show();
       InitializeComponent();
       ProcessInitialization();
     }
@@ -47,20 +44,10 @@ namespace CAS.UA.Model.Designer
 
     #region private members and helper functions
 
-    //types
-    [LicenseProvider(typeof(CAS.Lib.CodeProtect.CodeProtectLP))]
-    [GuidAttribute("0D675C59-39B8-4522-9FA6-074AF8A3EA9D")]
-    private sealed class ImportConstrain : StartUpSplashScreen.LogedIsLicensed<ImportConstrain> { }
-
-    [LicenseProvider(typeof(CAS.Lib.CodeProtect.CodeProtectLP))]
-    [GuidAttribute("4DF37528-E9CB-4fb7-AE1A-5AD9639EC04E")]
-    private sealed class BuildSolutionConstrain : StartUpSplashScreen.LogedIsLicensed<BuildSolutionConstrain> { }
-
     //vars
 
     private ToolStripContainerHelper toolStripContainerHelper;
     private PropertyGrid myGrid;
-    private StartUpSplashScreen m_SplashScreenObj = new StartUpSplashScreen();
     private MessageBoxSentEmail messageBoxSentEmail = new MessageBoxSentEmail(Resources.FeatureRequest_EmailAddress, Resources.FeatureRequest_Email_Subject, Resources.FeatureRequest_MessageBox_Caption);
     private bool SetAfterInstallationFlag { set; get; }
 
@@ -119,7 +106,6 @@ namespace CAS.UA.Model.Designer
 
       goToToolStripMenuItem.DropDownOpening += new EventHandler(goToToolStripMenuItem_DropDownOpening);
       m_EditToolStripMenuItem.DropDownOpening += new EventHandler(editToolStripMenuItem_DropDownOpening);
-      CheckSaveConstrain(m_SplashScreenObj);
       if (SetAfterInstallationFlag)
       {
         helpUserControl.SetUrl(Resources.MainForm_ReadmePage_mainframe);
@@ -129,39 +115,6 @@ namespace CAS.UA.Model.Designer
       }
       else
         this.WindowState = FormWindowState.Normal;
-    }
-
-    //TODO Remove limitation related to CAS licensing programs #53
-    private void CheckSaveConstrain(StartUpSplashScreen ss)
-    {
-      if (!new ImportConstrain().Licensed)
-      {
-        m_ImportTSMI.Enabled = false;
-        m_ImportTSMI.ToolTipText = Resources.LicenseFeatureUnavailable;
-      }
-      if (!ExportConstrain.IsLicensed)
-      {
-        m_ExportToolStripMenuItem.Enabled = false;
-        m_ExportToolStripMenuItem.ToolTipText = Resources.LicenseFeatureUnavailable;
-      }
-      if (!CustomEditors.IsLicensed)
-      {
-        customEditorToolStripMenuItem.Enabled = false;
-        customEditorToolStripMenuItem.ToolTipText = Resources.LicenseFeatureUnavailable;
-      }
-      if (!new BuildSolutionConstrain().Licensed)
-      {
-        buildProjectToolStripMenuItem.Enabled = false;
-        buildProjectToolStripMenuItem.ToolTipText = Resources.LicenseFeatureUnavailable;
-      }
-      if (SaveConstrain.IsLicensed)
-        return;
-      saveAsToolStripMenuItem.Enabled = false;
-      saveAsToolStripMenuItem.ToolTipText = Resources.LicenseFeatureUnavailable;
-      m_SaveToolStripMenuItem.Enabled = false;
-      m_SaveToolStripMenuItem.ToolTipText = Resources.LicenseFeatureUnavailable;
-      ss.AppendText(string.Format(Resources.SplashScreenLicenseDemoPeriodExpired, Assembly.GetEntryAssembly().GetName().Name), true);
-      ss.ActivateBuyNow();
     }
 
     private void FeatureRequest(ToolStripMenuItem menuItem)
@@ -783,6 +736,7 @@ namespace CAS.UA.Model.Designer
 
     private void m_LogsContainingFolderToolStripMenuItem_Click(object sender, EventArgs e)
     {
+      //TODO Remove dependency on CodeProtect #200
       string path = CAS.Lib.CodeProtect.InstallContextNames.ApplicationDataPath + "\\log";
       try
       {
@@ -824,9 +778,6 @@ namespace CAS.UA.Model.Designer
       }
       m_MainContol.PropertyChanged += M_MainContol_PropertyChanged;
       m_MainContol.OpenSolution(_solutionFileName);
-      m_SplashScreenObj.CloseSplashScreen();
-      m_SplashScreenObj.Dispose();
-      m_SplashScreenObj = null;
     }
 
     private void M_MainContol_PropertyChanged(object sender, PropertyChangedEventArgs e)

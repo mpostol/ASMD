@@ -93,83 +93,67 @@ namespace CAS.UA.Model.Designer.ExportingTools
 
     private static bool CheckIfExportIsPossibleAndPrepareListOfTerms(IModelNodeAdvance imna, out List<TermWithDefinitionStructure> listOfAllTerms)
     {
-      if (ExportConstrain.IsLicensed)
+      if (imna == null)
       {
-        #region ModelDesignerProLicense.License.Licensed == true
-
-        if (imna == null)
+        MessageBox.Show(Resources.ExportTool_NoNodeIsSelected, Resources.ExportTool_Window_Name, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
+        listOfAllTerms = null;
+        return false;
+      }
+      listOfAllTerms = new List<TermWithDefinitionStructure>();
+      if (imna.NodeType == NodeTypeEnum.ProjectNode)
+      {
+        foreach (IModelNodeAdvance imnaInDictionary in ((imna.GetFolders()).Values))
         {
-          MessageBox.Show(Resources.ExportTool_NoNodeIsSelected, Resources.ExportTool_Window_Name, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
-          listOfAllTerms = null;
-          return false;
-        }
-        listOfAllTerms = new List<TermWithDefinitionStructure>();
-        if (imna.NodeType == NodeTypeEnum.ProjectNode)
-        {
-          foreach (IModelNodeAdvance imnaInDictionary in ((imna.GetFolders()).Values))
+          if (imnaInDictionary.NodeType == NodeTypeEnum.ModelNode)
           {
-            if (imnaInDictionary.NodeType == NodeTypeEnum.ModelNode)
+            List<TermWithDefinitionStructure> temp_listOfAllTerms = new List<TermWithDefinitionStructure>();
+            if (CheckIfExportIsPossibleAndPrepareListOfTerms(imnaInDictionary, out temp_listOfAllTerms))
+              listOfAllTerms.AddRange(temp_listOfAllTerms);
+          }
+        }
+      }
+      else
+      {
+        TermWithDefinitionStructure term = null;
+        if (imna.NodeType == NodeTypeEnum.ModelNode)
+        {
+          foreach (KeyValuePair<FolderType, IEnumerable<IModelNodeAdvance>> item in imna.GetFolders())
+          {
+            foreach (IModelNodeAdvance imnaInProject in item.Value)
             {
-              List<TermWithDefinitionStructure> temp_listOfAllTerms = new List<TermWithDefinitionStructure>();
-              if (CheckIfExportIsPossibleAndPrepareListOfTerms(imnaInDictionary, out temp_listOfAllTerms))
-                listOfAllTerms.AddRange(temp_listOfAllTerms);
+              term = CreateTermWithDefinition(imnaInProject);
+              if (term != null)
+                listOfAllTerms.Add(term);
             }
           }
         }
         else
         {
-          #region imna.NodeType != NodeTypeEnum.ProjectNode
-
-          TermWithDefinitionStructure term = null;
-          if (imna.NodeType == NodeTypeEnum.ModelNode)
+          term = CreateTermWithDefinition(imna);
+          if (term != null)
           {
-            foreach (KeyValuePair<FolderType, IEnumerable<IModelNodeAdvance>> item in imna.GetFolders())
+            listOfAllTerms.Add(term);
+            foreach (FolderType folderType in FolderType.GetValues(typeof(FolderType)))
             {
-              foreach (IModelNodeAdvance imnaInProject in item.Value)
+              if (GetFolder(imna, folderType) != null)
               {
-                term = CreateTermWithDefinition(imnaInProject);
-                if (term != null)
-                  listOfAllTerms.Add(term);
+                foreach (IModelNodeAdvance imnaInFolder in GetFolder(imna, folderType))
+                {
+                  term = CreateTermWithDefinition(imnaInFolder);
+                  if (term != null)
+                    listOfAllTerms.Add(term);
+                }
               }
             }
           }
           else
           {
-            term = CreateTermWithDefinition(imna);
-            if (term != null)
-            {
-              listOfAllTerms.Add(term);
-              foreach (FolderType folderType in FolderType.GetValues(typeof(FolderType)))
-              {
-                if (GetFolder(imna, folderType) != null)
-                {
-                  foreach (IModelNodeAdvance imnaInFolder in GetFolder(imna, folderType))
-                  {
-                    term = CreateTermWithDefinition(imnaInFolder);
-                    if (term != null)
-                      listOfAllTerms.Add(term);
-                  }
-                }
-              }
-            }
-            else
-            {
-              MessageBox.Show(Resources.ExportTool_cannot_expot_wrong_node, Resources.ExportTool_Window_Name, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
-              return false;
-            }
+            MessageBox.Show(Resources.ExportTool_cannot_expot_wrong_node, Resources.ExportTool_Window_Name, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
+            return false;
           }
-
-          #endregion imna.NodeType != NodeTypeEnum.ProjectNode
         }
+      }
 
-        #endregion ModelDesignerProLicense.License.Licensed == true
-      }
-      else
-      {
-        MessageBox.Show(Resources.ModelDesignerProLicenseWarning);
-        listOfAllTerms = null;
-        return false;
-      }
       return true;
     }
 
