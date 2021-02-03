@@ -1,27 +1,30 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
 using System.Collections.Generic;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
+
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
 
-  internal partial class DataTypeDesign: TypeDesign<Wrappers4ProperyGrid.DataTypeDesign, Opc.Ua.ModelCompiler.DataTypeDesign>
+  internal partial class DataTypeDesign: TypeDesign<Wrappers4ProperyGrid.DataTypeDesign, OpcUaModelCompiler.DataTypeDesign>
   {
 
     #region private
     private ParametersFolder m_Fields = null;
     private EncodingsFolder m_Encodings = null;
-    private void AddEncodings( Opc.Ua.ModelCompiler.EncodingDesign[] fields )
+    private void AddEncodings( OpcUaModelCompiler.EncodingDesign[] fields )
     {
       m_Encodings = new EncodingsFolder( fields, "Encodings", "Encodings collection" );
       Add( m_Encodings );
     }
-    private void AddFilds( Opc.Ua.ModelCompiler.Parameter[] parameters )
+    private void AddFilds( OpcUaModelCompiler.Parameter[] parameters )
     {
       m_Fields = new ParametersFolder
         ( parameters, WrapperResources.DataTypeParametersNodeText, WrapperResources.DataTypeParametersNodeTipText );
@@ -43,12 +46,12 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     #region creators
     public DataTypeDesign()
-      : base( new CAS.UA.Model.Designer.Wrappers4ProperyGrid.DataTypeDesign( new Opc.Ua.ModelCompiler.DataTypeDesign() ) )
+      : base( new CAS.UA.Model.Designer.Wrappers4ProperyGrid.DataTypeDesign( new OpcUaModelCompiler.DataTypeDesign() ) )
     {
       AddFilds( null );
       AddEncodings( null );
     }
-    public DataTypeDesign( Opc.Ua.ModelCompiler.DataTypeDesign node )
+    public DataTypeDesign( OpcUaModelCompiler.DataTypeDesign node )
       : base( new Wrappers4ProperyGrid.DataTypeDesign( node ), node )
     {
       AddFilds( node.Fields );
@@ -92,7 +95,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get
       {
-        Opc.Ua.ModelCompiler.DataTypeDesign node = (Opc.Ua.ModelCompiler.DataTypeDesign)base.ModelDesignerNode;
+        OpcUaModelCompiler.DataTypeDesign node = (OpcUaModelCompiler.DataTypeDesign)base.ModelDesignerNode;
         node.Fields = m_Fields.CreateParameters();
         node.Encodings = m_Encodings.CreateParameters();
         return node;

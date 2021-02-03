@@ -1,6 +1,6 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
@@ -8,18 +8,18 @@
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.UA.Model.Designer.Solution;
 using System.IO;
-using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.IO
 {
   internal interface IProjectConfigurationManagement : ISolutionDirectoryPathManagement
   {
     UAModelDesignerProject UAModelDesignerProject { get; }
-    OPCFModelDesign ModelDesign { get; }
+    OpcUaModelCompiler.ModelDesign ModelDesign { get; }
     string Name { get; }
 
     void Build(TextWriter output);
 
-    void Save(OPCFModelDesign model);
+    void Save(OpcUaModelCompiler.ModelDesign model);
   }
 }

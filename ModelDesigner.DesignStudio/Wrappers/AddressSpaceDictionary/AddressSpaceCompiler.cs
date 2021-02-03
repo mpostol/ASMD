@@ -5,15 +5,14 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-
 using CAS.UA.Model.Designer.Types;
-using Opc.Ua.ModelCompiler;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Xml;
 using UAOOI.Configuration.Core;
+using UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
 {
@@ -22,8 +21,8 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
   /// </summary>
   internal class AddressSpaceCompiler : AddressSpaceService, IAddressSpaceCreator
   {
-
     #region public
+
     /// <summary>
     /// Adds the reference to the AddressSpace.
     /// </summary>
@@ -61,9 +60,11 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
       _newRow.Name = name;
       m_AddressSpace.ReferencesTable.AddReferencesTableRow(_newRow);
     }
-    #endregion
+
+    #endregion public
 
     #region IAddressSpaceCreator
+
     /// <summary>
     /// Adds the node to the AddressSpace.
     /// </summary>
@@ -96,6 +97,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
       }
       return index;
     }
+
     /// <summary>
     /// Adds an information model instance node <paramref name="node" /> to address space.
     /// It is used to register an existing node.
@@ -105,6 +107,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
     {
       new InstanceNodeContext(this, node);
     }
+
     /// <summary>
     /// Adds a reference to the AddressSpace.
     /// </summary>
@@ -114,18 +117,19 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
     /// <param name="targetName">Name of the target element this reference points to.</param>
     public void AddReference(int sourceIndex, XmlQualifiedName referenceTypeName, bool inverse, XmlQualifiedName targetName)
     {
-      //targetName can be null in case of HasTypeDefinition of basic types. 
+      //targetName can be null in case of HasTypeDefinition of basic types.
       this.Assert((referenceTypeName != null && !referenceTypeName.IsEmpty), sourceIndex, "The reference type name of the reference cannot be null or empty");
       if (targetName.IsNullOrEmpty() || referenceTypeName.IsNullOrEmpty())
         return;
       int targetIndex = TryGetAndAddIfNeeded(targetName.ToString());
       this.AddReference(sourceIndex, referenceTypeName, inverse, targetIndex);
     }
+
     /// <summary>
-    /// Checks for a condition; if the condition is false, trace the <paramref name="errorMessage"/> message and adds diagnostic information <see cref="Diagnostics"/> 
+    /// Checks for a condition; if the condition is false, trace the <paramref name="errorMessage"/> message and adds diagnostic information <see cref="Diagnostics"/>
     /// to the node pointed out by the <paramref name="sourceIndex"/>.
     /// </summary>
-    /// <param name="condition">The conditional expression to evaluate. If the condition is not true, the specified message is 
+    /// <param name="condition">The conditional expression to evaluate. If the condition is not true, the specified message is
     /// reported as the compilation error.</param>
     /// <param name="sourceIndex">Index of the source.</param>
     /// <param name="errorMessage">The error message.</param>
@@ -139,6 +143,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
       _node.ErrorList.Add(new Diagnostics(_msg));
       m_TraceEvent(_msg);
     }
+
     /// <summary>
     /// Creates the nodes collection to start processing instance declarations recursively and override nodes in the derived types.
     /// All collected nodes must be added to the address space together at the end of processing.
@@ -148,11 +153,13 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
     {
       return new InstanceNodesCollection(this);
     }
-    #endregion
+
+    #endregion IAddressSpaceCreator
 
     #region AddressSpaceService
+
     /// <summary>
-    /// Internal method to initialize and populate the address space using the <paramref name="getNodesFromModel"/>. The <paramref name="getNodesFromModel"/> 
+    /// Internal method to initialize and populate the address space using the <paramref name="getNodesFromModel"/>. The <paramref name="getNodesFromModel"/>
     /// should be used while traversing the information model to add address space nodes and references.
     /// </summary>
     /// <param name="getNodesFromModel">The get nodes from model.</param>
@@ -171,19 +178,23 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
       traceEvent(String.Format("Created the Root element {0}", _ret[0].Name));
       return _ret;
     }
-    #endregion
+
+    #endregion AddressSpaceService
 
     #region private
+
     //classes
     private class AddressSpaceElement : IElement
     {
       #region private
+
       private AddressSpaceElement(AddressSpace.ReferencesTableRow reference, AddressSpace.NodesTableRow node, AddressSpaceCompiler parent)
       {
         m_ReferenceRow = reference;
         m_NodeRow = node;
         m_parent = parent;
       }
+
       private IModelNode ReferenceTypeModelNode
       {
         get
@@ -192,6 +203,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
           return md == null ? null : md.Node;
         }
       }
+
       private IModelNode ModelNode
       {
         get
@@ -200,24 +212,27 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
           return md == null ? null : md.Node;
         }
       }
+
       private AddressSpace.ReferencesTableRow m_ReferenceRow;
       private AddressSpace.NodesTableRow m_NodeRow;
       private string tempName = "";
       private AddressSpaceCompiler m_parent;
-      #endregion
+
+      #endregion private
 
       #region public
+
       internal static AddressSpaceElement CreateAddressSpaceElement(AddressSpace.NodesTableRow row, AddressSpaceCompiler parent)
       {
         return new AddressSpaceElement(null, row, parent);
       }
-      #endregion
+
+      #endregion public
 
       #region IElement Members
-      object IElement.ReferenceTypeWrapper4PropertyGrid
-      {
-        get { return ReferenceTypeModelNode.Wrapper4PropertyGrid; }
-      }
+
+      object IElement.ReferenceTypeWrapper4PropertyGrid => ReferenceTypeModelNode.Wrapper4PropertyGrid;
+
       object IElement.NodeWrapper4PropertyGrid
       {
         get
@@ -228,6 +243,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
             return ModelNode.Wrapper4PropertyGrid;
         }
       }
+
       /// <summary>
       /// Gets the children of the node.
       /// </summary>
@@ -255,6 +271,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
         //if (backward)
         return list.ToArray();
       }
+
       string IElement.Name
       {
         get
@@ -263,11 +280,9 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
             return ModelNode.Name;
           return tempName;
         }
-        set
-        {
-          tempName = value;
-        }
+        set => tempName = value;
       }
+
       string IElement.ReferenceName
       {
         get
@@ -278,6 +293,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
             return m_ReferenceRow.Name;
         }
       }
+
       NodeClassesEnum IElement.NodeClass
       {
         get
@@ -288,10 +304,9 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
             return this.ModelNode.NodeClass;
         }
       }
-      IList<Diagnostics> IElement.ErrorsList
-      {
-        get { return this.ModelNode.ErrorList; }
-      }
+
+      IList<Diagnostics> IElement.ErrorsList => this.ModelNode.ErrorList;
+
       /// <summary>
       /// Gets an instance of thy <see cref="IModelNode"/>.
       /// </summary>
@@ -300,20 +315,20 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
       /// If the target represented by this instance is the instance declaration the <see cref="IModelNode"/> is provided
       /// by a read only stub.
       /// </remarks>
-      IModelNode IElement.ModelNode
-      {
-        get { return ModelNode; }
-      }
-      #endregion
+      IModelNode IElement.ModelNode => ModelNode;
 
+      #endregion IElement Members
     }
+
     private class NodeHandle
     {
-
       #region public
+
       internal enum NodeType { RegularNode, DanglingReference };
+
       internal NodeType Type { get; private set; }
       internal IModelNode Node { get; private set; }
+
       /// <summary>
       /// Creates a regular node that is to bne used to replace the dangling reference olready added to the address space.
       /// </summary>
@@ -327,6 +342,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
           Node = node
         };
       }
+
       internal static NodeHandle CreateDanglingReference(string name)
       {
         DanglingReference dr = new DanglingReference(name);
@@ -336,33 +352,44 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
           Node = dr
         };
       }
-      #endregion
+
+      #endregion public
 
       #region private
+
       private class DanglingReference : IModelNode
       {
         public DanglingReference(string name)
         {
           Name = name;
-          ErrorList = new List<Diagnostics>();
-          ErrorList.Add(new Diagnostics("Node is not declared"));
+          ErrorList = new List<Diagnostics>
+          {
+            new Diagnostics("Node is not declared")
+          };
         }
 
         #region IModelNode Members
+
         public string Name { get; private set; }
-        public XmlQualifiedName SymbolicName { get { return null; } }
+        public XmlQualifiedName SymbolicName => null;
         public IList<Diagnostics> ErrorList { get; private set; }
-        public object Wrapper4PropertyGrid { get { return null; } }
-        public INodeDescriptor GetINodeDescriptor() { return null; }
-        public NodeClassesEnum NodeClass { get { return NodeClassesEnum.None; } }
-        public string HelpTopicName { get { return string.Empty; } }
-        public bool IsReadOnly { get { return true; } }
-        #endregion
+        public object Wrapper4PropertyGrid => null;
 
+        public INodeDescriptor GetINodeDescriptor()
+        {
+          return null;
+        }
+
+        public NodeClassesEnum NodeClass => NodeClassesEnum.None;
+        public string HelpTopicName => string.Empty;
+        public bool IsReadOnly => true;
+
+        #endregion IModelNode Members
       }
-      #endregion
 
+      #endregion private
     }
+
     //methods
     /// <summary>
     /// Tries to get the position of the name or adds it if needed.
@@ -371,8 +398,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
     /// <returns>Position of the name in the dictionary.</returns>
     private int TryGetAndAddIfNeeded(string uniqueName)
     {
-      int _listPosition;
-      if (m_Dictionary.TryGetValue(uniqueName, out _listPosition))
+      if (m_Dictionary.TryGetValue(uniqueName, out int _listPosition))
         return _listPosition;
       _listPosition = m_listPosition++;
       m_NodesList.Add(_listPosition, NodeHandle.CreateDanglingReference(uniqueName));
@@ -384,6 +410,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
         m_Root = row;
       return _listPosition;
     }
+
     private void Validate(Action<string> traceEvent)
     {
       //Modeling rules validation.
@@ -392,8 +419,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
         if (_value == ModellingRule.None || _value == ModellingRule.CardinalityRestriction) //ModellingRule.CardinalityRestriction has not been defined in the spec.
           continue;
         string _symbolicName = BuildInXmlQualifiedNames.ModelingRuleSymbolicName(_value).ToString();
-        int _key = 0;
-        if (!m_Dictionary.TryGetValue(_symbolicName, out _key))
+        if (!m_Dictionary.TryGetValue(_symbolicName, out int _key))
         {
           traceEvent(String.Format("Cannot find an object representing the modeling rules {0} name: {1} in the dictionary.", _value, _symbolicName));
           continue;
@@ -474,8 +500,10 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
       }
       traceEvent(String.Format("Finishing address space compilation. there are {0} nodes in the address space", m_NodesList.Count));
     }
+
     //fields
-    private int m_ErrorNumber { get { return p_ErrorNumber++; } }
+    private int m_ErrorNumber => p_ErrorNumber++;
+
     private int p_ErrorNumber = 0;
     private const int c_MaxNumberOfErrors = 20;
     private SortedList<string, int> m_Dictionary = new SortedList<string, int>();
@@ -484,8 +512,8 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
     private AddressSpace m_AddressSpace { get; set; }
     private int m_listPosition = 0;
     private Action<string> m_TraceEvent;
-    private string c_ErrorTemplate = "Error {0} for the name: {1} SymbolicName: {2} message: {3}";
-    #endregion
+    private readonly string c_ErrorTemplate = "Error {0} for the name: {1} SymbolicName: {2} message: {3}";
 
+    #endregion private
   }
 }

@@ -1,11 +1,13 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
+
 using CAS.UA.Model.Designer.Properties;
-using System.Linq;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -14,13 +16,13 @@ namespace CAS.UA.Model.Designer.Wrappers
     #region creators
     internal ReferencesFolder() : base("References", WrapperResources.ReferencesFolderNodeToolTipText)
     {
-      TypesAvailableToBePasted.Add(typeof(Opc.Ua.ModelCompiler.Reference));
+      TypesAvailableToBePasted.Add(typeof(OpcUaModelCompiler.Reference));
     }
-    internal ReferencesFolder(Opc.Ua.ModelCompiler.Reference[] refrences) : this()
+    internal ReferencesFolder(OpcUaModelCompiler.Reference[] refrences) : this()
     {
       if (refrences == null || refrences.Length == 0)
         return;
-      foreach (Opc.Ua.ModelCompiler.Reference rf in refrences)
+      foreach (OpcUaModelCompiler.Reference rf in refrences)
         Add(new Reference(rf));
     }
     #endregion
@@ -31,16 +33,16 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </summary>
     /// <value>The name of the topic in help.</value>
     public override string HelpTopicName => Resources.NodeClasses_Objects_ReferencesFolder;
-    internal Opc.Ua.ModelCompiler.Reference[] References
+    internal OpcUaModelCompiler.Reference[] References
     {
       get
       {
         if (this.Count == 0)
           return null;
         int ii = 0;
-        Opc.Ua.ModelCompiler.Reference[] array = new Opc.Ua.ModelCompiler.Reference[Count];
+        OpcUaModelCompiler.Reference[] array = new OpcUaModelCompiler.Reference[Count];
         foreach (IParent node in this)
-          array[ii++] = (Opc.Ua.ModelCompiler.Reference)node.ModelDesignerNode;
+          array[ii++] = (OpcUaModelCompiler.Reference)node.ModelDesignerNode;
         return array;
       }
     }

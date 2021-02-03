@@ -22,14 +22,23 @@
     <PackageId>UAOOI.ASMD.GUIAbstractions</PackageId>
     <PackageReleaseNotes>To decouple ASMD from System.Windows.Forms</PackageReleaseNotes>
     <PackageTags>ASMD,  opcuam\, ooi, pubsub, m2m, I4.0</PackageTags>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>C:\VS.git\ASMD\ASMD.GUIAbstractions\UAOOI.ASMD.GUIAbstractions.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DocumentationFile>C:\VS.git\ASMD\ASMD.GUIAbstractions\UAOOI.ASMD.GUIAbstractions.xml</DocumentationFile>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DocumentationFile />
   </PropertyGroup>
 
 </Project>

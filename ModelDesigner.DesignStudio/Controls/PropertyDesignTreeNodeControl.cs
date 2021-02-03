@@ -1,19 +1,24 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.Collections.Generic;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Controls
 {
-  internal class PropertyDesignTreeNodeControl : InstanceDesignTreeNodeControl<PropertyDesign, Wrappers4ProperyGrid.PropertyDesign, Opc.Ua.ModelCompiler.PropertyDesign>
+  internal class PropertyDesignTreeNodeControl : InstanceDesignTreeNodeControl<PropertyDesign, Wrappers4ProperyGrid.PropertyDesign, OpcUaModelCompiler.PropertyDesign>
   {
-    public PropertyDesignTreeNodeControl(PropertyDesign parent) : base(parent) { }
+    public PropertyDesignTreeNodeControl(PropertyDesign parent) : base(parent)
+    {
+    }
+
     protected override void BeforeMenuStripOpening()
     {
       AddMenuItemGoTo(Resources.WrapperTreeNodeAddMenuItemGoto
@@ -22,10 +27,12 @@ namespace CAS.UA.Model.Designer.Controls
         new EventHandler(AddMenuItemGoTo_Click));
       base.BeforeMenuStripOpening();
     }
+
     private void AddMenuItemGoTo_Click(object sender, System.EventArgs e)
     {
       TreeView.GoToNode(ModelEntity.Wrapper.DataType.XmlQualifiedName);
     }
+
     internal override Dictionary<string, System.Xml.XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
     {
       Dictionary<string, System.Xml.XmlQualifiedName> list = base.GetCoupledNodesXmlQualifiedNames();
@@ -34,6 +41,7 @@ namespace CAS.UA.Model.Designer.Controls
           ModelEntity.Wrapper.DataType.XmlQualifiedName);
       return list;
     }
+
     public override DictionaryTreeNode CreateCopy()
     {
       return new PropertyDesignTreeNodeControl(ModelEntity);

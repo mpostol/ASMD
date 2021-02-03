@@ -1,12 +1,13 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using System.Collections.Generic;
 using System.Xml;
-using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -15,14 +16,14 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// </summary>
   internal class LibraryTreeNode : RootTreeNode
   {
+    #region constructor
 
-    #region creator
-    internal LibraryTreeNode(OPCFModelDesign config, string nodeName)
+    internal LibraryTreeNode(OpcUaModelCompiler.ModelDesign config, string nodeName)
       : base(nodeName)
     {
-      List<Opc.Ua.ModelCompiler.NodeDesign> _nodes = new List<Opc.Ua.ModelCompiler.NodeDesign>();
+      List<OpcUaModelCompiler.NodeDesign> _nodes = new List<OpcUaModelCompiler.NodeDesign>();
       if (config.Items != null)
-        {
+      {
         _nodes.AddRange(config.Items);
         _nodes.Sort((x, y) =>
         {
@@ -36,13 +37,16 @@ namespace CAS.UA.Model.Designer.Wrappers
       ModelDesign m_ModelDesignTypes = new ModelDesign(config, true);
       Add(m_ModelDesignTypes);
     }
-    #endregion
+
+    #endregion creator
 
     #region internal
+
     internal override bool TestIfReadOnlyAndRetrunTrueIfReadOnly()
     {
       return true;
     }
+
     /// <summary>
     /// Adds to dictionary - each item of <see cref="ModelDesign{WrapperType, ModelType}"/> from this collection is added to <paramref name="space"/>.
     /// </summary>
@@ -52,6 +56,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       foreach (ModelDesign item in this)
         item.AddNode2AddressSpace(space);
     }
+
     internal ITypeDesign FindType(XmlQualifiedName myType)
     {
       foreach (ModelDesign node in this)
@@ -62,6 +67,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
       return null;
     }
-    #endregion
+
+    #endregion internal
   }
 }

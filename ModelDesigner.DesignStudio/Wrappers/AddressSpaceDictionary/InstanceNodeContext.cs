@@ -7,12 +7,12 @@
 
 using CAS.UA.Model.Designer.Types;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
-using Opc.Ua.ModelCompiler;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
 using UAOOI.Configuration.Core;
+using UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
 {
@@ -21,8 +21,8 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
   /// </summary>
   internal class InstanceNodeContext : IInstanceNodeContext, IModelNode
   {
-
     #region creator
+
     /// <summary>
     /// Initializes a new instance of the <see cref="InstanceDeclaration"/> class it represents existing child or an instance of instance declarations.
     /// </summary>
@@ -36,6 +36,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
     {
       Initialize(addressSpaceCompiler, node, nodeID, isInstanceDeclaration, parentAddressSpaceIndex);
     }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="InstanceNodeContext"/> class that represents an instance  that is on top of inheritance chain.
     /// </summary>
@@ -46,35 +47,27 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
       Initialize(addressSpaceCompiler, node, node.SymbolicName, false, new Nullable<int>());
       this.RegisterInstanceNodeInAddressSpace();
     }
-    #endregion
+
+    #endregion creator
 
     #region IModelNode Members
+
     public INodeDescriptor GetINodeDescriptor()
     {
       UniqueIdentifier ui = new UniqueIdentifier();
       ui.Update(false, NodeID, true);
       return InstanceWrapper.GetINodeDescriptor(ui, NodeClass);
     }
-    public string Name { get { return m_Node.Name; } }
-    public XmlQualifiedName SymbolicName { get { return m_Node.SymbolicName; } }
+
+    public string Name => m_Node.Name;
+    public XmlQualifiedName SymbolicName => m_Node.SymbolicName;
     public IList<Diagnostics> ErrorList { get; set; }
-    public virtual object Wrapper4PropertyGrid
-    {
-      get { return InstanceWrapper; }
-    }
-    public NodeClassesEnum NodeClass
-    {
-      get { return m_Node.NodeClass; }
-    }
-    public string HelpTopicName
-    {
-      get { return m_Node.HelpTopicName; }
-    }
-    public virtual bool IsReadOnly
-    {
-      get { return true; }
-    }
-    #endregion
+    public virtual object Wrapper4PropertyGrid => InstanceWrapper;
+    public NodeClassesEnum NodeClass => m_Node.NodeClass;
+    public string HelpTopicName => m_Node.HelpTopicName;
+    public virtual bool IsReadOnly => true;
+
+    #endregion IModelNode Members
 
     #region IInstanceNodeContext Members
 
@@ -93,6 +86,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
       foreach (IReference item in m_References)
         m_Compiler.AddReference(AddressSpaceIndex, item.ReferenceType, item.Inverse, item.TargetName);
     }
+
     /// <summary>
     /// Adds the instance declaration of.
     /// </summary>
@@ -103,14 +97,13 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
       InstanceWrapper = InstanceWrapper.DerivePropertyValuesFrom((IInstanceDesign)node.Wrapper4PropertyGrid);
       node.AddAllReferences4InstanceDeclaration(m_References, typeParentID);
     }
+
     /// <summary>
     /// Gets the node unique identifier - dash separated symbolic path.
     /// </summary>
     /// <value>The node identifier.</value>
-    public XmlQualifiedName NodeID
-    {
-      get { return m_NodeID; }
-    }
+    public XmlQualifiedName NodeID => m_NodeID;
+
     /// <summary>
     /// Adds the reference from the type definition of this instance.
     /// </summary>
@@ -121,14 +114,13 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
     {
       m_References.AddReference(reference, referenceParent, typeParentID);
     }
+
     /// <summary>
     /// Gets the type definition of the node.
     /// </summary>
     /// <value>The type definition.</value>
-    public XmlQualifiedName TypeDefinition
-    {
-      get { return InstanceWrapper.TypeDefinition.ValueOrDefault; }
-    }
+    public XmlQualifiedName TypeDefinition => InstanceWrapper.TypeDefinition.ValueOrDefault;
+
     /// <summary>
     /// Adds the modeling rule to the node provided it is instance declaration. If the node is not instance declaration an error is reported.
     /// </summary>
@@ -139,11 +131,13 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
       if (ModelingRulesObject != ModellingRule.None)
         m_Compiler.AddReference(AddressSpaceIndex, BuildInXmlQualifiedNames.HasModelingRule, false, BuildInXmlQualifiedNames.ModelingRuleSymbolicName(ModelingRulesObject));
     }
+
     /// <summary>
     /// Gets the node index in the address space.
     /// </summary>
     /// <value>The index of node in the address space.</value>
     public int AddressSpaceIndex { get; private set; }
+
     /// <summary>
     /// Checks for a condition; if the condition is false, trace the <paramref name="errorMessage" /> message and adds diagnostic information <see cref="Diagnostics" />
     /// to the node pointed out by the <paramref name="sourceIndex" />.
@@ -156,9 +150,10 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
       m_Compiler.Assert(condition, this.AddressSpaceIndex, errorMessage);
     }
 
-    #endregion
+    #endregion IInstanceNodeContext Members
 
-    #region privaate
+    #region private
+
     private InstanceReferencesCollection m_References;
     private XmlQualifiedName m_NodeID;
     private int? m_ParentAddressSpaceIndex;
@@ -166,6 +161,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
     private bool m_IsInstanceDeclaration = false;
     private IInstanceNode m_Node;
     private IInstanceDesign InstanceWrapper { get; set; }
+
     private void Initialize(AddressSpaceCompiler addressSpaceCompiler, IInstanceNode node, XmlQualifiedName nodeID, bool isInstanceDeclaration, int? parentAddressSpaceIndex)
     {
       Debug.Assert(node != null, "Parameter error at AddressSpaceNode creator: node cannot be null");
@@ -180,11 +176,9 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
       AddressSpaceIndex = m_Compiler.AddNode2AddressSpace(this, m_NodeID.ToString());
       InstanceWrapper = m_Node.DerivePropertyValuesFrom(null);
     }
-    private ModellingRule ModelingRulesObject
-    {
-      get { return InstanceWrapper.ModellingRule.GetValueOrDefault(ModellingRule.Mandatory); }
-    }
-    #endregion
 
+    private ModellingRule ModelingRulesObject => InstanceWrapper.ModellingRule.GetValueOrDefault(ModellingRule.Mandatory);
+
+    #endregion private
   }
 }

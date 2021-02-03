@@ -1,11 +1,13 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
 {
@@ -16,15 +18,15 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
     [TestMethod]
     public void TestMethod1()
     {
-      Opc.Ua.ModelCompiler.Parameter _parameter = new Opc.Ua.ModelCompiler.Parameter()
+      OpcUaModelCompiler.Parameter _parameter = new OpcUaModelCompiler.Parameter()
       {
         ArrayDimensions = "ArrayDimensions",
         DataType = new System.Xml.XmlQualifiedName("name", "ns"),
-        Description = new Opc.Ua.ModelCompiler.LocalizedText() { Key = "Key", Value = "Value" },
+        Description = new OpcUaModelCompiler.LocalizedText() { Key = "Key", Value = "Value" },
         Identifier = 0,
         IdentifierSpecified = false,
         Name = "Name",
-        ValueRank = Opc.Ua.ModelCompiler.ValueRank.Scalar
+        ValueRank = OpcUaModelCompiler.ValueRank.Scalar
       };
       Parameter _wrapper = new Parameter(_parameter);
       Assert.AreEqual<string>(_parameter.ArrayDimensions, _wrapper.ArrayDimensions);
@@ -36,9 +38,9 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
       Assert.AreEqual<string>(_parameter.Description.Value, _wrapper.Description.Value);
       Assert.IsFalse(_wrapper.Identifier.HasValue);
       Assert.AreEqual<string>(_parameter.Name, _wrapper.Name);
-      Assert.AreEqual<Opc.Ua.ModelCompiler.ValueRank>(Opc.Ua.ModelCompiler.ValueRank.Scalar, _wrapper.ValueRank);
+      Assert.AreEqual<OpcUaModelCompiler.ValueRank>(OpcUaModelCompiler.ValueRank.Scalar, _wrapper.ValueRank);
       Assert.IsNull(_wrapper.Parent);
-      Opc.Ua.ModelCompiler.Parameter _parameterExported = _wrapper.Update();
+      OpcUaModelCompiler.Parameter _parameterExported = _wrapper.Update();
       Assert.IsNotNull(_parameterExported);
       Assert.AreEqual<string>(_parameter.ArrayDimensions, _parameterExported.ArrayDimensions);
       Assert.IsNotNull(_parameterExported.DataType);
@@ -49,7 +51,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
       Assert.AreEqual<string>(_parameter.Description.Value, _parameterExported.Description.Value);
       Assert.IsFalse(_parameterExported.IdentifierSpecified);
       Assert.AreEqual<string>(_parameter.Name, _parameterExported.Name);
-      Assert.AreEqual<Opc.Ua.ModelCompiler.ValueRank>(Opc.Ua.ModelCompiler.ValueRank.Scalar, _parameterExported.ValueRank);
+      Assert.AreEqual<OpcUaModelCompiler.ValueRank>(OpcUaModelCompiler.ValueRank.Scalar, _parameterExported.ValueRank);
     }
   }
 }

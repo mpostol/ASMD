@@ -1,7 +1,8 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.IO;
@@ -11,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
+using OPCFModelDesign = UAOOI.SemanticData.UAModelDesignExport.XML.ModelDesign;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {

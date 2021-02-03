@@ -1,32 +1,37 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Wrappers;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Controls
 {
-  internal class ModelDesignTreeNodeControl : WrapperBaseTreeNodeControl<ModelDesign, Wrappers4ProperyGrid.ModelDesign, Opc.Ua.ModelCompiler.ModelDesign>
+  internal class ModelDesignTreeNodeControl : WrapperBaseTreeNodeControl<ModelDesign, Wrappers4ProperyGrid.ModelDesign, OpcUaModelCompiler.ModelDesign>
   {
-
     #region creator
+
     public ModelDesignTreeNodeControl(ModelDesign parent) : base(parent)
     {
       this.Expand();
     }
-    #endregion
+
+    #endregion creator
 
     #region public
+
     public override void SetTypeFilter(bool allTypes, IEnumerable<NodeClassesEnum> types)
     {
       RecreateSubtree();
       ApplyTypeFiltersToChildren(allTypes, types);
     }
+
     /// <summary>
     /// Gets the unique identifier.
     /// </summary>
@@ -38,13 +43,16 @@ namespace CAS.UA.Model.Designer.Controls
     {
       return false;
     }
+
     public override DictionaryTreeNode CreateCopy()
     {
       return new ModelDesignTreeNodeControl(ModelEntity);
     }
-    #endregion
+
+    #endregion public
 
     #region private
+
     protected override void BeforeMenuStripOpening()
     {
       AddMenuItemAdd(ModelEntity.ListOfNodes);
@@ -53,16 +61,17 @@ namespace CAS.UA.Model.Designer.Controls
       ModelEntity.GetImportMenu(import.DropDownItems);
       base.BeforeMenuStripOpening();
     }
+
     protected override void AddMenuItemDelete()
     {
       //this node should not have menu delete
     }
+
     protected internal override void GetImportMenu(ToolStripItemCollection items)
     {
       ModelEntity.GetImportMenu(items);
     }
-    #endregion
 
+    #endregion private
   }
-
 }

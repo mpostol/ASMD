@@ -1,7 +1,8 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.ImportExport;
@@ -10,30 +11,30 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
-using OPCFModelDesign = Opc.Ua.ModelCompiler.ModelDesign;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
   /// <summary>
   /// Root of the model tree.
   /// </summary>
-  internal partial class ModelDesign : WrapperBase<Wrappers4ProperyGrid.ModelDesign, OPCFModelDesign>
+  internal partial class ModelDesign : WrapperBase<Wrappers4ProperyGrid.ModelDesign, OpcUaModelCompiler.ModelDesign>
   {
     #region creators
 
     //internal ModelDesign()
     //  : this
     //  (
-    //    new OPCFModelDesign()
+    //    new OpcUaModelCompiler.ModelDesign()
     //    {
     //      TargetNamespace = Settings.Default.TargetNamespace,
-    //      Namespaces = new Opc.Ua.ModelCompiler.Namespace[]
-    //        { new  Opc.Ua.ModelCompiler.Namespace()
+    //      Namespaces = new OpcUaModelCompiler.Namespace[]
+    //        { new  OpcUaModelCompiler.Namespace()
     //           { Value = Settings.Default.TargetNamespace,
     //             XmlPrefix = Settings.Default.TargetNamespaceXmlPrefix,
     //             Name = Settings.Default.TargetNamespaceXmlPrefix
     //           },
-    //         new Opc.Ua.ModelCompiler.Namespace()
+    //         new OpcUaModelCompiler.Namespace()
     //           { Value = OPCUATargetNamespace,
     //             XmlPrefix = Settings.Default.XmlUATypesPrefix,
     //             Name = Settings.Default.XmlUATypesPrefix
@@ -44,16 +45,16 @@ namespace CAS.UA.Model.Designer.Wrappers
     //  )
     //{ }
 
-    internal ModelDesign(OPCFModelDesign node, bool library) : base(new Wrappers4ProperyGrid.ModelDesign(node))
+    internal ModelDesign(OpcUaModelCompiler.ModelDesign node, bool library) : base(new Wrappers4ProperyGrid.ModelDesign(node))
     {
-      TypesAvailableToBePasted.Add(typeof(Opc.Ua.ModelCompiler.NodeDesign));
-      TypesAvailableToBePasted.Add(typeof(Opc.Ua.ModelCompiler.Namespace));
+      TypesAvailableToBePasted.Add(typeof(OpcUaModelCompiler.NodeDesign));
+      TypesAvailableToBePasted.Add(typeof(OpcUaModelCompiler.Namespace));
       m_Namespaces = new NamespacesFolder(node);
       Add(m_Namespaces);
-      Opc.Ua.ModelCompiler.NodeDesign[] list = node.Items;
+      OpcUaModelCompiler.NodeDesign[] list = node.Items;
       if (list == null || list.Length == 0)
         return;
-      foreach (Opc.Ua.ModelCompiler.NodeDesign item in list)
+      foreach (OpcUaModelCompiler.NodeDesign item in list)
         Add(NodeFactory.Create(item));
       if (library)
         OPCUATargetNamespace = Wrapper.TargetNamespace;
@@ -119,16 +120,16 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     private void CreateImportMenuClick(object sender, EventArgs e)
     {
-      Opc.Ua.ModelCompiler.NodeDesign[] nodes = OPCDA.OnImportMenuItemClick(GetTargetNamespace());
+      OpcUaModelCompiler.NodeDesign[] nodes = OPCDA.OnImportMenuItemClick(GetTargetNamespace());
       if (nodes == null)
         return;
       List<BaseTreeNode> arr = new List<BaseTreeNode>();
       bool CancelWasPressed = false;
-      foreach (Opc.Ua.ModelCompiler.NodeDesign item in nodes)
+      foreach (OpcUaModelCompiler.NodeDesign item in nodes)
       {
         BaseTreeNode newNode = NodeFactory.Create(item);
         arr.Add(newNode);
-        if (item is Opc.Ua.ModelCompiler.InstanceDesign)
+        if (item is OpcUaModelCompiler.InstanceDesign)
           this.CreateInstanceConfigurations(newNode, CancelWasPressed, out CancelWasPressed);
       }
       this.AddRange(arr.ToArray());
@@ -169,12 +170,12 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       object DeserializedNode = GetModelDesignerNodeFromStringRepresentationFromClipboard();
       BaseTreeNode baseTreeNode = NodeFactory.Create(DeserializedNode);
-      if (DeserializedNode is Opc.Ua.ModelCompiler.NodeDesign)
+      if (DeserializedNode is OpcUaModelCompiler.NodeDesign)
       {
         this.Add(baseTreeNode);
         return;
       }
-      else if (DeserializedNode is Opc.Ua.ModelCompiler.Namespace)
+      else if (DeserializedNode is OpcUaModelCompiler.Namespace)
       {
         this.m_Namespaces.Add(baseTreeNode);
         return;
@@ -192,15 +193,15 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get
       {
-        OPCFModelDesign node = (OPCFModelDesign)base.ModelDesignerNode;
+        OpcUaModelCompiler.ModelDesign node = (OpcUaModelCompiler.ModelDesign)base.ModelDesignerNode;
         node.Namespaces = m_Namespaces.Namespaces;
-        List<Opc.Ua.ModelCompiler.NodeDesign> uaNodes = new List<Opc.Ua.ModelCompiler.NodeDesign>();
+        List<OpcUaModelCompiler.NodeDesign> uaNodes = new List<OpcUaModelCompiler.NodeDesign>();
         foreach (BaseTreeNode item in this)
         {
           IParent tn = item as IParent;
           if (tn == null)
             continue;
-          uaNodes.Add((Opc.Ua.ModelCompiler.NodeDesign)tn.ModelDesignerNode);
+          uaNodes.Add((OpcUaModelCompiler.NodeDesign)tn.ModelDesignerNode);
         }
         node.Items = uaNodes.ToArray();
         return node;
@@ -211,9 +212,9 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     #region internal
 
-    internal OPCFModelDesign GetModel()
+    internal OpcUaModelCompiler.ModelDesign GetModel()
     {
-      return ModelDesignerNode as OPCFModelDesign;
+      return ModelDesignerNode as OpcUaModelCompiler.ModelDesign;
     }
 
     /// <summary>

@@ -1,22 +1,24 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
 using System.Collections.Generic;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal partial class MethodDesign: InstanceDesign<Wrappers4ProperyGrid.MethodDesign, Opc.Ua.ModelCompiler.MethodDesign>
+  internal partial class MethodDesign: InstanceDesign<Wrappers4ProperyGrid.MethodDesign, OpcUaModelCompiler.MethodDesign>
   {
     #region creators
     /// <summary>
     /// Initializes a new instance of the <see cref="MethodDesign"/> class.
     /// </summary>
     public MethodDesign()
-      : base( new CAS.UA.Model.Designer.Wrappers4ProperyGrid.MethodDesign( new Opc.Ua.ModelCompiler.MethodDesign() ) )
+      : base( new CAS.UA.Model.Designer.Wrappers4ProperyGrid.MethodDesign( new OpcUaModelCompiler.MethodDesign() ) )
     {
       CreateFolders( null, null );
     }
@@ -24,7 +26,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Initializes a new instance of the <see cref="MethodDesign"/> class.
     /// </summary>
     /// <param name="node">The modeled node.</param>
-    public MethodDesign( Opc.Ua.ModelCompiler.MethodDesign node )
+    public MethodDesign( OpcUaModelCompiler.MethodDesign node )
       : base( new Wrappers4ProperyGrid.MethodDesign( node ), node )
     {
       CreateFolders( node.InputArguments, node.OutputArguments );
@@ -38,7 +40,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get
       {
-        Opc.Ua.ModelCompiler.MethodDesign node = (Opc.Ua.ModelCompiler.MethodDesign)base.ModelDesignerNode;
+        OpcUaModelCompiler.MethodDesign node = (OpcUaModelCompiler.MethodDesign)base.ModelDesignerNode;
         node.InputArguments = m_inputArgumentsFields.CreateParameters();
         node.OutputArguments = m_outputArgumentsFields.CreateParameters();
         return node;
@@ -70,7 +72,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     #endregion
 
     #region Private and Protected
-    private void CreateFolders( Opc.Ua.ModelCompiler.Parameter[] input, Opc.Ua.ModelCompiler.Parameter[] output )
+    private void CreateFolders( OpcUaModelCompiler.Parameter[] input, OpcUaModelCompiler.Parameter[] output )
     {
       m_inputArgumentsFields = new ParametersFolder
         (

@@ -1,12 +1,10 @@
-﻿
-using CAS.UA.Model.Designer.ImportExport.NodeSet;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using UAOOI.SemanticData.UANodeSetValidation;
 using InstanceDesign = Opc.Ua.ModelCompiler.InstanceDesign;
 using LocalizedText = Opc.Ua.ModelCompiler.LocalizedText;
 using NodeDesign = Opc.Ua.ModelCompiler.NodeDesign;
+using TraceMessage = UAOOI.SemanticData.BuildingErrorsHandling.TraceMessage;
 
 namespace CAS.UA.Model.Designer.ImportExport.UT
 {

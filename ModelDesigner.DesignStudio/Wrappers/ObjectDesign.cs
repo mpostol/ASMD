@@ -1,21 +1,23 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
   /// <summary>
   /// Represents all object node instances in the Information Model
   /// </summary>
-  internal partial class ObjectDesign : InstanceDesign<Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>, Opc.Ua.ModelCompiler.ObjectDesign>
+  internal partial class ObjectDesign : InstanceDesign<Wrappers4ProperyGrid.ObjectDesign<OpcUaModelCompiler.ObjectDesign>, OpcUaModelCompiler.ObjectDesign>
   {
     #region constructors
-    public ObjectDesign() : base(new Designer.Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>(new Opc.Ua.ModelCompiler.ObjectDesign())) { }
-    public ObjectDesign(Opc.Ua.ModelCompiler.ObjectDesign node) : base(new Wrappers4ProperyGrid.ObjectDesign<Opc.Ua.ModelCompiler.ObjectDesign>(node), node) { }
+    public ObjectDesign() : base(new Designer.Wrappers4ProperyGrid.ObjectDesign<OpcUaModelCompiler.ObjectDesign>(new OpcUaModelCompiler.ObjectDesign())) { }
+    public ObjectDesign(OpcUaModelCompiler.ObjectDesign node) : base(new Wrappers4ProperyGrid.ObjectDesign<OpcUaModelCompiler.ObjectDesign>(node), node) { }
     #endregion
 
 

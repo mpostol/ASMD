@@ -1,10 +1,12 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -12,12 +14,12 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// <summary>
   /// Class Reference. - represents reference in the address space.
   /// </summary>
-  internal partial class Reference : WrapperBase<Wrappers4ProperyGrid.Reference, Opc.Ua.ModelCompiler.Reference>
+  internal partial class Reference : WrapperBase<Wrappers4ProperyGrid.Reference, OpcUaModelCompiler.Reference>
   {
 
     #region constructor
-    public Reference() : this(new Opc.Ua.ModelCompiler.Reference()) { }
-    public Reference(Opc.Ua.ModelCompiler.Reference reference) : base(new Wrappers4ProperyGrid.Reference(reference)) { }
+    public Reference() : this(new OpcUaModelCompiler.Reference()) { }
+    public Reference(OpcUaModelCompiler.Reference reference) : base(new Wrappers4ProperyGrid.Reference(reference)) { }
     #endregion
 
     #region private

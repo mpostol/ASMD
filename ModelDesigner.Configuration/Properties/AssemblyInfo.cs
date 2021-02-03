@@ -19,8 +19,8 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 [assembly: Guid( "c4b8d907-a0cd-42e5-8c08-dc61af69a2ac" )]
-[assembly: AssemblyVersion("4.3.1.*")]
-[assembly: AssemblyFileVersion("4.3.1")]
+[assembly: AssemblyVersion("4.3.2.*")]
+[assembly: AssemblyFileVersion("4.3.2")]
 [assembly: InternalsVisibleToAttribute("CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests, PublicKey=0024000004800000940000000602000000240000525341310004000001000100b3cff1bec656a6" +
                                                                        "e3784c75cacce8ee3bc695d0ce135d820c86465eb49b2353f0438d28ad9a458e5350c0c141393d" +
                                                                        "d9ad606bd9f4e0a8e1b0c49fa37835630b16798ece56df81c756f4c6bd37f07d68cc91ebfa7be7" +

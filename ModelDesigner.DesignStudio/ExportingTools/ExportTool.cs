@@ -1,7 +1,8 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.ImportExport;
@@ -13,18 +14,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.ExportingTools
 {
   internal class ExportTool
   {
-
     #region internal
+
     internal enum TypeOfTheDocument
     {
       Maml,
       Docx
     }
+
     internal static void ExportToDocument(IModelNodeAdvance imna, TypeOfTheDocument typeOfTheDocument)
     {
       if (!CheckIfExportIsPossibleAndPrepareListOfTerms(imna, out List<TermWithDefinitionStructure> listOfAllTerms))
@@ -35,6 +38,7 @@ namespace CAS.UA.Model.Designer.ExportingTools
         case TypeOfTheDocument.Maml:
           exporter = new MamlCreator();
           break;
+
         case TypeOfTheDocument.Docx:
           exporter = new DocxCreator();
           break;
@@ -42,12 +46,15 @@ namespace CAS.UA.Model.Designer.ExportingTools
       string FileName = string.Empty;
       FileName = SelectFileCreateDocumentAndSave(listOfAllTerms, exporter, FileName);
     }
-    #endregion
+
+    #endregion internal
 
     #region private
 
     #region ConstantStrings
+
     #region Headers
+
     private const string referenceString = "Reference";
     private const string nodeClassString = "NodeClass";
     private const string symbolicNameString = "SymbolicName";
@@ -68,21 +75,28 @@ namespace CAS.UA.Model.Designer.ExportingTools
     private const string referenceTypeString = "ReferenceType";
     private const string targetIdString = "TargetId";
     private const string isInverseString = "IsInverse";
+
     #endregion Headers
+
     #region Others
+
     private const string inputArgumentsString = "Input arguments";
     private const string outputArgumentsString = "Output arguments";
     private const string methodString = "Method";
     private const string mandatoryRuleString = "Mandatory";
     private const string hasComponentString = "HasComponent";
     private const string hasPropertyString = "HasProperty";
+
     #endregion Others
+
     #endregion ConstantStrings
+
     private static bool CheckIfExportIsPossibleAndPrepareListOfTerms(IModelNodeAdvance imna, out List<TermWithDefinitionStructure> listOfAllTerms)
     {
       if (ExportConstrain.IsLicensed)
       {
         #region ModelDesignerProLicense.License.Licensed == true
+
         if (imna == null)
         {
           MessageBox.Show(Resources.ExportTool_NoNodeIsSelected, Resources.ExportTool_Window_Name, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
@@ -105,6 +119,7 @@ namespace CAS.UA.Model.Designer.ExportingTools
         else
         {
           #region imna.NodeType != NodeTypeEnum.ProjectNode
+
           TermWithDefinitionStructure term = null;
           if (imna.NodeType == NodeTypeEnum.ModelNode)
           {
@@ -143,8 +158,10 @@ namespace CAS.UA.Model.Designer.ExportingTools
               return false;
             }
           }
+
           #endregion imna.NodeType != NodeTypeEnum.ProjectNode
         }
+
         #endregion ModelDesignerProLicense.License.Licensed == true
       }
       else
@@ -155,6 +172,7 @@ namespace CAS.UA.Model.Designer.ExportingTools
       }
       return true;
     }
+
     private static string SelectFileCreateDocumentAndSave(List<TermWithDefinitionStructure> listOfAllTerms, IASMDExporter exporter, string FileName)
     {
       using (SaveFileDialog sfd = new SaveFileDialog())
@@ -184,6 +202,7 @@ namespace CAS.UA.Model.Designer.ExportingTools
       }
       return FileName;
     }
+
     /// <summary>
     /// Exports to document.
     /// </summary>
@@ -191,6 +210,7 @@ namespace CAS.UA.Model.Designer.ExportingTools
     /// <param name="typeOfTheDocument">The type of the document.</param>
 
     #region creatorsOfTermWithDefinition
+
     /// <summary>
     /// Gets the folder.
     /// </summary>
@@ -367,9 +387,11 @@ namespace CAS.UA.Model.Designer.ExportingTools
       else
         return null;
     }
-    #endregion
+
+    #endregion creatorsOfTermWithDefinition
 
     #region InformationGetters
+
     /// <summary>
     /// Gets the information about references.
     /// </summary>
@@ -457,9 +479,10 @@ namespace CAS.UA.Model.Designer.ExportingTools
         }
     }
 
-    #endregion
+    #endregion InformationGetters
 
     #region SupportingMethods
+
     /// <summary>
     /// Gets the documentation.
     /// </summary>
@@ -493,7 +516,7 @@ namespace CAS.UA.Model.Designer.ExportingTools
     private static string CheckIfTheNodeIsAbstract(IModelNode imn)
     {
       if (imn.NodeClass == NodeClassesEnum.ObjectType)
-        return ((ObjectTypeDesign<Opc.Ua.ModelCompiler.ObjectTypeDesign>)imn.Wrapper4PropertyGrid).IsAbstract.ToString();
+        return ((ObjectTypeDesign<OpcUaModelCompiler.ObjectTypeDesign>)imn.Wrapper4PropertyGrid).IsAbstract.ToString();
       else if (imn.NodeClass == NodeClassesEnum.ReferenceType)
       {
         if ((imn.Wrapper4PropertyGrid as CAS.UA.Model.Designer.Wrappers4ProperyGrid.Reference) != null)
@@ -507,8 +530,9 @@ namespace CAS.UA.Model.Designer.ExportingTools
       else
         return string.Empty;
     }
-    #endregion
 
-    #endregion
+    #endregion SupportingMethods
+
+    #endregion private
   }
 }

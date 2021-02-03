@@ -15,6 +15,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using UAOOI.Configuration.Core;
 using UAOOI.Windows.Forms;
+using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
@@ -76,11 +77,11 @@ namespace CAS.UA.Model.Designer.Wrappers
         xmlDocument.Load(xmlTextReader);
         if (xmlDocument.DocumentElement == null)
           return null;
-        string SerializedTypeAsString = typeof(Opc.Ua.ModelCompiler.NodeDesign).Namespace + "." + xmlDocument.DocumentElement.Name;
+        string SerializedTypeAsString = typeof(OpcUaModelCompiler.NodeDesign).Namespace + "." + xmlDocument.DocumentElement.Name;
         Type SerializedType = Type.GetType(SerializedTypeAsString);
         if (SerializedType == null)
         {
-          SerializedTypeAsString += ", Opc.Ua.ModelCompiler"; // we have to try also load to from different assembly
+          SerializedTypeAsString += ", OpcUaModelCompiler"; // we have to try also load to from different assembly
           SerializedType = Type.GetType(SerializedTypeAsString);
         }
         if (SerializedType == null)
