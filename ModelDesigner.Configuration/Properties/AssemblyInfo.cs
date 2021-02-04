@@ -1,7 +1,8 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
 using System.Reflection;
@@ -26,6 +27,5 @@ using System.Runtime.InteropServices;
                                                                        "d9ad606bd9f4e0a8e1b0c49fa37835630b16798ece56df81c756f4c6bd37f07d68cc91ebfa7be7" +
                                                                        "8149d016bbc6a364beda14fc1119698d8c8d9923805b40122bf594f08cc29f41cb0a31e5e141e3" +
                                                                        "f2421b9d", AllInternalsVisible = true)]
-[assembly: CAS.Lib.CodeProtect.AssemblyHelper( Company = "Mariusz Postol", Email = "mpostol@cas.eu", Phone = "+48 (608) 619 899", Product = "OOI ASMD", Url = "https://mpostol.github.io/ASMD/" )]
 
 

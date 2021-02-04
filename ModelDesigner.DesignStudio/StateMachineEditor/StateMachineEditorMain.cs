@@ -73,44 +73,37 @@ namespace CAS.UA.Model.Designer.StateMachineEditor
     /// <param name="imna">The analized node.</param>
     internal static void AnalizeStateMachine(IModelNodeAdvance imna)
     {
-      if (CustomEditors.IsLicensed)
+      if ((((TypeDesign<OpcUaModelCompiler.ObjectTypeDesign>)imna.Wrapper4PropertyGrid).BaseType.ToString() == finiteStateMachineTypeString))
       {
-        if ((((TypeDesign<OpcUaModelCompiler.ObjectTypeDesign>)imna.Wrapper4PropertyGrid).BaseType.ToString() == finiteStateMachineTypeString))
+        TypeDesign<OpcUaModelCompiler.ObjectTypeDesign> selectedNodeObjectTypeDesign = (TypeDesign<UAOOI.SemanticData.UAModelDesignExport.XML.ObjectTypeDesign>)imna.Wrapper4PropertyGrid;
+        try
         {
-          TypeDesign<OpcUaModelCompiler.ObjectTypeDesign> selectedNodeObjectTypeDesign = (TypeDesign<UAOOI.SemanticData.UAModelDesignExport.XML.ObjectTypeDesign>)imna.Wrapper4PropertyGrid;
-          try
+          string symbolicNameNameSpace = selectedNodeObjectTypeDesign.SymbolicName.NameSpace;
+          ObjectTypeDesign machineObjectDesign = (ObjectTypeDesign)selectedNodeObjectTypeDesign.Parent;
+          List<string> allStates = new List<string>();
+          List<Transition> allTransitions = new List<Transition>();
+          Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> folders = imna.GetFolders();
+          foreach (Folder folder in folders.Values)
           {
-            string symbolicNameNameSpace = selectedNodeObjectTypeDesign.SymbolicName.NameSpace;
-            ObjectTypeDesign machineObjectDesign = (ObjectTypeDesign)selectedNodeObjectTypeDesign.Parent;
-            List<string> allStates = new List<string>();
-            List<Transition> allTransitions = new List<Transition>();
-            Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> folders = imna.GetFolders();
-            foreach (Folder folder in folders.Values)
-            {
-              if (folder is ChildrenFolder)
-                foreach (IModelNode machineIModelNode in folder)
-                  if (machineIModelNode.NodeClass == NodeClassesEnum.Object)
-                    FindStatesAndTransitionsInStateMachine((InstanceDesign<UAOOI.SemanticData.UAModelDesignExport.XML.ObjectDesign>)machineIModelNode.Wrapper4PropertyGrid, allStates, allTransitions);
-            }
-            bool transitionAnalized = false;
-            while (transitionAnalized == false)
-              transitionAnalized = StateMachineCrossTable.AddImagesOnTransitionButtons(allStates, allTransitions, symbolicNameNameSpace, machineObjectDesign, imna.IsReadOnly);
+            if (folder is ChildrenFolder)
+              foreach (IModelNode machineIModelNode in folder)
+                if (machineIModelNode.NodeClass == NodeClassesEnum.Object)
+                  FindStatesAndTransitionsInStateMachine((InstanceDesign<UAOOI.SemanticData.UAModelDesignExport.XML.ObjectDesign>)machineIModelNode.Wrapper4PropertyGrid, allStates, allTransitions);
           }
-          catch (Exception)
-          {
-            MessageBox.Show(Resources.ProblemWithStateMachine_Header, Resources.ProblemwithDisplayingStateMachine_Info, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-            return;
-          }
+          bool transitionAnalized = false;
+          while (transitionAnalized == false)
+            transitionAnalized = StateMachineCrossTable.AddImagesOnTransitionButtons(allStates, allTransitions, symbolicNameNameSpace, machineObjectDesign, imna.IsReadOnly);
         }
-        else
+        catch (Exception)
         {
-          MessageBox.Show(Resources.ProblemWithStateMachine_Header, Resources.ProblemWithStateMachine_Info, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+          MessageBox.Show(Resources.ProblemWithStateMachine_Header, Resources.ProblemwithDisplayingStateMachine_Info, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
           return;
         }
       }
       else
       {
-        MessageBox.Show(Resources.ModelDesignerProLicenseWarning);
+        MessageBox.Show(Resources.ProblemWithStateMachine_Header, Resources.ProblemWithStateMachine_Info, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+        return;
       }
     }
 

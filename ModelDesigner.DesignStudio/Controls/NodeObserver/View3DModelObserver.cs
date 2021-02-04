@@ -1,17 +1,9 @@
-﻿//<summary>
-//  Title   : View 3D of Model - Selected item Observer
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//___________________________________________________________________________________
 //
-//  Copyright (C)2009, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
+//___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Wrappers;
@@ -230,24 +222,14 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       InitializeComponent();
       if (LicenseManager.CurrentContext.UsageMode == LicenseUsageMode.Designtime)
         return;
-      if (new LicenseProtection().Licensed)
-      {
-        this.VisibleChanged += new EventHandler(View3DModelObserver_VisibleChanged);
-        this.panel3DUserControl1.CommandPanelBackgroundBrush = new LinearGradientBrush(new GradientStopCollection
-          (new GradientStop[] { new GradientStop(Colors.Green, 0), new GradientStop(Colors.White, 0.5), new GradientStop(Colors.Green, 1) }));
-        this.panel3DUserControl1.MeshDiagramViewport3D.IModelVisualIsSelected += new EventHandler(MeshDiagramViewport3D_IModelVisualIsSelected);
-      }
-      else
-        this.RemoveMeFromParentTabControl();
+      this.VisibleChanged += new EventHandler(View3DModelObserver_VisibleChanged);
+      this.panel3DUserControl1.CommandPanelBackgroundBrush = new LinearGradientBrush(new GradientStopCollection(new GradientStop[] { new GradientStop(Colors.Green, 0), new GradientStop(Colors.White, 0.5), new GradientStop(Colors.Green, 1) }));
+      this.panel3DUserControl1.MeshDiagramViewport3D.IModelVisualIsSelected += new EventHandler(MeshDiagramViewport3D_IModelVisualIsSelected);
     }
 
     #endregion public
 
     #region private
-
-    [LicenseProvider(typeof(CAS.Lib.CodeProtect.CodeProtectLP))]
-    [System.Runtime.InteropServices.GuidAttribute("98925BC5-F27F-4114-BF1E-385BA2AEC9B7")]
-    private sealed class LicenseProtection : StartUpSplashScreen.LogedIsLicensed<LicenseProtection> { }
 
     private void MeshDiagramViewport3D_IModelVisualIsSelected(object sender, EventArgs e)
     {

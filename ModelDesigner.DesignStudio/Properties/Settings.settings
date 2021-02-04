@@ -89,5 +89,8 @@
     <Setting Name="XmlUAPrefix" Type="System.String" Scope="User">
       <Value Profile="(Default)">Opc.Ua</Value>
     </Setting>
+    <Setting Name="LogFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">log</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
