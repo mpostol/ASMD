@@ -13,6 +13,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using UAOOI.Windows.Forms;
@@ -736,8 +737,7 @@ namespace CAS.UA.Model.Designer
 
     private void m_LogsContainingFolderToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      //TODO Remove dependency on CodeProtect #200
-      string path = CAS.Lib.CodeProtect.InstallContextNames.ApplicationDataPath + "\\log";
+      string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Settings.Default.LogFolder);
       try
       {
         using (Process process = Process.Start(@path)) { }
