@@ -5,7 +5,6 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
-using CAS.Lib.OPC.AddressSpace;
 using CAS.UA.Model.Designer.ImportExport.Properties;
 using Opc.Ua;
 using System;
@@ -13,6 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Xml;
+using CASLibOPCAddressSpace = CAS.Lib.OPC.AddressSpace;
 using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.ImportExport
@@ -43,7 +43,7 @@ namespace CAS.UA.Model.Designer.ImportExport
     /// <returns></returns>
     public static OpcUaModelCompiler.NodeDesign[] OnImportMenuItemClick(string targetNamespace)
     {
-      using (DictionaryManagement dic = new DictionaryManagement())
+      using (CASLibOPCAddressSpace.DictionaryManagement dic = new CASLibOPCAddressSpace.DictionaryManagement())
       {
         if (!dic.Open())
           return null;
@@ -109,8 +109,7 @@ namespace CAS.UA.Model.Designer.ImportExport
       };
     }
 
-    private static void ImportServer
-      (AddressSpaceDataBase.ServersTableRow svr, string targetNamespace, UniqueName uniqueName, List<OpcUaModelCompiler.NodeDesign> nodes)
+    private static void ImportServer(CASLibOPCAddressSpace.AddressSpaceDataBase.ServersTableRow svr, string targetNamespace, UniqueName uniqueName, List<OpcUaModelCompiler.NodeDesign> nodes)
     {
       string name = NewName;
       XmlQualifiedName sftName = new XmlQualifiedName(NewName, targetNamespace);
@@ -124,14 +123,14 @@ namespace CAS.UA.Model.Designer.ImportExport
       };
       nodes.Add(sft);
       List<OpcUaModelCompiler.InstanceDesign> cldrn = new List<OpcUaModelCompiler.InstanceDesign>();
-      foreach (AddressSpaceDataBase.TagsTableRow item in svr.GetTagsTableRows())
+      foreach (CASLibOPCAddressSpace.AddressSpaceDataBase.TagsTableRow item in svr.GetTagsTableRows())
         ImportTag(item, targetNamespace, uniqueName, sft.SymbolicName, nodes, cldrn);
       sft.Children = new OpcUaModelCompiler.ListOfChildren() { Items = cldrn.ToArray() };
     }
 
     private static void ImportTag
       (
-        AddressSpaceDataBase.TagsTableRow parentItem,
+        CASLibOPCAddressSpace.AddressSpaceDataBase.TagsTableRow parentItem,
         string targetNamespace,
         UniqueName uniqueName,
         XmlQualifiedName parentObject,
@@ -170,7 +169,7 @@ namespace CAS.UA.Model.Designer.ImportExport
         OpcUaModelCompiler.ObjectDesign sf = CreateFolder(new XmlQualifiedName(uniqueName.GetUniqueName(pbe.Name), targetNamespace), pbe.ItemName, pbe.Name);
         nodes.Add(sf);
         List<OpcUaModelCompiler.InstanceDesign> myChildren = new List<OpcUaModelCompiler.InstanceDesign>();
-        foreach (AddressSpaceDataBase.TagsTableRow item in parentItem.GetTagsTableRows())
+        foreach (CASLibOPCAddressSpace.AddressSpaceDataBase.TagsTableRow item in parentItem.GetTagsTableRows())
           ImportTag(item, targetNamespace, uniqueName, sf.SymbolicName, nodes, myChildren);
         sf.Children = new OpcUaModelCompiler.ListOfChildren() { Items = myChildren.ToArray() };
         sf.References = new OpcUaModelCompiler.Reference[]
