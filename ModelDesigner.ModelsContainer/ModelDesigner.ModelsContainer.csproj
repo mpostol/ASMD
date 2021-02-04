@@ -196,6 +196,9 @@
     <Content Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.NodeSet.xml" />
     <Content Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.NodeSet2.xml" />
     <Content Include="EmbeddedExample\ADISampleConfiguration\OpcUaDiModel\Opc.Ua.Di.PredefinedNodes.xml" />
+    <EmbeddedResource Include="EmbeddedExample\UAOOI.ASMD.GUIAbstractions.dll" />
+    <EmbeddedResource Include="EmbeddedExample\UAOOI.Configuration.Core.dll" />
+    <EmbeddedResource Include="EmbeddedExample\UAOOI.Windows.Forms.dll" />
     <EmbeddedResource Include="EmbeddedExample\UAOOI.ProcessObserver.Configuration.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -209,6 +212,14 @@
     <EmbeddedResource Include="EmbeddedExample\CAS.CommServer.UA.ConfigurationEditor.ServerConfiguration.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedExample\CAS.CodeProtect.dll" />
+    <EmbeddedResource Include="EmbeddedExample\CAS.CommServer.DAClientConfiguration.dll" />
+    <EmbeddedResource Include="EmbeddedExample\CAS.CommServer.OPCClassicSDK.Core.dll" />
+    <EmbeddedResource Include="EmbeddedExample\CAS.CommServer.UA.Common.dll" />
+    <EmbeddedResource Include="EmbeddedExample\CAS.CommServer.UA.Stack.Core.dll" />
+    <EmbeddedResource Include="EmbeddedExample\CAS.RealTime.Core.dll" />
+    <EmbeddedResource Include="EmbeddedExample\CAS.RealTime.dll" />
+    <EmbeddedResource Include="EmbeddedExample\CAS.Windows.Forms.dll" />
     <Content Include="EmbeddedExample\DemoConfiguration\BoilersSet\Commsvr.UA.Examples.BoilersSet.NodeSet.xml" />
     <Content Include="EmbeddedExample\DemoConfiguration\BoilersSet\Commsvr.UA.Examples.BoilersSet.NodeSet2.xml">
       <SubType>Designer</SubType>

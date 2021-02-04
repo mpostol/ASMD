@@ -22,15 +22,18 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     [ClassInitialize]
     public static void ConfigTest(TestContext context)
     {
-      Console.WriteLine(Directory.GetCurrentDirectory());
+      console.Add(Directory.GetCurrentDirectory());
       if (Directory.Exists(m_ExamplePath))
         Directory.Delete(m_ExamplePath, true);
-      ContainerResources.ExampleSolutionInstallation(m_ExamplePath, (x, y) => Console.WriteLine(x));
+      ContainerResources.ExampleSolutionInstallation(m_ExamplePath, (x, y) => console.Add(x));
     }
+
 
     [TestMethod]
     public void TestEnvironment()
     {
+      foreach (string entry in console)
+        Console.WriteLine(entry);
       Assert.IsTrue(File.Exists(m_PluginFullPath));
       Assert.IsTrue(File.Exists($@"{m_ExamplePath}\DemoConfiguration\DefaultConfig.xml"));
       Assert.IsTrue(File.Exists($@"{m_ExamplePath}\DemoConfiguration\BoilerExample.oses"));
@@ -129,6 +132,7 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.UnitTests
     private static readonly string m_ConfigurationDefaultFileName = Path.Combine((Directory.GetCurrentDirectory()), "CAS.UAServer.Configuration.uasconfig");
     private static readonly string m_ExamplePath = Path.Combine((Directory.GetCurrentDirectory()), "Plugin");
     private static readonly string m_PluginFullPath = Path.Combine(m_ExamplePath, m_PlaginCodeBaseRelativePath);
+    private static List<string> console = new List<string>();
 
     private class OpenFileDialog4UnitTest : IFileDialog
     {
