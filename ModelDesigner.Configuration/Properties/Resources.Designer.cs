@@ -166,15 +166,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The feature is unavailable because your license does not include this functionality..
-        /// </summary>
-        internal static string LicenseFeatureUnavailable {
-            get {
-                return ResourceManager.GetString("LicenseFeatureUnavailable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to CAS.UAServer.Configuration.
         /// </summary>
         internal static string Main_Default_ConfigurationFileName {

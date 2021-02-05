@@ -220,8 +220,6 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
     public View3DModelObserver()
     {
       InitializeComponent();
-      if (LicenseManager.CurrentContext.UsageMode == LicenseUsageMode.Designtime)
-        return;
       this.VisibleChanged += new EventHandler(View3DModelObserver_VisibleChanged);
       this.panel3DUserControl1.CommandPanelBackgroundBrush = new LinearGradientBrush(new GradientStopCollection(new GradientStop[] { new GradientStop(Colors.Green, 0), new GradientStop(Colors.White, 0.5), new GradientStop(Colors.Green, 1) }));
       this.panel3DUserControl1.MeshDiagramViewport3D.IModelVisualIsSelected += new EventHandler(MeshDiagramViewport3D_IModelVisualIsSelected);

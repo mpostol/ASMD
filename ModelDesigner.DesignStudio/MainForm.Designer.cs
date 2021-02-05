@@ -147,7 +147,6 @@ namespace CAS.UA.Model.Designer
       this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
       this.aboutUaModelDesignerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.aboutOpcUaModelCompilerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.licenseInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.logsContainingFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.enterTheUnlockCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -1166,7 +1165,6 @@ namespace CAS.UA.Model.Designer
             this.toolStripSeparator4,
             this.aboutUaModelDesignerToolStripMenuItem,
             this.aboutOpcUaModelCompilerToolStripMenuItem,
-            this.licenseInformationToolStripMenuItem,
             this.logsContainingFolderToolStripMenuItem,
             this.enterTheUnlockCodeToolStripMenuItem});
       this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
@@ -1242,14 +1240,6 @@ namespace CAS.UA.Model.Designer
       this.aboutOpcUaModelCompilerToolStripMenuItem.Text = "About OPC UA ModelCompiler";
       this.aboutOpcUaModelCompilerToolStripMenuItem.ToolTipText = "Shows aboutOPC UA ModelCompiler window";
       this.aboutOpcUaModelCompilerToolStripMenuItem.Click += new System.EventHandler(this.HelpAboutOpcUaModelCompilerToolStripMenuItem_Click);
-      // 
-      // licenseInformationToolStripMenuItem
-      // 
-      this.licenseInformationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("licenseInformationToolStripMenuItem.Image")));
-      this.licenseInformationToolStripMenuItem.Name = "licenseInformationToolStripMenuItem";
-      this.licenseInformationToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
-      this.licenseInformationToolStripMenuItem.Text = "License information";
-      this.licenseInformationToolStripMenuItem.Click += new System.EventHandler(this.m_LicenseInformationToolStripMenuItem_Click);
       // 
       // logsContainingFolderToolStripMenuItem
       // 
@@ -1406,7 +1396,6 @@ namespace CAS.UA.Model.Designer
     private System.Windows.Forms.ToolStripMenuItem m_MenuServerUA;
     private System.Windows.Forms.ToolStripMenuItem m_FileImportFromTSMI;
     private ToolStripMenuItem aboutOpcUaModelCompilerToolStripMenuItem;
-    private ToolStripMenuItem licenseInformationToolStripMenuItem;
     private ToolStripMenuItem logsContainingFolderToolStripMenuItem;
     private ToolStripMenuItem enterTheUnlockCodeToolStripMenuItem;
     private ToolStripMenuItem m_FromXMLSchemaToolStripMenuItem;

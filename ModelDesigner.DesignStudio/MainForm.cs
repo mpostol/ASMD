@@ -724,17 +724,6 @@ namespace CAS.UA.Model.Designer
 
     #endregion Menu
 
-    private void m_LicenseInformationToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      using (LicenseForm dial = new LicenseForm(null, null, Assembly.GetEntryAssembly()))
-      {
-        Licenses cLicDial = new Licenses();
-        dial.SetAdditionalControl = cLicDial;
-        dial.LicenceRequestMessageProvider = new LicenseForm.LicenceRequestMessageProviderDelegate(delegate () { return cLicDial.GetLicenseMessageRequest(); });
-        dial.ShowDialog(this);
-      }
-    }
-
     private void m_LogsContainingFolderToolStripMenuItem_Click(object sender, EventArgs e)
     {
       string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Settings.Default.LogFolder);
