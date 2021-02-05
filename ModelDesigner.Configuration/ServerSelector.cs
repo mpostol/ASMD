@@ -67,7 +67,6 @@ namespace CAS.CommServer.UA.ModelDesigner.Configuration
       GraphicalUserInterface = graphicalUserInterface ?? throw new ArgumentNullException(nameof(graphicalUserInterface));
       SolutionPath = solutionPath ?? throw new ArgumentNullException(nameof(solutionPath));
       OpenPlugIn(solutionPath, codebase, configuration);
-      //LicenseProtection.CheckConstrain();
     }
 
     #endregion constructor

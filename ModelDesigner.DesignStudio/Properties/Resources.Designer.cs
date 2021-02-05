@@ -553,15 +553,6 @@ namespace CAS.UA.Model.Designer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The feature is unavailable because your license does not include this functionality..
-        /// </summary>
-        internal static string LicenseFeatureUnavailable {
-            get {
-                return ResourceManager.GetString("LicenseFeatureUnavailable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An error occurred while compiling the solution: {0}.
         /// </summary>
         internal static string MainBuildError {
@@ -681,15 +672,6 @@ namespace CAS.UA.Model.Designer.Properties {
         internal static string MianWindow_FunctionalityAvailiableOnlyInModelView {
             get {
                 return ResourceManager.GetString("MianWindow_FunctionalityAvailiableOnlyInModelView", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This feature is not available. Please upgrade your license to Address Space Model Desinger Professional edition..
-        /// </summary>
-        internal static string ModelDesignerProLicenseWarning {
-            get {
-                return ResourceManager.GetString("ModelDesignerProLicenseWarning", resourceCulture);
             }
         }
         
@@ -1477,27 +1459,6 @@ namespace CAS.UA.Model.Designer.Properties {
         internal static string SolutionTreeNode {
             get {
                 return ResourceManager.GetString("SolutionTreeNode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SplashScreen {
-            get {
-                object obj = ResourceManager.GetObject("SplashScreen", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your evaluation period has just expired.  You must purchase the commercial license to use this software. 
-        ///To get more press the “Buy Now” button.  
-        ///To start {0} in read only mode press “Start” button.    .
-        /// </summary>
-        internal static string SplashScreenLicenseDemoPeriodExpired {
-            get {
-                return ResourceManager.GetString("SplashScreenLicenseDemoPeriodExpired", resourceCulture);
             }
         }
         

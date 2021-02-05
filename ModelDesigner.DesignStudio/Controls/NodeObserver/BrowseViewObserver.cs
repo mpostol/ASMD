@@ -23,8 +23,6 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       : base()
     {
       InitializeComponent();
-      if (LicenseManager.CurrentContext.UsageMode == LicenseUsageMode.Designtime)
-        return;
       this.m_BrowseViewTreeView.AfterSelect += new BrowseViewTreeView.BrowseViewTreeViewEventHandler(this.BrowseViewTreeView_AfterSelect);
     }
 

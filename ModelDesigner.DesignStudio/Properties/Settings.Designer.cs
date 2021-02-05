@@ -248,18 +248,6 @@ namespace CAS.UA.Model.Designer.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool ShowSplashScreen {
-            get {
-                return ((bool)(this["ShowSplashScreen"]));
-            }
-            set {
-                this["ShowSplashScreen"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool MaintenancePeriodWarning {
             get {
                 return ((bool)(this["MaintenancePeriodWarning"]));

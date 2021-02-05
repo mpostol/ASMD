@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AssemblyLoadErropr" xml:space="preserve">
     <value>Unable to load the selected assembly or it does not provide required interface</value>
@@ -155,9 +155,6 @@ Application will continue but the plugin remains unloaded.</value>
   </data>
   <data name="InterfaceNotImplemented" xml:space="preserve">
     <value>The selected assembly does not implement the required configuration editor interface.</value>
-  </data>
-  <data name="LicenseFeatureUnavailable" xml:space="preserve">
-    <value>The feature is unavailable because your license does not include this functionality.</value>
   </data>
   <data name="Main_Default_ConfigurationFileName" xml:space="preserve">
     <value>CAS.UAServer.Configuration</value>

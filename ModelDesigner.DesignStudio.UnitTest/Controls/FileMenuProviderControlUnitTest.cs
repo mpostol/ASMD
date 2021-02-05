@@ -49,9 +49,9 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         Assert.AreEqual<string>("&New", _strip.Items[0].Text);
         Assert.AreEqual<string>("&Open...", _strip.Items[1].Text);
         Assert.AreEqual<string>("&Save", _strip.Items[2].Text);
-        //Assert.IsTrue(_strip.Items[2].Enabled); //It depends on license installation. After removing license must be true always
+        Assert.IsTrue(_strip.Items[2].Enabled); 
         Assert.AreEqual<string>("Save &As...", _strip.Items[3].Text);
-        //Assert.IsTrue(_strip.Items[3].Enabled);//It depends on license installation. After removing license must be true always
+        Assert.IsTrue(_strip.Items[3].Enabled);
       }
     }
     #endregion
