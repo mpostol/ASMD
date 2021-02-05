@@ -310,11 +310,8 @@ namespace CAS.UA.Model.Designer
 
     private void HelpAboutUaModelDesignerToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      using (AboutForm dial = new AboutForm
-                   (null, null, Assembly.GetEntryAssembly()))
-      {
+      using (AboutForm dial = new AboutForm(Resources.ASMDbanner, Assembly.GetEntryAssembly()))
         dial.ShowDialog(this);
-      }
     }
 
     private void HelpAboutOpcUaModelCompilerToolStripMenuItem_Click(object sender, EventArgs e)
