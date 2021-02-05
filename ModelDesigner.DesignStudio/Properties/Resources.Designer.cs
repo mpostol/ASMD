@@ -1481,27 +1481,6 @@ namespace CAS.UA.Model.Designer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SplashScreen {
-            get {
-                object obj = ResourceManager.GetObject("SplashScreen", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your evaluation period has just expired.  You must purchase the commercial license to use this software. 
-        ///To get more press the “Buy Now” button.  
-        ///To start {0} in read only mode press “Start” button.    .
-        /// </summary>
-        internal static string SplashScreenLicenseDemoPeriodExpired {
-            get {
-                return ResourceManager.GetString("SplashScreenLicenseDemoPeriodExpired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon StateMachineIcon {
