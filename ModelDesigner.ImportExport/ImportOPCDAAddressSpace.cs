@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Xml;
-using CASLibOPCAddressSpace = CAS.Lib.OPC.AddressSpace;
+using CASLibOPCAddressSpace = CAS.Lib.OPC.AddressSpace; //TODO Remove dependency on CodeProtect - consolidated #211
 using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.ImportExport
@@ -20,7 +20,8 @@ namespace CAS.UA.Model.Designer.ImportExport
   /// <summary>
   /// Import model from OPC DA address space.
   /// </summary>
-  public static class OPCDA
+  //TODO Remove dependency on CodeProtect - consolidated #211
+  public static class ImportOPCDAAddressSpace
   {
     #region internal
 

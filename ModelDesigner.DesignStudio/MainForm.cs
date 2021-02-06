@@ -687,7 +687,7 @@ namespace CAS.UA.Model.Designer
       else
         MessageBox.Show(Resources.MianWindow_FunctionalityAvailiableOnlyInModelView);
     }
-
+    //TODO Remove dependency on CodeProtect - consolidated #211
     private void oPCViewerToolStripMenuItem_Click(object sender, EventArgs e)
     {
       try
