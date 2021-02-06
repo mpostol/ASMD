@@ -59,9 +59,6 @@
     <Setting Name="TargetXmlNamespace" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://cas.eu/UA/CommServer/</Value>
     </Setting>
-    <Setting Name="MaintenancePeriodWarning" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="OPCViewerAssemblyName" Type="System.String" Scope="User">
       <Value Profile="(Default)">CAS.CommServer.ModelDesigner.OPCViewer.exe</Value>
     </Setting>

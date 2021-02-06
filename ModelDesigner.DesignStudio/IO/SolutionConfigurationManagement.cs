@@ -102,8 +102,7 @@ namespace CAS.UA.Model.Designer.IO
     /// <returns>ProjectTreeNode.</returns>
     void ISolutionConfigurationManagement.ImportNodeSet()
     {
-      //TODO Output window doesn't contain validation result of the UANodeSet import. #213 - here tracer is used. 
-      IProjectConfigurationManagement _newModel = ProjectConfigurationManagement.ImportNodeSet(this, base.GraphicalUserInterface, x => AssemblyTraceEvent.Tracer.TraceEvent(x.TraceLevel, 486245093, x.ToString()));
+      IProjectConfigurationManagement _newModel = ProjectConfigurationManagement.ImportNodeSet(this, base.GraphicalUserInterface, x => AssemblyTraceEvent.TraceMessage(x, nameof(ISolutionConfigurationManagement.ImportNodeSet), 486245093));
       if (_newModel == null)
         return;
       AddProjectTCollection(_newModel);

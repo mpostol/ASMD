@@ -166,10 +166,10 @@
     <Compile Include="IASMDExporter.cs" />
     <Compile Include="ImportMenuFactory.cs" />
     <Compile Include="ImportOPCDAAddressSpace.cs" />
+    <Compile Include="ImportUANodeSet.cs" />
     <Compile Include="IStylesheetNameProvider.cs" />
     <Compile Include="IToolStripMenuItemInfo.cs" />
     <Compile Include="MamlCreator.cs" />
-    <Compile Include="NodeSet\AddressSpaceContextService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

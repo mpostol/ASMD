@@ -247,18 +247,6 @@ namespace CAS.UA.Model.Designer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool MaintenancePeriodWarning {
-            get {
-                return ((bool)(this["MaintenancePeriodWarning"]));
-            }
-            set {
-                this["MaintenancePeriodWarning"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("CAS.CommServer.ModelDesigner.OPCViewer.exe")]
         public string OPCViewerAssemblyName {
             get {

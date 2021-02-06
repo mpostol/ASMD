@@ -5,6 +5,7 @@
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
+using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.Diagnostics;
@@ -36,7 +37,7 @@ namespace CAS.UA.Model.Designer.IO
           FileInfo _fileInfo = new FileInfo(_ofd.FileName);
           Debug.Assert(_fileInfo.Exists);
           traceEvent(TraceMessage.DiagnosticTraceMessage($"Importing information model from the NodeSet file {_fileInfo.Name}"));
-          return new Tuple<OpcUaModelCompiler.ModelDesign, string>(ImportExport.NodeSet.AddressSpaceContextService.CreateInstance(_fileInfo, traceEvent), _fileInfo.Name);
+          return new Tuple<OpcUaModelCompiler.ModelDesign, string>(ImportUANodeSet.Import(_fileInfo, traceEvent), _fileInfo.Name);
         }
       }
       catch (Exception _ex)
