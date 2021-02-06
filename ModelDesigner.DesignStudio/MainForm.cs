@@ -89,7 +89,7 @@ namespace CAS.UA.Model.Designer
       this.toolStripContainerHelper = new ToolStripContainerHelper(toolStripContainer1);
       this.toolbarsToolStripMenuItem.DropDownItems.AddRange(toolStripContainerHelper.GetListOfToolStripMenuItem());
       foreach (ToolStripMenuItem tsmi in this.toolbarsToolStripMenuItem.DropDownItems)
-        tsmi.ToolTipText = "Show/hide " + tsmi.Text + " toolbar";
+        tsmi.ToolTipText = "Show/hide " + tsmi.Text + " tool-bar";
       if (toolStripContainer1.TopToolStripPanel.ContextMenuStrip == null)
         toolStripContainer1.TopToolStripPanel.ContextMenuStrip = new ContextMenuStrip();
       toolStripContainer1.TopToolStripPanel.ContextMenuStrip.Items.AddRange(toolStripContainerHelper.GetListOfToolStripMenuItem());
@@ -439,18 +439,7 @@ namespace CAS.UA.Model.Designer
 
     private void buildToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      //TODO Output window doesn't contain validation result of the UANodeSet import. #213
-      m_MainContol.Build(BuildtraceMessage);
-    }
-
-    /// <summary>
-    /// Builds the solution and write any massages to specified output.
-    /// </summary>
-    /// <param name="traceMessage">Delegate to trace message.</param>
-    private void BuildtraceMessage(string traceMessage)
-    {
-      debugDockPanelUserControl1.TextWriterStream.WriteLine(traceMessage);
-      AssemblyTraceEvent.TraceMessage(TraceMessage.DiagnosticTraceMessage(traceMessage), nameof(m_MainContol.Build), 851392402);
+      m_MainContol.Build(x => AssemblyTraceEvent.TraceMessage(TraceMessage.DiagnosticTraceMessage(x), nameof(m_MainContol.Build), 851392402));
     }
 
     private void stateMachineEditorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -758,6 +747,7 @@ namespace CAS.UA.Model.Designer
 
     private void MainForm_Load(object sender, EventArgs e)
     {
+      AssemblyTraceEvent.Listeners += (x, y) => debugDockPanelUserControl1.TextWriterStream.WriteLine(y);
       AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 1334099901, "Starting application");
       string _solutionFileName = m_StartupFileName;
       if (_solutionFileName.StartsWith("file://"))

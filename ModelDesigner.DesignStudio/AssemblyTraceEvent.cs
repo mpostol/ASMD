@@ -24,10 +24,11 @@ namespace CAS.UA.Model.Designer
     /// </summary>
     /// <value>The tracer.</value>
     public static TraceSource Tracer => m_traceSource.Value;
-
+    internal static event EventHandler<string> Listeners;
     internal static void TraceMessage(TraceMessage message, string at, int id)
     {
       Tracer.TraceEvent(message.TraceLevel, id, "At {0}: {1}", at, message.Message);
+      Listeners?.Invoke(null, $"At {at}: {id} {message.BuildError.ToString()}; {message.Message}");
     }
   }
 }

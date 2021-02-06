@@ -15,27 +15,10 @@ using UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.ImportExport.UT
 {
-  //TODO UAOOI.SemanticData.UANodeSetValidation 5.1.0 is available #120
   [TestClass]
   [DeploymentItem(@"Models\", @"Models\")]
-  public class NodeSetUnitTest
+  public class UANodeSetVImportUnitTest
   {
-    #region TestContext
-
-    private TestContext testContextInstance;
-
-    /// <summary>
-    ///Gets or sets the test context which provides
-    ///information about and functionality for the current test run.
-    ///</summary>
-    public TestContext TestContext
-    {
-      get => testContextInstance;
-      set => testContextInstance = value;
-    }
-
-    #endregion TestContext
-
     #region TestMethod
 
     [TestMethod]
@@ -46,7 +29,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       Assert.IsFalse(_testDataFileInfo.Exists);
       List<TraceMessage> _trace = new List<TraceMessage>();
       int _diagnosticCounter = 0;
-      ModelDesign _actual = NodeSet.AddressSpaceContextService.CreateInstance(_testDataFileInfo, z => TraceDiagnostic(z, _trace, ref _diagnosticCounter));
+      ModelDesign _actual = ImportUANodeSet.Import(_testDataFileInfo, z => TraceDiagnostic(z, _trace, ref _diagnosticCounter));
     }
 
     [TestMethod]
@@ -57,7 +40,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       Assert.IsTrue(_testDataFileInfo.Exists);
       List<TraceMessage> _trace = new List<TraceMessage>();
       int _diagnosticCounter = 0;
-      ModelDesign _actual = NodeSet.AddressSpaceContextService.CreateInstance(_testDataFileInfo, z => TraceDiagnostic(z, _trace, ref _diagnosticCounter));
+      ModelDesign _actual = ImportUANodeSet.Import(_testDataFileInfo, z => TraceDiagnostic(z, _trace, ref _diagnosticCounter));
     }
 
     [TestMethod]
@@ -68,7 +51,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       ModelDesign _refData = XmlFile.ReadXmlFile<ModelDesign>(@"Models\ReferenceTest.xml");
       List<TraceMessage> _trace = new List<TraceMessage>();
       int _diagnosticCounter = 0;
-      ModelDesign _actual = NodeSet.AddressSpaceContextService.CreateInstance(_testDataFileInfo, z => TraceDiagnostic(z, _trace, ref _diagnosticCounter));
+      ModelDesign _actual = ImportUANodeSet.Import(_testDataFileInfo, z => TraceDiagnostic(z, _trace, ref _diagnosticCounter));
       Assert.AreEqual<int>(0, _trace.Where<TraceMessage>(x => x.BuildError.Focus != Focus.Diagnostic).Count<TraceMessage>());
       Assert.Inconclusive("UAOOI.SemanticData.UANodeSetValidation 5.1.0 is available #120");
       Assert.IsNotNull(_actual);
@@ -85,7 +68,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       //ModelDesign _expected = XmlFile.ReadXmlFile<ModelDesign>(@"Models\ObjectTypeTest.xml");
       List<TraceMessage> _trace = new List<TraceMessage>();
       int _diagnosticCounter = 0;
-      ModelDesign _actual = NodeSet.AddressSpaceContextService.CreateInstance(_testDataFileInfo, z => TraceDiagnostic(z, _trace, ref _diagnosticCounter));
+      ModelDesign _actual = ImportUANodeSet.Import(_testDataFileInfo, z => TraceDiagnostic(z, _trace, ref _diagnosticCounter));
       Assert.Inconclusive("UAOOI.SemanticData.UANodeSetValidation 5.1.0 is available #120");
       Assert.IsNotNull(_actual);
       //Assert.AreEqual<int>(0, _trace.Where<TraceMessage>(x => x.BuildError.Focus != Focus.Diagnostic).Count<TraceMessage>());
@@ -107,7 +90,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       ModelDesign _expected = XmlFile.ReadXmlFile<ModelDesign>(@"Models\VariableTypeTest.xml");
       List<TraceMessage> _trace = new List<TraceMessage>();
       int _diagnosticCounter = 0;
-      ModelDesign _actual = NodeSet.AddressSpaceContextService.CreateInstance(_testDataFileInfo, z => TraceDiagnostic(z, _trace, ref _diagnosticCounter));
+      ModelDesign _actual = ImportUANodeSet.Import(_testDataFileInfo, z => TraceDiagnostic(z, _trace, ref _diagnosticCounter));
       Assert.Inconclusive("UAOOI.SemanticData.UANodeSetValidation 5.1.0 is available #120");
       Assert.IsNotNull(_actual);
       //Assert.AreEqual<int>(0, _trace.Where<TraceMessage>(x => x.BuildError.Focus != Focus.Diagnostic).Count<TraceMessage>());
@@ -130,7 +113,7 @@ namespace CAS.UA.Model.Designer.ImportExport.UT
       ModelDesign _refData = XmlFile.ReadXmlFile<ModelDesign>(@"Models\DataTypeTest.xml");
       List<TraceMessage> _trace = new List<TraceMessage>();
       int _diagnosticCounter = 0;
-      ModelDesign _actual = NodeSet.AddressSpaceContextService.CreateInstance(_testDataFileInfo, z => TraceDiagnostic(z, _trace, ref _diagnosticCounter));
+      ModelDesign _actual = ImportUANodeSet.Import(_testDataFileInfo, z => TraceDiagnostic(z, _trace, ref _diagnosticCounter));
       Assert.Inconclusive("UAOOI.SemanticData.UANodeSetValidation 5.1.0 is available #120");
       Assert.IsNotNull(_actual);
       //Assert.AreEqual<int>(0, _trace.Where<TraceMessage>(x => x.BuildError.Focus != Focus.Diagnostic).Count<TraceMessage>());

@@ -12,30 +12,30 @@ using UAOOI.SemanticData.UAModelDesignExport;
 using UAOOI.SemanticData.UANodeSetValidation;
 using OPCFModelDesign = UAOOI.SemanticData.UAModelDesignExport.XML.ModelDesign;
 
-namespace CAS.UA.Model.Designer.ImportExport.NodeSet
+namespace CAS.UA.Model.Designer.ImportExport
 {
   /// <summary>
   /// Class AddressSpaceContextService - Entry point to create Information Model using the <see name="AddressSpaceContextService.CreateInstance"/> to populate it.
   /// </summary>
   /// <remarks>It may be used to export selected target namespace .</remarks>
-  public static class AddressSpaceContextService
+  public static class ImportUANodeSet
   {
     #region public static
 
     /// <summary>
     /// Creates new instance of the <see cref="OPCFModelDesign" />.
     /// </summary>
-    /// <param name="filePath">The file path.</param>
-    /// <param name="traceEvent">The trace event.</param>
+    /// <param name="filePath">The path of the UANodeSet file.</param>
+    /// <param name="trace">A delegate to trace the import progress.</param>
     /// <returns>An object of <see cref="OPCFModelDesign"/>.</returns>
     /// <exception cref="FileNotFoundException">The imported file does not exist</exception>
-    public static OPCFModelDesign CreateInstance(FileInfo filePath, Action<TraceMessage> traceEvent)
+    public static OPCFModelDesign Import(FileInfo filePath, Action<TraceMessage> trace)
     {
       if (!filePath.Exists)
         throw new FileNotFoundException("The imported file does not exist", filePath.FullName);
       IAddressSpaceContext _as = AddressSpaceFactory.AddressSpace;
       ModelDesignExport _exporter = new ModelDesignExport();
-      _as.InformationModelFactory = _exporter.GetFactory(traceEvent);
+      _as.InformationModelFactory = _exporter.GetFactory(trace);
       _as.ImportUANodeSet(filePath);
       _as.ValidateAndExportModel();
       return _exporter.ExportToObject();
