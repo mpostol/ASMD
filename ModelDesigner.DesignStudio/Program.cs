@@ -111,11 +111,11 @@ namespace CAS.UA.Model.Designer
       Wrappers.ViewModelFactory.Factory = new Wrappers4ProperyGrid.ViewModelFactory();
     }
 
+    //TODO Remove dependency on CodeProtect - consolidated #211
     internal static void DoInstallLicense(bool loadLicenseFromDefaultContainer)
     {
       try
       {
-        //TODO Remove dependency on CodeProtect #200
         CAS.Lib.CodeProtect.LibInstaller.InstallLicense(loadLicenseFromDefaultContainer);
         AssemblyTraceEvent.Tracer.TraceEvent(TraceEventType.Verbose, 113, "Installed the License without errors");
       }

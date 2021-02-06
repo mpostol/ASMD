@@ -98,7 +98,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       if (this.TestIfReadOnlyAndRetrunTrueIfReadOnly())
         return;
-      OPCDA.CreateImportMenuItems(items, new EventHandler(CreateImportMenuClick));
+      ImportOPCDAAddressSpace.CreateImportMenuItems(items, new EventHandler(CreateImportMenuClick));
     }
 
     protected override string NodeName()
@@ -120,7 +120,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     private void CreateImportMenuClick(object sender, EventArgs e)
     {
-      OpcUaModelCompiler.NodeDesign[] nodes = OPCDA.OnImportMenuItemClick(GetTargetNamespace());
+      OpcUaModelCompiler.NodeDesign[] nodes = ImportOPCDAAddressSpace.OnImportMenuItemClick(GetTargetNamespace());
       if (nodes == null)
         return;
       List<BaseTreeNode> arr = new List<BaseTreeNode>();
