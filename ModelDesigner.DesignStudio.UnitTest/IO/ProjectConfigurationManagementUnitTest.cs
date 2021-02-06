@@ -161,7 +161,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       IProjectConfigurationManagement _newItemUnderTest = ProjectConfigurationManagement.ImportModelDesign(_solutionMock.Object, _guiuMocck.Object, _projectDescriptor);
       List<string> _log = new List<string>();
       _newItemUnderTest.Build(x => _log.Add(x));
-      Assert.AreEqual<int>(2, _log.Count);
+      Assert.AreEqual<int>(4, _log.Count);
       Assert.IsTrue(Directory.Exists(Path.Combine(m_TestSolutionPath, @"DemoConfiguration\BoilerType")));
       Assert.AreEqual(7, Directory.GetFiles(Path.Combine(m_TestSolutionPath, @"DemoConfiguration\BoilerType")).Length);
     }
