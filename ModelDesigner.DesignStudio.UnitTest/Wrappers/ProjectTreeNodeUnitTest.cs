@@ -87,15 +87,21 @@ namespace CAS.UA.Model.Designer.Wrappers
       _projectConfigurationMock.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(_OPCFModelDesignMock.Object);
       _projectConfigurationMock.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
 
-      Mock<TextWriter> _writer = new Mock<TextWriter>();
-      _projectConfigurationMock.Setup(x => x.Build(_writer.Object));
+      //_projectConfigurationMock.Setup(x => x.Build( z => { } ));
       Mock<BaseTreeNode> _parentMock = new Mock<BaseTreeNode>("ParentBaseNode");
 
       ProjectTreeNode _newItem = new ProjectTreeNode(_projectConfigurationMock.Object) { Parent = _parentMock.Object };
-      _newItem.Build(_writer.Object);
-
-      _projectConfigurationMock.Verify(x => x.Build(It.IsAny<TextWriter>()), Times.Once);
-      _writer.Verify(x => x.WriteLine(It.IsAny<string>()), Times.AtMost(5));
+      List <string> trace = new List<string>();
+      Action<string> tracer = x => trace.Add(x);
+      _newItem.Build(tracer);
+      _projectConfigurationMock.Verify(x => x.Build(tracer), Times.Once);
+      Assert.AreEqual<int>(4, trace.Count);
+      Assert.AreEqual<string>("------ Building project: EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327. ------", trace[0]);
+      Assert.IsTrue(trace[1].StartsWith("Build started at:"));
+      Assert.IsTrue(trace[2].StartsWith("Build ended at:"));
+      Assert.AreEqual<string>("", trace[3]);
+      foreach (string msg in trace)
+        System.Diagnostics.Debug.WriteLine(msg);
     }
 
     [TestMethod]

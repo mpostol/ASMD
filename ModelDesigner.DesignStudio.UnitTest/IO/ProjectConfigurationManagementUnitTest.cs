@@ -159,10 +159,8 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       UAModelDesignerProject _projectDescriptor = _projectDescriptor = UAModelDesignerProject.CreateEmpty("BoilerType");
       _projectDescriptor.FileName = @"DemoConfiguration\BoilerType.xml";
       IProjectConfigurationManagement _newItemUnderTest = ProjectConfigurationManagement.ImportModelDesign(_solutionMock.Object, _guiuMocck.Object, _projectDescriptor);
-      Mock<TextWriter> _outputMock = new Mock<TextWriter>();
       List<string> _log = new List<string>();
-      _outputMock.Setup(x => x.WriteLine(It.IsAny<string>())).Callback<string>(s => _log.Add(s));
-      _newItemUnderTest.Build(_outputMock.Object);
+      _newItemUnderTest.Build(x => _log.Add(x));
       Assert.AreEqual<int>(2, _log.Count);
       Assert.IsTrue(Directory.Exists(Path.Combine(m_TestSolutionPath, @"DemoConfiguration\BoilerType")));
       Assert.AreEqual(7, Directory.GetFiles(Path.Combine(m_TestSolutionPath, @"DemoConfiguration\BoilerType")).Length);
