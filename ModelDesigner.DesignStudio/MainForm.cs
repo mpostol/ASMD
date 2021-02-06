@@ -16,6 +16,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using UAOOI.SemanticData.BuildingErrorsHandling;
 using UAOOI.Windows.Forms;
 using UAOOI.Windows.Forms.ControlExtenders;
 
@@ -438,7 +439,18 @@ namespace CAS.UA.Model.Designer
 
     private void buildToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      m_MainContol.Build(debugDockPanelUserControl1.TextWriterStream);
+      //TODO Output window doesn't contain validation result of the UANodeSet import. #213
+      m_MainContol.Build(BuildtraceMessage);
+    }
+
+    /// <summary>
+    /// Builds the solution and write any massages to specified output.
+    /// </summary>
+    /// <param name="traceMessage">Delegate to trace message.</param>
+    private void BuildtraceMessage(string traceMessage)
+    {
+      debugDockPanelUserControl1.TextWriterStream.WriteLine(traceMessage);
+      AssemblyTraceEvent.TraceMessage(TraceMessage.DiagnosticTraceMessage(traceMessage), nameof(m_MainContol.Build), 851392402);
     }
 
     private void stateMachineEditorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -687,6 +699,7 @@ namespace CAS.UA.Model.Designer
       else
         MessageBox.Show(Resources.MianWindow_FunctionalityAvailiableOnlyInModelView);
     }
+
     //TODO Remove dependency on CodeProtect - consolidated #211
     private void oPCViewerToolStripMenuItem_Click(object sender, EventArgs e)
     {

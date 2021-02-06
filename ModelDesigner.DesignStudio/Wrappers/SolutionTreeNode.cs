@@ -197,13 +197,13 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <summary>
     /// Builds the solution and write any massages to specified output.
     /// </summary>
-    /// <param name="output">The compiler output.</param>
-    internal void Build(TextWriter output)
+    /// <param name="traceMessage">Delegate to trace message.</param>
+    internal void Build(Action<string> traceMessage)
     {
       Save(false);
-      output.WriteLine(Resources.Build_all);
+      traceMessage(Resources.Build_all);
       foreach (ProjectTreeNode _project in this)
-        _project.Build(output);
+        _project.Build(traceMessage);
     }
 
     internal event EventHandler<EventArgs> OnDataChanged;

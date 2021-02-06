@@ -19,7 +19,7 @@ namespace CAS.UA.Model.Designer.ImportExport.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -175,33 +175,6 @@ namespace CAS.UA.Model.Designer.ImportExport.Properties {
         internal static string ExportTool_IsAbstract {
             get {
                 return ResourceManager.GetString("ExportTool_IsAbstract", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ImportFromNodeSetMenuItem.
-        /// </summary>
-        internal static string ImportFromNodeSetMenuItemName {
-            get {
-                return ResourceManager.GetString("ImportFromNodeSetMenuItemName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to From UANodeSet  ....
-        /// </summary>
-        internal static string ImportFromNodeSetMenuItemText {
-            get {
-                return ResourceManager.GetString("ImportFromNodeSetMenuItemText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to It allows to import model represented by XML file compliant with UANodeSet schema..
-        /// </summary>
-        internal static string ImportFromNodeSetMenuItemToolTip {
-            get {
-                return ResourceManager.GetString("ImportFromNodeSetMenuItemToolTip", resourceCulture);
             }
         }
     }
