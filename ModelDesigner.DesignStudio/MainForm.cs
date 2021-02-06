@@ -17,7 +17,6 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using UAOOI.Windows.Forms;
-using UAOOI.Windows.Forms.CodeProtectControls;
 using UAOOI.Windows.Forms.ControlExtenders;
 
 namespace CAS.UA.Model.Designer
@@ -311,11 +310,8 @@ namespace CAS.UA.Model.Designer
 
     private void HelpAboutUaModelDesignerToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      using (AboutForm dial = new AboutForm
-                   (null, null, Assembly.GetEntryAssembly()))
-      {
+      using (AboutForm dial = new AboutForm(Resources.ASMDbanner, Assembly.GetEntryAssembly()))
         dial.ShowDialog(this);
-      }
     }
 
     private void HelpAboutOpcUaModelCompilerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -740,14 +736,6 @@ namespace CAS.UA.Model.Designer
       {
         MessageBox.Show("An error during opening a log folder occurs and the log folder cannot be open", "Problem with log folder !", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
         return;
-      }
-    }
-
-    private void m_EnterTheUnlockCodeToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-      using (UnlockKeyDialog dialog = new UnlockKeyDialog())
-      {
-        dialog.ShowDialog();
       }
     }
 

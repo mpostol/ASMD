@@ -148,7 +148,6 @@ namespace CAS.UA.Model.Designer
       this.aboutUaModelDesignerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.aboutOpcUaModelCompilerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.logsContainingFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.enterTheUnlockCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
       toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
       this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
@@ -1165,8 +1164,7 @@ namespace CAS.UA.Model.Designer
             this.toolStripSeparator4,
             this.aboutUaModelDesignerToolStripMenuItem,
             this.aboutOpcUaModelCompilerToolStripMenuItem,
-            this.logsContainingFolderToolStripMenuItem,
-            this.enterTheUnlockCodeToolStripMenuItem});
+            this.logsContainingFolderToolStripMenuItem });
       this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
       this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
       this.helpToolStripMenuItem.Text = "Help";
@@ -1248,15 +1246,6 @@ namespace CAS.UA.Model.Designer
       this.logsContainingFolderToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
       this.logsContainingFolderToolStripMenuItem.Text = "Open logs containing folder";
       this.logsContainingFolderToolStripMenuItem.Click += new System.EventHandler(this.m_LogsContainingFolderToolStripMenuItem_Click);
-      // 
-      // enterTheUnlockCodeToolStripMenuItem
-      // 
-      this.enterTheUnlockCodeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("enterTheUnlockCodeToolStripMenuItem.Image")));
-      this.enterTheUnlockCodeToolStripMenuItem.Name = "enterTheUnlockCodeToolStripMenuItem";
-      this.enterTheUnlockCodeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.K)));
-      this.enterTheUnlockCodeToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
-      this.enterTheUnlockCodeToolStripMenuItem.Text = "Enter the unlock code";
-      this.enterTheUnlockCodeToolStripMenuItem.Click += new System.EventHandler(this.m_EnterTheUnlockCodeToolStripMenuItem_Click);
       // 
       // MainForm
       // 
@@ -1397,7 +1386,6 @@ namespace CAS.UA.Model.Designer
     private System.Windows.Forms.ToolStripMenuItem m_FileImportFromTSMI;
     private ToolStripMenuItem aboutOpcUaModelCompilerToolStripMenuItem;
     private ToolStripMenuItem logsContainingFolderToolStripMenuItem;
-    private ToolStripMenuItem enterTheUnlockCodeToolStripMenuItem;
     private ToolStripMenuItem m_FromXMLSchemaToolStripMenuItem;
     private ToolStripMenuItem m_FromUMLDiagramToolStripMenuItem;
     private ToolStripMenuItem m_FromEnterpriceArchitectToolStripMenuItem;
