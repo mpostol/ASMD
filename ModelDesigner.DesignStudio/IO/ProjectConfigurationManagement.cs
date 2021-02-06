@@ -143,16 +143,16 @@ namespace CAS.UA.Model.Designer.IO
     string IProjectConfigurationManagement.Name => this.m_UAModelDesignerProject.Name;
 
     /// <summary>
-    /// Builds the project and write any massages to specified output.
+    /// Builds the model managed by this project using external compiler.
     /// </summary>
-    /// <param name="output">The output containing text sent by the compiler.</param>
-    void IProjectConfigurationManagement.Build(TextWriter output)
+    /// <param name="traceMessage">Action to be used to trace the .</param>
+    void IProjectConfigurationManagement.Build(Action<string> traceMessage)
     {
       string _filePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.m_ISolutionConfigurationManagement.DefaultDirectory, m_UAModelDesignerProject.FileName);
       if (!File.Exists(this.DefaultFileName))
       {
         string msg = string.Format(Resources.BuildError_Fie_DoesNotExist, _filePath);
-        output.WriteLine(msg);
+        traceMessage(msg);
         GraphicalUserInterface.MessageBoxShowError(msg, Resources.Build_Caption);
         return;
       }
@@ -170,7 +170,7 @@ namespace CAS.UA.Model.Designer.IO
           }
         else
         {
-          output.WriteLine(string.Format(Resources.BuildError_Fie_DoesNotExist, CSVFileName));
+          traceMessage(string.Format(Resources.BuildError_Fie_DoesNotExist, CSVFileName));
           return;
         }
       }
@@ -184,11 +184,9 @@ namespace CAS.UA.Model.Designer.IO
         UseShellExecute = false,
         CreateNoWindow = true
       };
-      output.WriteLine();
-      output.Write(_compilerPath);
-      output.Write(" ");
-      output.WriteLine(_commandLine);
-      output.WriteLine();
+      traceMessage($"{_compilerPath}  ");
+      traceMessage(_commandLine);
+      traceMessage("");
       Process _buildProcess = new Process
       {
         StartInfo = myStartInfo
@@ -206,7 +204,7 @@ namespace CAS.UA.Model.Designer.IO
           _erroroutputfrombuildprocess = Resources.Build_project_ok;
         _outputfrombuildprocess += _erroroutputfrombuildprocess;
         if (!string.IsNullOrEmpty(_outputfrombuildprocess))
-          output.WriteLine(_outputfrombuildprocess);
+          traceMessage(_outputfrombuildprocess);
       }
     }
 

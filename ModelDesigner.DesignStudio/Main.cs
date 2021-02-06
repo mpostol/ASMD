@@ -120,9 +120,13 @@ namespace CAS.UA.Model.Designer
       m_ModelObserver.ImportNodeSet();
     }
 
-    internal void Build(TextWriter textWriterStream)
+    /// <summary>
+    /// Builds the solution and write any massages to specified output.
+    /// </summary>
+    /// <param name="traceMessage">Delegate to trace message.</param>
+    internal void Build(Action<string> traceMessage)
     {
-      m_ModelObserver.Build(textWriterStream);
+      m_ModelObserver.Build(traceMessage);
     }
 
     internal void OpenSolution(string solutionFileName)
@@ -136,6 +140,5 @@ namespace CAS.UA.Model.Designer
     }
 
     #endregion internal
-
   }
 }

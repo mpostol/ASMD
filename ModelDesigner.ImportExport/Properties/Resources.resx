@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CreateFromOPCDAMenuItemName" xml:space="preserve">
     <value>ImportFromOPCDAMenuItem</value>
@@ -156,14 +156,5 @@ file created by the OPC Viewer.</value>
   </data>
   <data name="ExportTool_IsAbstract" xml:space="preserve">
     <value>IsAbstract</value>
-  </data>
-  <data name="ImportFromNodeSetMenuItemName" xml:space="preserve">
-    <value>ImportFromNodeSetMenuItem</value>
-  </data>
-  <data name="ImportFromNodeSetMenuItemText" xml:space="preserve">
-    <value>From UANodeSet  ...</value>
-  </data>
-  <data name="ImportFromNodeSetMenuItemToolTip" xml:space="preserve">
-    <value>It allows to import model represented by XML file compliant with UANodeSet schema.</value>
   </data>
 </root>

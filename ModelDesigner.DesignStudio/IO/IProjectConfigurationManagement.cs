@@ -7,7 +7,7 @@
 
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.UA.Model.Designer.Solution;
-using System.IO;
+using System;
 using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.IO
@@ -18,7 +18,11 @@ namespace CAS.UA.Model.Designer.IO
     OpcUaModelCompiler.ModelDesign ModelDesign { get; }
     string Name { get; }
 
-    void Build(TextWriter output);
+    /// <summary>
+    /// Builds the model managed by this project using external compiler.
+    /// </summary>
+    /// <param name="traceMessage">Action to be used to trace the .</param>
+    void Build(Action<string> traceMessage);
 
     void Save(OpcUaModelCompiler.ModelDesign model);
   }

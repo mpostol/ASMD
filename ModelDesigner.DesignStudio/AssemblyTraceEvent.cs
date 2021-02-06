@@ -27,7 +27,7 @@ namespace CAS.UA.Model.Designer
 
     internal static void TraceMessage(TraceMessage message, string at, int id)
     {
-      Tracer.TraceEvent(message.TraceLevel, id, "At {0}: {}", at, message.Message);
+      Tracer.TraceEvent(message.TraceLevel, id, "At {0}: {1}", at, message.Message);
     }
   }
 }

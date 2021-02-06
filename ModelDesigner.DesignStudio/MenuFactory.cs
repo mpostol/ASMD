@@ -1,21 +1,21 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2921, Mariusz Postol LODZ POLAND.
 //
+//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
 
+
 using CAS.UA.Model.Designer.ImportExport;
-using CAS.UA.Model.Designer.ImportExport.NodeSet;
+using CAS.UA.Model.Designer.Properties;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace CAS.UA.Model.Designer
 {
-
   internal static class MenuFactory
   {
-
     internal static ToolStripMenuItem AddProject(EventHandler newProjectHandler, EventHandler existingProjectHandler)
     {
       ToolStripMenuItem _New = new ToolStripMenuItem("New");
@@ -23,13 +23,14 @@ namespace CAS.UA.Model.Designer
       if (newProjectHandler == null)
         _New.Enabled = false;
       else
-        _New.Click += new System.EventHandler(newProjectHandler);
+        _New.Click += new EventHandler(newProjectHandler);
       if (existingProjectHandler == null)
         _Existing.Enabled = false;
       else
-        _Existing.Click += new System.EventHandler(existingProjectHandler);
+        _Existing.Click += new EventHandler(existingProjectHandler);
       return new ToolStripMenuItem("Add Project", null, new ToolStripMenuItem[] { _New, _Existing });
     }
+
     internal static ToolStripMenuItem ImportSubmenu(this IEnumerable<ToolStripMenuItem> items)
     {
       ToolStripMenuItem _importEntry = ImportExport.ImportMenuFactory.CreateImportMenuItem.CreateToolStripMenuItem();
@@ -37,20 +38,24 @@ namespace CAS.UA.Model.Designer
         _importEntry.DropDownItems.Add(_menuItem);
       return _importEntry;
     }
+
     internal static ToolStripMenuItem ImportNodeSetMenuItem(EventHandler importHandler)
     {
-      ToolStripMenuItem _menuItem = AddressSpaceContextService.ImportFromNodeSetMenuItem.CreateToolStripMenuItem();
       if (importHandler == null)
-        _menuItem.Enabled = false;
-      else
-        _menuItem.Click += importHandler;
+        throw new ArgumentNullException($"{nameof(importHandler)}");
+      ToolStripMenuItem _menuItem = new ToolStripMenuItem()
+      {
+        Name = "ImportFromNodeSetMenuItemName",
+        Text = Resources.ImportFromNodeSetMenuItemText,
+        ToolTipText = Resources.ImportFromNodeSetMenuItemToolTip
+      };
+      _menuItem.Click += importHandler;
       return _menuItem;
     }
+
     internal static ToolStripMenuItem CreateToolStripMenuItem(this IToolStripMenuItemInfo toolStripMenuItemInfo)
     {
       return new ToolStripMenuItem() { Name = toolStripMenuItemInfo.Name, Text = toolStripMenuItemInfo.Text, ToolTipText = toolStripMenuItemInfo.ToolTipText };
     }
-
   }
-
 }

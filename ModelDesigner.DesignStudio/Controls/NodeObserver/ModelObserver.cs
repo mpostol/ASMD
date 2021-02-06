@@ -1,6 +1,6 @@
 ﻿//___________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
 //___________________________________________________________________________________
@@ -12,7 +12,6 @@ using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 using UAOOI.Windows.Forms;
 
@@ -79,9 +78,13 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
       m_Solution.ImportNodeSet();
     }
 
-    internal void Build(TextWriter textWriterStream)
+    /// <summary>
+    /// Builds the solution and write any massages to specified output.
+    /// </summary>
+    /// <param name="traceMessage">Delegate to trace message.</param>
+    internal void Build(Action<string> traceMessage)
     {
-      m_Solution.Build(textWriterStream);
+      m_Solution.Build(traceMessage);
     }
 
     internal void Save(bool prompt)

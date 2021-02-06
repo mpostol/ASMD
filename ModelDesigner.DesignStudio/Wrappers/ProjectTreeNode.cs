@@ -81,25 +81,26 @@ namespace CAS.UA.Model.Designer.Wrappers
     #region public
 
     /// <summary>
-    /// Builds the project and write any massages to specified output.
+    /// Builds the project and write any trace massages.
     /// </summary>
-    /// <param name="output">The output containing text sent by the compiler.</param>
-    internal void Build(TextWriter output)
+    /// <param name="traceMessage">Delegate to trace message.</param>
+    internal void Build(Action<string> traceMessage)
     {
       try
       {
         lock (m_BuildLockObject)
         {
-          output.WriteLine(string.Format(Resources.Build_project_name, this.Text));
-          output.WriteLine(string.Format(Resources.Build_started_at, System.DateTime.Now.ToString()));
-          m_ProjectConfigurationManager.Build(output);
+          traceMessage(string.Format(Resources.Build_project_name, this.Text));
+          traceMessage(string.Format(Resources.Build_started_at, System.DateTime.Now.ToString()));
+          m_ProjectConfigurationManager.Build(traceMessage);
         }
-        output.WriteLine(string.Format(Resources.Build_ended_at, System.DateTime.Now.ToString()));
-        output.WriteLine();
+        traceMessage(string.Format(Resources.Build_ended_at, System.DateTime.Now.ToString()));
+        traceMessage("");
       }
       catch (Exception ex)
       {
-        output.WriteLine(Resources.BuildError_nocontinuation + "\n\r" + ex.Message, "Build", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        traceMessage(Resources.BuildError_nocontinuation);
+        traceMessage(ex.Message);
       }
     }
 

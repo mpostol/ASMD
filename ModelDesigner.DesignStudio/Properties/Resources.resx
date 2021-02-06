@@ -463,9 +463,7 @@ You can change the message and add more comment but please do not remove the fea
     <comment>PR32-ModelDesigner\MODEL\MainForm.cs</comment>
   </data>
   <data name="Build_all" xml:space="preserve">
-    <value>***********************************
-Building the solution ...
-***********************************</value>
+    <value>Building the solution ...</value>
   </data>
   <data name="Build_ended_at" xml:space="preserve">
     <value>Build ended at: {0}.</value>
@@ -732,5 +730,11 @@ Please navigate to: {0} manually.</value>
   <data name="NodeSet_ImportErrorTitle" xml:space="preserve">
     <value>NodeSet import error</value>
     <comment>CAS.UA.Model.Designer.IO.ImportNodeSet</comment>
+  </data>
+  <data name="ImportFromNodeSetMenuItemText" xml:space="preserve">
+    <value>From UANodeSet  ...</value>
+  </data>
+  <data name="ImportFromNodeSetMenuItemToolTip" xml:space="preserve">
+    <value>It allows to import model represented by XML file compliant with UANodeSet schema.</value>
   </data>
 </root>

@@ -138,9 +138,7 @@ namespace CAS.UA.Model.Designer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ***********************************
-        ///Building the solution ...
-        ///***********************************.
+        ///   Looks up a localized string similar to Building the solution ....
         /// </summary>
         internal static string Build_all {
             get {
@@ -538,6 +536,24 @@ namespace CAS.UA.Model.Designer.Properties {
             get {
                 object obj = ResourceManager.GetObject("FloppyDisk", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From UANodeSet  ....
+        /// </summary>
+        internal static string ImportFromNodeSetMenuItemText {
+            get {
+                return ResourceManager.GetString("ImportFromNodeSetMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It allows to import model represented by XML file compliant with UANodeSet schema..
+        /// </summary>
+        internal static string ImportFromNodeSetMenuItemToolTip {
+            get {
+                return ResourceManager.GetString("ImportFromNodeSetMenuItemToolTip", resourceCulture);
             }
         }
         
