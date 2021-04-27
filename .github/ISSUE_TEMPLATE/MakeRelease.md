@@ -4,21 +4,22 @@ about: Make release tasks list
 title: 'Close the milestone and make release'
 labels: 'Release'
 assignees: 'mpostol'
-
 ---
 
 ## Release ToDo List
 
 - [ ] Remove all not crucial tasks from the current milestone to a new one or backlog
 - [ ] Draft a new release
-- [ ] Update version information for all published assemblies (Model.t4), 
+- [ ] Update version information for all published assemblies (SolutionMetadataTemplate.t4),
+- [ ] Perform unit tests
+- [ ] Perform functional tests
+- [ ] pr to master and continue on master
 - [ ] Update ReleaseNotes.md and print it to .html using VC
 - [ ] Build the Release Configuration of the solution
 - [ ] rename the folder name Release to UA.ModelDesigner
 - [ ] Create the installation package and publish in on the Release page
-- [ ] Perform functional tests
 - [ ] Update Readme files
-- [ ] Prepare and publish NuGet packages if applicable. 
+- [ ] Prepare and publish NuGet packages if applicable.
 - [ ] Create release front page
   - [ ] Getting Started
   - [ ] Version information

@@ -102,7 +102,7 @@ namespace CAS.UA.Model.Designer.IO
     /// <returns>ProjectTreeNode.</returns>
     void ISolutionConfigurationManagement.ImportNodeSet()
     {
-      IProjectConfigurationManagement _newModel = ProjectConfigurationManagement.ImportNodeSet(this, base.GraphicalUserInterface, x => AssemblyTraceEvent.TraceMessage(x, nameof(ISolutionConfigurationManagement.ImportNodeSet), 486245093));
+      IProjectConfigurationManagement _newModel = ProjectConfigurationManagement.ImportNodeSet(this, base.GraphicalUserInterface, x => AssemblyTraceEvent.Log.TraceMessage(x, nameof(ISolutionConfigurationManagement.ImportNodeSet), 486245093));
       if (_newModel == null)
         return;
       AddProjectTCollection(_newModel);
