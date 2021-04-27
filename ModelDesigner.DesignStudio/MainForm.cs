@@ -439,7 +439,7 @@ namespace CAS.UA.Model.Designer
 
     private void buildToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      m_MainContol.Build(x => AssemblyTraceEvent.TraceMessage(TraceMessage.DiagnosticTraceMessage(x), nameof(m_MainContol.Build), 851392402));
+      m_MainContol.Build(x => AssemblyTraceEvent.Log.TraceMessage(TraceMessage.DiagnosticTraceMessage(x), nameof(m_MainContol.Build), 851392402));
     }
 
     private void stateMachineEditorToolStripMenuItem_Click(object sender, EventArgs e)
