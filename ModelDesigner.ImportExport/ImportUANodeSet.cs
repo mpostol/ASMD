@@ -37,6 +37,7 @@ namespace CAS.UA.Model.Designer.ImportExport
       ModelDesignExport _exporter = new ModelDesignExport();
       _as.InformationModelFactory = _exporter.GetFactory(trace);
       _as.ImportUANodeSet(filePath);
+      //TODO AddressSpacePrototyping - IMNamespace must be required in case of export #584 
       _as.ValidateAndExportModel();
       return _exporter.ExportToObject();
     }
