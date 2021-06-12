@@ -1,14 +1,13 @@
-//___________________________________________________________________________________
+//__________________________________________________________________________________________________
 //
 //  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using System;
 using System.Diagnostics;
 using System.Reflection;
-using UAOOI.SemanticData.UANodeSetValidation;
 using TraceMessage = UAOOI.SemanticData.BuildingErrorsHandling.TraceMessage;
 
 namespace CAS.UA.Model.Designer
@@ -18,10 +17,6 @@ namespace CAS.UA.Model.Designer
   /// </summary>
   internal class AssemblyTraceEvent
   {
-    public AssemblyTraceEvent()
-    {
-      BuildErrorsHandling.Log.TraceEventAction += z => TraceMessage(z, nameof(BuildErrorsHandling.Log), 335372265);
-    }
     internal static AssemblyTraceEvent Log => m_Singleton.Value;
     /// <summary>
     /// Gets the tracer.

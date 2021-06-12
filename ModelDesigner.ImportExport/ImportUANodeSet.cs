@@ -34,11 +34,11 @@ namespace CAS.UA.Model.Designer.ImportExport
       if (!filePath.Exists)
         throw new FileNotFoundException("The imported file does not exist", filePath.FullName);
       IAddressSpaceContext _as = AddressSpaceFactory.AddressSpace;
-      ModelDesignExport _exporter = new ModelDesignExport();
-      _as.InformationModelFactory = _exporter.GetFactory(trace);
-      _as.ImportUANodeSet(filePath);
+      IModelDesignExport _exporter =  ModelDesignExportAPI.GetModelDesignExport();
+      _as.InformationModelFactory = _exporter.GetFactory();
+      Uri uriToBeExported =  _as.ImportUANodeSet(filePath);
       //TODO AddressSpacePrototyping - IMNamespace must be required in case of export #584 
-      _as.ValidateAndExportModel();
+      _as.ValidateAndExportModel(uriToBeExported);
       return _exporter.ExportToObject();
     }
 

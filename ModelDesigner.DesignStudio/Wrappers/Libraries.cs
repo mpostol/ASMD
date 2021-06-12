@@ -9,7 +9,6 @@ using System;
 using System.Linq;
 using System.Xml;
 using UAOOI.SemanticData.UAModelDesignExport.XML;
-
 using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers
