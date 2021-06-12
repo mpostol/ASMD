@@ -170,6 +170,7 @@ namespace CAS.UA.Model.Designer.ImportExport
       {
         using ( StreamWriter stWriter = new StreamWriter( filePathToSave.FullName ) )
         {
+          //TODO Use Common XML serializer to manage xml documents #228
           XmlSerializer xmlSerializer = new XmlSerializer( typeof( topic ) );
           XmlSerializerNamespaces xs = new XmlSerializerNamespaces();
           xs.Add( "", "http://ddue.schemas.microsoft.com/authoring/2003/5" );

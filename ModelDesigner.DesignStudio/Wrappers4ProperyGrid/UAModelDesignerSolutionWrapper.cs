@@ -1,9 +1,9 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration;
 using CAS.UA.Model.Designer.Wrappers;
@@ -13,6 +13,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
   /// <summary>
   /// Instance of this class is to be used as a wrapper by the <see cref="PropertyGrid"/> to expose to the user and
+  //TODO Use Common XML serializer to manage xml documents #228
   /// by the <see cref="XmlSerializer"/> to save information on the solution.
   /// </summary>
   [DefaultProperty("Server")]

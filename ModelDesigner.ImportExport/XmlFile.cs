@@ -1,17 +1,9 @@
-﻿//_______________________________________________________________
-//  Title   : XmlFile - Provides static methods for serialization objects into XML documents and writing the XML document to a file.
-//  System  : Microsoft VisualStudio 2015 / C#
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2017, CAS LODZ POLAND.
-//  TEL: +48 608 61 98 99 
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using System;
 using System.IO;
@@ -25,8 +17,8 @@ namespace CAS.UA.Model.Designer.ImportExport
   /// </summary>
   public static class XmlFile
   {
-
     #region public
+
     /// <summary>
     /// A structure containing dat to be serialized
     /// </summary>
@@ -36,15 +28,18 @@ namespace CAS.UA.Model.Designer.ImportExport
       /// The <see cref="XmlSerializerNamespaces"/> referenced by the object.
       /// </summary>
       public XmlSerializerNamespaces XmlNamespaces;
+
       /// <summary>
       /// The object containing working data to be serialized and saved in the file.
       /// </summary>
       public Type4Serialization Data;
+
       /// <summary>
       ///Name of the stylesheet document.
       /// </summary>
       public string StylesheetName;
     }
+
     /// <summary>
     /// Serializes the specified <paramref name="dataObject" /> and writes the XML document to a file.
     /// </summary>
@@ -56,6 +51,7 @@ namespace CAS.UA.Model.Designer.ImportExport
     {
       WriteXmlFile<type>(dataObject.Data, path, mode, dataObject.StylesheetName, dataObject.XmlNamespaces);
     }
+
     /// <summary>
     /// Serializes the specified <paramref name="dataObject" /> and writes the XML document to a file.
     /// </summary>
@@ -69,6 +65,7 @@ namespace CAS.UA.Model.Designer.ImportExport
     {
       WriteXmlFile<type>(dataObject, path, mode, stylesheetName, null);
     }
+
     /// <summary>
     /// Serializes the specified <paramref name="dataObject" /> and writes the XML document to a file.
     /// </summary>
@@ -86,6 +83,7 @@ namespace CAS.UA.Model.Designer.ImportExport
         throw new ArgumentNullException("path");
       if (dataObject == null)
         throw new ArgumentNullException("content");
+      //TODO Use Common XML serializer to manage xml documents #228
       XmlSerializer _srlzr = new XmlSerializer(typeof(type));
       XmlWriterSettings _setting = new XmlWriterSettings()
       {
@@ -101,6 +99,7 @@ namespace CAS.UA.Model.Designer.ImportExport
         _srlzr.Serialize(_writer, dataObject, xmlNamespaces);
       }
     }
+
     /// <summary>
     /// Serializes the specified <paramref name="dataObject"/> and writes the XML document to a file.
     /// </summary>
@@ -113,6 +112,7 @@ namespace CAS.UA.Model.Designer.ImportExport
     {
       WriteXmlFile<type>(dataObject, path, mode, dataObject.StylesheetName);
     }
+
     /// <summary>
     /// Reads an XML document from the file <paramref name="path"/> and deserializes its content to returned object.
     /// </summary>
@@ -126,13 +126,14 @@ namespace CAS.UA.Model.Designer.ImportExport
       if (string.IsNullOrEmpty(path))
         throw new ArgumentNullException("path");
       type _content = default(type);
+      //TODO Use Common XML serializer to manage xml documents #228
       XmlSerializer _srlzr = new XmlSerializer(typeof(type));
       using (FileStream _docStrm = new FileStream(path, FileMode.Open, FileAccess.Read))
       using (XmlReader _writer = XmlReader.Create(_docStrm))
         _content = (type)_srlzr.Deserialize(_writer);
       return _content;
     }
-    #endregion
 
+    #endregion public
   }
 }
