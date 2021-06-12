@@ -1,9 +1,9 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using System.IO;
 using System.Xml.Serialization;
@@ -65,6 +65,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       get
       {
         StringWriter sw = new System.IO.StringWriter();
+        //TODO Use Common XML serializer to manage xml documents #228
         XmlSerializer serializer = new XmlSerializer(this.ModelDesignerNode.GetType());
         serializer.Serialize(sw, this.ModelDesignerNode);
         return sw.ToString();
