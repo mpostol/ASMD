@@ -79,6 +79,7 @@ namespace CAS.UA.Model.Designer.ImportExport
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
     public static void WriteXmlFile<type>(type dataObject, string path, FileMode mode, string stylesheetName, XmlSerializerNamespaces xmlNamespaces)
     {
+      UAOOI.Common.Infrastructure.Serializers.XmlFile.WriteXmlFile<type>(dataObject, path, mode);
       if (string.IsNullOrEmpty(path))
         throw new ArgumentNullException("path");
       if (dataObject == null)
