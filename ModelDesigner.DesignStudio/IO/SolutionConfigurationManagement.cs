@@ -1,14 +1,13 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021 Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration;
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
-using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Solution;
 using System;
@@ -49,14 +48,20 @@ namespace CAS.UA.Model.Designer.IO
 
     #region TypeGenericConfigurationManagement
 
-    protected override XmlFile.DataToSerialize<UAModelDesignerSolution> PrepareDataToSerialize(UAModelDesignerSolution solutionDesription)
+    protected override string PrepareDataToSerialize()
     {
-      XmlFile.DataToSerialize<UAModelDesignerSolution> _config;
-      _config.Data = solutionDesription;
-      _config.XmlNamespaces = null;
-      _config.StylesheetName = "UAModelDesignerSolution.xslt";
-      return _config;
+      return "UAModelDesignerSolution.xslt";
     }
+
+    //TODO Use Common XML serializer to manage xml documents #228
+    //protected override XmlFile.DataToSerialize<UAModelDesignerSolution> PrepareDataToSerialize(UAModelDesignerSolution solutionDesription)
+    //{
+    //  XmlFile.DataToSerialize<UAModelDesignerSolution> _config;
+    //  _config.Data = solutionDesription;
+    //  _config.XmlNamespaces = null;
+    //  _config.StylesheetName = "UAModelDesignerSolution.xslt";
+    //  return _config;
+    //}
 
     #endregion TypeGenericConfigurationManagement
 

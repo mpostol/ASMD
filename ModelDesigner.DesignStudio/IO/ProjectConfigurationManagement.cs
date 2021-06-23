@@ -62,14 +62,21 @@ namespace CAS.UA.Model.Designer.IO
 
     #region TypeGenericConfigurationManagement<OpcUaModelCompiler.ModelDesign>
 
-    protected override XmlFile.DataToSerialize<OpcUaModelCompiler.ModelDesign> PrepareDataToSerialize(OpcUaModelCompiler.ModelDesign modelDesign)
+    protected override string PrepareDataToSerialize()
     {
-      XmlFile.DataToSerialize<OpcUaModelCompiler.ModelDesign> _config;
-      _config.Data = modelDesign;
-      _config.XmlNamespaces = null;
-      _config.StylesheetName = "OPCUAModelDesign.xslt";
-      return _config;
+      return String.Empty;
     }
+
+    //TODO Use Common XML serializer to manage xml documents #228
+
+    //protected override XmlFile.DataToSerialize<OpcUaModelCompiler.ModelDesign> PrepareDataToSerialize(OpcUaModelCompiler.ModelDesign modelDesign)
+    //{
+    //  XmlFile.DataToSerialize<OpcUaModelCompiler.ModelDesign> _config;
+    //  _config.Data = modelDesign;
+    //  _config.XmlNamespaces = null;
+    //  _config.StylesheetName = "OPCUAModelDesign.xslt";
+    //  return _config;
+    //}
 
     #endregion TypeGenericConfigurationManagement<OpcUaModelCompiler.ModelDesign>
 

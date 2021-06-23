@@ -81,7 +81,10 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Assert.IsNotNull(_newItem.UAModelDesignerProject);
       _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);
       _solutionMock.Verify(x => x.DefaultFileName, Times.Never);
-      ModelDesign _modelDesign = new ModelDesign();
+      ModelDesign _modelDesign = new ModelDesign
+      {
+        Namespaces = new Namespace[] { new Namespace() { Name = "Namespace" } }
+      };
       //test save
       _newItem.Save(_modelDesign);
       _solutionMock.Verify(x => x.DefaultDirectory, Times.AtLeastOnce);

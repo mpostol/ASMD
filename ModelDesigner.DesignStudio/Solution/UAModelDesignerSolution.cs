@@ -1,21 +1,23 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Xml;
 
 namespace CAS.UA.Model.Designer.Solution
 {
   /// <summary>
   /// Class UAModelDesignerSolution.
   /// </summary>
-  public partial class UAModelDesignerSolution
+  public partial class UAModelDesignerSolution : UAOOI.Common.Infrastructure.Serializers.INamespaces
   {
     /// <summary>
     /// Creates an empty solution model.
@@ -29,6 +31,12 @@ namespace CAS.UA.Model.Designer.Solution
         Projects = new UAModelDesignerProject[] { },
         ServerDetails = UAModelDesignerSolutionServerDetails.CreateEmptyInstance()
       };
+    }
+
+    public IEnumerable<XmlQualifiedName> GetNamespaces()
+    {
+      //TODO Use Common XML serializer to manage xml documents #228
+      return new List<XmlQualifiedName>();
     }
 
     [OnDeserialized()]
@@ -48,6 +56,7 @@ namespace CAS.UA.Model.Designer.Solution
       return new UAModelDesignerSolutionServerDetails() { codebase = string.Empty, configuration = string.Empty };
     }
   }
+
   public partial class UAModelDesignerProject
   {
     internal static UAModelDesignerProject CreateEmpty(string name)
