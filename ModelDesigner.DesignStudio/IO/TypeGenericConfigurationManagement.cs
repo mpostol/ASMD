@@ -19,7 +19,7 @@ namespace CAS.UA.Model.Designer.IO
   /// <typeparam name="Type4Serialization">The type of the associated node configuration to be serialized.</typeparam>
   /// <seealso cref="ConfigurationManagement" />
   internal abstract class TypeGenericConfigurationManagement<Type4Serialization> : ConfigurationManagement
-    where Type4Serialization : class, new()
+    where Type4Serialization : class, UAOOI.Common.Infrastructure.Serializers.INamespaces, new()
   {
     #region constructors
 
@@ -74,10 +74,10 @@ namespace CAS.UA.Model.Designer.IO
     {
       try
       {
-        XmlFile.DataToSerialize<Type4Serialization> dataToSerialize = PrepareDataToSerialize(modelDesign);
+        string stylesheetName = PrepareDataToSerialize();
         GraphicalUserInterface.UseWaitCursor = true;
         BeforeWrite?.Invoke(this, new StringEventArgs(DefaultFileName));
-        XmlFile.WriteXmlFile<Type4Serialization>(dataToSerialize.Data, DefaultFileName, FileMode.Create, dataToSerialize.StylesheetName, dataToSerialize.XmlNamespaces);
+        XmlFile.WriteXmlFile<Type4Serialization>(modelDesign, DefaultFileName, FileMode.Create, stylesheetName);
         ChangesArePresent = false;
       }
       catch (Exception ex)
@@ -89,8 +89,8 @@ namespace CAS.UA.Model.Designer.IO
         GraphicalUserInterface.UseWaitCursor = false;
       }
     }
-
-    protected abstract XmlFile.DataToSerialize<Type4Serialization> PrepareDataToSerialize(Type4Serialization modelDesign);
+    //TODO Use Common XML serializer to manage xml documents #228
+    protected abstract string PrepareDataToSerialize();
 
     /// <summary>
     /// Reads the configuration.

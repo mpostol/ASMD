@@ -16,15 +16,15 @@
 namespace CAS.UA.Model.Designer.ImportExport
 {
   
-  /// <summary>
-  /// Represents XML file style sheet name provider
-  /// </summary>
-  public interface IStylesheetNameProvider
-  {
-    /// <summary>
-    /// The style sheet name
-    /// </summary>
-    string StylesheetName { get; }
+  ///// <summary>
+  ///// Represents XML file style sheet name provider
+  ///// </summary>
+  //public interface IStylesheetNameProvider
+  //{
+  //  /// <summary>
+  //  /// The style sheet name
+  //  /// </summary>
+  //  string StylesheetName { get; }
 
-  }
+  //}
 }
