@@ -77,7 +77,7 @@ namespace CAS.UA.Model.Designer.IO
         string stylesheetName = PrepareDataToSerialize();
         GraphicalUserInterface.UseWaitCursor = true;
         BeforeWrite?.Invoke(this, new StringEventArgs(DefaultFileName));
-        XmlFile.WriteXmlFile<Type4Serialization>(modelDesign, DefaultFileName, FileMode.Create, stylesheetName);
+        UAOOI.Common.Infrastructure.Serializers.XmlFile.WriteXmlFile<Type4Serialization>(modelDesign, DefaultFileName, FileMode.Create, stylesheetName);
         ChangesArePresent = false;
       }
       catch (Exception ex)

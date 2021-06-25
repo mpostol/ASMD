@@ -194,7 +194,7 @@
       <HintPath>..\packages\UAOOI.ASMD.GUIAbstractions.1.0.0-Alpha\lib\netstandard2.0\UAOOI.ASMD.GUIAbstractions.dll</HintPath>
     </Reference>
     <Reference Include="UAOOI.Common.Infrastructure, Version=6.3.3.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.Common.Infrastructure.6.3.3-Golf\lib\netstandard2.0\UAOOI.Common.Infrastructure.dll</HintPath>
+      <HintPath>..\packages\UAOOI.Common.Infrastructure.6.4.1-Hotel\lib\netstandard2.0\UAOOI.Common.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="UAOOI.Configuration.Core, Version=4.0.1.1, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
       <HintPath>..\packages\UAOOI.Configuration.Core.4.0.1\lib\netstandard2.0\UAOOI.Configuration.Core.dll</HintPath>
@@ -205,11 +205,11 @@
     <Reference Include="UAOOI.SemanticData.InformationModelFactory, Version=5.1.0.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
       <HintPath>..\packages\UAOOI.SemanticData.InformationModelFactory.5.1.0\lib\netstandard2.0\UAOOI.SemanticData.InformationModelFactory.dll</HintPath>
     </Reference>
-    <Reference Include="UAOOI.SemanticData.UAModelDesignExport, Version=6.3.7.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.SemanticData.UAModelDesignExport.6.3.7-Golf\lib\netstandard2.0\UAOOI.SemanticData.UAModelDesignExport.dll</HintPath>
+    <Reference Include="UAOOI.SemanticData.UAModelDesignExport, Version=6.4.1.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.SemanticData.UAModelDesignExport.6.4.1-Hotel\lib\netstandard2.0\UAOOI.SemanticData.UAModelDesignExport.dll</HintPath>
     </Reference>
-    <Reference Include="UAOOI.SemanticData.UANodeSetValidation, Version=6.3.6.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.SemanticData.UANodeSetValidation.6.3.6-Golf\lib\netstandard2.0\UAOOI.SemanticData.UANodeSetValidation.dll</HintPath>
+    <Reference Include="UAOOI.SemanticData.UANodeSetValidation, Version=6.4.1.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.SemanticData.UANodeSetValidation.6.4.1-Hotel\lib\netstandard2.0\UAOOI.SemanticData.UANodeSetValidation.dll</HintPath>
     </Reference>
     <Reference Include="UAOOI.Windows.Forms, Version=8.1.1.40405, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\UAOOI.Windows.Forms.8.1.1-Alpha\lib\net451\UAOOI.Windows.Forms.dll</HintPath>
