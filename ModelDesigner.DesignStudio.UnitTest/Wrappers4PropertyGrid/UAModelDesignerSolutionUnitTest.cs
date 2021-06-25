@@ -38,7 +38,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
     [TestMethod]
     public void SaveConfigurationTest()
     {
-      XmlFile.WriteXmlFile<UAModelDesignerSolution>(_referenceModel, m_ReferenceModelPath, FileMode.Create, "SolutionConfiguration.xslt");
+      UAOOI.Common.Infrastructure.Serializers.XmlFile.WriteXmlFile<UAModelDesignerSolution>(_referenceModel, m_ReferenceModelPath, FileMode.Create, "SolutionConfiguration.xslt");
       FileInfo _referenceFile = new FileInfo(m_ReferenceModelPath);
       Assert.IsTrue(_referenceFile.Exists);
       Assert.AreEqual<long>(1178L, _referenceFile.Length);
