@@ -166,6 +166,7 @@
     <Compile Include="ExportingStructures\Glossary.cs" />
     <Compile Include="ExportingStructures\TableStructure.cs" />
     <Compile Include="ExportingStructures\TermWithDefinitionStructure.cs" />
+    <Compile Include="ExportingStructures\topic.cs" />
     <Compile Include="IASMDExporter.cs" />
     <Compile Include="ImportMenuFactory.cs" />
     <Compile Include="ImportOPCDAAddressSpace.cs" />
@@ -184,7 +185,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ToolStripMenuItemInfo.cs" />
-    <Compile Include="XmlFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

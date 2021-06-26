@@ -150,9 +150,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </Content>
-    <None Include="TestData\DemoConfiguration\BoilerType.BuildTest.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="TestData\DemoConfiguration\BoilerType.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -11,13 +11,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
+using UAOOI.Common.Infrastructure.Serializers;
 
 namespace CAS.UA.Model.Designer.Solution
 {
   /// <summary>
   /// Class UAModelDesignerSolution.
   /// </summary>
-  public partial class UAModelDesignerSolution : UAOOI.Common.Infrastructure.Serializers.INamespaces
+  public partial class UAModelDesignerSolution : INamespaces
   {
     /// <summary>
     /// Creates an empty solution model.
@@ -35,7 +36,6 @@ namespace CAS.UA.Model.Designer.Solution
 
     public IEnumerable<XmlQualifiedName> GetNamespaces()
     {
-      //TODO Use Common XML serializer to manage xml documents #228
       return new List<XmlQualifiedName>();
     }
 

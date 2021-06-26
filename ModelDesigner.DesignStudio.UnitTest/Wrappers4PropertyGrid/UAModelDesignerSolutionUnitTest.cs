@@ -4,11 +4,11 @@
 //
 //___________________________________________________________________________________
 
-using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Solution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using UAOOI.Common.Infrastructure.Serializers;
 
 namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
 {

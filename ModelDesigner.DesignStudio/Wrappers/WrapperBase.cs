@@ -6,6 +6,7 @@
 //__________________________________________________________________________________________________
 
 using System.IO;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace CAS.UA.Model.Designer.Wrappers
@@ -57,15 +58,14 @@ namespace CAS.UA.Model.Designer.Wrappers
     public override void MenuItemCopy_Action()
     {
       base.MenuItemCopy_Action();
-      System.Windows.Forms.Clipboard.SetText(this.ModelDesignerNodeStringRepresentation);
+      Clipboard.SetText(this.ModelDesignerNodeStringRepresentation);
     }
 
     protected string ModelDesignerNodeStringRepresentation
     {
       get
       {
-        StringWriter sw = new System.IO.StringWriter();
-        //TODO Use Common XML serializer to manage xml documents #228
+        StringWriter sw = new StringWriter();
         XmlSerializer serializer = new XmlSerializer(this.ModelDesignerNode.GetType());
         serializer.Serialize(sw, this.ModelDesignerNode);
         return sw.ToString();

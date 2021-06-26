@@ -9,7 +9,6 @@ using CAS.MAML.HelpTopics.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml.Serialization;
 
 namespace CAS.UA.Model.Designer.HelpContent
 {
@@ -91,14 +90,7 @@ namespace CAS.UA.Model.Designer.HelpContent
     {
       try
       {
-        StreamReader reader = new StreamReader(stream);
-        Topics tpcs = null;
-        using (reader)
-        {
-          //TODO Use Common XML serializer to manage xml documents #228
-          XmlSerializer xmlSerializer = new XmlSerializer(typeof(Topics));
-          tpcs = (Topics)xmlSerializer.Deserialize(reader);
-        }
+        Topics tpcs = UAOOI.Common.Infrastructure.Serializers.XmlFile.ReadXmlFile<Topics>(stream);
         if (tpcs == null)
           return null;
         return tpcs.CreateDictionary();

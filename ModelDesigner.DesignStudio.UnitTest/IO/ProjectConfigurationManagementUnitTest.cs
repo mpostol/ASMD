@@ -160,7 +160,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       Mock<IGraphicalUserInterface> _guiuMocck = new Mock<IGraphicalUserInterface>();
       _guiuMocck.SetupGet(x => x.MessageBoxShowWarningAskYN).Returns(() => (t, c) => true);
       UAModelDesignerProject _projectDescriptor = _projectDescriptor = UAModelDesignerProject.CreateEmpty("BoilerType");
-      _projectDescriptor.FileName = @"DemoConfiguration\BoilerType.BuildTest.xml";
+      _projectDescriptor.FileName = @"DemoConfiguration\BoilerType.xml";
       IProjectConfigurationManagement _newItemUnderTest = ProjectConfigurationManagement.ImportModelDesign(_solutionMock.Object, _guiuMocck.Object, _projectDescriptor);
       List<string> _log = new List<string>();
       _newItemUnderTest.Build(x => _log.Add(x));
