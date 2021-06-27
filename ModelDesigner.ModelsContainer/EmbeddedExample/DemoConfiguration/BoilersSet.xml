@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModelDesign xmlns:bt="http://tempuri.org/UA/Examples/BoilerType" xmlns:bs="http://commsvr.com/UA/Examples/BoilersSet" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:OpcUa="http://opcfoundation.org/UA/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" TargetNamespace="http://commsvr.com/UA/Examples/BoilersSet" TargetXmlNamespace="http://commsvr.com/UA/Examples/BoilersSet" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
   <Namespaces>
-    <Namespace Name="OpcUa" Prefix="Opc.Ua" InternalPrefix="Opc.Ua.Server" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd" XmlPrefix="OpcUa">http://opcfoundation.org/UA/</Namespace>
+    <Namespace Name="OpcUa" Prefix="Opc.Ua" InternalPrefix="Opc.Ua.Server" XmlNamespace="http://opcfoundation.org/UA/" XmlPrefix="OpcUa">http://opcfoundation.org/UA/</Namespace>
     <Namespace Name="BoilerType" Prefix="bt" XmlNamespace="http://tempuri.org/UA/Examples/BoilerType" XmlPrefix="bt" FilePath="BoilerType">http://tempuri.org/UA/Examples/BoilerType</Namespace>
     <Namespace Name="BoilersSet" Prefix="bs" XmlNamespace="http://commsvr.com/UA/Examples/BoilersSet" XmlPrefix="bs" FilePath="BoilersSet">http://commsvr.com/UA/Examples/BoilersSet</Namespace>
   </Namespaces>
