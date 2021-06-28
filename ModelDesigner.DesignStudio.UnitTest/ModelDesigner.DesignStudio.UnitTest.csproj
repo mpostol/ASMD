@@ -121,8 +121,8 @@
     <Reference Include="UAOOI.SemanticData.InformationModelFactory, Version=5.1.0.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
       <HintPath>..\packages\UAOOI.SemanticData.InformationModelFactory.5.1.0\lib\netstandard2.0\UAOOI.SemanticData.InformationModelFactory.dll</HintPath>
     </Reference>
-    <Reference Include="UAOOI.SemanticData.UAModelDesignExport, Version=6.4.1.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.SemanticData.UAModelDesignExport.6.4.1-Hotel\lib\netstandard2.0\UAOOI.SemanticData.UAModelDesignExport.dll</HintPath>
+    <Reference Include="UAOOI.SemanticData.UAModelDesignExport, Version=6.4.2.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.SemanticData.UAModelDesignExport.6.4.2-Hotel\lib\netstandard2.0\UAOOI.SemanticData.UAModelDesignExport.dll</HintPath>
     </Reference>
     <Reference Include="UAOOI.SemanticData.UANodeSetValidation, Version=6.4.1.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
       <HintPath>..\packages\UAOOI.SemanticData.UANodeSetValidation.6.4.1-Hotel\lib\netstandard2.0\UAOOI.SemanticData.UANodeSetValidation.dll</HintPath>
@@ -150,9 +150,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </Content>
-    <None Include="TestData\DemoConfiguration\BoilerType.BuildTest.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="TestData\DemoConfiguration\BoilerType.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

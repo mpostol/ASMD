@@ -1,13 +1,12 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
 //  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
-using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Solution;
 using System;
@@ -60,25 +59,18 @@ namespace CAS.UA.Model.Designer.IO
 
     #endregion private
 
-    #region TypeGenericConfigurationManagement<OpcUaModelCompiler.ModelDesign>
+    #region TypeGenericConfigurationManagement
 
-    protected override string PrepareDataToSerialize()
+    /// <summary>
+    /// Gets the name of the stylesheet.
+    /// </summary>
+    /// <returns>name of the stylesheet is if applicable</returns>
+    protected override string GetStylesheetName()
     {
       return String.Empty;
     }
 
-    //TODO Use Common XML serializer to manage xml documents #228
-
-    //protected override XmlFile.DataToSerialize<OpcUaModelCompiler.ModelDesign> PrepareDataToSerialize(OpcUaModelCompiler.ModelDesign modelDesign)
-    //{
-    //  XmlFile.DataToSerialize<OpcUaModelCompiler.ModelDesign> _config;
-    //  _config.Data = modelDesign;
-    //  _config.XmlNamespaces = null;
-    //  _config.StylesheetName = "OPCUAModelDesign.xslt";
-    //  return _config;
-    //}
-
-    #endregion TypeGenericConfigurationManagement<OpcUaModelCompiler.ModelDesign>
+    #endregion TypeGenericConfigurationManagement
 
     #region constructor
 

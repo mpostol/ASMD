@@ -12,9 +12,7 @@ using System.ComponentModel;
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
   /// <summary>
-  /// Instance of this class is to be used as a wrapper by the <see cref="PropertyGrid"/> to expose to the user and
-  //TODO Use Common XML serializer to manage xml documents #228
-  /// by the <see cref="XmlSerializer"/> to save information on the solution.
+  /// Instance of this class is to be used as a wrapper to expose to the user
   /// </summary>
   [DefaultProperty("Server")]
   internal class UAModelDesignerSolutionWrapper : NameWithEventBase<ISolutionTreeNodeUI>, IViewModel

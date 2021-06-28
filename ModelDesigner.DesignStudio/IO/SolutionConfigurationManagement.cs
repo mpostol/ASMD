@@ -48,20 +48,14 @@ namespace CAS.UA.Model.Designer.IO
 
     #region TypeGenericConfigurationManagement
 
-    protected override string PrepareDataToSerialize()
+    /// <summary>
+    /// Gets the name of the stylesheet.
+    /// </summary>
+    /// <returns>name of the stylesheet is if applicable</returns>
+    protected override string GetStylesheetName()
     {
       return "UAModelDesignerSolution.xslt";
     }
-
-    //TODO Use Common XML serializer to manage xml documents #228
-    //protected override XmlFile.DataToSerialize<UAModelDesignerSolution> PrepareDataToSerialize(UAModelDesignerSolution solutionDesription)
-    //{
-    //  XmlFile.DataToSerialize<UAModelDesignerSolution> _config;
-    //  _config.Data = solutionDesription;
-    //  _config.XmlNamespaces = null;
-    //  _config.StylesheetName = "UAModelDesignerSolution.xslt";
-    //  return _config;
-    //}
 
     #endregion TypeGenericConfigurationManagement
 

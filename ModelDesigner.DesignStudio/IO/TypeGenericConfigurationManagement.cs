@@ -1,15 +1,16 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
+
 
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
-using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.IO;
+using UAOOI.Common.Infrastructure.Serializers;
 
 namespace CAS.UA.Model.Designer.IO
 {
@@ -74,7 +75,7 @@ namespace CAS.UA.Model.Designer.IO
     {
       try
       {
-        string stylesheetName = PrepareDataToSerialize();
+        string stylesheetName = GetStylesheetName();
         GraphicalUserInterface.UseWaitCursor = true;
         BeforeWrite?.Invoke(this, new StringEventArgs(DefaultFileName));
         UAOOI.Common.Infrastructure.Serializers.XmlFile.WriteXmlFile<Type4Serialization>(modelDesign, DefaultFileName, FileMode.Create, stylesheetName);
@@ -89,8 +90,12 @@ namespace CAS.UA.Model.Designer.IO
         GraphicalUserInterface.UseWaitCursor = false;
       }
     }
-    //TODO Use Common XML serializer to manage xml documents #228
-    protected abstract string PrepareDataToSerialize();
+
+    /// <summary>
+    /// Gets the name of the stylesheet.
+    /// </summary>
+    /// <returns>name of the stylesheet is if applicable</returns>
+    protected abstract string GetStylesheetName();
 
     /// <summary>
     /// Reads the configuration.

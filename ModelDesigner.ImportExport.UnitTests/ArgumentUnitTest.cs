@@ -1,14 +1,15 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.CommServer.UA.Common;
 using CAS.UA.Common.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
+using UAOOI.Common.Infrastructure.Serializers;
 
 namespace CAS.UA.Model.Designer.ImportExport.UT
 {

@@ -68,28 +68,30 @@ namespace CAS.UA.Model.Designer.Wrappers
         return null;
       try
       {
-        StringReader stringReader = new StringReader(modelDesignerNodeStringRepresentation);
-        XmlTextReader xmlTextReader = new XmlTextReader(stringReader)
+        Type SerializedType = null;
+        using (StringReader stringReader = new StringReader(modelDesignerNodeStringRepresentation))
         {
-          WhitespaceHandling = WhitespaceHandling.None
-        };
-        XmlDocument xmlDocument = new XmlDocument();
-        xmlDocument.Load(xmlTextReader);
-        if (xmlDocument.DocumentElement == null)
-          return null;
-        string SerializedTypeAsString = typeof(OpcUaModelCompiler.NodeDesign).Namespace + "." + xmlDocument.DocumentElement.Name;
-        Type SerializedType = Type.GetType(SerializedTypeAsString);
-        if (SerializedType == null)
-        {
-          SerializedTypeAsString += ", OpcUaModelCompiler"; // we have to try also load to from different assembly
+          XmlTextReader xmlTextReader = new XmlTextReader(stringReader)
+          {
+            WhitespaceHandling = WhitespaceHandling.None
+          };
+          XmlDocument xmlDocument = new XmlDocument();
+          xmlDocument.Load(xmlTextReader);
+          if (xmlDocument.DocumentElement == null)
+            return null;
+          string SerializedTypeAsString = typeof(OpcUaModelCompiler.NodeDesign).Namespace + "." + xmlDocument.DocumentElement.Name;
           SerializedType = Type.GetType(SerializedTypeAsString);
+          if (SerializedType == null)
+          {
+            SerializedTypeAsString += ", OpcUaModelCompiler"; // we have to try also load to from different assembly
+            SerializedType = Type.GetType(SerializedTypeAsString);
+          }
+          if (SerializedType == null)
+            return null;
         }
-        if (SerializedType == null)
-          return null;
-        //TODO Use Common XML serializer to manage xml documents #228
         XmlSerializer serializer = new XmlSerializer(SerializedType);
-        stringReader = new StringReader(modelDesignerNodeStringRepresentation);
-        return serializer.Deserialize(stringReader);
+        using (StringReader reader = new StringReader(modelDesignerNodeStringRepresentation))
+          return serializer.Deserialize(reader);
       }
       catch
       {
