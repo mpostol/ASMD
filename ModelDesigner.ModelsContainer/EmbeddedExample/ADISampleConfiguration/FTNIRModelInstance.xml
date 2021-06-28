@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ModelDesign xmlns:FTNIRInstance="http://cas.eu/UA/FTNIR/" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:DI="http://opcfoundation.org/UA/DI/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:OpcUa="http://opcfoundation.org/UA/" xmlns:FTNIR="http://opcfoundation.org/UA/FTNIR/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADI="http://opcfoundation.org/UA/ADI/" TargetNamespace="http://cas.eu/UA/FTNIR/" TargetXmlNamespace="http://cas.eu/UA/FTNIR/" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModelDesign xmlns:DI="http://opcfoundation.org/UA/DI/" xmlns:FTNIR="http://opcfoundation.org/UA/FTNIR/" xmlns:ADI="http://opcfoundation.org/UA/ADI/" xmlns:OpcUa="http://opcfoundation.org/UA/" xmlns:FTNIRInstance="http://cas.eu/UA/FTNIR/" TargetNamespace="http://cas.eu/UA/FTNIR/" TargetXmlNamespace="http://cas.eu/UA/FTNIR/" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
   <Namespaces>
     <Namespace Name="CasFtnir" Prefix="FTNIRInstance" XmlNamespace="http://cas.eu/UA/FTNIR/" XmlPrefix="FTNIRInstance">http://cas.eu/UA/FTNIR/</Namespace>
     <Namespace Name="OpcAdi" Prefix="Opc.Ua.Adi" XmlNamespace="http://opcfoundation.org/UA/ADI/" XmlPrefix="ADI" FilePath=".\ADISampleConfiguration\OpcUaAdiModel">http://opcfoundation.org/UA/ADI/</Namespace>

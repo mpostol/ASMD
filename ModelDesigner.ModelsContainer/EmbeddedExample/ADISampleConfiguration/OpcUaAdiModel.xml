@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ModelDesign xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:DI="http://opcfoundation.org/UA/DI/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:OpcUa="http://opcfoundation.org/UA/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADI="http://opcfoundation.org/UA/ADI/" TargetNamespace="http://opcfoundation.org/UA/ADI/" TargetXmlNamespace="http://opcfoundation.org/UA/ADI/" TargetVersion="1.01" TargetPublicationDate="2013-07-31T00:00:00Z" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModelDesign xmlns:DI="http://opcfoundation.org/UA/DI/" xmlns:ADI="http://opcfoundation.org/UA/ADI/" xmlns:OpcUa="http://opcfoundation.org/UA/" TargetNamespace="http://opcfoundation.org/UA/ADI/" TargetVersion="1.01" TargetPublicationDate="2013-07-31T00:00:00Z" TargetXmlNamespace="http://opcfoundation.org/UA/ADI/" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
   <Namespaces>
     <Namespace Name="OpcUaAdi" Prefix="Opc.Ua.Adi" XmlNamespace="http://opcfoundation.org/UA/ADI/" XmlPrefix="ADI">http://opcfoundation.org/UA/ADI/</Namespace>
     <Namespace Name="OpcUaDi" Prefix="Opc.Ua.Di" XmlNamespace="http://opcfoundation.org/UA/DI/" XmlPrefix="DI" FilePath="OpcUaDiModel">http://opcfoundation.org/UA/DI/</Namespace>
