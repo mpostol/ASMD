@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModelDesign xmlns:DI="http://opcfoundation.org/UA/DI/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:OpcUa="http://opcfoundation.org/UA/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" TargetNamespace="http://opcfoundation.org/UA/DI/" TargetXmlNamespace="http://opcfoundation.org/UA/DI/" TargetVersion="1.01" TargetPublicationDate="2012-12-31T00:00:00Z" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
   <Namespaces>
-    <Namespace Name="OpcUaDi" Prefix="Opc.Ua.Di" XmlNamespace="http://opcfoundation.org/UA/DI/Types.xsd" XmlPrefix="DI">http://opcfoundation.org/UA/DI/</Namespace>
-    <Namespace Name="OpcUa" Prefix="Opc.Ua" InternalPrefix="Opc.Ua.Server" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd" XmlPrefix="OpcUa">http://opcfoundation.org/UA/</Namespace>
+    <Namespace Name="OpcUaDi" Prefix="Opc.Ua.Di" XmlNamespace="http://opcfoundation.org/UA/DI/" XmlPrefix="DI">http://opcfoundation.org/UA/DI/</Namespace>
+    <Namespace Name="OpcUa" Prefix="Opc.Ua" InternalPrefix="Opc.Ua.Server" XmlNamespace="http://opcfoundation.org/UA/" XmlPrefix="OpcUa">http://opcfoundation.org/UA/</Namespace>
   </Namespaces>
   <ReferenceType SymbolicName="DI:ConnectsTo" BaseType="OpcUa:HierarchicalReferences" Symmetric="true">
     <Description>Used to indicate that source and target Node have a topological connection.</Description>
