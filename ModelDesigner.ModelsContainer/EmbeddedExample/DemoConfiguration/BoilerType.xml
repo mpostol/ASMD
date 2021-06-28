@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ModelDesign xmlns:bt="http://tempuri.org/UA/Examples/BoilerType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:OpcUa="http://opcfoundation.org/UA/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" TargetNamespace="http://tempuri.org/UA/Examples/BoilerType" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModelDesign xmlns:bt="http://tempuri.org/UA/Examples/BoilerType" xmlns:OpcUa="http://opcfoundation.org/UA/" TargetNamespace="http://tempuri.org/UA/Examples/BoilerType" xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
   <Namespaces>
     <Namespace Name="OpcUa" Prefix="Opc.Ua" InternalPrefix="Opc.Ua.Server" XmlNamespace="http://opcfoundation.org/UA/" XmlPrefix="OpcUa">http://opcfoundation.org/UA/</Namespace>
     <Namespace Name="BoilerType" Prefix="bt" XmlNamespace="http://tempuri.org/UA/Examples/BoilerType" XmlPrefix="bt" FilePath="BoilerType">http://tempuri.org/UA/Examples/BoilerType</Namespace>
