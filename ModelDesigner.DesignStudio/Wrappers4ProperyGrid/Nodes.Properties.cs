@@ -216,6 +216,28 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Namespace")
     ]
     public string XmlPrefix { get; set; }
+    /// <summary>
+    /// Gets or sets the publication date.
+    /// </summary>
+    /// <value>The name.</value>
+    [
+    DisplayName("Publication Date"),
+    BrowsableAttribute(true),
+    DescriptionAttribute("When the model was published. This value is used for comparisons if the Model is defined in multiple files."),
+    CategoryAttribute("Namespace")
+    ]
+    public string PublicationDate { get; set; }
+    /// <summary>
+    /// Gets or sets the version.
+    /// </summary>
+    /// <value>The version.</value> 
+    [
+    DisplayName("Version"),
+    BrowsableAttribute(true),
+    DescriptionAttribute("The version of the model defined. This is a human readable string and not intended for programmatic comparisons."),
+    CategoryAttribute("Namespace")
+    ]
+    public string Version { get; set; }
 
     #endregion public properties
   }
