@@ -216,6 +216,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Namespace")
     ]
     public string XmlPrefix { get; set; }
+
     /// <summary>
     /// Gets or sets the publication date.
     /// </summary>
@@ -227,10 +228,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Namespace")
     ]
     public string PublicationDate { get; set; }
+
     /// <summary>
     /// Gets or sets the version.
     /// </summary>
-    /// <value>The version.</value> 
+    /// <value>The version.</value>
     [
     DisplayName("Version"),
     BrowsableAttribute(true),
@@ -412,6 +414,18 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
     CategoryAttribute("Parameter")
     ]
     public string ArrayDimensions { get; set; }
+
+    /// <summary>
+    /// Gets or sets the bit mask.
+    /// </summary>
+    /// <value>The bit mask.</value>
+    [
+    DisplayName("BitMask"),
+    BrowsableAttribute(true),
+    DescriptionAttribute("The optional BitMask provides the bit mask in an array of Booleans"),
+    CategoryAttribute("Parameter")
+    ]
+    public string BitMask { get; set; }
 
     #endregion public properties
   }

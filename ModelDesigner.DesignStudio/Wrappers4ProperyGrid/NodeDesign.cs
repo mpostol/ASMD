@@ -314,6 +314,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         this.Identifier = child.Identifier;
       this.Name = child.Name;
       this.Description = new LocalizedText(child.Description);
+      this.BitMask = child.BitMask;
     }
 
     protected override void UpdateModelNode(OpcUaModelCompiler.Parameter node)
@@ -325,7 +326,9 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.Identifier = this.Identifier.GetValueOrDefault();
       node.Name = this.Name;
       node.Description = this.Description.Source;
+      node.BitMask = this.BitMask;
     }
+
   }
 
   #endregion class Parameter
