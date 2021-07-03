@@ -244,6 +244,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       this.XmlNamespace = child.XmlNamespace;
       this.FilePath = child.FilePath;
       this.XmlPrefix = child.XmlPrefix;
+      this.PublicationDate = child.PublicationDate;
+      this.Version = child.Version;
     }
 
     protected override void UpdateModelNode(OpcUaModelCompiler.Namespace node)
@@ -255,6 +257,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.XmlNamespace = this.XmlNamespace;
       node.FilePath = this.FilePath;
       node.XmlPrefix = this.XmlPrefix;
+      node.PublicationDate = this.PublicationDate;
+      node.Version = this.Version;
     }
   }
 
@@ -310,6 +314,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         this.Identifier = child.Identifier;
       this.Name = child.Name;
       this.Description = new LocalizedText(child.Description);
+      this.BitMask = child.BitMask;
     }
 
     protected override void UpdateModelNode(OpcUaModelCompiler.Parameter node)
@@ -321,7 +326,9 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.Identifier = this.Identifier.GetValueOrDefault();
       node.Name = this.Name;
       node.Description = this.Description.Source;
+      node.BitMask = this.BitMask;
     }
+
   }
 
   #endregion class Parameter
