@@ -411,8 +411,14 @@
     <Compile Include="AssemblyTraceEvent.cs" />
     <Compile Include="Types\BuildInXmlQualifiedNames.cs" />
     <Compile Include="Wrappers4ProperyGrid\DocumentationAttribute.cs" />
+    <Compile Include="Wrappers4ProperyGrid\Editors\NotSetValueEditor.cs" />
+    <Compile Include="Wrappers4ProperyGrid\Editors\RangeValueValueEditor.cs" />
+    <Compile Include="Wrappers4ProperyGrid\Editors\TypeListConverter.cs" />
+    <Compile Include="Wrappers4ProperyGrid\Editors\ValueEditor.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\VariableValueEditor.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\XmlQualifiedNameEditorWithDefaultValue.cs" />
+    <Compile Include="Wrappers4ProperyGrid\Editors\XmlStandardValueEditor.cs" />
+    <Compile Include="Wrappers4ProperyGrid\Editors\XmValueValueEditor.cs" />
     <Compile Include="Wrappers\InstanceIdentifier.cs" />
     <Compile Include="Wrappers4ProperyGrid\LocalizedText.cs" />
     <Compile Include="Wrappers4ProperyGrid\NameWithEventBase.cs" />
