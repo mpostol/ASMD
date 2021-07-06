@@ -92,7 +92,7 @@ namespace CAS.UA.Model.Designer.StateMachineEditor
     {
       if (selectedTransitionButton.TransitionData != null)
       {
-        ((BaseTreeNode)selectedTransitionButton.TransitionData.InstanceDesignNode.Parent).Parent.Remove((BaseTreeNode)selectedTransitionButton.TransitionData.InstanceDesignNode.Parent);
+        ((IBaseModel)selectedTransitionButton.TransitionData.InstanceDesignNode.Parent).Parent.Remove((IBaseModel)selectedTransitionButton.TransitionData.InstanceDesignNode.Parent);
         selectedTransitionButton.Image = null;
         selectedTransitionButton.FlatStyle = FlatStyle.Flat;
       }

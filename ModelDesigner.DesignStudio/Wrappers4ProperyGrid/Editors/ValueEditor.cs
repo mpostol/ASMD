@@ -17,7 +17,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     /// Initializes a new instance of the <see cref="ValueEditor"/> class.
     /// </summary>
     /// <param name="typeName">Name of the type - one of the types defined in the <see cref="CAS.UA.Model.Designer.Types"/> namespace.</param>
-    internal ValueEditor(string typeName)
+    protected ValueEditor(string typeName)
     {
       TypeName = typeName;
     }

@@ -180,6 +180,8 @@
     </Compile>
     <Compile Include="ModelCompilerExistWUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\DocumentationAttributeUnitTest.cs" />
+    <Compile Include="Wrappers4PropertyGrid\Editors\XmlQualifiedNameEditorWithDefaultValueUnitTest.cs" />
+    <Compile Include="Wrappers4PropertyGrid\Editors\ValueEditorUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\ModelDesignUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\ParameterUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\UAModelDesignerSolutionWrapperTests.cs" />

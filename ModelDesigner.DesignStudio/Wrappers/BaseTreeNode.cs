@@ -1,9 +1,9 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
 //  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using System;
 using System.Collections;
@@ -20,6 +20,28 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     string ToolTipText { get; set; }
     string Text { get; set; }
+
+    /// <summary>
+    /// Gets or sets the parent node in the model.
+    /// </summary>
+    /// <value>The parent node.</value>
+    IBaseModel Parent { get; set; }
+
+    string[] AvailiableNamespaces { get; }
+
+    void RaiseOnChangeHandler();
+
+    bool TestIfReadOnlyAndRetrunTrueIfReadOnly();
+
+    /// <summary>
+    /// Gets the target namespace.
+    /// </summary>
+    /// <returns>The target namespace.</returns>
+    string GetTargetNamespace();
+
+    void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed);
+
+    bool Remove(IBaseModel item);
   }
 
   /// <summary>
@@ -27,11 +49,14 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// </summary>
   internal abstract class BaseTreeNode : IBaseModel
   {
-    #region private
+    #region constructor
 
-    private List<IBaseModel> m_Children = new List<IBaseModel>();
-    private string m_Text;
-    private string m_ToolTipText;
+    public BaseTreeNode(string text)
+    {
+      m_Text = text;
+    }
+
+    #endregion constructor
 
     //TextChanged
     internal class TextEventArgs : EventArgs
@@ -44,11 +69,6 @@ namespace CAS.UA.Model.Designer.Wrappers
       }
     }
 
-    private void RaiseTextChanged()
-    {
-      TextChanged?.Invoke(this, new TextEventArgs(this));
-    }
-
     //ProjectChanged
     internal class ProjectEventArgs : EventArgs { }
 
@@ -56,88 +76,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       RaiseOnChangeHandler();
       SubtreeChanged?.Invoke(this, new ProjectEventArgs());
-    }
-
-    //protected abstract class TreeNode<T> : BaseTreeNodeControl<T, T>
-    //  where T : BaseTreeNode
-    //{
-    //  #region private
-    //  /// <summary>
-    //  /// Gets or sets the creator.
-    //  /// This is the Wrapper object (from CAS.UA.Model.Designer.Wrappers),
-    //  /// so this is a link to a mesh that store the model
-    //  /// </summary>
-    //  /// <value>The creator.</value>
-    //  protected T Creator { get; private set; }
-    //  private void OnTextChanged(object sender, TextEventArgs e)
-    //  {
-    //    Text = e.Node.Text;
-    //    ToolTipText = e.Node.ToolTipText;
-    //    //TODO Tree view could be null while adding Variable - fixed but impact must be analized.
-    //    //Completed: At revision: 9178
-    //    if (TreeView != null)
-    //      TreeView.RebuildDictionary();
-    //  }
-    //  private void OnSubtreeChanged(object sender, ProjectEventArgs e)
-    //  {
-    //    if (this.TreeView != null)
-    //      this.TreeView.SuspendLayout();
-    //    RecreateSubtree();
-    //    if (this.TreeView != null)
-    //    {
-    //      this.TreeView.SelectedNode = this;
-    //      TreeView.RebuildDictionary();
-    //      this.TreeView.ResumeLayout();
-    //    }
-    //  }
-    //  protected void RecreateSubtree()
-    //  {
-    //    ClearChildren();
-    //    AddChildren(Creator);
-    //  }
-    //  protected override void Unregister()
-    //  {
-    //    ClearChildren();
-    //    Creator.TextChanged -= new EventHandler<TextEventArgs>(OnTextChanged);
-    //    Creator.SubtreeChanged -= new EventHandler<ProjectEventArgs>(OnSubtreeChanged);
-    //  }
-    //  protected void AddChildren(T parent)
-    //  {
-    //    foreach (BaseTreeNode node in parent)
-    //      Nodes.Add(node.GetTreeNode());
-    //  }
-    //  #endregion
-
-    //  #region creator
-    //public TreeNode(T parent)
-    //  : base(parent)
-    //{
-    //CommonOperationsForTheNodeCreation(parent);
-    //parent.TextChanged += new EventHandler<TextEventArgs>(OnTextChanged);
-    //parent.SubtreeChanged += new EventHandler<ProjectEventArgs>(OnSubtreeChanged);
-    //AddChildren(parent);
-    //}
-
-    //  private void CommonOperationsForTheNodeCreation(T parent)
-    //  {
-    //    Creator = parent;
-    //    Text = parent.m_Text;
-    //    ToolTipText = parent.ToolTipText;
-    //    this.ImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(Creator.GetType().Name, false);
-    //    this.SelectedImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(Creator.GetType().Name, true);
-    //  }
-    //  #endregion
-
-    //  #region public
-    //  internal override BaseDictionaryTreeNode CreateCopy()
-    //  {
-    //    return Creator.GetTreeNode();
-    //  }
-    //  #endregion
-    //}
-    protected virtual void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
-    {
-      Parent.CreateInstanceConfigurations(node, SkipOpeningConfigurationFile, out CancelWasPressed);
     }
 
     /// <summary>
@@ -151,17 +89,6 @@ namespace CAS.UA.Model.Designer.Wrappers
         item.AddNodeDescriptors(dsptrs, ui.MemberwiseClone());
     }
 
-    #endregion private
-
-    #region constructor
-
-    public BaseTreeNode(string text)
-    {
-      m_Text = text;
-    }
-
-    #endregion constructor
-
     #region public API
 
     internal int Count => m_Children.Count;
@@ -173,30 +100,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     internal virtual INodeDescriptor[] GetNodeDescriptors()
     {
       throw new NotImplementedException();
-    }
-
-    /// <summary>
-    /// Tests if read only and return true if read only.
-    /// </summary>
-    /// <returns>true if read only</returns>
-    internal virtual bool TestIfReadOnlyAndRetrunTrueIfReadOnly()
-    {
-      return Parent.TestIfReadOnlyAndRetrunTrueIfReadOnly();
-    }
-
-    /// <summary>
-    /// Gets or sets the parent node in the model.
-    /// </summary>
-    /// <value>The parent node.</value>
-    internal virtual BaseTreeNode Parent { get; set; }
-
-    /// <summary>
-    /// Raises the on change handler.
-    /// </summary>
-    protected internal virtual void RaiseOnChangeHandler()
-    {
-      if (Parent != null)
-        Parent.RaiseOnChangeHandler();
     }
 
     #endregion public API
@@ -229,6 +132,72 @@ namespace CAS.UA.Model.Designer.Wrappers
         m_Text = value;
         RaiseTextChanged();
       }
+    }
+
+    /// <summary>
+    /// Gets or sets the parent node in the model.
+    /// </summary>
+    /// <value>The parent node.</value>
+    public virtual IBaseModel Parent { get; set; }
+
+    /// <summary>
+    /// Gets the available namespaces.
+    /// </summary>
+    /// <value>The available namespaces.</value>
+    public virtual string[] AvailiableNamespaces => Parent.AvailiableNamespaces;
+
+    /// <summary>
+    /// Raises the on change handler.
+    /// </summary>
+    public virtual void RaiseOnChangeHandler()
+    {
+      if (Parent != null)
+        Parent.RaiseOnChangeHandler();
+    }
+
+    /// <summary>
+    /// Tests if read only and return true if read only.
+    /// </summary>
+    /// <returns>true if read only</returns>
+    public virtual bool TestIfReadOnlyAndRetrunTrueIfReadOnly()
+    {
+      return Parent.TestIfReadOnlyAndRetrunTrueIfReadOnly();
+    }
+
+    void IBaseModel.CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+    {
+      throw new NotImplementedException();
+    }
+
+    public virtual void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+    {
+      Parent.CreateInstanceConfigurations(node, SkipOpeningConfigurationFile, out CancelWasPressed);
+    }
+
+    /// <summary>
+    /// Gets the target namespace.
+    /// </summary>
+    /// <returns>The target namespace.</returns>
+    public virtual string GetTargetNamespace() { return Parent.GetTargetNamespace(); }
+
+    /// <summary>
+    /// Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+    /// </summary>
+    /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
+    /// <returns>
+    /// true if <paramref name="item"/> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1"/>;
+    /// otherwise, false. This method also returns false if <paramref name="item"/> is not found in the
+    /// original <see cref="T:System.Collections.Generic.ICollection`1"/>.
+    /// </returns>
+    /// <exception cref="T:System.NotSupportedException">
+    /// The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
+    /// </exception>
+    public bool Remove(IBaseModel item)
+    {
+      bool ret = m_Children.Remove(item);
+      item.Parent = null;
+      RaiseSubtreeChanged();
+      return ret;
     }
 
     public IEnumerator<IBaseModel> GetEnumerator()
@@ -286,42 +255,19 @@ namespace CAS.UA.Model.Designer.Wrappers
       RaiseSubtreeChanged();
     }
 
-    /// <summary>
-    /// Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
-    /// </summary>
-    /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
-    /// <returns>
-    /// true if <paramref name="item"/> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1"/>;
-    /// otherwise, false. This method also returns false if <paramref name="item"/> is not found in the
-    /// original <see cref="T:System.Collections.Generic.ICollection`1"/>.
-    /// </returns>
-    /// <exception cref="T:System.NotSupportedException">
-    /// The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
-    /// </exception>
-    public bool Remove(BaseTreeNode item)
-    {
-      bool ret = m_Children.Remove(item);
-      item.Parent = null;
-      RaiseSubtreeChanged();
-      return ret;
-    }
-
     #endregion ICollection<BaseTreeNode> Members
 
-    #region IParent Members
+    #region private
 
-    /// <summary>
-    /// Gets the available namespaces.
-    /// </summary>
-    /// <value>The available namespaces.</value>
-    public virtual string[] AvailiableNamespaces => Parent.AvailiableNamespaces;
+    private List<IBaseModel> m_Children = new List<IBaseModel>();
+    private string m_Text;
+    private string m_ToolTipText;
 
-    /// <summary>
-    /// Gets the target namespace.
-    /// </summary>
-    /// <returns>The target namespace.</returns>
-    public virtual string GetTargetNamespace() { return Parent.GetTargetNamespace(); }
+    private void RaiseTextChanged()
+    {
+      TextChanged?.Invoke(this, new TextEventArgs(this));
+    }
 
-    #endregion IParent Members
+    #endregion private
   }
 }

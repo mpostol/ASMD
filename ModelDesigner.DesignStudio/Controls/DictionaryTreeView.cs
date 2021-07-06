@@ -190,6 +190,7 @@ namespace CAS.UA.Model.Designer.Controls
           {
             DictionaryTreeNode _coupledNode = GetNode(item.Value);
             if (!(_coupledNode is IDictionaryTreeNodeCreateCopy))
+              //TODO PackMLStatusObjectType- References causes an null exception #237 _coupledNode is null
               throw new ArgumentOutOfRangeException($"{nameof(DictionaryTreeView)} Cannot create coupled node for {_coupledNode.GetType().FullName}");
             DictionaryTreeNode newNode = ((IDictionaryTreeNodeCreateCopy)_coupledNode).CreateCopy();
             newNode.Text = string.Format("{0}: {1}", item.Key, newNode.Text);

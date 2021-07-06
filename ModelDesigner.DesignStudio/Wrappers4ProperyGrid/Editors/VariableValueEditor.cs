@@ -26,7 +26,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
       if (xmlElement != null)
         this.Editor = ValueEditor.CreateValueEditor(xmlElement);
       else
-        this.Editor = new ValueEditor.NotSetValueEditor();
+        this.Editor = new NotSetValueEditor();
     }
 
     #endregion constructor
@@ -75,7 +75,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     /// </returns>
     public bool IsEmpty()
     {
-      return Editor is ValueEditor.NotSetValueEditor;
+      return Editor is NotSetValueEditor;
     }
 
     /// <summary>

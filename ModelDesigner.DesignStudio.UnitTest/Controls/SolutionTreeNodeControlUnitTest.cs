@@ -112,6 +112,9 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
 
       public string Text { get; set; } = nameof(SolutionTreeNodeTest);
       public string ToolTipText { get; set; } = "ToolTipText";
+      public IBaseModel Parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+      public string[] AvailiableNamespaces => throw new NotImplementedException();
 
       public event EventHandler<BaseTreeNode.ProjectEventArgs> SubtreeChanged
       {
@@ -184,6 +187,26 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         throw new NotImplementedException();
       }
 
+      public void RaiseOnChangeHandler()
+      {
+        throw new NotImplementedException();
+      }
+
+      public bool TestIfReadOnlyAndRetrunTrueIfReadOnly()
+      {
+        throw new NotImplementedException();
+      }
+
+      public string GetTargetNamespace()
+      {
+        throw new NotImplementedException();
+      }
+
+      public void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+      {
+        throw new NotImplementedException();
+      }
+
       #endregion ISolutionModel
     }
 
@@ -214,6 +237,9 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         get => "ToolTipText";
         set => throw new NotImplementedException();
       }
+      public IBaseModel Parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+      public string[] AvailiableNamespaces => throw new NotImplementedException();
 
       public event EventHandler<BaseTreeNode.ProjectEventArgs> SubtreeChanged;
 
@@ -222,6 +248,26 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       public BaseDictionaryTreeNode GetTreeNode()
       {
         return new DictionaryTreeNodeTest();
+      }
+
+      public void RaiseOnChangeHandler()
+      {
+        throw new NotImplementedException();
+      }
+
+      public bool TestIfReadOnlyAndRetrunTrueIfReadOnly()
+      {
+        throw new NotImplementedException();
+      }
+
+      public string GetTargetNamespace()
+      {
+        throw new NotImplementedException();
+      }
+
+      public void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+      {
+        throw new NotImplementedException();
       }
 
       #endregion IBaseModel

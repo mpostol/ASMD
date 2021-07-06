@@ -65,10 +65,12 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get
       {
-        StringWriter sw = new StringWriter();
-        XmlSerializer serializer = new XmlSerializer(this.ModelDesignerNode.GetType());
-        serializer.Serialize(sw, this.ModelDesignerNode);
-        return sw.ToString();
+        using (StringWriter sw = new StringWriter())
+        {
+          XmlSerializer serializer = new XmlSerializer(this.ModelDesignerNode.GetType());
+          serializer.Serialize(sw, this.ModelDesignerNode);
+          return sw.ToString();
+        }
       }
     }
 

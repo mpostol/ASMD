@@ -1,8 +1,9 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) Year of Copyright, Mariusz Postol LODZ POLAND.
 //
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -11,17 +12,21 @@ namespace CAS.UA.Model.Designer.Wrappers
   [TestClass]
   public class BaseTreeNodeTestUnitTest
   {
-
     [TestMethod]
     public void ConstructorTest()
     {
-      BaseTreeNodeFixture _instance = new BaseTreeNodeFixture(nameof(BaseTreeNodeFixture));
-      Assert.AreEqual<string>(nameof(BaseTreeNodeFixture), _instance.Text);
-    }
-    private class BaseTreeNodeFixture : BaseTreeNode
-    {
-      public BaseTreeNodeFixture(string text) : base(text) { }
+      BaseTreeNodeFixture instance = new BaseTreeNodeFixture(nameof(BaseTreeNodeFixture));
+      Assert.AreEqual<string>(nameof(BaseTreeNodeFixture), instance.Text);
+      Assert.IsNull(instance.ToolTipText);
+      Assert.IsNull(instance.Parent);
+      Assert.ThrowsException<System.NullReferenceException>(() => instance.AvailiableNamespaces);
     }
 
+    private class BaseTreeNodeFixture : BaseTreeNode
+    {
+      public BaseTreeNodeFixture(string text) : base(text)
+      {
+      }
+    }
   }
 }

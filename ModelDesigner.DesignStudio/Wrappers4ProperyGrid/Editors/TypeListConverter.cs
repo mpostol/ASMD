@@ -15,7 +15,7 @@ using System.Xml.Schema;
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
 {
   /// <summary>
-  /// This class is used in DataTypeConverter dropdown list
+  /// This class is used in DataTypeConverter drop-down list
   /// </summary>
   internal class TypeListConverter : ExpandableObjectConverter
   {
@@ -54,9 +54,9 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
             if ((m_XmlType.Contains(et.TypeCode.ToString())))
               m_TypeList.Add(element.Name, new XmlStandardValueEditor(element.Name));
           }
-        m_TypeList.Add(ValueEditor.RangeValueValueEditor.LocalName, new ValueEditor.RangeValueValueEditor());
-        m_TypeList.Add(ValueEditor.XmValueValueEditor.LocalName, new ValueEditor.XmValueValueEditor());
-        m_TypeList.Add(ValueEditor.NotSetValueEditor.LocalName, new ValueEditor.NotSetValueEditor());
+        m_TypeList.Add(RangeValueValueEditor.LocalName, new RangeValueValueEditor());
+        m_TypeList.Add(XmValueValueEditor.LocalName, new XmValueValueEditor());
+        m_TypeList.Add(NotSetValueEditor.LocalName, new NotSetValueEditor());
       }
       catch (Exception ex)
       {
@@ -183,7 +183,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
       if (m_TypeList.ContainsKey(name))
         return m_TypeList[name].Clone();
       ValueEditor editor = ((VariableValueEditor)context.Instance).Editor;
-      if (editor is ValueEditor.NotSetValueEditor)
+      if (editor is NotSetValueEditor)
         return editor;
       ValueEditor newEditor = editor.Clone();
       newEditor.TypeName = name;
