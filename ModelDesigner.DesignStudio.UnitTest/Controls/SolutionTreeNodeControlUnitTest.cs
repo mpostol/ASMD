@@ -116,7 +116,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
 
       public string[] AvailiableNamespaces => throw new NotImplementedException();
 
-      public event EventHandler<BaseTreeNode.ProjectEventArgs> SubtreeChanged
+      public event EventHandler<BaseModel.ProjectEventArgs> SubtreeChanged
       {
         add
         {
@@ -129,9 +129,9 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         }
       }
 
-      private EventHandler<BaseTreeNode.ProjectEventArgs> m_SubtreeChanged;
+      private EventHandler<BaseModel.ProjectEventArgs> m_SubtreeChanged;
 
-      public event EventHandler<BaseTreeNode.TextEventArgs> TextChanged
+      public event EventHandler<BaseModel.TextEventArgs> TextChanged
       {
         add
         {
@@ -173,7 +173,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         else
         {
           Add(new BaseModelTest());
-          m_SubtreeChanged?.Invoke(this, new BaseTreeNode.ProjectEventArgs());
+          m_SubtreeChanged?.Invoke(this, new BaseModel.ProjectEventArgs());
         }
       }
 
@@ -192,7 +192,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         throw new NotImplementedException();
       }
 
-      public bool TestIfReadOnlyAndRetrunTrueIfReadOnly()
+      public bool IsReadOnly()
       {
         throw new NotImplementedException();
       }
@@ -202,7 +202,12 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         throw new NotImplementedException();
       }
 
-      public void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+      public void CreateInstanceConfigurations(BaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+      {
+        throw new NotImplementedException();
+      }
+
+      public void CreateInstanceConfigurations(IBaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
       {
         throw new NotImplementedException();
       }
@@ -241,9 +246,9 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
 
       public string[] AvailiableNamespaces => throw new NotImplementedException();
 
-      public event EventHandler<BaseTreeNode.ProjectEventArgs> SubtreeChanged;
+      public event EventHandler<BaseModel.ProjectEventArgs> SubtreeChanged;
 
-      public event EventHandler<BaseTreeNode.TextEventArgs> TextChanged;
+      public event EventHandler<BaseModel.TextEventArgs> TextChanged;
 
       public BaseDictionaryTreeNode GetTreeNode()
       {
@@ -255,7 +260,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         throw new NotImplementedException();
       }
 
-      public bool TestIfReadOnlyAndRetrunTrueIfReadOnly()
+      public bool IsReadOnly()
       {
         throw new NotImplementedException();
       }
@@ -265,7 +270,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         throw new NotImplementedException();
       }
 
-      public void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+      public void CreateInstanceConfigurations(IBaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
       {
         throw new NotImplementedException();
       }

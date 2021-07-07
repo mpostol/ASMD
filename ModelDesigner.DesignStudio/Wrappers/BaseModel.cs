@@ -12,46 +12,16 @@ using UAOOI.Configuration.Core;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal interface IBaseModel : IEnumerable<IBaseModel>
-  {
-    event EventHandler<BaseTreeNode.TextEventArgs> TextChanged;
 
-    event EventHandler<BaseTreeNode.ProjectEventArgs> SubtreeChanged;
-
-    string ToolTipText { get; set; }
-    string Text { get; set; }
-
-    /// <summary>
-    /// Gets or sets the parent node in the model.
-    /// </summary>
-    /// <value>The parent node.</value>
-    IBaseModel Parent { get; set; }
-
-    string[] AvailiableNamespaces { get; }
-
-    void RaiseOnChangeHandler();
-
-    bool TestIfReadOnlyAndRetrunTrueIfReadOnly();
-
-    /// <summary>
-    /// Gets the target namespace.
-    /// </summary>
-    /// <returns>The target namespace.</returns>
-    string GetTargetNamespace();
-
-    void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed);
-
-    bool Remove(IBaseModel item);
-  }
 
   /// <summary>
   /// A collection <see cref="List{BaseTreeNode}"/> of <see cref="IBaseModel"/> - a base class to create in-memory representation of the UA Information Model.
   /// </summary>
-  internal abstract class BaseTreeNode : IBaseModel
+  internal abstract class BaseModel : IBaseModel
   {
     #region constructor
 
-    public BaseTreeNode(string text)
+    internal BaseModel(string text)
     {
       m_Text = text;
     }
@@ -61,9 +31,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     //TextChanged
     internal class TextEventArgs : EventArgs
     {
-      public readonly BaseTreeNode Node;
+      public readonly BaseModel Node;
 
-      public TextEventArgs(BaseTreeNode node)
+      public TextEventArgs(BaseModel node)
       {
         Node = node;
       }
@@ -85,7 +55,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <param name="ui">The unique identifier.</param>
     protected virtual void AddNodeDescriptors(List<INodeDescriptor> dsptrs, UniqueIdentifier ui)
     {
-      foreach (BaseTreeNode item in this)
+      foreach (BaseModel item in m_Children)
         item.AddNodeDescriptors(dsptrs, ui.MemberwiseClone());
     }
 
@@ -159,17 +129,17 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Tests if read only and return true if read only.
     /// </summary>
     /// <returns>true if read only</returns>
-    public virtual bool TestIfReadOnlyAndRetrunTrueIfReadOnly()
+    public virtual bool IsReadOnly()
     {
-      return Parent.TestIfReadOnlyAndRetrunTrueIfReadOnly();
+      return Parent.IsReadOnly();
     }
 
-    void IBaseModel.CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+    void IBaseModel.CreateInstanceConfigurations(IBaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
     {
       throw new NotImplementedException();
     }
 
-    public virtual void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+    public virtual void CreateInstanceConfigurations(BaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
     {
       Parent.CreateInstanceConfigurations(node, SkipOpeningConfigurationFile, out CancelWasPressed);
     }
@@ -181,17 +151,11 @@ namespace CAS.UA.Model.Designer.Wrappers
     public virtual string GetTargetNamespace() { return Parent.GetTargetNamespace(); }
 
     /// <summary>
-    /// Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+    /// Removes the first occurrence of a specific object from the collection.
     /// </summary>
-    /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
-    /// <returns>
-    /// true if <paramref name="item"/> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1"/>;
-    /// otherwise, false. This method also returns false if <paramref name="item"/> is not found in the
-    /// original <see cref="T:System.Collections.Generic.ICollection`1"/>.
-    /// </returns>
-    /// <exception cref="T:System.NotSupportedException">
-    /// The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
-    /// </exception>
+    /// <param name="item">The object to remove from the collection.</param>
+    /// <returns><c>true</c> if <paramref name="item" /> was successfully removed from the embedded collection&gt;;
+    /// otherwise, <c>false</c>. This method also returns false if <paramref name="item" /> is not found in the collection.</returns>
     public bool Remove(IBaseModel item)
     {
       bool ret = m_Children.Remove(item);
@@ -221,7 +185,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <exception cref="T:System.NotSupportedException">
     /// The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
     /// </exception>
-    public void Add(BaseTreeNode item)
+    public void Add(BaseModel item)
     {
       item.Parent = this;
       m_Children.Add(item);
@@ -235,9 +199,9 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <exception cref="T:System.ArgumentNullException">
     /// 	<paramref name="collection"/> is null.
     /// </exception>
-    public void AddRange(IEnumerable<BaseTreeNode> collection)
+    public void AddRange(IEnumerable<BaseModel> collection)
     {
-      foreach (BaseTreeNode item in collection)
+      foreach (BaseModel item in collection)
         item.Parent = this;
       m_Children.AddRange(collection);
       RaiseSubtreeChanged();

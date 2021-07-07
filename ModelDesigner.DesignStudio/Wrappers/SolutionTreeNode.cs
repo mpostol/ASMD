@@ -167,7 +167,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <value>The node class.</value>
     public override NodeClassesEnum NodeClass => NodeClassesEnum.None;
 
-    public override bool TestIfReadOnlyAndRetrunTrueIfReadOnly()
+    public override bool IsReadOnly()
     {
       return false;
     }
@@ -305,7 +305,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       OnDataChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public override void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+    public override void CreateInstanceConfigurations(BaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
     {
       IConfiguration svr = Server.IServerConfiguration;
       if (svr == null)

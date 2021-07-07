@@ -419,6 +419,8 @@
     <Compile Include="Wrappers4ProperyGrid\Editors\XmlQualifiedNameEditorWithDefaultValue.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\XmlStandardValueEditor.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\XmValueValueEditor.cs" />
+    <Compile Include="Wrappers\BaseModel.cs" />
+    <Compile Include="Wrappers\IBaseModel.cs" />
     <Compile Include="Wrappers\InstanceIdentifier.cs" />
     <Compile Include="Wrappers4ProperyGrid\LocalizedText.cs" />
     <Compile Include="Wrappers4ProperyGrid\NameWithEventBase.cs" />
@@ -477,7 +479,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Wrappers\BaseTreeNode.cs" />
     <Compile Include="Wrappers\DataTypeDesign.cs" />
     <Compile Include="Wrappers\DictionaryDesign.cs" />
     <Compile Include="Wrappers\EncodingDesign.cs" />

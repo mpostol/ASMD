@@ -22,7 +22,7 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// <summary>
   /// Model node that has editable properties associated.
   /// </summary>
-  internal abstract class WrapperTreeNode : BaseTreeNode, IModelNode, IModelNodeAdvance, IEnumerable<IModelNodeAdvance>
+  internal abstract class WrapperTreeNode : BaseModel, IModelNode, IModelNodeAdvance, IEnumerable<IModelNodeAdvance>
   {
     #region public
 
@@ -206,7 +206,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     #endregion IModelNodeAdvanced
 
-    #region IModelNode Members
+    #region IModelNode
 
     /// <summary>
     /// Gets the name of the help topic.
@@ -254,14 +254,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
 
     /// <summary>
-    /// Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
-    /// </summary>
-    /// <value></value>
-    /// <returns>true if the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only; otherwise, false.
-    /// </returns>
-    public bool IsReadOnly => TestIfReadOnlyAndRetrunTrueIfReadOnly();
-
-    /// <summary>
     /// Gets the symbolic name.
     /// </summary>
     /// <value>The symbolic name.</value>
@@ -273,7 +265,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <value>The message box handling.</value>
     protected internal IMessageBoxHandling MessageBoxHandling { protected get; set; }
 
-    #endregion IModelNode Members
+    #endregion IModelNode
 
     #region public
 

@@ -60,7 +60,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       get
       {
-        if (this.IsReadOnly)
+        if (this.IsReadOnly())
           return base.Wrapper.SymbolicName.Name;
         return string.Empty;
       }
@@ -152,7 +152,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     public override void MenuItemPaste_Action()
     {
       object DeserializedNode = GetModelDesignerNodeFromStringRepresentationFromClipboard();
-      BaseTreeNode baseTreeNode = NodeFactory.Create(DeserializedNode);
+      BaseModel baseTreeNode = NodeFactory.Create(DeserializedNode);
       if (DeserializedNode is OpcUaModelCompiler.InstanceDesign)
       {
         this.m_Children.Add(baseTreeNode);

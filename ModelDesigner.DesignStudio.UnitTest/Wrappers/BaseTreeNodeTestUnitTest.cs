@@ -22,7 +22,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       Assert.ThrowsException<System.NullReferenceException>(() => instance.AvailiableNamespaces);
     }
 
-    private class BaseTreeNodeFixture : BaseTreeNode
+    private class BaseTreeNodeFixture : BaseModel
     {
       public BaseTreeNodeFixture(string text) : base(text)
       {

@@ -1,9 +1,10 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
 //  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
+
 
 using CAS.UA.Model.Designer.Types;
 using System;
@@ -374,15 +375,18 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
         public XmlQualifiedName SymbolicName => null;
         public IList<Diagnostics> ErrorList { get; private set; }
         public object Wrapper4PropertyGrid => null;
+        public NodeClassesEnum NodeClass => NodeClassesEnum.None;
+        public string HelpTopicName => string.Empty;
 
         public INodeDescriptor GetINodeDescriptor()
         {
           return null;
         }
 
-        public NodeClassesEnum NodeClass => NodeClassesEnum.None;
-        public string HelpTopicName => string.Empty;
-        public bool IsReadOnly => true;
+        public bool IsReadOnly()
+        {
+          return true;
+        }
 
         #endregion IModelNode Members
       }
