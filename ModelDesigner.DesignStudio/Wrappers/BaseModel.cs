@@ -12,8 +12,6 @@ using UAOOI.Configuration.Core;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-
-
   /// <summary>
   /// A collection <see cref="List{BaseTreeNode}"/> of <see cref="IBaseModel"/> - a base class to create in-memory representation of the UA Information Model.
   /// </summary>
@@ -27,37 +25,6 @@ namespace CAS.UA.Model.Designer.Wrappers
     }
 
     #endregion constructor
-
-    //TextChanged
-    internal class TextEventArgs : EventArgs
-    {
-      public readonly BaseModel Node;
-
-      public TextEventArgs(BaseModel node)
-      {
-        Node = node;
-      }
-    }
-
-    //ProjectChanged
-    internal class ProjectEventArgs : EventArgs { }
-
-    protected void RaiseSubtreeChanged()
-    {
-      RaiseOnChangeHandler();
-      SubtreeChanged?.Invoke(this, new ProjectEventArgs());
-    }
-
-    /// <summary>
-    /// If implemented in the derived class adds the node descriptors.
-    /// </summary>
-    /// <param name="dsptrs">The node descriptor.</param>
-    /// <param name="ui">The unique identifier.</param>
-    protected virtual void AddNodeDescriptors(List<INodeDescriptor> dsptrs, UniqueIdentifier ui)
-    {
-      foreach (BaseModel item in m_Children)
-        item.AddNodeDescriptors(dsptrs, ui.MemberwiseClone());
-    }
 
     #region public API
 
@@ -185,7 +152,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <exception cref="T:System.NotSupportedException">
     /// The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
     /// </exception>
-    public void Add(BaseModel item)
+    public void Add(IBaseModel item)
     {
       item.Parent = this;
       m_Children.Add(item);
@@ -226,6 +193,23 @@ namespace CAS.UA.Model.Designer.Wrappers
     private List<IBaseModel> m_Children = new List<IBaseModel>();
     private string m_Text;
     private string m_ToolTipText;
+
+    protected void RaiseSubtreeChanged()
+    {
+      RaiseOnChangeHandler();
+      SubtreeChanged?.Invoke(this, new ProjectEventArgs());
+    }
+
+    /// <summary>
+    /// If implemented in the derived class adds the node descriptors.
+    /// </summary>
+    /// <param name="dsptrs">The node descriptor.</param>
+    /// <param name="ui">The unique identifier.</param>
+    protected virtual void AddNodeDescriptors(List<INodeDescriptor> dsptrs, UniqueIdentifier ui)
+    {
+      foreach (BaseModel item in m_Children)
+        item.AddNodeDescriptors(dsptrs, ui.MemberwiseClone());
+    }
 
     private void RaiseTextChanged()
     {

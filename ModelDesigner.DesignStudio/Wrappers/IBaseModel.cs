@@ -12,9 +12,9 @@ namespace CAS.UA.Model.Designer.Wrappers
 {
   internal interface IBaseModel : IEnumerable<IBaseModel>
   {
-    event EventHandler<BaseModel.TextEventArgs> TextChanged;
+    event EventHandler<TextEventArgs> TextChanged;
 
-    event EventHandler<BaseModel.ProjectEventArgs> SubtreeChanged;
+    event EventHandler<ProjectEventArgs> SubtreeChanged;
 
     string ToolTipText { get; set; }
     string Text { get; set; }
@@ -57,4 +57,26 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     bool Remove(IBaseModel item);
   }
+
+  /// <summary>
+  /// Class TextEventArgs.
+  /// Implements the <see cref="EventArgs" />
+  /// </summary>
+  /// <seealso cref="EventArgs" />
+  internal class TextEventArgs : EventArgs
+  {
+    public readonly BaseModel Node;
+
+    public TextEventArgs(BaseModel node)
+    {
+      Node = node;
+    }
+  }
+
+  /// <summary>
+  /// Class ProjectEventArgs.
+  /// Implements the <see cref="EventArgs" />
+  /// </summary>
+  /// <seealso cref="EventArgs" />
+  internal class ProjectEventArgs : EventArgs { }
 }

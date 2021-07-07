@@ -18,7 +18,7 @@ namespace CAS.UA.Model.Designer.Controls
     /// It provides reference to a Wrapper object - a view model for this . 
     /// </summary>
     protected TModel ModelEntity { get; private set; }
-    private void OnTextChanged(object sender, BaseModel.TextEventArgs e)
+    private void OnTextChanged(object sender, TextEventArgs e)
     {
       Text = e.Node.Text;
       Name = e.Node.Text;
@@ -26,7 +26,7 @@ namespace CAS.UA.Model.Designer.Controls
       if (TreeView != null)
         TreeView.RebuildDictionary();
     }
-    private void OnSubtreeChanged(object sender, BaseModel.ProjectEventArgs e)
+    private void OnSubtreeChanged(object sender, ProjectEventArgs e)
     {
       if (this.TreeView != null)
         this.TreeView.SuspendLayout();
@@ -51,8 +51,8 @@ namespace CAS.UA.Model.Designer.Controls
     protected override void Unregister()
     {
       ClearChildren();
-      ModelEntity.TextChanged -= new EventHandler<BaseModel.TextEventArgs>(OnTextChanged);
-      ModelEntity.SubtreeChanged -= new EventHandler<BaseModel.ProjectEventArgs>(OnSubtreeChanged);
+      ModelEntity.TextChanged -= new EventHandler<TextEventArgs>(OnTextChanged);
+      ModelEntity.SubtreeChanged -= new EventHandler<ProjectEventArgs>(OnSubtreeChanged);
     }
     #endregion
 
@@ -70,8 +70,8 @@ namespace CAS.UA.Model.Designer.Controls
       ToolTipText = model.ToolTipText;
       ImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(ModelEntity.GetType().Name, false);
       SelectedImageIndex = ImagesForNodes.SetIconIndexForNodeAndSelectedNode(ModelEntity.GetType().Name, true);
-      model.TextChanged += new EventHandler<BaseModel.TextEventArgs>(OnTextChanged);
-      model.SubtreeChanged += new EventHandler<BaseModel.ProjectEventArgs>(OnSubtreeChanged);
+      model.TextChanged += new EventHandler<TextEventArgs>(OnTextChanged);
+      model.SubtreeChanged += new EventHandler<ProjectEventArgs>(OnSubtreeChanged);
       AddChildren();
     }
     #endregion

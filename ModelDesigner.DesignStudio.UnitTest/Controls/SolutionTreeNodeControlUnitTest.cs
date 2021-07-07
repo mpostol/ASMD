@@ -116,7 +116,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
 
       public string[] AvailiableNamespaces => throw new NotImplementedException();
 
-      public event EventHandler<BaseModel.ProjectEventArgs> SubtreeChanged
+      public event EventHandler<ProjectEventArgs> SubtreeChanged
       {
         add
         {
@@ -129,9 +129,9 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         }
       }
 
-      private EventHandler<BaseModel.ProjectEventArgs> m_SubtreeChanged;
+      private EventHandler<ProjectEventArgs> m_SubtreeChanged;
 
-      public event EventHandler<BaseModel.TextEventArgs> TextChanged
+      public event EventHandler<TextEventArgs> TextChanged
       {
         add
         {
@@ -173,7 +173,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         else
         {
           Add(new BaseModelTest());
-          m_SubtreeChanged?.Invoke(this, new BaseModel.ProjectEventArgs());
+          m_SubtreeChanged?.Invoke(this, new ProjectEventArgs());
         }
       }
 
@@ -246,9 +246,9 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
 
       public string[] AvailiableNamespaces => throw new NotImplementedException();
 
-      public event EventHandler<BaseModel.ProjectEventArgs> SubtreeChanged;
+      public event EventHandler<ProjectEventArgs> SubtreeChanged;
 
-      public event EventHandler<BaseModel.TextEventArgs> TextChanged;
+      public event EventHandler<TextEventArgs> TextChanged;
 
       public BaseDictionaryTreeNode GetTreeNode()
       {

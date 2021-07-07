@@ -86,7 +86,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
 
       public string[] AvailiableNamespaces => throw new NotImplementedException();
 
-      public event EventHandler<BaseModel.ProjectEventArgs> SubtreeChanged
+      public event EventHandler<ProjectEventArgs> SubtreeChanged
       {
         add { SubtreeChangedCount++; }
         remove
@@ -94,7 +94,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
           throw new InvalidOperationException();
         }
       }
-      public event EventHandler<BaseModel.TextEventArgs> TextChanged
+      public event EventHandler<TextEventArgs> TextChanged
       {
         add
         {
