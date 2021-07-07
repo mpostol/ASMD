@@ -96,7 +96,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     internal void GetImportMenu(System.Windows.Forms.ToolStripItemCollection items)
     {
-      if (this.TestIfReadOnlyAndRetrunTrueIfReadOnly())
+      if (this.IsReadOnly())
         return;
       ImportOPCDAAddressSpace.CreateImportMenuItems(items, new EventHandler(CreateImportMenuClick));
     }
@@ -123,11 +123,11 @@ namespace CAS.UA.Model.Designer.Wrappers
       OpcUaModelCompiler.NodeDesign[] nodes = ImportOPCDAAddressSpace.OnImportMenuItemClick(GetTargetNamespace());
       if (nodes == null)
         return;
-      List<BaseTreeNode> arr = new List<BaseTreeNode>();
+      List<BaseModel> arr = new List<BaseModel>();
       bool CancelWasPressed = false;
       foreach (OpcUaModelCompiler.NodeDesign item in nodes)
       {
-        BaseTreeNode newNode = NodeFactory.Create(item);
+        BaseModel newNode = NodeFactory.Create(item);
         arr.Add(newNode);
         if (item is OpcUaModelCompiler.InstanceDesign)
           this.CreateInstanceConfigurations(newNode, CancelWasPressed, out CancelWasPressed);
@@ -169,7 +169,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     public override void MenuItemPaste_Action()
     {
       object DeserializedNode = GetModelDesignerNodeFromStringRepresentationFromClipboard();
-      BaseTreeNode baseTreeNode = NodeFactory.Create(DeserializedNode);
+      BaseModel baseTreeNode = NodeFactory.Create(DeserializedNode);
       if (DeserializedNode is OpcUaModelCompiler.NodeDesign)
       {
         this.Add(baseTreeNode);
@@ -196,7 +196,7 @@ namespace CAS.UA.Model.Designer.Wrappers
         OpcUaModelCompiler.ModelDesign node = (OpcUaModelCompiler.ModelDesign)base.ModelDesignerNode;
         node.Namespaces = m_Namespaces.Namespaces;
         List<OpcUaModelCompiler.NodeDesign> uaNodes = new List<OpcUaModelCompiler.NodeDesign>();
-        foreach (BaseTreeNode item in this)
+        foreach (BaseModel item in this)
         {
           IParent tn = item as IParent;
           if (tn == null)

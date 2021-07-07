@@ -1,9 +1,9 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
 //  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
@@ -68,9 +68,9 @@ namespace CAS.UA.Model.Designer.StateMachineEditor
     #region internal
 
     /// <summary>
-    /// Analizes the state machine from tree.
+    /// Analyzes the state machine from tree.
     /// </summary>
-    /// <param name="imna">The analized node.</param>
+    /// <param name="imna">The analyzed node.</param>
     internal static void AnalizeStateMachine(IModelNodeAdvance imna)
     {
       if ((((TypeDesign<OpcUaModelCompiler.ObjectTypeDesign>)imna.Wrapper4PropertyGrid).BaseType.ToString() == finiteStateMachineTypeString))
@@ -92,7 +92,7 @@ namespace CAS.UA.Model.Designer.StateMachineEditor
           }
           bool transitionAnalized = false;
           while (transitionAnalized == false)
-            transitionAnalized = StateMachineCrossTable.AddImagesOnTransitionButtons(allStates, allTransitions, symbolicNameNameSpace, machineObjectDesign, imna.IsReadOnly);
+            transitionAnalized = StateMachineCrossTable.AddImagesOnTransitionButtons(allStates, allTransitions, symbolicNameNameSpace, machineObjectDesign, imna.IsReadOnly());
         }
         catch (Exception)
         {

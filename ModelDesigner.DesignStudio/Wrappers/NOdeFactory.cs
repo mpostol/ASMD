@@ -28,10 +28,10 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </summary>
     /// <param name="child">The source object.</param>
     /// <returns></returns>
-    internal static BaseTreeNode Create( object node )
+    internal static BaseModel Create( object node )
     {
       string name = TargetNameSpace + node.GetType().Name;
-      return (BaseTreeNode)Activator.CreateInstance( Type.GetType( name ), node );
+      return (BaseModel)Activator.CreateInstance( Type.GetType( name ), node );
     }
   }
 }

@@ -1,10 +1,9 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
-
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using System.ComponentModel;
 using System.Xml;
@@ -17,12 +16,14 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
   /// </summary>
   public class XmlQualifiedNameEditorWithDefaultValue : XmlQualifiedNameEditor
   {
-
     #region private
+
     private XmlQualifiedName m_defaultValue;
+
     #endregion private
 
     #region public properties
+
     /// <summary>
     /// Gets the default value.
     /// </summary>
@@ -35,9 +36,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     ReadOnlyAttribute(true)
     ]
     public string DefaultValue => m_defaultValue.ToString();
+
     #endregion public properties
 
     #region constructors
+
     /// <summary>
     /// Initializes a new instance of the <see cref="XmlQualifiedNameEditorWithDefaultValue"/> class.
     /// </summary>
@@ -49,9 +52,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     {
       m_defaultValue = defaultValue;
     }
+
     #endregion constructors
 
     #region public
+
     internal XmlQualifiedName ValueOrDefault
     {
       get
@@ -62,7 +67,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
           return base.XmlQualifiedName;
       }
     }
-    #endregion public
 
+    #endregion public
   }
 }

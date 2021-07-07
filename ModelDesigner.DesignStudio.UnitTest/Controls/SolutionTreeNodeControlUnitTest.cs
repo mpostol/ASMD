@@ -112,8 +112,11 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
 
       public string Text { get; set; } = nameof(SolutionTreeNodeTest);
       public string ToolTipText { get; set; } = "ToolTipText";
+      public IBaseModel Parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-      public event EventHandler<BaseTreeNode.ProjectEventArgs> SubtreeChanged
+      public string[] AvailiableNamespaces => throw new NotImplementedException();
+
+      public event EventHandler<ProjectEventArgs> SubtreeChanged
       {
         add
         {
@@ -126,9 +129,9 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         }
       }
 
-      private EventHandler<BaseTreeNode.ProjectEventArgs> m_SubtreeChanged;
+      private EventHandler<ProjectEventArgs> m_SubtreeChanged;
 
-      public event EventHandler<BaseTreeNode.TextEventArgs> TextChanged
+      public event EventHandler<TextEventArgs> TextChanged
       {
         add
         {
@@ -170,7 +173,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         else
         {
           Add(new BaseModelTest());
-          m_SubtreeChanged?.Invoke(this, new BaseTreeNode.ProjectEventArgs());
+          m_SubtreeChanged?.Invoke(this, new ProjectEventArgs());
         }
       }
 
@@ -180,6 +183,31 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       }
 
       public void OnNew(IGraphicalUserInterface gui)
+      {
+        throw new NotImplementedException();
+      }
+
+      public void RaiseOnChangeHandler()
+      {
+        throw new NotImplementedException();
+      }
+
+      public bool IsReadOnly()
+      {
+        throw new NotImplementedException();
+      }
+
+      public string GetTargetNamespace()
+      {
+        throw new NotImplementedException();
+      }
+
+      public void CreateInstanceConfigurations(BaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+      {
+        throw new NotImplementedException();
+      }
+
+      public void CreateInstanceConfigurations(IBaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
       {
         throw new NotImplementedException();
       }
@@ -214,14 +242,37 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         get => "ToolTipText";
         set => throw new NotImplementedException();
       }
+      public IBaseModel Parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-      public event EventHandler<BaseTreeNode.ProjectEventArgs> SubtreeChanged;
+      public string[] AvailiableNamespaces => throw new NotImplementedException();
 
-      public event EventHandler<BaseTreeNode.TextEventArgs> TextChanged;
+      public event EventHandler<ProjectEventArgs> SubtreeChanged;
+
+      public event EventHandler<TextEventArgs> TextChanged;
 
       public BaseDictionaryTreeNode GetTreeNode()
       {
         return new DictionaryTreeNodeTest();
+      }
+
+      public void RaiseOnChangeHandler()
+      {
+        throw new NotImplementedException();
+      }
+
+      public bool IsReadOnly()
+      {
+        throw new NotImplementedException();
+      }
+
+      public string GetTargetNamespace()
+      {
+        throw new NotImplementedException();
+      }
+
+      public void CreateInstanceConfigurations(IBaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+      {
+        throw new NotImplementedException();
       }
 
       #endregion IBaseModel

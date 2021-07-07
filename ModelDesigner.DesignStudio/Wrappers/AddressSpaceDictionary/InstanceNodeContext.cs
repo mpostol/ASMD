@@ -1,9 +1,9 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
 //  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Types;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
@@ -21,7 +21,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
   /// </summary>
   internal class InstanceNodeContext : IInstanceNodeContext, IModelNode
   {
-    #region creator
+    #region constructor
 
     /// <summary>
     /// Initializes a new instance of the <see cref="InstanceDeclaration"/> class it represents existing child or an instance of instance declarations.
@@ -48,9 +48,9 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
       this.RegisterInstanceNodeInAddressSpace();
     }
 
-    #endregion creator
+    #endregion constructor
 
-    #region IModelNode Members
+    #region IModelNode
 
     public INodeDescriptor GetINodeDescriptor()
     {
@@ -65,11 +65,15 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
     public virtual object Wrapper4PropertyGrid => InstanceWrapper;
     public NodeClassesEnum NodeClass => m_Node.NodeClass;
     public string HelpTopicName => m_Node.HelpTopicName;
-    public virtual bool IsReadOnly => true;
 
-    #endregion IModelNode Members
+    public virtual bool IsReadOnly()
+    {
+      return true;
+    }
 
-    #region IInstanceNodeContext Members
+    #endregion IModelNode
+
+    #region IInstanceNodeContext
 
     /// <summary>
     /// Registers the instance node in address space.
@@ -150,7 +154,7 @@ namespace CAS.UA.Model.Designer.Wrappers.AddressSpaceDictionary
       m_Compiler.Assert(condition, this.AddressSpaceIndex, errorMessage);
     }
 
-    #endregion IInstanceNodeContext Members
+    #endregion IInstanceNodeContext
 
     #region private
 

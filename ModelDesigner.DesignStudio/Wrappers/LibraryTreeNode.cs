@@ -42,7 +42,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     #region internal
 
-    internal override bool TestIfReadOnlyAndRetrunTrueIfReadOnly()
+    public override bool IsReadOnly()
     {
       return true;
     }

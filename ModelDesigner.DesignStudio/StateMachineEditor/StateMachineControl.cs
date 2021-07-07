@@ -92,7 +92,7 @@ namespace CAS.UA.Model.Designer.StateMachineEditor
     {
       if (selectedTransitionButton.TransitionData != null)
       {
-        ((BaseTreeNode)selectedTransitionButton.TransitionData.InstanceDesignNode.Parent).Parent.Remove((BaseTreeNode)selectedTransitionButton.TransitionData.InstanceDesignNode.Parent);
+        ((IBaseModel)selectedTransitionButton.TransitionData.InstanceDesignNode.Parent).Parent.Remove((IBaseModel)selectedTransitionButton.TransitionData.InstanceDesignNode.Parent);
         selectedTransitionButton.Image = null;
         selectedTransitionButton.FlatStyle = FlatStyle.Flat;
       }
@@ -127,7 +127,7 @@ namespace CAS.UA.Model.Designer.StateMachineEditor
                 }
                 else if ((referenceNameOriginal != selectedTransitionButton.TransitionData.HasCause) && (string.IsNullOrEmpty(selectedTransitionButton.TransitionData.HasCause) == true))
                 {
-                  ((BaseTreeNode)(referenceAsBaseTreeNode as Reference).Wrapper.Parent).Parent.Remove((BaseTreeNode)(referenceAsBaseTreeNode as Reference).Wrapper.Parent);
+                  ((BaseModel)(referenceAsBaseTreeNode as Reference).Wrapper.Parent).Parent.Remove((BaseModel)(referenceAsBaseTreeNode as Reference).Wrapper.Parent);
                   reference = null;
                   return;
                 }

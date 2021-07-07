@@ -36,7 +36,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       Mock<OPCFModelDesign> _OPCFModelDesignMock = new Mock<OPCFModelDesign>();
       _projectConfigurationMock.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(_OPCFModelDesignMock.Object);
       _projectConfigurationMock.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
-      Mock<BaseTreeNode> _parentMock = new Mock<BaseTreeNode>("ParentBaseNode");
+      Mock<BaseModel> _parentMock = new Mock<BaseModel>("ParentBaseNode");
       _parentMock.SetupGet<string[]>(x => x.AvailiableNamespaces).Returns(new List<string>() { "ns1", "ns2" }.ToArray());
       _parentMock.Setup(x => x.GetTargetNamespace()).Returns("GetTargetNamespace");
       //create object under test
@@ -70,7 +70,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       Mock<OPCFModelDesign> _OPCFModelDesignMock = new Mock<OPCFModelDesign>();
       _projectConfigurationMock.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(_OPCFModelDesignMock.Object);
       _projectConfigurationMock.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
-      Mock<BaseTreeNode> _parentMock = new Mock<BaseTreeNode>("ParentBaseNode");
+      Mock<BaseModel> _parentMock = new Mock<BaseModel>("ParentBaseNode");
       _parentMock.SetupGet<string[]>(x => x.AvailiableNamespaces).Returns(new List<string>() { "ns1", "ns2" }.ToArray());
       ProjectTreeNode _newItem = new ProjectTreeNode(_projectConfigurationMock.Object) { Parent = _parentMock.Object };
 
@@ -88,7 +88,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       _projectConfigurationMock.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
 
       //_projectConfigurationMock.Setup(x => x.Build( z => { } ));
-      Mock<BaseTreeNode> _parentMock = new Mock<BaseTreeNode>("ParentBaseNode");
+      Mock<BaseModel> _parentMock = new Mock<BaseModel>("ParentBaseNode");
 
       ProjectTreeNode _newItem = new ProjectTreeNode(_projectConfigurationMock.Object) { Parent = _parentMock.Object };
       List <string> trace = new List<string>();
@@ -112,7 +112,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       Mock<OPCFModelDesign> _OPCFModelDesignMock = new Mock<OPCFModelDesign>();
       _projectConfigurationMock.SetupGet<OPCFModelDesign>(x => x.ModelDesign).Returns(_OPCFModelDesignMock.Object);
       _projectConfigurationMock.SetupGet<string>(x => x.Name).Returns("EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327");
-      Mock<BaseTreeNode> _parentMock = new Mock<BaseTreeNode>("ParentBaseNode");
+      Mock<BaseModel> _parentMock = new Mock<BaseModel>("ParentBaseNode");
       _parentMock.SetupGet<string[]>(x => x.AvailiableNamespaces).Returns(new List<string>() { "ns1", "ns2" }.ToArray());
       _parentMock.Setup(x => x.GetTargetNamespace()).Returns("GetTargetNamespace");
       //create object under test

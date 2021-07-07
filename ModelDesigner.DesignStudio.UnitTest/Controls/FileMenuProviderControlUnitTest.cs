@@ -81,7 +81,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         throw new NotImplementedException();
       }
     }
-    private class BaseTreeNodeTest : BaseTreeNode
+    private class BaseTreeNodeTest : BaseModel
     {
       internal static BaseTreeNodeTest CreateInstance()
       {

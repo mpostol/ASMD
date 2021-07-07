@@ -20,7 +20,7 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// <summary>
   /// Base class for valitable classes that do not represent Address Space node classes.
   /// </summary>
-  internal abstract class RootTreeNode: BaseTreeNode
+  internal abstract class RootTreeNode: BaseModel
   {
     #region creator
     public RootTreeNode( string NodeName )

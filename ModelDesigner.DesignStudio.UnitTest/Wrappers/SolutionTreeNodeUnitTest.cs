@@ -50,7 +50,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       Assert.AreEqual<int>(0, _instanceUnderTest.ErrorList.Count);
       Assert.AreEqual<string>("", _instanceUnderTest.HelpTopicName);
       Assert.AreSame(_solutionManagement.Object, _instanceUnderTest.HomeDirectory);
-      Assert.IsFalse(_instanceUnderTest.IsReadOnly);
+      Assert.IsFalse(_instanceUnderTest.IsReadOnly());
       Assert.AreEqual<string>(_solutionManagement.Object.Name, _instanceUnderTest.Name);
       Assert.AreEqual<NodeClassesEnum>(NodeClassesEnum.None, _instanceUnderTest.NodeClass);
       Assert.AreEqual<NodeTypeEnum>(NodeTypeEnum.SolutionNode, _instanceUnderTest.NodeType);

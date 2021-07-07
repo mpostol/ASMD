@@ -21,59 +21,71 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </summary>
     /// <value>The name represented as an instance of the <see cref="string"/>.</value>
     string Name { get; }
+
     /// <summary>
     /// Gets the symbolic name.
     /// </summary>
     /// <value>The symbolic name.</value>
     XmlQualifiedName SymbolicName { get; }
+
     /// <summary>
     /// Gets the error list.
     /// </summary>
     /// <value>The error list.</value>
     IList<Diagnostics> ErrorList { get; }
+
     /// <summary>
     /// Gets an editor that wraps the node in the property grid user interface.*-
     /// </summary>
     /// <value>The wrapper.</value>
     object Wrapper4PropertyGrid { get; }
+
     /// <summary>
-    /// An instance of the interface <see cref="INodeDescriptor"/> that provides the description of the node to be 
+    /// An instance of the interface <see cref="INodeDescriptor"/> that provides the description of the node to be
     /// bind with an external data source.
     /// </summary>
     /// <return>An instance of the interface <see cref="INodeDescriptor"/> to be bound with external data source.</return>
     INodeDescriptor GetINodeDescriptor();
+
     /// <summary>
     /// Gets the name of the node class.
     /// </summary>
     /// <value>The name <see cref="NodeClassesEnum"/> of the node class.</value>
     NodeClassesEnum NodeClass { get; }
+
     /// <summary>
     /// Gets the name of the help topic.
     /// </summary>
     /// <value>Unique identifier to be used as the key to select the help topic.</value>
     string HelpTopicName { get; }
-    /// <summary>
-    /// Gets a value indicating whether this instance is read only.
-    /// </summary>
-    /// <value>
-    /// 	<c>true</c> if this instance is read only; otherwise, <c>false</c>.
-    /// </value>
-    bool IsReadOnly { get; }
+
+    ///// <summary>
+    ///// Gets a value indicating whether this instance is read only.
+    ///// </summary>
+    ///// <value>
+    ///// 	<c>true</c> if this instance is read only; otherwise, <c>false</c>.
+    ///// </value>
+    bool IsReadOnly();
   }
 
-
   #region IModelNodeAdvance
+
   internal interface IModelNodeAdvance : IModelNode
   {
     #region menu
+
     /// <summary>
     /// Should the paste menu be enabled.
     /// </summary>
     /// <returns>true if it should be enabled</returns>
     bool ShouldPasteMenuBeEnabled();
+
     void MenuItemCopy_Action();
+
     void MenuItemCut_Action();
+
     void MenuItemPaste_Action();
+
     #endregion menu
 
     /// <summary>
@@ -81,12 +93,14 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </summary>
     /// <returns>folders dictionary (list) </returns>
     Dictionary<FolderType, IEnumerable<IModelNodeAdvance>> GetFolders();
+
     /// <summary>
     /// Gets the type of the node(ua noe, project, solution, folder, etc..).
     /// </summary>
     /// <value>The type of the node.</value>
     NodeTypeEnum NodeType { get; }
   }
+
   internal enum FolderType
   {
     Children,
@@ -99,6 +113,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     Project,
     ModelNodes
   }
+
   internal enum NodeTypeEnum
   {
     OpcUaNode,
@@ -113,6 +128,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     ReferencesFolderNode,
     ChildrenFolderNode
   }
+
   #endregion IModelNodeAdvance
 
   /// <summary>
@@ -125,6 +141,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </summary>
     /// <value>The message of the error.</value>
     public string Message { get; private set; }
+
     /// <summary>
     /// Initializes a new instance of the <see cref="Diagnostics"/> class.
     /// </summary>

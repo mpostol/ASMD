@@ -167,7 +167,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// <value>The node class.</value>
     public override NodeClassesEnum NodeClass => NodeClassesEnum.None;
 
-    internal override bool TestIfReadOnlyAndRetrunTrueIfReadOnly()
+    public override bool IsReadOnly()
     {
       return false;
     }
@@ -299,13 +299,13 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     #region WrapperTreeNode
 
-    protected internal override void RaiseOnChangeHandler()
+    public override void RaiseOnChangeHandler()
     {
       m_OnChangeHandler?.Invoke(this, EventArgs.Empty);
       OnDataChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    protected override void CreateInstanceConfigurations(BaseTreeNode node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+    public override void CreateInstanceConfigurations(BaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
     {
       IConfiguration svr = Server.IServerConfiguration;
       if (svr == null)

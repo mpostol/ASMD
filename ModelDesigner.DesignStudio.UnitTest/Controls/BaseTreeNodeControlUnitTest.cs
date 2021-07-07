@@ -59,7 +59,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
     }
     #endregion
 
-    #region testing instrunebtation
+    #region testing instrumentation
     private class BaseTreeNodeControlTest : BaseTreeNodeControl<BaseTreeNodeTest>
     {
       public void CheckModelEntity()
@@ -82,7 +82,11 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       #region IBaseModel
       public string Text { get; set; } = nameof(BaseTreeNodeTest);
       public string ToolTipText { get; set; } = "ToolTipText";
-      public event EventHandler<BaseTreeNode.ProjectEventArgs> SubtreeChanged
+      public IBaseModel Parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+      public string[] AvailiableNamespaces => throw new NotImplementedException();
+
+      public event EventHandler<ProjectEventArgs> SubtreeChanged
       {
         add { SubtreeChangedCount++; }
         remove
@@ -90,7 +94,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
           throw new InvalidOperationException();
         }
       }
-      public event EventHandler<BaseTreeNode.TextEventArgs> TextChanged
+      public event EventHandler<TextEventArgs> TextChanged
       {
         add
         {
@@ -100,6 +104,26 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         {
           throw new InvalidOperationException();
         }
+      }
+
+      public void CreateInstanceConfigurations(IBaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+      {
+        throw new NotImplementedException();
+      }
+
+      public string GetTargetNamespace()
+      {
+        throw new NotImplementedException();
+      }
+
+      public void RaiseOnChangeHandler()
+      {
+        throw new NotImplementedException();
+      }
+
+      public bool IsReadOnly()
+      {
+        throw new NotImplementedException();
       }
       #endregion
 
