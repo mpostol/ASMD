@@ -1,11 +1,10 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Wrappers;
 using System.ComponentModel;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
@@ -15,11 +14,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// </summary>
   /// <remarks>Project wrapper to provide information about the project to the user.</remarks>
   [DefaultProperty("FilePath")]
-  internal class ProjectWrapper : NameWithEventBase<IProjectModel>, IViewModel
+  internal class ProjectWrapper : NameWithEventBase<IProjectModelView>, IViewModel
   {
     #region constructors
 
-    internal ProjectWrapper(IProjectModel projectModel) : base(projectModel)
+    internal ProjectWrapper(IProjectModelView projectModel) : base(projectModel)
     {
     }
 

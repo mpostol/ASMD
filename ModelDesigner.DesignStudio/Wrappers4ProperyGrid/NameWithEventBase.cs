@@ -1,11 +1,10 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.ComponentModel;
 
@@ -15,7 +14,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// Helper that contains name of the instance.
   /// </summary>
   internal class NameWithEventBase<TModel>
-    where TModel : IBaseModel
+    where TModel : IBaseModelView
   {
     private void RaiseOnNameChangedEvent()
     {

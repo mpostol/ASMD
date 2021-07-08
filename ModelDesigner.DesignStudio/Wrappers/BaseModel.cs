@@ -5,6 +5,7 @@
 //  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
 //__________________________________________________________________________________________________
 
+using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -131,7 +132,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       return ret;
     }
 
-    public IEnumerator<IBaseModel> GetEnumerator()
+    public IEnumerator<IBaseModelView> GetEnumerator()
     {
       return m_Children.GetEnumerator();
     }

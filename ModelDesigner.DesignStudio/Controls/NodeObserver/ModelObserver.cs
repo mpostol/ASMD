@@ -9,6 +9,7 @@ using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
+using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -196,6 +197,7 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
 
     private void m_TreeView_RefreshNeeded(object sender, DictionaryTreeView.RefreshScopeEventArgs e)
     {
+      //TODO PackMLStatusObjectType- References causes an null exception #237
       //TODO: this event occurs when Selected node is changed - maybe we can remove it??
       UniqueIdentifier ui = new UniqueIdentifier();
       if (!m_TreeView.SelectedNode.GetUniqueIdentifier(ui))

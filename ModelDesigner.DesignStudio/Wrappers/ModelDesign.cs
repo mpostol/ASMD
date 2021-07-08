@@ -18,7 +18,7 @@ namespace CAS.UA.Model.Designer.Wrappers
   /// <summary>
   /// Root of the model tree.
   /// </summary>
-  internal partial class ModelDesign : WrapperBase<Wrappers4ProperyGrid.ModelDesign, OpcUaModelCompiler.ModelDesign>
+  internal partial class ModelDesign : WrapperBase<Wrappers4ProperyGrid.ModelDesignViewModel, OpcUaModelCompiler.ModelDesign>
   {
     #region creators
 
@@ -45,7 +45,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     //  )
     //{ }
 
-    internal ModelDesign(OpcUaModelCompiler.ModelDesign node, bool library) : base(new Wrappers4ProperyGrid.ModelDesign(node))
+    internal ModelDesign(OpcUaModelCompiler.ModelDesign node, bool library) : base(new Wrappers4ProperyGrid.ModelDesignViewModel(node))
     {
       TypesAvailableToBePasted.Add(typeof(OpcUaModelCompiler.NodeDesign));
       TypesAvailableToBePasted.Add(typeof(OpcUaModelCompiler.Namespace));

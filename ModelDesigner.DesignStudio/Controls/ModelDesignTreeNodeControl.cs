@@ -7,13 +7,14 @@
 
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Wrappers;
+using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Controls
 {
-  internal class ModelDesignTreeNodeControl : WrapperBaseTreeNodeControl<ModelDesign, Wrappers4ProperyGrid.ModelDesign, OpcUaModelCompiler.ModelDesign>
+  internal class ModelDesignTreeNodeControl : WrapperBaseTreeNodeControl<ModelDesign, Wrappers4ProperyGrid.ModelDesignViewModel, OpcUaModelCompiler.ModelDesign>
   {
     #region creator
 

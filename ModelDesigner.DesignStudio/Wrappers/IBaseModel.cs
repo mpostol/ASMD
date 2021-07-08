@@ -5,19 +5,12 @@
 //  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
 //__________________________________________________________________________________________________
 
-using System;
-using System.Collections.Generic;
+using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal interface IBaseModel : IEnumerable<IBaseModel>
+  internal interface IBaseModel : IBaseModelView
   {
-    event EventHandler<TextEventArgs> TextChanged;
-
-    event EventHandler<ProjectEventArgs> SubtreeChanged;
-
-    string ToolTipText { get; set; }
-    string Text { get; set; }
     string[] AvailiableNamespaces { get; }
 
     /// <summary>
@@ -57,26 +50,4 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// </returns>
     bool Remove(IBaseModel item);
   }
-
-  /// <summary>
-  /// Class TextEventArgs.
-  /// Implements the <see cref="EventArgs" />
-  /// </summary>
-  /// <seealso cref="EventArgs" />
-  internal class TextEventArgs : EventArgs
-  {
-    public readonly BaseModel Node;
-
-    public TextEventArgs(BaseModel node)
-    {
-      Node = node;
-    }
-  }
-
-  /// <summary>
-  /// Class ProjectEventArgs.
-  /// Implements the <see cref="EventArgs" />
-  /// </summary>
-  /// <seealso cref="EventArgs" />
-  internal class ProjectEventArgs : EventArgs { }
 }

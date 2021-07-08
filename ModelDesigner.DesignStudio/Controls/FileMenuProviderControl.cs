@@ -6,6 +6,7 @@
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Wrappers;
+using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 namespace CAS.UA.Model.Designer.Controls
 {
   internal abstract class FileMenuProviderControl<TModel> : BaseTreeNodeControl<TModel>
-    where TModel : IBaseModel
+    where TModel : IBaseModelView
   {
     public FileMenuProviderControl(TModel model) : base(model)
     {

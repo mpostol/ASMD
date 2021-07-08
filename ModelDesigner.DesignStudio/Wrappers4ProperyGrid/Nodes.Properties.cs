@@ -1,17 +1,15 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
 //  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Wrappers;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
 using System;
 using System.ComponentModel;
 using System.Xml;
 using UAOOI.Configuration.Core;
-//using UAOOI.Windows.Forms;
 using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
@@ -39,7 +37,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   ///Each Node is assigned to a NodeClass and each NodeClass represents a different
   ///element of the Object Model.
   /// </summary>
-  internal partial class ModelDesign
+  internal partial class ModelDesignViewModel
   {
     #region public properties
 

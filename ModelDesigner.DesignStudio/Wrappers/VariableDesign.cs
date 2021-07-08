@@ -6,6 +6,7 @@
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
+using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System.Collections.Generic;
 using UAOOI.Configuration.Core;
 using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;

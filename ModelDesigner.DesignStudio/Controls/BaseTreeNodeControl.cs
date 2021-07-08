@@ -5,12 +5,13 @@
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Wrappers;
+using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System;
 
 namespace CAS.UA.Model.Designer.Controls
 {
   internal abstract class BaseTreeNodeControl<TModel> : DictionaryTreeNode
-    where TModel : IBaseModel
+    where TModel : IBaseModelView
   {
 
     #region private

@@ -6,7 +6,7 @@
 //__________________________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration;
-using CAS.UA.Model.Designer.Wrappers;
+
 using System.ComponentModel;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid

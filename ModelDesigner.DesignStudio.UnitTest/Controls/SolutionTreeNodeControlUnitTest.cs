@@ -7,6 +7,7 @@
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Wrappers;
+using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
     [TestMethod]
     public void Constructor4TreeTest()
     {
-      SolutionTreeNodeTest _model = new SolutionTreeNodeTest
+      ISolutionModel _model = new SolutionTreeNodeTest
       {
         new BaseModelTest()
       };
@@ -81,7 +82,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       public DictionaryTreeNode GetTreeNode(IBaseModel wrapper)
       {
         Assert.IsNotNull(wrapper);
-        Assert.IsInstanceOfType(wrapper, typeof(IProjectModel));
+        Assert.IsInstanceOfType(wrapper, typeof(IProjectModelView));
         return new DictionaryTreeNodeTest();
       }
     }
@@ -103,7 +104,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       }
     }
 
-    private class SolutionTreeNodeTest : List<IBaseModel>, ISolutionModel
+    private class SolutionTreeNodeTest : List<IBaseModelView>, ISolutionModel
     {
       internal int SubtreeChangedCount = 0;
       internal int TextChangedCount = 0;
@@ -212,10 +213,15 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         throw new NotImplementedException();
       }
 
+      public bool Remove(IBaseModel item)
+      {
+        throw new NotImplementedException();
+      }
+
       #endregion ISolutionModel
     }
 
-    private class BaseModelTest : List<IBaseModel>, IBaseModel, IProjectModel
+    private class BaseModelTest : List<IBaseModelView>, IBaseModelView, IProjectModelView
     {
       #region IProjectModel
 

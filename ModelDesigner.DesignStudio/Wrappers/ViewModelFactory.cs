@@ -1,26 +1,14 @@
-﻿//_______________________________________________________________
-//  Title   : Name of Application
-//  System  : Microsoft VisualStudio 2015 / C#
-//  $LastChangedDate:  $
-//  $Rev: $
-//  $LastChangedBy: $
-//  $URL: $
-//  $Id:  $
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2017, CAS LODZ POLAND.
-//  TEL: +48 608 61 98 99 
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//_______________________________________________________________
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
+using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal interface IViewModelFactory
-  {
-    IViewModel Create(ProjectTreeNode modelEntity);
-    IViewModel Create(SolutionTreeNode modelEntity);
-  }
 
   internal static class ViewModelFactory
   {
@@ -28,11 +16,12 @@ namespace CAS.UA.Model.Designer.Wrappers
     {
       return Factory.Create(modelEntity);
     }
+
     internal static IViewModel Create(this ProjectTreeNode modelEntity)
     {
       return Factory.Create(modelEntity);
     }
+
     internal static IViewModelFactory Factory { set; private get; } = null;
   }
-
 }

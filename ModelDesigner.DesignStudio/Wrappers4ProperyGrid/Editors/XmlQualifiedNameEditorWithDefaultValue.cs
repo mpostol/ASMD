@@ -7,7 +7,6 @@
 
 using System.ComponentModel;
 using System.Xml;
-//using UAOOI.Windows.Forms;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
 {

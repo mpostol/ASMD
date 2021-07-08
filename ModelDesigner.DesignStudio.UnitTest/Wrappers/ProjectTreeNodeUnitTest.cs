@@ -6,6 +6,7 @@
 //___________________________________________________________________________________
 
 using CAS.UA.Model.Designer.IO;
+using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -129,12 +130,12 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     private class ViewModelFactoryTest : IViewModelFactory
     {
-      public IViewModel Create(SolutionTreeNode modelEntity)
+      public IViewModel Create(IProjectModelView modelEntity)
       {
         throw new NotImplementedException();
       }
 
-      public IViewModel Create(ProjectTreeNode modelEntity)
+      public IViewModel Create(ISolutionTreeNodeUI modelEntity)
       {
         return ViewModel.Instance;
       }

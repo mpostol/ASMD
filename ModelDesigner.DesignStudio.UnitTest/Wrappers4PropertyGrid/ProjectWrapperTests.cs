@@ -1,12 +1,10 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
-
-using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.UA.Model.Designer.Solution;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -29,8 +27,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
     [TestMethod()]
     public void Constructor1Test()
     {
-
-      Mock<WrappersModel.IProjectModel> _projectObjectModel = new Mock<WrappersModel.IProjectModel>();
+      Mock<IProjectModelView> _projectObjectModel = new Mock<IProjectModelView>();
       ProjectWrapper _projectWrapper = new ProjectWrapper(_projectObjectModel.Object);
       Assert.Inconclusive("Use moc to test CAS.UA.Model.Designer.Wrappers4PropertyGrid #40");
       // Assert.Inconclusive("_projectWrapper.Text is generated dynamically so it cannot be reproduced");

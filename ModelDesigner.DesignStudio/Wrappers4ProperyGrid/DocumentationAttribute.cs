@@ -1,14 +1,13 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2020, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
 using System;
 using System.Xml;
-//using UAOOI.Windows.Forms;
 using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
