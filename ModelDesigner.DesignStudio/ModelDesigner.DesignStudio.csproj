@@ -416,6 +416,7 @@
     <Compile Include="Wrappers4ProperyGrid\Editors\TypeListConverter.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\ValueEditor.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\VariableValueEditor.cs" />
+    <Compile Include="Wrappers4ProperyGrid\Editors\XmlQualifiedNameEditor.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\XmlQualifiedNameEditorWithDefaultValue.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\XmlStandardValueEditor.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\XmValueValueEditor.cs" />
