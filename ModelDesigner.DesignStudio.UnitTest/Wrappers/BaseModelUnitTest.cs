@@ -12,7 +12,7 @@ using System;
 namespace CAS.UA.Model.Designer.Wrappers
 {
   [TestClass]
-  public class BaseTreeNodeTestUnitTest
+  public class BaseModelUnitTest
   {
     [TestMethod]
     public void ConstructorTest()

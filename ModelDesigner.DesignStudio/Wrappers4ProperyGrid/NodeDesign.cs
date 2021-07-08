@@ -12,7 +12,7 @@ using System;
 using System.Text;
 using System.Xml;
 using UAOOI.Configuration.Core;
-using UAOOI.Windows.Forms;
+//using UAOOI.Windows.Forms;
 using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
