@@ -1,16 +1,18 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
 //  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.UA.Model.Designer.ImportExport;
 using CAS.UA.Model.Designer.Properties;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Windows.Forms; //TODO Removed dependency of the CAS.UA.Model.Designer.Wrappers on using System.Windows.Forms #38
+
+//TODO Removed dependency of the CAS.UA.Model.Designer.Wrappers on using System.Windows.Forms #38
+using System.Windows.Forms;
 using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 using TraceMessage = UAOOI.SemanticData.BuildingErrorsHandling.TraceMessage;
 

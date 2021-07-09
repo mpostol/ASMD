@@ -11,6 +11,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 {
   internal interface ISolutionModel : IBaseModel
   {
+    //TODO Removed dependency of the CAS.UA.Model.Designer.Wrappers on using System.Windows.Forms #38
     void GetPluginMenuItems(System.Windows.Forms.ToolStripItemCollection items);
 
     void AddProject(bool existing);

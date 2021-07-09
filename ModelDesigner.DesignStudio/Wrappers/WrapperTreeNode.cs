@@ -15,6 +15,8 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using UAOOI.Configuration.Core;
+
+//TODO Removed dependency of the CAS.UA.Model.Designer.Wrappers on using System.Windows.Forms #38
 using UAOOI.Windows.Forms;
 using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
@@ -32,6 +34,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       string clipboard = string.Empty;
       try
       {
+        //TODO Removed dependency of the CAS.UA.Model.Designer.Wrappers on using System.Windows.Forms #38
         clipboard = System.Windows.Forms.Clipboard.GetText();
       }
       catch
