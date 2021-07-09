@@ -1,18 +1,16 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
 //  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Types;
-using CAS.UA.Model.Designer.Wrappers;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
 using System;
 using System.Text;
 using System.Xml;
 using UAOOI.Configuration.Core;
-//using UAOOI.Windows.Forms;
 using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
@@ -197,13 +195,13 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 
   #region class ModelDesign
 
-  internal partial class ModelDesign : Design<OpcUaModelCompiler.ModelDesign>
+  internal partial class ModelDesignViewModel : Design<OpcUaModelCompiler.ModelDesign>
   {
     /// <summary>
     /// Initializes a new instance of the <see cref="ModelDesign"/> class.
     /// </summary>
     /// <param name="child">The child.</param>
-    public ModelDesign(OpcUaModelCompiler.ModelDesign child)
+    public ModelDesignViewModel(OpcUaModelCompiler.ModelDesign child)
     {
       this.AnyAttr = child.AnyAttr;
       this.DefaultLocale = child.DefaultLocale;
@@ -328,7 +326,6 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       node.Description = this.Description.Source;
       node.BitMask = this.BitMask;
     }
-
   }
 
   #endregion class Parameter

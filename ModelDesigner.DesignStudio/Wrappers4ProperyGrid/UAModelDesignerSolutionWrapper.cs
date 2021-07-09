@@ -6,7 +6,6 @@
 //__________________________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration;
-using CAS.UA.Model.Designer.Wrappers;
 using System.ComponentModel;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
@@ -15,7 +14,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// Instance of this class is to be used as a wrapper to expose to the user
   /// </summary>
   [DefaultProperty("Server")]
-  internal class UAModelDesignerSolutionWrapper : NameWithEventBase<ISolutionTreeNodeUI>, IViewModel
+  internal class UAModelDesignerSolutionWrapper : NameWithEventBase<ISolutionModelView>, IViewModel
   {
     #region User Interface
 
@@ -43,7 +42,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 
     #region constructor
 
-    internal UAModelDesignerSolutionWrapper(ISolutionTreeNodeUI node) : base(node)
+    internal UAModelDesignerSolutionWrapper(ISolutionModelView node) : base(node)
     {
     }
 

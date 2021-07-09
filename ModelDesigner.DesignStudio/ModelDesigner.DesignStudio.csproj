@@ -420,9 +420,15 @@
     <Compile Include="Wrappers4ProperyGrid\Editors\XmlQualifiedNameEditorWithDefaultValue.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\XmlStandardValueEditor.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\XmValueValueEditor.cs" />
+    <Compile Include="Wrappers4ProperyGrid\IBaseModelView.cs" />
+    <Compile Include="Wrappers4ProperyGrid\InstanceIdentifier.cs" />
+    <Compile Include="Wrappers4ProperyGrid\IProjectModelView.cs" />
+    <Compile Include="Wrappers4ProperyGrid\ISolutionTreeNodeUI.cs" />
+    <Compile Include="Wrappers4ProperyGrid\IViewModel.cs" />
+    <Compile Include="Wrappers4ProperyGrid\IViewModelFactory.cs" />
+    <Compile Include="Wrappers4ProperyGrid\UniqueIdentifier.cs" />
     <Compile Include="Wrappers\BaseModel.cs" />
     <Compile Include="Wrappers\IBaseModel.cs" />
-    <Compile Include="Wrappers\InstanceIdentifier.cs" />
     <Compile Include="Wrappers4ProperyGrid\LocalizedText.cs" />
     <Compile Include="Wrappers4ProperyGrid\NameWithEventBase.cs" />
     <Compile Include="Wrappers4ProperyGrid\NodeDesign.cs" />
@@ -432,7 +438,6 @@
       <DependentUpon>UAModelDesignerSolution.xsd</DependentUpon>
     </Compile>
     <Compile Include="Wrappers4ProperyGrid\UAModelDesignerSolutionWrapper.cs" />
-    <Compile Include="Wrappers\UniqueIdentifier.cs" />
     <Compile Include="Wrappers4ProperyGrid\ViewModelFactory.cs" />
     <Compile Include="Wrappers\AddressSpaceDictionary\AddressSpace.cs">
       <DependentUpon>AddressSpace.xsd</DependentUpon>
@@ -461,7 +466,7 @@
     <Compile Include="Wrappers\IInstanceNodesCollection.cs" />
     <Compile Include="Wrappers\IInstanceReferencesCollection.cs" />
     <Compile Include="Wrappers\IModelNode.cs" />
-    <Compile Include="Wrappers\IProjectViewModel.cs" />
+    <Compile Include="Wrappers\ISolutionModel.cs" />
     <Compile Include="Wrappers\ISolutionViewModel.cs" />
     <Compile Include="Wrappers\ViewModelFactory.cs" />
     <Compile Include="Wrappers\Libraries.cs" />

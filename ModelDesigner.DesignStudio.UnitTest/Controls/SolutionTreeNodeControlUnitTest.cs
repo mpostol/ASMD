@@ -1,12 +1,14 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Wrappers;
+using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -36,7 +38,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
     [TestMethod]
     public void Constructor4TreeTest()
     {
-      SolutionTreeNodeTest _model = new SolutionTreeNodeTest
+      ISolutionModel _model = new SolutionTreeNodeTest
       {
         new BaseModelTest()
       };
@@ -78,10 +80,10 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
 
     private class FactoryFixture : CAS.UA.Model.Designer.Controls.ITreeNodesFactory
     {
-      public DictionaryTreeNode GetTreeNode(IBaseModel wrapper)
+      public DictionaryTreeNode GetTreeNode(CAS.UA.Model.Designer.Wrappers.IBaseModel wrapper)
       {
         Assert.IsNotNull(wrapper);
-        Assert.IsInstanceOfType(wrapper, typeof(IProjectModel));
+        Assert.IsInstanceOfType(wrapper, typeof(IProjectModelView));
         return new DictionaryTreeNodeTest();
       }
     }
@@ -207,7 +209,12 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         throw new NotImplementedException();
       }
 
-      public void CreateInstanceConfigurations(IBaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+      public void CreateInstanceConfigurations(CAS.UA.Model.Designer.Wrappers.IBaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+      {
+        throw new NotImplementedException();
+      }
+
+      public bool Remove(CAS.UA.Model.Designer.Wrappers.IBaseModel item)
       {
         throw new NotImplementedException();
       }
@@ -215,7 +222,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       #endregion ISolutionModel
     }
 
-    private class BaseModelTest : List<IBaseModel>, IBaseModel, IProjectModel
+    private class BaseModelTest : List<IBaseModel>, IBaseModel, IProjectModelView
     {
       #region IProjectModel
 
@@ -242,6 +249,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         get => "ToolTipText";
         set => throw new NotImplementedException();
       }
+
       public IBaseModel Parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
       public string[] AvailiableNamespaces => throw new NotImplementedException();
@@ -270,7 +278,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         throw new NotImplementedException();
       }
 
-      public void CreateInstanceConfigurations(IBaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
+      public void CreateInstanceConfigurations(CAS.UA.Model.Designer.Wrappers.IBaseModel node, bool SkipOpeningConfigurationFile, out bool CancelWasPressed)
       {
         throw new NotImplementedException();
       }

@@ -1,13 +1,13 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 using WrappersModel = global::CAS.UA.Model.Designer.Wrappers;
 
 namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
@@ -24,14 +24,14 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
     [TestMethod()]
     public void ConstructorDefaultTest()
     {
-      Mock<WrappersModel.ISolutionTreeNodeUI> _SolutionTreeNodeMock = new Mock<WrappersModel.ISolutionTreeNodeUI>();
-      _SolutionTreeNodeMock.Setup<string>(x => x.HomeDirectory.DefaultDirectory).Returns(nameof(WrappersModel.ISolutionTreeNodeUI.HomeDirectory));
-      _SolutionTreeNodeMock.Setup<string>(x => x.Text).Returns(nameof(WrappersModel.ISolutionTreeNodeUI.Text));
-      _SolutionTreeNodeMock.Setup<string>(x => x.ToolTipText).Returns(nameof(WrappersModel.ISolutionTreeNodeUI.ToolTipText));
+      Mock<ISolutionModelView> _SolutionTreeNodeMock = new Mock<ISolutionModelView>();
+      _SolutionTreeNodeMock.Setup<string>(x => x.HomeDirectory.DefaultDirectory).Returns(nameof(ISolutionModelView.HomeDirectory));
+      _SolutionTreeNodeMock.Setup<string>(x => x.Text).Returns(nameof(ISolutionModelView.Text));
+      _SolutionTreeNodeMock.Setup<string>(x => x.ToolTipText).Returns(nameof(ISolutionModelView.ToolTipText));
       UAModelDesignerSolutionWrapper _newSolution = new UAModelDesignerSolutionWrapper(_SolutionTreeNodeMock.Object);
       //Assert
-      Assert.AreEqual<string>(nameof(WrappersModel.ISolutionTreeNodeUI.Text), _newSolution.Name);
-      Assert.AreEqual<string>(nameof(WrappersModel.ISolutionTreeNodeUI.HomeDirectory), _newSolution.HomeDirectory);
+      Assert.AreEqual<string>(nameof(ISolutionModelView.Text), _newSolution.Name);
+      Assert.AreEqual<string>(nameof(ISolutionModelView.HomeDirectory), _newSolution.HomeDirectory);
       Assert.IsNull(_newSolution.Server);
     }
   }

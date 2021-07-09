@@ -14,7 +14,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
 {
   //TODO Use moc to test CAS.UA.Model.Designer.Wrappers4PropertyGrid #40
   [TestClass]
-  public class ModelDesignUnitTest
+  public class ModelDesignViewModelUnitTest
   {
     [TestMethod]
     public void ModelDesignTest()
@@ -31,7 +31,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
         TargetVersion = "TargetVersion",
         TargetXmlNamespace = "TargetXmlNamespace"
       };
-      ModelDesign _model = new ModelDesign(_node);
+      ModelDesignViewModel _model = new ModelDesignViewModel(_node);
       Assert.IsNull(_model.AnyAttr);
       Assert.IsNull(_model.DefaultLocale);
       Assert.IsNull(_model.Parent);

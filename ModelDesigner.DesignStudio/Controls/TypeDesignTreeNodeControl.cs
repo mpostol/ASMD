@@ -7,6 +7,7 @@
 
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Wrappers;
+using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System;
 using System.Collections.Generic;
 using System.Xml;

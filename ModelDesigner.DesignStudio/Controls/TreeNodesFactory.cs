@@ -1,10 +1,12 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Wrappers;
+using System;
 
 namespace CAS.UA.Model.Designer.Controls
 {
@@ -12,9 +14,11 @@ namespace CAS.UA.Model.Designer.Controls
   {
     DictionaryTreeNode GetTreeNode(IBaseModel wrapper);
   }
+
   internal class TreeNodesFactory
   {
     internal static ITreeNodesFactory Factory { get; set; } = new InternalTreeNodesFactory();
+
     private class InternalTreeNodesFactory : ITreeNodesFactory
     {
       public DictionaryTreeNode GetTreeNode(IBaseModel wrapper)
@@ -69,17 +73,19 @@ namespace CAS.UA.Model.Designer.Controls
         else if (wrapper is ModelDesign)
           _ret = new ModelDesignTreeNodeControl((ModelDesign)wrapper);
         else
-          throw new System.ArgumentOutOfRangeException($"{nameof(GetTreeNode)} cannot factory object for {wrapper.GetType().FullName}");
+          throw new ArgumentOutOfRangeException($"{nameof(GetTreeNode)} cannot factory object for {wrapper.GetType().FullName}");
         return _ret;
       }
     }
 
     #region Debug Instrumentation
+
     [System.Diagnostics.Conditional("DEBUG")]
     internal static void ResetSingleton()
     {
       Factory = new InternalTreeNodesFactory();
     }
-    #endregion
+
+    #endregion Debug Instrumentation
   }
 }

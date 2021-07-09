@@ -1,26 +1,20 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
 //  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.UA.Model.Designer.IO;
 using CAS.UA.Model.Designer.Properties;
+using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System;
 using System.Collections.Generic;
 using System.Xml;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal interface IProjectModel : IBaseModel
-  {
-    string Name { get; }
-
-    void Remove();
-  }
-
-  internal class ProjectTreeNode : WrapperTreeNode, IProjectModel
+  internal class ProjectTreeNode : WrapperTreeNode, IProjectModelView
   {
     #region private
 

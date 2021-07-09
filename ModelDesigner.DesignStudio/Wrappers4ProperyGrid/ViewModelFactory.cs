@@ -1,20 +1,20 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//___________________________________________________________________________________
-
-using CAS.UA.Model.Designer.Wrappers;
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
   internal class ViewModelFactory : IViewModelFactory
   {
-    public IViewModel Create (ProjectTreeNode modelEntity)
+    public IViewModel Create(IProjectModelView modelEntity)
     {
       return new ProjectWrapper(modelEntity);
     }
-    public IViewModel Create(SolutionTreeNode modelEntity)
+
+    public IViewModel Create(ISolutionModelView modelEntity)
     {
       return new UAModelDesignerSolutionWrapper(modelEntity);
     }
