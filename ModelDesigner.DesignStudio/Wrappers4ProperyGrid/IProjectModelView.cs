@@ -7,7 +7,7 @@
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
-  internal interface IProjectModelView : IBaseModelView
+  internal interface IProjectModelView : IBaseViewModel
   {
     string Name { get; }
 

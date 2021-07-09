@@ -23,25 +23,11 @@ using UAOOI.Configuration.Core;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal interface ISolutionModel : IBaseModel
-  {
-    void GetPluginMenuItems(System.Windows.Forms.ToolStripItemCollection items);
-
-    void AddProject(bool existing);
-
-    void ImportNodeSet();
-
-    void Save(bool prompt);
-
-    void Open(IGraphicalUserInterface gui);
-
-    void OnNew(IGraphicalUserInterface gui);
-  }
 
   /// <summary>
   /// The class representing the solution node in the model.
   /// </summary>
-  internal class SolutionTreeNode : WrapperTreeNode, IViewModel, ISolutionModel, ISolutionTreeNodeUI
+  internal class SolutionTreeNode : WrapperTreeNode, IViewModel, ISolutionModel, ISolutionModelView
   {
     #region private
 

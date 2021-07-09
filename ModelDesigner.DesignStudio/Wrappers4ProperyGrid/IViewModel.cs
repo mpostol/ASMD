@@ -12,23 +12,5 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// </summary>
   internal interface IViewModel
   {
-    ///// <summary>
-    ///// Gets or sets the name of the file.
-    ///// </summary>
-    ///// <value>The name of the file.</value>
-    //string FileName { get; set; }
-    ///// <summary>
-    ///// Occurs when the name is changed.
-    ///// </summary>
-    //event EventHandler OnNameChanged;
-    //string Name { get; }
-    //string CSVFileName { get; }
-    //string BuildOutputDirectoryName { get; }
-    //Guid ProjectIdentifier { get; }
-    //String CSVFilePath { get; }
-    //string FilePath { get; }
-    //string BuildOutputDirectoryPath { get; }
-    //void SetNewSolutionHomeDirectory(string solutionDirectory);
-    //bool SaveModel(string solutionDirectory, XmlFile.DataToSerialize<OpcUaModelCompiler.ModelDesign> config);
   }
 }

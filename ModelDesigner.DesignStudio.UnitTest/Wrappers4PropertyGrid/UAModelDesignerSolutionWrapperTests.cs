@@ -24,14 +24,14 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid
     [TestMethod()]
     public void ConstructorDefaultTest()
     {
-      Mock<ISolutionTreeNodeUI> _SolutionTreeNodeMock = new Mock<ISolutionTreeNodeUI>();
-      _SolutionTreeNodeMock.Setup<string>(x => x.HomeDirectory.DefaultDirectory).Returns(nameof(ISolutionTreeNodeUI.HomeDirectory));
-      _SolutionTreeNodeMock.Setup<string>(x => x.Text).Returns(nameof(ISolutionTreeNodeUI.Text));
-      _SolutionTreeNodeMock.Setup<string>(x => x.ToolTipText).Returns(nameof(ISolutionTreeNodeUI.ToolTipText));
+      Mock<ISolutionModelView> _SolutionTreeNodeMock = new Mock<ISolutionModelView>();
+      _SolutionTreeNodeMock.Setup<string>(x => x.HomeDirectory.DefaultDirectory).Returns(nameof(ISolutionModelView.HomeDirectory));
+      _SolutionTreeNodeMock.Setup<string>(x => x.Text).Returns(nameof(ISolutionModelView.Text));
+      _SolutionTreeNodeMock.Setup<string>(x => x.ToolTipText).Returns(nameof(ISolutionModelView.ToolTipText));
       UAModelDesignerSolutionWrapper _newSolution = new UAModelDesignerSolutionWrapper(_SolutionTreeNodeMock.Object);
       //Assert
-      Assert.AreEqual<string>(nameof(ISolutionTreeNodeUI.Text), _newSolution.Name);
-      Assert.AreEqual<string>(nameof(ISolutionTreeNodeUI.HomeDirectory), _newSolution.HomeDirectory);
+      Assert.AreEqual<string>(nameof(ISolutionModelView.Text), _newSolution.Name);
+      Assert.AreEqual<string>(nameof(ISolutionModelView.HomeDirectory), _newSolution.HomeDirectory);
       Assert.IsNull(_newSolution.Server);
     }
   }

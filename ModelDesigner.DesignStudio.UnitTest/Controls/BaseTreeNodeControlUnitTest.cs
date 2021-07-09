@@ -9,7 +9,9 @@ using CAS.UA.Model.Designer.Controls;
 using CAS.UA.Model.Designer.Wrappers;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
@@ -56,10 +58,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
     [TestMethod]
     public void AddChildrenTest()
     {
-      BaseTreeNodeTest _model = new BaseTreeNodeTest
-      {
-        new BaseTreeNodeTest()
-      };
+      BaseTreeNodeTest _model = new BaseTreeNodeTest();
       BaseTreeNodeControlTest _instance = new BaseTreeNodeControlTest(_model);
       Assert.AreEqual<int>(1, _instance.Nodes.Count);
       Assert.IsInstanceOfType(_instance.Nodes[0], typeof(DictionaryTreeNodeFixture));
@@ -89,10 +88,17 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
       private readonly BaseTreeNodeTest m_Model = null;
     }
 
-    private class BaseTreeNodeTest : List<IBaseModelView>, IBaseModelView
+    private class BaseTreeNodeTest : IBaseModel
     {
       internal int SubtreeChangedCount = 0;
       internal int TextChangedCount = 0;
+      private List<IBaseModel> collection = new List<IBaseModel>();
+
+      public BaseTreeNodeTest()
+      {
+        Mock<IBaseModel> mock = new Mock<IBaseModel>();
+        collection.Add(mock.Object);
+      }
 
       #region IBaseModelView
 
@@ -143,7 +149,22 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         throw new NotImplementedException();
       }
 
-      IEnumerator<IBaseModelView> IEnumerable<IBaseModelView>.GetEnumerator()
+      private IEnumerator<IBaseModel> GetEnumerator()
+      {
+        return collection.GetEnumerator();
+      }
+
+      public bool Remove(IBaseModel item)
+      {
+        throw new NotImplementedException();
+      }
+
+      IEnumerator<IBaseModel> IEnumerable<IBaseModel>.GetEnumerator()
+      {
+        throw new NotImplementedException();
+      }
+
+      IEnumerator IEnumerable.GetEnumerator()
       {
         throw new NotImplementedException();
       }
@@ -161,7 +182,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
 
     private class FactoryFixture : ITreeNodesFactory
     {
-      public DictionaryTreeNode GetTreeNode(IBaseModel wrapper)
+      public DictionaryTreeNode GetTreeNode(CAS.UA.Model.Designer.Wrappers.IBaseModel wrapper)
       {
         Assert.IsInstanceOfType(wrapper, typeof(BaseTreeNodeTest));
         return new DictionaryTreeNodeFixture();

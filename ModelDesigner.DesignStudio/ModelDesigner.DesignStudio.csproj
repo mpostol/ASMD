@@ -466,6 +466,7 @@
     <Compile Include="Wrappers\IInstanceNodesCollection.cs" />
     <Compile Include="Wrappers\IInstanceReferencesCollection.cs" />
     <Compile Include="Wrappers\IModelNode.cs" />
+    <Compile Include="Wrappers\ISolutionModel.cs" />
     <Compile Include="Wrappers\ISolutionViewModel.cs" />
     <Compile Include="Wrappers\ViewModelFactory.cs" />
     <Compile Include="Wrappers\Libraries.cs" />

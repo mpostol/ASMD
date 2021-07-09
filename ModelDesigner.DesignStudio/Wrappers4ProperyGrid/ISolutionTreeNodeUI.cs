@@ -10,7 +10,7 @@ using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
-  internal interface ISolutionTreeNodeUI : IBaseModelView
+  internal interface ISolutionModelView : IBaseViewModel
   {
     /// <summary>
     /// Gets the home directory.

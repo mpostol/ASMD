@@ -14,7 +14,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
       return new ProjectWrapper(modelEntity);
     }
 
-    public IViewModel Create(ISolutionTreeNodeUI modelEntity)
+    public IViewModel Create(ISolutionModelView modelEntity)
     {
       return new UAModelDesignerSolutionWrapper(modelEntity);
     }

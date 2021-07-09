@@ -132,7 +132,7 @@ namespace CAS.UA.Model.Designer.Wrappers
       return ret;
     }
 
-    public IEnumerator<IBaseModelView> GetEnumerator()
+    public IEnumerator<IBaseModel> GetEnumerator()
     {
       return m_Children.GetEnumerator();
     }

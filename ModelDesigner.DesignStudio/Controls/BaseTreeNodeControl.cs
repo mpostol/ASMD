@@ -11,7 +11,7 @@ using System;
 namespace CAS.UA.Model.Designer.Controls
 {
   internal abstract class BaseTreeNodeControl<TModel> : DictionaryTreeNode
-    where TModel : IBaseModelView
+    where TModel : IBaseModel
   {
 
     #region private

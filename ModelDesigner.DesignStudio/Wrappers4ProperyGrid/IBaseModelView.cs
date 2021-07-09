@@ -6,7 +6,6 @@
 //__________________________________________________________________________________________________
 
 using System;
-using System.Collections.Generic;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
 {
@@ -17,9 +16,9 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// <seealso cref="EventArgs" />
   internal class TextEventArgs : EventArgs
   {
-    public readonly IBaseModelView Node;
+    public readonly IBaseViewModel Node;
 
-    public TextEventArgs(IBaseModelView node)
+    public TextEventArgs(IBaseViewModel node)
     {
       Node = node;
     }
@@ -32,7 +31,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// <seealso cref="EventArgs" />
   internal class ProjectEventArgs : EventArgs { }
 
-  internal interface IBaseModelView : IEnumerable<IBaseModelView>
+  internal interface IBaseViewModel
   {
     event EventHandler<TextEventArgs> TextChanged;
 

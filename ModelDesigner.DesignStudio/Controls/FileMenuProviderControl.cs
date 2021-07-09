@@ -14,7 +14,7 @@ using System.Windows.Forms;
 namespace CAS.UA.Model.Designer.Controls
 {
   internal abstract class FileMenuProviderControl<TModel> : BaseTreeNodeControl<TModel>
-    where TModel : IBaseModelView
+    where TModel : IBaseModel
   {
     public FileMenuProviderControl(TModel model) : base(model)
     {

@@ -6,10 +6,11 @@
 //__________________________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
+using System.Collections.Generic;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-  internal interface IBaseModel : IBaseModelView
+  internal interface IBaseModel : IBaseViewModel, IEnumerable<IBaseModel>
   {
     string[] AvailiableNamespaces { get; }
 

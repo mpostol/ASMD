@@ -14,7 +14,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   /// Helper that contains name of the instance.
   /// </summary>
   internal class NameWithEventBase<TModel>
-    where TModel : IBaseModelView
+    where TModel : IBaseViewModel
   {
     private void RaiseOnNameChangedEvent()
     {
