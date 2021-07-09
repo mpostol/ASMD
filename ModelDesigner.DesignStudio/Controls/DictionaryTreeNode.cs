@@ -1,10 +1,10 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
-using CAS.UA.Model.Designer.Wrappers;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
 using System;
 using System.Collections.Generic;
@@ -15,25 +15,29 @@ namespace CAS.UA.Model.Designer.Controls
 {
   internal abstract class DictionaryTreeNode : BaseDictionaryTreeNode
   {
-  
     #region creator
+
     public DictionaryTreeNode()
       : base()
     {
       ContextMenuStrip = new ContextMenuStrip();
     }
-    #endregion
+
+    #endregion creator
 
     #region private
+
     private DictionaryTreeNode m_CoupledNodeFolder = null;
     protected new DictionaryTreeView TreeView => base.TreeView as DictionaryTreeView;
     protected new DictionaryTreeNode Parent => base.Parent as DictionaryTreeNode;
+
     protected void AddToDictionary(XmlQualifiedName name, DictionaryTreeNode node)
     {
       if (name == null)
         return;
       TreeView.AddIfNew(name, node);
     }
+
     /// <summary>
     /// Checks the type filter.
     /// </summary>
@@ -44,13 +48,16 @@ namespace CAS.UA.Model.Designer.Controls
     {
       return true;
     }
+
     protected abstract void Unregister();
+
     protected void ClearChildren()
     {
       foreach (DictionaryTreeNode item in Nodes)
         item.Unregister();
       Nodes.Clear();
     }
+
     protected void ApplyTypeFiltersToChildren(bool allTypes, IEnumerable<NodeClassesEnum> types)
     {
       List<DictionaryTreeNode> visible = new List<DictionaryTreeNode>();
@@ -62,8 +69,11 @@ namespace CAS.UA.Model.Designer.Controls
       Nodes.Clear();
       Nodes.AddRange(visible.ToArray());
     }
+
     #region Menu
+
     private List<ToolStripMenuItem> m_GoToMenuItemList = new List<ToolStripMenuItem>();
+
     protected void AddMenuItemGoTo(string text, string tip, EventHandler ClickEventHandler)
     {
       ToolStripMenuItem menu = new ToolStripMenuItem(text)
@@ -73,14 +83,18 @@ namespace CAS.UA.Model.Designer.Controls
       menu.Click += ClickEventHandler;
       m_GoToMenuItemList.Add(menu);
     }
+
     /// <summary>
     /// Is called befores the menu strip opening to add all required menu items.
     /// </summary>
     protected virtual void BeforeMenuStripOpening() { }
-    #endregion
-    #endregion
+
+    #endregion Menu
+
+    #endregion private
 
     #region public
+
     /// <summary>
     /// Gets the unique identifier.
     /// </summary>
@@ -93,11 +107,14 @@ namespace CAS.UA.Model.Designer.Controls
       else
         return this.Parent.GetUniqueIdentifier(ui);
     }
+
     internal List<ToolStripMenuItem> GoToMenuItemList => m_GoToMenuItemList;
+
     internal virtual Dictionary<string, XmlQualifiedName> GetCoupledNodesXmlQualifiedNames()
     {
       return new Dictionary<string, XmlQualifiedName>();
     }
+
     internal DictionaryTreeNode GetEmptyCoupledNode()
     {
       Dictionary<string, XmlQualifiedName> coupledXmlQualifiedName = GetCoupledNodesXmlQualifiedNames();
@@ -114,16 +131,19 @@ namespace CAS.UA.Model.Designer.Controls
       }
       return m_CoupledNodeFolder;
     }
+
     internal virtual void AddNodeToDictionary()
     {
       foreach (DictionaryTreeNode node in this.Nodes)
         node.AddNodeToDictionary();
     }
+
     public virtual void SetTypeFilter(bool allTypes, IEnumerable<NodeClassesEnum> types)
     {
       foreach (DictionaryTreeNode node in Nodes)
         node.SetTypeFilter(allTypes, types);
     }
+
     /// <summary>
     /// Called when the node is selected on the tree. It must create a menu for the node.
     /// </summary>
@@ -136,15 +156,16 @@ namespace CAS.UA.Model.Designer.Controls
         this.ContextMenuStrip.Items.Add(new ToolStripSeparator());
       ContextMenuStrip.Items.AddRange(m_GoToMenuItemList.ToArray());
     }
+
     protected internal virtual void GetImportMenu(ToolStripItemCollection items)
     {
       if (Parent == null)
         return;
       Parent.GetImportMenu(items);
     }
+
     //internal abstract IBaseModel BaseModelNode { get; }
-    #endregion
 
-
+    #endregion public
   }//DictionaryTreeNode
 }

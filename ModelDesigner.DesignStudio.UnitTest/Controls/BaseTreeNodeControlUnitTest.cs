@@ -38,7 +38,7 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
     {
       BaseTreeNodeControlTest _instance = BaseTreeNodeControlTest.CreateInstance();
       Assert.AreEqual<int>(0, _instance.ContextMenuStrip.Items.Count);
-      Assert.AreEqual<int>(0, _instance.Nodes.Count);
+      Assert.AreEqual<int>(1, _instance.Nodes.Count);
       Assert.AreEqual<int>(0, _instance.ImageIndex);
       Assert.AreEqual<string>("BaseTreeNodeTest", _instance.Name);
       Assert.AreEqual<string>("BaseTreeNodeTest", _instance.Text);
@@ -161,12 +161,12 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
 
       IEnumerator<IBaseModel> IEnumerable<IBaseModel>.GetEnumerator()
       {
-        throw new NotImplementedException();
+        return collection.GetEnumerator();
       }
 
       IEnumerator IEnumerable.GetEnumerator()
       {
-        throw new NotImplementedException();
+        return collection.GetEnumerator();
       }
 
       #endregion IBaseModelView
@@ -182,9 +182,8 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
 
     private class FactoryFixture : ITreeNodesFactory
     {
-      public DictionaryTreeNode GetTreeNode(CAS.UA.Model.Designer.Wrappers.IBaseModel wrapper)
+      public DictionaryTreeNode GetTreeNode(IBaseModel wrapper)
       {
-        Assert.IsInstanceOfType(wrapper, typeof(BaseTreeNodeTest));
         return new DictionaryTreeNodeFixture();
       }
     }

@@ -6,6 +6,7 @@
 //__________________________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Properties;
+using CAS.UA.Model.Designer.Wrappers;
 using System;
 using System.Windows.Forms;
 
@@ -16,8 +17,7 @@ namespace CAS.UA.Model.Designer.Controls
   /// Implements the <see cref="CAS.UA.Model.Designer.Controls.FileMenuProviderControl{CAS.UA.Model.Designer.Wrappers4ProperyGrid.IProjectModelView}" />
   /// </summary>
   /// <seealso cref="FileMenuProviderControl{IProjectModelView}" />
-  //TODO Remove recurrence between Wrappers and Wrappers4ProperyGrid #42
-  internal class ProjectTreeNodeControl : FileMenuProviderControl<Wrappers.ProjectTreeNode>
+  internal class ProjectTreeNodeControl : FileMenuProviderControl<ProjectTreeNode>
   {
     #region constructor
 
