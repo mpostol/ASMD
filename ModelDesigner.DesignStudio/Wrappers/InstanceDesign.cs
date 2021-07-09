@@ -1,9 +1,9 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
 //  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.UA.Model.Designer.Types;
 using CAS.UA.Model.Designer.Wrappers4ProperyGrid;
@@ -166,6 +166,7 @@ namespace CAS.UA.Model.Designer.Wrappers
     /// Gets the server UA menu.
     /// </summary>
     /// <param name="items">The items collection to expand.</param>
+    //TODO Removed dependency of the CAS.UA.Model.Designer.Wrappers on using System.Windows.Forms #38
     void GetServerUAMenu(System.Windows.Forms.ToolStripItemCollection items);
   }
 }

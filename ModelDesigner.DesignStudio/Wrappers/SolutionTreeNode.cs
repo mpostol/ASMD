@@ -17,13 +17,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+
+//TODO Removed dependency of the CAS.UA.Model.Designer.Wrappers on using System.Windows.Forms #38
 using System.Windows.Forms;
 using System.Xml;
 using UAOOI.Configuration.Core;
 
 namespace CAS.UA.Model.Designer.Wrappers
 {
-
   /// <summary>
   /// The class representing the solution node in the model.
   /// </summary>
@@ -230,6 +231,7 @@ namespace CAS.UA.Model.Designer.Wrappers
 
     #region ISolutionModel
 
+    //TODO Removed dependency of the CAS.UA.Model.Designer.Wrappers on using System.Windows.Forms #38
     public void GetPluginMenuItems(System.Windows.Forms.ToolStripItemCollection menu)
     {
       ICollection<System.Windows.Forms.ToolStripItem> _items = new List<System.Windows.Forms.ToolStripItem>();
