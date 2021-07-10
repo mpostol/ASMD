@@ -22,24 +22,15 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors
       Assert.AreEqual<string>("RandomTexte", toTestItem.TypeName);
     }
     [TestMethod]
-    public void XmlStandardValueEditorTest()
+    public void CreateValueEditorEditorTest()
     {
       XmlDocument document = new XmlDocument();
       XmlElement elemnt = document.CreateElement("name", "namespaceUri");
+      elemnt.InnerText = "InnerText";
       ValueEditor toTestItem = ValueEditor.CreateValueEditor(elemnt);
       Assert.IsNotNull(toTestItem);
       XmlStandardValueEditor toTestEditor = toTestItem as XmlStandardValueEditor;
       Assert.IsNotNull(toTestEditor);
-      Assert.AreEqual<string>("name", toTestEditor.TypeName);
-      Assert.AreEqual<string>("", toTestEditor.Value);
-      Assert.IsNull(toTestEditor.XmlElement);
-      toTestEditor.Value = "RandomText";
-      Assert.IsNotNull(toTestEditor.XmlElement);
-      Assert.IsTrue(toTestEditor.XmlElement.HasChildNodes);
-      Assert.AreEqual<string>("RandomText", toTestEditor.XmlElement.InnerText);
-      Assert.Inconclusive("NamespaceURI must not be null.");
-      Assert.AreEqual<string>("", toTestEditor.XmlElement.NamespaceURI);
-      Assert.AreEqual<string>("name", toTestEditor.XmlElement.Name);
     }
     private class ValueEditorFixture : ValueEditor
     {
