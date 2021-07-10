@@ -5,7 +5,6 @@
 //  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
 //__________________________________________________________________________________________________
 
-using System;
 using System.ComponentModel;
 using System.Xml;
 
@@ -16,7 +15,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
   /// </summary>
   internal class XmlStandardValueEditor : ValueEditor
   {
-    #region creator
+    #region constructor
 
     /// <summary>
     /// Initializes a new instance of the <see cref="XmlStandardValueEditor"/> class.
@@ -33,10 +32,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     public XmlStandardValueEditor(XmlElement xmlElement)
       : base(xmlElement.LocalName)
     {
+      Element = xmlElement;
       Value = xmlElement.InnerText;
     }
 
-    #endregion creator
+    #endregion constructor
 
     #region properties
 
@@ -62,12 +62,15 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     {
       get
       {
-        if (IsEmpty)
+        if (string.IsNullOrEmpty(Value))
           return null;
-        XmlDocument xmldoc = new XmlDocument();
-        XmlElement elem = xmldoc.CreateElement(TypeName, TypeListConverter.NameSpace);
-        elem.InnerText = Value;
-        return elem;
+        else if (Element == null)
+        {
+          XmlDocument xmldoc = new XmlDocument();
+          Element = xmldoc.CreateElement("uax", "String", "http://opcfoundation.org/UA/2008/02/Types.xsd");
+        }
+        Element.InnerText = Value;
+        return Element;
       }
     }
 
@@ -75,11 +78,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
 
     #region Private
 
-    private bool IsEmpty => String.IsNullOrEmpty(Value);
+    private XmlElement Element = null;
 
     protected override string GetValueAsString()
     {
-      return IsEmpty ? "<null>" : Value;
+      return Element == null ? "<null>" : $"{Element.InnerText}";
     }
 
     #endregion Private

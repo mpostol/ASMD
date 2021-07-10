@@ -39,7 +39,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     /// <value>The current value.</value>
     [
     DisplayName("Selected type"),
-    TypeConverter(typeof(TypeListConverter)),
+    TypeConverter(typeof(CustomTypeListConverter)),
     BrowsableAttribute(true),
     DescriptionAttribute("Select the type of the value from the drop-down list and edit the current value. After selecting new type the value is cleared."),
     NotifyParentPropertyAttribute(true)

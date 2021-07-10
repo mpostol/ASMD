@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Xml.Schema;
@@ -17,13 +18,13 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
   /// <summary>
   /// This class is used in DataTypeConverter drop-down list
   /// </summary>
-  internal class TypeListConverter : ExpandableObjectConverter
+  internal class CustomTypeListConverter : ExpandableObjectConverter
   {
     #region static constructor
 
     private static SortedList<string, ValueEditor> m_TypeList;
 
-    static TypeListConverter()
+    static CustomTypeListConverter()
     {
       m_TypeList = new SortedList<string, ValueEditor>();
       List<string> m_XmlType = new List<string>(Enum.GetNames(typeof(XmlTypeCode)));
@@ -41,6 +42,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
           return;
         XmlSchema schema = new XmlSchema();
         schema = XmlSchema.Read(streamToBeRead, null);
+        streamToBeRead.Dispose();
         NameSpace = schema.TargetNamespace;
         XmlSchemaSet schemaSet = new XmlSchemaSet();
         schemaSet.Add(schema);
@@ -128,10 +130,10 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     /// <summary>
     /// Converts the given value object to the specified type, using the specified context and culture information.
     /// </summary>
-    /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
-    /// <param name="culture">A <see cref="T:System.Globalization.CultureInfo"/>. If null is passed, the current culture is assumed.</param>
-    /// <param name="value">The <see cref="T:System.Object"/> to convert.</param>
-    /// <param name="destinationType">The <see cref="T:System.Type"/> to convert the <paramref name="value"/> parameter to.</param>
+    /// <param name="context">An <see cref="ITypeDescriptorContext"/> that provides a format context.</param>
+    /// <param name="culture">A <see cref="CultureInfo"/>. If null is passed, the current culture is assumed.</param>
+    /// <param name="value">The <see cref="Object"/> to convert.</param>
+    /// <param name="destinationType">The <see cref="Type"/> to convert the <paramref name="value"/> parameter to.</param>
     /// <returns>
     /// An <see cref="T:System.Object"/> that represents the converted value.
     /// </returns>
@@ -141,7 +143,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     /// <exception cref="T:System.NotSupportedException">
     /// The conversion cannot be performed.
     /// </exception>
-    public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+    public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
     {
       if (destinationType != typeof(string))
         return base.ConvertTo(context, culture, value, destinationType);

@@ -982,7 +982,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
   internal partial class VariableDesign<T> : InstanceDesign<T>
     where T : OpcUaModelCompiler.VariableDesign, new()
   {
-    #region creators
+    #region constructor
 
     /// <summary>
     /// Initializes a new instance of the <see cref="VariableDesignGeneric"/> class.
@@ -1004,7 +1004,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid
         this.Historizing = node.Historizing;
     }
 
-    #endregion creators
+    #endregion constructor
 
     protected override InstanceDesign<T> CreateNewInstance()
     {
