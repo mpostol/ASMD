@@ -6,6 +6,11 @@
   TargetVersion ="1.04" 
   TargetPublicationDate="2021-07-11T00:00:00Z"
 >
+  <opc:Documentation>
+    The standard defines three data encodings: OPC UA Binary, OPC UA XML and OPC UA JSON. It describes how to construct Messages using each of these encodings.
+    All OPC UA DataEncodings are based on rules that are defined for a standard set of built-in types. These built-in types are then used to construct structures, arrays and Messages.
+    This document enumerates built-in types.
+  </opc:Documentation>
   <opc:DataType Name="Boolean" />
   <opc:DataType Name="SByte" />
   <opc:DataType Name="Byte" />

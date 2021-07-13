@@ -24,12 +24,12 @@ namespace UAOOI.OPCUA.CoreDefinitions
   public enum BuiltInType : int
   {
 <#    foreach (string name in BuildInTypes)
-      { #>
+{ #>
     /// <summary>
     /// An data type <#= name #>.
     /// </summary>
     [EnumMemberAttribute()]
     <#= name #>,
-   <# } #>
+<# } #>
   }
 }

@@ -1,4 +1,5 @@
-﻿//__________________________________________________________________________________________________
+
+//__________________________________________________________________________________________________
 //
 //  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
 //
@@ -18,165 +19,129 @@ namespace UAOOI.OPCUA.CoreDefinitions
   public enum BuiltInType : int
   {
     /// <summary>
-    /// An invalid or unspecified value.
+    /// An data type Boolean.
     /// </summary>
     [EnumMemberAttribute()]
-    Null = 0,
-
+    Boolean,
     /// <summary>
-    /// A boolean logic value (true or false) - A two-state logical value (true or false).
+    /// An data type SByte.
     /// </summary>
     [EnumMemberAttribute()]
-    Boolean = 1,
-
+    SByte,
     /// <summary>
-    /// An 8 bit signed integer value. An integer value between −128 and 127.
+    /// An data type Byte.
     /// </summary>
     [EnumMemberAttribute()]
-    SByte = 2,
-
+    Byte,
     /// <summary>
-    /// An 8 bit unsigned integer value. An integer value between 0 and 255.
+    /// An data type Int16.
     /// </summary>
     [EnumMemberAttribute()]
-    Byte = 3,
-
+    Int16,
     /// <summary>
-    /// A 16 bit signed integer value. An integer value between 0 and 65 535.
+    /// An data type UInt16.
     /// </summary>
     [EnumMemberAttribute()]
-    Int16 = 4,
-
+    UInt16,
     /// <summary>
-    /// A 16 bit unsigned integer value. An integer value between 0 and 65 535.
+    /// An data type Int32.
     /// </summary>
     [EnumMemberAttribute()]
-    UInt16 = 5,
-
+    Int32,
     /// <summary>
-    /// A 32 bit signed integer value. An integer value between −2 147 483 648 and 2 147 483 647.
+    /// An data type UInt32.
     /// </summary>
     [EnumMemberAttribute()]
-    Int32 = 6,
-
+    UInt32,
     /// <summary>
-    /// A 32 bit unsigned integer value. An integer value between 0 and 4 294 967 295.
+    /// An data type Int64.
     /// </summary>
     [EnumMemberAttribute()]
-    UInt32 = 7,
-
+    Int64,
     /// <summary>
-    /// A 64 bit signed integer value. An integer value between −9 223 372 036 854 775 808 and 9 223 372 036 854 775 807
+    /// An data type UInt64.
     /// </summary>
     [EnumMemberAttribute()]
-    Int64 = 8,
-
+    UInt64,
     /// <summary>
-    /// A 64 bit unsigned integer value. An integer value between 0 and 18 446 744 073 709 551 615.
+    /// An data type Float.
     /// </summary>
     [EnumMemberAttribute()]
-    UInt64 = 9,
-
+    Float,
     /// <summary>
-    /// An IEEE single precision (32 bit) floating point value. An IEEE single precision (32 bit) floating point value.
+    /// An data type Double.
     /// </summary>
     [EnumMemberAttribute()]
-    Float = 10,
-
+    Double,
     /// <summary>
-    /// An IEEE double precision (64 bit) floating point value. An IEEE double precision (64 bit) floating point value.
+    /// An data type String.
     /// </summary>
     [EnumMemberAttribute()]
-    Double = 11,
-
+    String,
     /// <summary>
-    /// A sequence of Unicode characters.
+    /// An data type DateTime.
     /// </summary>
     [EnumMemberAttribute()]
-    String = 12,
-
+    DateTime,
     /// <summary>
-    /// An instance in time.
+    /// An data type Guid.
     /// </summary>
     [EnumMemberAttribute()]
-    DateTime = 13,
-
+    Guid,
     /// <summary>
-    /// A 128-bit globally unique identifier.
+    /// An data type ByteString.
     /// </summary>
     [EnumMemberAttribute()]
-    Guid = 14,
-
+    ByteString,
     /// <summary>
-    /// A sequence of bytes.
+    /// An data type XmlElement.
     /// </summary>
     [EnumMemberAttribute()]
-    ByteString = 15,
-
+    XmlElement,
     /// <summary>
-    /// An XML element.
+    /// An data type NodeId.
     /// </summary>
     [EnumMemberAttribute()]
-    XmlElement = 16,
-
+    NodeId,
     /// <summary>
-    /// An identifier for a node in the address space of an OPC UA Server.
+    /// An data type ExpandedNodeId.
     /// </summary>
     [EnumMemberAttribute()]
-    NodeId = 17,
-
+    ExpandedNodeId,
     /// <summary>
-    /// A node id that stores the namespace URI instead of the namespace index.
+    /// An data type StatusCode.
     /// </summary>
     [EnumMemberAttribute()]
-    ExpandedNodeId = 18,
-
+    StatusCode,
     /// <summary>
-    /// A structured result code.
+    /// An data type DiagnosticInfo.
     /// </summary>
     [EnumMemberAttribute()]
-    StatusCode = 19,
-
+    DiagnosticInfo,
     /// <summary>
-    /// A string qualified with a namespace.
+    /// An data type QualifiedName.
     /// </summary>
     [EnumMemberAttribute()]
-    QualifiedName = 20,
-
+    QualifiedName,
     /// <summary>
-    /// A localized text string with an locale identifier.
+    /// An data type LocalizedText.
     /// </summary>
     [EnumMemberAttribute()]
-    LocalizedText = 21,
-
+    LocalizedText,
     /// <summary>
-    /// A structure that contains an application specific data type that may not be recognized by the receiver.
+    /// An data type ExtensionObject.
     /// </summary>
     [EnumMemberAttribute()]
-    ExtensionObject = 22,
-
+    ExtensionObject,
     /// <summary>
-    /// A data value with an associated quality and time stamp.
+    /// An data type DataValue.
     /// </summary>
     [EnumMemberAttribute()]
-    DataValue = 23,
-
+    DataValue,
     /// <summary>
-    /// Any of the other built-in types - a union of all of the types specified above.
+    /// An data type Variant.
     /// </summary>
     [EnumMemberAttribute()]
-    Variant = 24,
-
-    /// <summary>
-    /// A diagnostic information associated with a result code.
-    /// </summary>
-    [EnumMemberAttribute()]
-    DiagnosticInfo = 25,
-
-    /// <summary>
-    /// The enumeration
-    /// </summary>
-    [EnumMemberAttribute()]
-    Enumeration = 26
+    Variant,
   }
 }

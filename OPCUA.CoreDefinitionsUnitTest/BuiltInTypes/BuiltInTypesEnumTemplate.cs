@@ -52,7 +52,7 @@ namespace UAOOI.OPCUA.CoreDefinitions
             
             #line 26 "C:\VS.git\UAOOI\ASMD\OPCUA.CoreDefinitionsUnitTest\BuiltInTypes\BuiltInTypesEnumTemplate.tt"
     foreach (string name in BuildInTypes)
-      { 
+{ 
             
             #line default
             #line hidden
@@ -70,7 +70,7 @@ namespace UAOOI.OPCUA.CoreDefinitions
             
             #line default
             #line hidden
-            this.Write(",\r\n   ");
+            this.Write(",\r\n");
             
             #line 33 "C:\VS.git\UAOOI\ASMD\OPCUA.CoreDefinitionsUnitTest\BuiltInTypes\BuiltInTypesEnumTemplate.tt"
  } 
