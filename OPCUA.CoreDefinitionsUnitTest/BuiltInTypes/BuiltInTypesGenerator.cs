@@ -8,6 +8,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Xml;
 
@@ -27,8 +28,6 @@ namespace UAOOI.OPCUA.CoreDefinitionsUnitTest.BuiltInTypes
       _settings.Schemas.Add(_ns, builtInTypesPath);
       _settings.ValidationType = ValidationType.Schema;
       string _path = Path.Combine(Environment.CurrentDirectory, @"BuiltInTypes\XML\BuiltInTypes.xml");
-      //XElement purchaseOrder = XElement.Load(_path);
-      //purchaseOrder.DescendantNodesAndSelf().Where(x=>x.)
       using (XmlReader _errorsReader = XmlReader.Create(_path, _settings))
       {
         XmlDocument _doc = new XmlDocument();
@@ -45,14 +44,29 @@ namespace UAOOI.OPCUA.CoreDefinitionsUnitTest.BuiltInTypes
         }
         BuiltInTypesEnumTemplate generator = new BuiltInTypesEnumTemplate(typeNamesList);
         string pageContent = generator.TransformText();
-        File.WriteAllText("BuiltInType.cs", pageContent);
+        string builtInTypePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "BuiltInType.cs");
+        File.WriteAllText(builtInTypePath, pageContent);
+        Debug.WriteLine(builtInTypePath);
       }
-      //Assert.Fail("uncomment to prevent file BuiltInType.cs deletion");
     }
+    private static string TestDeploymentDir = String.Empty;
 
     [ClassInitializeAttribute()]
     public static void ClassInitializeAttributeMethod(TestContext context)
     {
+      Debug.WriteLine(context.DeploymentDirectory);
+      Debug.WriteLine(context.FullyQualifiedTestClassName);
+      Debug.WriteLine(context.ManagedMethod);
+      Debug.WriteLine(context.ManagedType);
+      Debug.WriteLine(context.ResultsDirectory);
+      Debug.WriteLine(context.TestDeploymentDir);
+      TestDeploymentDir = context.TestDeploymentDir;
+      Debug.WriteLine(context.TestDir);
+      Debug.WriteLine(context.TestLogsDir);
+      Debug.WriteLine(context.TestName);
+      Debug.WriteLine(context.TestResultsDirectory);
+      Debug.WriteLine(context.TestRunDirectory);
+      Debug.WriteLine(context.TestRunResultsDirectory);
     }
 
     [ClassCleanup()]

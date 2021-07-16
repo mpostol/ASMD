@@ -153,11 +153,20 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AssemblyInfo.cs</LastGenOutput>
     </Content>
+    <Content Include="Wrappers4PropertyGrid\Editors\OpcUaTypes\OpcUaTypesTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>OpcUaTypesTemplate.cs</LastGenOutput>
+    </Content>
     <None Include="TestData\DemoConfiguration\BoilerType.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\EmptySolution.uamdsl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Wrappers4PropertyGrid\Editors\OpcUaTypes\XML\GoCS.OpcUaTypes.cmd" />
+    <None Include="Wrappers4PropertyGrid\Editors\OpcUaTypes\XML\GoXSD.OpcUaTypes.cmd" />
+    <None Include="Wrappers4PropertyGrid\Editors\OpcUaTypes\XML\Opc.Ua.Types.xsd">
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -183,7 +192,15 @@
     </Compile>
     <Compile Include="ModelCompilerExistWUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\DocumentationAttributeUnitTest.cs" />
-    <Compile Include="Wrappers4PropertyGrid\Editors\TypeListConverterUnitTest.cs" />
+    <Compile Include="Wrappers4PropertyGrid\Editors\CustomTypeListConverterUnitTest.cs" />
+    <Compile Include="Wrappers4PropertyGrid\Editors\OpcUaTypes\OpcUaTypesGenerator.cs" />
+    <Compile Include="Wrappers4PropertyGrid\Editors\OpcUaTypes\OpcUaTypesTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>OpcUaTypesTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Wrappers4PropertyGrid\Editors\OpcUaTypes\OpcUaTypesTemplate.custom.cs" />
+    <Compile Include="Wrappers4PropertyGrid\Editors\OpcUaTypes\XML\Opc_Ua_Types.cs" />
     <Compile Include="Wrappers4PropertyGrid\Editors\XmlStandardValueEditorUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\Editors\VariableValueEditorUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\Editors\XmlQualifiedNameEditorWithDefaultValueUnitTest.cs" />

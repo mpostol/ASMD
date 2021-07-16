@@ -57,20 +57,12 @@
       <DependentUpon>BuiltInTypesEnumTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="BuiltInTypes\BuiltInTypesGenerator.cs" />
-    <Compile Include="OpcUaTypes\OpcUaTypesGenerator.cs" />
-    <Compile Include="OpcUaTypes\XML\Opc_Ua_Types.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuiltInTypes\BuiltInTypesEnumTemplate.custom.cs" />
     <None Include="app.config" />
     <None Include="BuiltInTypes\XML\BuiltInTypes.xsd">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="OpcUaTypes\XML\GoCS.OpcUaTypes.cmd" />
-    <None Include="OpcUaTypes\XML\GoXSD.OpcUaTypes.cmd" />
-    <None Include="OpcUaTypes\XML\Opc.Ua.Types.xsd">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

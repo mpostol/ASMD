@@ -9,11 +9,12 @@ using CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Xml;
 using System.Xml.Schema;
 
-namespace UAOOI.OPCUA.CoreDefinitionsUnitTest
+namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors.OpcUaTypes
 {
   [TestClass]
   public class OpcUaTypesGenerator
@@ -35,18 +36,29 @@ namespace UAOOI.OPCUA.CoreDefinitionsUnitTest
         XmlSchemaSet schemaSet = new XmlSchemaSet();
         schemaSet.Add(schema);
         schemaSet.Compile();
+        List<string> OpcUaTypesList = new List<string>();
         foreach (XmlSchema sch in schemaSet.Schemas())
           foreach (XmlSchemaElement element in sch.Elements.Values)
           {
             XmlSchemaSimpleType et = element.ElementSchemaType as XmlSchemaSimpleType;
             if (et == null)
               continue;
-            //if ((m_XmlType.Contains(et.TypeCode.ToString())))
-            //  m_TypeList.Add(element.Name, new XmlStandardValueEditor(element.Name));
+            if ((m_XmlType.Contains(et.TypeCode.ToString())))
+            {
+              Debug.WriteLine($"TypeCode = {et.TypeCode}, Name={element.Name}");
+              OpcUaTypesList.Add(element.Name);
+              //  m_TypeList.Add(element.Name, new XmlStandardValueEditor(element.Name));
+            }
+            //        m_TypeList.Add(RangeValueValueEditor.LocalName, new RangeValueValueEditor());
+            //        m_TypeList.Add(XmValueValueEditor.LocalName, new XmValueValueEditor());
+            //        m_TypeList.Add(NotSetValueEditor.LocalName, new NotSetValueEditor());
           }
-        //        m_TypeList.Add(RangeValueValueEditor.LocalName, new RangeValueValueEditor());
-        //        m_TypeList.Add(XmValueValueEditor.LocalName, new XmValueValueEditor());
-        //        m_TypeList.Add(NotSetValueEditor.LocalName, new NotSetValueEditor());
+
+        OpcUaTypesTemplate generator = new OpcUaTypesTemplate(OpcUaTypesList);
+        string pageContent = generator.TransformText();
+        string builtInTypePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OpcUaTypes.cs");
+        File.WriteAllText(builtInTypePath, pageContent);
+        Debug.WriteLine(builtInTypePath);
       }
     }
 
