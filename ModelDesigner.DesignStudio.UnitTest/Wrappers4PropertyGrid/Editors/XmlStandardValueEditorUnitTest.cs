@@ -31,5 +31,23 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors
       Assert.AreEqual<string>("http://opcfoundation.org/UA/2008/02/Types.xsd", retValue.NamespaceURI);
       Assert.AreEqual<string>("uax", retValue.Prefix);
     }
+    [TestMethod]
+    public void ConstructorNullTest()
+    {
+      XmlStandardValueEditor instance2Test = new XmlStandardValueEditor("String");
+      Assert.IsFalse(string.IsNullOrEmpty(instance2Test.TypeName));
+      Assert.AreEqual<string>("String", instance2Test.TypeName);
+      Assert.IsFalse(string.IsNullOrEmpty(instance2Test.ToString()));
+      Assert.AreEqual<string>("String : <null>", instance2Test.ToString());
+      XmlElement retValue = instance2Test.XmlElement;
+      Assert.IsNull(retValue);
+      instance2Test.Value = "RandomValue";
+      retValue = instance2Test.XmlElement;
+      Assert.IsNotNull(retValue);
+      Assert.AreEqual<string>("String", retValue.LocalName);
+      Assert.AreEqual<string>("http://opcfoundation.org/UA/2008/02/Types.xsd", retValue.NamespaceURI);
+      Assert.AreEqual<string>("uax", retValue.Prefix);
+
+    }
   }
 }
