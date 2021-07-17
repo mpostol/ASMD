@@ -20,7 +20,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors.OpcUaTypes
   public class OpcUaTypesGenerator
   {
     [TestMethod]
-    [DeploymentItem(@"OpcUaTypes\XML\", @"OpcUaTypes\XML\")]
+    [DeploymentItem(@"Wrappers4PropertyGrid\Editors\OpcUaTypes\XML", @"OpcUaTypes\XML\")]
     public void OpcUaTypesGeneratorTest()
     {
       SortedList<string, string> opcuaListOfTypes = new SortedList<string, string>();
@@ -54,14 +54,16 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors.OpcUaTypes
             //        m_TypeList.Add(NotSetValueEditor.LocalName, new NotSetValueEditor());
           }
 
+        OpcUaTypesList.Sort();
         OpcUaTypesTemplate generator = new OpcUaTypesTemplate(OpcUaTypesList);
-        string pageContent = generator.TransformText();
+        string content = generator.TransformText();
         string builtInTypePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OpcUaTypes.cs");
-        File.WriteAllText(builtInTypePath, pageContent);
+        File.WriteAllText(builtInTypePath, content);
         Debug.WriteLine(builtInTypePath);
+        List<string> existingOpcUaTypesList = new List<string>(Enum.GetNames(typeof(OpcUaTypesList)));
+        existingOpcUaTypesList.Sort();
+        CollectionAssert.AreEqual(existingOpcUaTypesList, OpcUaTypesList);
       }
     }
-
-    private static readonly SortedList<string, ValueEditor> m_TypeList = new SortedList<string, ValueEditor>();
   }
 }

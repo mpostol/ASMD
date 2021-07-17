@@ -167,6 +167,7 @@
     <None Include="Wrappers4PropertyGrid\Editors\OpcUaTypes\XML\GoXSD.OpcUaTypes.cmd" />
     <None Include="Wrappers4PropertyGrid\Editors\OpcUaTypes\XML\Opc.Ua.Types.xsd">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
