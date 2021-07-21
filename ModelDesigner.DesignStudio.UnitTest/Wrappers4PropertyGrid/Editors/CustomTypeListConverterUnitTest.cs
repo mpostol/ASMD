@@ -15,7 +15,6 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors
   [TestClass]
   public class CustomTypeListConverterUnitTest
   {
-
     [TestMethod]
     public void ConstructorTestMethod()
     {
@@ -28,8 +27,6 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors
       Assert.IsFalse(instance2Test.CanConvertTo(typeof(float)));
       Assert.IsTrue(instance2Test.CanConvertTo(typeof(string)));
 
-      //TODO DefaultValue - implement editor for VariableType #9
-      Assert.Inconclusive("Must be investigated");
       Assert.IsNotNull(instance2Test.ConvertFromInvariantString("1234"));
 
       Assert.IsTrue(instance2Test.GetStandardValuesSupported());
@@ -37,8 +34,14 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors
       Mock<ITypeDescriptorContext> typeDescriptor = new Mock<ITypeDescriptorContext>();
       TypeConverter.StandardValuesCollection values = instance2Test.GetStandardValues(typeDescriptor.Object);
       Assert.IsNotNull(values);
-      Assert.AreEqual<int>(82, values.Count);
+      Assert.AreEqual<int>(83, values.Count);
+    }
 
+    [TestMethod]
+    public void ConvertFromTestMethod()
+    {
+      //TODO DefaultValue - implement editor for VariableType #9
+      Assert.Inconclusive("Must be implemented");
     }
   }
 }

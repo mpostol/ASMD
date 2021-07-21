@@ -21,6 +21,16 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors
     public void NamespaceConverterTest()
     {
       NamespaceConverter instance2Test = new NamespaceConverter();
+      //TypeConverter
+      Assert.IsTrue(instance2Test.CanConvertFrom(typeof(string)));
+      Assert.IsFalse(instance2Test.CanConvertFrom(typeof(int)));
+      Assert.AreEqual<string>("7wgpaYi0L3GJeiaWCPOj44A3340DGl6iWSNmOq71q25uCMErk", (string)instance2Test.ConvertFrom("7wgpaYi0L3GJeiaWCPOj44A3340DGl6iWSNmOq71q25uCMErk"));
+
+      Assert.IsTrue(instance2Test.CanConvertTo(typeof(string)));
+      Assert.IsFalse(instance2Test.CanConvertTo(typeof(int)));
+      Assert.AreEqual<string>("7wgpaYi0L3GJeiaWCPOj44A3340DGl6iWSNmOq71q25uCMErk", (string)instance2Test.ConvertTo("7wgpaYi0L3GJeiaWCPOj44A3340DGl6iWSNmOq71q25uCMErk", typeof(string)));
+      Assert.IsTrue(instance2Test.IsValid("7wgpaYi0L3GJeiaWCPOj44A3340DGl6iWSNmOq71q25uCMErk"));
+      //NamespaceConverter
       Assert.IsTrue(instance2Test.GetStandardValuesSupported());
       Assert.IsFalse(instance2Test.GetStandardValuesExclusive());
       Assert.ThrowsException<ArgumentNullException>(() => instance2Test.GetStandardValues(null));
@@ -35,8 +45,9 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors
       Assert.IsNotNull(standardValues);
       Assert.AreEqual<int>(0, standardValues.Count);
     }
+
     [TestMethod]
-    public void GetStandardValuesMyNullContext()
+    public void GetStandardValueContextInstanceTest()
     {
       NamespaceConverter instance2Test = new NamespaceConverter();
       Mock<IXmlQualifiedNameEditorNamespaceProvider> namespacesProviderMock = new Mock<IXmlQualifiedNameEditorNamespaceProvider>();

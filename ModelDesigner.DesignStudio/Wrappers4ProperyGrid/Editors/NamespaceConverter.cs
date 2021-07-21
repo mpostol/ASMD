@@ -54,6 +54,18 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
       return new StandardValuesCollection(new string[0]);
     }
 
+    public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+    {
+      if (destinationType == typeof(string))
+        return true;
+      return base.CanConvertTo(context, destinationType);
+    }
+
+    public override bool IsValid(ITypeDescriptorContext context, object value)
+    {
+      return base.IsValid(context, value);
+    }
+
     #endregion TypeConverter
   }
 }

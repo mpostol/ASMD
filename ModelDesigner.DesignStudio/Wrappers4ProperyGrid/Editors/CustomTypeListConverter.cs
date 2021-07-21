@@ -69,13 +69,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
 
     #endregion constructor
 
-    #region internal
-
-    //internal static string NameSpace { get; private set; }
-
-    #endregion internal
-
-    #region ExpandableObjectConverter
+    #region TypeConverter
 
     /// <summary>
     /// Gets a value indicating whether this object supports a standard set of values that can be picked from a list.
@@ -184,16 +178,25 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
       string name = ((string)value).Trim();
       if (m_TypeList.ContainsKey(name))
         return m_TypeList[name].Clone();
-      ValueEditor editor = ((VariableValueEditor)context.Instance).Editor;
-      if (editor is NotSetValueEditor)
-        return editor;
-      ValueEditor newEditor = editor.Clone();
-      newEditor.TypeName = name;
-      m_TypeList.Add(name, newEditor);
+      ValueEditor newEditor = null; ;
+      if (context == null)
+      {
+        newEditor = new NotSetValueEditor();
+        m_TypeList.Add(name, newEditor);
+      }
+      else
+      {
+        ValueEditor editor = ((VariableValueEditor)context.Instance).Editor;
+        if (editor is NotSetValueEditor)
+          return editor;
+        newEditor = editor.Clone();
+        newEditor.TypeName = name;
+        m_TypeList.Add(name, newEditor);
+      }
       return newEditor;
     }
 
-    #endregion ExpandableObjectConverter
+    #endregion TypeConverter
 
     #region private
 
