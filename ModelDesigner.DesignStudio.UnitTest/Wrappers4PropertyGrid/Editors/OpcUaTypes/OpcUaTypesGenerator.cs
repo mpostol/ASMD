@@ -36,7 +36,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors.OpcUaTypes
         XmlSchemaSet schemaSet = new XmlSchemaSet();
         schemaSet.Add(schema);
         schemaSet.Compile();
-        List<string> OpcUaTypesList = new List<string>();
+        List<string> opcUaTypesList = new List<string>();
         foreach (XmlSchema sch in schemaSet.Schemas())
           foreach (XmlSchemaElement element in sch.Elements.Values)
           {
@@ -46,23 +46,22 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors.OpcUaTypes
             if ((m_XmlType.Contains(et.TypeCode.ToString())))
             {
               Debug.WriteLine($"TypeCode = {et.TypeCode}, Name={element.Name}");
-              OpcUaTypesList.Add(element.Name);
+              opcUaTypesList.Add(element.Name);
               //  m_TypeList.Add(element.Name, new XmlStandardValueEditor(element.Name));
             }
             //        m_TypeList.Add(RangeValueValueEditor.LocalName, new RangeValueValueEditor());
             //        m_TypeList.Add(XmValueValueEditor.LocalName, new XmValueValueEditor());
             //        m_TypeList.Add(NotSetValueEditor.LocalName, new NotSetValueEditor());
           }
-
-        OpcUaTypesList.Sort();
-        OpcUaTypesTemplate generator = new OpcUaTypesTemplate(OpcUaTypesList);
+        opcUaTypesList.Sort();
+        OpcUaTypesTemplate generator = new OpcUaTypesTemplate(opcUaTypesList);
         string content = generator.TransformText();
         string builtInTypePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "OpcUaTypes.cs");
         File.WriteAllText(builtInTypePath, content);
         Debug.WriteLine(builtInTypePath);
         List<string> existingOpcUaTypesList = new List<string>(Enum.GetNames(typeof(OpcUaTypesList)));
         existingOpcUaTypesList.Sort();
-        CollectionAssert.AreEqual(existingOpcUaTypesList, OpcUaTypesList);
+        CollectionAssert.AreEqual(existingOpcUaTypesList, opcUaTypesList);
       }
     }
   }

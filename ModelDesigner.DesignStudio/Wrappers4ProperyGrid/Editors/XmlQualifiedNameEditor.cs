@@ -20,14 +20,13 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
 
     private static uint m_Counter = 0;
     private static string DefaultName => $"NameNotSet{m_Counter++}";
+    private string m_Name;
+    private string m_NameSpace;
 
     private string Normalize(string value)
     {
       return XmlConvert.EncodeLocalName(value.Trim()).Replace("_x", "X");
     }
-
-    private string m_Name;
-    private string m_NameSpace;
 
     private void RaiseXmlQualifiedNameHasChanged()
     {
@@ -65,10 +64,10 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     /// </summary>
     /// <value>The name space.</value>
     [
-    DisplayName("Name Space"),
+    DisplayName("Namespace"),
     TypeConverter(typeof(NamespaceConverter)),
     BrowsableAttribute(true),
-    DescriptionAttribute("The name space"),
+    DescriptionAttribute("The namespace"),
     NotifyParentPropertyAttribute(true)
     ]
     public string NameSpace
@@ -266,73 +265,4 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
 
     #endregion creator
   }
-
-  #region TypeConverter class
-
-  /// <summary>
-  /// This class is used in DataTypeConverter dropdown list
-  /// </summary>
-  internal class NamespaceConverter : StringConverter
-  {
-    /// <summary>
-    /// Gets a value indicating whether this object supports a standard set of values that can be picked from a list.
-    /// </summary>
-    /// <param name="context">An <see cref="ITypeDescriptorContext"/> that provides a format context. </param>
-    /// <returns>Always returns <b>true</b> - means show a combobox </returns>
-    public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
-    {
-      //true means show a combobox
-      return true;
-    }
-
-    /// <summary>
-    /// Gets a value indicating whether the list of standard values returned from the GetStandardValues method is an exclusive list.
-    /// </summary>
-    /// <param name="context">An <see cref="ITypeDescriptorContext"/> that provides a format context. </param>
-    /// <returns>Always returns <b>true</b> - means it limits to list</returns>
-    public override bool GetStandardValuesExclusive(ITypeDescriptorContext context)
-    {
-      //true will limit to list. false will show the list, but allow free-form entry
-      return false;
-    }
-
-    /// <summary>
-    /// Gets a collection of standard values for the data type this validator is designed for.
-    /// </summary>
-    /// <param name="context">An <see cref="ITypeDescriptorContext"/> that provides a format context. </param>
-    /// <returns>A <see cref="TypeConverter.StandardValuesCollection"/>  that holds a standard set of valid values </returns>
-    public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
-    {
-      XmlQualifiedNameEditor editor = context.Instance as XmlQualifiedNameEditor;
-      if (editor != null && editor.NamespaceProvider != null)
-      {
-        return new StandardValuesCollection(editor.NamespaceProvider.GetAvailiableNamespaces());
-      }
-      return new StandardValuesCollection(new string[0]);
-    }
-  }
-
-  #endregion TypeConverter class
-
-  #region IXmlQualifiedNameEditorNamespaceProvider
-
-  /// <summary>
-  /// Interface responsible for creating the list of available namespaces
-  /// </summary>
-  public interface IXmlQualifiedNameEditorNamespaceProvider
-  {
-    /// <summary>
-    /// Gets the available namespaces.
-    /// </summary>
-    /// <returns></returns>
-    string[] GetAvailiableNamespaces();
-
-    /// <summary>
-    /// Gets the target namespaces of the current model.
-    /// </summary>
-    /// <returns>The target namespace.</returns>
-    string GetTargetNamespace();
-  }
-
-  #endregion IXmlQualifiedNameEditorNamespaceProvider
 }

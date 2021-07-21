@@ -15,27 +15,30 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors
   [TestClass]
   public class CustomTypeListConverterUnitTest
   {
-    [TestMethod]
-    public void StaticTestMethod()
-    {
-      string name = CustomTypeListConverter.NameSpace;
-      Assert.IsTrue(string.IsNullOrEmpty(name));
-    }
 
     [TestMethod]
     public void ConstructorTestMethod()
     {
       CustomTypeListConverter instance2Test = new CustomTypeListConverter();
-      Mock<ITypeDescriptorContext> typeDescriptor = new Mock<ITypeDescriptorContext>();
-      Assert.IsTrue(instance2Test.GetStandardValuesSupported());
-      Assert.IsFalse(instance2Test.GetStandardValuesExclusive());
-      TypeConverter.StandardValuesCollection values = instance2Test.GetStandardValues(typeDescriptor.Object);
-      Assert.IsNotNull(values);
-      Assert.AreEqual<int>(0, values.Count);
-
       Assert.IsFalse(instance2Test.CanConvertFrom(typeof(bool)));
       Assert.IsFalse(instance2Test.CanConvertFrom(typeof(float)));
       Assert.IsTrue(instance2Test.CanConvertFrom(typeof(string)));
+
+      Assert.IsFalse(instance2Test.CanConvertTo(typeof(bool)));
+      Assert.IsFalse(instance2Test.CanConvertTo(typeof(float)));
+      Assert.IsTrue(instance2Test.CanConvertTo(typeof(string)));
+
+      //TODO DefaultValue - implement editor for VariableType #9
+      Assert.Inconclusive("Must be investigated");
+      Assert.IsNotNull(instance2Test.ConvertFromInvariantString("1234"));
+
+      Assert.IsTrue(instance2Test.GetStandardValuesSupported());
+      Assert.IsFalse(instance2Test.GetStandardValuesExclusive());
+      Mock<ITypeDescriptorContext> typeDescriptor = new Mock<ITypeDescriptorContext>();
+      TypeConverter.StandardValuesCollection values = instance2Test.GetStandardValues(typeDescriptor.Object);
+      Assert.IsNotNull(values);
+      Assert.AreEqual<int>(82, values.Count);
+
     }
   }
 }

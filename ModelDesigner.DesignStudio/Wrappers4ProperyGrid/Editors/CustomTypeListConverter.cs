@@ -9,8 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.IO;
-using System.Reflection;
 using System.Xml.Schema;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
@@ -20,58 +18,60 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
   /// </summary>
   internal class CustomTypeListConverter : ExpandableObjectConverter
   {
-    #region static constructor
+    #region constructor
 
-    private static SortedList<string, ValueEditor> m_TypeList;
-
-    static CustomTypeListConverter()
+    internal CustomTypeListConverter()
     {
-      m_TypeList = new SortedList<string, ValueEditor>();
       List<string> m_XmlType = new List<string>(Enum.GetNames(typeof(XmlTypeCode)));
-      try
-      {
-        Assembly assembly = Assembly.GetExecutingAssembly();
-        Stream streamToBeRead = null;
-        foreach (string resname in assembly.GetManifestResourceNames())
-          if (resname.Contains("Opc.Ua.Types.xsd"))
-          {
-            streamToBeRead = assembly.GetManifestResourceStream(resname);
-            break;
-          }
-        if (streamToBeRead == null)
-          return;
-        XmlSchema schema = new XmlSchema();
-        schema = XmlSchema.Read(streamToBeRead, null);
-        streamToBeRead.Dispose();
-        NameSpace = schema.TargetNamespace;
-        XmlSchemaSet schemaSet = new XmlSchemaSet();
-        schemaSet.Add(schema);
-        schemaSet.Compile();
-        foreach (XmlSchema sch in schemaSet.Schemas())
-          foreach (XmlSchemaElement element in sch.Elements.Values)
-          {
-            XmlSchemaSimpleType et = element.ElementSchemaType as XmlSchemaSimpleType;
-            if (et == null)
-              continue;
-            if ((m_XmlType.Contains(et.TypeCode.ToString())))
-              m_TypeList.Add(element.Name, new XmlStandardValueEditor(element.Name));
-          }
-        m_TypeList.Add(RangeValueValueEditor.LocalName, new RangeValueValueEditor());
-        m_TypeList.Add(XmValueValueEditor.LocalName, new XmValueValueEditor());
-        m_TypeList.Add(NotSetValueEditor.LocalName, new NotSetValueEditor());
-      }
-      catch (Exception ex)
-      {
-        string fmt = "There is an error while reading the schema from resource: {0}";
-        System.Diagnostics.Debug.Assert(false, String.Format(fmt, ex.Message));
-      }
+      foreach (string typeName in Enum.GetNames(typeof(OpcUaTypesList)))
+        m_TypeList.Add(typeName, new XmlStandardValueEditor(typeName));
+      m_TypeList.Add(RangeValueValueEditor.LocalName, new RangeValueValueEditor());
+      m_TypeList.Add(XmValueValueEditor.LocalName, new XmValueValueEditor());
+      m_TypeList.Add(NotSetValueEditor.LocalName, new NotSetValueEditor());
+      //try
+      //{
+      //  Assembly assembly = Assembly.GetExecutingAssembly();
+      //  Stream streamToBeRead = null;
+      //  foreach (string resname in assembly.GetManifestResourceNames())
+      //    if (resname.Contains("Opc.Ua.Types.xsd"))
+      //    {
+      //      streamToBeRead = assembly.GetManifestResourceStream(resname);
+      //      break;
+      //    }
+      //  if (streamToBeRead == null)
+      //    return;
+      //  XmlSchema schema = new XmlSchema();
+      //  schema = XmlSchema.Read(streamToBeRead, null);
+      //  streamToBeRead.Dispose();
+      //  NameSpace = schema.TargetNamespace;
+      //  XmlSchemaSet schemaSet = new XmlSchemaSet();
+      //  schemaSet.Add(schema);
+      //  schemaSet.Compile();
+      //  foreach (XmlSchema sch in schemaSet.Schemas())
+      //    foreach (XmlSchemaElement element in sch.Elements.Values)
+      //    {
+      //      XmlSchemaSimpleType et = element.ElementSchemaType as XmlSchemaSimpleType;
+      //      if (et == null)
+      //        continue;
+      //      if ((m_XmlType.Contains(et.TypeCode.ToString())))
+      //        m_TypeList.Add(element.Name, new XmlStandardValueEditor(element.Name));
+      //    }
+      //  m_TypeList.Add(RangeValueValueEditor.LocalName, new RangeValueValueEditor());
+      //  m_TypeList.Add(XmValueValueEditor.LocalName, new XmValueValueEditor());
+      //  m_TypeList.Add(NotSetValueEditor.LocalName, new NotSetValueEditor());
+      //}
+      //catch (Exception ex)
+      //{
+      //  string fmt = "There is an error while reading the schema from resource: {0}";
+      //  System.Diagnostics.Debug.Assert(false, String.Format(fmt, ex.Message));
+      //}
     }
 
-    #endregion static constructor
+    #endregion constructor
 
     #region internal
 
-    internal static string NameSpace { get; private set; }
+    //internal static string NameSpace { get; private set; }
 
     #endregion internal
 
@@ -168,8 +168,8 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     /// <summary>
     /// Converts the given object to the type of this converter, using the specified context and culture information.
     /// </summary>
-    /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
-    /// <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture.</param>
+    /// <param name="context">An <see cref="ITypeDescriptorContext"/> that provides a format context.</param>
+    /// <param name="culture">The <see cref="CultureInfo"/> to use as the current culture.</param>
     /// <param name="value">The <see cref="T:System.Object"/> to convert.</param>
     /// <returns>
     /// An <see cref="T:System.Object"/> that represents the converted value.
@@ -177,7 +177,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     /// <exception cref="T:System.NotSupportedException">
     /// The conversion cannot be performed.
     /// </exception>
-    public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
+    public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
     {
       if (!(value is string))
         return base.ConvertFrom(context, culture, value);
@@ -194,5 +194,11 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     }
 
     #endregion ExpandableObjectConverter
+
+    #region private
+
+    private SortedList<string, ValueEditor> m_TypeList = new SortedList<string, ValueEditor>();
+
+    #endregion private
   }
 }

@@ -413,6 +413,8 @@
     <Compile Include="Types\BuildInXmlQualifiedNames.cs" />
     <Compile Include="Wrappers4ProperyGrid\DocumentationAttribute.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\CustomTypeListConverter.cs" />
+    <Compile Include="Wrappers4ProperyGrid\Editors\IXmlQualifiedNameEditorNamespaceProvider.cs" />
+    <Compile Include="Wrappers4ProperyGrid\Editors\NamespaceConverter.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\NotSetValueEditor.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\OpcUaTypes.cs" />
     <Compile Include="Wrappers4ProperyGrid\Editors\RangeValueValueEditor.cs" />
@@ -610,6 +612,7 @@
     <None Include="Solution\UAModelDesignerSolution.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Wrappers4ProperyGrid\Editors\ClassDiagramEditors.cd" />
     <None Include="Wrappers\AddressSpaceDictionary\AddressSpace.xsc">
       <DependentUpon>AddressSpace.xsd</DependentUpon>
     </None>
