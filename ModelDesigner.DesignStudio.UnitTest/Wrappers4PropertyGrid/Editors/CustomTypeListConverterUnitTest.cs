@@ -38,10 +38,24 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors
     }
 
     [TestMethod]
-    public void ConvertFromTestMethod()
+    public void ConvertFromTestMethod1()
     {
       //TODO DefaultValue - implement editor for VariableType #9
-      Assert.Inconclusive("Must be implemented");
+      CustomTypeListConverter instance2Test = new CustomTypeListConverter();
+      Assert.IsInstanceOfType(instance2Test.ConvertFrom("AccessLevelExType"), typeof(XmlStandardValueEditor));
+      Assert.IsInstanceOfType(instance2Test.ConvertFrom("Boolean"), typeof(XmlStandardValueEditor));
+      Assert.IsInstanceOfType(instance2Test.ConvertFrom("DataChangeTrigger"), typeof(XmlStandardValueEditor));
+      Assert.IsInstanceOfType(instance2Test.ConvertFrom("VersionTime"), typeof(XmlStandardValueEditor));
+    }
+    [TestMethod]
+    public void ConvertFromTestMethod2()
+    {
+      //TODO DefaultValue - implement editor for VariableType #9
+      CustomTypeListConverter instance2Test = new CustomTypeListConverter();
+      Assert.IsInstanceOfType(instance2Test.ConvertFrom(null, null, "AccessLevelExType"), typeof(XmlStandardValueEditor));
+      Assert.IsInstanceOfType(instance2Test.ConvertFrom(null, null, "Boolean"), typeof(XmlStandardValueEditor));
+      Assert.IsInstanceOfType(instance2Test.ConvertFrom(null, null, "DataChangeTrigger"), typeof(XmlStandardValueEditor));
+      Assert.IsInstanceOfType(instance2Test.ConvertFrom(null, null, "VersionTime"), typeof(XmlStandardValueEditor));
     }
   }
 }
