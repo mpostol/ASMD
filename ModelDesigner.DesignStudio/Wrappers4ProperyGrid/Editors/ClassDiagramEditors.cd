@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors.CustomTypeListConverter" Collapsed="true">
+    <Position X="1" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAgAAAAAABAAAAAAAAAAAAAAAAACAAAAIAAQAAAAE=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Editors\CustomTypeListConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.ComponentModel.ExpandableObjectConverter" Collapsed="true">
+    <Position X="1.25" Y="5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.ComponentModel.TypeConverter" Collapsed="true">
+    <Position X="1.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors.NotSetValueEditor" Collapsed="true">
+    <Position X="4" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAIAAAAAABAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Editors\NotSetValueEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors.ValueEditor" Collapsed="true">
+    <Position X="5.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAEAAAAIAAAAAAAABAAQAAAAAAAABA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Editors\ValueEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors.RangeValueValueEditor" Collapsed="true">
+    <Position X="1.25" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAkAAIAAAAAwBAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Editors\RangeValueValueEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors.XmlStandardValueEditor" Collapsed="true">
+    <Position X="6.75" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAIAAAAAAAAAAAQAAgAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Editors\XmlStandardValueEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors.XmValueValueEditor" Collapsed="true">
+    <Position X="9.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AABAAAQAAAgAAAAAAAAAIAAAACABAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Editors\XmValueValueEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors.XmlQualifiedNameEditor" Collapsed="true">
+    <Position X="6" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EABAACQEJCAAAIAEEAAAAASAAAAAAAAICIAAAAAECAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Editors\XmlQualifiedNameEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors.NamespaceConverter" Collapsed="true">
+    <Position X="3.25" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Editors\NamespaceConverter.cs</FileName>
+      <NewMemberFileName>Wrappers4ProperyGrid\Editors\XmlQualifiedNameEditor.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.ComponentModel.StringConverter" Collapsed="true">
+    <Position X="3.25" Y="5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors.XmlQualifiedNameEditorWithDefaultValue" Collapsed="true">
+    <Position X="5.5" Y="6.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAACAAEAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Editors\XmlQualifiedNameEditorWithDefaultValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors.VariableValueEditor" Collapsed="true">
+    <Position X="8.75" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AABAACAAABAAAAAEQAAAAAABAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Editors\VariableValueEditor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Editor" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors.IXmlQualifiedNameEditorNamespaceProvider" Collapsed="true">
+    <Position X="8.5" Y="5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Wrappers4ProperyGrid\Editors\IXmlQualifiedNameEditorNamespaceProvider.cs</FileName>
+      <NewMemberFileName>Wrappers4ProperyGrid\Editors\XmlQualifiedNameEditor.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
