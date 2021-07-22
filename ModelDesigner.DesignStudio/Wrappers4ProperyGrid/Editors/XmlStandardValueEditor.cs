@@ -67,7 +67,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
         else if (Element == null)
         {
           XmlDocument xmldoc = new XmlDocument();
-          Element = xmldoc.CreateElement("uax", "String", "http://opcfoundation.org/UA/2008/02/Types.xsd");
+          Element = xmldoc.CreateElement("uax", TypeName, "http://opcfoundation.org/UA/2008/02/Types.xsd");
         }
         Element.InnerText = Value;
         return Element;
