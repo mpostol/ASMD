@@ -22,7 +22,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors
       Assert.AreEqual<string>("RandomTexte", toTestItem.TypeName);
     }
     [TestMethod]
-    public void CreateValueEditorEditorTest()
+    public void CreateValueEditorTest()
     {
       XmlDocument document = new XmlDocument();
       XmlElement elemnt = document.CreateElement("name", "namespaceUri");
