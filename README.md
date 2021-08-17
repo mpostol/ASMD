@@ -161,6 +161,16 @@ The project [CommServer Migration to Open-source][migration2osProj] will be used
 
 OPC-UA-OOI.ConfigEditor is a package of software to manage the configuration of the [Reactive Communication][OOIBookToC].  The `OPC-UA-OOI.ConfigEditor` was written by CAS Lodz Poland. The [mpostol/OPC-UA-OOI.ConfigEditor][ConfigEditor] repository is aimed at the software migration from on-premise subversion repository to GitHub and publishing it as the Open-Source Software (OSS).  After migration, this repository will be used to manage all activities addressing the software maintenance process as a plug-in of the ASMD.
 
+### OPCUA.Common
+
+Intentionally the [OPCUA.Common](https://github.com/mpostol/OPCUA.Common) repository should provide NuGet definitions for all main components defined in the OPC UA specification and used elsewhere outside the OPC UA application (client/server), namely:
+
+- common definitions
+- data serialization
+- address space management
+- configuration
+- TBD
+
 ## Future Work
 
 The following list of projects is to be conducted as part of the open-source inititives **[Object Oriented Internet][OOI]**:
