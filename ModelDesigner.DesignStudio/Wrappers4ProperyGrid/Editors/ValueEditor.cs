@@ -5,6 +5,7 @@
 //  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
 //__________________________________________________________________________________________________
 
+using CAS.UA.Common.Types;
 using System.Xml;
 
 namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
@@ -33,18 +34,20 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
     /// <returns>Return <see cref="ValueEditor"/> containing the value to be edited.< </returns>
     internal static ValueEditor CreateValueEditor(XmlElement xmlElement)
     {
-      if (xmlElement.LocalName.Trim().Equals(CAS.UA.Common.Types.ExtensionObject.LocalName))
+      ValueEditor valueEditor = null;
+      if (xmlElement.LocalName.Trim().Equals(ExtensionObject.LocalName))
       {
-        CAS.UA.Common.Types.ExtensionObject eo = CAS.UA.Common.Types.ExtensionObject.GetExtensionObject(xmlElement);
+        ExtensionObject eo = ExtensionObject.GetExtensionObject(xmlElement);
         if (eo.Body == null)
-          return new XmValueValueEditor();
-        if (eo.Body.LocalName.Trim().Equals(RangeValueValueEditor.LocalName))
-          return new RangeValueValueEditor(eo.Body);
+          valueEditor = new XmValueValueEditor();
+        else if (eo.Body.LocalName.Trim().Equals(RangeValueValueEditor.LocalName))
+          valueEditor = new RangeValueValueEditor(eo.Body);
         else
-          return new XmValueValueEditor(eo.Body, eo.TypeId);
+          valueEditor = new XmValueValueEditor(eo.Body, eo.TypeId);
       }
       else
-        return new XmlStandardValueEditor(xmlElement);
+        valueEditor = new XmlStandardValueEditor(xmlElement);
+      return valueEditor;
     }
 
     /// <summary>

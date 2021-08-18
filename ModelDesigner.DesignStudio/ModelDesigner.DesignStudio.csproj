@@ -148,10 +148,6 @@
       <HintPath>..\packages\CAS.CommServer.OPCClassic.SDK.COMWrapper.2.01.1063\lib\net451\CAS.CommServer.OPCClassicSDK.OpcComRcw.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CAS.CommServer.UA.Common, Version=3.0.5.33238, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
-      <HintPath>..\packages\CAS.UA.Common.3.00.05\lib\net461\CAS.CommServer.UA.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="CAS.CommServer.UA.Stack.Core, Version=1.1.3265.40471, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\CAS.CommServer.UA.Stack.Core.1.01.3265\lib\net451\CAS.CommServer.UA.Stack.Core.dll</HintPath>
       <Private>True</Private>
@@ -709,6 +705,10 @@
     <ProjectReference Include="..\ModelDesigner.ModelsContainer\ModelDesigner.ModelsContainer.csproj">
       <Project>{643a2a07-394d-418f-937c-2d394efe5015}</Project>
       <Name>ModelDesigner.ModelsContainer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OPCUA.Common\UA.Common\UA.Common.csproj">
+      <Project>{37afb65f-d781-4af3-b90e-1f26a7d2ba7a}</Project>
+      <Name>UA.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
