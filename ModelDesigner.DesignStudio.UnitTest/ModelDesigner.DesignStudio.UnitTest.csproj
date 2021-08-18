@@ -204,6 +204,7 @@
     <Compile Include="Wrappers4PropertyGrid\Editors\OpcUaTypes\XML\Opc_Ua_Types.cs" />
     <Compile Include="Wrappers4PropertyGrid\Editors\NamespaceConverterUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\Editors\NotSetValueEditorUnitTest.cs" />
+    <Compile Include="Wrappers4PropertyGrid\Editors\XmValueValueEditorUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\Editors\XmlStandardValueEditorUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\Editors\VariableValueEditorUnitTest.cs" />
     <Compile Include="Wrappers4PropertyGrid\Editors\XmlQualifiedNameEditorWithDefaultValueUnitTest.cs" />
