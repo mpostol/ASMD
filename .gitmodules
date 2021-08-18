@@ -1,0 +1,3 @@
+[submodule "OPCUA.Common"]
+	path = OPCUA.Common
+	url = https://github.com/mpostol/OPCUA.Common.git

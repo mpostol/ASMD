@@ -22,7 +22,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors
       Assert.AreEqual<string>("RandomTexte", toTestItem.TypeName);
     }
     [TestMethod]
-    public void CreateValueEditorTest()
+    public void CreateValueEditorTest1()
     {
       XmlDocument document = new XmlDocument();
       XmlElement elemnt = document.CreateElement("name", "namespaceUri");
@@ -32,6 +32,19 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors
       XmlStandardValueEditor toTestEditor = toTestItem as XmlStandardValueEditor;
       Assert.IsNotNull(toTestEditor);
     }
+    [TestMethod]
+    public void CreateValueEditorTest2()
+    {
+      XmlDocument document = new XmlDocument();
+      XmlElement elemnt = document.CreateElement(CAS.UA.Common.Types.ExtensionObject.LocalName, "namespaceUri");
+      elemnt.InnerText = "InnerText";
+      Assert.Inconclusive("ExtensionObject must be created compliant with the specification");
+      ValueEditor toTestItem = ValueEditor.CreateValueEditor(elemnt);
+      Assert.IsNotNull(toTestItem);
+      XmlStandardValueEditor toTestEditor = toTestItem as XmlStandardValueEditor;
+      Assert.IsNotNull(toTestEditor);
+    }
+
     private class ValueEditorFixture : ValueEditor
     {
       internal static ValueEditorFixture GetValueEditorFixture(string typeName)
