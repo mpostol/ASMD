@@ -37,12 +37,14 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
       ValueEditor valueEditor = null;
       if (xmlElement.LocalName.Trim().Equals(ExtensionObject.LocalName))
       {
+        //TODO DefaultValue - implement editor for VariableType #9
         ExtensionObject eo = ExtensionObject.GetExtensionObject(xmlElement);
         if (eo.Body == null)
           valueEditor = new XmValueValueEditor();
         else if (eo.Body.LocalName.Trim().Equals(RangeValueValueEditor.LocalName))
           valueEditor = new RangeValueValueEditor(eo.Body);
         else
+          //TODO DefaultValue - implement editor for VariableType #9
           valueEditor = new XmValueValueEditor(eo.Body, eo.TypeId);
       }
       else

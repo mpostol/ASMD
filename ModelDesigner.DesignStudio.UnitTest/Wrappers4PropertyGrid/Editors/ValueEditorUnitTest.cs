@@ -35,6 +35,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors
     [TestMethod]
     public void CreateValueEditorTest2()
     {
+      //TODO DefaultValue - implement editor for VariableType #9
       XmlDocument document = new XmlDocument();
       XmlElement elemnt = document.CreateElement(CAS.UA.Common.Types.ExtensionObject.LocalName, "namespaceUri");
       elemnt.InnerText = "InnerText";

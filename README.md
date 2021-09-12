@@ -178,11 +178,22 @@ The following list of projects is to be conducted as part of the open-source ini
 1. [Cloud Metadata Export](https://mpostol.github.io/ASMD/CloudMetadataExport)
 1. [OPC UA Information Models Compliance Testing](https://mpostol.github.io/ASMD/ASMD50-ModelsTesting)
 
-Follow the links to get a detailed description of the planned projects. Let's work on them with you and for you. To join our effort and create an organizational context I have launched the **[Object-Oriented Internet Partnership Program](https://github.commsvr.com/AboutPartnershipProgram.md.html)**.
+## Partnership program
 
-> Consider joining as a sponsor, contributor, or end-user. Details are covered by the section [**How to be involved**](https://github.commsvr.com/AboutPartnershipProgram.md.html#how-to-be-involved)
->
-> Your experience, knowledge, and direct participation is needed to make sure the work will continue as expected.
+I am a researcher and University associate who is passionate about applying knowledge and experience in building a Machine to Machine (M2M) meaningful interoperability based on OPC UA. Let's build it with you and for you. To join our effort and create an organizational context I have launched an open-access **Object-Oriented Internet Partnership Program**. Hence, maintenance of this repository and further development of the OPC UA Information Model Domain-Specific Language will be carried out under a broader concept described in the following article
+
+[Object-Oriented Internet Partnership Program][Sponsorship]
+
+**Consider joining**. Visit the section [How to be involved][SponsorshipToBeInvolved] to get more. I hope that thanks to this partnership program we will establish long-term mutually beneficial cooperation. Your participation is needed to make sure that the work will continue as expected. As a rule of thumb, the work priority is derived from community feedback.
+
+I strongly encourage community participation and contribution to this project. First, please fork the repository and commit your changes there. Once happy with your changes you can generate a 'pull request'.
+
+When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
+
+Please note we have a code of conduct, please follow it in all your interactions with the project.
+
+- [Object-Oriented Internet Partnership Program][Sponsorship]
+- [How to be involved][SponsorshipToBeInvolved]
 
 ## Contact
 
@@ -224,6 +235,8 @@ Follow the links to get a detailed description of the planned projects. Let's wo
 - [ASMD - How to Build Solution][CAS.VideBuild] - How to get started using an embedded example.
 - [Introduction to OPC UA Address Space modeling using CAS Address Space Model Designer][CAS.MZASMDIntro]
 
+[Sponsorship]: https://github.commsvr.com/AboutPartnershipProgram.md.html
+[SponsorshipToBeInvolved]: https://github.commsvr.com/AboutPartnershipProgram.md.html#how-to-be-involved
 [CAS.MZASMDIntro]:https://www.youtube.com/watch?v=pYOQA4atlRI&feature=youtu.be
 [OPC.UA.ModelCompiler]:https://github.com/OPCFoundation/UA-ModelCompiler
 [WIKI]:https://github.com/mpostol/ASMD/wiki
