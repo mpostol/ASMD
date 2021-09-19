@@ -145,6 +145,7 @@ namespace CAS.UA.Model.Designer.IO
     /// Builds the model managed by this project using external compiler.
     /// </summary>
     /// <param name="traceMessage">Action to be used to trace the .</param>
+    //TODO Update the model compiler plug-in #198
     void IProjectConfigurationManagement.Build(Action<string> traceMessage)
     {
       string _filePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.m_ISolutionConfigurationManagement.DefaultDirectory, m_UAModelDesignerProject.FileName);
