@@ -35,7 +35,7 @@
     <RestorePackages>true</RestorePackages>
     <TargetFrameworkProfile />
     <PublishUrl>COInstal\</PublishUrl>
-    <Install>true</Install>
+    <Install>false</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
@@ -52,7 +52,7 @@
     <WebPage>Default.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
     <ApplicationRevision>63</ApplicationRevision>
-    <ApplicationVersion>3.20.02.%2a</ApplicationVersion>
+    <ApplicationVersion>4.01.00.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
