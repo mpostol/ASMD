@@ -214,11 +214,6 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.Controls
         throw new NotImplementedException();
       }
 
-      public bool Remove(CAS.UA.Model.Designer.Wrappers.IBaseModel item)
-      {
-        throw new NotImplementedException();
-      }
-
       #endregion ISolutionModel
     }
 
