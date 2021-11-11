@@ -190,11 +190,11 @@
     <Reference Include="UAOOI.ASMD.GUIAbstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8832ff1a67ea61a3, processorArchitecture=MSIL">
       <HintPath>..\packages\UAOOI.ASMD.GUIAbstractions.1.0.0-Alpha\lib\netstandard2.0\UAOOI.ASMD.GUIAbstractions.dll</HintPath>
     </Reference>
-    <Reference Include="UAOOI.Common.Infrastructure, Version=6.3.3.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.Common.Infrastructure.6.4.1-Hotel\lib\netstandard2.0\UAOOI.Common.Infrastructure.dll</HintPath>
+    <Reference Include="UAOOI.Common.Infrastructure, Version=6.4.6.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.Common.Infrastructure.6.4.7\lib\netstandard2.0\UAOOI.Common.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="UAOOI.Configuration.Core, Version=4.0.1.1, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.Configuration.Core.4.0.1\lib\netstandard2.0\UAOOI.Configuration.Core.dll</HintPath>
+    <Reference Include="UAOOI.Configuration.Core, Version=6.4.7.1, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.Configuration.Core.6.4.8\lib\netstandard2.0\UAOOI.Configuration.Core.dll</HintPath>
     </Reference>
     <Reference Include="UAOOI.SemanticData.BuildingErrorsHandling, Version=6.3.2.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
       <HintPath>..\packages\UAOOI.SemanticData.BuildingErrorsHandling.6.3.3-Golf\lib\netstandard2.0\UAOOI.SemanticData.BuildingErrorsHandling.dll</HintPath>

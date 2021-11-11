@@ -105,17 +105,17 @@
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="UAOOI.Common.Infrastructure, Version=6.3.3.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.Common.Infrastructure.6.4.1-Hotel\lib\netstandard2.0\UAOOI.Common.Infrastructure.dll</HintPath>
+    <Reference Include="UAOOI.Common.Infrastructure, Version=6.4.6.0, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.Common.Infrastructure.6.4.7\lib\netstandard2.0\UAOOI.Common.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="UAOOI.Configuration.Core, Version=4.0.1.1, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.Configuration.Core.4.0.1\lib\netstandard2.0\UAOOI.Configuration.Core.dll</HintPath>
+    <Reference Include="UAOOI.Configuration.Core, Version=6.4.7.1, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.Configuration.Core.6.4.8\lib\netstandard2.0\UAOOI.Configuration.Core.dll</HintPath>
     </Reference>
-    <Reference Include="UAOOI.Configuration.DataBindings, Version=4.0.1.1, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.Configuration.DataBindings.4.0.1\lib\netstandard2.0\UAOOI.Configuration.DataBindings.dll</HintPath>
+    <Reference Include="UAOOI.Configuration.DataBindings, Version=6.4.8.1, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.Configuration.DataBindings.6.4.8\lib\netstandard2.0\UAOOI.Configuration.DataBindings.dll</HintPath>
     </Reference>
-    <Reference Include="UAOOI.Configuration.Networking, Version=4.0.1.1, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\UAOOI.Configuration.Networking.4.0.1\lib\netstandard2.0\UAOOI.Configuration.Networking.dll</HintPath>
+    <Reference Include="UAOOI.Configuration.Networking, Version=6.4.7.1, Culture=neutral, PublicKeyToken=deede3c2df331bb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\UAOOI.Configuration.Networking.6.4.8\lib\netstandard2.0\UAOOI.Configuration.Networking.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
