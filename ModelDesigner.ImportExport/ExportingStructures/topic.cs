@@ -11,15 +11,15 @@ using UAOOI.Common.Infrastructure.Serializers;
 
 namespace CAS.UA.Model.Designer.ImportExport.ExportingStructures
 {
-  public partial class topic : INamespaces
-  {
-    public IEnumerable<XmlQualifiedName> GetNamespaces()
+    public partial class topic : INamespaces
     {
-      List<XmlQualifiedName> nsList = new List<XmlQualifiedName>
-      {
-        new XmlQualifiedName("", "http://ddue.schemas.microsoft.com/authoring/2003/5")
-      };
-      return nsList;
+        /// <summary>
+        ///   Get  Namespace
+        /// </summary>
+        public IEnumerable<XmlQualifiedName> GetNamespaces()
+        {
+            List<XmlQualifiedName> nsList = new List<XmlQualifiedName> { new XmlQualifiedName("", "http://ddue.schemas.microsoft.com/authoring/2003/5") };
+            return nsList;
+        }
     }
-  }
 }
