@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31903.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{B429E0BA-4F78-44A2-B61A-8093A17789C4}"
 	ProjectSection(SolutionItems) = preProject
@@ -113,7 +113,6 @@ Global
 		{5F77262E-F522-462F-B30F-3FAD94723592}.Debug|x64.ActiveCfg = Debug|x64
 		{5F77262E-F522-462F-B30F-3FAD94723592}.Debug|x64.Build.0 = Debug|x64
 		{5F77262E-F522-462F-B30F-3FAD94723592}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F77262E-F522-462F-B30F-3FAD94723592}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F77262E-F522-462F-B30F-3FAD94723592}.Release|x64.ActiveCfg = Release|x64
 		{5F77262E-F522-462F-B30F-3FAD94723592}.Release|x64.Build.0 = Release|x64
 		{309AA08A-6A69-4475-984A-0CC9284C464F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -145,7 +144,6 @@ Global
 		{26932CFF-13F6-4D10-AD97-C8F0EFF342C3}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{26932CFF-13F6-4D10-AD97-C8F0EFF342C3}.Debug|x64.Build.0 = Debug|Any CPU
 		{26932CFF-13F6-4D10-AD97-C8F0EFF342C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26932CFF-13F6-4D10-AD97-C8F0EFF342C3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{26932CFF-13F6-4D10-AD97-C8F0EFF342C3}.Release|x64.ActiveCfg = Release|Any CPU
 		{26932CFF-13F6-4D10-AD97-C8F0EFF342C3}.Release|x64.Build.0 = Release|Any CPU
 		{37AFB65F-D781-4AF3-B90E-1F26A7D2BA7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -161,8 +159,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {44F03BC2-35ED-43E8-A43D-71C089CCD611}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.ExceptionHandling.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
+		SolutionGuid = {44F03BC2-35ED-43E8-A43D-71C089CCD611}
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

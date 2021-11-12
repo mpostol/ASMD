@@ -1,28 +1,19 @@
-//<summary>
-//  Title   : Browse options dialog
-//  System  : Microsoft Visual C# .NET 2008
-//  $LastChangedDate$
-//  $Rev$
-//  $LastChangedBy$
-//  $URL$
-//  $Id$
+//__________________________________________________________________________________________________
 //
-//  Copyright (C)2009, CAS LODZ POLAND.
-//  TEL: +48 (42) 686 25 47
-//  mailto://techsupp@cas.eu
-//  http://www.cas.eu
-//</summary>
-
-
-using CAS.UA.Common.Types;
+//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
+//
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 using System;
 using System.Windows.Forms;
+using UAOOI.OPCUA.Common.Types;
 
 namespace CAS.UA.Model.Designer.Controls.NodeObserver
 {
     public partial class BrowseOptionsDlg : Form
     {
         #region Constructors
+
         public BrowseOptionsDlg()
         {
             InitializeComponent();
@@ -33,19 +24,21 @@ namespace CAS.UA.Model.Designer.Controls.NodeObserver
             }
             browseDirection_ComboBox.SelectedIndex = 0;
         }
-        #endregion
-        
+
+        #endregion Constructors
+
         #region Event Handlers
 
         private void NodeClassMask_CheckedChanged(object sender, EventArgs e)
-        {            
-            nodeClassList.Enabled = nodeClassMask_CheckBox.Checked;     
+        {
+            nodeClassList.Enabled = nodeClassMask_CheckBox.Checked;
         }
 
         private void OkBTN_Click(object sender, EventArgs e)
         {
-         DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
         }
-        #endregion
+
+        #endregion Event Handlers
     }
 }
