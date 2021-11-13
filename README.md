@@ -40,14 +40,7 @@ I am a researcher who is passionate about applying knowledge and experience in b
 
 The ASMD was written by CAS Lodz Poland. I am the founder and Executive Director of CAS. Now CAS is just an individual business activity conducted by me, so I decided to move this software to Open Source.
 
-We use [Semantic Versioning][SV] for versioning. For the versions available, see the [releases on this repository][REL]. For your convenience, the versions of the repository, tools and NuGet packages has been listed in the next subsections.
-
-| Version | Milestone                                                                                           |     Date     | Notes      |
-| :-----: | --------------------------------------------------------------------------------------------------- | :----------: | ---------- |
-|   4.3   | [Maintenance, refactoring, and bug-fix release](https://github.com/mpostol/ASMD/releases/tag/4.3.0) |  18-07-2020  |            |
-|   4.2   | [Maintenance and refactoring](https://github.com/mpostol/ASMD/releases/tag/4.2.0)                   |  18-05-2020  |            |
-|   4.1   | Public release of the ASMD410                                                                       | Dec 17, 2019 | deprecated |
-| 3.20.1  | *ASMD last available Windows installation released by CAS*                                          | May 17, 2016 | deprecated |
+We use [Semantic Versioning][SV] for versioning. For the versions available, see the [releases on this repository][REL].
 
 ## Key Features
 
@@ -87,17 +80,17 @@ This section describes prerequisites to use the tool, compile the code and run u
 
 ### Ho to Install
 
-Download and run the file `UA.ModelDesigner.exe` to unzip the content to the selected folder and create an icon on the desktop. The application will run after unpacking. To restart the application you may use the icon on the desktop or double click the application file `<target>\UA.ModelDesigner\OOI.UA.ModelDesigner.exe`, where \<target\> is the already selected folder during the installation. To uninstall the software and embedded example simply delete the \<target\> folder and the icon.
+Download and run the file `UA.ModelDesigner.exe` to unzip the content to the selected folder and create an icon on the desktop. The application will run after unpacking. To restart the application you may use the icon on the desktop or double click the application file `<target>\CAS.UA.ModelDesigner.exe`, where `<target>` is the already selected folder during the installation. To uninstall the software and embedded example delete the `<target>` folder and the icon.
 
 > Note: The self-extracting zip file and the main application are not code-signed. The unsigned executable may not be allowed by your company IT policy. The installer package containing signed stuff is on the project road map #89. Further development planning is based on the sponsors' priorities.
- 
+
 ### How to open an example
 
 This section contains information about the Address Space Model Designer sample solutions that illustrate the structure and techniques used for designing models and defining bindings between model nodes and real-time process data.
 
 The section [Information Models Development][IMD] of the online ebook covers details on how to get started using the attached examples. The solution `BoilerExampleSolution` contains a boiler model. This model is described in the [ReferenceApplication Producer - Boilers Set Simulator][boiler]. Check out the section [Companion Specification - Information Model for Analyzers][ADI] to get more about `ADIExempleSolution` example.
 
-Selected examples is added to the folder `<target>\UA.ModelDesigner\EmbeddedExample`. The following step by step instruction will guide you on how to open the examples.
+Selected examples is added to the folder `<target>\EmbeddedExample`. The following step by step instruction will guide you on how to open the examples.
 
 - The folder `EmbeddedExample` contains two examples
   - `BoilerExampleSolution` - a set of unmanned boilers spread geographically, which have to be monitored and remotely controlled
@@ -126,9 +119,9 @@ The files of the sample solution are listed in the following table.
 
 ### How to build and run the unit tests in Visual Studio on Windows
 
-Projects can be opened in Visual Studio 2017. Support for some projects depends on the Visual Studio edition and installed components.
+Projects can be opened in Visual Studio.
 
-1. Open the `CommServer.UA.ModelDesigner.sln` solution file using Visual Studio 2017.
+1. Open the `CommServer.UA.ModelDesigner.sln` solution file using Visual Studio.
 1. Hit `F6` to build all projects in the solution.
 1. Set the `ModelDesigner.DesignStudio` as the Start-up Project
 1. Press `F5` to run the tool using Debug configuration
@@ -142,10 +135,10 @@ To get more visit the Microsoft documentation [How to reinstall and update packa
 
 ### Object Oriented Internet
 
-In this umbrella project, C\# deliverables supporting a new Machine To Machine \(M2M\) communication approach based on the **Data-Oriented Architecture** (DOA) paradigm is to be researched. The goal is to provide a generic solution for publishing and updating information in a context that can be used to describe and discover it by software applications. It is implemented based on the
+In this umbrella project, `C#` deliverables supporting a new `Machine To Machine (M2M)` communication approach based on the `Data-Oriented Architecture (DOA)` paradigm is to be researched. The goal is to provide a generic solution for publishing and updating information in a context that can be used to describe and discover it by software applications. It is implemented based on the
 
 - [OPC Unified Architecture](https://commsvr.gitbook.io/ooi/introduction/opcunifiedarchitecture) - an industrial integration standard that fulfills the proposed architecture requirements.
-- Object-Oriented Programming - well know and widely accepted programming language model in which data processing is organized around 4 major principles, namely encapsulation, abstraction, polymorphism and inheritance.
+- `Object-Oriented Programming` - well know and widely accepted programming language model in which data processing is organized around 4 major principles, namely encapsulation, abstraction, polymorphism and inheritance.
 
 The GitHub [Object Oriented Internet][OOI] repository is aimed at the maintenance of this project. The ASMD contributes to this project and is compliant with the OOI concept.
 
