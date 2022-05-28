@@ -1,5 +1,5 @@
-[submodule "ModelCompiler"]
-	path = ModelCompiler
+[submodule "UA-ModelCompiler"]
+	path = UA-ModelCompiler
 	url = https://github.com/mpostol/UA-ModelCompiler.git
 [submodule "OPCUA.Common"]
 	path = OPCUA.Common
