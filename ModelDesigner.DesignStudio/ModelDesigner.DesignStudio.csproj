@@ -690,6 +690,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\UA-ModelCompiler\Opc.Ua.ModelCompiler\ModelCompiler.csproj">
+      <Project>{c603a5eb-0b0a-400d-b5c5-c2f5bf15d532}</Project>
+      <Name>ModelCompiler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ModelDesigner.Configuration\ModelDesigner.Configuration.csproj">
       <Project>{B4E9C610-790A-417C-BF68-7B3E0AECCAA4}</Project>
       <Name>ModelDesigner.Configuration</Name>
