@@ -18,7 +18,7 @@ namespace CAS.UA.Model.Designer.Wrappers4PropertyGrid.Editors.OpcUaTypes
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\VS.git\UAOOI\ASMD\ModelDesigner.DesignStudio.UnitTest\Wrappers4PropertyGrid\Editors\OpcUaTypes\OpcUaTypesTemplate.tt"
+    #line 1 "C:\VS.git\github.mpostol\ASMD\ModelDesigner.DesignStudio.UnitTest\Wrappers4PropertyGrid\Editors\OpcUaTypes\OpcUaTypesTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class OpcUaTypesTemplate : OpcUaTypesTemplateBase
     {
@@ -49,7 +49,7 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
   {
 ");
             
-            #line 25 "C:\VS.git\UAOOI\ASMD\ModelDesigner.DesignStudio.UnitTest\Wrappers4PropertyGrid\Editors\OpcUaTypes\OpcUaTypesTemplate.tt"
+            #line 25 "C:\VS.git\github.mpostol\ASMD\ModelDesigner.DesignStudio.UnitTest\Wrappers4PropertyGrid\Editors\OpcUaTypes\OpcUaTypesTemplate.tt"
     foreach (string name in OpcUaTypesList)
 { 
             
@@ -57,21 +57,21 @@ namespace CAS.UA.Model.Designer.Wrappers4ProperyGrid.Editors
             #line hidden
             this.Write("    /// <summary>\r\n    /// An data type ");
             
-            #line 28 "C:\VS.git\UAOOI\ASMD\ModelDesigner.DesignStudio.UnitTest\Wrappers4PropertyGrid\Editors\OpcUaTypes\OpcUaTypesTemplate.tt"
+            #line 28 "C:\VS.git\github.mpostol\ASMD\ModelDesigner.DesignStudio.UnitTest\Wrappers4PropertyGrid\Editors\OpcUaTypes\OpcUaTypesTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(name));
             
             #line default
             #line hidden
             this.Write(".\r\n    /// </summary>\r\n    [EnumMemberAttribute()]\r\n    ");
             
-            #line 31 "C:\VS.git\UAOOI\ASMD\ModelDesigner.DesignStudio.UnitTest\Wrappers4PropertyGrid\Editors\OpcUaTypes\OpcUaTypesTemplate.tt"
+            #line 31 "C:\VS.git\github.mpostol\ASMD\ModelDesigner.DesignStudio.UnitTest\Wrappers4PropertyGrid\Editors\OpcUaTypes\OpcUaTypesTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(name));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 32 "C:\VS.git\UAOOI\ASMD\ModelDesigner.DesignStudio.UnitTest\Wrappers4PropertyGrid\Editors\OpcUaTypes\OpcUaTypesTemplate.tt"
+            #line 32 "C:\VS.git\github.mpostol\ASMD\ModelDesigner.DesignStudio.UnitTest\Wrappers4PropertyGrid\Editors\OpcUaTypes\OpcUaTypesTemplate.tt"
  } 
             
             #line default

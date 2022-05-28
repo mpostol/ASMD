@@ -18,7 +18,7 @@ namespace UAOOI.OPCUA.CoreDefinitionsUnitTest.BuiltInTypes
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\VS.git\UAOOI\ASMD\OPCUA.CoreDefinitionsUnitTest\BuiltInTypes\BuiltInTypesEnumTemplate.tt"
+    #line 1 "C:\VS.git\github.mpostol\ASMD\OPCUA.CoreDefinitionsUnitTest\BuiltInTypes\BuiltInTypesEnumTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class BuiltInTypesEnumTemplate : BuiltInTypesEnumTemplateBase
     {
@@ -50,7 +50,7 @@ namespace UAOOI.OPCUA.CoreDefinitions
   {
 ");
             
-            #line 26 "C:\VS.git\UAOOI\ASMD\OPCUA.CoreDefinitionsUnitTest\BuiltInTypes\BuiltInTypesEnumTemplate.tt"
+            #line 26 "C:\VS.git\github.mpostol\ASMD\OPCUA.CoreDefinitionsUnitTest\BuiltInTypes\BuiltInTypesEnumTemplate.tt"
     foreach (string name in BuildInTypes)
 { 
             
@@ -58,21 +58,21 @@ namespace UAOOI.OPCUA.CoreDefinitions
             #line hidden
             this.Write("    /// <summary>\r\n    /// An data type ");
             
-            #line 29 "C:\VS.git\UAOOI\ASMD\OPCUA.CoreDefinitionsUnitTest\BuiltInTypes\BuiltInTypesEnumTemplate.tt"
+            #line 29 "C:\VS.git\github.mpostol\ASMD\OPCUA.CoreDefinitionsUnitTest\BuiltInTypes\BuiltInTypesEnumTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(name));
             
             #line default
             #line hidden
             this.Write(".\r\n    /// </summary>\r\n    [EnumMemberAttribute()]\r\n    ");
             
-            #line 32 "C:\VS.git\UAOOI\ASMD\OPCUA.CoreDefinitionsUnitTest\BuiltInTypes\BuiltInTypesEnumTemplate.tt"
+            #line 32 "C:\VS.git\github.mpostol\ASMD\OPCUA.CoreDefinitionsUnitTest\BuiltInTypes\BuiltInTypesEnumTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(name));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 33 "C:\VS.git\UAOOI\ASMD\OPCUA.CoreDefinitionsUnitTest\BuiltInTypes\BuiltInTypesEnumTemplate.tt"
+            #line 33 "C:\VS.git\github.mpostol\ASMD\OPCUA.CoreDefinitionsUnitTest\BuiltInTypes\BuiltInTypesEnumTemplate.tt"
  } 
             
             #line default
