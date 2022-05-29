@@ -1,9 +1,9 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2022, Mariusz Postol LODZ POLAND.
 //
-//  To be in touch join the community at GITTER: https://gitter.im/mpostol/OPC-UA-OOI
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
@@ -20,18 +20,8 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
 {
   [TestClass]
   [DeploymentItem(@"TestData\", @"TestData")]
-  [DeploymentItem(@"exe\", @"exe")]
   public class ProjectConfigurationManagementUnitTest
   {
-    [TestMethod]
-    public void ConfigurationFileExistsTest()
-    {
-      Assert.IsTrue(Directory.Exists(m_TestSolutionPath), $"{Directory.GetCurrentDirectory()}");
-      Assert.IsTrue(File.Exists(m_TestProjectPath));
-      string _compilerPath = Path.Combine(Directory.GetCurrentDirectory(), @"exe\CAS.CommServer.UA.ModelCompiler.Command.exe");
-      Assert.IsTrue(File.Exists(_compilerPath));
-    }
-
     [TestMethod]
     public void CreateNewTest()
     {
@@ -164,9 +154,9 @@ namespace CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest.IO
       IProjectConfigurationManagement _newItemUnderTest = ProjectConfigurationManagement.ImportModelDesign(_solutionMock.Object, _guiuMocck.Object, _projectDescriptor);
       List<string> _log = new List<string>();
       _newItemUnderTest.Build(x => _log.Add(x));
-      Assert.AreEqual<int>(4, _log.Count);
+      Assert.AreEqual<int>(1, _log.Count);
       Assert.IsTrue(Directory.Exists(Path.Combine(m_TestSolutionPath, @"DemoConfiguration\BoilerType")));
-      Assert.AreEqual(7, Directory.GetFiles(Path.Combine(m_TestSolutionPath, @"DemoConfiguration\BoilerType")).Length);
+      Assert.AreEqual(10, Directory.GetFiles(Path.Combine(m_TestSolutionPath, @"DemoConfiguration\BoilerType")).Length);
     }
 
     #region instrumentation
