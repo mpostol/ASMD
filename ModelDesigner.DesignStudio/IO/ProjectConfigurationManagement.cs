@@ -1,6 +1,6 @@
 ﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2021, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2022, Mariusz Postol LODZ POLAND.
 //
 //  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
 //__________________________________________________________________________________________________
@@ -9,10 +9,10 @@ using CAS.CommServer.UA.ModelDesigner.Configuration.IO;
 using CAS.CommServer.UA.ModelDesigner.Configuration.UserInterface;
 using CAS.UA.Model.Designer.Properties;
 using CAS.UA.Model.Designer.Solution;
+using OOI.ModelCompiler;
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using OpcUaModelCompiler = UAOOI.SemanticData.UAModelDesignExport.XML;
 using TraceMessage = UAOOI.SemanticData.BuildingErrorsHandling.TraceMessage;
 
@@ -24,6 +24,39 @@ namespace CAS.UA.Model.Designer.IO
   internal class ProjectConfigurationManagement : TypeGenericConfigurationManagement<OpcUaModelCompiler.ModelDesign>, IProjectConfigurationManagement
   {
     #region private
+
+    private class CompilerOptions : ICompilerOptions
+    {
+      public string OutputPath
+      {
+        get { return OutputPathBacked ?? throw new ArgumentNullException($"{nameof(OutputPath)}"); }
+        internal set
+        {
+          if (value == null) throw new ArgumentNullException($"{nameof(value)}");
+          OutputPathBacked = value;
+        }
+      }
+
+      public IList<string> DesignFiles { internal set; get; } = new List<string>();
+
+      public string IdentifierFile { get; internal set; }
+
+      public string Version { get; internal set; }
+
+      public uint StartId { get; internal set; }
+
+      public bool UseAllowSubtypes { get; internal set; }
+
+      public IList<string> Exclusions { get; internal set; }
+
+      public string ModelPublicationDate { get; internal set; }
+
+      public bool ReleaseCandidate { get; internal set; }
+
+      public string ModelVersion { get; internal set; }
+
+      private string OutputPathBacked;
+    }
 
     private readonly UAModelDesignerProject m_UAModelDesignerProject;
     private readonly ISolutionConfigurationManagement m_ISolutionConfigurationManagement;
@@ -174,38 +207,47 @@ namespace CAS.UA.Model.Designer.IO
           return;
         }
       }
+      CompilerOptions options = new CompilerOptions();
+      options.DesignFiles.Add(_filePath);
+      options.IdentifierFile = CSVFileName;
+      options.OutputPath = OutputDirectory;
+      if (!Directory.Exists(OutputDirectory))
+        Directory.CreateDirectory(options.OutputPath);
+      ModelDesignCompiler.BuildModel(options);
+
       string _commandLine = string.Format(Properties.Settings.Default.Build_ProjectCompilationString, _filePath, CSVFileName, OutputDirectory);
-      string _compilerPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Properties.Settings.Default.ProjectCompilationExecutable);
-      ProcessStartInfo myStartInfo = new ProcessStartInfo(_compilerPath)
-      {
-        Arguments = _commandLine,
-        RedirectStandardOutput = true,
-        RedirectStandardError = true,
-        UseShellExecute = false,
-        CreateNoWindow = true
-      };
-      traceMessage($"{_compilerPath}  ");
       traceMessage(_commandLine);
-      traceMessage("");
-      Process _buildProcess = new Process
-      {
-        StartInfo = myStartInfo
-      };
-      if (!_buildProcess.Start())
-        GraphicalUserInterface.MessageBoxShowWarning(Resources.Build_click_ok_when_build_has_finished, Resources.Build_Caption);
-      else
-      {
-        _buildProcess.WaitForExit();
-        string _outputfrombuildprocess = _buildProcess.StandardOutput.ReadToEnd();
-        string _erroroutputfrombuildprocess = _buildProcess.StandardError.ReadToEnd();
-        if (!string.IsNullOrEmpty(_erroroutputfrombuildprocess))
-          _erroroutputfrombuildprocess = string.Format(Resources.BuildError_error_occured, _erroroutputfrombuildprocess);
-        else
-          _erroroutputfrombuildprocess = Resources.Build_project_ok;
-        _outputfrombuildprocess += _erroroutputfrombuildprocess;
-        if (!string.IsNullOrEmpty(_outputfrombuildprocess))
-          traceMessage(_outputfrombuildprocess);
-      }
+      //string _compilerPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Properties.Settings.Default.ProjectCompilationExecutable);
+      //ProcessStartInfo myStartInfo = new ProcessStartInfo(_compilerPath)
+      //{
+      //  Arguments = _commandLine,
+      //  RedirectStandardOutput = true,
+      //  RedirectStandardError = true,
+      //  UseShellExecute = false,
+      //  CreateNoWindow = true
+      //};
+      //traceMessage($"{_compilerPath}  ");
+      //traceMessage(_commandLine);
+      //traceMessage("");
+      //Process _buildProcess = new Process
+      //{
+      //  StartInfo = myStartInfo
+      //};
+      //if (!_buildProcess.Start())
+      //  GraphicalUserInterface.MessageBoxShowWarning(Resources.Build_click_ok_when_build_has_finished, Resources.Build_Caption);
+      //else
+      //{
+      //  _buildProcess.WaitForExit();
+      //  string _outputfrombuildprocess = _buildProcess.StandardOutput.ReadToEnd();
+      //  string _erroroutputfrombuildprocess = _buildProcess.StandardError.ReadToEnd();
+      //  if (!string.IsNullOrEmpty(_erroroutputfrombuildprocess))
+      //    _erroroutputfrombuildprocess = string.Format(Resources.BuildError_error_occured, _erroroutputfrombuildprocess);
+      //  else
+      //    _erroroutputfrombuildprocess = Resources.Build_project_ok;
+      //  _outputfrombuildprocess += _erroroutputfrombuildprocess;
+      //  if (!string.IsNullOrEmpty(_outputfrombuildprocess))
+      //    traceMessage(_outputfrombuildprocess);
+      //}
     }
 
     void IProjectConfigurationManagement.Save(OpcUaModelCompiler.ModelDesign modelDesign)
