@@ -8,8 +8,8 @@ string AssemblyCopyright = "Copyright (c) 2022 Mariusz Postol";
 string AssemblyCompany = "Mariusz Postol";
 string AssemblyTrademark = "OOI ASMD";
 string AssemblyProduct = "Object-Oriented Internet Address Space Model Designer";
-string AssemblyVersion = "4.6.0";
-string AssemblyVersionPrerelease = "-Foxtrot";
+string AssemblyVersion = "4.7.0";
+string AssemblyVersionPrerelease = "-Golf";
 
 //Note: 
 //Alpha, Bravo, Charlie, Delta, Echo, Foxtrot, Golf, Hotel, India, Juliet, 

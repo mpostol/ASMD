@@ -25,14 +25,12 @@ assignees: 'mpostol'
   - [ ] Version information
 - [ ] Build solution to create deliverable and publish the installation package
 - [ ] Close this issue and the parent milestone
-
 - [ ] Publish the release
-- [ ] Update the repository front page
 - [ ] Update the GitHub pages documentation
 
 > Note: after publication prepare and publish news to advertise the results
 
-## Creating self extracting file
+## Creating a self-extracting installation package
 
 The comment below contains SFX script commands for RAR
 
