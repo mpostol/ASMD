@@ -96,11 +96,10 @@ namespace CAS.UA.Model.Designer.Wrappers
       Action<string> tracer = x => trace.Add(x);
       _newItem.Build(tracer);
       _projectConfigurationMock.Verify(x => x.Build(tracer), Times.Once);
-      Assert.AreEqual<int>(4, trace.Count);
+      Assert.AreEqual<int>(3, trace.Count);
       Assert.AreEqual<string>("------ Building project: EFFF0C05 - 8406 - 4AD9 - 8725 - F00FC8295327. ------", trace[0]);
       Assert.IsTrue(trace[1].StartsWith("Build started at:"));
       Assert.IsTrue(trace[2].StartsWith("Build ended at:"));
-      Assert.AreEqual<string>("", trace[3]);
       foreach (string msg in trace)
         System.Diagnostics.Debug.WriteLine(msg);
     }
