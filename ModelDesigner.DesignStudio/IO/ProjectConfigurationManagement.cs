@@ -175,10 +175,9 @@ namespace CAS.UA.Model.Designer.IO
     string IProjectConfigurationManagement.Name => this.m_UAModelDesignerProject.Name;
 
     /// <summary>
-    /// Builds the model managed by this project using external compiler.
+    /// Builds the model managed by this project
     /// </summary>
-    /// <param name="traceMessage">Action to be used to trace the .</param>
-    //TODO Update the model compiler plug-in #198
+    /// <param name="traceMessage">Action to be used to trace the messages.</param>
     void IProjectConfigurationManagement.Build(Action<string> traceMessage)
     {
       string _filePath = RelativeFilePathsCalculator.CalculateAbsoluteFileName(this.m_ISolutionConfigurationManagement.DefaultDirectory, m_UAModelDesignerProject.FileName);
@@ -213,41 +212,17 @@ namespace CAS.UA.Model.Designer.IO
       options.OutputPath = OutputDirectory;
       if (!Directory.Exists(OutputDirectory))
         Directory.CreateDirectory(options.OutputPath);
-      ModelDesignCompiler.BuildModel(options);
-
-      string _commandLine = string.Format(Properties.Settings.Default.Build_ProjectCompilationString, _filePath, CSVFileName, OutputDirectory);
-      traceMessage(_commandLine);
-      //string _compilerPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Properties.Settings.Default.ProjectCompilationExecutable);
-      //ProcessStartInfo myStartInfo = new ProcessStartInfo(_compilerPath)
-      //{
-      //  Arguments = _commandLine,
-      //  RedirectStandardOutput = true,
-      //  RedirectStandardError = true,
-      //  UseShellExecute = false,
-      //  CreateNoWindow = true
-      //};
-      //traceMessage($"{_compilerPath}  ");
-      //traceMessage(_commandLine);
-      //traceMessage("");
-      //Process _buildProcess = new Process
-      //{
-      //  StartInfo = myStartInfo
-      //};
-      //if (!_buildProcess.Start())
-      //  GraphicalUserInterface.MessageBoxShowWarning(Resources.Build_click_ok_when_build_has_finished, Resources.Build_Caption);
-      //else
-      //{
-      //  _buildProcess.WaitForExit();
-      //  string _outputfrombuildprocess = _buildProcess.StandardOutput.ReadToEnd();
-      //  string _erroroutputfrombuildprocess = _buildProcess.StandardError.ReadToEnd();
-      //  if (!string.IsNullOrEmpty(_erroroutputfrombuildprocess))
-      //    _erroroutputfrombuildprocess = string.Format(Resources.BuildError_error_occured, _erroroutputfrombuildprocess);
-      //  else
-      //    _erroroutputfrombuildprocess = Resources.Build_project_ok;
-      //  _outputfrombuildprocess += _erroroutputfrombuildprocess;
-      //  if (!string.IsNullOrEmpty(_outputfrombuildprocess))
-      //    traceMessage(_outputfrombuildprocess);
-      //}
+      try
+      {
+        string _commandLine = string.Format(Properties.Settings.Default.Build_ProjectCompilationString, _filePath, CSVFileName, OutputDirectory);
+        traceMessage($"Started build at 499457465 with parameters {_commandLine}");
+        ModelDesignCompiler.BuildModel(options);
+      }
+      catch (Exception ex)
+      {
+        string errorMessage = $"Compilation ended with error {ex.GetType().Name}: {ex.Message} at 552021345 {Environment.NewLine}{ex.StackTrace}";
+        traceMessage(errorMessage);
+      }
     }
 
     void IProjectConfigurationManagement.Save(OpcUaModelCompiler.ModelDesign modelDesign)
