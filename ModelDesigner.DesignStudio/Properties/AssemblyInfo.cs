@@ -1,8 +1,9 @@
-﻿//___________________________________________________________________________________
+﻿//__________________________________________________________________________________________________
 //
-//  Copyright (C) 2019, Mariusz Postol LODZ POLAND.
+//  Copyright (C) 2022, Mariusz Postol LODZ POLAND.
 //
-//___________________________________________________________________________________
+//  To be in touch join the community at GitHub: https://github.com/mpostol/OPC-UA-OOI/discussions
+//__________________________________________________________________________________________________
 
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -18,8 +19,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid( "33281f75-30a8-43e1-a2b3-915eaaf43915" )]
-[assembly: AssemblyVersion("4.7.0.*")]
-[assembly: AssemblyFileVersion("4.7.0")]
+[assembly: AssemblyVersion("4.8.0.*")]
+[assembly: AssemblyFileVersion("4.8.0")]
 [assembly: CAS.Lib.CodeProtect.AssemblyHelper( Company = "Mariusz Postol", Email = "mpostol@cas.eu", Phone = "+48 (608) 619 899", Product = "OOI ASMD", Url = "https://mpostol.github.io/ASMD/" )]
 [assembly: InternalsVisibleToAttribute("CAS.CommServer.UA.ModelDesigner.DesignStudio.UnitTest, PublicKey=0024000004800000940000000602000000240000525341310004000001000100b3cff1bec656a6" +
                                                                        "e3784c75cacce8ee3bc695d0ce135d820c86465eb49b2353f0438d28ad9a458e5350c0c141393d" +
